@@ -1,4 +1,4 @@
-baseURL = 'https://cyrus.github.io/'
+baseURL = ' https://cyrus-studio.github.io/cyrus.github.io/'
 languageCode = 'en-us'
 title = 'cyrus blog'
 theme = "ananke"
