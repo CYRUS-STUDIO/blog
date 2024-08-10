@@ -46,8 +46,8 @@
   <meta property="og:type" content="website">
 
   <meta itemprop="name" content="CYRUS STUDIO">
-  <meta itemprop="datePublished" content="2024-08-11T05:06:18+08:00">
-  <meta itemprop="dateModified" content="2024-08-11T05:06:18+08:00">
+  <meta itemprop="datePublished" content="2024-08-11T06:09:27+08:00">
+  <meta itemprop="dateModified" content="2024-08-11T06:09:27+08:00">
   <meta name="twitter:card" content="summary">
   <meta name="twitter:title" content="CYRUS STUDIO">
 
@@ -132,7 +132,8 @@
             </a>
         </h1>
         <div class="f6 f5-l lh-copy nested-copy-line-height nested-links">
-          有道云导出docx
+          版权归作者所有，如有转发，请注明文章出处：https://cyrus-studio.github.io/blog/
+有道云导出docx
 有道云笔记右上角更多按钮选择【导出为Word】，可以导出docx文档 docx转换markdown
 尝试了几个docx转markdown的python库后，最终选择了python-mammoth，轻量，效率高，可自定义转换满足特定需求。
 python-mammoth
@@ -166,20 +167,19 @@ def is_possible_code_or_bash(text):# 常见的代码关键字code_keywords = [
             </a>
         </h1>
         <div class="f6 f5-l lh-copy nested-copy-line-height nested-links">
-          使用 Chocolatey 安装 Hugo
+          版权归作者所有，如有转发，请注明文章出处：https://cyrus-studio.github.io/blog/
+使用 Chocolatey 安装 Hugo
 Chocolatey 是一个 Windows 软件包管理器，使用 PowerShell 和 NuGet 作为基础。它可以自动化软件的安装、升级和卸载过程。
 安装 Chocolatey（如果还没有安装）
 Chocolatey 允许你通过设置环境变量来更改默认安装路径。在安装 Chocolatey 之前，你需要设置 ChocolateyInstall 环境变量来指定新的安装路径。
 打开 PowerShell（以管理员身份运行），并执行以下命令指定自定义安装路径：
-[System.Environment]::SetEnvironmentVariable(&#39;ChocolateyInstall&#39;, &#39;D:\App\chocolatey&#39;, [System.EnvironmentVariableTarget]::Machine) 如果不设置默认安装路径为：C:\ProgramData\chocolatey
-设置完 ChocolateyInstall 环境变量后，重新打开一下会话，执行下面的命令检查一下是否设置成功
+1. [System.Environment]::SetEnvironmentVariable(&#39;ChocolateyInstall&#39;, &#39;D:\App\chocolatey&#39;, [System.EnvironmentVariableTarget]::Machine) 如果不设置默认安装路径为：C:\ProgramData\chocolatey 设置完 ChocolateyInstall 环境变量后，重新打开一下会话，执行下面的命令检查一下是否设置成功
 Get-Item Env:ChocolateyInstall 打开 PowerShell（以管理员身份运行），执行以下命令安装 Chocolatey：
-Set-ExecutionPolicy Bypass -Scope Process -Force; [System.Net.ServicePointManager]::SecurityProtocol = [System.Net.ServicePointManager]::SecurityProtocol -bor 3072; iex ((New-Object System.Net.WebClient).DownloadString(&#39;https://community.chocolatey.org/install.ps1&#39;)) 检查是否安装成功
+1. Set-ExecutionPolicy Bypass -Scope Process -Force; [System.Net.ServicePointManager]::SecurityProtocol = [System.Net.ServicePointManager]::SecurityProtocol -bor 3072; iex ((New-Object System.Net.WebClient).DownloadString(&#39;https://community.chocolatey.org/install.ps1&#39;)) 检查是否安装成功
 choco -h 安装 Hugo
 在 PowerShell 中运行以下命令安装 Hugo： 安装软件包：
 choco install hugo -confirm 升级软件包：
 choco upgrade hugo 卸载软件包：
-choco uninstall hugo 验证安装：
         </div>
           <a href="/blog/posts/0%E6%88%90%E6%9C%AC%E9%80%9A%E8%BF%87hugo%E5%92%8Cgithub-pages%E6%90%AD%E5%BB%BA%E5%8D%9A%E5%AE%A2/" class="ba b--moon-gray bg-light-gray br2 color-inherit dib f7 hover-bg-moon-gray link mt2 ph2 pv1">read more</a>
         

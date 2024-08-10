@@ -1,8 +1,10 @@
 +++
 title = '有道云docx转换markdown，导入hugo发布到github page，多平台发布适配'
-date = 2024-08-11T05:06:18.554485+08:00
+date = 2024-08-11T06:09:27.708912+08:00
 draft = false
 +++
+
+> 版权归作者所有，如有转发，请注明文章出处：<https://cyrus-studio.github.io/blog/>
 
 __有道云导出docx__
 

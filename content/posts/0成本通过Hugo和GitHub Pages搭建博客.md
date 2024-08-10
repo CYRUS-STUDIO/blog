@@ -1,8 +1,10 @@
 +++
 title = '0成本通过Hugo和GitHub Pages搭建博客'
-date = 2024-08-10T15:08:54.263205+08:00
+date = 2024-08-11T06:09:10.432163+08:00
 draft = false
 +++
+
+> 版权归作者所有，如有转发，请注明文章出处：<https://cyrus-studio.github.io/blog/>
 
 __使用 Chocolatey 安装 Hugo__
 
@@ -14,9 +16,9 @@ Chocolatey 允许你通过设置环境变量来更改默认安装路径。在安
 
 打开 PowerShell（以管理员身份运行），并执行以下命令指定自定义安装路径：
 ```
-[System.Environment]::SetEnvironmentVariable('ChocolateyInstall', 'D:\App\chocolatey', [System.EnvironmentVariableTarget]::Machine)
+1. [System.Environment]::SetEnvironmentVariable('ChocolateyInstall', 'D:\App\chocolatey', [System.EnvironmentVariableTarget]::Machine)
 ```
-如果不设置默认安装路径为：C:\ProgramData\chocolatey
+2. 如果不设置默认安装路径为：C:\ProgramData\chocolatey
 
 设置完 ChocolateyInstall 环境变量后，重新打开一下会话，执行下面的命令检查一下是否设置成功
 ```
@@ -25,7 +27,7 @@ Get-Item Env:ChocolateyInstall
 
 打开 PowerShell（以管理员身份运行），执行以下命令安装 Chocolatey：
 ```
-Set-ExecutionPolicy Bypass -Scope Process -Force; [System.Net.ServicePointManager]::SecurityProtocol = [System.Net.ServicePointManager]::SecurityProtocol -bor 3072; iex ((New-Object System.Net.WebClient).DownloadString('https://community.chocolatey.org/install.ps1'))
+1. Set-ExecutionPolicy Bypass -Scope Process -Force; [System.Net.ServicePointManager]::SecurityProtocol = [System.Net.ServicePointManager]::SecurityProtocol -bor 3072; iex ((New-Object System.Net.WebClient).DownloadString('https://community.chocolatey.org/install.ps1'))
 ```
 
 检查是否安装成功
@@ -50,7 +52,7 @@ choco uninstall hugo
 ```
 验证安装：
 ```
-hugo version
+1. hugo version
 ```
 
 __创建 Hugo 网站__
@@ -59,8 +61,8 @@ __1. 创建 Hugo 网站__
 
 打开终端或命令行，执行以下命令：
 ```
-# 导航到目标目录
-cd D:/
+1. # 导航到目标目录
+2. cd D:/
 
 # 创建目标目录并进入
 mkdir hugo
@@ -76,8 +78,8 @@ __2. 添加主题__
 
 你可以选择一个喜欢的主题并添加到你的 Hugo 网站。例如：
 ```
-git init
-git submodule add https://github.com/theNewDynamic/gohugo-theme-ananke.git themes/ananke
+1. git init
+2. git submodule add https://github.com/theNewDynamic/gohugo-theme-ananke.git themes/ananke
 ```
 
 在 hugo.toml 文件中添加 theme = "ananke"，表示使用 themes 下的 ananke 主题
@@ -93,21 +95,21 @@ __3. 创建内容__
 
 生成一个新的博客文章：
 ```
-hugo new posts/my-first-post.md
+1. hugo new posts/my-first-post.md
 ```
-编辑 content/posts/my-first-post.md 文件，添加你的文章内容。
+2. 编辑 content/posts/my-first-post.md 文件，添加你的文章内容。
 
 __4. 本地预览__
 
 运行以下命令来本地预览你的博客：
 ```
-# 启动服务器
-hugo server
-# 或
-# 启动本地开发服务器，包括草稿内容在内。
-hugo server -D
+1. # 启动服务器
+2. hugo server
+3. # 或
+4. # 启动本地开发服务器，包括草稿内容在内。
+5. hugo server -D
 ```
-打开浏览器访问 [http://localhost:1313](http://localhost:1313) 查看你的博客。
+6. 打开浏览器访问 [http://localhost:1313](http://localhost:1313) 查看你的博客。
 
 __5. 生成静态文件__
 ```
@@ -213,11 +215,11 @@ __3. 提交代码并推送到 GitHub__
 
 初始化 git 仓库并将代码推送到 GitHub：
 ```
-git add .
-git commit -m "Initial commit"
-git branch -M main
-git remote add origin https://github.com/your-username/your-username.github.io.git
-git push -u origin main
+1. git add .
+2. git commit -m "Initial commit"
+3. git branch -M main
+4. git remote add origin https://github.com/your-username/your-username.github.io.git
+5. git push -u origin main
 ```
 
 代码上传完成后，打开【Settings】【Pages】，修改【Source】和【Branch】如下：
