@@ -1,6 +1,6 @@
 <!DOCTYPE html>
 <html lang="en-us">
-  <head>
+  <head><script src="/blog/livereload.js?mindelay=10&amp;v=2&amp;port=1313&amp;path=blog/livereload" data-no-instant defer></script>
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
     
@@ -36,18 +36,18 @@
     
 
     
-      <link rel="canonical" href="https://cyrus-studio.github.io/blog/">
+      <link rel="canonical" href="http://localhost:1313/blog/">
     
 
-    <meta property="og:url" content="https://cyrus-studio.github.io/blog/">
+    <meta property="og:url" content="http://localhost:1313/blog/">
   <meta property="og:site_name" content="CYRUS STUDIO">
   <meta property="og:title" content="CYRUS STUDIO">
   <meta property="og:locale" content="en_us">
   <meta property="og:type" content="website">
 
   <meta itemprop="name" content="CYRUS STUDIO">
-  <meta itemprop="datePublished" content="2024-08-10T15:08:54+08:00">
-  <meta itemprop="dateModified" content="2024-08-10T15:08:54+08:00">
+  <meta itemprop="datePublished" content="2024-08-10T15:33:01+08:00">
+  <meta itemprop="dateModified" content="2024-08-10T15:33:01+08:00">
   <meta name="twitter:card" content="summary">
   <meta name="twitter:title" content="CYRUS STUDIO">
 
@@ -127,6 +127,40 @@
       
       <div class="blah w-100">
         <h1 class="f3 fw1 athelas mt0 lh-title">
+          <a href="/blog/posts/%E6%9C%89%E9%81%93%E4%BA%91%E5%AF%BC%E5%87%BAdocxdocx%E8%BD%AC%E6%8D%A2markdown%E5%AF%BC%E5%85%A5hugo%E5%8F%91%E5%B8%83%E5%88%B0github-page/" class="color-inherit dim link">
+            有道云导出docx，docx转换markdown，导入hugo发布到github page
+            </a>
+        </h1>
+        <div class="f6 f5-l lh-copy nested-copy-line-height nested-links">
+          有道云导出docx
+有道云笔记右上角更多按钮选择【导出为Word】，可以导出docx文档 docx转换markdown
+尝试了几个docx转markdown的python库后，最终选择了python-mammoth，轻量，效率高，可自定义转换满足特定需求。
+python-mammoth
+python-mammoth 是一个用于将 Microsoft Word (DOCX) 文档转换为 HTML 或 Markdown 的 Python 库。
+github地址：https://github.com/mwilliamson/python-mammoth
+安装 python-mammoth
+pip install mammoth 自定义代码块样式
+通过自定义 transform 来实现自定义的代码块样式来支持有道云docx的代码块
+def ynote_docx_markdown_transform(document):...passresult = convert_to_markdown(docx_file, transform_document=ynote_docx_markdown_transform) 通过在自定义 transform 断点调试可以看到 document 都是由一个一个 Paragraph 组成的，代码块的 Bookmark 的 name 都是相同的，由此代码块其中一个特征就是相同且相邻的 Bookmark name。 但是有的代码块只是单独的一段 这时可以通过自定义 代码/bash 特征判断该 Paragraph 中的 Text 是不是一段 代码/bash。
+def is_possible_code_or_bash(text):# 常见的代码关键字code_keywords = [r&#39;\bif\b&#39;, r&#39;\bfor\b&#39;, r&#39;\bwhile\b&#39;, r&#39;\bdef\b&#39;, r&#39;\bclass\b&#39;, r&#39;\breturn\b&#39;, r&#39;\bimport\b&#39;,r&#39;\bint\b&#39;, r&#39;\bfloat\b&#39;, r&#39;\bmain\b&#39;, r&#39;\binclude\b&#39;, r&#39;#include&#39;, r&#39;\becho\b&#39;, r&#39;\bcd\b&#39;,r&#39;\bgrep\b&#39;, r&#39;\bexit\b&#39;, r&#39;\belse\b&#39;, r&#39;\belif\b&#39;, r&#39;#!
+        </div>
+          <a href="/blog/posts/%E6%9C%89%E9%81%93%E4%BA%91%E5%AF%BC%E5%87%BAdocxdocx%E8%BD%AC%E6%8D%A2markdown%E5%AF%BC%E5%85%A5hugo%E5%8F%91%E5%B8%83%E5%88%B0github-page/" class="ba b--moon-gray bg-light-gray br2 color-inherit dib f7 hover-bg-moon-gray link mt2 ph2 pv1">read more</a>
+        
+      </div>
+    </div>
+  </div>
+</article>
+
+            </div>
+          
+            <div class="relative w-100 mb4">
+              
+<article class="bb b--black-10">
+  <div class="db pv4 ph3 ph0-l no-underline dark-gray">
+    <div class="flex flex-column flex-row-ns">
+      
+      <div class="blah w-100">
+        <h1 class="f3 fw1 athelas mt0 lh-title">
           <a href="/blog/posts/0%E6%88%90%E6%9C%AC%E9%80%9A%E8%BF%87hugo%E5%92%8Cgithub-pages%E6%90%AD%E5%BB%BA%E5%8D%9A%E5%AE%A2/" class="color-inherit dim link">
             0成本通过Hugo和GitHub Pages搭建博客
             </a>
@@ -167,7 +201,7 @@ choco uninstall hugo 验证安装：
     </main>
     <footer class="bg-black bottom-0 w-100 pa3" role="contentinfo">
   <div class="flex justify-between">
-  <a class="f4 fw4 hover-white no-underline white-70 dn dib-ns pv2 ph3" href="https://cyrus-studio.github.io/blog/" >
+  <a class="f4 fw4 hover-white no-underline white-70 dn dib-ns pv2 ph3" href="http://localhost:1313/blog/" >
     &copy;  CYRUS STUDIO 2024 
   </a>
     <div>
