@@ -1,19 +1,19 @@
 <?xml version="1.0" encoding="utf-8" standalone="yes"?>
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
-    <title>cyrus blog</title>
-    <link>https://cyrus.github.io/</link>
-    <description>Recent content on cyrus blog</description>
+    <title>CYRUS STUDIO</title>
+    <link>https://cyrus-studio.github.io/blog/</link>
+    <description>Recent content on CYRUS STUDIO</description>
     <generator>Hugo</generator>
     <language>en-us</language>
-    <lastBuildDate>Wed, 07 Aug 2024 03:45:42 +0800</lastBuildDate>
-    <atom:link href="https://cyrus.github.io/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Sat, 10 Aug 2024 15:08:54 +0800</lastBuildDate>
+    <atom:link href="https://cyrus-studio.github.io/blog/index.xml" rel="self" type="application/rss+xml" />
     <item>
-      <title>My First Post</title>
-      <link>https://cyrus.github.io/posts/my-first-post/</link>
-      <pubDate>Wed, 07 Aug 2024 03:45:42 +0800</pubDate>
-      <guid>https://cyrus.github.io/posts/my-first-post/</guid>
-      <description></description>
+      <title>0成本通过Hugo和GitHub Pages搭建博客</title>
+      <link>https://cyrus-studio.github.io/blog/posts/0%E6%88%90%E6%9C%AC%E9%80%9A%E8%BF%87hugo%E5%92%8Cgithub-pages%E6%90%AD%E5%BB%BA%E5%8D%9A%E5%AE%A2/</link>
+      <pubDate>Sat, 10 Aug 2024 15:08:54 +0800</pubDate>
+      <guid>https://cyrus-studio.github.io/blog/posts/0%E6%88%90%E6%9C%AC%E9%80%9A%E8%BF%87hugo%E5%92%8Cgithub-pages%E6%90%AD%E5%BB%BA%E5%8D%9A%E5%AE%A2/</guid>
+      <description>使用 Chocolatey 安装 Hugo&#xA;Chocolatey 是一个 Windows 软件包管理器，使用 PowerShell 和 NuGet 作为基础。它可以自动化软件的安装、升级和卸载过程。&#xA;安装 Chocolatey（如果还没有安装）&#xA;Chocolatey 允许你通过设置环境变量来更改默认安装路径。在安装 Chocolatey 之前，你需要设置 ChocolateyInstall 环境变量来指定新的安装路径。&#xA;打开 PowerShell（以管理员身份运行），并执行以下命令指定自定义安装路径：&#xA;[System.Environment]::SetEnvironmentVariable(&amp;#39;ChocolateyInstall&amp;#39;, &amp;#39;D:\App\chocolatey&amp;#39;, [System.EnvironmentVariableTarget]::Machine) 如果不设置默认安装路径为：C:\ProgramData\chocolatey&#xA;设置完 ChocolateyInstall 环境变量后，重新打开一下会话，执行下面的命令检查一下是否设置成功&#xA;Get-Item Env:ChocolateyInstall 打开 PowerShell（以管理员身份运行），执行以下命令安装 Chocolatey：&#xA;Set-ExecutionPolicy Bypass -Scope Process -Force; [System.Net.ServicePointManager]::SecurityProtocol = [System.Net.ServicePointManager]::SecurityProtocol -bor 3072; iex ((New-Object System.Net.WebClient).DownloadString(&amp;#39;https://community.chocolatey.org/install.ps1&amp;#39;)) 检查是否安装成功&#xA;choco -h 安装 Hugo&#xA;在 PowerShell 中运行以下命令安装 Hugo： 安装软件包：&#xA;choco install hugo -confirm 升级软件包：&#xA;choco upgrade hugo 卸载软件包：&#xA;choco uninstall hugo 验证安装：</description>
     </item>
   </channel>
 </rss>
