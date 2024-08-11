@@ -2,31 +2,31 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
     <title>CYRUS STUDIO</title>
-    <link>https://cyrus-studio.github.io/blog/</link>
+    <link>http://localhost:1313/blog/</link>
     <description>Recent content on CYRUS STUDIO</description>
     <generator>Hugo</generator>
     <language>zh-CN</language>
     <lastBuildDate>Sun, 11 Aug 2024 06:09:27 +0800</lastBuildDate>
-    <atom:link href="https://cyrus-studio.github.io/blog/index.xml" rel="self" type="application/rss+xml" />
+    <atom:link href="http://localhost:1313/blog/index.xml" rel="self" type="application/rss+xml" />
     <item>
       <title>有道云docx转换markdown，导入hugo发布到github page，多平台发布适配</title>
-      <link>https://cyrus-studio.github.io/blog/posts/%E6%9C%89%E9%81%93%E4%BA%91docx%E8%BD%AC%E6%8D%A2markdown%E5%AF%BC%E5%85%A5hugo%E5%8F%91%E5%B8%83%E5%88%B0github-page%E5%A4%9A%E5%B9%B3%E5%8F%B0%E5%8F%91%E5%B8%83%E9%80%82%E9%85%8D/</link>
+      <link>http://localhost:1313/blog/posts/%E6%9C%89%E9%81%93%E4%BA%91docx%E8%BD%AC%E6%8D%A2markdown%E5%AF%BC%E5%85%A5hugo%E5%8F%91%E5%B8%83%E5%88%B0github-page%E5%A4%9A%E5%B9%B3%E5%8F%B0%E5%8F%91%E5%B8%83%E9%80%82%E9%85%8D/</link>
       <pubDate>Sun, 11 Aug 2024 06:09:27 +0800</pubDate>
-      <guid>https://cyrus-studio.github.io/blog/posts/%E6%9C%89%E9%81%93%E4%BA%91docx%E8%BD%AC%E6%8D%A2markdown%E5%AF%BC%E5%85%A5hugo%E5%8F%91%E5%B8%83%E5%88%B0github-page%E5%A4%9A%E5%B9%B3%E5%8F%B0%E5%8F%91%E5%B8%83%E9%80%82%E9%85%8D/</guid>
+      <guid>http://localhost:1313/blog/posts/%E6%9C%89%E9%81%93%E4%BA%91docx%E8%BD%AC%E6%8D%A2markdown%E5%AF%BC%E5%85%A5hugo%E5%8F%91%E5%B8%83%E5%88%B0github-page%E5%A4%9A%E5%B9%B3%E5%8F%B0%E5%8F%91%E5%B8%83%E9%80%82%E9%85%8D/</guid>
       <description>版权归作者所有，如有转发，请注明文章出处：https://cyrus-studio.github.io/blog/&#xA;有道云导出docx&#xA;有道云笔记右上角更多按钮选择【导出为Word】，可以导出docx文档 docx转换markdown&#xA;尝试了几个docx转markdown的python库后，最终选择了python-mammoth，轻量，效率高，可自定义转换满足特定需求。&#xA;python-mammoth&#xA;python-mammoth 是一个用于将 Microsoft Word (DOCX) 文档转换为 HTML 或 Markdown 的 Python 库。&#xA;github地址：https://github.com/mwilliamson/python-mammoth&#xA;安装 python-mammoth&#xA;pip install mammoth 自定义代码块样式&#xA;通过自定义 transform 来实现自定义的代码块样式来支持有道云docx的代码块&#xA;def ynote_docx_markdown_transform(document):&#xD;...&#xD;pass&#xD;result = convert_to_markdown(docx_file, transform_document=ynote_docx_markdown_transform) 通过在自定义 transform 断点调试可以看到 document 都是由一个一个 Paragraph 组成的，代码块的 Bookmark 的 name 都是相同的，由此代码块其中一个特征就是相同且相邻的 Bookmark name。 但是有的代码块只是单独的一段 这时可以通过自定义 代码/bash 特征判断该 Paragraph 中的 Text 是不是一段 代码/bash。&#xA;def is_possible_code_or_bash(text):&#xD;# 常见的代码关键字&#xD;code_keywords = [&#xD;r&amp;#39;\bif\b&amp;#39;, r&amp;#39;\bfor\b&amp;#39;, r&amp;#39;\bwhile\b&amp;#39;, r&amp;#39;\bdef\b&amp;#39;, r&amp;#39;\bclass\b&amp;#39;, r&amp;#39;\breturn\b&amp;#39;, r&amp;#39;\bimport\b&amp;#39;,&#xD;r&amp;#39;\bint\b&amp;#39;, r&amp;#39;\bfloat\b&amp;#39;, r&amp;#39;\bmain\b&amp;#39;, r&amp;#39;\binclude\b&amp;#39;, r&amp;#39;#include&amp;#39;, r&amp;#39;\becho\b&amp;#39;, r&amp;#39;\bcd\b&amp;#39;,&#xD;r&amp;#39;\bgrep\b&amp;#39;, r&amp;#39;\bexit\b&amp;#39;, r&amp;#39;\belse\b&amp;#39;, r&amp;#39;\belif\b&amp;#39;, r&amp;#39;#!</description>
     </item>
     <item>
       <title>0成本通过Hugo和GitHub Pages搭建博客</title>
-      <link>https://cyrus-studio.github.io/blog/posts/0%E6%88%90%E6%9C%AC%E9%80%9A%E8%BF%87hugo%E5%92%8Cgithub-pages%E6%90%AD%E5%BB%BA%E5%8D%9A%E5%AE%A2/</link>
+      <link>http://localhost:1313/blog/posts/0%E6%88%90%E6%9C%AC%E9%80%9A%E8%BF%87hugo%E5%92%8Cgithub-pages%E6%90%AD%E5%BB%BA%E5%8D%9A%E5%AE%A2/</link>
       <pubDate>Sun, 11 Aug 2024 06:09:10 +0800</pubDate>
-      <guid>https://cyrus-studio.github.io/blog/posts/0%E6%88%90%E6%9C%AC%E9%80%9A%E8%BF%87hugo%E5%92%8Cgithub-pages%E6%90%AD%E5%BB%BA%E5%8D%9A%E5%AE%A2/</guid>
+      <guid>http://localhost:1313/blog/posts/0%E6%88%90%E6%9C%AC%E9%80%9A%E8%BF%87hugo%E5%92%8Cgithub-pages%E6%90%AD%E5%BB%BA%E5%8D%9A%E5%AE%A2/</guid>
       <description>版权归作者所有，如有转发，请注明文章出处：https://cyrus-studio.github.io/blog/&#xA;使用 Chocolatey 安装 Hugo&#xA;Chocolatey 是一个 Windows 软件包管理器，使用 PowerShell 和 NuGet 作为基础。它可以自动化软件的安装、升级和卸载过程。&#xA;安装 Chocolatey（如果还没有安装）&#xA;Chocolatey 允许你通过设置环境变量来更改默认安装路径。在安装 Chocolatey 之前，你需要设置 ChocolateyInstall 环境变量来指定新的安装路径。&#xA;打开 PowerShell（以管理员身份运行），并执行以下命令指定自定义安装路径：&#xA;1. [System.Environment]::SetEnvironmentVariable(&amp;#39;ChocolateyInstall&amp;#39;, &amp;#39;D:\App\chocolatey&amp;#39;, [System.EnvironmentVariableTarget]::Machine) 如果不设置默认安装路径为：C:\ProgramData\chocolatey 设置完 ChocolateyInstall 环境变量后，重新打开一下会话，执行下面的命令检查一下是否设置成功&#xA;Get-Item Env:ChocolateyInstall 打开 PowerShell（以管理员身份运行），执行以下命令安装 Chocolatey：&#xA;1. Set-ExecutionPolicy Bypass -Scope Process -Force; [System.Net.ServicePointManager]::SecurityProtocol = [System.Net.ServicePointManager]::SecurityProtocol -bor 3072; iex ((New-Object System.Net.WebClient).DownloadString(&amp;#39;https://community.chocolatey.org/install.ps1&amp;#39;)) 检查是否安装成功&#xA;choco -h 安装 Hugo&#xA;在 PowerShell 中运行以下命令安装 Hugo： 安装软件包：&#xA;choco install hugo -confirm 升级软件包：&#xA;choco upgrade hugo 卸载软件包：</description>
     </item>
     <item>
       <title>About</title>
-      <link>https://cyrus-studio.github.io/blog/about/</link>
+      <link>http://localhost:1313/blog/about/</link>
       <pubDate>Sat, 10 Aug 2024 12:00:00 +0000</pubDate>
-      <guid>https://cyrus-studio.github.io/blog/about/</guid>
+      <guid>http://localhost:1313/blog/about/</guid>
       <description>欢迎访问我的博客！在这里分享我的android、python相关知识、经验和项目。&#xA;博客地址: https://cyrus-studio.github.io/blog/ GitHub: https://github.com/CYRUS-STUDIO Email: linchaolong.dev@gmail.com </description>
     </item>
   </channel>
