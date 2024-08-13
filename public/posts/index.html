@@ -46,8 +46,8 @@
   <meta property="og:type" content="website">
 
   <meta itemprop="name" content="Posts">
-  <meta itemprop="datePublished" content="2024-08-11T06:09:27+08:00">
-  <meta itemprop="dateModified" content="2024-08-11T06:09:27+08:00">
+  <meta itemprop="datePublished" content="2024-08-13T22:51:48+08:00">
+  <meta itemprop="dateModified" content="2024-08-13T22:51:48+08:00">
   <meta name="twitter:card" content="summary">
   <meta name="twitter:title" content="Posts">
 
@@ -117,6 +117,34 @@
   <article class="pa3 pa4-ns nested-copy-line-height">
     <section class="cf ph3 ph5-l pv3 pv4-l f4 tc-l center measure-wide lh-copy mid-gray"></section>
     <section class="flex-ns flex-wrap justify-around mt5">
+      
+        <div class="relative w-100 w-30-l mb4 bg-white">
+          <div class="relative w-100 mb4 bg-white nested-copy-line-height">
+  <div class="bg-white mb3 pa4 gray overflow-hidden">
+    <span class="f6 db">Posts</span>
+    <h1 class="f3 near-black">
+      <a href="/blog/posts/%E7%BC%96%E8%AF%91%E8%87%AA%E5%AE%9A%E4%B9%89linux%E5%86%85%E6%A0%B8%E4%BD%BFwsl%E6%94%AF%E6%8C%81%E8%AE%BF%E9%97%AEwindows%E4%B8%8Busb%E8%AE%BE%E5%A4%87/" class="link black dim">
+        编译自定义Linux内核，使WSL支持访问Windows下USB设备
+      </a>
+    </h1>
+    <div class="nested-links f5 lh-copy nested-copy-line-height">
+      版权归作者所有，如有转发，请注明文章出处：https://cyrus-studio.github.io/blog/
+WSL 本身并不支持连接 USB 设备，因此你需要安装开源 usbipd-win 项目。
+usbip 可以让你在网络上共享和使用 USB 设备。它由两个主要组件组成：
+1. usbipd (USB/IP daemon)：服务端，负责共享连接到主机的 USB 设备。 usbip (USB/IP client)：客户端，允许其他计算机访问共享的 USB 设备。 1. 安装USBIPD-WIN USBIPD-WIN 是一个在 Windows 上实现 USB/IP 协议的工具。首先，你需要在 Windows 上安装这个工具。
+下载并安装 usbipd-win，可以从GitHub页面获取最新版本的安装包。
+或者执行下面命令安装
+winget install usbipd 2. 列出所有可以共享的USB设备 usbipd list 3. 共享设备
+在附加 USB 设备之前，必须使用命令 usbipd bind 来共享设备，从而允许它附加到 WSL（ 需要管理员权限）。
+usbipd bind --busid 2-6 这里的 2-6 是 USB 设备对应的 BUSID
+4. 将USB设备连接到WSL 使用 usbipd attach 命令将指定的USB设备附加到WSL实例中。
+usbipd attach --wsl --busid 2-6 打开 Ubuntu（或首选的 WSL 命令行），使用以下命令列出附加的 USB 设备：
+    </div>
+    <a href="/blog/posts/%E7%BC%96%E8%AF%91%E8%87%AA%E5%AE%9A%E4%B9%89linux%E5%86%85%E6%A0%B8%E4%BD%BFwsl%E6%94%AF%E6%8C%81%E8%AE%BF%E9%97%AEwindows%E4%B8%8Busb%E8%AE%BE%E5%A4%87/" class="ba b--moon-gray bg-light-gray br2 color-inherit dib f7 hover-bg-moon-gray link mt2 ph2 pv1">read more</a>
+  </div>
+</div>
+
+        </div>
       
         <div class="relative w-100 w-30-l mb4 bg-white">
           <div class="relative w-100 mb4 bg-white nested-copy-line-height">

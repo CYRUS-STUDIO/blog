@@ -6,8 +6,15 @@
     <description>Recent content on CYRUS STUDIO</description>
     <generator>Hugo</generator>
     <language>zh-CN</language>
-    <lastBuildDate>Sun, 11 Aug 2024 06:09:27 +0800</lastBuildDate>
+    <lastBuildDate>Tue, 13 Aug 2024 22:51:48 +0800</lastBuildDate>
     <atom:link href="https://cyrus-studio.github.io/blog/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>编译自定义Linux内核，使WSL支持访问Windows下USB设备</title>
+      <link>https://cyrus-studio.github.io/blog/posts/%E7%BC%96%E8%AF%91%E8%87%AA%E5%AE%9A%E4%B9%89linux%E5%86%85%E6%A0%B8%E4%BD%BFwsl%E6%94%AF%E6%8C%81%E8%AE%BF%E9%97%AEwindows%E4%B8%8Busb%E8%AE%BE%E5%A4%87/</link>
+      <pubDate>Tue, 13 Aug 2024 22:51:48 +0800</pubDate>
+      <guid>https://cyrus-studio.github.io/blog/posts/%E7%BC%96%E8%AF%91%E8%87%AA%E5%AE%9A%E4%B9%89linux%E5%86%85%E6%A0%B8%E4%BD%BFwsl%E6%94%AF%E6%8C%81%E8%AE%BF%E9%97%AEwindows%E4%B8%8Busb%E8%AE%BE%E5%A4%87/</guid>
+      <description>版权归作者所有，如有转发，请注明文章出处：https://cyrus-studio.github.io/blog/&#xA;WSL 本身并不支持连接 USB 设备，因此你需要安装开源 usbipd-win 项目。&#xA;usbip 可以让你在网络上共享和使用 USB 设备。它由两个主要组件组成：&#xA;1. usbipd (USB/IP daemon)：服务端，负责共享连接到主机的 USB 设备。 usbip (USB/IP client)：客户端，允许其他计算机访问共享的 USB 设备。 1. 安装USBIPD-WIN USBIPD-WIN 是一个在 Windows 上实现 USB/IP 协议的工具。首先，你需要在 Windows 上安装这个工具。&#xA;下载并安装 usbipd-win，可以从GitHub页面获取最新版本的安装包。&#xA;或者执行下面命令安装&#xA;winget install usbipd 2. 列出所有可以共享的USB设备 usbipd list 3. 共享设备&#xA;在附加 USB 设备之前，必须使用命令 usbipd bind 来共享设备，从而允许它附加到 WSL（ 需要管理员权限）。&#xA;usbipd bind --busid 2-6 这里的 2-6 是 USB 设备对应的 BUSID&#xA;4. 将USB设备连接到WSL 使用 usbipd attach 命令将指定的USB设备附加到WSL实例中。&#xA;usbipd attach --wsl --busid 2-6 打开 Ubuntu（或首选的 WSL 命令行），使用以下命令列出附加的 USB 设备：</description>
+    </item>
     <item>
       <title>有道云docx转换markdown，导入hugo发布到github page，多平台发布适配</title>
       <link>https://cyrus-studio.github.io/blog/posts/%E6%9C%89%E9%81%93%E4%BA%91docx%E8%BD%AC%E6%8D%A2markdown%E5%AF%BC%E5%85%A5hugo%E5%8F%91%E5%B8%83%E5%88%B0github-page%E5%A4%9A%E5%B9%B3%E5%8F%B0%E5%8F%91%E5%B8%83%E9%80%82%E9%85%8D/</link>

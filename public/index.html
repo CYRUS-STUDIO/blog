@@ -46,8 +46,8 @@
   <meta property="og:type" content="website">
 
   <meta itemprop="name" content="CYRUS STUDIO">
-  <meta itemprop="datePublished" content="2024-08-11T06:09:27+08:00">
-  <meta itemprop="dateModified" content="2024-08-11T06:09:27+08:00">
+  <meta itemprop="datePublished" content="2024-08-13T22:51:48+08:00">
+  <meta itemprop="dateModified" content="2024-08-13T22:51:48+08:00">
   <meta name="twitter:card" content="summary">
   <meta name="twitter:title" content="CYRUS STUDIO">
 
@@ -149,6 +149,40 @@
       
       <div class="blah w-100">
         <h1 class="f3 fw1 athelas mt0 lh-title">
+          <a href="/blog/posts/%E7%BC%96%E8%AF%91%E8%87%AA%E5%AE%9A%E4%B9%89linux%E5%86%85%E6%A0%B8%E4%BD%BFwsl%E6%94%AF%E6%8C%81%E8%AE%BF%E9%97%AEwindows%E4%B8%8Busb%E8%AE%BE%E5%A4%87/" class="color-inherit dim link">
+            编译自定义Linux内核，使WSL支持访问Windows下USB设备
+            </a>
+        </h1>
+        <div class="f6 f5-l lh-copy nested-copy-line-height nested-links">
+          版权归作者所有，如有转发，请注明文章出处：https://cyrus-studio.github.io/blog/
+WSL 本身并不支持连接 USB 设备，因此你需要安装开源 usbipd-win 项目。
+usbip 可以让你在网络上共享和使用 USB 设备。它由两个主要组件组成：
+1. usbipd (USB/IP daemon)：服务端，负责共享连接到主机的 USB 设备。 usbip (USB/IP client)：客户端，允许其他计算机访问共享的 USB 设备。 1. 安装USBIPD-WIN USBIPD-WIN 是一个在 Windows 上实现 USB/IP 协议的工具。首先，你需要在 Windows 上安装这个工具。
+下载并安装 usbipd-win，可以从GitHub页面获取最新版本的安装包。
+或者执行下面命令安装
+winget install usbipd 2. 列出所有可以共享的USB设备 usbipd list 3. 共享设备
+在附加 USB 设备之前，必须使用命令 usbipd bind 来共享设备，从而允许它附加到 WSL（ 需要管理员权限）。
+usbipd bind --busid 2-6 这里的 2-6 是 USB 设备对应的 BUSID
+4. 将USB设备连接到WSL 使用 usbipd attach 命令将指定的USB设备附加到WSL实例中。
+usbipd attach --wsl --busid 2-6 打开 Ubuntu（或首选的 WSL 命令行），使用以下命令列出附加的 USB 设备：
+        </div>
+          <a href="/blog/posts/%E7%BC%96%E8%AF%91%E8%87%AA%E5%AE%9A%E4%B9%89linux%E5%86%85%E6%A0%B8%E4%BD%BFwsl%E6%94%AF%E6%8C%81%E8%AE%BF%E9%97%AEwindows%E4%B8%8Busb%E8%AE%BE%E5%A4%87/" class="ba b--moon-gray bg-light-gray br2 color-inherit dib f7 hover-bg-moon-gray link mt2 ph2 pv1">read more</a>
+        
+      </div>
+    </div>
+  </div>
+</article>
+
+            </div>
+          
+            <div class="relative w-100 mb4">
+              
+<article class="bb b--black-10">
+  <div class="db pv4 ph3 ph0-l no-underline dark-gray">
+    <div class="flex flex-column flex-row-ns">
+      
+      <div class="blah w-100">
+        <h1 class="f3 fw1 athelas mt0 lh-title">
           <a href="/blog/posts/%E6%9C%89%E9%81%93%E4%BA%91docx%E8%BD%AC%E6%8D%A2markdown%E5%AF%BC%E5%85%A5hugo%E5%8F%91%E5%B8%83%E5%88%B0github-page%E5%A4%9A%E5%B9%B3%E5%8F%B0%E5%8F%91%E5%B8%83%E9%80%82%E9%85%8D/" class="color-inherit dim link">
             有道云docx转换markdown，导入hugo发布到github page，多平台发布适配
             </a>
@@ -212,33 +246,25 @@ choco upgrade hugo 卸载软件包：
 
             </div>
           
-            <div class="relative w-100 mb4">
-              
-<article class="bb b--black-10">
-  <div class="db pv4 ph3 ph0-l no-underline dark-gray">
-    <div class="flex flex-column flex-row-ns">
-      
-      <div class="blah w-100">
-        <h1 class="f3 fw1 athelas mt0 lh-title">
-          <a href="/blog/about/" class="color-inherit dim link">
-            About
-            </a>
-        </h1>
-        <div class="f6 f5-l lh-copy nested-copy-line-height nested-links">
-          欢迎访问我的博客！在这里分享我的android、python相关知识、经验和项目。
-博客地址: https://cyrus-studio.github.io/blog/ GitHub: https://github.com/CYRUS-STUDIO Email: linchaolong.dev@gmail.com 
-        </div>
-          <a href="/blog/about/" class="ba b--moon-gray bg-light-gray br2 color-inherit dib f7 hover-bg-moon-gray link mt2 ph2 pv1">read more</a>
-        
-      </div>
-    </div>
-  </div>
-</article>
-
-            </div>
-          
         </section>
 
+        
+        <section class="w-100">
+          <h1 class="f3">More</h1>
+          
+          
+            <h2 class="f5 fw4 mb4 dib mr3">
+              <a href="/blog/about/" class="link black dim">
+                About
+              </a>
+            </h2>
+          
+
+          
+          
+            <a href="/blog/posts/" class="link db f6 pa2 br3 bg-mid-gray white dim w4 tc">All Posts</a>
+          
+          </section>
         
 
         </div>
