@@ -1,6 +1,6 @@
 +++
 title = '编译自定义Linux内核，使WSL支持访问Windows下USB设备'
-date = 2024-08-13T22:51:48.165701+08:00
+date = 2024-08-13T23:07:11.107629+08:00
 draft = false
 +++
 
@@ -9,9 +9,7 @@ draft = false
 WSL 本身并不支持连接 USB 设备，因此你需要安装开源 usbipd-win 项目。
 
 usbip 可以让你在网络上共享和使用 USB 设备。它由两个主要组件组成：
-```
 1. usbipd (USB/IP daemon)：服务端，负责共享连接到主机的 USB 设备。
-```
 2. usbip (USB/IP client)：客户端，允许其他计算机访问共享的 USB 设备。
 
 # __1. 安装USBIPD-WIN__
