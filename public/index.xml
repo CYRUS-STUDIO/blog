@@ -6,8 +6,15 @@
     <description>Recent content on CYRUS STUDIO</description>
     <generator>Hugo</generator>
     <language>zh-CN</language>
-    <lastBuildDate>Wed, 14 Aug 2024 05:41:57 +0800</lastBuildDate>
+    <lastBuildDate>Fri, 16 Aug 2024 00:04:11 +0800</lastBuildDate>
     <atom:link href="https://cyrus-studio.github.io/blog/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>修改android系统ro.debuggable使全局可调试</title>
+      <link>https://cyrus-studio.github.io/blog/posts/%E4%BF%AE%E6%94%B9android%E7%B3%BB%E7%BB%9Fro.debuggable%E4%BD%BF%E5%85%A8%E5%B1%80%E5%8F%AF%E8%B0%83%E8%AF%95/</link>
+      <pubDate>Fri, 16 Aug 2024 00:04:11 +0800</pubDate>
+      <guid>https://cyrus-studio.github.io/blog/posts/%E4%BF%AE%E6%94%B9android%E7%B3%BB%E7%BB%9Fro.debuggable%E4%BD%BF%E5%85%A8%E5%B1%80%E5%8F%AF%E8%B0%83%E8%AF%95/</guid>
+      <description>版权归作者所有，如有转发，请注明文章出处：https://cyrus-studio.github.io/blog/&#xA;修改 android 系统 中的 ro.debuggable 属性使设备上所有 app 可调试。&#xA;下载MagiskHidePropsConf：https://github.com/Magisk-Modules-Repo/MagiskHidePropsConf/tags&#xA;把下载下来的MagiskHidePropsConf推送到手机sdcard上&#xA;adb push &amp;#34;D:\app逆向\MagiskHidePropsConf-v6.1.2.zip&amp;#34; /sdcard/ 安装MagiskHidePropsConf，打开Magick【模块】【本地安装】【选择MagiskHidePropsConf-v6.1.2.zi p】&#xA;重启手机，进入 adb shell&#xA;输入props&#xA;meri:/ # props&#xD;Loading... Please wait.&#xD;MagiskHide Props Config v6.1.2&#xD;by Didgeridoohan @ XDA Developers&#xD;=====================================&#xD;Updating fingerprints list&#xD;=====================================&#xD;Checking list version.&#xD;! File not downloaded!&#xD;Checking for module update.&#xD;! File not downloaded!&#xD;MagiskHide Props Config v6.1.2&#xD;by Didgeridoohan @ XDA Developers&#xD;=====================================&#xD;Select an option below.</description>
+    </item>
     <item>
       <title>编译自定义Linux内核，使WSL支持访问Windows下USB设备</title>
       <link>https://cyrus-studio.github.io/blog/posts/%E7%BC%96%E8%AF%91%E8%87%AA%E5%AE%9A%E4%B9%89linux%E5%86%85%E6%A0%B8%E4%BD%BFwsl%E6%94%AF%E6%8C%81%E8%AE%BF%E9%97%AEwindows%E4%B8%8Busb%E8%AE%BE%E5%A4%87/</link>

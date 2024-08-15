@@ -46,8 +46,8 @@
   <meta property="og:type" content="website">
 
   <meta itemprop="name" content="CYRUS STUDIO">
-  <meta itemprop="datePublished" content="2024-08-14T05:41:57+08:00">
-  <meta itemprop="dateModified" content="2024-08-14T05:41:57+08:00">
+  <meta itemprop="datePublished" content="2024-08-16T00:04:11+08:00">
+  <meta itemprop="dateModified" content="2024-08-16T00:04:11+08:00">
   <meta name="twitter:card" content="summary">
   <meta name="twitter:title" content="CYRUS STUDIO">
 
@@ -149,6 +149,37 @@
       
       <div class="blah w-100">
         <h1 class="f3 fw1 athelas mt0 lh-title">
+          <a href="/blog/posts/%E4%BF%AE%E6%94%B9android%E7%B3%BB%E7%BB%9Fro.debuggable%E4%BD%BF%E5%85%A8%E5%B1%80%E5%8F%AF%E8%B0%83%E8%AF%95/" class="color-inherit dim link">
+            修改android系统ro.debuggable使全局可调试
+            </a>
+        </h1>
+        <div class="f6 f5-l lh-copy nested-copy-line-height nested-links">
+          版权归作者所有，如有转发，请注明文章出处：https://cyrus-studio.github.io/blog/
+修改 android 系统 中的 ro.debuggable 属性使设备上所有 app 可调试。
+下载MagiskHidePropsConf：https://github.com/Magisk-Modules-Repo/MagiskHidePropsConf/tags
+把下载下来的MagiskHidePropsConf推送到手机sdcard上
+adb push &#34;D:\app逆向\MagiskHidePropsConf-v6.1.2.zip&#34; /sdcard/ 安装MagiskHidePropsConf，打开Magick【模块】【本地安装】【选择MagiskHidePropsConf-v6.1.2.zi p】
+重启手机，进入 adb shell
+输入props
+meri:/ # propsLoading... Please wait.MagiskHide Props Config v6.1.2by Didgeridoohan @ XDA Developers=====================================Updating fingerprints list=====================================Checking list version.! File not downloaded!Checking for module update.! File not downloaded!MagiskHide Props Config v6.1.2by Didgeridoohan @ XDA Developers=====================================Select an option below.
+        </div>
+          <a href="/blog/posts/%E4%BF%AE%E6%94%B9android%E7%B3%BB%E7%BB%9Fro.debuggable%E4%BD%BF%E5%85%A8%E5%B1%80%E5%8F%AF%E8%B0%83%E8%AF%95/" class="ba b--moon-gray bg-light-gray br2 color-inherit dib f7 hover-bg-moon-gray link mt2 ph2 pv1">read more</a>
+        
+      </div>
+    </div>
+  </div>
+</article>
+
+            </div>
+          
+            <div class="relative w-100 mb4">
+              
+<article class="bb b--black-10">
+  <div class="db pv4 ph3 ph0-l no-underline dark-gray">
+    <div class="flex flex-column flex-row-ns">
+      
+      <div class="blah w-100">
+        <h1 class="f3 fw1 athelas mt0 lh-title">
           <a href="/blog/posts/%E7%BC%96%E8%AF%91%E8%87%AA%E5%AE%9A%E4%B9%89linux%E5%86%85%E6%A0%B8%E4%BD%BFwsl%E6%94%AF%E6%8C%81%E8%AE%BF%E9%97%AEwindows%E4%B8%8Busb%E8%AE%BE%E5%A4%87/" class="color-inherit dim link">
             编译自定义Linux内核，使WSL支持访问Windows下USB设备
             </a>
@@ -211,48 +242,18 @@ def is_possible_code_or_bash(text):# 常见的代码关键字code_keywords = [
 
             </div>
           
-            <div class="relative w-100 mb4">
-              
-<article class="bb b--black-10">
-  <div class="db pv4 ph3 ph0-l no-underline dark-gray">
-    <div class="flex flex-column flex-row-ns">
-      
-      <div class="blah w-100">
-        <h1 class="f3 fw1 athelas mt0 lh-title">
-          <a href="/blog/posts/0%E6%88%90%E6%9C%AC%E9%80%9A%E8%BF%87hugo%E5%92%8Cgithub-pages%E6%90%AD%E5%BB%BA%E5%8D%9A%E5%AE%A2/" class="color-inherit dim link">
-            0成本通过Hugo和GitHub Pages搭建博客
-            </a>
-        </h1>
-        <div class="f6 f5-l lh-copy nested-copy-line-height nested-links">
-          版权归作者所有，如有转发，请注明文章出处：https://cyrus-studio.github.io/blog/
-使用 Chocolatey 安装 Hugo
-Chocolatey 是一个 Windows 软件包管理器，使用 PowerShell 和 NuGet 作为基础。它可以自动化软件的安装、升级和卸载过程。
-安装 Chocolatey（如果还没有安装）
-Chocolatey 允许你通过设置环境变量来更改默认安装路径。在安装 Chocolatey 之前，你需要设置 ChocolateyInstall 环境变量来指定新的安装路径。
-打开 PowerShell（以管理员身份运行），并执行以下命令指定自定义安装路径：
-1. [System.Environment]::SetEnvironmentVariable(&#39;ChocolateyInstall&#39;, &#39;D:\App\chocolatey&#39;, [System.EnvironmentVariableTarget]::Machine) 如果不设置默认安装路径为：C:\ProgramData\chocolatey 设置完 ChocolateyInstall 环境变量后，重新打开一下会话，执行下面的命令检查一下是否设置成功
-Get-Item Env:ChocolateyInstall 打开 PowerShell（以管理员身份运行），执行以下命令安装 Chocolatey：
-1. Set-ExecutionPolicy Bypass -Scope Process -Force; [System.Net.ServicePointManager]::SecurityProtocol = [System.Net.ServicePointManager]::SecurityProtocol -bor 3072; iex ((New-Object System.Net.WebClient).DownloadString(&#39;https://community.chocolatey.org/install.ps1&#39;)) 检查是否安装成功
-choco -h 安装 Hugo
-在 PowerShell 中运行以下命令安装 Hugo： 安装软件包：
-choco install hugo -confirm 升级软件包：
-choco upgrade hugo 卸载软件包：
-        </div>
-          <a href="/blog/posts/0%E6%88%90%E6%9C%AC%E9%80%9A%E8%BF%87hugo%E5%92%8Cgithub-pages%E6%90%AD%E5%BB%BA%E5%8D%9A%E5%AE%A2/" class="ba b--moon-gray bg-light-gray br2 color-inherit dib f7 hover-bg-moon-gray link mt2 ph2 pv1">read more</a>
-        
-      </div>
-    </div>
-  </div>
-</article>
-
-            </div>
-          
         </section>
 
         
         <section class="w-100">
           <h1 class="f3">More</h1>
           
+          
+            <h2 class="f5 fw4 mb4 dib mr3">
+              <a href="/blog/posts/0%E6%88%90%E6%9C%AC%E9%80%9A%E8%BF%87hugo%E5%92%8Cgithub-pages%E6%90%AD%E5%BB%BA%E5%8D%9A%E5%AE%A2/" class="link black dim">
+                0成本通过Hugo和GitHub Pages搭建博客
+              </a>
+            </h2>
           
             <h2 class="f5 fw4 mb4 dib mr3">
               <a href="/blog/about/" class="link black dim">
