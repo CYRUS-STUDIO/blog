@@ -6,8 +6,15 @@
     <description>Recent content in Posts on CYRUS STUDIO</description>
     <generator>Hugo</generator>
     <language>zh-CN</language>
-    <lastBuildDate>Sun, 18 Aug 2024 01:54:50 +0800</lastBuildDate>
+    <lastBuildDate>Sun, 18 Aug 2024 03:06:59 +0800</lastBuildDate>
     <atom:link href="https://cyrus-studio.github.io/blog/posts/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>荣耀Magicbook x14 扩容1TB固态</title>
+      <link>https://cyrus-studio.github.io/blog/posts/%E8%8D%A3%E8%80%80magicbook-x14-%E6%89%A9%E5%AE%B91tb%E5%9B%BA%E6%80%81/</link>
+      <pubDate>Sun, 18 Aug 2024 03:06:59 +0800</pubDate>
+      <guid>https://cyrus-studio.github.io/blog/posts/%E8%8D%A3%E8%80%80magicbook-x14-%E6%89%A9%E5%AE%B91tb%E5%9B%BA%E6%80%81/</guid>
+      <description>版权归作者所有，如有转发，请注明文章出处：https://cyrus-studio.github.io/blog/&#xA;固态硬盘规格 在官网查看加装固态硬盘的接口规格 https://www.honor.com/cn/laptops/honor-magicbook-x14-2023/ https://club.honor.com/cn/thread-28473794-1-1.html&#xA;或者在荣耀手机上的【荣耀商城app】里联系在线客服 选购固态硬盘 三星的性能不错，但是发热控制得不好，不适合用在轻薄本&#xA;凯侠的发热和性能都很平衡&#xA;笔记本自带的是铠侠KBG50ZNV1T02&#xA;综合看下来，凯侠SE10是不错的选择，但是是2280尺寸的&#xA;扩展固态的插槽规格是M2 2242&#xA;最后选出两款合适的：&#xA;西部数据SN740，性能不错，温控还可以，1T价格499。&#xA;凯侠BG5，性能中规中矩，温控很不错，1T价格359。&#xA;最后选择了凯侠G5 还有拆机工具 拆机加装过程 首先用吸盘吸住底盘的一角，拉出一条缝后，用撬棒插进去慢慢撬开 底盘拆开后，可以看到固态硬盘加装插口就在图中红圈位置 接着就是扭开加装接口那颗螺丝，就可以把固态硬盘插进去了 但买到的螺丝刀实在太辣鸡了，扭一下就损坏了。。。 最终还是跑去荣耀服务点把固态硬盘装进去了 接着开机，打开【设置】【系统】【存储】【磁盘和卷】 点击“初始化”，因为我们是扩容，选择GPT就行。 接下来点击“创建卷”。 为新硬盘取个分区名字，点击“格式化”。 再打开此电脑就能看到新磁盘了 用CrystalDiskInfo打开看看 用CrystalDiskMark测试一下读写 硬盘检测相关工具 CrystalDiskInfo中文版(硬盘检测工具) v9.3.2 https://www.423down.com/5432.html&#xA;AS SSD Benchmark 2.0.7316 汉化版单文件 https://www.423down.com/6751.html&#xA;硬盘检测工具CrystalDiskMark v8.0.5中文版 https://www.423down.com/10418.html&#xA;重新分配磁盘空间 由于C盘空间不太够用，需要重新分配一下磁盘空间&#xA;下载【傲梅分区助手】，使用码是1122&#xA;在D盘上右键，点击【分配空闲空间】 分配20GB给C盘 左上角点击【提交】 点击【执行】 点击【确定】 等待创建Windows PE后重启分区 重新分区中 分区完成后重启，可以看到C盘已经扩容了20GB 参考： 荣耀magicbook x16 2023扩容2T固态成功笔记 价格大跳水！顶级固态硬盘终于敢买了！铠侠SE10 1T上手体验 海力士BC711/BC901 西数SN740 铠侠BG4/BG5/BG6 美光2550/2400A 群联P0221 建兴CL4 M2 2230 NVME写入测试 加装固态硬盘主机扩容分步教程，手把手教你，进来学！ 想不格式化硬盘重新分区？4个方法轻松解决！</description>
+    </item>
     <item>
       <title>小米5c解除BL锁&amp;刷机&amp;root</title>
       <link>https://cyrus-studio.github.io/blog/posts/%E5%B0%8F%E7%B1%B35c%E8%A7%A3%E9%99%A4bl%E9%94%81%E5%88%B7%E6%9C%BAroot/</link>
