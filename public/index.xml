@@ -6,8 +6,15 @@
     <description>Recent content on CYRUS STUDIO</description>
     <generator>Hugo</generator>
     <language>zh-CN</language>
-    <lastBuildDate>Fri, 16 Aug 2024 00:04:11 +0800</lastBuildDate>
+    <lastBuildDate>Sun, 18 Aug 2024 01:54:50 +0800</lastBuildDate>
     <atom:link href="https://cyrus-studio.github.io/blog/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>小米5c解除BL锁&amp;刷机&amp;root</title>
+      <link>https://cyrus-studio.github.io/blog/posts/%E5%B0%8F%E7%B1%B35c%E8%A7%A3%E9%99%A4bl%E9%94%81%E5%88%B7%E6%9C%BAroot/</link>
+      <pubDate>Sun, 18 Aug 2024 01:54:50 +0800</pubDate>
+      <guid>https://cyrus-studio.github.io/blog/posts/%E5%B0%8F%E7%B1%B35c%E8%A7%A3%E9%99%A4bl%E9%94%81%E5%88%B7%E6%9C%BAroot/</guid>
+      <description>版权归作者所有，如有转发，请注明文章出处：https://cyrus-studio.github.io/blog/&#xA;解锁BL锁 1. 下载安装 miflash_unlock：https://miuiver.com/miunlock/，登录小米账号（需要和解锁设备绑定的账号一致） 2. 连接手机，关机后按住 “音量-” + 开机键进入 fastboot 模式，根据提示解锁手机 3. 重启手机开发者模式中查看解锁状态 刷机 ROM下载：https://magiskcn.com/rom&#xA;1. 下载小米线刷工具：https://xiaomirom.com/download-xiaomi-flash-tool-miflash/&#xA;2. 下载小米5c开发版线刷包，并解压线刷包 3. 打开miflash&#xA;4. 连接手机，关机，按住 &amp;ldquo;开机&amp;rdquo; + &amp;ldquo;音量-&amp;rdquo; 进入fastboot模式&#xA;5. 选择线刷包解压目录开始刷机 等待刷机成功 6. 刷机成功后，重新解除BL锁&#xA;7. 打开手机管家——应用管理——权限——ROOT权限——开启ROOT权限 结果发现root工具一直下载失败&#xA;使用Magisk进行root 下载 Magisk：https://github.com/topjohnwu/Magisk/releases&#xA;1. 安装 Magisk&#xA;adb install Magisk-v27.0.apk 2. 解压线刷包中的 boot.img，并 push 到手机&#xA;adb push boot.img /sdcard/boot.img 3. Magisk中【安装】【下一步】【选择并修补一个文件】【选择boot.img】，把处理完后的magisk_patched 下载到电脑 Android sdk\platform-tools 目录（这里下载 Android SDK Platform Tools）&#xA;adb pull /sdcard/Download/magisk_patched-27000_RIC3F.img D:\App\android\sdk\platform-tools 4. 使用 adb 命令将设备重启到 fastboot 模式</description>
+    </item>
     <item>
       <title>修改android系统ro.debuggable使全局可调试</title>
       <link>https://cyrus-studio.github.io/blog/posts/%E4%BF%AE%E6%94%B9android%E7%B3%BB%E7%BB%9Fro.debuggable%E4%BD%BF%E5%85%A8%E5%B1%80%E5%8F%AF%E8%B0%83%E8%AF%95/</link>
