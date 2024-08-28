@@ -6,21 +6,21 @@
     <description>Recent content on CYRUS STUDIO</description>
     <generator>Hugo</generator>
     <language>zh-CN</language>
-    <lastBuildDate>Wed, 28 Aug 2024 23:15:16 +0800</lastBuildDate>
+    <lastBuildDate>Thu, 29 Aug 2024 04:25:23 +0800</lastBuildDate>
     <atom:link href="https://cyrus-studio.github.io/blog/index.xml" rel="self" type="application/rss+xml" />
-    <item>
-      <title>Linux下代理设置</title>
-      <link>https://cyrus-studio.github.io/blog/posts/linux%E4%B8%8B%E4%BB%A3%E7%90%86%E8%AE%BE%E7%BD%AE/</link>
-      <pubDate>Wed, 28 Aug 2024 23:15:16 +0800</pubDate>
-      <guid>https://cyrus-studio.github.io/blog/posts/linux%E4%B8%8B%E4%BB%A3%E7%90%86%E8%AE%BE%E7%BD%AE/</guid>
-      <description>版权归作者所有，如有转发，请注明文章出处：https://cyrus-studio.github.io/blog/&#xA;1. 下载安装clash-verge 下载 clash-verge https://github.com/clash-verge-rev/clash-verge-rev/releases&#xA;我这边用的是 ubuntu22，下载 clash-verge_1.7.5_amd64.deb&#xA;安装 clash-verge&#xA;# 安装相关依赖&#xD;sudo apt update&#xD;sudo apt install -f&#xD;sudo apt install libayatana-appindicator3-1 libwebkit2gtk-4.0-37 libgtk-3-0&#xD;# 安装clash-verge&#xD;sudo dpkg -i clash-verge_1.7.5_amd64.deb&#xD;# 卸载clash-verge&#xD;sudo dpkg -r clash-verge&#xD;# 启动 Clash Verge（nohup 命令可以让进程在后台运行，即使关闭终端也不会影响进程运行。）&#xD;# nohup 会创建一个 nohup.out 文件来记录输出日志。&#xD;nohup clash-verge &amp;amp; 2. 解决显示乱码问题 安装一些常见的字体包&#xA;sudo apt update&#xD;sudo apt install fonts-noto-cjk fonts-noto fonts-noto-core fonts-noto-ui-core fonts-wqy-zenhei 3. 导入订阅地址，开启代理 设置 关闭 IPV6 设置 勾选 系统代理 我这里科学上网使用的是魔戒，注册地址：https://mojie.</description>
-    </item>
     <item>
       <title>MagiskBoot编译&amp;解包&amp;打包boot.img</title>
       <link>https://cyrus-studio.github.io/blog/posts/magiskboot%E7%BC%96%E8%AF%91%E8%A7%A3%E5%8C%85%E6%89%93%E5%8C%85boot.img/</link>
-      <pubDate>Wed, 28 Aug 2024 06:04:06 +0800</pubDate>
+      <pubDate>Thu, 29 Aug 2024 04:25:23 +0800</pubDate>
       <guid>https://cyrus-studio.github.io/blog/posts/magiskboot%E7%BC%96%E8%AF%91%E8%A7%A3%E5%8C%85%E6%89%93%E5%8C%85boot.img/</guid>
       <description>版权归作者所有，如有转发，请注明文章出处：https://cyrus-studio.github.io/blog/&#xA;编译环境准备 1. Windows下启用开发者模式，因为需要 symbolic link 支持 2. 安装 python3.8+，并配置PATH环境变量&#xA;# 查看python版本信息&#xD;py --version&#xD;# 查看所有已安装的 Python 解释器路径&#xD;py -0p 3. git 启用 symbolic links&#xA;# 启用 symbolic links&#xD;git config --global core.symlinks true&#xD;# 查看 git 配置&#xD;git config --global --list 4. 安装 Android Studio ，设置环境变量 ANDROID_HOME 为 Android SDK 文件夹的路径。该路径可以在 Android Studio 的设置中找到。&#xA;5. 下载 Magisk 源码&#xA;# 下载 Magisk 源码&#xD;git clone --recurse-submodules https://github.com/topjohnwu/Magisk.git&#xD;# 如果子模块克隆失败，可以手动克隆这些子模块。进入对应的子模块路径，然后执行以下命令&#xD;git submodule update --init --recursive 6.</description>
+    </item>
+    <item>
+      <title>Linux下代理设置</title>
+      <link>https://cyrus-studio.github.io/blog/posts/linux%E4%B8%8B%E4%BB%A3%E7%90%86%E8%AE%BE%E7%BD%AE/</link>
+      <pubDate>Thu, 29 Aug 2024 04:25:16 +0800</pubDate>
+      <guid>https://cyrus-studio.github.io/blog/posts/linux%E4%B8%8B%E4%BB%A3%E7%90%86%E8%AE%BE%E7%BD%AE/</guid>
+      <description>版权归作者所有，如有转发，请注明文章出处：https://cyrus-studio.github.io/blog/&#xA;1. 下载安装clash-verge 下载 clash-verge https://github.com/clash-verge-rev/clash-verge-rev/releases&#xA;我这边用的是 ubuntu22，下载 clash-verge_1.7.5_amd64.deb&#xA;安装 clash-verge&#xA;# 安装相关依赖&#xD;sudo apt update&#xD;sudo apt install -f&#xD;sudo apt install libayatana-appindicator3-1 libwebkit2gtk-4.0-37 libgtk-3-0&#xD;# 安装clash-verge&#xD;sudo dpkg -i clash-verge_1.7.5_amd64.deb&#xD;# 卸载clash-verge&#xD;sudo dpkg -r clash-verge&#xD;# 启动 Clash Verge（nohup 命令可以让进程在后台运行，即使关闭终端也不会影响进程运行。）&#xD;# nohup 会创建一个 nohup.out 文件来记录输出日志。&#xD;nohup clash-verge &amp;amp; 2. 解决显示乱码问题 安装一些常见的字体包&#xA;sudo apt update&#xD;sudo apt install fonts-noto-cjk fonts-noto fonts-noto-core fonts-noto-ui-core fonts-wqy-zenhei 3. 导入订阅地址，开启代理 设置 关闭 IPV6 设置 勾选 系统代理 我这里科学上网使用的是魔戒，注册地址：https://mojie.</description>
     </item>
     <item>
       <title>荣耀Magicbook x14 扩容1TB固态</title>

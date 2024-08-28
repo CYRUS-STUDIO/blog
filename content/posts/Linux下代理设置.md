@@ -1,6 +1,6 @@
 +++
 title = 'Linux下代理设置'
-date = 2024-08-28T23:15:16.648672+08:00
+date = 2024-08-29T04:25:16.099538+08:00
 draft = false
 +++
 
@@ -128,7 +128,7 @@ echo $https_proxy
 
 git config --global --list
 
-nohup clash-verge &
+nohup clash-verge > /mnt/e/nohup.log 2>&1 &
 ```
 
 close_proxy.sh

@@ -1,6 +1,6 @@
 +++
 title = 'MagiskBoot编译&解包&打包boot.img'
-date = 2024-08-28T06:04:06.209871+08:00
+date = 2024-08-29T04:25:23.860962+08:00
 draft = false
 +++
 
@@ -164,6 +164,7 @@ repack .\boot\
 参考：
 [Magisk V26.1 编译](https://blog.lleavesg.top/article/Magisk-Build)
 [在 macOS/Windows/Linux 上使用 magiskboot](https://kernelsu.org/zh_CN/guide/installation.html#using-magiskboot-on-PC)
+[Magisk Building and Development](https://topjohnwu.github.io/Magisk/build.html)
 
                
 
