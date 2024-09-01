@@ -46,8 +46,8 @@
   <meta property="og:type" content="website">
 
   <meta itemprop="name" content="Posts">
-  <meta itemprop="datePublished" content="2024-08-30T03:55:54+08:00">
-  <meta itemprop="dateModified" content="2024-08-30T03:55:54+08:00">
+  <meta itemprop="datePublished" content="2024-09-01T12:39:32+08:00">
+  <meta itemprop="dateModified" content="2024-09-01T12:39:32+08:00">
   <meta name="twitter:card" content="summary">
   <meta name="twitter:title" content="Posts">
 
@@ -117,6 +117,31 @@
   <article class="pa3 pa4-ns nested-copy-line-height">
     <section class="cf ph3 ph5-l pv3 pv4-l f4 tc-l center measure-wide lh-copy mid-gray"></section>
     <section class="flex-ns flex-wrap justify-around mt5">
+      
+        <div class="relative w-100 w-30-l mb4 bg-white">
+          <div class="relative w-100 mb4 bg-white nested-copy-line-height">
+  <div class="bg-white mb3 pa4 gray overflow-hidden">
+    <span class="f6 db">Posts</span>
+    <h1 class="f3 near-black">
+      <a href="/blog/posts/%E7%BC%96%E8%AF%91lineageos%E6%A8%A1%E6%8B%9F%E5%99%A8%E9%95%9C%E5%83%8F%E5%AF%BC%E5%87%BA%E5%88%B0androidstudio/" class="link black dim">
+        编译LineageOS模拟器镜像，导出到AndroidStudio
+      </a>
+    </h1>
+    <div class="nested-links f5 lh-copy nested-copy-line-height">
+      版权归作者所有，如有转发，请注明文章出处：https://cyrus-studio.github.io/blog/
+源码下载 LineageOS官网：https://lineageos.org/ LineageOS源码 github 地址：https://github.com/LineageOS/android LineageOS源码国内镜像地址：https://mirrors.tuna.tsinghua.edu.cn/help/lineageOS/
+源码大概需要150GB的硬盘空间，编译完成差不多300G 1. 配置git git config --global user.email &#34;you@example.com&#34;git config --global user.name &#34;Your Name&#34; 2. 安装 repo mkdir ~/binPATH=~/bin:$PATHcurl https://storage.googleapis.com/git-repo-downloads/repo &gt; ~/bin/repochmod a+x ~/bin/repo 3. 安装 Git LFS sudo apt install git-lfsgit lfs install 4. 设置REPO_URL 找到 repo 所在路径
+which repo 编辑 repo
+nano /home/cyrus/bin/repo 可以看到repo会优先取环境变量中的REPO_URL，否则默认使用googlesource
+Ctrl +X 退出nano
+通过下面的命令设置 REPO_URL 环境变量，设置为清华大学镜像源，解决国内访问不了 googlesource 问题
+export REPO_URL=https://mirrors.tuna.tsinghua.edu.cn/git/git-repo/ 5. 下载源码 创建目录
+    </div>
+    <a href="/blog/posts/%E7%BC%96%E8%AF%91lineageos%E6%A8%A1%E6%8B%9F%E5%99%A8%E9%95%9C%E5%83%8F%E5%AF%BC%E5%87%BA%E5%88%B0androidstudio/" class="ba b--moon-gray bg-light-gray br2 color-inherit dib f7 hover-bg-moon-gray link mt2 ph2 pv1">read more</a>
+  </div>
+</div>
+
+        </div>
       
         <div class="relative w-100 w-30-l mb4 bg-white">
           <div class="relative w-100 mb4 bg-white nested-copy-line-height">
