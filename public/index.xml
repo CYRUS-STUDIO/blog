@@ -2,101 +2,101 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
     <title>CYRUS STUDIO</title>
-    <link>https://cyrus-studio.github.io/blog/</link>
+    <link>http://localhost:1313/blog/</link>
     <description>Recent content on CYRUS STUDIO</description>
     <generator>Hugo</generator>
     <language>zh-CN</language>
     <lastBuildDate>Sun, 15 Sep 2024 01:50:08 +0800</lastBuildDate>
-    <atom:link href="https://cyrus-studio.github.io/blog/index.xml" rel="self" type="application/rss+xml" />
+    <atom:link href="http://localhost:1313/blog/index.xml" rel="self" type="application/rss+xml" />
     <item>
       <title>LineageOS刷机教程</title>
-      <link>https://cyrus-studio.github.io/blog/posts/lineageos%E5%88%B7%E6%9C%BA%E6%95%99%E7%A8%8B/</link>
+      <link>http://localhost:1313/blog/posts/lineageos%E5%88%B7%E6%9C%BA%E6%95%99%E7%A8%8B/</link>
       <pubDate>Sun, 15 Sep 2024 01:50:08 +0800</pubDate>
-      <guid>https://cyrus-studio.github.io/blog/posts/lineageos%E5%88%B7%E6%9C%BA%E6%95%99%E7%A8%8B/</guid>
+      <guid>http://localhost:1313/blog/posts/lineageos%E5%88%B7%E6%9C%BA%E6%95%99%E7%A8%8B/</guid>
       <description>版权归作者所有，如有转发，请注明文章出处：https://cyrus-studio.github.io/blog/&#xA;LineageOS 是一个基于 Android 开源项目（AOSP）的开源操作系统，主要由社区开发者维护。它起源于 CyanogenMod 项目，该项目于 2016 年关闭后，LineageOS 成为了其继任者。&#xA;主要特点：&#xA;开源：所有源代码都是开源的，任何人都可以查看、修改和分发。&#xA;无预装垃圾软件：相比一些预装大量应用的定制 ROM，LineageOS 保持了简洁和干净的系统环境。&#xA;定期更新：社区提供持续的安全补丁和新功能更新。&#xA;广泛设备支持：支持各种品牌和型号的设备，尤其是一些官方已停止支持的老旧设备。&#xA;隐私保护：LineageOS 提供了增强的隐私保护功能，如权限管理器和私密模式。&#xA;注意：在刷机之前，请确认你的设备已经解除BL锁。&#xA;LineageOS 开始刷机之前，先在 LineageOS官网 找到自己的设备型号，下载对应的刷机包&#xA;或者下载 LineageOS 源码 自己编译系统&#xA;下载 GMS套件包 （可选） 刷机环境准备 在 Linux 中配置 Android SDK Platform-Tools，可以按照以下步骤进行&#xA;1. 下载 Android SDK Platform-Tools： # cd 到存放 platform-tools 的目录&#xD;cd /mnt/case_sensitive&#xD;# 下载 platform-tools&#xD;wget https://dl.google.com/android/repository/platform-tools-latest-linux.zip&#xD;# 解压 platform-tools&#xD;unzip platform-tools-latest-linux.zip 2. 配置环境变量： 为了在任何地方都能使用 adb 和 fastboot 命令，你需要将 platform-tools 目录添加到你的 PATH 中。</description>
     </item>
     <item>
       <title>小米手机解除BL锁&amp;刷机&amp;root</title>
-      <link>https://cyrus-studio.github.io/blog/posts/%E5%B0%8F%E7%B1%B3%E6%89%8B%E6%9C%BA%E8%A7%A3%E9%99%A4bl%E9%94%81%E5%88%B7%E6%9C%BAroot/</link>
+      <link>http://localhost:1313/blog/posts/%E5%B0%8F%E7%B1%B3%E6%89%8B%E6%9C%BA%E8%A7%A3%E9%99%A4bl%E9%94%81%E5%88%B7%E6%9C%BAroot/</link>
       <pubDate>Fri, 13 Sep 2024 23:49:13 +0800</pubDate>
-      <guid>https://cyrus-studio.github.io/blog/posts/%E5%B0%8F%E7%B1%B3%E6%89%8B%E6%9C%BA%E8%A7%A3%E9%99%A4bl%E9%94%81%E5%88%B7%E6%9C%BAroot/</guid>
+      <guid>http://localhost:1313/blog/posts/%E5%B0%8F%E7%B1%B3%E6%89%8B%E6%9C%BA%E8%A7%A3%E9%99%A4bl%E9%94%81%E5%88%B7%E6%9C%BAroot/</guid>
       <description>版权归作者所有，如有转发，请注明文章出处：https://cyrus-studio.github.io/blog/&#xA;解锁BL锁 1. 下载安装 miflash_unlock：https://miuiver.com/miunlock/，登录小米账号（需要和解锁设备绑定的账号一致） 2. 连接手机，关机后按住 “音量-” + 开机键进入 fastboot 模式，根据提示解锁手机 如果连接不上设备，点击右上角设置按钮【驱动检测】，手机进入recovery模式下重新连接，等待驱动安装完成。 如果还是连不上，参考下面链接的解决办法 https://miuiver.com/usb3-fix/&#xA;3. 重启手机开发者模式中查看解锁状态 刷机 ROM下载：https://magiskcn.com/rom&#xA;1. 下载小米线刷工具：https://xiaomirom.com/download-xiaomi-flash-tool-miflash/&#xA;2. 下载设备开发版线刷包，并解压线刷包 3. 打开miflash&#xA;4. 连接手机，关机，按住 &amp;ldquo;开机&amp;rdquo; + &amp;ldquo;音量-&amp;rdquo; 进入fastboot模式&#xA;5. 选择线刷包解压目录开始刷机 等待刷机成功 6. 刷机成功后，重新解除BL锁&#xA;7. 打开手机管家——应用管理——权限——ROOT权限——开启ROOT权限 结果发现root工具一直下载失败&#xA;使用Magisk进行root 下载 Magisk：https://github.com/topjohnwu/Magisk/releases&#xA;1. 安装 Magisk&#xA;adb install Magisk-v27.0.apk 2. 解压线刷包中的 boot.img，并 push 到手机&#xA;adb push boot.img /sdcard/boot.img 3. Magisk中【安装】【下一步】【选择并修补一个文件】【选择boot.img】，把处理完后的magisk_patched 下载到电脑 Android sdk\platform-tools 目录（这里下载 Android SDK Platform Tools）&#xA;adb pull /sdcard/Download/magisk_patched-27000_RIC3F.</description>
     </item>
     <item>
       <title>编译LineageOS模拟器镜像，导出到AndroidStudio</title>
-      <link>https://cyrus-studio.github.io/blog/posts/%E7%BC%96%E8%AF%91lineageos%E6%A8%A1%E6%8B%9F%E5%99%A8%E9%95%9C%E5%83%8F%E5%AF%BC%E5%87%BA%E5%88%B0androidstudio/</link>
+      <link>http://localhost:1313/blog/posts/%E7%BC%96%E8%AF%91lineageos%E6%A8%A1%E6%8B%9F%E5%99%A8%E9%95%9C%E5%83%8F%E5%AF%BC%E5%87%BA%E5%88%B0androidstudio/</link>
       <pubDate>Sun, 01 Sep 2024 12:39:32 +0800</pubDate>
-      <guid>https://cyrus-studio.github.io/blog/posts/%E7%BC%96%E8%AF%91lineageos%E6%A8%A1%E6%8B%9F%E5%99%A8%E9%95%9C%E5%83%8F%E5%AF%BC%E5%87%BA%E5%88%B0androidstudio/</guid>
+      <guid>http://localhost:1313/blog/posts/%E7%BC%96%E8%AF%91lineageos%E6%A8%A1%E6%8B%9F%E5%99%A8%E9%95%9C%E5%83%8F%E5%AF%BC%E5%87%BA%E5%88%B0androidstudio/</guid>
       <description>版权归作者所有，如有转发，请注明文章出处：https://cyrus-studio.github.io/blog/&#xA;源码下载 LineageOS官网：https://lineageos.org/ LineageOS源码 github 地址：https://github.com/LineageOS/android LineageOS源码国内镜像地址：https://mirrors.tuna.tsinghua.edu.cn/help/lineageOS/&#xA;源码大概需要150GB的硬盘空间，编译完成差不多300G 1. 配置git git config --global user.email &amp;#34;you@example.com&amp;#34;&#xD;git config --global user.name &amp;#34;Your Name&amp;#34; 2. 安装 repo mkdir ~/bin&#xD;PATH=~/bin:$PATH&#xD;curl https://storage.googleapis.com/git-repo-downloads/repo &amp;gt; ~/bin/repo&#xD;chmod a+x ~/bin/repo 3. 安装 Git LFS sudo apt install git-lfs&#xD;git lfs install 4. 设置REPO_URL 找到 repo 所在路径&#xA;which repo 编辑 repo&#xA;nano /home/cyrus/bin/repo 可以看到repo会优先取环境变量中的REPO_URL，否则默认使用googlesource&#xA;Ctrl +X 退出nano&#xA;通过下面的命令设置 REPO_URL 环境变量，设置为清华大学镜像源，解决国内访问不了 googlesource 问题&#xA;export REPO_URL=https://mirrors.tuna.tsinghua.edu.cn/git/git-repo/ 5. 下载源码 创建目录</description>
     </item>
     <item>
       <title>Windows下创建FTP服务器，实现文件共享</title>
-      <link>https://cyrus-studio.github.io/blog/posts/windows%E4%B8%8B%E5%88%9B%E5%BB%BAftp%E6%9C%8D%E5%8A%A1%E5%99%A8%E5%AE%9E%E7%8E%B0%E6%96%87%E4%BB%B6%E5%85%B1%E4%BA%AB/</link>
+      <link>http://localhost:1313/blog/posts/windows%E4%B8%8B%E5%88%9B%E5%BB%BAftp%E6%9C%8D%E5%8A%A1%E5%99%A8%E5%AE%9E%E7%8E%B0%E6%96%87%E4%BB%B6%E5%85%B1%E4%BA%AB/</link>
       <pubDate>Fri, 30 Aug 2024 03:55:54 +0800</pubDate>
-      <guid>https://cyrus-studio.github.io/blog/posts/windows%E4%B8%8B%E5%88%9B%E5%BB%BAftp%E6%9C%8D%E5%8A%A1%E5%99%A8%E5%AE%9E%E7%8E%B0%E6%96%87%E4%BB%B6%E5%85%B1%E4%BA%AB/</guid>
+      <guid>http://localhost:1313/blog/posts/windows%E4%B8%8B%E5%88%9B%E5%BB%BAftp%E6%9C%8D%E5%8A%A1%E5%99%A8%E5%AE%9E%E7%8E%B0%E6%96%87%E4%BB%B6%E5%85%B1%E4%BA%AB/</guid>
       <description>版权归作者所有，如有转发，请注明文章出处：https://cyrus-studio.github.io/blog/&#xA;创建FTP服务器 在【启用和关闭 Windows 功能】中选中【FTP服务】【IIS管理控制台】 应用更改完成后，重启电脑。&#xA;执行 ipconfig 命令查看当前电脑的ip，比如这里ip地址为 192.168.0.112&#xA;无线局域网适配器 WLAN:&#xD;连接特定的 DNS 后缀 . . . . . . . :&#xD;本地链接 IPv6 地址. . . . . . . . : fe80::74b9:ae56:5d90:79ff%6&#xD;IPv4 地址 . . . . . . . . . . . . : 192.168.0.112&#xD;子网掩码 . . . . . . . . . . . . : 255.255.255.0&#xD;默认网关. . . .</description>
     </item>
     <item>
       <title>MagiskBoot编译&amp;解包&amp;打包boot.img</title>
-      <link>https://cyrus-studio.github.io/blog/posts/magiskboot%E7%BC%96%E8%AF%91%E8%A7%A3%E5%8C%85%E6%89%93%E5%8C%85boot.img/</link>
+      <link>http://localhost:1313/blog/posts/magiskboot%E7%BC%96%E8%AF%91%E8%A7%A3%E5%8C%85%E6%89%93%E5%8C%85boot.img/</link>
       <pubDate>Thu, 29 Aug 2024 04:25:23 +0800</pubDate>
-      <guid>https://cyrus-studio.github.io/blog/posts/magiskboot%E7%BC%96%E8%AF%91%E8%A7%A3%E5%8C%85%E6%89%93%E5%8C%85boot.img/</guid>
+      <guid>http://localhost:1313/blog/posts/magiskboot%E7%BC%96%E8%AF%91%E8%A7%A3%E5%8C%85%E6%89%93%E5%8C%85boot.img/</guid>
       <description>版权归作者所有，如有转发，请注明文章出处：https://cyrus-studio.github.io/blog/&#xA;编译环境准备 1. Windows下启用开发者模式，因为需要 symbolic link 支持 2. 安装 python3.8+，并配置PATH环境变量&#xA;# 查看python版本信息&#xD;py --version&#xD;# 查看所有已安装的 Python 解释器路径&#xD;py -0p 3. git 启用 symbolic links&#xA;# 启用 symbolic links&#xD;git config --global core.symlinks true&#xD;# 查看 git 配置&#xD;git config --global --list 4. 安装 Android Studio ，设置环境变量 ANDROID_HOME 为 Android SDK 文件夹的路径。该路径可以在 Android Studio 的设置中找到。&#xA;5. 下载 Magisk 源码&#xA;# 下载 Magisk 源码&#xD;git clone --recurse-submodules https://github.com/topjohnwu/Magisk.git&#xD;# 如果子模块克隆失败，可以手动克隆这些子模块。进入对应的子模块路径，然后执行以下命令&#xD;git submodule update --init --recursive 6.</description>
     </item>
     <item>
       <title>Linux下代理设置</title>
-      <link>https://cyrus-studio.github.io/blog/posts/linux%E4%B8%8B%E4%BB%A3%E7%90%86%E8%AE%BE%E7%BD%AE/</link>
+      <link>http://localhost:1313/blog/posts/linux%E4%B8%8B%E4%BB%A3%E7%90%86%E8%AE%BE%E7%BD%AE/</link>
       <pubDate>Thu, 29 Aug 2024 04:25:16 +0800</pubDate>
-      <guid>https://cyrus-studio.github.io/blog/posts/linux%E4%B8%8B%E4%BB%A3%E7%90%86%E8%AE%BE%E7%BD%AE/</guid>
+      <guid>http://localhost:1313/blog/posts/linux%E4%B8%8B%E4%BB%A3%E7%90%86%E8%AE%BE%E7%BD%AE/</guid>
       <description>版权归作者所有，如有转发，请注明文章出处：https://cyrus-studio.github.io/blog/&#xA;1. 下载安装clash-verge 下载 clash-verge https://github.com/clash-verge-rev/clash-verge-rev/releases&#xA;我这边用的是 ubuntu22，下载 clash-verge_1.7.5_amd64.deb&#xA;安装 clash-verge&#xA;# 安装相关依赖&#xD;sudo apt update&#xD;sudo apt install -f&#xD;sudo apt install libayatana-appindicator3-1 libwebkit2gtk-4.0-37 libgtk-3-0&#xD;# 安装clash-verge&#xD;sudo dpkg -i clash-verge_1.7.5_amd64.deb&#xD;# 卸载clash-verge&#xD;sudo dpkg -r clash-verge&#xD;# 启动 Clash Verge（nohup 命令可以让进程在后台运行，即使关闭终端也不会影响进程运行。）&#xD;# nohup 会创建一个 nohup.out 文件来记录输出日志。&#xD;nohup clash-verge &amp;amp; 2. 解决显示乱码问题 安装一些常见的字体包&#xA;sudo apt update&#xD;sudo apt install fonts-noto-cjk fonts-noto fonts-noto-core fonts-noto-ui-core fonts-wqy-zenhei 3. 导入订阅地址，开启代理 设置 关闭 IPV6 设置 勾选 系统代理 我这里科学上网使用的是魔戒，注册地址：https://mojie.</description>
     </item>
     <item>
       <title>荣耀Magicbook x14 扩容1TB固态</title>
-      <link>https://cyrus-studio.github.io/blog/posts/%E8%8D%A3%E8%80%80magicbook-x14-%E6%89%A9%E5%AE%B91tb%E5%9B%BA%E6%80%81/</link>
+      <link>http://localhost:1313/blog/posts/%E8%8D%A3%E8%80%80magicbook-x14-%E6%89%A9%E5%AE%B91tb%E5%9B%BA%E6%80%81/</link>
       <pubDate>Sun, 18 Aug 2024 03:06:59 +0800</pubDate>
-      <guid>https://cyrus-studio.github.io/blog/posts/%E8%8D%A3%E8%80%80magicbook-x14-%E6%89%A9%E5%AE%B91tb%E5%9B%BA%E6%80%81/</guid>
+      <guid>http://localhost:1313/blog/posts/%E8%8D%A3%E8%80%80magicbook-x14-%E6%89%A9%E5%AE%B91tb%E5%9B%BA%E6%80%81/</guid>
       <description>版权归作者所有，如有转发，请注明文章出处：https://cyrus-studio.github.io/blog/&#xA;固态硬盘规格 在官网查看加装固态硬盘的接口规格 https://www.honor.com/cn/laptops/honor-magicbook-x14-2023/ https://club.honor.com/cn/thread-28473794-1-1.html&#xA;或者在荣耀手机上的【荣耀商城app】里联系在线客服 选购固态硬盘 三星的性能不错，但是发热控制得不好，不适合用在轻薄本&#xA;凯侠的发热和性能都很平衡&#xA;笔记本自带的是铠侠KBG50ZNV1T02&#xA;综合看下来，凯侠SE10是不错的选择，但是是2280尺寸的&#xA;扩展固态的插槽规格是M2 2242&#xA;最后选出两款合适的：&#xA;西部数据SN740，性能不错，温控还可以，1T价格499。&#xA;凯侠BG5，性能中规中矩，温控很不错，1T价格359。&#xA;最后选择了凯侠G5 还有拆机工具 拆机加装过程 首先用吸盘吸住底盘的一角，拉出一条缝后，用撬棒插进去慢慢撬开 底盘拆开后，可以看到固态硬盘加装插口就在图中红圈位置 接着就是扭开加装接口那颗螺丝，就可以把固态硬盘插进去了 但买到的螺丝刀实在太辣鸡了，扭一下就损坏了。。。 最终还是跑去荣耀服务点把固态硬盘装进去了 接着开机，打开【设置】【系统】【存储】【磁盘和卷】 点击“初始化”，因为我们是扩容，选择GPT就行。 接下来点击“创建卷”。 为新硬盘取个分区名字，点击“格式化”。 再打开此电脑就能看到新磁盘了 用CrystalDiskInfo打开看看 用CrystalDiskMark测试一下读写 硬盘检测相关工具 CrystalDiskInfo中文版(硬盘检测工具) v9.3.2 https://www.423down.com/5432.html&#xA;AS SSD Benchmark 2.0.7316 汉化版单文件 https://www.423down.com/6751.html&#xA;硬盘检测工具CrystalDiskMark v8.0.5中文版 https://www.423down.com/10418.html&#xA;重新分配磁盘空间 由于C盘空间不太够用，需要重新分配一下磁盘空间&#xA;下载【傲梅分区助手】，使用码是1122&#xA;在D盘上右键，点击【分配空闲空间】 分配20GB给C盘 左上角点击【提交】 点击【执行】 点击【确定】 等待创建Windows PE后重启分区 重新分区中 分区完成后重启，可以看到C盘已经扩容了20GB 参考： 荣耀magicbook x16 2023扩容2T固态成功笔记 价格大跳水！顶级固态硬盘终于敢买了！铠侠SE10 1T上手体验 海力士BC711/BC901 西数SN740 铠侠BG4/BG5/BG6 美光2550/2400A 群联P0221 建兴CL4 M2 2230 NVME写入测试 加装固态硬盘主机扩容分步教程，手把手教你，进来学！ 想不格式化硬盘重新分区？4个方法轻松解决！</description>
     </item>
     <item>
       <title>小米5c解除BL锁&amp;刷机&amp;root</title>
-      <link>https://cyrus-studio.github.io/blog/posts/%E5%B0%8F%E7%B1%B35c%E8%A7%A3%E9%99%A4bl%E9%94%81%E5%88%B7%E6%9C%BAroot/</link>
+      <link>http://localhost:1313/blog/posts/%E5%B0%8F%E7%B1%B35c%E8%A7%A3%E9%99%A4bl%E9%94%81%E5%88%B7%E6%9C%BAroot/</link>
       <pubDate>Sun, 18 Aug 2024 01:54:50 +0800</pubDate>
-      <guid>https://cyrus-studio.github.io/blog/posts/%E5%B0%8F%E7%B1%B35c%E8%A7%A3%E9%99%A4bl%E9%94%81%E5%88%B7%E6%9C%BAroot/</guid>
+      <guid>http://localhost:1313/blog/posts/%E5%B0%8F%E7%B1%B35c%E8%A7%A3%E9%99%A4bl%E9%94%81%E5%88%B7%E6%9C%BAroot/</guid>
       <description>版权归作者所有，如有转发，请注明文章出处：https://cyrus-studio.github.io/blog/&#xA;解锁BL锁 1. 下载安装 miflash_unlock：https://miuiver.com/miunlock/，登录小米账号（需要和解锁设备绑定的账号一致） 2. 连接手机，关机后按住 “音量-” + 开机键进入 fastboot 模式，根据提示解锁手机 3. 重启手机开发者模式中查看解锁状态 刷机 ROM下载：https://magiskcn.com/rom&#xA;1. 下载小米线刷工具：https://xiaomirom.com/download-xiaomi-flash-tool-miflash/&#xA;2. 下载小米5c开发版线刷包，并解压线刷包 3. 打开miflash&#xA;4. 连接手机，关机，按住 &amp;ldquo;开机&amp;rdquo; + &amp;ldquo;音量-&amp;rdquo; 进入fastboot模式&#xA;5. 选择线刷包解压目录开始刷机 等待刷机成功 6. 刷机成功后，重新解除BL锁&#xA;7. 打开手机管家——应用管理——权限——ROOT权限——开启ROOT权限 结果发现root工具一直下载失败&#xA;使用Magisk进行root 下载 Magisk：https://github.com/topjohnwu/Magisk/releases&#xA;1. 安装 Magisk&#xA;adb install Magisk-v27.0.apk 2. 解压线刷包中的 boot.img，并 push 到手机&#xA;adb push boot.img /sdcard/boot.img 3. Magisk中【安装】【下一步】【选择并修补一个文件】【选择boot.img】，把处理完后的magisk_patched 下载到电脑 Android sdk\platform-tools 目录（这里下载 Android SDK Platform Tools）&#xA;adb pull /sdcard/Download/magisk_patched-27000_RIC3F.img D:\App\android\sdk\platform-tools 4. 使用 adb 命令将设备重启到 fastboot 模式</description>
     </item>
     <item>
       <title>修改android系统ro.debuggable使全局可调试</title>
-      <link>https://cyrus-studio.github.io/blog/posts/%E4%BF%AE%E6%94%B9android%E7%B3%BB%E7%BB%9Fro.debuggable%E4%BD%BF%E5%85%A8%E5%B1%80%E5%8F%AF%E8%B0%83%E8%AF%95/</link>
+      <link>http://localhost:1313/blog/posts/%E4%BF%AE%E6%94%B9android%E7%B3%BB%E7%BB%9Fro.debuggable%E4%BD%BF%E5%85%A8%E5%B1%80%E5%8F%AF%E8%B0%83%E8%AF%95/</link>
       <pubDate>Fri, 16 Aug 2024 00:04:11 +0800</pubDate>
-      <guid>https://cyrus-studio.github.io/blog/posts/%E4%BF%AE%E6%94%B9android%E7%B3%BB%E7%BB%9Fro.debuggable%E4%BD%BF%E5%85%A8%E5%B1%80%E5%8F%AF%E8%B0%83%E8%AF%95/</guid>
+      <guid>http://localhost:1313/blog/posts/%E4%BF%AE%E6%94%B9android%E7%B3%BB%E7%BB%9Fro.debuggable%E4%BD%BF%E5%85%A8%E5%B1%80%E5%8F%AF%E8%B0%83%E8%AF%95/</guid>
       <description>版权归作者所有，如有转发，请注明文章出处：https://cyrus-studio.github.io/blog/&#xA;修改 android 系统 中的 ro.debuggable 属性使设备上所有 app 可调试。&#xA;下载MagiskHidePropsConf：https://github.com/Magisk-Modules-Repo/MagiskHidePropsConf/tags&#xA;把下载下来的MagiskHidePropsConf推送到手机sdcard上&#xA;adb push &amp;#34;D:\app逆向\MagiskHidePropsConf-v6.1.2.zip&amp;#34; /sdcard/ 安装MagiskHidePropsConf，打开Magick【模块】【本地安装】【选择MagiskHidePropsConf-v6.1.2.zi p】&#xA;重启手机，进入 adb shell&#xA;输入props&#xA;meri:/ # props&#xD;Loading... Please wait.&#xD;MagiskHide Props Config v6.1.2&#xD;by Didgeridoohan @ XDA Developers&#xD;=====================================&#xD;Updating fingerprints list&#xD;=====================================&#xD;Checking list version.&#xD;! File not downloaded!&#xD;Checking for module update.&#xD;! File not downloaded!&#xD;MagiskHide Props Config v6.1.2&#xD;by Didgeridoohan @ XDA Developers&#xD;=====================================&#xD;Select an option below.</description>
     </item>
     <item>
       <title>编译自定义Linux内核，使WSL支持访问Windows下USB设备</title>
-      <link>https://cyrus-studio.github.io/blog/posts/%E7%BC%96%E8%AF%91%E8%87%AA%E5%AE%9A%E4%B9%89linux%E5%86%85%E6%A0%B8%E4%BD%BFwsl%E6%94%AF%E6%8C%81%E8%AE%BF%E9%97%AEwindows%E4%B8%8Busb%E8%AE%BE%E5%A4%87/</link>
+      <link>http://localhost:1313/blog/posts/%E7%BC%96%E8%AF%91%E8%87%AA%E5%AE%9A%E4%B9%89linux%E5%86%85%E6%A0%B8%E4%BD%BFwsl%E6%94%AF%E6%8C%81%E8%AE%BF%E9%97%AEwindows%E4%B8%8Busb%E8%AE%BE%E5%A4%87/</link>
       <pubDate>Wed, 14 Aug 2024 05:41:57 +0800</pubDate>
-      <guid>https://cyrus-studio.github.io/blog/posts/%E7%BC%96%E8%AF%91%E8%87%AA%E5%AE%9A%E4%B9%89linux%E5%86%85%E6%A0%B8%E4%BD%BFwsl%E6%94%AF%E6%8C%81%E8%AE%BF%E9%97%AEwindows%E4%B8%8Busb%E8%AE%BE%E5%A4%87/</guid>
+      <guid>http://localhost:1313/blog/posts/%E7%BC%96%E8%AF%91%E8%87%AA%E5%AE%9A%E4%B9%89linux%E5%86%85%E6%A0%B8%E4%BD%BFwsl%E6%94%AF%E6%8C%81%E8%AE%BF%E9%97%AEwindows%E4%B8%8Busb%E8%AE%BE%E5%A4%87/</guid>
       <description>版权归作者所有，如有转发，请注明文章出处：https://cyrus-studio.github.io/blog/&#xA;WSL 本身并不支持连接 USB 设备，因此你需要安装开源 usbipd-win 项目。&#xA;usbip 可以让你在网络上共享和使用 USB 设备。它由两个主要组件组成：&#xA;usbipd (USB/IP daemon)：服务端，负责共享连接到主机的 USB 设备。&#xA;usbip (USB/IP client)：客户端，允许其他计算机访问共享的 USB 设备。&#xA;1. 安装USBIPD-WIN USBIPD-WIN 是一个在 Windows 上实现 USB/IP 协议的工具。首先，你需要在 Windows 上安装这个工具。&#xA;下载并安装 usbipd-win，可以从GitHub页面获取最新版本的安装包。&#xA;或者执行下面命令安装&#xA;winget install usbipd 2. 列出所有可以共享的USB设备 usbipd list 3. 共享设备 在附加 USB 设备之前，必须使用命令 usbipd bind 来共享设备，从而允许它附加到 WSL（ 需要管理员权限）。&#xA;usbipd bind --busid 2-6 这里的 2-6 是 USB 设备对应的 BUSID&#xA;4. 将USB设备连接到WSL 使用 usbipd attach 命令将指定的USB设备附加到WSL实例中。&#xA;usbipd attach --wsl --busid 2-6 打开 Ubuntu（或首选的 WSL 命令行），使用以下命令列出附加的 USB 设备</description>
     </item>
     <item>
       <title>有道云docx转换markdown，导入hugo发布到github page，多平台发布适配</title>
-      <link>https://cyrus-studio.github.io/blog/posts/%E6%9C%89%E9%81%93%E4%BA%91docx%E8%BD%AC%E6%8D%A2markdown%E5%AF%BC%E5%85%A5hugo%E5%8F%91%E5%B8%83%E5%88%B0github-page%E5%A4%9A%E5%B9%B3%E5%8F%B0%E5%8F%91%E5%B8%83%E9%80%82%E9%85%8D/</link>
+      <link>http://localhost:1313/blog/posts/%E6%9C%89%E9%81%93%E4%BA%91docx%E8%BD%AC%E6%8D%A2markdown%E5%AF%BC%E5%85%A5hugo%E5%8F%91%E5%B8%83%E5%88%B0github-page%E5%A4%9A%E5%B9%B3%E5%8F%B0%E5%8F%91%E5%B8%83%E9%80%82%E9%85%8D/</link>
       <pubDate>Sun, 11 Aug 2024 06:09:27 +0800</pubDate>
-      <guid>https://cyrus-studio.github.io/blog/posts/%E6%9C%89%E9%81%93%E4%BA%91docx%E8%BD%AC%E6%8D%A2markdown%E5%AF%BC%E5%85%A5hugo%E5%8F%91%E5%B8%83%E5%88%B0github-page%E5%A4%9A%E5%B9%B3%E5%8F%B0%E5%8F%91%E5%B8%83%E9%80%82%E9%85%8D/</guid>
+      <guid>http://localhost:1313/blog/posts/%E6%9C%89%E9%81%93%E4%BA%91docx%E8%BD%AC%E6%8D%A2markdown%E5%AF%BC%E5%85%A5hugo%E5%8F%91%E5%B8%83%E5%88%B0github-page%E5%A4%9A%E5%B9%B3%E5%8F%B0%E5%8F%91%E5%B8%83%E9%80%82%E9%85%8D/</guid>
       <description>版权归作者所有，如有转发，请注明文章出处：https://cyrus-studio.github.io/blog/&#xA;有道云导出docx&#xA;有道云笔记右上角更多按钮选择【导出为Word】，可以导出docx文档 docx转换markdown&#xA;尝试了几个docx转markdown的python库后，最终选择了python-mammoth，轻量，效率高，可自定义转换满足特定需求。&#xA;python-mammoth&#xA;python-mammoth 是一个用于将 Microsoft Word (DOCX) 文档转换为 HTML 或 Markdown 的 Python 库。&#xA;github地址：https://github.com/mwilliamson/python-mammoth&#xA;安装 python-mammoth&#xA;pip install mammoth 自定义代码块样式&#xA;通过自定义 transform 来实现自定义的代码块样式来支持有道云docx的代码块&#xA;def ynote_docx_markdown_transform(document):&#xD;...&#xD;pass&#xD;result = convert_to_markdown(docx_file, transform_document=ynote_docx_markdown_transform) 通过在自定义 transform 断点调试可以看到 document 都是由一个一个 Paragraph 组成的，代码块的 Bookmark 的 name 都是相同的，由此代码块其中一个特征就是相同且相邻的 Bookmark name。 但是有的代码块只是单独的一段 这时可以通过自定义 代码/bash 特征判断该 Paragraph 中的 Text 是不是一段 代码/bash。&#xA;def is_possible_code_or_bash(text):&#xD;# 常见的代码关键字&#xD;code_keywords = [&#xD;r&amp;#39;\bif\b&amp;#39;, r&amp;#39;\bfor\b&amp;#39;, r&amp;#39;\bwhile\b&amp;#39;, r&amp;#39;\bdef\b&amp;#39;, r&amp;#39;\bclass\b&amp;#39;, r&amp;#39;\breturn\b&amp;#39;, r&amp;#39;\bimport\b&amp;#39;,&#xD;r&amp;#39;\bint\b&amp;#39;, r&amp;#39;\bfloat\b&amp;#39;, r&amp;#39;\bmain\b&amp;#39;, r&amp;#39;\binclude\b&amp;#39;, r&amp;#39;#include&amp;#39;, r&amp;#39;\becho\b&amp;#39;, r&amp;#39;\bcd\b&amp;#39;,&#xD;r&amp;#39;\bgrep\b&amp;#39;, r&amp;#39;\bexit\b&amp;#39;, r&amp;#39;\belse\b&amp;#39;, r&amp;#39;\belif\b&amp;#39;, r&amp;#39;#!</description>
     </item>
     <item>
       <title>0成本通过Hugo和GitHub Pages搭建博客</title>
-      <link>https://cyrus-studio.github.io/blog/posts/0%E6%88%90%E6%9C%AC%E9%80%9A%E8%BF%87hugo%E5%92%8Cgithub-pages%E6%90%AD%E5%BB%BA%E5%8D%9A%E5%AE%A2/</link>
+      <link>http://localhost:1313/blog/posts/0%E6%88%90%E6%9C%AC%E9%80%9A%E8%BF%87hugo%E5%92%8Cgithub-pages%E6%90%AD%E5%BB%BA%E5%8D%9A%E5%AE%A2/</link>
       <pubDate>Sun, 11 Aug 2024 06:09:10 +0800</pubDate>
-      <guid>https://cyrus-studio.github.io/blog/posts/0%E6%88%90%E6%9C%AC%E9%80%9A%E8%BF%87hugo%E5%92%8Cgithub-pages%E6%90%AD%E5%BB%BA%E5%8D%9A%E5%AE%A2/</guid>
+      <guid>http://localhost:1313/blog/posts/0%E6%88%90%E6%9C%AC%E9%80%9A%E8%BF%87hugo%E5%92%8Cgithub-pages%E6%90%AD%E5%BB%BA%E5%8D%9A%E5%AE%A2/</guid>
       <description>版权归作者所有，如有转发，请注明文章出处：https://cyrus-studio.github.io/blog/&#xA;使用 Chocolatey 安装 Hugo&#xA;Chocolatey 是一个 Windows 软件包管理器，使用 PowerShell 和 NuGet 作为基础。它可以自动化软件的安装、升级和卸载过程。&#xA;安装 Chocolatey（如果还没有安装）&#xA;Chocolatey 允许你通过设置环境变量来更改默认安装路径。在安装 Chocolatey 之前，你需要设置 ChocolateyInstall 环境变量来指定新的安装路径。&#xA;打开 PowerShell（以管理员身份运行），并执行以下命令指定自定义安装路径：&#xA;1. [System.Environment]::SetEnvironmentVariable(&amp;#39;ChocolateyInstall&amp;#39;, &amp;#39;D:\App\chocolatey&amp;#39;, [System.EnvironmentVariableTarget]::Machine) 如果不设置默认安装路径为：C:\ProgramData\chocolatey 设置完 ChocolateyInstall 环境变量后，重新打开一下会话，执行下面的命令检查一下是否设置成功&#xA;Get-Item Env:ChocolateyInstall 打开 PowerShell（以管理员身份运行），执行以下命令安装 Chocolatey：&#xA;1. Set-ExecutionPolicy Bypass -Scope Process -Force; [System.Net.ServicePointManager]::SecurityProtocol = [System.Net.ServicePointManager]::SecurityProtocol -bor 3072; iex ((New-Object System.Net.WebClient).DownloadString(&amp;#39;https://community.chocolatey.org/install.ps1&amp;#39;)) 检查是否安装成功&#xA;choco -h 安装 Hugo&#xA;在 PowerShell 中运行以下命令安装 Hugo： 安装软件包：&#xA;choco install hugo -confirm 升级软件包：&#xA;choco upgrade hugo 卸载软件包：</description>
     </item>
     <item>
       <title>About</title>
-      <link>https://cyrus-studio.github.io/blog/about/</link>
+      <link>http://localhost:1313/blog/about/</link>
       <pubDate>Sat, 10 Aug 2024 12:00:00 +0000</pubDate>
-      <guid>https://cyrus-studio.github.io/blog/about/</guid>
+      <guid>http://localhost:1313/blog/about/</guid>
       <description>欢迎访问我的博客！在这里分享我的android、python相关知识、经验和项目。&#xA;博客地址: https://cyrus-studio.github.io/blog/ GitHub: https://github.com/CYRUS-STUDIO Email: linchaolong.dev@gmail.com </description>
     </item>
   </channel>
