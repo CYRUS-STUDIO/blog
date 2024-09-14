@@ -6,8 +6,15 @@
     <description>Recent content in Posts on CYRUS STUDIO</description>
     <generator>Hugo</generator>
     <language>zh-CN</language>
-    <lastBuildDate>Fri, 13 Sep 2024 23:49:13 +0800</lastBuildDate>
+    <lastBuildDate>Sun, 15 Sep 2024 01:50:08 +0800</lastBuildDate>
     <atom:link href="https://cyrus-studio.github.io/blog/posts/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>LineageOS刷机教程</title>
+      <link>https://cyrus-studio.github.io/blog/posts/lineageos%E5%88%B7%E6%9C%BA%E6%95%99%E7%A8%8B/</link>
+      <pubDate>Sun, 15 Sep 2024 01:50:08 +0800</pubDate>
+      <guid>https://cyrus-studio.github.io/blog/posts/lineageos%E5%88%B7%E6%9C%BA%E6%95%99%E7%A8%8B/</guid>
+      <description>版权归作者所有，如有转发，请注明文章出处：https://cyrus-studio.github.io/blog/&#xA;LineageOS 是一个基于 Android 开源项目（AOSP）的开源操作系统，主要由社区开发者维护。它起源于 CyanogenMod 项目，该项目于 2016 年关闭后，LineageOS 成为了其继任者。&#xA;主要特点：&#xA;开源：所有源代码都是开源的，任何人都可以查看、修改和分发。&#xA;无预装垃圾软件：相比一些预装大量应用的定制 ROM，LineageOS 保持了简洁和干净的系统环境。&#xA;定期更新：社区提供持续的安全补丁和新功能更新。&#xA;广泛设备支持：支持各种品牌和型号的设备，尤其是一些官方已停止支持的老旧设备。&#xA;隐私保护：LineageOS 提供了增强的隐私保护功能，如权限管理器和私密模式。&#xA;注意：在刷机之前，请确认你的设备已经解除BL锁。&#xA;LineageOS 开始刷机之前，先在 LineageOS官网 找到自己的设备型号，下载对应的刷机包&#xA;或者下载 LineageOS 源码 自己编译系统&#xA;下载 GMS套件包 （可选） 刷机环境准备 在 Linux 中配置 Android SDK Platform-Tools，可以按照以下步骤进行&#xA;1. 下载 Android SDK Platform-Tools： # cd 到存放 platform-tools 的目录&#xD;cd /mnt/case_sensitive&#xD;# 下载 platform-tools&#xD;wget https://dl.google.com/android/repository/platform-tools-latest-linux.zip&#xD;# 解压 platform-tools&#xD;unzip platform-tools-latest-linux.zip 2. 配置环境变量： 为了在任何地方都能使用 adb 和 fastboot 命令，你需要将 platform-tools 目录添加到你的 PATH 中。</description>
+    </item>
     <item>
       <title>小米手机解除BL锁&amp;刷机&amp;root</title>
       <link>https://cyrus-studio.github.io/blog/posts/%E5%B0%8F%E7%B1%B3%E6%89%8B%E6%9C%BA%E8%A7%A3%E9%99%A4bl%E9%94%81%E5%88%B7%E6%9C%BAroot/</link>
