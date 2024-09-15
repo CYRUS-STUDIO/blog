@@ -1,12 +1,24 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="zh-CN">
-  <head><script src="/blog/livereload.js?mindelay=10&amp;v=2&amp;port=1313&amp;path=blog/livereload" data-no-instant defer></script>
-    <meta charset="utf-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+  <head>
+    <title>修改android系统ro.debuggable使全局可调试 // CYRUS STUDIO</title>
+    <link rel="shortcut icon" href="/favicon.ico" />
+    <meta charset="utf-8" />
+    <meta name="generator" content="Hugo 0.131.0">
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="author" content="John Doe" />
+    <meta name="description" content="" />
+    <link rel="stylesheet" href="/blog/css/main.min.e523c6b06cd2771f742b73e023dbfa03417c838c17a1b890703fb71a943954da.css" />
     
-    <title>修改android系统ro.debuggable使全局可调试 | CYRUS STUDIO</title>
-    <meta name="viewport" content="width=device-width,minimum-scale=1">
-    <meta name="description" content="版权归作者所有，如有转发，请注明文章出处：https://cyrus-studio.github.io/blog/
+
+    
+  
+
+
+    
+  <meta name="twitter:card" content="summary">
+  <meta name="twitter:title" content="修改android系统ro.debuggable使全局可调试">
+  <meta name="twitter:description" content="版权归作者所有，如有转发，请注明文章出处：https://cyrus-studio.github.io/blog/
 修改 android 系统 中的 ro.debuggable 属性使设备上所有 app 可调试。
 下载MagiskHidePropsConf：https://github.com/Magisk-Modules-Repo/MagiskHidePropsConf/tags
 把下载下来的MagiskHidePropsConf推送到手机sdcard上
@@ -14,34 +26,8 @@ adb push &#34;D:\app逆向\MagiskHidePropsConf-v6.1.2.zip&#34; /sdcard/ 安装Ma
 重启手机，进入 adb shell
 输入props
 meri:/ # propsLoading... Please wait.MagiskHide Props Config v6.1.2by Didgeridoohan @ XDA Developers=====================================Updating fingerprints list=====================================Checking list version.! File not downloaded!Checking for module update.! File not downloaded!MagiskHide Props Config v6.1.2by Didgeridoohan @ XDA Developers=====================================Select an option below.">
-    <meta name="generator" content="Hugo 0.131.0">
-    
-    
-    
-    
-      <meta name="robots" content="noindex, nofollow">
-    
-    
 
-    
-<link rel="stylesheet" href="/blog/ananke/css/main.min.css" >
-
-
-
-    
-
-    
-      
-
-    
-
-    
-
-    
-      <link rel="canonical" href="http://localhost:1313/blog/posts/%E4%BF%AE%E6%94%B9android%E7%B3%BB%E7%BB%9Fro.debuggable%E4%BD%BF%E5%85%A8%E5%B1%80%E5%8F%AF%E8%B0%83%E8%AF%95/">
-    
-
-    <meta property="og:url" content="http://localhost:1313/blog/posts/%E4%BF%AE%E6%94%B9android%E7%B3%BB%E7%BB%9Fro.debuggable%E4%BD%BF%E5%85%A8%E5%B1%80%E5%8F%AF%E8%B0%83%E8%AF%95/">
+    <meta property="og:url" content="https://cyrus-studio.github.io/blog/posts/%E4%BF%AE%E6%94%B9android%E7%B3%BB%E7%BB%9Fro.debuggable%E4%BD%BF%E5%85%A8%E5%B1%80%E5%8F%AF%E8%B0%83%E8%AF%95/">
   <meta property="og:site_name" content="CYRUS STUDIO">
   <meta property="og:title" content="修改android系统ro.debuggable使全局可调试">
   <meta property="og:description" content="版权归作者所有，如有转发，请注明文章出处：https://cyrus-studio.github.io/blog/
@@ -58,123 +44,47 @@ meri:/ # propsLoading... Please wait.MagiskHide Props Config v6.1.2by Didgeri
     <meta property="article:published_time" content="2024-08-16T00:04:11+08:00">
     <meta property="article:modified_time" content="2024-08-16T00:04:11+08:00">
 
-  <meta itemprop="name" content="修改android系统ro.debuggable使全局可调试">
-  <meta itemprop="description" content="版权归作者所有，如有转发，请注明文章出处：https://cyrus-studio.github.io/blog/
-修改 android 系统 中的 ro.debuggable 属性使设备上所有 app 可调试。
-下载MagiskHidePropsConf：https://github.com/Magisk-Modules-Repo/MagiskHidePropsConf/tags
-把下载下来的MagiskHidePropsConf推送到手机sdcard上
-adb push &#34;D:\app逆向\MagiskHidePropsConf-v6.1.2.zip&#34; /sdcard/ 安装MagiskHidePropsConf，打开Magick【模块】【本地安装】【选择MagiskHidePropsConf-v6.1.2.zi p】
-重启手机，进入 adb shell
-输入props
-meri:/ # propsLoading... Please wait.MagiskHide Props Config v6.1.2by Didgeridoohan @ XDA Developers=====================================Updating fingerprints list=====================================Checking list version.! File not downloaded!Checking for module update.! File not downloaded!MagiskHide Props Config v6.1.2by Didgeridoohan @ XDA Developers=====================================Select an option below.">
-  <meta itemprop="datePublished" content="2024-08-16T00:04:11+08:00">
-  <meta itemprop="dateModified" content="2024-08-16T00:04:11+08:00">
-  <meta itemprop="wordCount" content="492">
-  <meta name="twitter:card" content="summary">
-  <meta name="twitter:title" content="修改android系统ro.debuggable使全局可调试">
-  <meta name="twitter:description" content="版权归作者所有，如有转发，请注明文章出处：https://cyrus-studio.github.io/blog/
-修改 android 系统 中的 ro.debuggable 属性使设备上所有 app 可调试。
-下载MagiskHidePropsConf：https://github.com/Magisk-Modules-Repo/MagiskHidePropsConf/tags
-把下载下来的MagiskHidePropsConf推送到手机sdcard上
-adb push &#34;D:\app逆向\MagiskHidePropsConf-v6.1.2.zip&#34; /sdcard/ 安装MagiskHidePropsConf，打开Magick【模块】【本地安装】【选择MagiskHidePropsConf-v6.1.2.zi p】
-重启手机，进入 adb shell
-输入props
-meri:/ # propsLoading... Please wait.MagiskHide Props Config v6.1.2by Didgeridoohan @ XDA Developers=====================================Updating fingerprints list=====================================Checking list version.! File not downloaded!Checking for module update.! File not downloaded!MagiskHide Props Config v6.1.2by Didgeridoohan @ XDA Developers=====================================Select an option below.">
 
-	
   </head>
-
-  <body class="ma0 avenir bg-near-white">
-
-    
-   
-  
-
-  <header>
-    <div class="bg-black">
-      <nav class="pv3 ph3 ph4-ns" role="navigation">
-  <div class="flex-l justify-between items-center center">
-    <a href="/blog/" class="f3 fw2 hover-white no-underline white-90 dib">
-      
-        CYRUS STUDIO
-      
-    </a>
-    <div class="flex-l items-center">
-      
-
-      
-        <ul class="pl0 mr3">
+  <body>
+    <header class="app-header">
+      <a href="https://cyrus-studio.github.io/blog/"><img class="app-header-avatar" src="/blog/avatar.jpg" alt="John Doe" /></a>
+      <span class="app-header-title">CYRUS STUDIO</span>
+      <nav class="app-header-menu">
+          <a class="app-header-menu-item" href="/blog/">Home</a>
+             - 
           
-          <li class="list f5 f4-ns fw4 dib pr3">
-            <a class="hover-white no-underline white-90" href="/blog/" title="Home page">
-              Home
-            </a>
-          </li>
+          <a class="app-header-menu-item" href="/blog/about/">About</a>
+             - 
           
-          <li class="list f5 f4-ns fw4 dib pr3">
-            <a class="hover-white no-underline white-90" href="/blog/about/" title="About page">
-              About
-            </a>
-          </li>
-          
-          <li class="list f5 f4-ns fw4 dib pr3">
-            <a class="hover-white no-underline white-90" href="https://github.com/CYRUS-STUDIO" title="GitHub page">
-              GitHub
-            </a>
-          </li>
-          
-        </ul>
-      
-      
-<div class="ananke-socials">
-  
-</div>
-
-    </div>
-  </div>
-</nav>
-
-    </div>
-  </header>
-
-
-
-    <main class="pb7" role="main">
-      
-  
-  <article class="flex-l flex-wrap justify-between mw8 center ph3">
-    <header class="mt4 w-100">
-      <aside class="instapaper_ignoref b helvetica tracked ttu">
-          
-        Posts
-      </aside>
-      
-
-
-
-
-
-
-
-
-
-
-  <div id="sharing" class="mt3 ananke-socials">
-    
-  </div>
-
-
-      <h1 class="f1 athelas mt3 mb1">修改android系统ro.debuggable使全局可调试</h1>
-      
-      
-      
-      <time class="f6 mv4 dib tracked" datetime="2024-08-16T00:04:11+08:00">August 16, 2024</time>
-      
-
-      
-      
+          <a class="app-header-menu-item" href="https://github.com/CYRUS-STUDIO">GitHub</a>
+      </nav>
+      <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nunc vehicula turpis sit amet elit pretium.</p>
     </header>
-    <div class="nested-copy-line-height lh-copy serif f4 nested-links mid-gray pr4-l w-two-thirds-l"><blockquote>
+    <main class="app-container">
+      
+  <article class="post">
+    <header class="post-header">
+      <h1 class ="post-title">修改android系统ro.debuggable使全局可调试</h1>
+      <div class="post-meta">
+        <div>
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="icon icon-calendar">
+  <title>calendar</title>
+  <rect x="3" y="4" width="18" height="18" rx="2" ry="2"></rect><line x1="16" y1="2" x2="16" y2="6"></line><line x1="8" y1="2" x2="8" y2="6"></line><line x1="3" y1="10" x2="21" y2="10"></line>
+</svg>
+          Aug 16, 2024
+        </div>
+        <div>
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="icon icon-clock">
+  <title>clock</title>
+  <circle cx="12" cy="12" r="10"></circle><polyline points="12 6 12 12 16 14"></polyline>
+</svg>
+          3 min read
+        </div>
+      </div>
+    </header>
+    <div class="post-content">
+      <blockquote>
 <p>版权归作者所有，如有转发，请注明文章出处：<a href="https://cyrus-studio.github.io/blog/">https://cyrus-studio.github.io/blog/</a></p>
 </blockquote>
 <p>修改 android 系统 中的 ro.debuggable 属性使设备上所有 app 可调试。</p>
@@ -362,37 +272,13 @@ Rebooting...
 <li><a href="https://blog.csdn.net/jinmie0193/article/details/111355867">Android修改ro.debuggable 的四种方法</a></li>
 <li><a href="https://segmentfault.com/a/1190000044292145">Android搞机之打开系统调试总开关ro.debuggable</a></li>
 </ol>
-<ul class="pa0">
-  
-</ul>
-<div class="mt6 instapaper_ignoref">
-      
-      
-      </div>
+
     </div>
-
-    <aside class="w-30-l mt6-l">
-
-
-
-
-</aside>
-
+    <div class="post-footer">
+      
+    </div>
   </article>
 
     </main>
-    <footer class="bg-black bottom-0 w-100 pa3" role="contentinfo">
-  <div class="flex justify-between">
-  <a class="f4 fw4 hover-white no-underline white-70 dn dib-ns pv2 ph3" href="http://localhost:1313/blog/" >
-    &copy;  CYRUS STUDIO 2024 
-  </a>
-    <div>
-<div class="ananke-socials">
-  
-</div>
-</div>
-  </div>
-</footer>
-
   </body>
 </html>

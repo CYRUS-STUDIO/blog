@@ -1,45 +1,31 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="zh-CN">
-  <head><script src="/blog/livereload.js?mindelay=10&amp;v=2&amp;port=1313&amp;path=blog/livereload" data-no-instant defer></script>
-    <meta charset="utf-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+  <head>
+    <title>MagiskBoot编译&amp;解包&amp;打包boot.img // CYRUS STUDIO</title>
+    <link rel="shortcut icon" href="/favicon.ico" />
+    <meta charset="utf-8" />
+    <meta name="generator" content="Hugo 0.131.0">
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="author" content="John Doe" />
+    <meta name="description" content="" />
+    <link rel="stylesheet" href="/blog/css/main.min.e523c6b06cd2771f742b73e023dbfa03417c838c17a1b890703fb71a943954da.css" />
     
-    <title>MagiskBoot编译&amp;解包&amp;打包boot.img | CYRUS STUDIO</title>
-    <meta name="viewport" content="width=device-width,minimum-scale=1">
-    <meta name="description" content="版权归作者所有，如有转发，请注明文章出处：https://cyrus-studio.github.io/blog/
+
+    
+  
+
+
+    
+  <meta name="twitter:card" content="summary">
+  <meta name="twitter:title" content="MagiskBoot编译&amp;解包&amp;打包boot.img">
+  <meta name="twitter:description" content="版权归作者所有，如有转发，请注明文章出处：https://cyrus-studio.github.io/blog/
 编译环境准备 1. Windows下启用开发者模式，因为需要 symbolic link 支持 2. 安装 python3.8&#43;，并配置PATH环境变量
 # 查看python版本信息py --version# 查看所有已安装的 Python 解释器路径py -0p 3. git 启用 symbolic links
 # 启用 symbolic linksgit config --global core.symlinks true# 查看 git 配置git config --global --list 4. 安装 Android Studio ，设置环境变量 ANDROID_HOME 为 Android SDK 文件夹的路径。该路径可以在 Android Studio 的设置中找到。
 5. 下载 Magisk 源码
 # 下载 Magisk 源码git clone --recurse-submodules https://github.com/topjohnwu/Magisk.git# 如果子模块克隆失败，可以手动克隆这些子模块。进入对应的子模块路径，然后执行以下命令git submodule update --init --recursive 6.">
-    <meta name="generator" content="Hugo 0.131.0">
-    
-    
-    
-    
-      <meta name="robots" content="noindex, nofollow">
-    
-    
 
-    
-<link rel="stylesheet" href="/blog/ananke/css/main.min.css" >
-
-
-
-    
-
-    
-      
-
-    
-
-    
-
-    
-      <link rel="canonical" href="http://localhost:1313/blog/posts/magiskboot%E7%BC%96%E8%AF%91%E8%A7%A3%E5%8C%85%E6%89%93%E5%8C%85boot.img/">
-    
-
-    <meta property="og:url" content="http://localhost:1313/blog/posts/magiskboot%E7%BC%96%E8%AF%91%E8%A7%A3%E5%8C%85%E6%89%93%E5%8C%85boot.img/">
+    <meta property="og:url" content="https://cyrus-studio.github.io/blog/posts/magiskboot%E7%BC%96%E8%AF%91%E8%A7%A3%E5%8C%85%E6%89%93%E5%8C%85boot.img/">
   <meta property="og:site_name" content="CYRUS STUDIO">
   <meta property="og:title" content="MagiskBoot编译&amp;解包&amp;打包boot.img">
   <meta property="og:description" content="版权归作者所有，如有转发，请注明文章出处：https://cyrus-studio.github.io/blog/
@@ -54,119 +40,47 @@
     <meta property="article:published_time" content="2024-08-29T04:25:23+08:00">
     <meta property="article:modified_time" content="2024-08-29T04:25:23+08:00">
 
-  <meta itemprop="name" content="MagiskBoot编译&amp;解包&amp;打包boot.img">
-  <meta itemprop="description" content="版权归作者所有，如有转发，请注明文章出处：https://cyrus-studio.github.io/blog/
-编译环境准备 1. Windows下启用开发者模式，因为需要 symbolic link 支持 2. 安装 python3.8&#43;，并配置PATH环境变量
-# 查看python版本信息py --version# 查看所有已安装的 Python 解释器路径py -0p 3. git 启用 symbolic links
-# 启用 symbolic linksgit config --global core.symlinks true# 查看 git 配置git config --global --list 4. 安装 Android Studio ，设置环境变量 ANDROID_HOME 为 Android SDK 文件夹的路径。该路径可以在 Android Studio 的设置中找到。
-5. 下载 Magisk 源码
-# 下载 Magisk 源码git clone --recurse-submodules https://github.com/topjohnwu/Magisk.git# 如果子模块克隆失败，可以手动克隆这些子模块。进入对应的子模块路径，然后执行以下命令git submodule update --init --recursive 6.">
-  <meta itemprop="datePublished" content="2024-08-29T04:25:23+08:00">
-  <meta itemprop="dateModified" content="2024-08-29T04:25:23+08:00">
-  <meta itemprop="wordCount" content="301">
-  <meta name="twitter:card" content="summary">
-  <meta name="twitter:title" content="MagiskBoot编译&amp;解包&amp;打包boot.img">
-  <meta name="twitter:description" content="版权归作者所有，如有转发，请注明文章出处：https://cyrus-studio.github.io/blog/
-编译环境准备 1. Windows下启用开发者模式，因为需要 symbolic link 支持 2. 安装 python3.8&#43;，并配置PATH环境变量
-# 查看python版本信息py --version# 查看所有已安装的 Python 解释器路径py -0p 3. git 启用 symbolic links
-# 启用 symbolic linksgit config --global core.symlinks true# 查看 git 配置git config --global --list 4. 安装 Android Studio ，设置环境变量 ANDROID_HOME 为 Android SDK 文件夹的路径。该路径可以在 Android Studio 的设置中找到。
-5. 下载 Magisk 源码
-# 下载 Magisk 源码git clone --recurse-submodules https://github.com/topjohnwu/Magisk.git# 如果子模块克隆失败，可以手动克隆这些子模块。进入对应的子模块路径，然后执行以下命令git submodule update --init --recursive 6.">
 
-	
   </head>
-
-  <body class="ma0 avenir bg-near-white">
-
-    
-   
-  
-
-  <header>
-    <div class="bg-black">
-      <nav class="pv3 ph3 ph4-ns" role="navigation">
-  <div class="flex-l justify-between items-center center">
-    <a href="/blog/" class="f3 fw2 hover-white no-underline white-90 dib">
-      
-        CYRUS STUDIO
-      
-    </a>
-    <div class="flex-l items-center">
-      
-
-      
-        <ul class="pl0 mr3">
+  <body>
+    <header class="app-header">
+      <a href="https://cyrus-studio.github.io/blog/"><img class="app-header-avatar" src="/blog/avatar.jpg" alt="John Doe" /></a>
+      <span class="app-header-title">CYRUS STUDIO</span>
+      <nav class="app-header-menu">
+          <a class="app-header-menu-item" href="/blog/">Home</a>
+             - 
           
-          <li class="list f5 f4-ns fw4 dib pr3">
-            <a class="hover-white no-underline white-90" href="/blog/" title="Home page">
-              Home
-            </a>
-          </li>
+          <a class="app-header-menu-item" href="/blog/about/">About</a>
+             - 
           
-          <li class="list f5 f4-ns fw4 dib pr3">
-            <a class="hover-white no-underline white-90" href="/blog/about/" title="About page">
-              About
-            </a>
-          </li>
-          
-          <li class="list f5 f4-ns fw4 dib pr3">
-            <a class="hover-white no-underline white-90" href="https://github.com/CYRUS-STUDIO" title="GitHub page">
-              GitHub
-            </a>
-          </li>
-          
-        </ul>
-      
-      
-<div class="ananke-socials">
-  
-</div>
-
-    </div>
-  </div>
-</nav>
-
-    </div>
-  </header>
-
-
-
-    <main class="pb7" role="main">
-      
-  
-  <article class="flex-l flex-wrap justify-between mw8 center ph3">
-    <header class="mt4 w-100">
-      <aside class="instapaper_ignoref b helvetica tracked ttu">
-          
-        Posts
-      </aside>
-      
-
-
-
-
-
-
-
-
-
-
-  <div id="sharing" class="mt3 ananke-socials">
-    
-  </div>
-
-
-      <h1 class="f1 athelas mt3 mb1">MagiskBoot编译&amp;解包&amp;打包boot.img</h1>
-      
-      
-      
-      <time class="f6 mv4 dib tracked" datetime="2024-08-29T04:25:23+08:00">August 29, 2024</time>
-      
-
-      
-      
+          <a class="app-header-menu-item" href="https://github.com/CYRUS-STUDIO">GitHub</a>
+      </nav>
+      <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nunc vehicula turpis sit amet elit pretium.</p>
     </header>
-    <div class="nested-copy-line-height lh-copy serif f4 nested-links mid-gray pr4-l w-two-thirds-l"><blockquote>
+    <main class="app-container">
+      
+  <article class="post">
+    <header class="post-header">
+      <h1 class ="post-title">MagiskBoot编译&amp;解包&amp;打包boot.img</h1>
+      <div class="post-meta">
+        <div>
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="icon icon-calendar">
+  <title>calendar</title>
+  <rect x="3" y="4" width="18" height="18" rx="2" ry="2"></rect><line x1="16" y1="2" x2="16" y2="6"></line><line x1="8" y1="2" x2="8" y2="6"></line><line x1="3" y1="10" x2="21" y2="10"></line>
+</svg>
+          Aug 29, 2024
+        </div>
+        <div>
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="icon icon-clock">
+  <title>clock</title>
+  <circle cx="12" cy="12" r="10"></circle><polyline points="12 6 12 12 16 14"></polyline>
+</svg>
+          2 min read
+        </div>
+      </div>
+    </header>
+    <div class="post-content">
+      <blockquote>
 <p>版权归作者所有，如有转发，请注明文章出处：<a href="https://cyrus-studio.github.io/blog/">https://cyrus-studio.github.io/blog/</a></p>
 </blockquote>
 <h1 id="__编译环境准备__"><strong>编译环境准备</strong></h1>
@@ -285,37 +199,13 @@ repack .\boot\
 <a href="https://blog.lleavesg.top/article/Magisk-Build">Magisk V26.1 编译</a>
 <a href="https://kernelsu.org/zh_CN/guide/installation.html#using-magiskboot-on-PC">在 macOS/Windows/Linux 上使用 magiskboot</a>
 <a href="https://topjohnwu.github.io/Magisk/build.html">Magisk Building and Development</a></p>
-<ul class="pa0">
-  
-</ul>
-<div class="mt6 instapaper_ignoref">
-      
-      
-      </div>
+
     </div>
-
-    <aside class="w-30-l mt6-l">
-
-
-
-
-</aside>
-
+    <div class="post-footer">
+      
+    </div>
   </article>
 
     </main>
-    <footer class="bg-black bottom-0 w-100 pa3" role="contentinfo">
-  <div class="flex justify-between">
-  <a class="f4 fw4 hover-white no-underline white-70 dn dib-ns pv2 ph3" href="http://localhost:1313/blog/" >
-    &copy;  CYRUS STUDIO 2024 
-  </a>
-    <div>
-<div class="ananke-socials">
-  
-</div>
-</div>
-  </div>
-</footer>
-
   </body>
 </html>
