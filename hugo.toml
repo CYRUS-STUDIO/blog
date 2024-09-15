@@ -1,7 +1,7 @@
 baseURL = 'https://cyrus-studio.github.io/blog/'
 languageCode = "zh-CN"
 title = 'CYRUS STUDIO'
-theme = "ananke"
+theme = "m10c"
 
 [menu]
   [[menu.main]]
@@ -21,3 +21,7 @@ theme = "ananke"
     pre = "<i class='fab fa-github'></i>"
     rel = "noopener noreferrer"
     target = "_blank"
+
+
+[params.style]
+  primaryColor = "#87CEFA"
