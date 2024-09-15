@@ -2,3 +2,6 @@
   [module.hugoVersion]
     extended = true
     min = "0.55.0"
+
+[params]
+  description = "Android & Python Developer"
