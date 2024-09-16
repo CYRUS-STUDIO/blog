@@ -6,8 +6,15 @@
     <description>Recent content in Posts on CYRUS STUDIO</description>
     <generator>Hugo</generator>
     <language>zh-cn</language>
-    <lastBuildDate>Sun, 15 Sep 2024 13:27:26 +0800</lastBuildDate>
+    <lastBuildDate>Mon, 16 Sep 2024 21:05:17 +0800</lastBuildDate>
     <atom:link href="https://cyrus-studio.github.io/blog/posts/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>使用 release key 对 LineageOS 进行编译和签名</title>
+      <link>https://cyrus-studio.github.io/blog/posts/%E4%BD%BF%E7%94%A8-release-key-%E5%AF%B9-lineageos-%E8%BF%9B%E8%A1%8C%E7%BC%96%E8%AF%91%E5%92%8C%E7%AD%BE%E5%90%8D/</link>
+      <pubDate>Mon, 16 Sep 2024 21:05:17 +0800</pubDate>
+      <guid>https://cyrus-studio.github.io/blog/posts/%E4%BD%BF%E7%94%A8-release-key-%E5%AF%B9-lineageos-%E8%BF%9B%E8%A1%8C%E7%BC%96%E8%AF%91%E5%92%8C%E7%AD%BE%E5%90%8D/</guid>
+      <description>版权归作者所有，如有转发，请注明文章出处：https://cyrus-studio.github.io/blog/&#xA;为什么需要使用 release key test-key 是一个公开的、众所周知的开发测试密钥，广泛用于测试阶段。这意味着任何人都可以获取这个密钥，并用它签署自己修改的 APK 或系统文件。&#xA;使用 test-key 签署的系统镜像通常无法通过 Google 的 CTS（兼容性测试套件）认证，Google Play 商店、Google 服务框架等应用可能无法正常运行，某些第三方应用（例如银行应用或数字版权管理应用）也可能拒绝在设备上运行。&#xA;OTA 更新包必须使用 Release Key 来签名。签名的更新包经过验证，只有具有相同 Release Key 的设备才能接收和安装更新。&#xA;生成 release key 执行 nano make_keys.sh 创建脚本，内容如下&#xA;subject=&amp;#39;/C=US/ST=California/L=Mountain View/O=Android/OU=Android/CN=Android/emailAddress=linchaolong.dev@gmail.com&amp;#39;&#xD;# 创建 keys 目录（如果不存在）&#xD;mkdir -p keys&#xD;for cert in bluetooth cyngn-app media networkstack nfc platform releasekey sdk_sandbox shared testcert testkey verity; do \&#xD;./development/tools/make_key keys/$cert &amp;#34;$subject&amp;#34;; \&#xD;done 通过脚本创建 keys 目录并使用 make_key 命令生成你自己的密钥。&#xA;运行脚本生成密钥文件。</description>
+    </item>
     <item>
       <title>Android源码导入Android Studio</title>
       <link>https://cyrus-studio.github.io/blog/posts/android%E6%BA%90%E7%A0%81%E5%AF%BC%E5%85%A5android-studio/</link>
