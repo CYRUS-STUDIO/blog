@@ -1,0 +1,138 @@
+<!doctype html>
+<html lang="zh-cn">
+  <head>
+    <title>解决LineageOS提示网络受限问题 // CYRUS STUDIO</title>
+    <link rel="shortcut icon" href="/favicon.ico" />
+    <meta charset="utf-8" />
+    <meta name="generator" content="Hugo 0.131.0">
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="author" content="John Doe" />
+    <meta name="description" content="" />
+    <link rel="stylesheet" href="/blog/css/main.min.1130dbc316c46ebce5c0974972593128dc11ce9c223a91c1f73ca557000541bc.css" />
+    
+
+    
+  
+
+
+    
+  <meta name="twitter:card" content="summary">
+  <meta name="twitter:title" content="解决LineageOS提示网络受限问题">
+  <meta name="twitter:description" content="版权归作者所有，如有转发，请注明文章出处：https://cyrus-studio.github.io/blog/
+问题原因 由于 LineageOS 源码里默认是使用 google captive连接验证服务，所以国内会一直提示网络受限，但是实际上是可以访问网络的。
+要解决这个问题可以通过把 captive_portal_https_url 改为国内的就好了，比如用MIUI的。
+更换 captive 连接验证服务器 1. 通过 adb 修改 adb shell settings put global captive_portal_https_url https://connect.rom.miui.com/generate_204adb shell settings put global captive_portal_http_url http://connect.rom.miui.com/generate_204 2. 修改源码 编辑 packages/modules/NetworkStack/res/values/config.xml
+&lt;!-- HTTP URL for network validation, to use for detecting captive portals. --&gt;&lt;string name=&#34;default_captive_portal_http_url&#34; translatable=&#34;false&#34;&gt;http://connectivitycheck.gstatic.com/generate_204&lt;/string&gt;&lt;!-- HTTPS URL for network validation, to use for confirming internet connectivity. --&gt;&lt;string name=&#34;default_captive_portal_https_url&#34; translatable=&#34;false&#34;&gt;https://www.google.com/generate_204&lt;/string&gt;&lt;!-- List of fallback URLs to use for detecting captive portals.">
+
+    <meta property="og:url" content="https://cyrus-studio.github.io/blog/posts/%E8%A7%A3%E5%86%B3lineageos%E6%8F%90%E7%A4%BA%E7%BD%91%E7%BB%9C%E5%8F%97%E9%99%90%E9%97%AE%E9%A2%98/">
+  <meta property="og:site_name" content="CYRUS STUDIO">
+  <meta property="og:title" content="解决LineageOS提示网络受限问题">
+  <meta property="og:description" content="版权归作者所有，如有转发，请注明文章出处：https://cyrus-studio.github.io/blog/
+问题原因 由于 LineageOS 源码里默认是使用 google captive连接验证服务，所以国内会一直提示网络受限，但是实际上是可以访问网络的。
+要解决这个问题可以通过把 captive_portal_https_url 改为国内的就好了，比如用MIUI的。
+更换 captive 连接验证服务器 1. 通过 adb 修改 adb shell settings put global captive_portal_https_url https://connect.rom.miui.com/generate_204adb shell settings put global captive_portal_http_url http://connect.rom.miui.com/generate_204 2. 修改源码 编辑 packages/modules/NetworkStack/res/values/config.xml
+&lt;!-- HTTP URL for network validation, to use for detecting captive portals. --&gt;&lt;string name=&#34;default_captive_portal_http_url&#34; translatable=&#34;false&#34;&gt;http://connectivitycheck.gstatic.com/generate_204&lt;/string&gt;&lt;!-- HTTPS URL for network validation, to use for confirming internet connectivity. --&gt;&lt;string name=&#34;default_captive_portal_https_url&#34; translatable=&#34;false&#34;&gt;https://www.google.com/generate_204&lt;/string&gt;&lt;!-- List of fallback URLs to use for detecting captive portals.">
+  <meta property="og:locale" content="zh_cn">
+  <meta property="og:type" content="article">
+    <meta property="article:section" content="posts">
+    <meta property="article:published_time" content="2024-09-16T21:34:05+08:00">
+    <meta property="article:modified_time" content="2024-09-16T21:34:05+08:00">
+
+
+  </head>
+  <body>
+    <header class="app-header">
+      <a href="https://cyrus-studio.github.io/blog/"><img class="app-header-avatar" src="/blog/avatar.jpg" alt="John Doe" /></a>
+      <span class="app-header-title">CYRUS STUDIO</span>
+      <nav class="app-header-menu">
+          <a class="app-header-menu-item" href="/blog/">Home</a>
+             - 
+          
+          <a class="app-header-menu-item" href="/blog/about/">About</a>
+             - 
+          
+          <a class="app-header-menu-item" href="https://github.com/CYRUS-STUDIO">GitHub</a>
+      </nav>
+      <p>Android &amp; Python Developer</p>
+    </header>
+    <main class="app-container">
+      
+  <article class="post">
+    <header class="post-header">
+      <h1 class ="post-title">解决LineageOS提示网络受限问题</h1>
+      <div class="post-meta">
+        <div>
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="icon icon-calendar">
+  <title>calendar</title>
+  <rect x="3" y="4" width="18" height="18" rx="2" ry="2"></rect><line x1="16" y1="2" x2="16" y2="6"></line><line x1="8" y1="2" x2="8" y2="6"></line><line x1="3" y1="10" x2="21" y2="10"></line>
+</svg>
+          Sep 16, 2024
+        </div>
+        <div>
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="icon icon-clock">
+  <title>clock</title>
+  <circle cx="12" cy="12" r="10"></circle><polyline points="12 6 12 12 16 14"></polyline>
+</svg>
+          1 min read
+        </div>
+      </div>
+    </header>
+    <div class="post-content">
+      <blockquote>
+<p>版权归作者所有，如有转发，请注明文章出处：<a href="https://cyrus-studio.github.io/blog/">https://cyrus-studio.github.io/blog/</a></p>
+</blockquote>
+<h1 id="__问题原因__"><strong>问题原因</strong></h1>
+<p>由于 LineageOS 源码里默认是使用 google captive连接验证服务，所以国内会一直提示网络受限，但是实际上是可以访问网络的。</p>
+<p>要解决这个问题可以通过把 captive_portal_https_url 改为国内的就好了，比如用MIUI的。</p>
+<h1 id="__更换-captive-连接验证服务器__"><strong>更换 captive 连接验证服务器</strong></h1>
+<h2 id="__1-通过-adb-修改__"><strong>1. 通过 adb 修改</strong></h2>
+<pre tabindex="0"><code>adb shell settings put global captive_portal_https_url https://connect.rom.miui.com/generate_204
+
+adb shell settings put global captive_portal_http_url http://connect.rom.miui.com/generate_204
+</code></pre><h2 id="__2-修改源码__"><strong>2. 修改源码</strong></h2>
+<p>编辑 packages/modules/NetworkStack/res/values/config.xml</p>
+<pre tabindex="0"><code>&lt;!-- HTTP URL for network validation, to use for detecting captive portals. --&gt;
+&lt;string name=&#34;default_captive_portal_http_url&#34; translatable=&#34;false&#34;&gt;http://connectivitycheck.gstatic.com/generate_204&lt;/string&gt;
+
+&lt;!-- HTTPS URL for network validation, to use for confirming internet connectivity. --&gt;
+&lt;string name=&#34;default_captive_portal_https_url&#34; translatable=&#34;false&#34;&gt;https://www.google.com/generate_204&lt;/string&gt;
+
+&lt;!-- List of fallback URLs to use for detecting captive portals. --&gt;
+&lt;string-array name=&#34;default_captive_portal_fallback_urls&#34; translatable=&#34;false&#34;&gt;
+    &lt;item&gt;http://www.google.com/gen_204&lt;/item&gt;
+    &lt;item&gt;http://play.googleapis.com/generate_204&lt;/item&gt;
+&lt;/string-array&gt;
+</code></pre><p>修改如下</p>
+<pre tabindex="0"><code>&lt;!-- HTTP URL for network validation, to use for detecting captive portals. --&gt;
+&lt;string name=&#34;default_captive_portal_http_url&#34; translatable=&#34;false&#34;&gt;https://connect.rom.miui.com/generate_204&lt;/string&gt;
+
+&lt;!-- HTTPS URL for network validation, to use for confirming internet connectivity. --&gt;
+&lt;string name=&#34;default_captive_portal_https_url&#34; translatable=&#34;false&#34;&gt;https://connect.rom.miui.com/generate_204&lt;/string&gt;
+
+&lt;!-- List of fallback URLs to use for detecting captive portals. --&gt;
+&lt;string-array name=&#34;default_captive_portal_fallback_urls&#34; translatable=&#34;false&#34;&gt;
+    &lt;item&gt;https://connect.rom.miui.com/generate_204&lt;/item&gt;
+    &lt;item&gt;https://connect.rom.miui.com/generate_204&lt;/item&gt;
+&lt;/string-array&gt;
+</code></pre><h1 id="__当时间不准时修改使用修改为阿里云__"><strong>当时间不准时修改使用（修改为阿里云）</strong></h1>
+<h2 id="__1-通过adb修改__"><strong>1. 通过adb修改</strong></h2>
+<pre tabindex="0"><code>adb shell settings put global ntp_server ntp.aliyun.com
+</code></pre><h2 id="__2-修改源码__-1"><strong>2. 修改源码</strong></h2>
+<p>编辑 device/vendor/device/gps/etc/gps.conf（vendor和device是对应的厂家和设备）</p>
+<pre tabindex="0"><code>#NTP server
+NTP_SERVER=time.izatcloud.net
+</code></pre><p>修改如下</p>
+<pre tabindex="0"><code>#NTP server
+NTP_SERVER=ntp.aliyun.com
+</code></pre><p>参考：
+<a href="https://www.jeeinn.com/2024/03/2336/comment-page-1/">原生安卓-解决WiFi网络受限以及修改NTP服务器</a></p>
+
+    </div>
+    <div class="post-footer">
+      
+    </div>
+  </article>
+
+    </main>
+  </body>
+</html>

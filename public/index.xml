@@ -6,8 +6,15 @@
     <description>Recent content on CYRUS STUDIO</description>
     <generator>Hugo</generator>
     <language>zh-cn</language>
-    <lastBuildDate>Mon, 16 Sep 2024 21:05:17 +0800</lastBuildDate>
+    <lastBuildDate>Mon, 16 Sep 2024 21:34:05 +0800</lastBuildDate>
     <atom:link href="https://cyrus-studio.github.io/blog/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>解决LineageOS提示网络受限问题</title>
+      <link>https://cyrus-studio.github.io/blog/posts/%E8%A7%A3%E5%86%B3lineageos%E6%8F%90%E7%A4%BA%E7%BD%91%E7%BB%9C%E5%8F%97%E9%99%90%E9%97%AE%E9%A2%98/</link>
+      <pubDate>Mon, 16 Sep 2024 21:34:05 +0800</pubDate>
+      <guid>https://cyrus-studio.github.io/blog/posts/%E8%A7%A3%E5%86%B3lineageos%E6%8F%90%E7%A4%BA%E7%BD%91%E7%BB%9C%E5%8F%97%E9%99%90%E9%97%AE%E9%A2%98/</guid>
+      <description>版权归作者所有，如有转发，请注明文章出处：https://cyrus-studio.github.io/blog/&#xA;问题原因 由于 LineageOS 源码里默认是使用 google captive连接验证服务，所以国内会一直提示网络受限，但是实际上是可以访问网络的。&#xA;要解决这个问题可以通过把 captive_portal_https_url 改为国内的就好了，比如用MIUI的。&#xA;更换 captive 连接验证服务器 1. 通过 adb 修改 adb shell settings put global captive_portal_https_url https://connect.rom.miui.com/generate_204&#xD;adb shell settings put global captive_portal_http_url http://connect.rom.miui.com/generate_204 2. 修改源码 编辑 packages/modules/NetworkStack/res/values/config.xml&#xA;&amp;lt;!-- HTTP URL for network validation, to use for detecting captive portals. --&amp;gt;&#xD;&amp;lt;string name=&amp;#34;default_captive_portal_http_url&amp;#34; translatable=&amp;#34;false&amp;#34;&amp;gt;http://connectivitycheck.gstatic.com/generate_204&amp;lt;/string&amp;gt;&#xD;&amp;lt;!-- HTTPS URL for network validation, to use for confirming internet connectivity. --&amp;gt;&#xD;&amp;lt;string name=&amp;#34;default_captive_portal_https_url&amp;#34; translatable=&amp;#34;false&amp;#34;&amp;gt;https://www.google.com/generate_204&amp;lt;/string&amp;gt;&#xD;&amp;lt;!-- List of fallback URLs to use for detecting captive portals.</description>
+    </item>
     <item>
       <title>使用 release key 对 LineageOS 进行编译和签名</title>
       <link>https://cyrus-studio.github.io/blog/posts/%E4%BD%BF%E7%94%A8-release-key-%E5%AF%B9-lineageos-%E8%BF%9B%E8%A1%8C%E7%BC%96%E8%AF%91%E5%92%8C%E7%AD%BE%E5%90%8D/</link>
