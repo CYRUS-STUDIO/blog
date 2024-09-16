@@ -26,3 +26,6 @@ theme = "m10c"
 
 [params.style]
   primaryColor = "#87CEFA"
+
+[params]
+  customCSS = ["css/custom.css"]

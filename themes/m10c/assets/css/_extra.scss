@@ -12,3 +12,85 @@ p img {
     width: 65%;
     margin-bottom: 1rem;
 }
+
+
+/* TOC 容器样式 */
+.toc-container {
+  position: fixed;
+  top: 20%;
+  right: -300px; /* 初始位置在屏幕外 */
+  width: 250px;
+  max-height: 60%;
+  overflow-y: auto;
+  background-color: #ffffff;
+  box-shadow: -2px 0 5px rgba(0, 0, 0, 0.1);
+  border-left: 1px solid #ddd;
+  padding: 15px;
+  transition: right 0.3s ease-in-out;
+  z-index: 999;
+}
+
+.toc-container.visible {
+  right: 0; /* 显示时滑入屏幕 */
+}
+
+/* 目录列表样式 */
+.toc-container ul {
+  list-style-type: none;
+  padding-left: 0;
+}
+
+.toc-container li {
+  margin-bottom: 8px;
+}
+
+.toc-container a {
+  text-decoration: none;
+  color: #007bff;
+}
+
+.toc-container a:hover {
+  text-decoration: underline;
+}
+
+/* 不同级别标题的缩进 */
+.toc-item.h1 {
+  margin-left: 0;
+}
+
+.toc-item.h2 {
+  margin-left: 10px;
+}
+
+.toc-item.h3 {
+  margin-left: 20px;
+}
+
+/* 浮动按钮样式 */
+.toc-toggle {
+  position: fixed;
+  bottom: 20px;
+  right: 20px;
+  width: 50px;
+  height: 50px;
+  background-color: #007bff;
+  color: white;
+  border: none;
+  border-radius: 50%;
+  font-size: 24px;
+  cursor: pointer;
+  z-index: 1000;
+}
+
+.toc-toggle:focus {
+  outline: none;
+}
+
+.toc-toggle:hover {
+  background-color: #0056b3;
+}
+
+/* 隐藏目录 */
+.hidden {
+  display: none;
+}

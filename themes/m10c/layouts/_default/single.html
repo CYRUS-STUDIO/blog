@@ -30,6 +30,20 @@
     </div>
     <div class="post-footer">
       {{ template "_internal/disqus.html" . }}
-    </div>
+    </div> 
   </article>
+
+
+<!-- TOC 容器 -->
+<div id="toc" class="toc-container hidden"></div>
+
+<!-- 右下角浮动按钮 -->
+<button id="toc-toggle" class="toc-toggle" aria-label="目录">
+  &#9776;
+</button>
+
+<!-- 引入 JavaScript 脚本 -->
+<script src="{{ "js/toc.js" | relURL }}"></script>
+
+
 {{ end }}
