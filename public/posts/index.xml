@@ -6,8 +6,15 @@
     <description>Recent content in Posts on CYRUS STUDIO</description>
     <generator>Hugo</generator>
     <language>zh-cn</language>
-    <lastBuildDate>Mon, 16 Sep 2024 21:34:05 +0800</lastBuildDate>
+    <lastBuildDate>Wed, 18 Sep 2024 05:17:39 +0800</lastBuildDate>
     <atom:link href="https://cyrus-studio.github.io/blog/posts/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>使用IDA Pro动态调试Android APP</title>
+      <link>https://cyrus-studio.github.io/blog/posts/%E4%BD%BF%E7%94%A8ida-pro%E5%8A%A8%E6%80%81%E8%B0%83%E8%AF%95android-app/</link>
+      <pubDate>Wed, 18 Sep 2024 05:17:39 +0800</pubDate>
+      <guid>https://cyrus-studio.github.io/blog/posts/%E4%BD%BF%E7%94%A8ida-pro%E5%8A%A8%E6%80%81%E8%B0%83%E8%AF%95android-app/</guid>
+      <description>版权归作者所有，如有转发，请注明文章出处：https://cyrus-studio.github.io/blog/&#xA;关于 android_server android_server 是 IDA Pro 在 Android 设备上运行的一个调试服务器。&#xA;通过在 Android 设备上运行android_server，IDA Pro 可以远程调试 Android 应用程序，并实现断点设置、内存查看、寄存器检查等功能。&#xA;IDA Pro 通过 adb（Android Debug Bridge）将调试命令发送给 android_server，然后 android_server 在 Android 设备上执行这些命令，并将结果返回给 IDA Pro。&#xA;调试环境准备 把 IDA安装目录/dbgsrv 下的 android_server64 push 到设备 /data/local/tmp 路径下&#xA;adb push &amp;#34;D:\App\IDA_Pro\IDA_Pro_7.7\dbgsrv\android_server64&amp;#34; /data/local/tmp/as 进入 adb shell 启动 androd server&#xA;# 获取 root 权限&#xD;su&#xD;# 给 android server 增加执行权限&#xD;chmod +x /data/local/tmp/as&#xD;# 通过指定端口启动 android_server，假设你要使用端口 12345&#xD;/data/local/tmp/as -p 12345 关于获取手机 root 权限和开启全局调试可以参考下面两篇文章：</description>
+    </item>
     <item>
       <title>解决LineageOS提示网络受限问题</title>
       <link>https://cyrus-studio.github.io/blog/posts/%E8%A7%A3%E5%86%B3lineageos%E6%8F%90%E7%A4%BA%E7%BD%91%E7%BB%9C%E5%8F%97%E9%99%90%E9%97%AE%E9%A2%98/</link>
