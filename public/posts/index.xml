@@ -6,8 +6,15 @@
     <description>Recent content in Posts on CYRUS STUDIO</description>
     <generator>Hugo</generator>
     <language>zh-cn</language>
-    <lastBuildDate>Wed, 18 Sep 2024 05:17:39 +0800</lastBuildDate>
+    <lastBuildDate>Wed, 18 Sep 2024 15:35:46 +0800</lastBuildDate>
     <atom:link href="https://cyrus-studio.github.io/blog/posts/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>LineageOS连接网络提示IP配置失败</title>
+      <link>https://cyrus-studio.github.io/blog/posts/lineageos%E8%BF%9E%E6%8E%A5%E7%BD%91%E7%BB%9C%E6%8F%90%E7%A4%BAip%E9%85%8D%E7%BD%AE%E5%A4%B1%E8%B4%A5/</link>
+      <pubDate>Wed, 18 Sep 2024 15:35:46 +0800</pubDate>
+      <guid>https://cyrus-studio.github.io/blog/posts/lineageos%E8%BF%9E%E6%8E%A5%E7%BD%91%E7%BB%9C%E6%8F%90%E7%A4%BAip%E9%85%8D%E7%BD%AE%E5%A4%B1%E8%B4%A5/</guid>
+      <description> 版权归作者所有，如有转发，请注明文章出处：https://cyrus-studio.github.io/blog/&#xA;IP配置失败 连接所有网络都提示IP配置失败，通过配置静态IP也连不上网络，感觉就是WIFI模块不能用了。&#xA;使用 Magisk root 后就这样了，LineageOS 17.1（wayne），重新刷回刷机包的 boot.img 后就没问题了。&#xA;但是如果需要用到 root 权限怎么办？&#xA;以 Root 身份进入 ADB Shell 首先，进入设置中【开发者选项】，开启【Root 身份的调试】 接着执行下面的命令获取 root 权限&#xA;# 启用 adb root 身份&#xD;adb root&#xD;restarting adbd as root&#xD;# 以 root 身份进入&#xD;adb shell&#xD;# 验证 Root 权限&#xD;whoami&#xD;root # 返回结果为 root，说明你已经成功以 root 身份进入 ADB shell。 </description>
+    </item>
     <item>
       <title>使用IDA Pro动态调试Android APP</title>
       <link>https://cyrus-studio.github.io/blog/posts/%E4%BD%BF%E7%94%A8ida-pro%E5%8A%A8%E6%80%81%E8%B0%83%E8%AF%95android-app/</link>
