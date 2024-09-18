@@ -6,8 +6,15 @@
     <description>Recent content on CYRUS STUDIO</description>
     <generator>Hugo</generator>
     <language>zh-cn</language>
-    <lastBuildDate>Wed, 18 Sep 2024 15:35:46 +0800</lastBuildDate>
+    <lastBuildDate>Thu, 19 Sep 2024 06:44:08 +0800</lastBuildDate>
     <atom:link href="https://cyrus-studio.github.io/blog/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Android下反调试与反反调试</title>
+      <link>https://cyrus-studio.github.io/blog/posts/android%E4%B8%8B%E5%8F%8D%E8%B0%83%E8%AF%95%E4%B8%8E%E5%8F%8D%E5%8F%8D%E8%B0%83%E8%AF%95/</link>
+      <pubDate>Thu, 19 Sep 2024 06:44:08 +0800</pubDate>
+      <guid>https://cyrus-studio.github.io/blog/posts/android%E4%B8%8B%E5%8F%8D%E8%B0%83%E8%AF%95%E4%B8%8E%E5%8F%8D%E5%8F%8D%E8%B0%83%E8%AF%95/</guid>
+      <description>版权归作者所有，如有转发，请注明文章出处：https://cyrus-studio.github.io/blog/&#xA;反调试检测 反调试检测的几种方式。&#xA;1. TrackerId 首先，通过 IDA Pro 的调试器附加到当前 app 进程 关于IDA Pro调试android app的详细教程可以参考这篇文章【使用IDA Pro动态调试Android APP】&#xA;使用 top 命令查看进程状态&#xA;top | grep com.cyrus.example&#xD;17305 u0_a137 10 -10 4.8G 104M 42M t 0.0 1.8 0:02.02 com.cyrus.example 在输出中，S 表示进程状态，17305 是 PID。&#xA;通过head /proc/[pid]/status 可以查看详细的进程状态。&#xA;head -n 6 /proc/17305/status&#xD;Name: m.cyrus.example&#xD;State: S (sleeping)&#xD;Tgid: 17305&#xD;Pid: 17305&#xD;PPid: 728&#xD;TracerPid: 16208 TracerPid: 16208 说明当前的进程正在被进程 16208 调试或跟踪，否则没有被调试值应该为0。&#xA;2. stat 这时我们断点调试 app 再通过 head /proc/[pid]/status 可以查看详细的进程状态，包括是否被调试等信息。</description>
+    </item>
     <item>
       <title>LineageOS连接网络提示IP配置失败</title>
       <link>https://cyrus-studio.github.io/blog/posts/lineageos%E8%BF%9E%E6%8E%A5%E7%BD%91%E7%BB%9C%E6%8F%90%E7%A4%BAip%E9%85%8D%E7%BD%AE%E5%A4%B1%E8%B4%A5/</link>
