@@ -6,8 +6,15 @@
     <description>Recent content in Posts on CYRUS STUDIO</description>
     <generator>Hugo</generator>
     <language>zh-cn</language>
-    <lastBuildDate>Thu, 19 Sep 2024 06:44:08 +0800</lastBuildDate>
+    <lastBuildDate>Sat, 21 Sep 2024 01:43:21 +0800</lastBuildDate>
     <atom:link href="https://cyrus-studio.github.io/blog/posts/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>基于Python与K-Means的自动化视频分类方法</title>
+      <link>https://cyrus-studio.github.io/blog/posts/%E5%9F%BA%E4%BA%8Epython%E4%B8%8Ek-means%E7%9A%84%E8%87%AA%E5%8A%A8%E5%8C%96%E8%A7%86%E9%A2%91%E5%88%86%E7%B1%BB%E6%96%B9%E6%B3%95/</link>
+      <pubDate>Sat, 21 Sep 2024 01:43:21 +0800</pubDate>
+      <guid>https://cyrus-studio.github.io/blog/posts/%E5%9F%BA%E4%BA%8Epython%E4%B8%8Ek-means%E7%9A%84%E8%87%AA%E5%8A%A8%E5%8C%96%E8%A7%86%E9%A2%91%E5%88%86%E7%B1%BB%E6%96%B9%E6%B3%95/</guid>
+      <description>版权归作者所有，如有转发，请注明文章出处：https://cyrus-studio.github.io/blog/&#xA;实现过程 1. 特征提取：使用预训练的 InceptionV3 模型，从视频的若干帧中提取高维的视觉特征。将每个视频的所有帧特征取平均值，生成一个固定长度的特征向量来表示该视频。&#xA;2. 聚类：通过 K-Means 的聚类结果，每个视频被分配了一个簇标签，代表该视频与哪些视频在特征上最相似。&#xA;3. 分类整理：最后根据簇标签，将视频移动到相应的分类文件夹中，每个文件夹对应一个簇。&#xA;InceptionV3 模型 InceptionV3 是一种用于图像分类和特征提取的深度学习模型，它是Inception 系列模型的第三个版本，由 Google 在 2015 年提出。&#xA;它最初是作为图像分类任务的一个模型，能够将图像分类到 1000 个类别中（如狗、猫、汽车等）。通过去除模型的最后几层（分类部分），可以将 InceptionV3 用作特征提取器。&#xA;簇 簇是聚类算法的核心概念，表示数据中相似的子集，目的是将无标签的数据点分组。&#xA;K-Means K-Means 是一种常用的无监督聚类算法，它的目标是将数据点分成 K 个簇（Cluster），使得每个簇内的数据点尽可能接近同一个中心（即簇的质心）。&#xA;算法的核心思想是通过迭代的方式找到 K 个最优的簇质心，并根据这些质心将数据进行分组。&#xA;源码 1. 安装依赖库 pip install moviepy scikit-learn tensorflow opencv-python 2. 实现代码 import os&#xD;import numpy as np&#xD;import cv2&#xD;from moviepy.editor import VideoFileClip&#xD;from sklearn.cluster import KMeans&#xD;from tensorflow.keras.applications import InceptionV3&#xD;from tensorflow.keras.applications.inception_v3 import preprocess_input&#xD;from tensorflow.</description>
+    </item>
     <item>
       <title>Android下反调试与反反调试</title>
       <link>https://cyrus-studio.github.io/blog/posts/android%E4%B8%8B%E5%8F%8D%E8%B0%83%E8%AF%95%E4%B8%8E%E5%8F%8D%E5%8F%8D%E8%B0%83%E8%AF%95/</link>
