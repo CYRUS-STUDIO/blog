@@ -6,8 +6,15 @@
     <description>Recent content on CYRUS STUDIO</description>
     <generator>Hugo</generator>
     <language>zh-cn</language>
-    <lastBuildDate>Sat, 21 Sep 2024 01:43:21 +0800</lastBuildDate>
+    <lastBuildDate>Mon, 23 Sep 2024 18:39:06 +0800</lastBuildDate>
     <atom:link href="https://cyrus-studio.github.io/blog/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>使用Charles抓包Android App数据</title>
+      <link>https://cyrus-studio.github.io/blog/posts/%E4%BD%BF%E7%94%A8charles%E6%8A%93%E5%8C%85android-app%E6%95%B0%E6%8D%AE/</link>
+      <pubDate>Mon, 23 Sep 2024 18:39:06 +0800</pubDate>
+      <guid>https://cyrus-studio.github.io/blog/posts/%E4%BD%BF%E7%94%A8charles%E6%8A%93%E5%8C%85android-app%E6%95%B0%E6%8D%AE/</guid>
+      <description>版权归作者所有，如有转发，请注明文章出处：https://cyrus-studio.github.io/blog/&#xA;抓包环境准备 1. 下载安装charles charles下载地址：https://www.charlesproxy.com/latest-release/download.do 2. SSL代理设置 3. http代理和socks代理配置 4. 设置Charles与Clash共存 如果开启了Clash，需要设置Charles与Clash共存&#xA;打开扩展代理设置 分别点击 Web Proxy、Seure Web Proxy 和 SOCKS Proxy 设置一下Clash的地址和端口 5. 共享热点 通过 ipconfg 或者打开【网络和Internet】找到电脑的 ip 地址 电脑开启共享热点，手机连接热点并设置代理 6. 安装证书 手机端访问 http://chls.pro/ssl 安装证书 下载并保存Charlles证书 Android 7.0 之后抓取HTTPS数据出现unknown 和证书无效的解决方案 1. 保存Charles证书 2. 计算证书的Hash值 下载安装 OpenSSL：https://slproweb.com/products/Win32OpenSSL.html&#xA;计算证书的Hash值&#xA;cd D:\App\OpenSSL-Win64\bin&#xD;./openssl x509 -inform PEM -subject_hash_old -in E:\charles.pem 比如这里得到的hash值为e4473cf9，把证书的文件名改为 e4473cf9.0 3. 安装证书到系统证书目录 把证书 push 到 /system/etc/security/cacerts（系统证书目录）&#xA;# 把证书 push 到 sdcard&#xD;adb push E:\e4473cf9.</description>
+    </item>
     <item>
       <title>基于Python与K-Means的自动化视频分类方法</title>
       <link>https://cyrus-studio.github.io/blog/posts/%E5%9F%BA%E4%BA%8Epython%E4%B8%8Ek-means%E7%9A%84%E8%87%AA%E5%8A%A8%E5%8C%96%E8%A7%86%E9%A2%91%E5%88%86%E7%B1%BB%E6%96%B9%E6%B3%95/</link>
