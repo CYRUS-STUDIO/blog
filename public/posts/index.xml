@@ -6,8 +6,15 @@
     <description>Recent content in Posts on CYRUS STUDIO</description>
     <generator>Hugo</generator>
     <language>zh-cn</language>
-    <lastBuildDate>Mon, 23 Sep 2024 18:39:06 +0800</lastBuildDate>
+    <lastBuildDate>Fri, 27 Sep 2024 09:10:20 +0800</lastBuildDate>
     <atom:link href="https://cyrus-studio.github.io/blog/posts/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>使用Miniconda管理Python环境</title>
+      <link>https://cyrus-studio.github.io/blog/posts/%E4%BD%BF%E7%94%A8miniconda%E7%AE%A1%E7%90%86python%E7%8E%AF%E5%A2%83/</link>
+      <pubDate>Fri, 27 Sep 2024 09:10:20 +0800</pubDate>
+      <guid>https://cyrus-studio.github.io/blog/posts/%E4%BD%BF%E7%94%A8miniconda%E7%AE%A1%E7%90%86python%E7%8E%AF%E5%A2%83/</guid>
+      <description>版权归作者所有，如有转发，请注明文章出处：https://cyrus-studio.github.io/blog/&#xA;Miniconda Miniconda 是 Conda 的简化版本，只包含 Conda 包管理器和 Python 的最小安装包，提供了一种轻量级的环境管理和包管理工具。相比于 Anaconda，Miniconda 更小巧灵活，适合那些不需要 Anaconda 提供的完整生态的用户。&#xA;通过 Miniconda，开发者可以更高效地管理和定制自己的开发环境，避免不必要的依赖和资源浪费。&#xA;下载安装 Miniconda：https://docs.anaconda.com/miniconda/&#xA;把 Miniconda3 和 Miniconda3\Scripts 路径添加到 Path 系统环境变量 完成安装后，打开终端或命令提示符，输入&#xA;conda --version&#xD;python --version 如果显示版本号，说明安装成功。&#xA;创建环境 创建一个新的虚拟环境，指定特定版本的 Python&#xA;conda create -n anti-app python=3.12.6 列出当前可用的 Python 版本&#xA;conda search python 克隆环境 现有环境复制到新的环境&#xA;conda create --name new_env --clone old_env 删除环境 conda remove --name old_env --all 列出所有环境 conda env list 激活环境 conda activate env_name 停用当前环境 conda deactivate 导出当前环境 conda env export &amp;gt; environment.</description>
+    </item>
     <item>
       <title>使用Charles抓包Android App数据</title>
       <link>https://cyrus-studio.github.io/blog/posts/%E4%BD%BF%E7%94%A8charles%E6%8A%93%E5%8C%85android-app%E6%95%B0%E6%8D%AE/</link>

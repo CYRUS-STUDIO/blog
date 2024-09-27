@@ -3,10 +3,13 @@
   xmlns:xhtml="http://www.w3.org/1999/xhtml">
   <url>
     <loc>https://cyrus-studio.github.io/blog/</loc>
-    <lastmod>2024-09-23T18:39:06+08:00</lastmod>
+    <lastmod>2024-09-27T09:10:20+08:00</lastmod>
   </url><url>
     <loc>https://cyrus-studio.github.io/blog/posts/</loc>
-    <lastmod>2024-09-23T18:39:06+08:00</lastmod>
+    <lastmod>2024-09-27T09:10:20+08:00</lastmod>
+  </url><url>
+    <loc>https://cyrus-studio.github.io/blog/posts/%E4%BD%BF%E7%94%A8miniconda%E7%AE%A1%E7%90%86python%E7%8E%AF%E5%A2%83/</loc>
+    <lastmod>2024-09-27T09:10:20+08:00</lastmod>
   </url><url>
     <loc>https://cyrus-studio.github.io/blog/posts/%E4%BD%BF%E7%94%A8charles%E6%8A%93%E5%8C%85android-app%E6%95%B0%E6%8D%AE/</loc>
     <lastmod>2024-09-23T18:39:06+08:00</lastmod>
