@@ -6,8 +6,15 @@
     <description>Recent content on CYRUS STUDIO</description>
     <generator>Hugo</generator>
     <language>zh-cn</language>
-    <lastBuildDate>Fri, 27 Sep 2024 09:10:20 +0800</lastBuildDate>
+    <lastBuildDate>Sun, 29 Sep 2024 02:37:24 +0800</lastBuildDate>
     <atom:link href="https://cyrus-studio.github.io/blog/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>使用 Frida Hook Android App</title>
+      <link>https://cyrus-studio.github.io/blog/posts/%E4%BD%BF%E7%94%A8-frida-hook-android-app/</link>
+      <pubDate>Sun, 29 Sep 2024 02:37:24 +0800</pubDate>
+      <guid>https://cyrus-studio.github.io/blog/posts/%E4%BD%BF%E7%94%A8-frida-hook-android-app/</guid>
+      <description>版权归作者所有，如有转发，请注明文章出处：https://cyrus-studio.github.io/blog/&#xA;Frida Frida 通过注入自定义 JavaScript 代码，可以 Hook 函数、修改参数、监控函数调用和拦截返回值，适用于逆向工程、调试和安全分析等场景。&#xA;使用 Frida 前需要先下载和安装包括：&#xA;Frida 是核心库，提供 API 和功能。&#xA;Frida-Tool 是命令行工具，通常与 Frida 版本相对应。&#xA;Frida-Server 是运行在 Android 设备上的服务器端组件，允许 Frida 客户端与设备进行通信。&#xA;环境准备 1. 安装 Frida 和 Frida-tools pip install frida-tools 2. Frida-server 获取设备CPU架构&#xA;adb shell getprop ro.product.cpu.abi 下载与设备对应架构的 frida-server：https://github.com/frida/frida/releases 把 frida-server 推送到设备 /data/local/tmp 目录下&#xA;adb push D:\app逆向\Frida\frida-server-16.5.2-android-arm64 /data/local/tmp/fs 启动 frida-server&#xA;# 启用超级管理员&#xD;adb root&#xD;# 进入命令行&#xD;adb shell # 添加可执行权限&#xD;chmod +x /data/local/tmp/fs&#xD;# 启动frida-server&#xD;/data/local/tmp/fs 自定义Frida端口 frida-server 默认端口为 27042，如果想自定义端口可以通过下面的命令实现</description>
+    </item>
     <item>
       <title>使用Miniconda管理Python环境</title>
       <link>https://cyrus-studio.github.io/blog/posts/%E4%BD%BF%E7%94%A8miniconda%E7%AE%A1%E7%90%86python%E7%8E%AF%E5%A2%83/</link>
