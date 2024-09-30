@@ -39,8 +39,8 @@ adb push &#34;D:\App\IDA_Pro\IDA_Pro_7.7\dbgsrv\android_server64&#34; /data/loca
   <meta property="og:locale" content="zh_cn">
   <meta property="og:type" content="article">
     <meta property="article:section" content="posts">
-    <meta property="article:published_time" content="2024-09-18T05:17:39+08:00">
-    <meta property="article:modified_time" content="2024-09-18T05:17:39+08:00">
+    <meta property="article:published_time" content="2024-09-30T15:27:58+08:00">
+    <meta property="article:modified_time" content="2024-09-30T15:27:58+08:00">
 
 
   </head>
@@ -70,7 +70,7 @@ adb push &#34;D:\App\IDA_Pro\IDA_Pro_7.7\dbgsrv\android_server64&#34; /data/loca
   <title>calendar</title>
   <rect x="3" y="4" width="18" height="18" rx="2" ry="2"></rect><line x1="16" y1="2" x2="16" y2="6"></line><line x1="8" y1="2" x2="8" y2="6"></line><line x1="3" y1="10" x2="21" y2="10"></line>
 </svg>
-          Sep 18, 2024
+          Sep 30, 2024
         </div>
         <div>
           <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="icon icon-clock">
@@ -279,7 +279,28 @@ as        12679       root    4u     IPv4                          0t0     52389
 </code></pre><p>强制停止占用端口的进程</p>
 <pre tabindex="0"><code>kill -9 12679
 </code></pre><p>现在，重新启动 android server 就可以了</p>
+<h1 id="__自动化脚本__"><strong>自动化脚本</strong></h1>
+<p>创建 android-server-start.bat，实现一键启动 android server 并转发端口</p>
+<pre tabindex="0"><code>@echo off
 
+REM 启用超级管理员权限
+adb root
+
+REM 启动android server
+adb shell &#34;/data/local/tmp/as -p 12345 &gt; /dev/null 2&gt;&amp;1 &amp;&#34;
+
+
+REM 等待 3 秒
+timeout /t 3
+
+REM 查看android server进程是否启动成功
+adb shell &#34;lsof | grep 12345&#34;
+
+REM 转发到本地12345端口
+adb forward tcp:12345 tcp:12345
+
+pause
+</code></pre>
     </div>
     <div class="post-footer">
       

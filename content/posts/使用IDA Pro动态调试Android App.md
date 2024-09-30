@@ -1,6 +1,6 @@
 +++
 title = '使用IDA Pro动态调试Android APP'
-date = 2024-09-18T05:17:39.348102+08:00
+date = 2024-09-30T15:27:58.288097+08:00
 draft = false
 +++
 
@@ -257,6 +257,31 @@ kill -9 12679
 
 现在，重新启动 android server 就可以了
 
+# __自动化脚本__
+
+
+创建 android-server-start.bat，实现一键启动 android server 并转发端口
+```
+@echo off
+
+REM 启用超级管理员权限
+adb root
+
+REM 启动android server
+adb shell "/data/local/tmp/as -p 12345 > /dev/null 2>&1 &"
+
+
+REM 等待 3 秒
+timeout /t 3
+
+REM 查看android server进程是否启动成功
+adb shell "lsof | grep 12345"
+
+REM 转发到本地12345端口
+adb forward tcp:12345 tcp:12345
+
+pause
+```
 
                
 
