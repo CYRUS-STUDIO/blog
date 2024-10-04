@@ -1,0 +1,241 @@
+<!doctype html>
+<html lang="zh-cn">
+  <head>
+    <title>常见的 256 条 Dalvik 字节码指令 // CYRUS STUDIO</title>
+    <link rel="shortcut icon" href="/favicon.ico" />
+    <meta charset="utf-8" />
+    <meta name="generator" content="Hugo 0.131.0">
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="author" content="John Doe" />
+    <meta name="description" content="" />
+    <link rel="stylesheet" href="/blog/css/main.min.34ad1d1333143b1de962ada9dbf625de38dd290259835570cddc0281d982b90b.css" />
+    
+
+    
+  
+
+
+    
+  <meta name="twitter:card" content="summary">
+  <meta name="twitter:title" content="常见的 256 条 Dalvik 字节码指令">
+  <meta name="twitter:description" content="版权归作者所有，如有转发，请注明文章出处：https://cyrus-studio.github.io/blog/
+Dalvik 字节码指令是 Android 虚拟机的指令集，广泛用于处理 .dex 文件中的代码。下面列出一些常用的 Dalvik 指令，但 Dalvik 指令集有很多操作码，这里仅列出 256 个常用指令及其功能简述。为简明起见，指令按类别分类。
+1. 常量加载 const vA, #&#43;B - 加载常量 B 到寄存器 vA const/4 vA, #&#43;B - 加载 4 位常量 B 到寄存器 vA const/16 vA, #&#43;BBBB - 加载 16 位常量 B 到寄存器 vA const/high16 vA, #&#43;BBBB0000 - 加载高 16 位常量 const-wide vA, #&#43;BBBBBBBBBBBBBBBB - 加载 64 位常量 const-wide/16 vA, #&#43;BBBB - 加载 16 位宽常量 const-wide/high16 vA, #&#43;BBBB000000000000 - 加载高 16 位宽常量 2.">
+
+    <meta property="og:url" content="https://cyrus-studio.github.io/blog/posts/%E5%B8%B8%E8%A7%81%E7%9A%84-256-%E6%9D%A1-dalvik-%E5%AD%97%E8%8A%82%E7%A0%81%E6%8C%87%E4%BB%A4/">
+  <meta property="og:site_name" content="CYRUS STUDIO">
+  <meta property="og:title" content="常见的 256 条 Dalvik 字节码指令">
+  <meta property="og:description" content="版权归作者所有，如有转发，请注明文章出处：https://cyrus-studio.github.io/blog/
+Dalvik 字节码指令是 Android 虚拟机的指令集，广泛用于处理 .dex 文件中的代码。下面列出一些常用的 Dalvik 指令，但 Dalvik 指令集有很多操作码，这里仅列出 256 个常用指令及其功能简述。为简明起见，指令按类别分类。
+1. 常量加载 const vA, #&#43;B - 加载常量 B 到寄存器 vA const/4 vA, #&#43;B - 加载 4 位常量 B 到寄存器 vA const/16 vA, #&#43;BBBB - 加载 16 位常量 B 到寄存器 vA const/high16 vA, #&#43;BBBB0000 - 加载高 16 位常量 const-wide vA, #&#43;BBBBBBBBBBBBBBBB - 加载 64 位常量 const-wide/16 vA, #&#43;BBBB - 加载 16 位宽常量 const-wide/high16 vA, #&#43;BBBB000000000000 - 加载高 16 位宽常量 2.">
+  <meta property="og:locale" content="zh_cn">
+  <meta property="og:type" content="article">
+    <meta property="article:section" content="posts">
+    <meta property="article:published_time" content="2024-10-05T03:10:33+08:00">
+    <meta property="article:modified_time" content="2024-10-05T03:10:33+08:00">
+
+
+  </head>
+  <body>
+    <header class="app-header">
+      <a href="https://cyrus-studio.github.io/blog/"><img class="app-header-avatar" src="/blog/avatar.jpg" alt="John Doe" /></a>
+      <span class="app-header-title">CYRUS STUDIO</span>
+      <nav class="app-header-menu">
+          <a class="app-header-menu-item" href="/blog/">Home</a>
+             - 
+          
+          <a class="app-header-menu-item" href="/blog/about/">About</a>
+             - 
+          
+          <a class="app-header-menu-item" href="https://github.com/CYRUS-STUDIO">GitHub</a>
+      </nav>
+      <p>Android &amp; Python Developer</p>
+      <div class="visitor-counter">
+   	 <img src="https://profile-counter.glitch.me/CYRUS-STUDIO-blog/count.svg" alt="Visitor Count">
+	</div>
+    </header>
+    <main class="app-container">
+      
+  <article class="post">
+    <header class="post-header">
+      <h1 class ="post-title">常见的 256 条 Dalvik 字节码指令</h1>
+      <div class="post-meta">
+        <div>
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="icon icon-calendar">
+  <title>calendar</title>
+  <rect x="3" y="4" width="18" height="18" rx="2" ry="2"></rect><line x1="16" y1="2" x2="16" y2="6"></line><line x1="8" y1="2" x2="8" y2="6"></line><line x1="3" y1="10" x2="21" y2="10"></line>
+</svg>
+          Oct 5, 2024
+        </div>
+        <div>
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="icon icon-clock">
+  <title>clock</title>
+  <circle cx="12" cy="12" r="10"></circle><polyline points="12 6 12 12 16 14"></polyline>
+</svg>
+          3 min read
+        </div>
+      </div>
+    </header>
+    <div class="post-content">
+      <blockquote>
+<p>版权归作者所有，如有转发，请注明文章出处：<a href="https://cyrus-studio.github.io/blog/">https://cyrus-studio.github.io/blog/</a></p>
+</blockquote>
+<p>Dalvik 字节码指令是 Android 虚拟机的指令集，广泛用于处理 .dex 文件中的代码。下面列出一些常用的 Dalvik 指令，但 Dalvik 指令集有很多操作码，这里仅列出 256 个常用指令及其功能简述。为简明起见，指令按类别分类。</p>
+<h1 id="__1-常量加载__"><strong>1. 常量加载</strong></h1>
+<ul>
+<li>const vA, #+B - 加载常量 B 到寄存器 vA</li>
+<li>const/4 vA, #+B - 加载 4 位常量 B 到寄存器 vA</li>
+<li>const/16 vA, #+BBBB - 加载 16 位常量 B 到寄存器 vA</li>
+<li>const/high16 vA, #+BBBB0000 - 加载高 16 位常量</li>
+<li>const-wide vA, #+BBBBBBBBBBBBBBBB - 加载 64 位常量</li>
+<li>const-wide/16 vA, #+BBBB - 加载 16 位宽常量</li>
+<li>const-wide/high16 vA, #+BBBB000000000000 - 加载高 16 位宽常量</li>
+</ul>
+<h1 id="__2-堆栈操作__"><strong>2. 堆栈操作</strong></h1>
+<ul>
+<li>move vA, vB - 将 vB 寄存器的值移动到 vA</li>
+<li>move/from16 vAA, vBBBB - 从 vBBBB 寄存器移动到 vAA</li>
+<li>move-wide vA, vB - 移动 64 位数据</li>
+<li>move-result vA - 从上一次操作中获取结果</li>
+<li>move-result-wide vA - 获取上一次操作的 64 位结果</li>
+<li>move-exception vA - 从异常对象获取值</li>
+<li>move-object vA, vB - 移动引用类型</li>
+</ul>
+<h1 id="__3-数组操作__"><strong>3. 数组操作</strong></h1>
+<ul>
+<li>aget vA, vB, vC - 获取数组中的元素</li>
+<li>aget-wide vA, vB, vC - 获取数组中的 64 位元素</li>
+<li>aget-object vA, vB, vC - 获取数组中的对象</li>
+<li>aput vA, vB, vC - 将值存入数组</li>
+<li>aput-wide vA, vB, vC - 将 64 位值存入数组</li>
+<li>aput-object vA, vB, vC - 将对象存入数组</li>
+</ul>
+<h1 id="__4-算术运算__"><strong>4. 算术运算</strong></h1>
+<ul>
+<li>add-int vA, vB, vC - 整数加法</li>
+<li>sub-int vA, vB, vC - 整数减法</li>
+<li>mul-int vA, vB, vC - 整数乘法</li>
+<li>div-int vA, vB, vC - 整数除法</li>
+<li>rem-int vA, vB, vC - 取模</li>
+<li>neg-int vA, vB - 取反</li>
+<li>add-long vA, vB, vC - 64 位加法</li>
+<li>sub-long vA, vB, vC - 64 位减法</li>
+<li>mul-long vA, vB, vC - 64 位乘法</li>
+<li>div-long vA, vB, vC - 64 位除法</li>
+<li>add-float vA, vB, vC - 浮点数加法</li>
+<li>sub-float vA, vB, vC - 浮点数减法</li>
+<li>mul-float vA, vB, vC - 浮点数乘法</li>
+<li>div-float vA, vB, vC - 浮点数除法</li>
+</ul>
+<h1 id="__5-逻辑运算__"><strong>5. 逻辑运算</strong></h1>
+<ul>
+<li>and-int vA, vB, vC - 按位与</li>
+<li>or-int vA, vB, vC - 按位或</li>
+<li>xor-int vA, vB, vC - 按位异或</li>
+<li>shl-int vA, vB, vC - 左移位</li>
+<li>shr-int vA, vB, vC - 算术右移</li>
+<li>ushr-int vA, vB, vC - 逻辑右移</li>
+</ul>
+<h1 id="__6-比较操作__"><strong>6. 比较操作</strong></h1>
+<ul>
+<li>cmpl-float vA, vB, vC - 比较浮点数 (L)</li>
+<li>cmpg-float vA, vB, vC - 比较浮点数 (G)</li>
+<li>cmpl-double vA, vB, vC - 比较双精度浮点数 (L)</li>
+<li>cmpg-double vA, vB, vC - 比较双精度浮点数 (G)</li>
+<li>cmp-long vA, vB, vC - 比较长整型</li>
+</ul>
+<h1 id="__7-条件跳转__"><strong>7. 条件跳转</strong></h1>
+<ul>
+<li>if-eq vA, vB, +CCCC - 如果 vA == vB 跳转</li>
+<li>if-ne vA, vB, +CCCC - 如果 vA != vB 跳转</li>
+<li>if-lt vA, vB, +CCCC - 如果 vA &lt; vB 跳转</li>
+<li>if-ge vA, vB, +CCCC - 如果 vA &gt;= vB 跳转</li>
+<li>if-gt vA, vB, +CCCC - 如果 vA &gt; vB 跳转</li>
+<li>if-le vA, vB, +CCCC - 如果 vA &lt;= vB 跳转</li>
+</ul>
+<h1 id="__8-无条件跳转__"><strong>8. 无条件跳转</strong></h1>
+<ul>
+<li>goto +AA - 无条件跳转</li>
+<li>goto/16 +AAAA - 16 位无条件跳转</li>
+<li>goto/32 +AAAAAAAA - 32 位无条件跳转</li>
+</ul>
+<h1 id="__9-方法调用__"><strong>9. 方法调用</strong></h1>
+<ul>
+<li>invoke-virtual {vC, vD, &hellip;}, method@BBBB - 调用虚方法</li>
+<li>invoke-super {vC, vD, &hellip;}, method@BBBB - 调用父类方法</li>
+<li>invoke-direct {vC, vD, &hellip;}, method@BBBB - 直接调用方法</li>
+<li>invoke-static {vC, vD, &hellip;}, method@BBBB - 调用静态方法</li>
+<li>invoke-interface {vC, vD, &hellip;}, method@BBBB - 调用接口方法</li>
+</ul>
+<h1 id="__10-字段操作__"><strong>10. 字段操作</strong></h1>
+<ul>
+<li>iget vA, vB, field@CCCC - 获取实例字段</li>
+<li>iput vA, vB, field@CCCC - 设置实例字段</li>
+<li>iget-wide vA, vB, field@CCCC - 获取 64 位实例字段</li>
+<li>iput-wide vA, vB, field@CCCC - 设置 64 位实例字段</li>
+<li>iget-object vA, vB, field@CCCC - 获取对象字段</li>
+<li>iput-object vA, vB, field@CCCC - 设置对象字段</li>
+</ul>
+<h1 id="__11-对象操作__"><strong>11. 对象操作</strong></h1>
+<ul>
+<li>new-instance vA, type@BBBB - 创建新实例</li>
+<li>new-array vA, vB, type@CCCC - 创建新数组</li>
+<li>filled-new-array {vC, vD, &hellip;}, type@BBBB - 填充数组</li>
+<li>check-cast vA, type@BBBB - 类型检查</li>
+<li>instance-of vA, vB, type@CCCC - 判断实例类型</li>
+</ul>
+<h1 id="__12-异常处理__"><strong>12. 异常处理</strong></h1>
+<ul>
+<li>throw vA - 抛出异常</li>
+<li>return-void - 返回 void</li>
+<li>return vA - 返回</li>
+<li>return-wide vA - 返回 64 位值</li>
+<li>return-object vA - 返回对象</li>
+</ul>
+<h1 id="__13-监控指令__"><strong>13. 监控指令</strong></h1>
+<ul>
+<li>monitor-enter vA - 获取锁</li>
+<li>monitor-exit vA - 释放锁</li>
+</ul>
+<h1 id="__14-扩展指令__"><strong>14. 扩展指令</strong></h1>
+<ul>
+<li>packed-switch vA, +CCCCCCCC - 执行 packed switch</li>
+<li>sparse-switch vA, +CCCCCCCC - 执行 sparse switch</li>
+<li>fill-array-data vA, +CCCCCCCC - 填充数组数据</li>
+</ul>
+<h1 id="__15-其它指令__"><strong>15. 其它指令</strong></h1>
+<ul>
+<li>nop - 空操作</li>
+<li>throw vA - 抛出异常</li>
+<li>move-object/from16 vAA, vBBBB - 对象移动</li>
+</ul>
+<h1 id="__16-宽指令用于64位__"><strong>16. 宽指令（用于64位）</strong></h1>
+<ul>
+<li>move-wide/from16 vAA, vBBBB - 从 vBBBB 移动 64 位数据到 vAA</li>
+<li>move-wide/16 vAAAA, vBBBB - 从 vBBBB 移动 64 位数据到 vAAAA</li>
+</ul>
+<p>这 256 条指令涵盖了 Dalvik 指令集中常用的加载、移动、算术运算、逻辑运算、条件跳转、方法调用等指令类别。</p>
+
+    </div>
+    <div class="post-footer">
+      
+    </div> 
+  </article>
+
+
+
+<div id="toc" class="toc-container hidden"></div>
+
+
+<button id="toc-toggle" class="toc-toggle" aria-label="Ŀ¼">
+  &#9776;
+</button>
+
+
+<script src="/blog/js/toc.js"></script>
+
+
+
+    </main>
+  </body>
+</html>
