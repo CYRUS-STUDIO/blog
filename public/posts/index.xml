@@ -6,8 +6,15 @@
     <description>Recent content in Posts on CYRUS STUDIO</description>
     <generator>Hugo</generator>
     <language>zh-cn</language>
-    <lastBuildDate>Mon, 07 Oct 2024 03:27:58 +0800</lastBuildDate>
+    <lastBuildDate>Wed, 09 Oct 2024 18:02:14 +0800</lastBuildDate>
     <atom:link href="https://cyrus-studio.github.io/blog/posts/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>使用 Frida Hook Android App</title>
+      <link>https://cyrus-studio.github.io/blog/posts/%E4%BD%BF%E7%94%A8-frida-hook-android-app/</link>
+      <pubDate>Wed, 09 Oct 2024 18:02:14 +0800</pubDate>
+      <guid>https://cyrus-studio.github.io/blog/posts/%E4%BD%BF%E7%94%A8-frida-hook-android-app/</guid>
+      <description>版权归作者所有，如有转发，请注明文章出处：https://cyrus-studio.github.io/blog/&#xA;Frida Frida 通过注入自定义 JavaScript 代码，可以 Hook 函数、修改参数、监控函数调用和拦截返回值，适用于逆向工程、调试和安全分析等场景。&#xA;使用 Frida 前需要先下载和安装包括：&#xA;Frida 是核心库，提供 API 和功能。&#xA;Frida-Tool 是命令行工具，通常与 Frida 版本相对应。&#xA;Frida-Server 是运行在 Android 设备上的服务器端组件，允许 Frida 客户端与设备进行通信。&#xA;环境准备 1. 安装 Frida 和 Frida-tools pip install frida-tools 2. Frida-server 获取设备CPU架构&#xA;adb shell getprop ro.product.cpu.abi 下载与设备对应架构的 frida-server：https://github.com/frida/frida/releases 把 frida-server 推送到设备 /data/local/tmp 目录下&#xA;adb push D:\app逆向\Frida\frida-server-16.5.2-android-arm64 /data/local/tmp/fs 启动 frida-server&#xA;# 启用超级管理员&#xD;adb root&#xD;# 进入命令行&#xD;adb shell # 添加可执行权限&#xD;chmod +x /data/local/tmp/fs&#xD;# 启动frida-server&#xD;/data/local/tmp/fs 自定义Frida端口 frida-server 默认端口为 27042，如果想自定义端口可以通过下面的命令实现</description>
+    </item>
     <item>
       <title>IDA静态分析中伪代码显示优化</title>
       <link>https://cyrus-studio.github.io/blog/posts/ida%E9%9D%99%E6%80%81%E5%88%86%E6%9E%90%E4%B8%AD%E4%BC%AA%E4%BB%A3%E7%A0%81%E6%98%BE%E7%A4%BA%E4%BC%98%E5%8C%96/</link>
@@ -35,13 +42,6 @@
       <pubDate>Sun, 29 Sep 2024 20:31:26 +0800</pubDate>
       <guid>https://cyrus-studio.github.io/blog/posts/%E4%BD%BF%E7%94%A8readelf%E5%88%86%E6%9E%90so%E6%96%87%E4%BB%B6/</guid>
       <description>版权归作者所有，如有转发，请注明文章出处：https://cyrus-studio.github.io/blog/&#xA;readelf readelf 是一个用于读取和显示 ELF（Executable and Linkable Format）文件信息的工具。虽然 readelf 工具本身是为 Unix-like 操作系统设计的，但你可以在 Windows 上通过 WSL 使用它。&#xA;WSL 允许你在 Windows 上运行 Linux 发行版，并且可以在其中使用 readelf 工具。&#xA;安装 WSL 打开 PowerShell 以管理员身份运行，并执行以下命令启用 WSL 并安装 Ubuntu 系统&#xA;wsl --install -d Ubuntu 然后设置用户账户和密码。 通过 wsl 命令进入 Ubuntu 系统。&#xA;在 wsl 中 /mnt/d 对应的就是 windows 下的 D 盘，其他同理。&#xA;使用 readelf 调用 readelf -a 一次性查看文件中的所有信息，包括文件头、程序头、节头、符号表、动态节等。&#xA;readelf -a libGameVMP.so&#xD;ELF Header:&#xD;Magic: 7f 45 4c 46 02 01 01 00 00 00 00 00 00 00 00 00&#xD;Class: ELF64&#xD;Data: 2&amp;#39;s complement, little endian&#xD;Version: 1 (current)&#xD;OS/ABI: UNIX - System V&#xD;ABI Version: 0&#xD;Type: DYN (Shared object file)&#xD;Machine: AArch64&#xD;Version: 0x1&#xD;Entry point address: 0x2650&#xD;Start of program headers: 64 (bytes into file)&#xD;Start of section headers: 130160 (bytes into file)&#xD;Flags: 0x0&#xD;Size of this header: 64 (bytes)&#xD;Size of program headers: 56 (bytes)&#xD;Number of program headers: 7&#xD;Size of section headers: 64 (bytes)&#xD;Number of section headers: 7&#xD;Section header string table index: 1&#xD;Section Headers:&#xD;[Nr] Name Type Address Offset&#xD;Size EntSize Flags Link Info Align&#xD;[ 0] NULL 0000000000000000 00000000&#xD;0000000000000000 0000000000000000 0 0 0&#xD;[ 1] .</description>
-    </item>
-    <item>
-      <title>使用 Frida Hook Android App</title>
-      <link>https://cyrus-studio.github.io/blog/posts/%E4%BD%BF%E7%94%A8-frida-hook-android-app/</link>
-      <pubDate>Sun, 29 Sep 2024 02:37:24 +0800</pubDate>
-      <guid>https://cyrus-studio.github.io/blog/posts/%E4%BD%BF%E7%94%A8-frida-hook-android-app/</guid>
-      <description>版权归作者所有，如有转发，请注明文章出处：https://cyrus-studio.github.io/blog/&#xA;Frida Frida 通过注入自定义 JavaScript 代码，可以 Hook 函数、修改参数、监控函数调用和拦截返回值，适用于逆向工程、调试和安全分析等场景。&#xA;使用 Frida 前需要先下载和安装包括：&#xA;Frida 是核心库，提供 API 和功能。&#xA;Frida-Tool 是命令行工具，通常与 Frida 版本相对应。&#xA;Frida-Server 是运行在 Android 设备上的服务器端组件，允许 Frida 客户端与设备进行通信。&#xA;环境准备 1. 安装 Frida 和 Frida-tools pip install frida-tools 2. Frida-server 获取设备CPU架构&#xA;adb shell getprop ro.product.cpu.abi 下载与设备对应架构的 frida-server：https://github.com/frida/frida/releases 把 frida-server 推送到设备 /data/local/tmp 目录下&#xA;adb push D:\app逆向\Frida\frida-server-16.5.2-android-arm64 /data/local/tmp/fs 启动 frida-server&#xA;# 启用超级管理员&#xD;adb root&#xD;# 进入命令行&#xD;adb shell # 添加可执行权限&#xD;chmod +x /data/local/tmp/fs&#xD;# 启动frida-server&#xD;/data/local/tmp/fs 自定义Frida端口 frida-server 默认端口为 27042，如果想自定义端口可以通过下面的命令实现</description>
     </item>
     <item>
       <title>使用Miniconda管理Python环境</title>
