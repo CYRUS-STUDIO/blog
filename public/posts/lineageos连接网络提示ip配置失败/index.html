@@ -8,7 +8,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <meta name="author" content="John Doe" />
     <meta name="description" content="" />
-    <link rel="stylesheet" href="/blog/css/main.min.34ad1d1333143b1de962ada9dbf625de38dd290259835570cddc0281d982b90b.css" />
+    <link rel="stylesheet" href="/blog/css/main.min.7d43b0a34b77f8ad24ae9bf849371e3cd81f73641d1bf98231b3d96f18001f5d.css" />
     
 
     
@@ -64,6 +64,7 @@ IP配置失败 连接所有网络都提示IP配置失败，通过配置静态IP�
       
   <article class="post">
     <header class="post-header">
+      <meta charset="UTF-8" />
       <h1 class ="post-title">LineageOS连接网络提示IP配置失败</h1>
       <div class="post-meta">
         <div>
@@ -117,12 +118,51 @@ root  # 返回结果为 root，说明你已经成功以 root 身份进入 ADB sh
 <div id="toc" class="toc-container hidden"></div>
 
 
-<button id="toc-toggle" class="toc-toggle" aria-label="Ŀ¼">
+<button id="toc-toggle" class="toc-toggle" aria-label="目录">
   &#9776;
 </button>
 
 
 <script src="/blog/js/toc.js"></script>
+
+
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/clipboard.js/2.0.10/clipboard.min.js"></script>
+<script>
+    document.addEventListener('DOMContentLoaded', function() {
+        
+        document.querySelectorAll('pre').forEach(function(block) {
+            
+            var button = document.createElement('button');
+            button.className = 'copy-btn';
+            button.textContent = '复制';
+
+            
+            block.appendChild(button);
+
+            
+            var clipboard = new ClipboardJS(button, {
+                target: function() {
+                    return block.querySelector('code');
+                }
+            });
+
+            
+            clipboard.on('success', function(e) {
+                e.trigger.textContent = '复制成功';
+                setTimeout(function() {
+                    e.trigger.textContent = '复制';
+                }, 2000);
+            });
+
+            
+            clipboard.on('error', function(e) {
+                e.trigger.textContent = '复制失败';
+            });
+        });
+    });
+</script>
+
 
 
 

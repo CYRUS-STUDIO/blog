@@ -1,4 +1,4 @@
-* {
+﻿* {
   box-sizing: border-box;
 }
 
@@ -44,6 +44,7 @@ code {
 }
 
 pre {
+  position: relative;
   font-size: 1rem;
   line-height: 1.2em;
   margin: 0;
@@ -55,6 +56,25 @@ pre {
   code {
     font-size: .8em;
   }
+}
+
+// 复制按钮样式
+.copy-btn {
+    position: absolute; // 绝对定位
+    top: 10px; // 距离上边距
+    right: 10px; // 距离右边距
+    background-color: rgba($primary-color, 0.5); // 使用 primary-color 并设置 50% 透明度
+    color: white; // 文本颜色
+    border: none; // 无边框
+    padding: 5px 10px; // 内边距
+    cursor: pointer; // 光标样式
+    border-radius: 4px; // 圆角
+    font-size: 12px; // 字体大小
+    z-index: 1; // 确保在其他元素之上
+
+    &:hover {
+        background-color: rgba($primary-color, 0.7); // 悬停时稍微加深颜色，仍然保持透明度
+    }
 }
 
 ::selection {

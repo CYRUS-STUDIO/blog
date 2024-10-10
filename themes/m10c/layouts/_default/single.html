@@ -1,6 +1,7 @@
-{{ define "main" }}
+﻿{{ define "main" }}
   <article class="post">
     <header class="post-header">
+      <meta charset="UTF-8" />
       <h1 class ="post-title">{{ .Title }}</h1>
       {{- if ne .Type "page" }}
       <div class="post-meta">
@@ -34,16 +35,55 @@
   </article>
 
 
-<!-- TOC ���� -->
+<!-- TOC 容器 -->
 <div id="toc" class="toc-container hidden"></div>
 
-<!-- ���½Ǹ�����ť -->
-<button id="toc-toggle" class="toc-toggle" aria-label="Ŀ¼">
+<!-- 右下角浮动按钮 -->
+<button id="toc-toggle" class="toc-toggle" aria-label="目录">
   &#9776;
 </button>
 
-<!-- ���� JavaScript �ű� -->
+<!-- 引入 JavaScript 脚本 -->
 <script src="{{ "js/toc.js" | relURL }}"></script>
+
+
+<!-- 复制代码 -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/clipboard.js/2.0.10/clipboard.min.js"></script>
+<script>
+    document.addEventListener('DOMContentLoaded', function() {
+        // 查找页面中所有的 <pre> 标签
+        document.querySelectorAll('pre').forEach(function(block) {
+            // 创建复制按钮
+            var button = document.createElement('button');
+            button.className = 'copy-btn';
+            button.textContent = '复制';
+
+            // 将按钮插入到 <pre> 元素中
+            block.appendChild(button);
+
+            // 初始化 Clipboard.js 复制功能
+            var clipboard = new ClipboardJS(button, {
+                target: function() {
+                    return block.querySelector('code');
+                }
+            });
+
+            // 成功复制时显示提示
+            clipboard.on('success', function(e) {
+                e.trigger.textContent = '复制成功';
+                setTimeout(function() {
+                    e.trigger.textContent = '复制';
+                }, 2000);
+            });
+
+            // 复制失败时处理
+            clipboard.on('error', function(e) {
+                e.trigger.textContent = '复制失败';
+            });
+        });
+    });
+</script>
+
 
 
 {{ end }}
