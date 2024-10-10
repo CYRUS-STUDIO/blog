@@ -6,8 +6,15 @@
     <description>Recent content on CYRUS STUDIO</description>
     <generator>Hugo</generator>
     <language>zh-cn</language>
-    <lastBuildDate>Wed, 09 Oct 2024 18:02:14 +0800</lastBuildDate>
+    <lastBuildDate>Fri, 11 Oct 2024 05:26:31 +0800</lastBuildDate>
     <atom:link href="https://cyrus-studio.github.io/blog/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>使用 Frida 定位 JNI 方法内存地址</title>
+      <link>https://cyrus-studio.github.io/blog/posts/%E4%BD%BF%E7%94%A8-frida-%E5%AE%9A%E4%BD%8D-jni-%E6%96%B9%E6%B3%95%E5%86%85%E5%AD%98%E5%9C%B0%E5%9D%80/</link>
+      <pubDate>Fri, 11 Oct 2024 05:26:31 +0800</pubDate>
+      <guid>https://cyrus-studio.github.io/blog/posts/%E4%BD%BF%E7%94%A8-frida-%E5%AE%9A%E4%BD%8D-jni-%E6%96%B9%E6%B3%95%E5%86%85%E5%AD%98%E5%9C%B0%E5%9D%80/</guid>
+      <description>版权归作者所有，如有转发，请注明文章出处：https://cyrus-studio.github.io/blog/&#xA;java 调用 native 方法流程 ArtMethod 是 Android Runtime (ART) 中一个非常重要的数据结构，它在 Android 系统中用于表示每个 Java 方法。&#xA;entry_point_from_jni_ 是 ArtMethod 结构体的一个字段，专门用于存储一个 Java 方法的 JNI（Java Native Interface）入口点。&#xA;当 Java 代码调用一个 native 方法时，ART 会通过entry_point_from_jni_ 字段找到对应的 JNI 函数入口，然后切换到 C/C++ 层执行该方法。&#xA;确定 entry_point_from_jni 的偏移量_ 先通过查找 ART 中 ArtMethod 结构体中 entry_point_from_jni_ 的偏移量，最终确定 JNI 函数的地址。&#xA;let entry_point_from_jni_offset = -1;&#xD;/**&#xD;* 找到 entry_point_from_jni_ 在 ArtMethod 结构体中的偏移量（根据 Android 版本不同可能会变化）&#xD;*&#xD;* @returns {number} 返回 entry_point_from_jni_ 的偏移量，若未找到返回 -1&#xD;*/&#xD;function get_jni_offset() {&#xD;// 如果偏移量已经计算过（不为 -1），直接返回已保存的偏移量&#xD;if (entry_point_from_jni_offset !</description>
+    </item>
     <item>
       <title>使用 Frida Hook Android App</title>
       <link>https://cyrus-studio.github.io/blog/posts/%E4%BD%BF%E7%94%A8-frida-hook-android-app/</link>
