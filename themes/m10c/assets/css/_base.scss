@@ -61,20 +61,22 @@ pre {
 // 复制按钮样式
 .copy-btn {
     position: absolute; // 绝对定位
-    top: 10px; // 距离上边距
-    right: 10px; // 距离右边距
+    top: 10px;
+    right: 10px;
     background-color: rgba($primary-color, 0.5); // 使用 primary-color 并设置 50% 透明度
-    color: white; // 文本颜色
-    border: none; // 无边框
-    padding: 5px 10px; // 内边距
-    cursor: pointer; // 光标样式
-    border-radius: 4px; // 圆角
-    font-size: 12px; // 字体大小
-    z-index: 1; // 确保在其他元素之上
+    color: white;
+    border: none;
+    padding: 5px 10px;
+    cursor: pointer;
+    border-radius: 4px;
+    font-size: 12px;
+    z-index: 1;
+    opacity: 0; // 默认按钮完全透明
+    transition: opacity 0.3s ease; // 添加过渡效果
+}
 
-    &:hover {
-        background-color: rgba($primary-color, 0.7); // 悬停时稍微加深颜色，仍然保持透明度
-    }
+pre:hover .copy-btn {
+    opacity: 1; // 当鼠标悬停在代码块上时显示按钮
 }
 
 ::selection {
