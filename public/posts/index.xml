@@ -6,8 +6,15 @@
     <description>Recent content in Posts on CYRUS STUDIO</description>
     <generator>Hugo</generator>
     <language>zh-cn</language>
-    <lastBuildDate>Fri, 11 Oct 2024 05:26:31 +0800</lastBuildDate>
+    <lastBuildDate>Sun, 13 Oct 2024 19:46:25 +0800</lastBuildDate>
     <atom:link href="https://cyrus-studio.github.io/blog/posts/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>unidbg console debugger 调试技巧</title>
+      <link>https://cyrus-studio.github.io/blog/posts/unidbg-console-debugger-%E8%B0%83%E8%AF%95%E6%8A%80%E5%B7%A7/</link>
+      <pubDate>Sun, 13 Oct 2024 19:46:25 +0800</pubDate>
+      <guid>https://cyrus-studio.github.io/blog/posts/unidbg-console-debugger-%E8%B0%83%E8%AF%95%E6%8A%80%E5%B7%A7/</guid>
+      <description>版权归作者所有，如有转发，请注明文章出处：https://cyrus-studio.github.io/blog/&#xA;打开debug日志 编辑 unidbg-android/src/test/resources/log4j.properties 把 log4j.logger.com.github.unidbg.AbstractEmulator 改为 DEBUG 当运行报错时会自动断点，可以看到具体报错的位置、寄存器、机器码等等信息。&#xA;[03:20:11 438] DEBUG [com.github.unidbg.AbstractEmulator] (AbstractEmulator:364) - emulate RX@0x121daa74[libc.so]0x1aa74 started sp=unidbg@0xe4fff700&#xD;[03:20:11 457] DEBUG [com.github.unidbg.AbstractEmulator] (AbstractEmulator:402) - emulate RX@0x121daa74[libc.so]0x1aa74 finished sp=unidbg@0xe4fff700, offset=18ms&#xD;[03:20:11 458] DEBUG [com.github.unidbg.AbstractEmulator] (AbstractEmulator:364) - emulate RX@0x121daa98[libc.so]0x1aa98 started sp=unidbg@0xe4fff700&#xD;[03:20:11 458] DEBUG [com.github.unidbg.AbstractEmulator] (AbstractEmulator:402) - emulate RX@0x121daa98[libc.so]0x1aa98 finished sp=unidbg@0xe4fff700, offset=0ms&#xD;[03:20:11 458] DEBUG [com.github.unidbg.AbstractEmulator] (AbstractEmulator:364) - emulate RX@0x121daaac[libc.so]0x1aaac started sp=unidbg@0xe4fff700&#xD;[03:20:11 459] DEBUG [com.github.unidbg.AbstractEmulator] (AbstractEmulator:402) - emulate RX@0x121daaac[libc.so]0x1aaac finished sp=unidbg@0xe4fff700, offset=0ms&#xD;[03:20:11 459] DEBUG [com.</description>
+    </item>
     <item>
       <title>使用 Frida 定位 JNI 方法内存地址</title>
       <link>https://cyrus-studio.github.io/blog/posts/%E4%BD%BF%E7%94%A8-frida-%E5%AE%9A%E4%BD%8D-jni-%E6%96%B9%E6%B3%95%E5%86%85%E5%AD%98%E5%9C%B0%E5%9D%80/</link>
