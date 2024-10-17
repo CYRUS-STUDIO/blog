@@ -6,8 +6,15 @@
     <description>Recent content in Posts on CYRUS STUDIO</description>
     <generator>Hugo</generator>
     <language>zh-cn</language>
-    <lastBuildDate>Sun, 13 Oct 2024 19:46:25 +0800</lastBuildDate>
+    <lastBuildDate>Thu, 17 Oct 2024 13:08:32 +0800</lastBuildDate>
     <atom:link href="https://cyrus-studio.github.io/blog/posts/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>使用 Frida Hook Android App</title>
+      <link>https://cyrus-studio.github.io/blog/posts/%E4%BD%BF%E7%94%A8-frida-hook-android-app/</link>
+      <pubDate>Thu, 17 Oct 2024 13:08:32 +0800</pubDate>
+      <guid>https://cyrus-studio.github.io/blog/posts/%E4%BD%BF%E7%94%A8-frida-hook-android-app/</guid>
+      <description>版权归作者所有，如有转发，请注明文章出处：https://cyrus-studio.github.io/blog/&#xA;Frida Frida 通过注入自定义 JavaScript 代码，可以 Hook 函数、修改参数、监控函数调用和拦截返回值，适用于逆向工程、调试和安全分析等场景。&#xA;使用 Frida 前需要先下载和安装包括：&#xA;Frida 是核心库，提供 API 和功能。&#xA;Frida-Tool 是命令行工具，通常与 Frida 版本相对应。&#xA;Frida-Server 是运行在 Android 设备上的服务器端组件，允许 Frida 客户端与设备进行通信。&#xA;环境准备 1. 安装 Frida 和 Frida-tools pip install frida-tools 2. Frida-server 获取设备CPU架构&#xA;adb shell getprop ro.product.cpu.abi 下载与设备对应架构的 frida-server：https://github.com/frida/frida/releases 把 frida-server 推送到设备 /data/local/tmp 目录下&#xA;adb push D:\app逆向\Frida\frida-server-16.5.2-android-arm64 /data/local/tmp/fs 启动 frida-server&#xA;# 启用超级管理员&#xD;adb root&#xD;# 进入命令行&#xD;adb shell # 添加可执行权限&#xD;chmod +x /data/local/tmp/fs&#xD;# 启动frida-server&#xD;/data/local/tmp/fs 自定义Frida端口 frida-server 默认端口为 27042，如果想自定义端口可以通过下面的命令实现</description>
+    </item>
     <item>
       <title>unidbg console debugger 调试技巧</title>
       <link>https://cyrus-studio.github.io/blog/posts/unidbg-console-debugger-%E8%B0%83%E8%AF%95%E6%8A%80%E5%B7%A7/</link>
@@ -21,13 +28,6 @@
       <pubDate>Fri, 11 Oct 2024 05:26:31 +0800</pubDate>
       <guid>https://cyrus-studio.github.io/blog/posts/%E4%BD%BF%E7%94%A8-frida-%E5%AE%9A%E4%BD%8D-jni-%E6%96%B9%E6%B3%95%E5%86%85%E5%AD%98%E5%9C%B0%E5%9D%80/</guid>
       <description>版权归作者所有，如有转发，请注明文章出处：https://cyrus-studio.github.io/blog/&#xA;java 调用 native 方法流程 ArtMethod 是 Android Runtime (ART) 中一个非常重要的数据结构，它在 Android 系统中用于表示每个 Java 方法。&#xA;entry_point_from_jni_ 是 ArtMethod 结构体的一个字段，专门用于存储一个 Java 方法的 JNI（Java Native Interface）入口点。&#xA;当 Java 代码调用一个 native 方法时，ART 会通过entry_point_from_jni_ 字段找到对应的 JNI 函数入口，然后切换到 C/C++ 层执行该方法。&#xA;确定 entry_point_from_jni 的偏移量_ 先通过查找 ART 中 ArtMethod 结构体中 entry_point_from_jni_ 的偏移量，最终确定 JNI 函数的地址。&#xA;let entry_point_from_jni_offset = -1;&#xD;/**&#xD;* 找到 entry_point_from_jni_ 在 ArtMethod 结构体中的偏移量（根据 Android 版本不同可能会变化）&#xD;*&#xD;* @returns {number} 返回 entry_point_from_jni_ 的偏移量，若未找到返回 -1&#xD;*/&#xD;function get_jni_offset() {&#xD;// 如果偏移量已经计算过（不为 -1），直接返回已保存的偏移量&#xD;if (entry_point_from_jni_offset !</description>
-    </item>
-    <item>
-      <title>使用 Frida Hook Android App</title>
-      <link>https://cyrus-studio.github.io/blog/posts/%E4%BD%BF%E7%94%A8-frida-hook-android-app/</link>
-      <pubDate>Wed, 09 Oct 2024 18:02:14 +0800</pubDate>
-      <guid>https://cyrus-studio.github.io/blog/posts/%E4%BD%BF%E7%94%A8-frida-hook-android-app/</guid>
-      <description>版权归作者所有，如有转发，请注明文章出处：https://cyrus-studio.github.io/blog/&#xA;Frida Frida 通过注入自定义 JavaScript 代码，可以 Hook 函数、修改参数、监控函数调用和拦截返回值，适用于逆向工程、调试和安全分析等场景。&#xA;使用 Frida 前需要先下载和安装包括：&#xA;Frida 是核心库，提供 API 和功能。&#xA;Frida-Tool 是命令行工具，通常与 Frida 版本相对应。&#xA;Frida-Server 是运行在 Android 设备上的服务器端组件，允许 Frida 客户端与设备进行通信。&#xA;环境准备 1. 安装 Frida 和 Frida-tools pip install frida-tools 2. Frida-server 获取设备CPU架构&#xA;adb shell getprop ro.product.cpu.abi 下载与设备对应架构的 frida-server：https://github.com/frida/frida/releases 把 frida-server 推送到设备 /data/local/tmp 目录下&#xA;adb push D:\app逆向\Frida\frida-server-16.5.2-android-arm64 /data/local/tmp/fs 启动 frida-server&#xA;# 启用超级管理员&#xD;adb root&#xD;# 进入命令行&#xD;adb shell # 添加可执行权限&#xD;chmod +x /data/local/tmp/fs&#xD;# 启动frida-server&#xD;/data/local/tmp/fs 自定义Frida端口 frida-server 默认端口为 27042，如果想自定义端口可以通过下面的命令实现</description>
     </item>
     <item>
       <title>IDA静态分析中伪代码显示优化</title>
