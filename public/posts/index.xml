@@ -6,8 +6,15 @@
     <description>Recent content in Posts on CYRUS STUDIO</description>
     <generator>Hugo</generator>
     <language>zh-cn</language>
-    <lastBuildDate>Fri, 18 Oct 2024 22:55:01 +0800</lastBuildDate>
+    <lastBuildDate>Mon, 21 Oct 2024 02:17:40 +0800</lastBuildDate>
     <atom:link href="https://cyrus-studio.github.io/blog/posts/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>使用Miniconda管理Python环境</title>
+      <link>https://cyrus-studio.github.io/blog/posts/%E4%BD%BF%E7%94%A8miniconda%E7%AE%A1%E7%90%86python%E7%8E%AF%E5%A2%83/</link>
+      <pubDate>Mon, 21 Oct 2024 02:17:40 +0800</pubDate>
+      <guid>https://cyrus-studio.github.io/blog/posts/%E4%BD%BF%E7%94%A8miniconda%E7%AE%A1%E7%90%86python%E7%8E%AF%E5%A2%83/</guid>
+      <description>版权归作者所有，如有转发，请注明文章出处：https://cyrus-studio.github.io/blog/&#xA;Miniconda Miniconda 是 Conda 的简化版本，只包含 Conda 包管理器和 Python 的最小安装包，提供了一种轻量级的环境管理和包管理工具。相比于 Anaconda，Miniconda 更小巧灵活，适合那些不需要 Anaconda 提供的完整生态的用户。&#xA;通过 Miniconda，开发者可以更高效地管理和定制自己的开发环境，避免不必要的依赖和资源浪费。&#xA;下载安装 Miniconda：https://docs.anaconda.com/miniconda/&#xA;把 Miniconda3 和 Miniconda3\Scripts 路径添加到 Path 系统环境变量 完成安装后，打开终端或命令提示符，输入&#xA;conda --version&#xD;python --version 如果显示版本号，说明安装成功。&#xA;创建环境 创建一个新的虚拟环境，指定特定版本的 Python&#xA;conda create -n anti-app python=3.12.6 列出当前可用的 Python 版本&#xA;conda search python 克隆环境 现有环境复制到新的环境&#xA;conda create --name new_env --clone old_env 删除环境 conda remove --name old_env --all 列出所有环境 conda env list 激活环境 conda activate env_name 停用当前环境 conda deactivate 导出当前环境 conda env export &amp;gt; environment.</description>
+    </item>
     <item>
       <title>Android 下通过触发 SIGTRAP 信号实现反调试</title>
       <link>https://cyrus-studio.github.io/blog/posts/android-%E4%B8%8B%E9%80%9A%E8%BF%87%E8%A7%A6%E5%8F%91-sigtrap-%E4%BF%A1%E5%8F%B7%E5%AE%9E%E7%8E%B0%E5%8F%8D%E8%B0%83%E8%AF%95/</link>
@@ -63,13 +70,6 @@
       <pubDate>Sun, 29 Sep 2024 20:31:26 +0800</pubDate>
       <guid>https://cyrus-studio.github.io/blog/posts/%E4%BD%BF%E7%94%A8readelf%E5%88%86%E6%9E%90so%E6%96%87%E4%BB%B6/</guid>
       <description>版权归作者所有，如有转发，请注明文章出处：https://cyrus-studio.github.io/blog/&#xA;readelf readelf 是一个用于读取和显示 ELF（Executable and Linkable Format）文件信息的工具。虽然 readelf 工具本身是为 Unix-like 操作系统设计的，但你可以在 Windows 上通过 WSL 使用它。&#xA;WSL 允许你在 Windows 上运行 Linux 发行版，并且可以在其中使用 readelf 工具。&#xA;安装 WSL 打开 PowerShell 以管理员身份运行，并执行以下命令启用 WSL 并安装 Ubuntu 系统&#xA;wsl --install -d Ubuntu 然后设置用户账户和密码。 通过 wsl 命令进入 Ubuntu 系统。&#xA;在 wsl 中 /mnt/d 对应的就是 windows 下的 D 盘，其他同理。&#xA;使用 readelf 调用 readelf -a 一次性查看文件中的所有信息，包括文件头、程序头、节头、符号表、动态节等。&#xA;readelf -a libGameVMP.so&#xD;ELF Header:&#xD;Magic: 7f 45 4c 46 02 01 01 00 00 00 00 00 00 00 00 00&#xD;Class: ELF64&#xD;Data: 2&amp;#39;s complement, little endian&#xD;Version: 1 (current)&#xD;OS/ABI: UNIX - System V&#xD;ABI Version: 0&#xD;Type: DYN (Shared object file)&#xD;Machine: AArch64&#xD;Version: 0x1&#xD;Entry point address: 0x2650&#xD;Start of program headers: 64 (bytes into file)&#xD;Start of section headers: 130160 (bytes into file)&#xD;Flags: 0x0&#xD;Size of this header: 64 (bytes)&#xD;Size of program headers: 56 (bytes)&#xD;Number of program headers: 7&#xD;Size of section headers: 64 (bytes)&#xD;Number of section headers: 7&#xD;Section header string table index: 1&#xD;Section Headers:&#xD;[Nr] Name Type Address Offset&#xD;Size EntSize Flags Link Info Align&#xD;[ 0] NULL 0000000000000000 00000000&#xD;0000000000000000 0000000000000000 0 0 0&#xD;[ 1] .</description>
-    </item>
-    <item>
-      <title>使用Miniconda管理Python环境</title>
-      <link>https://cyrus-studio.github.io/blog/posts/%E4%BD%BF%E7%94%A8miniconda%E7%AE%A1%E7%90%86python%E7%8E%AF%E5%A2%83/</link>
-      <pubDate>Fri, 27 Sep 2024 09:10:20 +0800</pubDate>
-      <guid>https://cyrus-studio.github.io/blog/posts/%E4%BD%BF%E7%94%A8miniconda%E7%AE%A1%E7%90%86python%E7%8E%AF%E5%A2%83/</guid>
-      <description>版权归作者所有，如有转发，请注明文章出处：https://cyrus-studio.github.io/blog/&#xA;Miniconda Miniconda 是 Conda 的简化版本，只包含 Conda 包管理器和 Python 的最小安装包，提供了一种轻量级的环境管理和包管理工具。相比于 Anaconda，Miniconda 更小巧灵活，适合那些不需要 Anaconda 提供的完整生态的用户。&#xA;通过 Miniconda，开发者可以更高效地管理和定制自己的开发环境，避免不必要的依赖和资源浪费。&#xA;下载安装 Miniconda：https://docs.anaconda.com/miniconda/&#xA;把 Miniconda3 和 Miniconda3\Scripts 路径添加到 Path 系统环境变量 完成安装后，打开终端或命令提示符，输入&#xA;conda --version&#xD;python --version 如果显示版本号，说明安装成功。&#xA;创建环境 创建一个新的虚拟环境，指定特定版本的 Python&#xA;conda create -n anti-app python=3.12.6 列出当前可用的 Python 版本&#xA;conda search python 克隆环境 现有环境复制到新的环境&#xA;conda create --name new_env --clone old_env 删除环境 conda remove --name old_env --all 列出所有环境 conda env list 激活环境 conda activate env_name 停用当前环境 conda deactivate 导出当前环境 conda env export &amp;gt; environment.</description>
     </item>
     <item>
       <title>使用Charles抓包Android App数据</title>
