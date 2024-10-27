@@ -6,8 +6,15 @@
     <description>Recent content in Posts on CYRUS STUDIO</description>
     <generator>Hugo</generator>
     <language>zh-cn</language>
-    <lastBuildDate>Fri, 25 Oct 2024 23:27:31 +0800</lastBuildDate>
+    <lastBuildDate>Sun, 27 Oct 2024 21:06:25 +0800</lastBuildDate>
     <atom:link href="https://cyrus-studio.github.io/blog/posts/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>使用Miniconda管理Python环境</title>
+      <link>https://cyrus-studio.github.io/blog/posts/%E4%BD%BF%E7%94%A8miniconda%E7%AE%A1%E7%90%86python%E7%8E%AF%E5%A2%83/</link>
+      <pubDate>Sun, 27 Oct 2024 21:06:25 +0800</pubDate>
+      <guid>https://cyrus-studio.github.io/blog/posts/%E4%BD%BF%E7%94%A8miniconda%E7%AE%A1%E7%90%86python%E7%8E%AF%E5%A2%83/</guid>
+      <description>版权归作者所有，如有转发，请注明文章出处：https://cyrus-studio.github.io/blog/&#xA;Miniconda Miniconda 是 Conda 的简化版本，只包含 Conda 包管理器和 Python 的最小安装包，提供了一种轻量级的环境管理和包管理工具。相比于 Anaconda，Miniconda 更小巧灵活，适合那些不需要 Anaconda 提供的完整生态的用户。&#xA;通过 Miniconda，开发者可以更高效地管理和定制自己的开发环境，避免不必要的依赖和资源浪费。&#xA;下载安装 Miniconda：https://docs.anaconda.com/miniconda/&#xA;把 Miniconda3 和 Miniconda3\Scripts 路径添加到 Path 系统环境变量 完成安装后，打开终端或命令提示符，输入&#xA;conda --version&#xD;python --version 如果显示版本号，说明安装成功。&#xA;创建环境 创建一个新的虚拟环境，指定特定版本的 Python&#xA;conda create -n anti-app python=3.12.6 列出当前可用的 Python 版本&#xA;conda search python 克隆环境 现有环境复制到新的环境&#xA;conda create --name new_env --clone old_env 删除环境 conda remove --name old_env --all 列出所有环境 conda env list 激活环境 conda activate env_name 停用当前环境 conda deactivate 导出当前环境 conda env export &amp;gt; environment.</description>
+    </item>
     <item>
       <title>使用 IDA Tracing 动态跟踪 JNI 方法执行过程</title>
       <link>https://cyrus-studio.github.io/blog/posts/%E4%BD%BF%E7%94%A8-ida-tracing-%E5%8A%A8%E6%80%81%E8%B7%9F%E8%B8%AA-jni-%E6%96%B9%E6%B3%95%E6%89%A7%E8%A1%8C%E8%BF%87%E7%A8%8B/</link>
@@ -21,13 +28,6 @@
       <pubDate>Fri, 25 Oct 2024 22:39:53 +0800</pubDate>
       <guid>https://cyrus-studio.github.io/blog/posts/frida%E8%84%9A%E6%9C%AC%E8%87%AA%E5%8A%A8%E5%8C%96%E5%AF%BB%E5%9D%80jni%E6%96%B9%E6%B3%95/</guid>
       <description>版权归作者所有，如有转发，请注明文章出处：https://cyrus-studio.github.io/blog/&#xA;1. 通过 ArtMethod 结构体找到 jni 方法在内存中的地址，并把寻址方法通过 rpc.exports 暴露给 Python 脚本调用&#xA;jni_addr.js&#xA;let entry_point_from_jni_offset = -1;&#xD;/**&#xD;* 找到 entry_point_from_jni_ 在 ArtMethod 结构体中的偏移量（根据 Android 版本不同可能会变化）&#xD;*&#xD;* @returns {number} 返回 entry_point_from_jni_ 的偏移量，若未找到返回 -1&#xD;*/&#xD;function get_jni_offset() {&#xD;// 如果偏移量已经计算过（不为 -1），直接返回已保存的偏移量&#xD;if (entry_point_from_jni_offset !== -1) {&#xD;return entry_point_from_jni_offset;&#xD;}&#xD;// 获取 getUidForName JNI 方法的内存地址，该方法位于 &amp;#34;libandroid_runtime.so&amp;#34; 中&#xD;let native_addr = Module.findExportByName(&amp;#34;libandroid_runtime.so&amp;#34;, &amp;#34;_Z32android_os_Process_getUidForNameP7_JNIEnvP8_jobjectP8_jstring&amp;#34;);&#xD;// console.log(&amp;#34;native_addr:&amp;#34;,native_addr);&#xD;// 目标类名 &amp;#34;android.os.Process&amp;#34;&#xD;let className = &amp;#34;android.os.Process&amp;#34;;&#xD;// 使用 Java.</description>
-    </item>
-    <item>
-      <title>使用Miniconda管理Python环境</title>
-      <link>https://cyrus-studio.github.io/blog/posts/%E4%BD%BF%E7%94%A8miniconda%E7%AE%A1%E7%90%86python%E7%8E%AF%E5%A2%83/</link>
-      <pubDate>Mon, 21 Oct 2024 02:17:40 +0800</pubDate>
-      <guid>https://cyrus-studio.github.io/blog/posts/%E4%BD%BF%E7%94%A8miniconda%E7%AE%A1%E7%90%86python%E7%8E%AF%E5%A2%83/</guid>
-      <description>版权归作者所有，如有转发，请注明文章出处：https://cyrus-studio.github.io/blog/&#xA;Miniconda Miniconda 是 Conda 的简化版本，只包含 Conda 包管理器和 Python 的最小安装包，提供了一种轻量级的环境管理和包管理工具。相比于 Anaconda，Miniconda 更小巧灵活，适合那些不需要 Anaconda 提供的完整生态的用户。&#xA;通过 Miniconda，开发者可以更高效地管理和定制自己的开发环境，避免不必要的依赖和资源浪费。&#xA;下载安装 Miniconda：https://docs.anaconda.com/miniconda/&#xA;把 Miniconda3 和 Miniconda3\Scripts 路径添加到 Path 系统环境变量 完成安装后，打开终端或命令提示符，输入&#xA;conda --version&#xD;python --version 如果显示版本号，说明安装成功。&#xA;创建环境 创建一个新的虚拟环境，指定特定版本的 Python&#xA;conda create -n anti-app python=3.12.6 列出当前可用的 Python 版本&#xA;conda search python 克隆环境 现有环境复制到新的环境&#xA;conda create --name new_env --clone old_env 删除环境 conda remove --name old_env --all 列出所有环境 conda env list 激活环境 conda activate env_name 停用当前环境 conda deactivate 导出当前环境 conda env export &amp;gt; environment.</description>
     </item>
     <item>
       <title>Android 下通过触发 SIGTRAP 信号实现反调试</title>

@@ -1,6 +1,6 @@
 +++
 title = '使用Miniconda管理Python环境'
-date = 2024-10-21T02:17:40.125506+08:00
+date = 2024-10-27T21:06:25.038977+08:00
 draft = false
 +++
 
@@ -90,19 +90,22 @@ conda env create -f environment.yml
 
 ```
 安装指定package
-pip install pandas       
+pip install package_name       
 
 卸载指定package
-pip uninstall pandas       
+pip uninstall package_name       
 
 列出所有已安装的package
 pip list
 
-查看某个package的最新版本
-pip install requests==
+列出某个package的所有可用版本
+pip index versions package_name
+
+安装指定版本的package
+pip install package_name==1.2.0
 
 查看已安装package的信息
-pip show requests  
+pip show package_name  
 
 查看所有已安装package的当前版本和可用的最新版本
 pip list --outdated
