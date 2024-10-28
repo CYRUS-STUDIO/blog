@@ -1,6 +1,6 @@
 +++
 title = '使用 Frida Hook Android App'
-date = 2024-10-17T13:08:32.376470+08:00
+date = 2024-10-28T19:53:37.074923+08:00
 draft = false
 +++
 
@@ -274,6 +274,15 @@ Java.perform(function () {
 ```
 frida -H 127.0.0.1:1234 -l hook_hashmap.js -f com.shizhuang.duapp
 ```
+
+# __附加到当前设备的前台应用__
+
+
+-F 表示附加到前台应用程序
+```
+frida -H 127.0.0.1:1234 -F -l hook_addr.js
+```
+此命令会自动找到当前设备上的前台应用并附加到它，无需手动指定应用程序包名。
 
 # __附加到当前正在运行的进程__
 

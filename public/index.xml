@@ -6,8 +6,15 @@
     <description>Recent content on CYRUS STUDIO</description>
     <generator>Hugo</generator>
     <language>zh-cn</language>
-    <lastBuildDate>Mon, 28 Oct 2024 15:07:37 +0800</lastBuildDate>
+    <lastBuildDate>Mon, 28 Oct 2024 19:53:37 +0800</lastBuildDate>
     <atom:link href="https://cyrus-studio.github.io/blog/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>使用 Frida Hook Android App</title>
+      <link>https://cyrus-studio.github.io/blog/posts/%E4%BD%BF%E7%94%A8-frida-hook-android-app/</link>
+      <pubDate>Mon, 28 Oct 2024 19:53:37 +0800</pubDate>
+      <guid>https://cyrus-studio.github.io/blog/posts/%E4%BD%BF%E7%94%A8-frida-hook-android-app/</guid>
+      <description>版权归作者所有，如有转发，请注明文章出处：https://cyrus-studio.github.io/blog/&#xA;Frida Frida 通过注入自定义 JavaScript 代码，可以 Hook 函数、修改参数、监控函数调用和拦截返回值，适用于逆向工程、调试和安全分析等场景。&#xA;使用 Frida 前需要先下载和安装包括：&#xA;Frida 是核心库，提供 API 和功能。&#xA;Frida-Tool 是命令行工具，通常与 Frida 版本相对应。&#xA;Frida-Server 是运行在 Android 设备上的服务器端组件，允许 Frida 客户端与设备进行通信。&#xA;环境准备 1. 安装 Frida 和 Frida-tools pip install frida-tools 2. Frida-server 获取设备CPU架构&#xA;adb shell getprop ro.product.cpu.abi 下载与设备对应架构的 frida-server：https://github.com/frida/frida/releases 把 frida-server 推送到设备 /data/local/tmp 目录下&#xA;adb push D:\app逆向\Frida\frida-server-16.5.2-android-arm64 /data/local/tmp/fs 启动 frida-server&#xA;# 启用超级管理员&#xD;adb root&#xD;# 进入命令行&#xD;adb shell # 添加可执行权限&#xD;chmod +x /data/local/tmp/fs&#xD;# 启动frida-server&#xD;/data/local/tmp/fs 自定义Frida端口 frida-server 默认端口为 27042，如果想自定义端口可以通过下面的命令实现</description>
+    </item>
     <item>
       <title>编译自定义Linux内核，使WSL支持访问Windows下USB设备</title>
       <link>https://cyrus-studio.github.io/blog/posts/%E7%BC%96%E8%AF%91%E8%87%AA%E5%AE%9A%E4%B9%89linux%E5%86%85%E6%A0%B8%E4%BD%BFwsl%E6%94%AF%E6%8C%81%E8%AE%BF%E9%97%AEwindows%E4%B8%8Busb%E8%AE%BE%E5%A4%87/</link>
@@ -49,13 +56,6 @@
       <pubDate>Fri, 18 Oct 2024 22:55:01 +0800</pubDate>
       <guid>https://cyrus-studio.github.io/blog/posts/android-%E4%B8%8B%E9%80%9A%E8%BF%87%E8%A7%A6%E5%8F%91-sigtrap-%E4%BF%A1%E5%8F%B7%E5%AE%9E%E7%8E%B0%E5%8F%8D%E8%B0%83%E8%AF%95/</guid>
       <description>版权归作者所有，如有转发，请注明文章出处：https://cyrus-studio.github.io/blog/&#xA;详细的 Linux 信号列表 Linux 信号是一种用于进程间通信（IPC）和异常处理的机制。以下是详细的 Linux 信号列表，包含信号名称、默认行为及用途&#xA;信号编号 信号名称 默认行为 说明 1 SIGHUP 终止进程 终止控制终端或配置文件发生变化时发出。 2 SIGINT 终止进程 来自用户输入（通常是 Ctrl+C）。 3 SIGQUIT 终止进程并生成core文件 来自用户输入（通常是 Ctrl+\）。 4 SIGILL 终止进程并生成core文件 非法指令执行。 5 SIGTRAP 终止进程并生成core文件 调试陷阱。 6 SIGABRT 终止进程并生成core文件 调用 abort 函数时发出。 7 SIGBUS 终止进程并生成core文件 总线错误（内存访问不对齐）。 8 SIGFPE 终止进程并生成core文件 浮点运算错误。 9 SIGKILL 终止进程 强制终止进程，无法被捕获或忽略。 10 SIGUSR1 终止进程 用户自定义信号 1。 11 SIGSEGV 终止进程并生成core文件 无效的内存访问。 12 SIGUSR2 终止进程 用户自定义信号 2。 13 SIGPIPE 终止进程 向没有读取端的管道写入数据时发出。 14 SIGALRM 终止进程 由 alarm 函数发出的定时器信号。 15 SIGTERM 终止进程 请求终止进程，可以被捕获和忽略。 16 SIGSTKFLT 终止进程 协处理器栈错误。 17 SIGCHLD 忽略 子进程停止或终止时发出。 18 SIGCONT 继续执行 让停止的进程继续运行。 19 SIGSTOP 停止进程 停止进程，无法被捕获或忽略。 20 SIGTSTP 停止进程 来自用户输入的停止信号（通常是 Ctrl+Z）。 21 SIGTTIN 停止进程 后台进程尝试从终端读取输入时发出。 22 SIGTTOU 停止进程 后台进程尝试向终端写入输出时发出。 23 SIGURG 忽略 套接字有紧急数据到达时发出。 24 SIGXCPU 终止进程 超出 CPU 时间限制。 25 SIGXFSZ 终止进程 超出文件大小限制。 26 SIGVTALRM 终止进程 虚拟时钟信号，由 27 SIGPROF 终止进程 定时器到期，由 28 SIGWINCH 忽略 终端窗口大小改变时发出。 29 SIGIO 忽略 I/O 事件发生时发出。 30 SIGPWR 终止进程 电源故障时发出。 31 SIGSYS 终止进程并生成core文件 非法的系统调用。 此外，Linux 还支持实时信号（Real-Time Signals），编号从 32 开始，通常是用于用户自定义的信号，应用程序可根据需要使用这些信号。</description>
-    </item>
-    <item>
-      <title>使用 Frida Hook Android App</title>
-      <link>https://cyrus-studio.github.io/blog/posts/%E4%BD%BF%E7%94%A8-frida-hook-android-app/</link>
-      <pubDate>Thu, 17 Oct 2024 13:08:32 +0800</pubDate>
-      <guid>https://cyrus-studio.github.io/blog/posts/%E4%BD%BF%E7%94%A8-frida-hook-android-app/</guid>
-      <description>版权归作者所有，如有转发，请注明文章出处：https://cyrus-studio.github.io/blog/&#xA;Frida Frida 通过注入自定义 JavaScript 代码，可以 Hook 函数、修改参数、监控函数调用和拦截返回值，适用于逆向工程、调试和安全分析等场景。&#xA;使用 Frida 前需要先下载和安装包括：&#xA;Frida 是核心库，提供 API 和功能。&#xA;Frida-Tool 是命令行工具，通常与 Frida 版本相对应。&#xA;Frida-Server 是运行在 Android 设备上的服务器端组件，允许 Frida 客户端与设备进行通信。&#xA;环境准备 1. 安装 Frida 和 Frida-tools pip install frida-tools 2. Frida-server 获取设备CPU架构&#xA;adb shell getprop ro.product.cpu.abi 下载与设备对应架构的 frida-server：https://github.com/frida/frida/releases 把 frida-server 推送到设备 /data/local/tmp 目录下&#xA;adb push D:\app逆向\Frida\frida-server-16.5.2-android-arm64 /data/local/tmp/fs 启动 frida-server&#xA;# 启用超级管理员&#xD;adb root&#xD;# 进入命令行&#xD;adb shell # 添加可执行权限&#xD;chmod +x /data/local/tmp/fs&#xD;# 启动frida-server&#xD;/data/local/tmp/fs 自定义Frida端口 frida-server 默认端口为 27042，如果想自定义端口可以通过下面的命令实现</description>
     </item>
     <item>
       <title>unidbg console debugger 调试技巧</title>
