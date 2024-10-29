@@ -1,6 +1,6 @@
 +++
 title = '使用 Frida 定位 JNI 方法内存地址'
-date = 2024-10-29T16:59:40.434242+08:00
+date = 2024-10-29T18:42:24.390313+08:00
 draft = false
 +++
 
@@ -180,7 +180,7 @@ function printModuleInfo(address) {
     const module = Process.findModuleByAddress(targetAddress);
 
     if (module !== null) {
-        console.log("[+] 地址 " + targetAddress + " 所在模块信息：");
+        console.log("[+] 地址 " + targetAddress + " 所在模块信息");
         console.log("    - 模块名称: " + module.name);
         console.log("    - 基址: " + module.base);
         console.log("    - 大小: " + module.size + " bytes");
@@ -213,97 +213,94 @@ function printModuleInfo(address) {
 methodName-> public static native byte lte.NCall.IB(java.lang.Object[])
 Func.offset== libGameVMP.so 0xDFA8
 Func.getArtMethod->native_addr: 0X747DB9AFA8
-[+] 地址 0x747db9afa8 所在模块信息：
+[+] 地址 0x747db9afa8 所在模块信息
     - 模块名称: libGameVMP.so
     - 基址: 0x747db8d000
     - 大小: 462848 bytes
 methodName-> public static native char lte.NCall.IC(java.lang.Object[])
 Func.offset== libGameVMP.so 0xDFA8
 Func.getArtMethod->native_addr: 0X747DB9AFA8
-[+] 地址 0x747db9afa8 所在模块信息：
+[+] 地址 0x747db9afa8 所在模块信息
     - 模块名称: libGameVMP.so
     - 基址: 0x747db8d000
     - 大小: 462848 bytes
 methodName-> public static native double lte.NCall.ID(java.lang.Object[])
 Func.offset== libGameVMP.so 0xE028
 Func.getArtMethod->native_addr: 0X747DB9B028
-[+] 地址 0x747db9b028 所在模块信息：
+[+] 地址 0x747db9b028 所在模块信息
     - 模块名称: libGameVMP.so
     - 基址: 0x747db8d000
     - 大小: 462848 bytes
 methodName-> public static native float lte.NCall.IF(java.lang.Object[])
 Func.offset== libGameVMP.so 0xDFE8
 Func.getArtMethod->native_addr: 0X747DB9AFE8
-[+] 地址 0x747db9afe8 所在模块信息：
+[+] 地址 0x747db9afe8 所在模块信息
     - 模块名称: libGameVMP.so
     - 基址: 0x747db8d000
     - 大小: 462848 bytes
 methodName-> public static native int lte.NCall.II(java.lang.Object[])
 Func.offset== libGameVMP.so 0xDFA8
 Func.getArtMethod->native_addr: 0X747DB9AFA8
-[+] 地址 0x747db9afa8 所在模块信息：
+[+] 地址 0x747db9afa8 所在模块信息
     - 模块名称: libGameVMP.so
     - 基址: 0x747db8d000
     - 大小: 462848 bytes
 methodName-> public static native long lte.NCall.IJ(java.lang.Object[])
 Func.offset== libGameVMP.so 0xDFA8
 Func.getArtMethod->native_addr: 0X747DB9AFA8
-[+] 地址 0x747db9afa8 所在模块信息：
+[+] 地址 0x747db9afa8 所在模块信息
     - 模块名称: libGameVMP.so
     - 基址: 0x747db8d000
     - 大小: 462848 bytes
 methodName-> public static native java.lang.Object lte.NCall.IL(java.lang.Object[])
 Func.offset== libGameVMP.so 0xDFA8
 Func.getArtMethod->native_addr: 0X747DB9AFA8
-[+] 地址 0x747db9afa8 所在模块信息：
+[+] 地址 0x747db9afa8 所在模块信息
     - 模块名称: libGameVMP.so
     - 基址: 0x747db8d000
     - 大小: 462848 bytes
 methodName-> public static native short lte.NCall.IS(java.lang.Object[])
 Func.offset== libGameVMP.so 0xDFA8
 Func.getArtMethod->native_addr: 0X747DB9AFA8
-[+] 地址 0x747db9afa8 所在模块信息：
+[+] 地址 0x747db9afa8 所在模块信息
     - 模块名称: libGameVMP.so
     - 基址: 0x747db8d000
     - 大小: 462848 bytes
 methodName-> public static native void lte.NCall.IV(java.lang.Object[])
 Func.offset== libGameVMP.so 0xDFA8
 Func.getArtMethod->native_addr: 0X747DB9AFA8
-[+] 地址 0x747db9afa8 所在模块信息：
+[+] 地址 0x747db9afa8 所在模块信息
     - 模块名称: libGameVMP.so
     - 基址: 0x747db8d000
     - 大小: 462848 bytes
 methodName-> public static native boolean lte.NCall.IZ(java.lang.Object[])
 Func.offset== libGameVMP.so 0xDFA8
 Func.getArtMethod->native_addr: 0X747DB9AFA8
-[+] 地址 0x747db9afa8 所在模块信息：
+[+] 地址 0x747db9afa8 所在模块信息
     - 模块名称: libGameVMP.so
     - 基址: 0x747db8d000
     - 大小: 462848 bytes
 methodName-> public static native int lte.NCall.dI(int)
 Func.offset== libGameVMP.so 0xB93C
 Func.getArtMethod->native_addr: 0X747DB9893C
-[+] 地址 0x747db9893c 所在模块信息：
+[+] 地址 0x747db9893c 所在模块信息
     - 模块名称: libGameVMP.so
     - 基址: 0x747db8d000
     - 大小: 462848 bytes
 methodName-> public static native long lte.NCall.dL(long)
 Func.offset== libGameVMP.so 0xBAD0
 Func.getArtMethod->native_addr: 0X747DB98AD0
-[+] 地址 0x747db98ad0 所在模块信息：
+[+] 地址 0x747db98ad0 所在模块信息
     - 模块名称: libGameVMP.so
     - 基址: 0x747db8d000
     - 大小: 462848 bytes
 methodName-> public static native java.lang.String lte.NCall.dS(java.lang.String)
 Func.offset== libGameVMP.so 0xBAEC
 Func.getArtMethod->native_addr: 0X747DB98AEC
-[+] 地址 0x747db98aec 所在模块信息：
-
--     - 模块名称: libGameVMP.so
-
--     - 基址: 0x747db8d000
-
--     - 大小: 462848 bytes
+[+] 地址 0x747db98aec 所在模块信息
+    - 模块名称: libGameVMP.so
+    - 基址: 0x747db8d000
+    - 大小: 462848 bytes
 ```
 
 比如，native 方法 lte.NCall.IL 在 libGameVMP.so 中偏移量为 0xDFA8。

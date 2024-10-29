@@ -1,6 +1,6 @@
 +++
 title = 'frida脚本，自动化寻址JNI方法'
-date = 2024-10-29T16:59:40.349565+08:00
+date = 2024-10-29T18:39:06.871634+08:00
 draft = false
 +++
 
@@ -217,13 +217,10 @@ if __name__ == "__main__":
 methodName-> public static native java.lang.Object lte.NCall.IL(java.lang.Object[])
 Func.offset== libGameVMP.so 0xDFA8
 Func.getArtMethod->native_addr: 0X747DB9AFA8
-[+] 地址 0x747db9afa8 所在模块信息：
-
--     - 模块名称: libGameVMP.so
-
--     - 基址: 0x747db8d000
-
--     - 大小: 462848 bytes
+[+] 地址 0x747db9afa8 所在模块信息
+    - 模块名称: libGameVMP.so
+    - 基址: 0x747db8d000
+    - 大小: 462848 bytes
 ```
 
 具体原理可以参考这篇文章【[使用 Frida 定位 JNI 方法内存地址](https://cyrus-studio.github.io/blog/posts/%E4%BD%BF%E7%94%A8-frida-%E5%AE%9A%E4%BD%8D-jni-%E6%96%B9%E6%B3%95%E5%86%85%E5%AD%98%E5%9C%B0%E5%9D%80/)】
