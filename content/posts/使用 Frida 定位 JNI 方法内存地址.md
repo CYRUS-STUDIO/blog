@@ -1,6 +1,6 @@
 +++
 title = '使用 Frida 定位 JNI 方法内存地址'
-date = 2024-10-11T05:26:31.090636+08:00
+date = 2024-10-29T16:59:40.434242+08:00
 draft = false
 +++
 
@@ -96,62 +96,103 @@ function get_jni_offset() {
 /**
  * 遍历类中的 native 方法，打印 JNI 函数的地址、所属模块，以及模块中的偏移量。
  *
+ * 调用示例：get_jni_method_addr("lte.NCall")
+ *
  * @param className 类名
  */
 function get_jni_method_addr(className) {
+    Java.perform(function () {
+        // 获取指定类的 Class 对象
+        let obj = Java.use(className);
+        let clazz = obj.class;
 
-    // 获取指定类的 Class 对象
-    let obj = Java.use(className);
-    let clazz = obj.class;
+        // 获取当前系统的 JNI 偏移量
+        let jni_offset = get_jni_offset();
 
-    // 获取当前系统的 JNI 偏移量
-    let jni_offset = get_jni_offset();
+        // 获取该类中的所有声明的方法
+        let methods = clazz.getDeclaredMethods();
 
-    // 获取该类中的所有声明的方法
-    let methods = clazz.getDeclaredMethods();
+        // 遍历类中的所有方法
+        for (let i = 0; i < methods.length; i++) {
 
-    // 遍历类中的所有方法
-    for (let i = 0; i < methods.length; i++) {
+            // 将方法转为字符串形式（完整的描述，包括修饰符、返回类型、参数等）
+            let methodName = methods[i].toString();
 
-        // 将方法转为字符串形式（完整的描述，包括修饰符、返回类型、参数等）
-        let methodName = methods[i].toString();
+            // 获取方法的修饰符，flags 代表访问权限和其他属性（如 native 修饰符）
+            let flags = methods[i].getModifiers();
 
-        // 获取方法的修饰符，flags 代表访问权限和其他属性（如 native 修饰符）
-        let flags = methods[i].getModifiers();
+            // 检查该方法是否为 native 方法（通过与 256 位运算判断，256 代表 native 修饰符）
+            if (flags & 256) {
 
-        // 检查该方法是否为 native 方法（通过与 256 位运算判断，256 代表 native 修饰符）
-        if (flags & 256) {
+                // 获取该方法的 ArtMethod 对象，ArtMethod 是方法在 ART 虚拟机中的内部表示
+                let art_method = methods[i].getArtMethod();
 
-            // 获取该方法的 ArtMethod 对象，ArtMethod 是方法在 ART 虚拟机中的内部表示
-            let art_method = methods[i].getArtMethod();
+                // 通过 ArtMethod 的内存地址 + jni_offset = JNI 函数地址
+                let native_addr = Memory.readPointer(ptr(art_method + jni_offset));
 
-            // 通过 ArtMethod 的内存地址 + jni_offset = JNI 函数地址
-            let native_addr = Memory.readPointer(ptr(art_method + jni_offset));
+                // 根据 JNI 函数地址中找到所在的模块，并计算该函数在模块中的偏移量
+                let module;
+                let offset;
 
-            // 根据 JNI 函数地址中找到所在的模块，并计算该函数在模块中的偏移量
-            let module;
-            let offset;
+                // 打印方法名
+                console.log("methodName->", methodName);
+                try {
+                    // 通过函数地址找到所属的模块
+                    module = Process.getModuleByAddress(native_addr);
 
-            // 打印方法名
-            console.log("methodName->", methodName);
-            try {
-                // 通过函数地址找到所属的模块
-                module = Process.getModuleByAddress(native_addr);
+                    // 计算函数在模块中的偏移量（函数地址减去模块基地址）
+                    offset = native_addr - module.base;
 
-                // 计算函数在模块中的偏移量（函数地址减去模块基地址）
-                offset = native_addr - module.base;
+                    // 打印模块名称及偏移量，偏移量以十六进制格式显示，并且字母大写
+                    console.log("Func.offset==", module.name, "0x" + offset.toString(16).toUpperCase());
+                } catch (err) {
 
-                // 打印模块名称及偏移量，偏移量以十六进制格式显示，并且字母大写
-                console.log("Func.offset==", module.name, "0x" + offset.toString(16).toUpperCase());
-            } catch (err) {
-                
+                }
+
+                // 打印该方法的 JNI 函数地址
+                console.log("Func.getArtMethod->native_addr:", native_addr.toString().toUpperCase());
+
+                printModuleInfo(native_addr)
+
+                // console.log("Func.flags->", flags);
             }
-
-            // 打印该方法的 JNI 函数地址
-            console.log("Func.getArtMethod->native_addr:", native_addr.toString().toUpperCase());
-            
-            // console.log("Func.flags->", flags);
         }
+    })
+}
+
+// 暴露给 Python 调用（注意：exports中函数名需要全部小写，而且不能有下划线，不然会找不到方法）
+rpc.exports.getjnimethodaddr = get_jni_method_addr
+```
+
+# __根据函数地址打印所在模块信息__
+
+```
+/**
+ * 根据函数地址打印所在模块信息
+ *
+ * @param address 函数内存地址
+ */
+function printModuleInfo(address) {
+    // 将传入的地址转换为 Frida 可处理的指针类型
+    const targetAddress = ptr(address);
+
+    // 查找该地址所在的模块
+    const module = Process.findModuleByAddress(targetAddress);
+
+    if (module !== null) {
+        console.log("[+] 地址 " + targetAddress + " 所在模块信息：");
+        console.log("    - 模块名称: " + module.name);
+        console.log("    - 基址: " + module.base);
+        console.log("    - 大小: " + module.size + " bytes");
+        // console.log("    - 文件路径: " + module.path);
+
+        // 遍历并打印该模块的所有导出符号
+        // console.log("    - 导出符号:");
+        // module.enumerateExports().forEach(function (exp) {
+        //     console.log("        " + exp.name + " @ " + exp.address);
+        // });
+    } else {
+        console.log("[-] 无法找到该地址所在的模块。请检查地址是否正确。");
     }
 }
 ```
@@ -169,46 +210,100 @@ function get_jni_method_addr(className) {
 
 输出如下
 ```
-
 methodName-> public static native byte lte.NCall.IB(java.lang.Object[])
 Func.offset== libGameVMP.so 0xDFA8
-Func.getArtMethod->native_addr: 0X72E9D19FA8
+Func.getArtMethod->native_addr: 0X747DB9AFA8
+[+] 地址 0x747db9afa8 所在模块信息：
+    - 模块名称: libGameVMP.so
+    - 基址: 0x747db8d000
+    - 大小: 462848 bytes
 methodName-> public static native char lte.NCall.IC(java.lang.Object[])
 Func.offset== libGameVMP.so 0xDFA8
-Func.getArtMethod->native_addr: 0X72E9D19FA8
+Func.getArtMethod->native_addr: 0X747DB9AFA8
+[+] 地址 0x747db9afa8 所在模块信息：
+    - 模块名称: libGameVMP.so
+    - 基址: 0x747db8d000
+    - 大小: 462848 bytes
 methodName-> public static native double lte.NCall.ID(java.lang.Object[])
 Func.offset== libGameVMP.so 0xE028
-Func.getArtMethod->native_addr: 0X72E9D1A028
+Func.getArtMethod->native_addr: 0X747DB9B028
+[+] 地址 0x747db9b028 所在模块信息：
+    - 模块名称: libGameVMP.so
+    - 基址: 0x747db8d000
+    - 大小: 462848 bytes
 methodName-> public static native float lte.NCall.IF(java.lang.Object[])
 Func.offset== libGameVMP.so 0xDFE8
-Func.getArtMethod->native_addr: 0X72E9D19FE8
+Func.getArtMethod->native_addr: 0X747DB9AFE8
+[+] 地址 0x747db9afe8 所在模块信息：
+    - 模块名称: libGameVMP.so
+    - 基址: 0x747db8d000
+    - 大小: 462848 bytes
 methodName-> public static native int lte.NCall.II(java.lang.Object[])
 Func.offset== libGameVMP.so 0xDFA8
-Func.getArtMethod->native_addr: 0X72E9D19FA8
+Func.getArtMethod->native_addr: 0X747DB9AFA8
+[+] 地址 0x747db9afa8 所在模块信息：
+    - 模块名称: libGameVMP.so
+    - 基址: 0x747db8d000
+    - 大小: 462848 bytes
 methodName-> public static native long lte.NCall.IJ(java.lang.Object[])
 Func.offset== libGameVMP.so 0xDFA8
-Func.getArtMethod->native_addr: 0X72E9D19FA8
+Func.getArtMethod->native_addr: 0X747DB9AFA8
+[+] 地址 0x747db9afa8 所在模块信息：
+    - 模块名称: libGameVMP.so
+    - 基址: 0x747db8d000
+    - 大小: 462848 bytes
 methodName-> public static native java.lang.Object lte.NCall.IL(java.lang.Object[])
 Func.offset== libGameVMP.so 0xDFA8
-Func.getArtMethod->native_addr: 0X72E9D19FA8
+Func.getArtMethod->native_addr: 0X747DB9AFA8
+[+] 地址 0x747db9afa8 所在模块信息：
+    - 模块名称: libGameVMP.so
+    - 基址: 0x747db8d000
+    - 大小: 462848 bytes
 methodName-> public static native short lte.NCall.IS(java.lang.Object[])
 Func.offset== libGameVMP.so 0xDFA8
-Func.getArtMethod->native_addr: 0X72E9D19FA8
+Func.getArtMethod->native_addr: 0X747DB9AFA8
+[+] 地址 0x747db9afa8 所在模块信息：
+    - 模块名称: libGameVMP.so
+    - 基址: 0x747db8d000
+    - 大小: 462848 bytes
 methodName-> public static native void lte.NCall.IV(java.lang.Object[])
 Func.offset== libGameVMP.so 0xDFA8
-Func.getArtMethod->native_addr: 0X72E9D19FA8
+Func.getArtMethod->native_addr: 0X747DB9AFA8
+[+] 地址 0x747db9afa8 所在模块信息：
+    - 模块名称: libGameVMP.so
+    - 基址: 0x747db8d000
+    - 大小: 462848 bytes
 methodName-> public static native boolean lte.NCall.IZ(java.lang.Object[])
 Func.offset== libGameVMP.so 0xDFA8
-Func.getArtMethod->native_addr: 0X72E9D19FA8
+Func.getArtMethod->native_addr: 0X747DB9AFA8
+[+] 地址 0x747db9afa8 所在模块信息：
+    - 模块名称: libGameVMP.so
+    - 基址: 0x747db8d000
+    - 大小: 462848 bytes
 methodName-> public static native int lte.NCall.dI(int)
 Func.offset== libGameVMP.so 0xB93C
-Func.getArtMethod->native_addr: 0X72E9D1793C
+Func.getArtMethod->native_addr: 0X747DB9893C
+[+] 地址 0x747db9893c 所在模块信息：
+    - 模块名称: libGameVMP.so
+    - 基址: 0x747db8d000
+    - 大小: 462848 bytes
 methodName-> public static native long lte.NCall.dL(long)
 Func.offset== libGameVMP.so 0xBAD0
-Func.getArtMethod->native_addr: 0X72E9D17AD0
+Func.getArtMethod->native_addr: 0X747DB98AD0
+[+] 地址 0x747db98ad0 所在模块信息：
+    - 模块名称: libGameVMP.so
+    - 基址: 0x747db8d000
+    - 大小: 462848 bytes
 methodName-> public static native java.lang.String lte.NCall.dS(java.lang.String)
 Func.offset== libGameVMP.so 0xBAEC
-Func.getArtMethod->native_addr: 0X72E9D17AEC
+Func.getArtMethod->native_addr: 0X747DB98AEC
+[+] 地址 0x747db98aec 所在模块信息：
+
+-     - 模块名称: libGameVMP.so
+
+-     - 基址: 0x747db8d000
+
+-     - 大小: 462848 bytes
 ```
 
 比如，native 方法 lte.NCall.IL 在 libGameVMP.so 中偏移量为 0xDFA8。

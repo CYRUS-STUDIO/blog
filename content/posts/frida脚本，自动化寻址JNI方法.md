@@ -1,6 +1,6 @@
 +++
 title = 'frida脚本，自动化寻址JNI方法'
-date = 2024-10-25T22:39:53.725659+08:00
+date = 2024-10-29T16:59:40.349565+08:00
 draft = false
 +++
 
@@ -134,10 +134,42 @@ function get_jni_method_addr(className) {
                 // 打印该方法的 JNI 函数地址
                 console.log("Func.getArtMethod->native_addr:", native_addr.toString().toUpperCase());
 
+                printModuleInfo(native_addr)
+
                 // console.log("Func.flags->", flags);
             }
         }
     })
+}
+
+
+/**
+ * 根据函数地址打印所在模块信息
+ *
+ * @param address 函数内存地址
+ */
+function printModuleInfo(address) {
+    // 将传入的地址转换为 Frida 可处理的指针类型
+    const targetAddress = ptr(address);
+
+    // 查找该地址所在的模块
+    const module = Process.findModuleByAddress(targetAddress);
+
+    if (module !== null) {
+        console.log("[+] 地址 " + targetAddress + " 所在模块信息：");
+        console.log("    - 模块名称: " + module.name);
+        console.log("    - 基址: " + module.base);
+        console.log("    - 大小: " + module.size + " bytes");
+        // console.log("    - 文件路径: " + module.path);
+
+        // 遍历并打印该模块的所有导出符号
+        // console.log("    - 导出符号:");
+        // module.enumerateExports().forEach(function (exp) {
+        //     console.log("        " + exp.name + " @ " + exp.address);
+        // });
+    } else {
+        console.log("[-] 无法找到该地址所在的模块。请检查地址是否正确。");
+    }
 }
 
 // 暴露给 Python 调用（注意：exports中函数名需要全部小写，而且不能有下划线，不然会找不到方法）
@@ -182,9 +214,16 @@ if __name__ == "__main__":
 
 运行python脚本，执行结果如下
 ```
-methodName-> public final native java.lang.String com.cyrus.example.MainActivity.getNativeString()
-Func.offset== libnative-lib.so 0x24F10
-Func.getArtMethod->native_addr: 0X77518B6F10
+methodName-> public static native java.lang.Object lte.NCall.IL(java.lang.Object[])
+Func.offset== libGameVMP.so 0xDFA8
+Func.getArtMethod->native_addr: 0X747DB9AFA8
+[+] 地址 0x747db9afa8 所在模块信息：
+
+-     - 模块名称: libGameVMP.so
+
+-     - 基址: 0x747db8d000
+
+-     - 大小: 462848 bytes
 ```
 
 具体原理可以参考这篇文章【[使用 Frida 定位 JNI 方法内存地址](https://cyrus-studio.github.io/blog/posts/%E4%BD%BF%E7%94%A8-frida-%E5%AE%9A%E4%BD%8D-jni-%E6%96%B9%E6%B3%95%E5%86%85%E5%AD%98%E5%9C%B0%E5%9D%80/)】
