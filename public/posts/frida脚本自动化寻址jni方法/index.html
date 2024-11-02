@@ -1,6 +1,6 @@
 <!doctype html>
 <html lang="zh-cn">
-  <head>
+  <head><script src="/blog/livereload.js?mindelay=10&amp;v=2&amp;port=1313&amp;path=blog/livereload" data-no-instant defer></script>
     <title>frida脚本，自动化寻址JNI方法 // CYRUS STUDIO</title>
     <link rel="shortcut icon" href="/favicon.ico" />
     <meta charset="utf-8" />
@@ -23,7 +23,7 @@
 jni_addr.js
 let entry_point_from_jni_offset = -1;/*** 找到 entry_point_from_jni_ 在 ArtMethod 结构体中的偏移量（根据 Android 版本不同可能会变化）** @returns {number} 返回 entry_point_from_jni_ 的偏移量，若未找到返回 -1*/function get_jni_offset() {// 如果偏移量已经计算过（不为 -1），直接返回已保存的偏移量if (entry_point_from_jni_offset !== -1) {return entry_point_from_jni_offset;}// 获取 getUidForName JNI 方法的内存地址，该方法位于 &#34;libandroid_runtime.so&#34; 中let native_addr = Module.findExportByName(&#34;libandroid_runtime.so&#34;, &#34;_Z32android_os_Process_getUidForNameP7_JNIEnvP8_jobjectP8_jstring&#34;);// console.log(&#34;native_addr:&#34;,native_addr);// 目标类名 &#34;android.os.Process&#34;let className = &#34;android.os.Process&#34;;// 使用 Java.">
 
-    <meta property="og:url" content="https://cyrus-studio.github.io/blog/posts/frida%E8%84%9A%E6%9C%AC%E8%87%AA%E5%8A%A8%E5%8C%96%E5%AF%BB%E5%9D%80jni%E6%96%B9%E6%B3%95/">
+    <meta property="og:url" content="http://localhost:1313/blog/posts/frida%E8%84%9A%E6%9C%AC%E8%87%AA%E5%8A%A8%E5%8C%96%E5%AF%BB%E5%9D%80jni%E6%96%B9%E6%B3%95/">
   <meta property="og:site_name" content="CYRUS STUDIO">
   <meta property="og:title" content="frida脚本，自动化寻址JNI方法">
   <meta property="og:description" content="版权归作者所有，如有转发，请注明文章出处：https://cyrus-studio.github.io/blog/
@@ -40,7 +40,7 @@ let entry_point_from_jni_offset = -1;/*** 找到 entry_point_from_jni_ 在 Art
   </head>
   <body>
     <header class="app-header">
-      <a href="https://cyrus-studio.github.io/blog/"><img class="app-header-avatar" src="/blog/avatar.jpg" alt="John Doe" /></a>
+      <a href="http://localhost:1313/blog/"><img class="app-header-avatar" src="/blog/avatar.jpg" alt="John Doe" /></a>
       <span class="app-header-title">CYRUS STUDIO</span>
       <nav class="app-header-menu">
           <a class="app-header-menu-item" href="/blog/">Home</a>
