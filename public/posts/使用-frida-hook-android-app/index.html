@@ -1,6 +1,6 @@
 <!doctype html>
 <html lang="zh-cn">
-  <head>
+  <head><script src="/blog/livereload.js?mindelay=10&amp;v=2&amp;port=1313&amp;path=blog/livereload" data-no-instant defer></script>
     <title>使用 Frida Hook Android App // CYRUS STUDIO</title>
     <link rel="shortcut icon" href="/favicon.ico" />
     <meta charset="utf-8" />
@@ -29,7 +29,7 @@ adb shell getprop ro.product.cpu.abi 下载与设备对应架构的 frida-server
 adb push D:\app逆向\Frida\frida-server-16.5.2-android-arm64 /data/local/tmp/fs 启动 frida-server
 # 启用超级管理员adb root# 进入命令行adb shell # 添加可执行权限chmod &#43;x /data/local/tmp/fs# 启动frida-server/data/local/tmp/fs 自定义Frida端口 frida-server 默认端口为 27042，如果想自定义端口可以通过下面的命令实现">
 
-    <meta property="og:url" content="https://cyrus-studio.github.io/blog/posts/%E4%BD%BF%E7%94%A8-frida-hook-android-app/">
+    <meta property="og:url" content="http://localhost:1313/blog/posts/%E4%BD%BF%E7%94%A8-frida-hook-android-app/">
   <meta property="og:site_name" content="CYRUS STUDIO">
   <meta property="og:title" content="使用 Frida Hook Android App">
   <meta property="og:description" content="版权归作者所有，如有转发，请注明文章出处：https://cyrus-studio.github.io/blog/
@@ -52,7 +52,7 @@ adb push D:\app逆向\Frida\frida-server-16.5.2-android-arm64 /data/local/tmp/fs
   </head>
   <body>
     <header class="app-header">
-      <a href="https://cyrus-studio.github.io/blog/"><img class="app-header-avatar" src="/blog/avatar.jpg" alt="John Doe" /></a>
+      <a href="http://localhost:1313/blog/"><img class="app-header-avatar" src="/blog/avatar.jpg" alt="John Doe" /></a>
       <span class="app-header-title">CYRUS STUDIO</span>
       <nav class="app-header-menu">
           <a class="app-header-menu-item" href="/blog/">Home</a>

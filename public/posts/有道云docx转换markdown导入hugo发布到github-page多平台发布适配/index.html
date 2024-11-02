@@ -1,6 +1,6 @@
 <!doctype html>
 <html lang="zh-cn">
-  <head>
+  <head><script src="/blog/livereload.js?mindelay=10&amp;v=2&amp;port=1313&amp;path=blog/livereload" data-no-instant defer></script>
     <title>有道云docx转换markdown，导入hugo发布到github page，多平台发布适配 // CYRUS STUDIO</title>
     <link rel="shortcut icon" href="/favicon.ico" />
     <meta charset="utf-8" />
@@ -31,7 +31,7 @@ pip install mammoth 自定义代码块样式
 def ynote_docx_markdown_transform(document):...passresult = convert_to_markdown(docx_file, transform_document=ynote_docx_markdown_transform) 通过在自定义 transform 断点调试可以看到 document 都是由一个一个 Paragraph 组成的，代码块的 Bookmark 的 name 都是相同的，由此代码块其中一个特征就是相同且相邻的 Bookmark name。 但是有的代码块只是单独的一段 这时可以通过自定义 代码/bash 特征判断该 Paragraph 中的 Text 是不是一段 代码/bash。
 def is_possible_code_or_bash(text):# 常见的代码关键字code_keywords = [r&#39;\bif\b&#39;, r&#39;\bfor\b&#39;, r&#39;\bwhile\b&#39;, r&#39;\bdef\b&#39;, r&#39;\bclass\b&#39;, r&#39;\breturn\b&#39;, r&#39;\bimport\b&#39;,r&#39;\bint\b&#39;, r&#39;\bfloat\b&#39;, r&#39;\bmain\b&#39;, r&#39;\binclude\b&#39;, r&#39;#include&#39;, r&#39;\becho\b&#39;, r&#39;\bcd\b&#39;,r&#39;\bgrep\b&#39;, r&#39;\bexit\b&#39;, r&#39;\belse\b&#39;, r&#39;\belif\b&#39;, r&#39;#!">
 
-    <meta property="og:url" content="https://cyrus-studio.github.io/blog/posts/%E6%9C%89%E9%81%93%E4%BA%91docx%E8%BD%AC%E6%8D%A2markdown%E5%AF%BC%E5%85%A5hugo%E5%8F%91%E5%B8%83%E5%88%B0github-page%E5%A4%9A%E5%B9%B3%E5%8F%B0%E5%8F%91%E5%B8%83%E9%80%82%E9%85%8D/">
+    <meta property="og:url" content="http://localhost:1313/blog/posts/%E6%9C%89%E9%81%93%E4%BA%91docx%E8%BD%AC%E6%8D%A2markdown%E5%AF%BC%E5%85%A5hugo%E5%8F%91%E5%B8%83%E5%88%B0github-page%E5%A4%9A%E5%B9%B3%E5%8F%B0%E5%8F%91%E5%B8%83%E9%80%82%E9%85%8D/">
   <meta property="og:site_name" content="CYRUS STUDIO">
   <meta property="og:title" content="有道云docx转换markdown，导入hugo发布到github page，多平台发布适配">
   <meta property="og:description" content="版权归作者所有，如有转发，请注明文章出处：https://cyrus-studio.github.io/blog/
@@ -56,7 +56,7 @@ def is_possible_code_or_bash(text):# 常见的代码关键字code_keywords = [
   </head>
   <body>
     <header class="app-header">
-      <a href="https://cyrus-studio.github.io/blog/"><img class="app-header-avatar" src="/blog/avatar.jpg" alt="John Doe" /></a>
+      <a href="http://localhost:1313/blog/"><img class="app-header-avatar" src="/blog/avatar.jpg" alt="John Doe" /></a>
       <span class="app-header-title">CYRUS STUDIO</span>
       <nav class="app-header-menu">
           <a class="app-header-menu-item" href="/blog/">Home</a>

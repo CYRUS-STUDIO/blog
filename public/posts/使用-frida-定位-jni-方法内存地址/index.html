@@ -1,6 +1,6 @@
 <!doctype html>
 <html lang="zh-cn">
-  <head>
+  <head><script src="/blog/livereload.js?mindelay=10&amp;v=2&amp;port=1313&amp;path=blog/livereload" data-no-instant defer></script>
     <title>使用 Frida 定位 JNI 方法内存地址 // CYRUS STUDIO</title>
     <link rel="shortcut icon" href="/favicon.ico" />
     <meta charset="utf-8" />
@@ -25,7 +25,7 @@ entry_point_from_jni_ 是 ArtMethod 结构体的一个字段，专门用于存�
 确定 entry_point_from_jni 的偏移量_ 先通过查找 ART 中 ArtMethod 结构体中 entry_point_from_jni_ 的偏移量，最终确定 JNI 函数的地址。
 let entry_point_from_jni_offset = -1;/*** 找到 entry_point_from_jni_ 在 ArtMethod 结构体中的偏移量（根据 Android 版本不同可能会变化）** @returns {number} 返回 entry_point_from_jni_ 的偏移量，若未找到返回 -1*/function get_jni_offset() {// 如果偏移量已经计算过（不为 -1），直接返回已保存的偏移量if (entry_point_from_jni_offset !">
 
-    <meta property="og:url" content="https://cyrus-studio.github.io/blog/posts/%E4%BD%BF%E7%94%A8-frida-%E5%AE%9A%E4%BD%8D-jni-%E6%96%B9%E6%B3%95%E5%86%85%E5%AD%98%E5%9C%B0%E5%9D%80/">
+    <meta property="og:url" content="http://localhost:1313/blog/posts/%E4%BD%BF%E7%94%A8-frida-%E5%AE%9A%E4%BD%8D-jni-%E6%96%B9%E6%B3%95%E5%86%85%E5%AD%98%E5%9C%B0%E5%9D%80/">
   <meta property="og:site_name" content="CYRUS STUDIO">
   <meta property="og:title" content="使用 Frida 定位 JNI 方法内存地址">
   <meta property="og:description" content="版权归作者所有，如有转发，请注明文章出处：https://cyrus-studio.github.io/blog/
@@ -44,7 +44,7 @@ let entry_point_from_jni_offset = -1;/*** 找到 entry_point_from_jni_ 在 Art
   </head>
   <body>
     <header class="app-header">
-      <a href="https://cyrus-studio.github.io/blog/"><img class="app-header-avatar" src="/blog/avatar.jpg" alt="John Doe" /></a>
+      <a href="http://localhost:1313/blog/"><img class="app-header-avatar" src="/blog/avatar.jpg" alt="John Doe" /></a>
       <span class="app-header-title">CYRUS STUDIO</span>
       <nav class="app-header-menu">
           <a class="app-header-menu-item" href="/blog/">Home</a>

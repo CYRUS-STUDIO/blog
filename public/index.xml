@@ -2,248 +2,255 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
     <title>CYRUS STUDIO</title>
-    <link>https://cyrus-studio.github.io/blog/</link>
+    <link>http://localhost:1313/blog/</link>
     <description>Recent content on CYRUS STUDIO</description>
     <generator>Hugo</generator>
     <language>zh-cn</language>
-    <lastBuildDate>Sat, 02 Nov 2024 23:01:02 +0800</lastBuildDate>
-    <atom:link href="https://cyrus-studio.github.io/blog/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Sun, 03 Nov 2024 04:49:00 +0800</lastBuildDate>
+    <atom:link href="http://localhost:1313/blog/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>adb 远程调试，手动修改 adb 调试授权信息</title>
+      <link>http://localhost:1313/blog/posts/adb-%E8%BF%9C%E7%A8%8B%E8%B0%83%E8%AF%95%E6%89%8B%E5%8A%A8%E4%BF%AE%E6%94%B9-adb-%E8%B0%83%E8%AF%95%E6%8E%88%E6%9D%83%E4%BF%A1%E6%81%AF/</link>
+      <pubDate>Sun, 03 Nov 2024 04:49:00 +0800</pubDate>
+      <guid>http://localhost:1313/blog/posts/adb-%E8%BF%9C%E7%A8%8B%E8%B0%83%E8%AF%95%E6%89%8B%E5%8A%A8%E4%BF%AE%E6%94%B9-adb-%E8%B0%83%E8%AF%95%E6%8E%88%E6%9D%83%E4%BF%A1%E6%81%AF/</guid>
+      <description>版权归作者所有，如有转发，请注明文章出处：https://cyrus-studio.github.io/blog/&#xA;adb 远程调试 手机上开发者选项中打开网络调试 或者连接 USB 执行下面命令将 ADB 设置为通过端口 5555 进行 TCP/IP 调试 adb tcpip 5555 启用 TCP/IP 模式后可以断开 USB 连接&#xA;如果网络调试开关中没有显示设备ip地址，通过下面方法获取设备的 IP 地址：&#xA;在设备上，进入设置 &amp;gt; 网络与互联网 &amp;gt; Wi-Fi，选择当前连接的网络。&#xA;找到设备的 IP 地址（通常在网络详情中）。&#xA;根据设备 ip 地址和端口号连接到设备，并在手机上确认授权调试提示&#xA;adb connect 192.168.0.101:5555&#xD;already connected to 192.168.0.101:5555 第一次授权可能会提示 unauthorized&#xA;adb devices&#xD;List of devices attached&#xD;192.168.0.101:5555 unauthorized 重启 adb，重新再连接&#xA;adb kill-server&#xD;adb connect 192.168.0.101:5555&#xD;* daemon not running; starting now at tcp:5037&#xD;* daemon started successfully&#xD;connected to 192.</description>
+    </item>
     <item>
       <title>详解ARM64可执行程序的生成过程</title>
-      <link>https://cyrus-studio.github.io/blog/posts/%E8%AF%A6%E8%A7%A3arm64%E5%8F%AF%E6%89%A7%E8%A1%8C%E7%A8%8B%E5%BA%8F%E7%9A%84%E7%94%9F%E6%88%90%E8%BF%87%E7%A8%8B/</link>
+      <link>http://localhost:1313/blog/posts/%E8%AF%A6%E8%A7%A3arm64%E5%8F%AF%E6%89%A7%E8%A1%8C%E7%A8%8B%E5%BA%8F%E7%9A%84%E7%94%9F%E6%88%90%E8%BF%87%E7%A8%8B/</link>
       <pubDate>Sat, 02 Nov 2024 23:01:02 +0800</pubDate>
-      <guid>https://cyrus-studio.github.io/blog/posts/%E8%AF%A6%E8%A7%A3arm64%E5%8F%AF%E6%89%A7%E8%A1%8C%E7%A8%8B%E5%BA%8F%E7%9A%84%E7%94%9F%E6%88%90%E8%BF%87%E7%A8%8B/</guid>
+      <guid>http://localhost:1313/blog/posts/%E8%AF%A6%E8%A7%A3arm64%E5%8F%AF%E6%89%A7%E8%A1%8C%E7%A8%8B%E5%BA%8F%E7%9A%84%E7%94%9F%E6%88%90%E8%BF%87%E7%A8%8B/</guid>
       <description>版权归作者所有，如有转发，请注明文章出处：https://cyrus-studio.github.io/blog/&#xA;ARM64可执行程序的生成过程 根据 ARM64 可执行程序生成的四个主要步骤：预处理、编译、汇编、链接，我们可以详细分解整个过程如下&#xA;1. 预处理（Preprocessing） 预处理是源代码文件在正式编译前的准备工作，由预处理器完成。其主要任务包括：&#xA;宏替换：处理 #define 定义的宏，将代码中出现的宏替换为实际值。&#xA;文件包含：处理 #include 指令，将所需的头文件内容直接插入代码中，确保所有引用的函数和变量声明都在同一文件中。&#xA;条件编译：处理 #ifdef、#ifndef 等条件编译指令，以控制代码中不同部分的编译。&#xA;预处理后的输出仍然是代码文件，但没有任何宏、条件编译等指令，通常以 .i 或 .ii 作为扩展名。&#xA;2. 编译（Compilation） 编译器（如 GCC 或 Clang）将预处理后的代码文件转换为汇编代码，产生汇编语言表示的文件。此阶段包括以下子步骤：&#xA;词法分析：将源代码转化为基本的语法单元（token），如变量名、运算符、关键字等。&#xA;语法分析：将代码组织成抽象语法树（AST），根据编程语言的语法规则生成层次结构。&#xA;语义分析：检查语法树的正确性，如类型检查、作用域检查等，确保代码符合语言语义。&#xA;中间代码生成：编译器生成与平台无关的中间代码，方便后续优化。&#xA;优化：编译器对中间代码进行优化，如消除冗余代码、进行循环优化等，以提升程序效率。&#xA;生成汇编代码：编译器将优化后的中间代码转换为特定平台（如 ARM64）的汇编代码，通常输出 .s 文件。&#xA;编译阶段的最终输出是汇编代码文件，包含了基于 ARM64 指令集的指令。&#xA;3. 汇编（Assemble） 汇编器（如 GNU Assembler，as）将汇编代码文件（.s 文件）转换为机器代码，生成二进制的目标文件（.o 文件）。目标文件包含了二进制的机器指令，但符号引用还未解析，因此目标文件本身并非独立的可执行文件。&#xA;汇编阶段的主要工作包括：&#xA;指令翻译：将汇编语言指令转换为 ARM64 指令集对应的二进制机器指令。&#xA;符号表生成：记录所有函数和变量的符号地址，以便链接阶段使用。&#xA;机器码生成：生成目标文件（.o），将每条指令翻译成可执行的机器码。&#xA;目标文件是 ARM64 可执行程序生成过程中不可或缺的中间文件。&#xA;4. 链接（Linking） 链接器（如 GNU Linker，ld）将一个或多个目标文件链接在一起，并解决外部依赖，生成最终的可执行文件。链接的过程分为静态链接和动态链接两种：&#xA;静态链接：将程序所需的库代码直接嵌入到可执行文件中，生成一个完全自包含的文件。&#xA;动态链接：生成的可执行文件依赖外部共享库（如 .so 文件），在程序运行时加载这些共享库。&#xA;链接阶段的关键步骤包括：&#xA;符号解析：将不同目标文件中的符号（如函数和变量）解析为对应的内存地址，解决跨文件调用。&#xA;重定位：调整目标文件中指令和数据的地址，使得所有模块可以在一个统一的地址空间中正常运行。&#xA;生成可执行文件：链接器根据 ELF（Executable and Linkable Format）等格式生成最终的可执行文件，包含程序代码段、数据段、以及其他加载器所需的元信息。</description>
     </item>
     <item>
       <title>使用 Frida 定位 JNI 方法内存地址</title>
-      <link>https://cyrus-studio.github.io/blog/posts/%E4%BD%BF%E7%94%A8-frida-%E5%AE%9A%E4%BD%8D-jni-%E6%96%B9%E6%B3%95%E5%86%85%E5%AD%98%E5%9C%B0%E5%9D%80/</link>
+      <link>http://localhost:1313/blog/posts/%E4%BD%BF%E7%94%A8-frida-%E5%AE%9A%E4%BD%8D-jni-%E6%96%B9%E6%B3%95%E5%86%85%E5%AD%98%E5%9C%B0%E5%9D%80/</link>
       <pubDate>Tue, 29 Oct 2024 18:42:24 +0800</pubDate>
-      <guid>https://cyrus-studio.github.io/blog/posts/%E4%BD%BF%E7%94%A8-frida-%E5%AE%9A%E4%BD%8D-jni-%E6%96%B9%E6%B3%95%E5%86%85%E5%AD%98%E5%9C%B0%E5%9D%80/</guid>
+      <guid>http://localhost:1313/blog/posts/%E4%BD%BF%E7%94%A8-frida-%E5%AE%9A%E4%BD%8D-jni-%E6%96%B9%E6%B3%95%E5%86%85%E5%AD%98%E5%9C%B0%E5%9D%80/</guid>
       <description>版权归作者所有，如有转发，请注明文章出处：https://cyrus-studio.github.io/blog/&#xA;java 调用 native 方法流程 ArtMethod 是 Android Runtime (ART) 中一个非常重要的数据结构，它在 Android 系统中用于表示每个 Java 方法。&#xA;entry_point_from_jni_ 是 ArtMethod 结构体的一个字段，专门用于存储一个 Java 方法的 JNI（Java Native Interface）入口点。&#xA;当 Java 代码调用一个 native 方法时，ART 会通过entry_point_from_jni_ 字段找到对应的 JNI 函数入口，然后切换到 C/C++ 层执行该方法。&#xA;确定 entry_point_from_jni 的偏移量_ 先通过查找 ART 中 ArtMethod 结构体中 entry_point_from_jni_ 的偏移量，最终确定 JNI 函数的地址。&#xA;let entry_point_from_jni_offset = -1;&#xD;/**&#xD;* 找到 entry_point_from_jni_ 在 ArtMethod 结构体中的偏移量（根据 Android 版本不同可能会变化）&#xD;*&#xD;* @returns {number} 返回 entry_point_from_jni_ 的偏移量，若未找到返回 -1&#xD;*/&#xD;function get_jni_offset() {&#xD;// 如果偏移量已经计算过（不为 -1），直接返回已保存的偏移量&#xD;if (entry_point_from_jni_offset !</description>
     </item>
     <item>
       <title>frida脚本，自动化寻址JNI方法</title>
-      <link>https://cyrus-studio.github.io/blog/posts/frida%E8%84%9A%E6%9C%AC%E8%87%AA%E5%8A%A8%E5%8C%96%E5%AF%BB%E5%9D%80jni%E6%96%B9%E6%B3%95/</link>
+      <link>http://localhost:1313/blog/posts/frida%E8%84%9A%E6%9C%AC%E8%87%AA%E5%8A%A8%E5%8C%96%E5%AF%BB%E5%9D%80jni%E6%96%B9%E6%B3%95/</link>
       <pubDate>Tue, 29 Oct 2024 18:39:06 +0800</pubDate>
-      <guid>https://cyrus-studio.github.io/blog/posts/frida%E8%84%9A%E6%9C%AC%E8%87%AA%E5%8A%A8%E5%8C%96%E5%AF%BB%E5%9D%80jni%E6%96%B9%E6%B3%95/</guid>
+      <guid>http://localhost:1313/blog/posts/frida%E8%84%9A%E6%9C%AC%E8%87%AA%E5%8A%A8%E5%8C%96%E5%AF%BB%E5%9D%80jni%E6%96%B9%E6%B3%95/</guid>
       <description>版权归作者所有，如有转发，请注明文章出处：https://cyrus-studio.github.io/blog/&#xA;1. 通过 ArtMethod 结构体找到 jni 方法在内存中的地址，并把寻址方法通过 rpc.exports 暴露给 Python 脚本调用&#xA;jni_addr.js&#xA;let entry_point_from_jni_offset = -1;&#xD;/**&#xD;* 找到 entry_point_from_jni_ 在 ArtMethod 结构体中的偏移量（根据 Android 版本不同可能会变化）&#xD;*&#xD;* @returns {number} 返回 entry_point_from_jni_ 的偏移量，若未找到返回 -1&#xD;*/&#xD;function get_jni_offset() {&#xD;// 如果偏移量已经计算过（不为 -1），直接返回已保存的偏移量&#xD;if (entry_point_from_jni_offset !== -1) {&#xD;return entry_point_from_jni_offset;&#xD;}&#xD;// 获取 getUidForName JNI 方法的内存地址，该方法位于 &amp;#34;libandroid_runtime.so&amp;#34; 中&#xD;let native_addr = Module.findExportByName(&amp;#34;libandroid_runtime.so&amp;#34;, &amp;#34;_Z32android_os_Process_getUidForNameP7_JNIEnvP8_jobjectP8_jstring&amp;#34;);&#xD;// console.log(&amp;#34;native_addr:&amp;#34;,native_addr);&#xD;// 目标类名 &amp;#34;android.os.Process&amp;#34;&#xD;let className = &amp;#34;android.os.Process&amp;#34;;&#xD;// 使用 Java.</description>
     </item>
     <item>
       <title>Windows下创建FTP服务器，实现文件共享</title>
-      <link>https://cyrus-studio.github.io/blog/posts/windows%E4%B8%8B%E5%88%9B%E5%BB%BAftp%E6%9C%8D%E5%8A%A1%E5%99%A8%E5%AE%9E%E7%8E%B0%E6%96%87%E4%BB%B6%E5%85%B1%E4%BA%AB/</link>
+      <link>http://localhost:1313/blog/posts/windows%E4%B8%8B%E5%88%9B%E5%BB%BAftp%E6%9C%8D%E5%8A%A1%E5%99%A8%E5%AE%9E%E7%8E%B0%E6%96%87%E4%BB%B6%E5%85%B1%E4%BA%AB/</link>
       <pubDate>Mon, 28 Oct 2024 22:21:39 +0800</pubDate>
-      <guid>https://cyrus-studio.github.io/blog/posts/windows%E4%B8%8B%E5%88%9B%E5%BB%BAftp%E6%9C%8D%E5%8A%A1%E5%99%A8%E5%AE%9E%E7%8E%B0%E6%96%87%E4%BB%B6%E5%85%B1%E4%BA%AB/</guid>
+      <guid>http://localhost:1313/blog/posts/windows%E4%B8%8B%E5%88%9B%E5%BB%BAftp%E6%9C%8D%E5%8A%A1%E5%99%A8%E5%AE%9E%E7%8E%B0%E6%96%87%E4%BB%B6%E5%85%B1%E4%BA%AB/</guid>
       <description>版权归作者所有，如有转发，请注明文章出处：https://cyrus-studio.github.io/blog/&#xA;创建FTP服务器 使用 Windows+R 打开的【运行】窗口中直接执行 optionalfeatures 打开 Windows 功能对话框。或者直接搜索【启用或关闭 Windows 功能】。 在【启用和关闭 Windows 功能】中选中【FTP服务】【IIS管理控制台】 应用更改完成后，重启电脑。&#xA;执行 ipconfig 命令查看当前电脑的ip，比如这里ip地址为 192.168.0.112&#xA;无线局域网适配器 WLAN:&#xD;连接特定的 DNS 后缀 . . . . . . . :&#xD;本地链接 IPv6 地址. . . . . . . . : fe80::74b9:ae56:5d90:79ff%6&#xD;IPv4 地址 . . . . . . . . . . . . : 192.168.0.112&#xD;子网掩码 . . . . . . . . .</description>
     </item>
     <item>
       <title>使用 Frida Hook Android App</title>
-      <link>https://cyrus-studio.github.io/blog/posts/%E4%BD%BF%E7%94%A8-frida-hook-android-app/</link>
+      <link>http://localhost:1313/blog/posts/%E4%BD%BF%E7%94%A8-frida-hook-android-app/</link>
       <pubDate>Mon, 28 Oct 2024 19:53:37 +0800</pubDate>
-      <guid>https://cyrus-studio.github.io/blog/posts/%E4%BD%BF%E7%94%A8-frida-hook-android-app/</guid>
+      <guid>http://localhost:1313/blog/posts/%E4%BD%BF%E7%94%A8-frida-hook-android-app/</guid>
       <description>版权归作者所有，如有转发，请注明文章出处：https://cyrus-studio.github.io/blog/&#xA;Frida Frida 通过注入自定义 JavaScript 代码，可以 Hook 函数、修改参数、监控函数调用和拦截返回值，适用于逆向工程、调试和安全分析等场景。&#xA;使用 Frida 前需要先下载和安装包括：&#xA;Frida 是核心库，提供 API 和功能。&#xA;Frida-Tool 是命令行工具，通常与 Frida 版本相对应。&#xA;Frida-Server 是运行在 Android 设备上的服务器端组件，允许 Frida 客户端与设备进行通信。&#xA;环境准备 1. 安装 Frida 和 Frida-tools pip install frida-tools 2. Frida-server 获取设备CPU架构&#xA;adb shell getprop ro.product.cpu.abi 下载与设备对应架构的 frida-server：https://github.com/frida/frida/releases 把 frida-server 推送到设备 /data/local/tmp 目录下&#xA;adb push D:\app逆向\Frida\frida-server-16.5.2-android-arm64 /data/local/tmp/fs 启动 frida-server&#xA;# 启用超级管理员&#xD;adb root&#xD;# 进入命令行&#xD;adb shell # 添加可执行权限&#xD;chmod +x /data/local/tmp/fs&#xD;# 启动frida-server&#xD;/data/local/tmp/fs 自定义Frida端口 frida-server 默认端口为 27042，如果想自定义端口可以通过下面的命令实现</description>
     </item>
     <item>
       <title>编译自定义Linux内核，使WSL支持访问Windows下USB设备</title>
-      <link>https://cyrus-studio.github.io/blog/posts/%E7%BC%96%E8%AF%91%E8%87%AA%E5%AE%9A%E4%B9%89linux%E5%86%85%E6%A0%B8%E4%BD%BFwsl%E6%94%AF%E6%8C%81%E8%AE%BF%E9%97%AEwindows%E4%B8%8Busb%E8%AE%BE%E5%A4%87/</link>
+      <link>http://localhost:1313/blog/posts/%E7%BC%96%E8%AF%91%E8%87%AA%E5%AE%9A%E4%B9%89linux%E5%86%85%E6%A0%B8%E4%BD%BFwsl%E6%94%AF%E6%8C%81%E8%AE%BF%E9%97%AEwindows%E4%B8%8Busb%E8%AE%BE%E5%A4%87/</link>
       <pubDate>Mon, 28 Oct 2024 15:07:37 +0800</pubDate>
-      <guid>https://cyrus-studio.github.io/blog/posts/%E7%BC%96%E8%AF%91%E8%87%AA%E5%AE%9A%E4%B9%89linux%E5%86%85%E6%A0%B8%E4%BD%BFwsl%E6%94%AF%E6%8C%81%E8%AE%BF%E9%97%AEwindows%E4%B8%8Busb%E8%AE%BE%E5%A4%87/</guid>
+      <guid>http://localhost:1313/blog/posts/%E7%BC%96%E8%AF%91%E8%87%AA%E5%AE%9A%E4%B9%89linux%E5%86%85%E6%A0%B8%E4%BD%BFwsl%E6%94%AF%E6%8C%81%E8%AE%BF%E9%97%AEwindows%E4%B8%8Busb%E8%AE%BE%E5%A4%87/</guid>
       <description>版权归作者所有，如有转发，请注明文章出处：https://cyrus-studio.github.io/blog/&#xA;WSL 本身并不支持连接 USB 设备，因此你需要安装开源 usbipd-win 项目。&#xA;usbip 可以让你在网络上共享和使用 USB 设备。它由两个主要组件组成：&#xA;usbipd (USB/IP daemon)：服务端，负责共享连接到主机的 USB 设备。&#xA;usbip (USB/IP client)：客户端，允许其他计算机访问共享的 USB 设备。&#xA;1. 安装USBIPD-WIN USBIPD-WIN 是一个在 Windows 上实现 USB/IP 协议的工具。首先，你需要在 Windows 上安装这个工具。&#xA;下载并安装 usbipd-win，可以从GitHub页面获取最新版本的安装包。&#xA;或者执行下面命令安装&#xA;winget install usbipd 2. 列出所有可以共享的USB设备 usbipd list 3. 共享设备 在附加 USB 设备之前，必须使用命令 usbipd bind 来共享设备，从而允许它附加到 WSL（ 需要管理员权限）。&#xA;usbipd bind --busid 2-6 这里的 2-6 是 USB 设备对应的 BUSID&#xA;4. 将USB设备连接到WSL 使用 usbipd attach 命令将指定的USB设备附加到WSL实例中。&#xA;usbipd attach --wsl --busid 2-6 打开 Ubuntu（或首选的 WSL 命令行），使用以下命令列出附加的 USB 设备</description>
     </item>
     <item>
       <title>使用 jnitrace 分析 native 方法调用过程</title>
-      <link>https://cyrus-studio.github.io/blog/posts/%E4%BD%BF%E7%94%A8-jnitrace-%E5%88%86%E6%9E%90-native-%E6%96%B9%E6%B3%95%E8%B0%83%E7%94%A8%E8%BF%87%E7%A8%8B/</link>
+      <link>http://localhost:1313/blog/posts/%E4%BD%BF%E7%94%A8-jnitrace-%E5%88%86%E6%9E%90-native-%E6%96%B9%E6%B3%95%E8%B0%83%E7%94%A8%E8%BF%87%E7%A8%8B/</link>
       <pubDate>Mon, 28 Oct 2024 15:07:33 +0800</pubDate>
-      <guid>https://cyrus-studio.github.io/blog/posts/%E4%BD%BF%E7%94%A8-jnitrace-%E5%88%86%E6%9E%90-native-%E6%96%B9%E6%B3%95%E8%B0%83%E7%94%A8%E8%BF%87%E7%A8%8B/</guid>
+      <guid>http://localhost:1313/blog/posts/%E4%BD%BF%E7%94%A8-jnitrace-%E5%88%86%E6%9E%90-native-%E6%96%B9%E6%B3%95%E8%B0%83%E7%94%A8%E8%BF%87%E7%A8%8B/</guid>
       <description>版权归作者所有，如有转发，请注明文章出处：https://cyrus-studio.github.io/blog/&#xA;jnitrace jnitrace 可以动态跟踪 Java 层通过 JNI 接口调用 native 层（C/C++）代码的过程。它会记录并显示每一个 JNI 函数的调用，包括方法签名、参数、返回值等详细信息。&#xA;项目地址：https://github.com/chame1eon/jnitrace&#xA;安装 jnitrace jnitrace 的使用依赖于 Frida。在使用 jnitrace 之前，需要确保 Frida 和 Python 环境已安装。可以参考下面两篇文章：&#xA;使用 Frida Hook Android App&#xA;使用Miniconda管理Python环境&#xA;通过下面的命令安装 jnitrace&#xA;pip install jnitrace 解决 frida.NotSupportedError 运行 jnitrace 报错如下&#xA;jnitrace -l libnative-lib.so com.cyrus.exammple&#xD;Traceback (most recent call last):&#xD;File &amp;#34;D:\App\Miniconda3\envs\anti-app\lib\runpy.py&amp;#34;, line 194, in _run_module_as_main&#xD;return _run_code(code, main_globals, None,&#xD;File &amp;#34;D:\App\Miniconda3\envs\anti-app\lib\runpy.py&amp;#34;, line 87, in _run_code&#xD;exec(code, run_globals)&#xD;File &amp;#34;D:\App\Miniconda3\envs\anti-app\Scripts\jnitrace.exe\__main__.py&amp;#34;, line 7, in \&amp;lt;module&amp;gt;&#xD;File &amp;#34;D:\App\Miniconda3\envs\anti-app\lib\site-packages\jnitrace\jnitrace.</description>
     </item>
     <item>
       <title>使用Miniconda管理Python环境</title>
-      <link>https://cyrus-studio.github.io/blog/posts/%E4%BD%BF%E7%94%A8miniconda%E7%AE%A1%E7%90%86python%E7%8E%AF%E5%A2%83/</link>
+      <link>http://localhost:1313/blog/posts/%E4%BD%BF%E7%94%A8miniconda%E7%AE%A1%E7%90%86python%E7%8E%AF%E5%A2%83/</link>
       <pubDate>Sun, 27 Oct 2024 21:06:25 +0800</pubDate>
-      <guid>https://cyrus-studio.github.io/blog/posts/%E4%BD%BF%E7%94%A8miniconda%E7%AE%A1%E7%90%86python%E7%8E%AF%E5%A2%83/</guid>
+      <guid>http://localhost:1313/blog/posts/%E4%BD%BF%E7%94%A8miniconda%E7%AE%A1%E7%90%86python%E7%8E%AF%E5%A2%83/</guid>
       <description>版权归作者所有，如有转发，请注明文章出处：https://cyrus-studio.github.io/blog/&#xA;Miniconda Miniconda 是 Conda 的简化版本，只包含 Conda 包管理器和 Python 的最小安装包，提供了一种轻量级的环境管理和包管理工具。相比于 Anaconda，Miniconda 更小巧灵活，适合那些不需要 Anaconda 提供的完整生态的用户。&#xA;通过 Miniconda，开发者可以更高效地管理和定制自己的开发环境，避免不必要的依赖和资源浪费。&#xA;下载安装 Miniconda：https://docs.anaconda.com/miniconda/&#xA;把 Miniconda3 和 Miniconda3\Scripts 路径添加到 Path 系统环境变量 完成安装后，打开终端或命令提示符，输入&#xA;conda --version&#xD;python --version 如果显示版本号，说明安装成功。&#xA;创建环境 创建一个新的虚拟环境，指定特定版本的 Python&#xA;conda create -n anti-app python=3.12.6 列出当前可用的 Python 版本&#xA;conda search python 克隆环境 现有环境复制到新的环境&#xA;conda create --name new_env --clone old_env 删除环境 conda remove --name old_env --all 列出所有环境 conda env list 激活环境 conda activate env_name 停用当前环境 conda deactivate 导出当前环境 conda env export &amp;gt; environment.</description>
     </item>
     <item>
       <title>使用 IDA Tracing 动态跟踪 JNI 方法执行过程</title>
-      <link>https://cyrus-studio.github.io/blog/posts/%E4%BD%BF%E7%94%A8-ida-tracing-%E5%8A%A8%E6%80%81%E8%B7%9F%E8%B8%AA-jni-%E6%96%B9%E6%B3%95%E6%89%A7%E8%A1%8C%E8%BF%87%E7%A8%8B/</link>
+      <link>http://localhost:1313/blog/posts/%E4%BD%BF%E7%94%A8-ida-tracing-%E5%8A%A8%E6%80%81%E8%B7%9F%E8%B8%AA-jni-%E6%96%B9%E6%B3%95%E6%89%A7%E8%A1%8C%E8%BF%87%E7%A8%8B/</link>
       <pubDate>Fri, 25 Oct 2024 23:27:31 +0800</pubDate>
-      <guid>https://cyrus-studio.github.io/blog/posts/%E4%BD%BF%E7%94%A8-ida-tracing-%E5%8A%A8%E6%80%81%E8%B7%9F%E8%B8%AA-jni-%E6%96%B9%E6%B3%95%E6%89%A7%E8%A1%8C%E8%BF%87%E7%A8%8B/</guid>
+      <guid>http://localhost:1313/blog/posts/%E4%BD%BF%E7%94%A8-ida-tracing-%E5%8A%A8%E6%80%81%E8%B7%9F%E8%B8%AA-jni-%E6%96%B9%E6%B3%95%E6%89%A7%E8%A1%8C%E8%BF%87%E7%A8%8B/</guid>
       <description>版权归作者所有，如有转发，请注明文章出处：https://cyrus-studio.github.io/blog/&#xA;定位JNI方法内存地址 首先先找到 JNI 方法在内存中的地址，具体可以参考这篇文章【使用 Frida 定位 JNI 方法内存地址】&#xA;比如，这里需要找到 lte.NCall 的 IL 方法的内存地址&#xA;methodName-&amp;gt; public static native byte lte.NCall.IB(java.lang.Object[])&#xD;Func.offset== libGameVMP.so 0xDFA8&#xD;Func.getArtMethod-&amp;gt;native_addr: 0X7750F94FA8&#xD;methodName-&amp;gt; public static native char lte.NCall.IC(java.lang.Object[])&#xD;Func.offset== libGameVMP.so 0xDFA8&#xD;Func.getArtMethod-&amp;gt;native_addr: 0X7750F94FA8&#xD;methodName-&amp;gt; public static native double lte.NCall.ID(java.lang.Object[])&#xD;Func.offset== libGameVMP.so 0xE028&#xD;Func.getArtMethod-&amp;gt;native_addr: 0X7750F95028&#xD;methodName-&amp;gt; public static native float lte.NCall.IF(java.lang.Object[])&#xD;Func.offset== libGameVMP.so 0xDFE8&#xD;Func.getArtMethod-&amp;gt;native_addr: 0X7750F94FE8&#xD;methodName-&amp;gt; public static native int lte.NCall.II(java.lang.Object[])&#xD;Func.offset== libGameVMP.so 0xDFA8&#xD;Func.getArtMethod-&amp;gt;native_addr: 0X7750F94FA8&#xD;methodName-&amp;gt; public static native long lte.</description>
     </item>
     <item>
       <title>Android 下通过触发 SIGTRAP 信号实现反调试</title>
-      <link>https://cyrus-studio.github.io/blog/posts/android-%E4%B8%8B%E9%80%9A%E8%BF%87%E8%A7%A6%E5%8F%91-sigtrap-%E4%BF%A1%E5%8F%B7%E5%AE%9E%E7%8E%B0%E5%8F%8D%E8%B0%83%E8%AF%95/</link>
+      <link>http://localhost:1313/blog/posts/android-%E4%B8%8B%E9%80%9A%E8%BF%87%E8%A7%A6%E5%8F%91-sigtrap-%E4%BF%A1%E5%8F%B7%E5%AE%9E%E7%8E%B0%E5%8F%8D%E8%B0%83%E8%AF%95/</link>
       <pubDate>Fri, 18 Oct 2024 22:55:01 +0800</pubDate>
-      <guid>https://cyrus-studio.github.io/blog/posts/android-%E4%B8%8B%E9%80%9A%E8%BF%87%E8%A7%A6%E5%8F%91-sigtrap-%E4%BF%A1%E5%8F%B7%E5%AE%9E%E7%8E%B0%E5%8F%8D%E8%B0%83%E8%AF%95/</guid>
+      <guid>http://localhost:1313/blog/posts/android-%E4%B8%8B%E9%80%9A%E8%BF%87%E8%A7%A6%E5%8F%91-sigtrap-%E4%BF%A1%E5%8F%B7%E5%AE%9E%E7%8E%B0%E5%8F%8D%E8%B0%83%E8%AF%95/</guid>
       <description>版权归作者所有，如有转发，请注明文章出处：https://cyrus-studio.github.io/blog/&#xA;详细的 Linux 信号列表 Linux 信号是一种用于进程间通信（IPC）和异常处理的机制。以下是详细的 Linux 信号列表，包含信号名称、默认行为及用途&#xA;信号编号 信号名称 默认行为 说明 1 SIGHUP 终止进程 终止控制终端或配置文件发生变化时发出。 2 SIGINT 终止进程 来自用户输入（通常是 Ctrl+C）。 3 SIGQUIT 终止进程并生成core文件 来自用户输入（通常是 Ctrl+\）。 4 SIGILL 终止进程并生成core文件 非法指令执行。 5 SIGTRAP 终止进程并生成core文件 调试陷阱。 6 SIGABRT 终止进程并生成core文件 调用 abort 函数时发出。 7 SIGBUS 终止进程并生成core文件 总线错误（内存访问不对齐）。 8 SIGFPE 终止进程并生成core文件 浮点运算错误。 9 SIGKILL 终止进程 强制终止进程，无法被捕获或忽略。 10 SIGUSR1 终止进程 用户自定义信号 1。 11 SIGSEGV 终止进程并生成core文件 无效的内存访问。 12 SIGUSR2 终止进程 用户自定义信号 2。 13 SIGPIPE 终止进程 向没有读取端的管道写入数据时发出。 14 SIGALRM 终止进程 由 alarm 函数发出的定时器信号。 15 SIGTERM 终止进程 请求终止进程，可以被捕获和忽略。 16 SIGSTKFLT 终止进程 协处理器栈错误。 17 SIGCHLD 忽略 子进程停止或终止时发出。 18 SIGCONT 继续执行 让停止的进程继续运行。 19 SIGSTOP 停止进程 停止进程，无法被捕获或忽略。 20 SIGTSTP 停止进程 来自用户输入的停止信号（通常是 Ctrl+Z）。 21 SIGTTIN 停止进程 后台进程尝试从终端读取输入时发出。 22 SIGTTOU 停止进程 后台进程尝试向终端写入输出时发出。 23 SIGURG 忽略 套接字有紧急数据到达时发出。 24 SIGXCPU 终止进程 超出 CPU 时间限制。 25 SIGXFSZ 终止进程 超出文件大小限制。 26 SIGVTALRM 终止进程 虚拟时钟信号，由 27 SIGPROF 终止进程 定时器到期，由 28 SIGWINCH 忽略 终端窗口大小改变时发出。 29 SIGIO 忽略 I/O 事件发生时发出。 30 SIGPWR 终止进程 电源故障时发出。 31 SIGSYS 终止进程并生成core文件 非法的系统调用。 此外，Linux 还支持实时信号（Real-Time Signals），编号从 32 开始，通常是用于用户自定义的信号，应用程序可根据需要使用这些信号。</description>
     </item>
     <item>
       <title>unidbg console debugger 调试技巧</title>
-      <link>https://cyrus-studio.github.io/blog/posts/unidbg-console-debugger-%E8%B0%83%E8%AF%95%E6%8A%80%E5%B7%A7/</link>
+      <link>http://localhost:1313/blog/posts/unidbg-console-debugger-%E8%B0%83%E8%AF%95%E6%8A%80%E5%B7%A7/</link>
       <pubDate>Sun, 13 Oct 2024 19:46:25 +0800</pubDate>
-      <guid>https://cyrus-studio.github.io/blog/posts/unidbg-console-debugger-%E8%B0%83%E8%AF%95%E6%8A%80%E5%B7%A7/</guid>
+      <guid>http://localhost:1313/blog/posts/unidbg-console-debugger-%E8%B0%83%E8%AF%95%E6%8A%80%E5%B7%A7/</guid>
       <description>版权归作者所有，如有转发，请注明文章出处：https://cyrus-studio.github.io/blog/&#xA;打开debug日志 编辑 unidbg-android/src/test/resources/log4j.properties 把 log4j.logger.com.github.unidbg.AbstractEmulator 改为 DEBUG 当运行报错时会自动断点，可以看到具体报错的位置、寄存器、机器码等等信息。&#xA;[03:20:11 438] DEBUG [com.github.unidbg.AbstractEmulator] (AbstractEmulator:364) - emulate RX@0x121daa74[libc.so]0x1aa74 started sp=unidbg@0xe4fff700&#xD;[03:20:11 457] DEBUG [com.github.unidbg.AbstractEmulator] (AbstractEmulator:402) - emulate RX@0x121daa74[libc.so]0x1aa74 finished sp=unidbg@0xe4fff700, offset=18ms&#xD;[03:20:11 458] DEBUG [com.github.unidbg.AbstractEmulator] (AbstractEmulator:364) - emulate RX@0x121daa98[libc.so]0x1aa98 started sp=unidbg@0xe4fff700&#xD;[03:20:11 458] DEBUG [com.github.unidbg.AbstractEmulator] (AbstractEmulator:402) - emulate RX@0x121daa98[libc.so]0x1aa98 finished sp=unidbg@0xe4fff700, offset=0ms&#xD;[03:20:11 458] DEBUG [com.github.unidbg.AbstractEmulator] (AbstractEmulator:364) - emulate RX@0x121daaac[libc.so]0x1aaac started sp=unidbg@0xe4fff700&#xD;[03:20:11 459] DEBUG [com.github.unidbg.AbstractEmulator] (AbstractEmulator:402) - emulate RX@0x121daaac[libc.so]0x1aaac finished sp=unidbg@0xe4fff700, offset=0ms&#xD;[03:20:11 459] DEBUG [com.</description>
     </item>
     <item>
       <title>IDA静态分析中伪代码显示优化</title>
-      <link>https://cyrus-studio.github.io/blog/posts/ida%E9%9D%99%E6%80%81%E5%88%86%E6%9E%90%E4%B8%AD%E4%BC%AA%E4%BB%A3%E7%A0%81%E6%98%BE%E7%A4%BA%E4%BC%98%E5%8C%96/</link>
+      <link>http://localhost:1313/blog/posts/ida%E9%9D%99%E6%80%81%E5%88%86%E6%9E%90%E4%B8%AD%E4%BC%AA%E4%BB%A3%E7%A0%81%E6%98%BE%E7%A4%BA%E4%BC%98%E5%8C%96/</link>
       <pubDate>Mon, 07 Oct 2024 03:27:58 +0800</pubDate>
-      <guid>https://cyrus-studio.github.io/blog/posts/ida%E9%9D%99%E6%80%81%E5%88%86%E6%9E%90%E4%B8%AD%E4%BC%AA%E4%BB%A3%E7%A0%81%E6%98%BE%E7%A4%BA%E4%BC%98%E5%8C%96/</guid>
+      <guid>http://localhost:1313/blog/posts/ida%E9%9D%99%E6%80%81%E5%88%86%E6%9E%90%E4%B8%AD%E4%BC%AA%E4%BB%A3%E7%A0%81%E6%98%BE%E7%A4%BA%E4%BC%98%E5%8C%96/</guid>
       <description>版权归作者所有，如有转发，请注明文章出处：https://cyrus-studio.github.io/blog/&#xA;1. 导入一个头文件 jni.h jni.h文件下载地址：https://github.com/CYRUS-STUDIO/blog/blob/main/assets/files/jni.h&#xA;2.还原jni函数名 点“OK”之后，当前页面好像更容易理解些，就是调用了一些jni方法 3.但是这样还不够直观，还有最后一步，如下图： 4.最后变成这样，是不是更直观呢 参考：使用IDA进行动态调试与过反调试（上）（三）</description>
     </item>
     <item>
       <title>常见的 256 条 Dalvik 字节码指令</title>
-      <link>https://cyrus-studio.github.io/blog/posts/%E5%B8%B8%E8%A7%81%E7%9A%84-256-%E6%9D%A1-dalvik-%E5%AD%97%E8%8A%82%E7%A0%81%E6%8C%87%E4%BB%A4/</link>
+      <link>http://localhost:1313/blog/posts/%E5%B8%B8%E8%A7%81%E7%9A%84-256-%E6%9D%A1-dalvik-%E5%AD%97%E8%8A%82%E7%A0%81%E6%8C%87%E4%BB%A4/</link>
       <pubDate>Sat, 05 Oct 2024 03:10:33 +0800</pubDate>
-      <guid>https://cyrus-studio.github.io/blog/posts/%E5%B8%B8%E8%A7%81%E7%9A%84-256-%E6%9D%A1-dalvik-%E5%AD%97%E8%8A%82%E7%A0%81%E6%8C%87%E4%BB%A4/</guid>
+      <guid>http://localhost:1313/blog/posts/%E5%B8%B8%E8%A7%81%E7%9A%84-256-%E6%9D%A1-dalvik-%E5%AD%97%E8%8A%82%E7%A0%81%E6%8C%87%E4%BB%A4/</guid>
       <description>版权归作者所有，如有转发，请注明文章出处：https://cyrus-studio.github.io/blog/&#xA;Dalvik 字节码指令是 Android 虚拟机的指令集，广泛用于处理 .dex 文件中的代码。下面列出一些常用的 Dalvik 指令，但 Dalvik 指令集有很多操作码，这里仅列出 256 个常用指令及其功能简述。为简明起见，指令按类别分类。&#xA;1. 常量加载 const vA, #+B - 加载常量 B 到寄存器 vA const/4 vA, #+B - 加载 4 位常量 B 到寄存器 vA const/16 vA, #+BBBB - 加载 16 位常量 B 到寄存器 vA const/high16 vA, #+BBBB0000 - 加载高 16 位常量 const-wide vA, #+BBBBBBBBBBBBBBBB - 加载 64 位常量 const-wide/16 vA, #+BBBB - 加载 16 位宽常量 const-wide/high16 vA, #+BBBB000000000000 - 加载高 16 位宽常量 2.</description>
     </item>
     <item>
       <title>使用IDA Pro动态调试Android APP</title>
-      <link>https://cyrus-studio.github.io/blog/posts/%E4%BD%BF%E7%94%A8ida-pro%E5%8A%A8%E6%80%81%E8%B0%83%E8%AF%95android-app/</link>
+      <link>http://localhost:1313/blog/posts/%E4%BD%BF%E7%94%A8ida-pro%E5%8A%A8%E6%80%81%E8%B0%83%E8%AF%95android-app/</link>
       <pubDate>Mon, 30 Sep 2024 15:27:58 +0800</pubDate>
-      <guid>https://cyrus-studio.github.io/blog/posts/%E4%BD%BF%E7%94%A8ida-pro%E5%8A%A8%E6%80%81%E8%B0%83%E8%AF%95android-app/</guid>
+      <guid>http://localhost:1313/blog/posts/%E4%BD%BF%E7%94%A8ida-pro%E5%8A%A8%E6%80%81%E8%B0%83%E8%AF%95android-app/</guid>
       <description>版权归作者所有，如有转发，请注明文章出处：https://cyrus-studio.github.io/blog/&#xA;关于 android_server android_server 是 IDA Pro 在 Android 设备上运行的一个调试服务器。&#xA;通过在 Android 设备上运行android_server，IDA Pro 可以远程调试 Android 应用程序，并实现断点设置、内存查看、寄存器检查等功能。&#xA;IDA Pro 通过 adb（Android Debug Bridge）将调试命令发送给 android_server，然后 android_server 在 Android 设备上执行这些命令，并将结果返回给 IDA Pro。&#xA;调试环境准备 把 IDA安装目录/dbgsrv 下的 android_server64 push 到设备 /data/local/tmp 路径下&#xA;adb push &amp;#34;D:\App\IDA_Pro\IDA_Pro_7.7\dbgsrv\android_server64&amp;#34; /data/local/tmp/as 进入 adb shell 启动 androd server&#xA;# 获取 root 权限&#xD;su&#xD;# 给 android server 增加执行权限&#xD;chmod +x /data/local/tmp/as&#xD;# 通过指定端口启动 android_server，假设你要使用端口 12345&#xD;/data/local/tmp/as -p 12345 关于获取手机 root 权限和开启全局调试可以参考下面两篇文章：</description>
     </item>
     <item>
       <title>使用readelf分析so文件</title>
-      <link>https://cyrus-studio.github.io/blog/posts/%E4%BD%BF%E7%94%A8readelf%E5%88%86%E6%9E%90so%E6%96%87%E4%BB%B6/</link>
+      <link>http://localhost:1313/blog/posts/%E4%BD%BF%E7%94%A8readelf%E5%88%86%E6%9E%90so%E6%96%87%E4%BB%B6/</link>
       <pubDate>Sun, 29 Sep 2024 20:31:26 +0800</pubDate>
-      <guid>https://cyrus-studio.github.io/blog/posts/%E4%BD%BF%E7%94%A8readelf%E5%88%86%E6%9E%90so%E6%96%87%E4%BB%B6/</guid>
+      <guid>http://localhost:1313/blog/posts/%E4%BD%BF%E7%94%A8readelf%E5%88%86%E6%9E%90so%E6%96%87%E4%BB%B6/</guid>
       <description>版权归作者所有，如有转发，请注明文章出处：https://cyrus-studio.github.io/blog/&#xA;readelf readelf 是一个用于读取和显示 ELF（Executable and Linkable Format）文件信息的工具。虽然 readelf 工具本身是为 Unix-like 操作系统设计的，但你可以在 Windows 上通过 WSL 使用它。&#xA;WSL 允许你在 Windows 上运行 Linux 发行版，并且可以在其中使用 readelf 工具。&#xA;安装 WSL 打开 PowerShell 以管理员身份运行，并执行以下命令启用 WSL 并安装 Ubuntu 系统&#xA;wsl --install -d Ubuntu 然后设置用户账户和密码。 通过 wsl 命令进入 Ubuntu 系统。&#xA;在 wsl 中 /mnt/d 对应的就是 windows 下的 D 盘，其他同理。&#xA;使用 readelf 调用 readelf -a 一次性查看文件中的所有信息，包括文件头、程序头、节头、符号表、动态节等。&#xA;readelf -a libGameVMP.so&#xD;ELF Header:&#xD;Magic: 7f 45 4c 46 02 01 01 00 00 00 00 00 00 00 00 00&#xD;Class: ELF64&#xD;Data: 2&amp;#39;s complement, little endian&#xD;Version: 1 (current)&#xD;OS/ABI: UNIX - System V&#xD;ABI Version: 0&#xD;Type: DYN (Shared object file)&#xD;Machine: AArch64&#xD;Version: 0x1&#xD;Entry point address: 0x2650&#xD;Start of program headers: 64 (bytes into file)&#xD;Start of section headers: 130160 (bytes into file)&#xD;Flags: 0x0&#xD;Size of this header: 64 (bytes)&#xD;Size of program headers: 56 (bytes)&#xD;Number of program headers: 7&#xD;Size of section headers: 64 (bytes)&#xD;Number of section headers: 7&#xD;Section header string table index: 1&#xD;Section Headers:&#xD;[Nr] Name Type Address Offset&#xD;Size EntSize Flags Link Info Align&#xD;[ 0] NULL 0000000000000000 00000000&#xD;0000000000000000 0000000000000000 0 0 0&#xD;[ 1] .</description>
     </item>
     <item>
       <title>使用Charles抓包Android App数据</title>
-      <link>https://cyrus-studio.github.io/blog/posts/%E4%BD%BF%E7%94%A8charles%E6%8A%93%E5%8C%85android-app%E6%95%B0%E6%8D%AE/</link>
+      <link>http://localhost:1313/blog/posts/%E4%BD%BF%E7%94%A8charles%E6%8A%93%E5%8C%85android-app%E6%95%B0%E6%8D%AE/</link>
       <pubDate>Mon, 23 Sep 2024 18:39:06 +0800</pubDate>
-      <guid>https://cyrus-studio.github.io/blog/posts/%E4%BD%BF%E7%94%A8charles%E6%8A%93%E5%8C%85android-app%E6%95%B0%E6%8D%AE/</guid>
+      <guid>http://localhost:1313/blog/posts/%E4%BD%BF%E7%94%A8charles%E6%8A%93%E5%8C%85android-app%E6%95%B0%E6%8D%AE/</guid>
       <description>版权归作者所有，如有转发，请注明文章出处：https://cyrus-studio.github.io/blog/&#xA;抓包环境准备 1. 下载安装charles charles下载地址：https://www.charlesproxy.com/latest-release/download.do 2. SSL代理设置 3. http代理和socks代理配置 4. 设置Charles与Clash共存 如果开启了Clash，需要设置Charles与Clash共存&#xA;打开扩展代理设置 分别点击 Web Proxy、Seure Web Proxy 和 SOCKS Proxy 设置一下Clash的地址和端口 5. 共享热点 通过 ipconfg 或者打开【网络和Internet】找到电脑的 ip 地址 电脑开启共享热点，手机连接热点并设置代理 6. 安装证书 手机端访问 http://chls.pro/ssl 安装证书 下载并保存Charlles证书 Android 7.0 之后抓取HTTPS数据出现unknown 和证书无效的解决方案 1. 保存Charles证书 2. 计算证书的Hash值 下载安装 OpenSSL：https://slproweb.com/products/Win32OpenSSL.html&#xA;计算证书的Hash值&#xA;cd D:\App\OpenSSL-Win64\bin&#xD;./openssl x509 -inform PEM -subject_hash_old -in E:\charles.pem 比如这里得到的hash值为e4473cf9，把证书的文件名改为 e4473cf9.0 3. 安装证书到系统证书目录 把证书 push 到 /system/etc/security/cacerts（系统证书目录）&#xA;# 把证书 push 到 sdcard&#xD;adb push E:\e4473cf9.</description>
     </item>
     <item>
       <title>基于Python与K-Means的自动化视频分类方法</title>
-      <link>https://cyrus-studio.github.io/blog/posts/%E5%9F%BA%E4%BA%8Epython%E4%B8%8Ek-means%E7%9A%84%E8%87%AA%E5%8A%A8%E5%8C%96%E8%A7%86%E9%A2%91%E5%88%86%E7%B1%BB%E6%96%B9%E6%B3%95/</link>
+      <link>http://localhost:1313/blog/posts/%E5%9F%BA%E4%BA%8Epython%E4%B8%8Ek-means%E7%9A%84%E8%87%AA%E5%8A%A8%E5%8C%96%E8%A7%86%E9%A2%91%E5%88%86%E7%B1%BB%E6%96%B9%E6%B3%95/</link>
       <pubDate>Sat, 21 Sep 2024 01:43:21 +0800</pubDate>
-      <guid>https://cyrus-studio.github.io/blog/posts/%E5%9F%BA%E4%BA%8Epython%E4%B8%8Ek-means%E7%9A%84%E8%87%AA%E5%8A%A8%E5%8C%96%E8%A7%86%E9%A2%91%E5%88%86%E7%B1%BB%E6%96%B9%E6%B3%95/</guid>
+      <guid>http://localhost:1313/blog/posts/%E5%9F%BA%E4%BA%8Epython%E4%B8%8Ek-means%E7%9A%84%E8%87%AA%E5%8A%A8%E5%8C%96%E8%A7%86%E9%A2%91%E5%88%86%E7%B1%BB%E6%96%B9%E6%B3%95/</guid>
       <description>版权归作者所有，如有转发，请注明文章出处：https://cyrus-studio.github.io/blog/&#xA;实现过程 1. 特征提取：使用预训练的 InceptionV3 模型，从视频的若干帧中提取高维的视觉特征。将每个视频的所有帧特征取平均值，生成一个固定长度的特征向量来表示该视频。&#xA;2. 聚类：通过 K-Means 的聚类结果，每个视频被分配了一个簇标签，代表该视频与哪些视频在特征上最相似。&#xA;3. 分类整理：最后根据簇标签，将视频移动到相应的分类文件夹中，每个文件夹对应一个簇。&#xA;InceptionV3 模型 InceptionV3 是一种用于图像分类和特征提取的深度学习模型，它是Inception 系列模型的第三个版本，由 Google 在 2015 年提出。&#xA;它最初是作为图像分类任务的一个模型，能够将图像分类到 1000 个类别中（如狗、猫、汽车等）。通过去除模型的最后几层（分类部分），可以将 InceptionV3 用作特征提取器。&#xA;簇 簇是聚类算法的核心概念，表示数据中相似的子集，目的是将无标签的数据点分组。&#xA;K-Means K-Means 是一种常用的无监督聚类算法，它的目标是将数据点分成 K 个簇（Cluster），使得每个簇内的数据点尽可能接近同一个中心（即簇的质心）。&#xA;算法的核心思想是通过迭代的方式找到 K 个最优的簇质心，并根据这些质心将数据进行分组。&#xA;源码 1. 安装依赖库 pip install moviepy scikit-learn tensorflow opencv-python 2. 实现代码 import os&#xD;import numpy as np&#xD;import cv2&#xD;from moviepy.editor import VideoFileClip&#xD;from sklearn.cluster import KMeans&#xD;from tensorflow.keras.applications import InceptionV3&#xD;from tensorflow.keras.applications.inception_v3 import preprocess_input&#xD;from tensorflow.</description>
     </item>
     <item>
       <title>Android下反调试与反反调试</title>
-      <link>https://cyrus-studio.github.io/blog/posts/android%E4%B8%8B%E5%8F%8D%E8%B0%83%E8%AF%95%E4%B8%8E%E5%8F%8D%E5%8F%8D%E8%B0%83%E8%AF%95/</link>
+      <link>http://localhost:1313/blog/posts/android%E4%B8%8B%E5%8F%8D%E8%B0%83%E8%AF%95%E4%B8%8E%E5%8F%8D%E5%8F%8D%E8%B0%83%E8%AF%95/</link>
       <pubDate>Thu, 19 Sep 2024 06:44:08 +0800</pubDate>
-      <guid>https://cyrus-studio.github.io/blog/posts/android%E4%B8%8B%E5%8F%8D%E8%B0%83%E8%AF%95%E4%B8%8E%E5%8F%8D%E5%8F%8D%E8%B0%83%E8%AF%95/</guid>
+      <guid>http://localhost:1313/blog/posts/android%E4%B8%8B%E5%8F%8D%E8%B0%83%E8%AF%95%E4%B8%8E%E5%8F%8D%E5%8F%8D%E8%B0%83%E8%AF%95/</guid>
       <description>版权归作者所有，如有转发，请注明文章出处：https://cyrus-studio.github.io/blog/&#xA;反调试检测 反调试检测的几种方式。&#xA;1. TrackerId 首先，通过 IDA Pro 的调试器附加到当前 app 进程 关于IDA Pro调试android app的详细教程可以参考这篇文章【使用IDA Pro动态调试Android APP】&#xA;使用 top 命令查看进程状态&#xA;top | grep com.cyrus.example&#xD;17305 u0_a137 10 -10 4.8G 104M 42M t 0.0 1.8 0:02.02 com.cyrus.example 在输出中，S 表示进程状态，17305 是 PID。&#xA;通过head /proc/[pid]/status 可以查看详细的进程状态。&#xA;head -n 6 /proc/17305/status&#xD;Name: m.cyrus.example&#xD;State: S (sleeping)&#xD;Tgid: 17305&#xD;Pid: 17305&#xD;PPid: 728&#xD;TracerPid: 16208 TracerPid: 16208 说明当前的进程正在被进程 16208 调试或跟踪，否则没有被调试值应该为0。&#xA;2. stat 这时我们断点调试 app 再通过 head /proc/[pid]/status 可以查看详细的进程状态，包括是否被调试等信息。</description>
     </item>
     <item>
       <title>LineageOS连接网络提示IP配置失败</title>
-      <link>https://cyrus-studio.github.io/blog/posts/lineageos%E8%BF%9E%E6%8E%A5%E7%BD%91%E7%BB%9C%E6%8F%90%E7%A4%BAip%E9%85%8D%E7%BD%AE%E5%A4%B1%E8%B4%A5/</link>
+      <link>http://localhost:1313/blog/posts/lineageos%E8%BF%9E%E6%8E%A5%E7%BD%91%E7%BB%9C%E6%8F%90%E7%A4%BAip%E9%85%8D%E7%BD%AE%E5%A4%B1%E8%B4%A5/</link>
       <pubDate>Wed, 18 Sep 2024 15:35:46 +0800</pubDate>
-      <guid>https://cyrus-studio.github.io/blog/posts/lineageos%E8%BF%9E%E6%8E%A5%E7%BD%91%E7%BB%9C%E6%8F%90%E7%A4%BAip%E9%85%8D%E7%BD%AE%E5%A4%B1%E8%B4%A5/</guid>
+      <guid>http://localhost:1313/blog/posts/lineageos%E8%BF%9E%E6%8E%A5%E7%BD%91%E7%BB%9C%E6%8F%90%E7%A4%BAip%E9%85%8D%E7%BD%AE%E5%A4%B1%E8%B4%A5/</guid>
       <description> 版权归作者所有，如有转发，请注明文章出处：https://cyrus-studio.github.io/blog/&#xA;IP配置失败 连接所有网络都提示IP配置失败，通过配置静态IP也连不上网络，感觉就是WIFI模块不能用了。&#xA;使用 Magisk root 后就这样了，LineageOS 17.1（wayne），重新刷回刷机包的 boot.img 后就没问题了。&#xA;但是如果需要用到 root 权限怎么办？&#xA;以 Root 身份进入 ADB Shell 首先，进入设置中【开发者选项】，开启【Root 身份的调试】 接着执行下面的命令获取 root 权限&#xA;# 启用 adb root 身份&#xD;adb root&#xD;restarting adbd as root&#xD;# 以 root 身份进入&#xD;adb shell&#xD;# 验证 Root 权限&#xD;whoami&#xD;root # 返回结果为 root，说明你已经成功以 root 身份进入 ADB shell。 </description>
     </item>
     <item>
       <title>解决LineageOS提示网络受限问题</title>
-      <link>https://cyrus-studio.github.io/blog/posts/%E8%A7%A3%E5%86%B3lineageos%E6%8F%90%E7%A4%BA%E7%BD%91%E7%BB%9C%E5%8F%97%E9%99%90%E9%97%AE%E9%A2%98/</link>
+      <link>http://localhost:1313/blog/posts/%E8%A7%A3%E5%86%B3lineageos%E6%8F%90%E7%A4%BA%E7%BD%91%E7%BB%9C%E5%8F%97%E9%99%90%E9%97%AE%E9%A2%98/</link>
       <pubDate>Mon, 16 Sep 2024 21:34:05 +0800</pubDate>
-      <guid>https://cyrus-studio.github.io/blog/posts/%E8%A7%A3%E5%86%B3lineageos%E6%8F%90%E7%A4%BA%E7%BD%91%E7%BB%9C%E5%8F%97%E9%99%90%E9%97%AE%E9%A2%98/</guid>
+      <guid>http://localhost:1313/blog/posts/%E8%A7%A3%E5%86%B3lineageos%E6%8F%90%E7%A4%BA%E7%BD%91%E7%BB%9C%E5%8F%97%E9%99%90%E9%97%AE%E9%A2%98/</guid>
       <description>版权归作者所有，如有转发，请注明文章出处：https://cyrus-studio.github.io/blog/&#xA;问题原因 由于 LineageOS 源码里默认是使用 google captive连接验证服务，所以国内会一直提示网络受限，但是实际上是可以访问网络的。&#xA;要解决这个问题可以通过把 captive_portal_https_url 改为国内的就好了，比如用MIUI的。&#xA;更换 captive 连接验证服务器 1. 通过 adb 修改 adb shell settings put global captive_portal_https_url https://connect.rom.miui.com/generate_204&#xD;adb shell settings put global captive_portal_http_url http://connect.rom.miui.com/generate_204 2. 修改源码 编辑 packages/modules/NetworkStack/res/values/config.xml&#xA;&amp;lt;!-- HTTP URL for network validation, to use for detecting captive portals. --&amp;gt;&#xD;&amp;lt;string name=&amp;#34;default_captive_portal_http_url&amp;#34; translatable=&amp;#34;false&amp;#34;&amp;gt;http://connectivitycheck.gstatic.com/generate_204&amp;lt;/string&amp;gt;&#xD;&amp;lt;!-- HTTPS URL for network validation, to use for confirming internet connectivity. --&amp;gt;&#xD;&amp;lt;string name=&amp;#34;default_captive_portal_https_url&amp;#34; translatable=&amp;#34;false&amp;#34;&amp;gt;https://www.google.com/generate_204&amp;lt;/string&amp;gt;&#xD;&amp;lt;!-- List of fallback URLs to use for detecting captive portals.</description>
     </item>
     <item>
       <title>使用 release key 对 LineageOS 进行编译和签名</title>
-      <link>https://cyrus-studio.github.io/blog/posts/%E4%BD%BF%E7%94%A8-release-key-%E5%AF%B9-lineageos-%E8%BF%9B%E8%A1%8C%E7%BC%96%E8%AF%91%E5%92%8C%E7%AD%BE%E5%90%8D/</link>
+      <link>http://localhost:1313/blog/posts/%E4%BD%BF%E7%94%A8-release-key-%E5%AF%B9-lineageos-%E8%BF%9B%E8%A1%8C%E7%BC%96%E8%AF%91%E5%92%8C%E7%AD%BE%E5%90%8D/</link>
       <pubDate>Mon, 16 Sep 2024 21:05:17 +0800</pubDate>
-      <guid>https://cyrus-studio.github.io/blog/posts/%E4%BD%BF%E7%94%A8-release-key-%E5%AF%B9-lineageos-%E8%BF%9B%E8%A1%8C%E7%BC%96%E8%AF%91%E5%92%8C%E7%AD%BE%E5%90%8D/</guid>
+      <guid>http://localhost:1313/blog/posts/%E4%BD%BF%E7%94%A8-release-key-%E5%AF%B9-lineageos-%E8%BF%9B%E8%A1%8C%E7%BC%96%E8%AF%91%E5%92%8C%E7%AD%BE%E5%90%8D/</guid>
       <description>版权归作者所有，如有转发，请注明文章出处：https://cyrus-studio.github.io/blog/&#xA;为什么需要使用 release key test-key 是一个公开的、众所周知的开发测试密钥，广泛用于测试阶段。这意味着任何人都可以获取这个密钥，并用它签署自己修改的 APK 或系统文件。&#xA;使用 test-key 签署的系统镜像通常无法通过 Google 的 CTS（兼容性测试套件）认证，Google Play 商店、Google 服务框架等应用可能无法正常运行，某些第三方应用（例如银行应用或数字版权管理应用）也可能拒绝在设备上运行。&#xA;OTA 更新包必须使用 Release Key 来签名。签名的更新包经过验证，只有具有相同 Release Key 的设备才能接收和安装更新。&#xA;生成 release key 执行 nano make_keys.sh 创建脚本，内容如下&#xA;subject=&amp;#39;/C=US/ST=California/L=Mountain View/O=Android/OU=Android/CN=Android/emailAddress=linchaolong.dev@gmail.com&amp;#39;&#xD;# 创建 keys 目录（如果不存在）&#xD;mkdir -p keys&#xD;for cert in bluetooth cyngn-app media networkstack nfc platform releasekey sdk_sandbox shared testcert testkey verity; do \&#xD;./development/tools/make_key keys/$cert &amp;#34;$subject&amp;#34;; \&#xD;done 通过脚本创建 keys 目录并使用 make_key 命令生成你自己的密钥。&#xA;运行脚本生成密钥文件。</description>
     </item>
     <item>
       <title>Android源码导入Android Studio</title>
-      <link>https://cyrus-studio.github.io/blog/posts/android%E6%BA%90%E7%A0%81%E5%AF%BC%E5%85%A5android-studio/</link>
+      <link>http://localhost:1313/blog/posts/android%E6%BA%90%E7%A0%81%E5%AF%BC%E5%85%A5android-studio/</link>
       <pubDate>Sun, 15 Sep 2024 13:27:26 +0800</pubDate>
-      <guid>https://cyrus-studio.github.io/blog/posts/android%E6%BA%90%E7%A0%81%E5%AF%BC%E5%85%A5android-studio/</guid>
+      <guid>http://localhost:1313/blog/posts/android%E6%BA%90%E7%A0%81%E5%AF%BC%E5%85%A5android-studio/</guid>
       <description>版权归作者所有，如有转发，请注明文章出处：https://cyrus-studio.github.io/blog/&#xA;前言 需要先把 Android 源码编译一遍 然后执行下面指令就可以导入android源码了&#xA;关于 Android 源码编译可以参考这篇文章【LineageOS源码下载和编译（Xiaomi Mi 6X，wayne）】。&#xA;生成 android.ipr 文件 1. 进入到下面的目录&#xA;cd ./development/tools/idegen 2. 使用 mm 命令对当前目录 make，构建 idegen 模块&#xA;mm 执行完成后会在 out 目录生成一个 idegen.jar 文件&#xA;3. 回到 android 源码根目录，执行 idegen.sh 脚本（需要管理员权限）&#xA;# 回到 android 源码根目录&#xD;croot&#xD;# 执行 idegen.sh 脚本&#xD;sudo ./development/tools/idegen/idegen.sh 4. 执行完成后会生成一个 android.ipr 文件，用 android studio 打开这个 android.ipr 文件就可以完成 android 源码的导入了 运行 idegen.sh 脚本时遇到的问题 在运行 development/tools/idegen/idegen.sh 脚本时遇到的问题&#xA;1. 文件系统循环 find: File system loop detected 错误表示在使用 find 命令时遇到了符号链接循环。这通常不会导致脚本失败，但确实会产生一些额外的警告信息。</description>
     </item>
     <item>
       <title>LineageOS源码下载和编译（Xiaomi Mi 6X，wayne）</title>
-      <link>https://cyrus-studio.github.io/blog/posts/lineageos%E6%BA%90%E7%A0%81%E4%B8%8B%E8%BD%BD%E5%92%8C%E7%BC%96%E8%AF%91xiaomi-mi-6xwayne/</link>
+      <link>http://localhost:1313/blog/posts/lineageos%E6%BA%90%E7%A0%81%E4%B8%8B%E8%BD%BD%E5%92%8C%E7%BC%96%E8%AF%91xiaomi-mi-6xwayne/</link>
       <pubDate>Sun, 15 Sep 2024 09:48:57 +0800</pubDate>
-      <guid>https://cyrus-studio.github.io/blog/posts/lineageos%E6%BA%90%E7%A0%81%E4%B8%8B%E8%BD%BD%E5%92%8C%E7%BC%96%E8%AF%91xiaomi-mi-6xwayne/</guid>
+      <guid>http://localhost:1313/blog/posts/lineageos%E6%BA%90%E7%A0%81%E4%B8%8B%E8%BD%BD%E5%92%8C%E7%BC%96%E8%AF%91xiaomi-mi-6xwayne/</guid>
       <description>版权归作者所有，如有转发，请注明文章出处：https://cyrus-studio.github.io/blog/&#xA;源码下载 LineageOS官网：https://lineageos.org/&#xA;LineageOS源码 github 地址：https://github.com/LineageOS/android&#xA;LineageOS源码国内镜像地址：https://mirrors.tuna.tsinghua.edu.cn/help/lineageOS/&#xA;源码大概需要150GB的硬盘空间，编译完成差不多300G 1. 配置git git config --global user.email &amp;#34;you@example.com&amp;#34;&#xD;git config --global user.name &amp;#34;Your Name&amp;#34; 2. 安装 repo mkdir ~/bin&#xD;PATH=~/bin:$PATH&#xD;curl https://storage.googleapis.com/git-repo-downloads/repo &amp;gt; ~/bin/repo&#xD;chmod a+x ~/bin/repo 3. 安装 Git LFS sudo apt install git-lfs&#xD;git lfs install 4. 安装 Android SDK Platform-Tools 在 Linux 中配置 Android SDK Platform-Tools，可以按照以下步骤进行&#xA;4.1 下载 Android SDK Platform-Tools： # cd 到存放 platform-tools 的目录&#xD;cd /mnt/case_sensitive&#xD;# 下载 platform-tools&#xD;wget https://dl.</description>
     </item>
     <item>
       <title>LineageOS刷机教程</title>
-      <link>https://cyrus-studio.github.io/blog/posts/lineageos%E5%88%B7%E6%9C%BA%E6%95%99%E7%A8%8B/</link>
+      <link>http://localhost:1313/blog/posts/lineageos%E5%88%B7%E6%9C%BA%E6%95%99%E7%A8%8B/</link>
       <pubDate>Sun, 15 Sep 2024 01:50:08 +0800</pubDate>
-      <guid>https://cyrus-studio.github.io/blog/posts/lineageos%E5%88%B7%E6%9C%BA%E6%95%99%E7%A8%8B/</guid>
+      <guid>http://localhost:1313/blog/posts/lineageos%E5%88%B7%E6%9C%BA%E6%95%99%E7%A8%8B/</guid>
       <description>版权归作者所有，如有转发，请注明文章出处：https://cyrus-studio.github.io/blog/&#xA;LineageOS 是一个基于 Android 开源项目（AOSP）的开源操作系统，主要由社区开发者维护。它起源于 CyanogenMod 项目，该项目于 2016 年关闭后，LineageOS 成为了其继任者。&#xA;主要特点：&#xA;开源：所有源代码都是开源的，任何人都可以查看、修改和分发。&#xA;无预装垃圾软件：相比一些预装大量应用的定制 ROM，LineageOS 保持了简洁和干净的系统环境。&#xA;定期更新：社区提供持续的安全补丁和新功能更新。&#xA;广泛设备支持：支持各种品牌和型号的设备，尤其是一些官方已停止支持的老旧设备。&#xA;隐私保护：LineageOS 提供了增强的隐私保护功能，如权限管理器和私密模式。&#xA;注意：在刷机之前，请确认你的设备已经解除BL锁。&#xA;LineageOS 开始刷机之前，先在 LineageOS官网 找到自己的设备型号，下载对应的刷机包&#xA;或者下载 LineageOS 源码 自己编译系统&#xA;下载 GMS套件包 （可选） 刷机环境准备 在 Linux 中配置 Android SDK Platform-Tools，可以按照以下步骤进行&#xA;1. 下载 Android SDK Platform-Tools： # cd 到存放 platform-tools 的目录&#xD;cd /mnt/case_sensitive&#xD;# 下载 platform-tools&#xD;wget https://dl.google.com/android/repository/platform-tools-latest-linux.zip&#xD;# 解压 platform-tools&#xD;unzip platform-tools-latest-linux.zip 2. 配置环境变量： 为了在任何地方都能使用 adb 和 fastboot 命令，你需要将 platform-tools 目录添加到你的 PATH 中。</description>
     </item>
     <item>
       <title>小米手机解除BL锁&amp;刷机&amp;root</title>
-      <link>https://cyrus-studio.github.io/blog/posts/%E5%B0%8F%E7%B1%B3%E6%89%8B%E6%9C%BA%E8%A7%A3%E9%99%A4bl%E9%94%81%E5%88%B7%E6%9C%BAroot/</link>
+      <link>http://localhost:1313/blog/posts/%E5%B0%8F%E7%B1%B3%E6%89%8B%E6%9C%BA%E8%A7%A3%E9%99%A4bl%E9%94%81%E5%88%B7%E6%9C%BAroot/</link>
       <pubDate>Fri, 13 Sep 2024 23:49:13 +0800</pubDate>
-      <guid>https://cyrus-studio.github.io/blog/posts/%E5%B0%8F%E7%B1%B3%E6%89%8B%E6%9C%BA%E8%A7%A3%E9%99%A4bl%E9%94%81%E5%88%B7%E6%9C%BAroot/</guid>
+      <guid>http://localhost:1313/blog/posts/%E5%B0%8F%E7%B1%B3%E6%89%8B%E6%9C%BA%E8%A7%A3%E9%99%A4bl%E9%94%81%E5%88%B7%E6%9C%BAroot/</guid>
       <description>版权归作者所有，如有转发，请注明文章出处：https://cyrus-studio.github.io/blog/&#xA;解锁BL锁 1. 下载安装 miflash_unlock：https://miuiver.com/miunlock/，登录小米账号（需要和解锁设备绑定的账号一致） 2. 连接手机，关机后按住 “音量-” + 开机键进入 fastboot 模式，根据提示解锁手机 如果连接不上设备，点击右上角设置按钮【驱动检测】，手机进入recovery模式下重新连接，等待驱动安装完成。 如果还是连不上，参考下面链接的解决办法 https://miuiver.com/usb3-fix/&#xA;3. 重启手机开发者模式中查看解锁状态 刷机 ROM下载：https://magiskcn.com/rom&#xA;1. 下载小米线刷工具：https://xiaomirom.com/download-xiaomi-flash-tool-miflash/&#xA;2. 下载设备开发版线刷包，并解压线刷包 3. 打开miflash&#xA;4. 连接手机，关机，按住 &amp;ldquo;开机&amp;rdquo; + &amp;ldquo;音量-&amp;rdquo; 进入fastboot模式&#xA;5. 选择线刷包解压目录开始刷机 等待刷机成功 6. 刷机成功后，重新解除BL锁&#xA;7. 打开手机管家——应用管理——权限——ROOT权限——开启ROOT权限 结果发现root工具一直下载失败&#xA;使用Magisk进行root 下载 Magisk：https://github.com/topjohnwu/Magisk/releases&#xA;1. 安装 Magisk&#xA;adb install Magisk-v27.0.apk 2. 解压线刷包中的 boot.img，并 push 到手机&#xA;adb push boot.img /sdcard/boot.img 3. Magisk中【安装】【下一步】【选择并修补一个文件】【选择boot.img】，把处理完后的magisk_patched 下载到电脑 Android sdk\platform-tools 目录（这里下载 Android SDK Platform Tools）&#xA;adb pull /sdcard/Download/magisk_patched-27000_RIC3F.</description>
     </item>
     <item>
       <title>编译LineageOS模拟器镜像，导出到AndroidStudio</title>
-      <link>https://cyrus-studio.github.io/blog/posts/%E7%BC%96%E8%AF%91lineageos%E6%A8%A1%E6%8B%9F%E5%99%A8%E9%95%9C%E5%83%8F%E5%AF%BC%E5%87%BA%E5%88%B0androidstudio/</link>
+      <link>http://localhost:1313/blog/posts/%E7%BC%96%E8%AF%91lineageos%E6%A8%A1%E6%8B%9F%E5%99%A8%E9%95%9C%E5%83%8F%E5%AF%BC%E5%87%BA%E5%88%B0androidstudio/</link>
       <pubDate>Sun, 01 Sep 2024 12:39:32 +0800</pubDate>
-      <guid>https://cyrus-studio.github.io/blog/posts/%E7%BC%96%E8%AF%91lineageos%E6%A8%A1%E6%8B%9F%E5%99%A8%E9%95%9C%E5%83%8F%E5%AF%BC%E5%87%BA%E5%88%B0androidstudio/</guid>
+      <guid>http://localhost:1313/blog/posts/%E7%BC%96%E8%AF%91lineageos%E6%A8%A1%E6%8B%9F%E5%99%A8%E9%95%9C%E5%83%8F%E5%AF%BC%E5%87%BA%E5%88%B0androidstudio/</guid>
       <description>版权归作者所有，如有转发，请注明文章出处：https://cyrus-studio.github.io/blog/&#xA;源码下载 LineageOS官网：https://lineageos.org/ LineageOS源码 github 地址：https://github.com/LineageOS/android LineageOS源码国内镜像地址：https://mirrors.tuna.tsinghua.edu.cn/help/lineageOS/&#xA;源码大概需要150GB的硬盘空间，编译完成差不多300G 1. 配置git git config --global user.email &amp;#34;you@example.com&amp;#34;&#xD;git config --global user.name &amp;#34;Your Name&amp;#34; 2. 安装 repo mkdir ~/bin&#xD;PATH=~/bin:$PATH&#xD;curl https://storage.googleapis.com/git-repo-downloads/repo &amp;gt; ~/bin/repo&#xD;chmod a+x ~/bin/repo 3. 安装 Git LFS sudo apt install git-lfs&#xD;git lfs install 4. 设置REPO_URL 找到 repo 所在路径&#xA;which repo 编辑 repo&#xA;nano /home/cyrus/bin/repo 可以看到repo会优先取环境变量中的REPO_URL，否则默认使用googlesource&#xA;Ctrl +X 退出nano&#xA;通过下面的命令设置 REPO_URL 环境变量，设置为清华大学镜像源，解决国内访问不了 googlesource 问题&#xA;export REPO_URL=https://mirrors.tuna.tsinghua.edu.cn/git/git-repo/ 5. 下载源码 创建目录</description>
     </item>
     <item>
       <title>MagiskBoot编译&amp;解包&amp;打包boot.img</title>
-      <link>https://cyrus-studio.github.io/blog/posts/magiskboot%E7%BC%96%E8%AF%91%E8%A7%A3%E5%8C%85%E6%89%93%E5%8C%85boot.img/</link>
+      <link>http://localhost:1313/blog/posts/magiskboot%E7%BC%96%E8%AF%91%E8%A7%A3%E5%8C%85%E6%89%93%E5%8C%85boot.img/</link>
       <pubDate>Thu, 29 Aug 2024 04:25:23 +0800</pubDate>
-      <guid>https://cyrus-studio.github.io/blog/posts/magiskboot%E7%BC%96%E8%AF%91%E8%A7%A3%E5%8C%85%E6%89%93%E5%8C%85boot.img/</guid>
+      <guid>http://localhost:1313/blog/posts/magiskboot%E7%BC%96%E8%AF%91%E8%A7%A3%E5%8C%85%E6%89%93%E5%8C%85boot.img/</guid>
       <description>版权归作者所有，如有转发，请注明文章出处：https://cyrus-studio.github.io/blog/&#xA;编译环境准备 1. Windows下启用开发者模式，因为需要 symbolic link 支持 2. 安装 python3.8+，并配置PATH环境变量&#xA;# 查看python版本信息&#xD;py --version&#xD;# 查看所有已安装的 Python 解释器路径&#xD;py -0p 3. git 启用 symbolic links&#xA;# 启用 symbolic links&#xD;git config --global core.symlinks true&#xD;# 查看 git 配置&#xD;git config --global --list 4. 安装 Android Studio ，设置环境变量 ANDROID_HOME 为 Android SDK 文件夹的路径。该路径可以在 Android Studio 的设置中找到。&#xA;5. 下载 Magisk 源码&#xA;# 下载 Magisk 源码&#xD;git clone --recurse-submodules https://github.com/topjohnwu/Magisk.git&#xD;# 如果子模块克隆失败，可以手动克隆这些子模块。进入对应的子模块路径，然后执行以下命令&#xD;git submodule update --init --recursive 6.</description>
     </item>
     <item>
       <title>Linux下代理设置</title>
-      <link>https://cyrus-studio.github.io/blog/posts/linux%E4%B8%8B%E4%BB%A3%E7%90%86%E8%AE%BE%E7%BD%AE/</link>
+      <link>http://localhost:1313/blog/posts/linux%E4%B8%8B%E4%BB%A3%E7%90%86%E8%AE%BE%E7%BD%AE/</link>
       <pubDate>Thu, 29 Aug 2024 04:25:16 +0800</pubDate>
-      <guid>https://cyrus-studio.github.io/blog/posts/linux%E4%B8%8B%E4%BB%A3%E7%90%86%E8%AE%BE%E7%BD%AE/</guid>
+      <guid>http://localhost:1313/blog/posts/linux%E4%B8%8B%E4%BB%A3%E7%90%86%E8%AE%BE%E7%BD%AE/</guid>
       <description>版权归作者所有，如有转发，请注明文章出处：https://cyrus-studio.github.io/blog/&#xA;1. 下载安装clash-verge 下载 clash-verge https://github.com/clash-verge-rev/clash-verge-rev/releases&#xA;我这边用的是 ubuntu22，下载 clash-verge_1.7.5_amd64.deb&#xA;安装 clash-verge&#xA;# 安装相关依赖&#xD;sudo apt update&#xD;sudo apt install -f&#xD;sudo apt install libayatana-appindicator3-1 libwebkit2gtk-4.0-37 libgtk-3-0&#xD;# 安装clash-verge&#xD;sudo dpkg -i clash-verge_1.7.5_amd64.deb&#xD;# 卸载clash-verge&#xD;sudo dpkg -r clash-verge&#xD;# 启动 Clash Verge（nohup 命令可以让进程在后台运行，即使关闭终端也不会影响进程运行。）&#xD;# nohup 会创建一个 nohup.out 文件来记录输出日志。&#xD;nohup clash-verge &amp;amp; 2. 解决显示乱码问题 安装一些常见的字体包&#xA;sudo apt update&#xD;sudo apt install fonts-noto-cjk fonts-noto fonts-noto-core fonts-noto-ui-core fonts-wqy-zenhei 3. 导入订阅地址，开启代理 设置 关闭 IPV6 设置 勾选 系统代理 我这里科学上网使用的是魔戒，注册地址：https://mojie.</description>
     </item>
     <item>
       <title>荣耀Magicbook x14 扩容1TB固态</title>
-      <link>https://cyrus-studio.github.io/blog/posts/%E8%8D%A3%E8%80%80magicbook-x14-%E6%89%A9%E5%AE%B91tb%E5%9B%BA%E6%80%81/</link>
+      <link>http://localhost:1313/blog/posts/%E8%8D%A3%E8%80%80magicbook-x14-%E6%89%A9%E5%AE%B91tb%E5%9B%BA%E6%80%81/</link>
       <pubDate>Sun, 18 Aug 2024 03:06:59 +0800</pubDate>
-      <guid>https://cyrus-studio.github.io/blog/posts/%E8%8D%A3%E8%80%80magicbook-x14-%E6%89%A9%E5%AE%B91tb%E5%9B%BA%E6%80%81/</guid>
+      <guid>http://localhost:1313/blog/posts/%E8%8D%A3%E8%80%80magicbook-x14-%E6%89%A9%E5%AE%B91tb%E5%9B%BA%E6%80%81/</guid>
       <description>版权归作者所有，如有转发，请注明文章出处：https://cyrus-studio.github.io/blog/&#xA;固态硬盘规格 在官网查看加装固态硬盘的接口规格 https://www.honor.com/cn/laptops/honor-magicbook-x14-2023/ https://club.honor.com/cn/thread-28473794-1-1.html&#xA;或者在荣耀手机上的【荣耀商城app】里联系在线客服 选购固态硬盘 三星的性能不错，但是发热控制得不好，不适合用在轻薄本&#xA;凯侠的发热和性能都很平衡&#xA;笔记本自带的是铠侠KBG50ZNV1T02&#xA;综合看下来，凯侠SE10是不错的选择，但是是2280尺寸的&#xA;扩展固态的插槽规格是M2 2242&#xA;最后选出两款合适的：&#xA;西部数据SN740，性能不错，温控还可以，1T价格499。&#xA;凯侠BG5，性能中规中矩，温控很不错，1T价格359。&#xA;最后选择了凯侠G5 还有拆机工具 拆机加装过程 首先用吸盘吸住底盘的一角，拉出一条缝后，用撬棒插进去慢慢撬开 底盘拆开后，可以看到固态硬盘加装插口就在图中红圈位置 接着就是扭开加装接口那颗螺丝，就可以把固态硬盘插进去了 但买到的螺丝刀实在太辣鸡了，扭一下就损坏了。。。 最终还是跑去荣耀服务点把固态硬盘装进去了 接着开机，打开【设置】【系统】【存储】【磁盘和卷】 点击“初始化”，因为我们是扩容，选择GPT就行。 接下来点击“创建卷”。 为新硬盘取个分区名字，点击“格式化”。 再打开此电脑就能看到新磁盘了 用CrystalDiskInfo打开看看 用CrystalDiskMark测试一下读写 硬盘检测相关工具 CrystalDiskInfo中文版(硬盘检测工具) v9.3.2 https://www.423down.com/5432.html&#xA;AS SSD Benchmark 2.0.7316 汉化版单文件 https://www.423down.com/6751.html&#xA;硬盘检测工具CrystalDiskMark v8.0.5中文版 https://www.423down.com/10418.html&#xA;重新分配磁盘空间 由于C盘空间不太够用，需要重新分配一下磁盘空间&#xA;下载【傲梅分区助手】，使用码是1122&#xA;在D盘上右键，点击【分配空闲空间】 分配20GB给C盘 左上角点击【提交】 点击【执行】 点击【确定】 等待创建Windows PE后重启分区 重新分区中 分区完成后重启，可以看到C盘已经扩容了20GB 参考： 荣耀magicbook x16 2023扩容2T固态成功笔记 价格大跳水！顶级固态硬盘终于敢买了！铠侠SE10 1T上手体验 海力士BC711/BC901 西数SN740 铠侠BG4/BG5/BG6 美光2550/2400A 群联P0221 建兴CL4 M2 2230 NVME写入测试 加装固态硬盘主机扩容分步教程，手把手教你，进来学！ 想不格式化硬盘重新分区？4个方法轻松解决！</description>
     </item>
     <item>
       <title>小米5c解除BL锁&amp;刷机&amp;root</title>
-      <link>https://cyrus-studio.github.io/blog/posts/%E5%B0%8F%E7%B1%B35c%E8%A7%A3%E9%99%A4bl%E9%94%81%E5%88%B7%E6%9C%BAroot/</link>
+      <link>http://localhost:1313/blog/posts/%E5%B0%8F%E7%B1%B35c%E8%A7%A3%E9%99%A4bl%E9%94%81%E5%88%B7%E6%9C%BAroot/</link>
       <pubDate>Sun, 18 Aug 2024 01:54:50 +0800</pubDate>
-      <guid>https://cyrus-studio.github.io/blog/posts/%E5%B0%8F%E7%B1%B35c%E8%A7%A3%E9%99%A4bl%E9%94%81%E5%88%B7%E6%9C%BAroot/</guid>
+      <guid>http://localhost:1313/blog/posts/%E5%B0%8F%E7%B1%B35c%E8%A7%A3%E9%99%A4bl%E9%94%81%E5%88%B7%E6%9C%BAroot/</guid>
       <description>版权归作者所有，如有转发，请注明文章出处：https://cyrus-studio.github.io/blog/&#xA;解锁BL锁 1. 下载安装 miflash_unlock：https://miuiver.com/miunlock/，登录小米账号（需要和解锁设备绑定的账号一致） 2. 连接手机，关机后按住 “音量-” + 开机键进入 fastboot 模式，根据提示解锁手机 3. 重启手机开发者模式中查看解锁状态 刷机 ROM下载：https://magiskcn.com/rom&#xA;1. 下载小米线刷工具：https://xiaomirom.com/download-xiaomi-flash-tool-miflash/&#xA;2. 下载小米5c开发版线刷包，并解压线刷包 3. 打开miflash&#xA;4. 连接手机，关机，按住 &amp;ldquo;开机&amp;rdquo; + &amp;ldquo;音量-&amp;rdquo; 进入fastboot模式&#xA;5. 选择线刷包解压目录开始刷机 等待刷机成功 6. 刷机成功后，重新解除BL锁&#xA;7. 打开手机管家——应用管理——权限——ROOT权限——开启ROOT权限 结果发现root工具一直下载失败&#xA;使用Magisk进行root 下载 Magisk：https://github.com/topjohnwu/Magisk/releases&#xA;1. 安装 Magisk&#xA;adb install Magisk-v27.0.apk 2. 解压线刷包中的 boot.img，并 push 到手机&#xA;adb push boot.img /sdcard/boot.img 3. Magisk中【安装】【下一步】【选择并修补一个文件】【选择boot.img】，把处理完后的magisk_patched 下载到电脑 Android sdk\platform-tools 目录（这里下载 Android SDK Platform Tools）&#xA;adb pull /sdcard/Download/magisk_patched-27000_RIC3F.img D:\App\android\sdk\platform-tools 4. 使用 adb 命令将设备重启到 fastboot 模式</description>
     </item>
     <item>
       <title>修改android系统ro.debuggable使全局可调试</title>
-      <link>https://cyrus-studio.github.io/blog/posts/%E4%BF%AE%E6%94%B9android%E7%B3%BB%E7%BB%9Fro.debuggable%E4%BD%BF%E5%85%A8%E5%B1%80%E5%8F%AF%E8%B0%83%E8%AF%95/</link>
+      <link>http://localhost:1313/blog/posts/%E4%BF%AE%E6%94%B9android%E7%B3%BB%E7%BB%9Fro.debuggable%E4%BD%BF%E5%85%A8%E5%B1%80%E5%8F%AF%E8%B0%83%E8%AF%95/</link>
       <pubDate>Fri, 16 Aug 2024 00:04:11 +0800</pubDate>
-      <guid>https://cyrus-studio.github.io/blog/posts/%E4%BF%AE%E6%94%B9android%E7%B3%BB%E7%BB%9Fro.debuggable%E4%BD%BF%E5%85%A8%E5%B1%80%E5%8F%AF%E8%B0%83%E8%AF%95/</guid>
+      <guid>http://localhost:1313/blog/posts/%E4%BF%AE%E6%94%B9android%E7%B3%BB%E7%BB%9Fro.debuggable%E4%BD%BF%E5%85%A8%E5%B1%80%E5%8F%AF%E8%B0%83%E8%AF%95/</guid>
       <description>版权归作者所有，如有转发，请注明文章出处：https://cyrus-studio.github.io/blog/&#xA;修改 android 系统 中的 ro.debuggable 属性使设备上所有 app 可调试。&#xA;下载MagiskHidePropsConf：https://github.com/Magisk-Modules-Repo/MagiskHidePropsConf/tags&#xA;把下载下来的MagiskHidePropsConf推送到手机sdcard上&#xA;adb push &amp;#34;D:\app逆向\MagiskHidePropsConf-v6.1.2.zip&amp;#34; /sdcard/ 安装MagiskHidePropsConf，打开Magick【模块】【本地安装】【选择MagiskHidePropsConf-v6.1.2.zi p】&#xA;重启手机，进入 adb shell&#xA;输入props&#xA;meri:/ # props&#xD;Loading... Please wait.&#xD;MagiskHide Props Config v6.1.2&#xD;by Didgeridoohan @ XDA Developers&#xD;=====================================&#xD;Updating fingerprints list&#xD;=====================================&#xD;Checking list version.&#xD;! File not downloaded!&#xD;Checking for module update.&#xD;! File not downloaded!&#xD;MagiskHide Props Config v6.1.2&#xD;by Didgeridoohan @ XDA Developers&#xD;=====================================&#xD;Select an option below.</description>
     </item>
     <item>
       <title>有道云docx转换markdown，导入hugo发布到github page，多平台发布适配</title>
-      <link>https://cyrus-studio.github.io/blog/posts/%E6%9C%89%E9%81%93%E4%BA%91docx%E8%BD%AC%E6%8D%A2markdown%E5%AF%BC%E5%85%A5hugo%E5%8F%91%E5%B8%83%E5%88%B0github-page%E5%A4%9A%E5%B9%B3%E5%8F%B0%E5%8F%91%E5%B8%83%E9%80%82%E9%85%8D/</link>
+      <link>http://localhost:1313/blog/posts/%E6%9C%89%E9%81%93%E4%BA%91docx%E8%BD%AC%E6%8D%A2markdown%E5%AF%BC%E5%85%A5hugo%E5%8F%91%E5%B8%83%E5%88%B0github-page%E5%A4%9A%E5%B9%B3%E5%8F%B0%E5%8F%91%E5%B8%83%E9%80%82%E9%85%8D/</link>
       <pubDate>Sun, 11 Aug 2024 06:09:27 +0800</pubDate>
-      <guid>https://cyrus-studio.github.io/blog/posts/%E6%9C%89%E9%81%93%E4%BA%91docx%E8%BD%AC%E6%8D%A2markdown%E5%AF%BC%E5%85%A5hugo%E5%8F%91%E5%B8%83%E5%88%B0github-page%E5%A4%9A%E5%B9%B3%E5%8F%B0%E5%8F%91%E5%B8%83%E9%80%82%E9%85%8D/</guid>
+      <guid>http://localhost:1313/blog/posts/%E6%9C%89%E9%81%93%E4%BA%91docx%E8%BD%AC%E6%8D%A2markdown%E5%AF%BC%E5%85%A5hugo%E5%8F%91%E5%B8%83%E5%88%B0github-page%E5%A4%9A%E5%B9%B3%E5%8F%B0%E5%8F%91%E5%B8%83%E9%80%82%E9%85%8D/</guid>
       <description>版权归作者所有，如有转发，请注明文章出处：https://cyrus-studio.github.io/blog/&#xA;有道云导出docx&#xA;有道云笔记右上角更多按钮选择【导出为Word】，可以导出docx文档 docx转换markdown&#xA;尝试了几个docx转markdown的python库后，最终选择了python-mammoth，轻量，效率高，可自定义转换满足特定需求。&#xA;python-mammoth&#xA;python-mammoth 是一个用于将 Microsoft Word (DOCX) 文档转换为 HTML 或 Markdown 的 Python 库。&#xA;github地址：https://github.com/mwilliamson/python-mammoth&#xA;安装 python-mammoth&#xA;pip install mammoth 自定义代码块样式&#xA;通过自定义 transform 来实现自定义的代码块样式来支持有道云docx的代码块&#xA;def ynote_docx_markdown_transform(document):&#xD;...&#xD;pass&#xD;result = convert_to_markdown(docx_file, transform_document=ynote_docx_markdown_transform) 通过在自定义 transform 断点调试可以看到 document 都是由一个一个 Paragraph 组成的，代码块的 Bookmark 的 name 都是相同的，由此代码块其中一个特征就是相同且相邻的 Bookmark name。 但是有的代码块只是单独的一段 这时可以通过自定义 代码/bash 特征判断该 Paragraph 中的 Text 是不是一段 代码/bash。&#xA;def is_possible_code_or_bash(text):&#xD;# 常见的代码关键字&#xD;code_keywords = [&#xD;r&amp;#39;\bif\b&amp;#39;, r&amp;#39;\bfor\b&amp;#39;, r&amp;#39;\bwhile\b&amp;#39;, r&amp;#39;\bdef\b&amp;#39;, r&amp;#39;\bclass\b&amp;#39;, r&amp;#39;\breturn\b&amp;#39;, r&amp;#39;\bimport\b&amp;#39;,&#xD;r&amp;#39;\bint\b&amp;#39;, r&amp;#39;\bfloat\b&amp;#39;, r&amp;#39;\bmain\b&amp;#39;, r&amp;#39;\binclude\b&amp;#39;, r&amp;#39;#include&amp;#39;, r&amp;#39;\becho\b&amp;#39;, r&amp;#39;\bcd\b&amp;#39;,&#xD;r&amp;#39;\bgrep\b&amp;#39;, r&amp;#39;\bexit\b&amp;#39;, r&amp;#39;\belse\b&amp;#39;, r&amp;#39;\belif\b&amp;#39;, r&amp;#39;#!</description>
     </item>
     <item>
       <title>0成本通过Hugo和GitHub Pages搭建博客</title>
-      <link>https://cyrus-studio.github.io/blog/posts/0%E6%88%90%E6%9C%AC%E9%80%9A%E8%BF%87hugo%E5%92%8Cgithub-pages%E6%90%AD%E5%BB%BA%E5%8D%9A%E5%AE%A2/</link>
+      <link>http://localhost:1313/blog/posts/0%E6%88%90%E6%9C%AC%E9%80%9A%E8%BF%87hugo%E5%92%8Cgithub-pages%E6%90%AD%E5%BB%BA%E5%8D%9A%E5%AE%A2/</link>
       <pubDate>Sun, 11 Aug 2024 06:09:10 +0800</pubDate>
-      <guid>https://cyrus-studio.github.io/blog/posts/0%E6%88%90%E6%9C%AC%E9%80%9A%E8%BF%87hugo%E5%92%8Cgithub-pages%E6%90%AD%E5%BB%BA%E5%8D%9A%E5%AE%A2/</guid>
+      <guid>http://localhost:1313/blog/posts/0%E6%88%90%E6%9C%AC%E9%80%9A%E8%BF%87hugo%E5%92%8Cgithub-pages%E6%90%AD%E5%BB%BA%E5%8D%9A%E5%AE%A2/</guid>
       <description>版权归作者所有，如有转发，请注明文章出处：https://cyrus-studio.github.io/blog/&#xA;使用 Chocolatey 安装 Hugo&#xA;Chocolatey 是一个 Windows 软件包管理器，使用 PowerShell 和 NuGet 作为基础。它可以自动化软件的安装、升级和卸载过程。&#xA;安装 Chocolatey（如果还没有安装）&#xA;Chocolatey 允许你通过设置环境变量来更改默认安装路径。在安装 Chocolatey 之前，你需要设置 ChocolateyInstall 环境变量来指定新的安装路径。&#xA;打开 PowerShell（以管理员身份运行），并执行以下命令指定自定义安装路径：&#xA;1. [System.Environment]::SetEnvironmentVariable(&amp;#39;ChocolateyInstall&amp;#39;, &amp;#39;D:\App\chocolatey&amp;#39;, [System.EnvironmentVariableTarget]::Machine) 如果不设置默认安装路径为：C:\ProgramData\chocolatey 设置完 ChocolateyInstall 环境变量后，重新打开一下会话，执行下面的命令检查一下是否设置成功&#xA;Get-Item Env:ChocolateyInstall 打开 PowerShell（以管理员身份运行），执行以下命令安装 Chocolatey：&#xA;1. Set-ExecutionPolicy Bypass -Scope Process -Force; [System.Net.ServicePointManager]::SecurityProtocol = [System.Net.ServicePointManager]::SecurityProtocol -bor 3072; iex ((New-Object System.Net.WebClient).DownloadString(&amp;#39;https://community.chocolatey.org/install.ps1&amp;#39;)) 检查是否安装成功&#xA;choco -h 安装 Hugo&#xA;在 PowerShell 中运行以下命令安装 Hugo： 安装软件包：&#xA;choco install hugo -confirm 升级软件包：&#xA;choco upgrade hugo 卸载软件包：</description>
     </item>
     <item>
       <title>About</title>
-      <link>https://cyrus-studio.github.io/blog/about/</link>
+      <link>http://localhost:1313/blog/about/</link>
       <pubDate>Sat, 10 Aug 2024 12:00:00 +0000</pubDate>
-      <guid>https://cyrus-studio.github.io/blog/about/</guid>
+      <guid>http://localhost:1313/blog/about/</guid>
       <description>欢迎访问我的博客！在这里分享我的android、python相关知识、经验和项目。&#xA;博客地址: https://cyrus-studio.github.io/blog/ GitHub: https://github.com/CYRUS-STUDIO Email: linchaolong.dev@gmail.com </description>
     </item>
   </channel>
