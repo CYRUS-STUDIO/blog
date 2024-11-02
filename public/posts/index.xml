@@ -6,12 +6,12 @@
     <description>Recent content in Posts on CYRUS STUDIO</description>
     <generator>Hugo</generator>
     <language>zh-cn</language>
-    <lastBuildDate>Sat, 02 Nov 2024 20:14:44 +0800</lastBuildDate>
+    <lastBuildDate>Sat, 02 Nov 2024 22:59:49 +0800</lastBuildDate>
     <atom:link href="https://cyrus-studio.github.io/blog/posts/index.xml" rel="self" type="application/rss+xml" />
     <item>
       <title>详解ARM64可执行程序的生成过程</title>
       <link>https://cyrus-studio.github.io/blog/posts/%E8%AF%A6%E8%A7%A3arm64%E5%8F%AF%E6%89%A7%E8%A1%8C%E7%A8%8B%E5%BA%8F%E7%9A%84%E7%94%9F%E6%88%90%E8%BF%87%E7%A8%8B/</link>
-      <pubDate>Sat, 02 Nov 2024 20:14:44 +0800</pubDate>
+      <pubDate>Sat, 02 Nov 2024 22:59:49 +0800</pubDate>
       <guid>https://cyrus-studio.github.io/blog/posts/%E8%AF%A6%E8%A7%A3arm64%E5%8F%AF%E6%89%A7%E8%A1%8C%E7%A8%8B%E5%BA%8F%E7%9A%84%E7%94%9F%E6%88%90%E8%BF%87%E7%A8%8B/</guid>
       <description>版权归作者所有，如有转发，请注明文章出处：https://cyrus-studio.github.io/blog/&#xA;ARM64可执行程序的生成过程 根据 ARM64 可执行程序生成的四个主要步骤：预处理、编译、汇编、链接，我们可以详细分解整个过程如下&#xA;1. 预处理（Preprocessing） 预处理是源代码文件在正式编译前的准备工作，由预处理器完成。其主要任务包括：&#xA;宏替换：处理 #define 定义的宏，将代码中出现的宏替换为实际值。&#xA;文件包含：处理 #include 指令，将所需的头文件内容直接插入代码中，确保所有引用的函数和变量声明都在同一文件中。&#xA;条件编译：处理 #ifdef、#ifndef 等条件编译指令，以控制代码中不同部分的编译。&#xA;预处理后的输出仍然是代码文件，但没有任何宏、条件编译等指令，通常以 .i 或 .ii 作为扩展名。&#xA;2. 编译（Compilation） 编译器（如 GCC 或 Clang）将预处理后的代码文件转换为汇编代码，产生汇编语言表示的文件。此阶段包括以下子步骤：&#xA;词法分析：将源代码转化为基本的语法单元（token），如变量名、运算符、关键字等。&#xA;语法分析：将代码组织成抽象语法树（AST），根据编程语言的语法规则生成层次结构。&#xA;语义分析：检查语法树的正确性，如类型检查、作用域检查等，确保代码符合语言语义。&#xA;中间代码生成：编译器生成与平台无关的中间代码，方便后续优化。&#xA;优化：编译器对中间代码进行优化，如消除冗余代码、进行循环优化等，以提升程序效率。&#xA;生成汇编代码：编译器将优化后的中间代码转换为特定平台（如 ARM64）的汇编代码，通常输出 .s 文件。&#xA;编译阶段的最终输出是汇编代码文件，包含了基于 ARM64 指令集的指令。&#xA;3. 汇编（Assemble） 汇编器（如 GNU Assembler，as）将汇编代码文件（.s 文件）转换为机器代码，生成二进制的目标文件（.o 文件）。目标文件包含了二进制的机器指令，但符号引用还未解析，因此目标文件本身并非独立的可执行文件。&#xA;汇编阶段的主要工作包括：&#xA;指令翻译：将汇编语言指令转换为 ARM64 指令集对应的二进制机器指令。&#xA;符号表生成：记录所有函数和变量的符号地址，以便链接阶段使用。&#xA;机器码生成：生成目标文件（.o），将每条指令翻译成可执行的机器码。&#xA;目标文件是 ARM64 可执行程序生成过程中不可或缺的中间文件。&#xA;4. 链接（Linking） 链接器（如 GNU Linker，ld）将一个或多个目标文件链接在一起，并解决外部依赖，生成最终的可执行文件。链接的过程分为静态链接和动态链接两种：&#xA;静态链接：将程序所需的库代码直接嵌入到可执行文件中，生成一个完全自包含的文件。&#xA;动态链接：生成的可执行文件依赖外部共享库（如 .so 文件），在程序运行时加载这些共享库。&#xA;链接阶段的关键步骤包括：&#xA;符号解析：将不同目标文件中的符号（如函数和变量）解析为对应的内存地址，解决跨文件调用。&#xA;重定位：调整目标文件中指令和数据的地址，使得所有模块可以在一个统一的地址空间中正常运行。&#xA;生成可执行文件：链接器根据 ELF（Executable and Linkable Format）等格式生成最终的可执行文件，包含程序代码段、数据段、以及其他加载器所需的元信息。</description>
     </item>
