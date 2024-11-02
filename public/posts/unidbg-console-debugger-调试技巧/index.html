@@ -1,6 +1,6 @@
 <!doctype html>
 <html lang="zh-cn">
-  <head><script src="/blog/livereload.js?mindelay=10&amp;v=2&amp;port=1313&amp;path=blog/livereload" data-no-instant defer></script>
+  <head>
     <title>unidbg console debugger 调试技巧 // CYRUS STUDIO</title>
     <link rel="shortcut icon" href="/favicon.ico" />
     <meta charset="utf-8" />
@@ -22,7 +22,7 @@
 打开debug日志 编辑 unidbg-android/src/test/resources/log4j.properties 把 log4j.logger.com.github.unidbg.AbstractEmulator 改为 DEBUG 当运行报错时会自动断点，可以看到具体报错的位置、寄存器、机器码等等信息。
 [03:20:11 438] DEBUG [com.github.unidbg.AbstractEmulator] (AbstractEmulator:364) - emulate RX@0x121daa74[libc.so]0x1aa74 started sp=unidbg@0xe4fff700[03:20:11 457] DEBUG [com.github.unidbg.AbstractEmulator] (AbstractEmulator:402) - emulate RX@0x121daa74[libc.so]0x1aa74 finished sp=unidbg@0xe4fff700, offset=18ms[03:20:11 458] DEBUG [com.github.unidbg.AbstractEmulator] (AbstractEmulator:364) - emulate RX@0x121daa98[libc.so]0x1aa98 started sp=unidbg@0xe4fff700[03:20:11 458] DEBUG [com.github.unidbg.AbstractEmulator] (AbstractEmulator:402) - emulate RX@0x121daa98[libc.so]0x1aa98 finished sp=unidbg@0xe4fff700, offset=0ms[03:20:11 458] DEBUG [com.github.unidbg.AbstractEmulator] (AbstractEmulator:364) - emulate RX@0x121daaac[libc.so]0x1aaac started sp=unidbg@0xe4fff700[03:20:11 459] DEBUG [com.github.unidbg.AbstractEmulator] (AbstractEmulator:402) - emulate RX@0x121daaac[libc.so]0x1aaac finished sp=unidbg@0xe4fff700, offset=0ms[03:20:11 459] DEBUG [com.">
 
-    <meta property="og:url" content="http://localhost:1313/blog/posts/unidbg-console-debugger-%E8%B0%83%E8%AF%95%E6%8A%80%E5%B7%A7/">
+    <meta property="og:url" content="https://cyrus-studio.github.io/blog/posts/unidbg-console-debugger-%E8%B0%83%E8%AF%95%E6%8A%80%E5%B7%A7/">
   <meta property="og:site_name" content="CYRUS STUDIO">
   <meta property="og:title" content="unidbg console debugger 调试技巧">
   <meta property="og:description" content="版权归作者所有，如有转发，请注明文章出处：https://cyrus-studio.github.io/blog/
@@ -38,7 +38,7 @@
   </head>
   <body>
     <header class="app-header">
-      <a href="http://localhost:1313/blog/"><img class="app-header-avatar" src="/blog/avatar.jpg" alt="John Doe" /></a>
+      <a href="https://cyrus-studio.github.io/blog/"><img class="app-header-avatar" src="/blog/avatar.jpg" alt="John Doe" /></a>
       <span class="app-header-title">CYRUS STUDIO</span>
       <nav class="app-header-menu">
           <a class="app-header-menu-item" href="/blog/">Home</a>

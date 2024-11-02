@@ -1,6 +1,6 @@
 <!doctype html>
 <html lang="zh-cn">
-  <head><script src="/blog/livereload.js?mindelay=10&amp;v=2&amp;port=1313&amp;path=blog/livereload" data-no-instant defer></script>
+  <head>
     <title>Android下反调试与反反调试 // CYRUS STUDIO</title>
     <link rel="shortcut icon" href="/favicon.ico" />
     <meta charset="utf-8" />
@@ -27,7 +27,7 @@ top | grep com.cyrus.example17305 u0_a137 10 -10 4.8G 104M 42M t 0.0 1.8 0:02.0
 head -n 6 /proc/17305/statusName: m.cyrus.exampleState: S (sleeping)Tgid: 17305Pid: 17305PPid: 728TracerPid: 16208 TracerPid: 16208 说明当前的进程正在被进程 16208 调试或跟踪，否则没有被调试值应该为0。
 2. stat 这时我们断点调试 app 再通过 head /proc/[pid]/status 可以查看详细的进程状态，包括是否被调试等信息。">
 
-    <meta property="og:url" content="http://localhost:1313/blog/posts/android%E4%B8%8B%E5%8F%8D%E8%B0%83%E8%AF%95%E4%B8%8E%E5%8F%8D%E5%8F%8D%E8%B0%83%E8%AF%95/">
+    <meta property="og:url" content="https://cyrus-studio.github.io/blog/posts/android%E4%B8%8B%E5%8F%8D%E8%B0%83%E8%AF%95%E4%B8%8E%E5%8F%8D%E5%8F%8D%E8%B0%83%E8%AF%95/">
   <meta property="og:site_name" content="CYRUS STUDIO">
   <meta property="og:title" content="Android下反调试与反反调试">
   <meta property="og:description" content="版权归作者所有，如有转发，请注明文章出处：https://cyrus-studio.github.io/blog/
@@ -48,7 +48,7 @@ head -n 6 /proc/17305/statusName: m.cyrus.exampleState: S (sleeping)Tgid: 173
   </head>
   <body>
     <header class="app-header">
-      <a href="http://localhost:1313/blog/"><img class="app-header-avatar" src="/blog/avatar.jpg" alt="John Doe" /></a>
+      <a href="https://cyrus-studio.github.io/blog/"><img class="app-header-avatar" src="/blog/avatar.jpg" alt="John Doe" /></a>
       <span class="app-header-title">CYRUS STUDIO</span>
       <nav class="app-header-menu">
           <a class="app-header-menu-item" href="/blog/">Home</a>

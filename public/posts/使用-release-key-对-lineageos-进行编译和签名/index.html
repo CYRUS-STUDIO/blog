@@ -1,6 +1,6 @@
 <!doctype html>
 <html lang="zh-cn">
-  <head><script src="/blog/livereload.js?mindelay=10&amp;v=2&amp;port=1313&amp;path=blog/livereload" data-no-instant defer></script>
+  <head>
     <title>使用 release key 对 LineageOS 进行编译和签名 // CYRUS STUDIO</title>
     <link rel="shortcut icon" href="/favicon.ico" />
     <meta charset="utf-8" />
@@ -26,7 +26,7 @@ OTA 更新包必须使用 Release Key 来签名。签名的更新包经过验证
 subject=&#39;/C=US/ST=California/L=Mountain View/O=Android/OU=Android/CN=Android/emailAddress=linchaolong.dev@gmail.com&#39;# 创建 keys 目录（如果不存在）mkdir -p keysfor cert in bluetooth cyngn-app media networkstack nfc platform releasekey sdk_sandbox shared testcert testkey verity; do \./development/tools/make_key keys/$cert &#34;$subject&#34;; \done 通过脚本创建 keys 目录并使用 make_key 命令生成你自己的密钥。
 运行脚本生成密钥文件。">
 
-    <meta property="og:url" content="http://localhost:1313/blog/posts/%E4%BD%BF%E7%94%A8-release-key-%E5%AF%B9-lineageos-%E8%BF%9B%E8%A1%8C%E7%BC%96%E8%AF%91%E5%92%8C%E7%AD%BE%E5%90%8D/">
+    <meta property="og:url" content="https://cyrus-studio.github.io/blog/posts/%E4%BD%BF%E7%94%A8-release-key-%E5%AF%B9-lineageos-%E8%BF%9B%E8%A1%8C%E7%BC%96%E8%AF%91%E5%92%8C%E7%AD%BE%E5%90%8D/">
   <meta property="og:site_name" content="CYRUS STUDIO">
   <meta property="og:title" content="使用 release key 对 LineageOS 进行编译和签名">
   <meta property="og:description" content="版权归作者所有，如有转发，请注明文章出处：https://cyrus-studio.github.io/blog/
@@ -46,7 +46,7 @@ subject=&#39;/C=US/ST=California/L=Mountain View/O=Android/OU=Android/CN=Android
   </head>
   <body>
     <header class="app-header">
-      <a href="http://localhost:1313/blog/"><img class="app-header-avatar" src="/blog/avatar.jpg" alt="John Doe" /></a>
+      <a href="https://cyrus-studio.github.io/blog/"><img class="app-header-avatar" src="/blog/avatar.jpg" alt="John Doe" /></a>
       <span class="app-header-title">CYRUS STUDIO</span>
       <nav class="app-header-menu">
           <a class="app-header-menu-item" href="/blog/">Home</a>
