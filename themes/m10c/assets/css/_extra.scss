@@ -103,3 +103,24 @@ p img {
   text-align: center;  /* 可以让计数器居中显示 */
 }
 
+
+/* 设置表格线条样式和透明背景 */
+table {
+    border-collapse: collapse; /* 合并边框 */
+    width: 100%; /* 让表格宽度占满容器 */
+    background-color: transparent; /* 背景透明 */
+}
+
+table, th, td {
+    border: 1px solid rgba(255, 255, 255, 0.3); /* 淡白色边框，透明度30% */
+    padding: 8px; /* 设置内边距 */
+    color: inherit; /* 保持字体颜色与页面一致 */
+}
+
+th {
+    text-align: left; /* 表头文字左对齐 */
+}
+
+tr:nth-child(even) {
+    background-color: rgba(255, 255, 255, 0.05); /* 设置隔行背景色，保持透明度 */
+}
