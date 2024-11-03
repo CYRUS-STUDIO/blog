@@ -1,6 +1,6 @@
 +++
 title = 'Thumb 汇编指令集，Thumb 指令编码方式，编译 Thumb 汇编代码'
-date = 2024-11-04T02:29:37.450311+08:00
+date = 2024-11-04T02:39:15.327917+08:00
 draft = false
 +++
 
@@ -107,7 +107,9 @@ int main() {
 ```
 
 执行下面命令把 hello_thumb.c 编译成 thumb 汇编代码文件 hello_thumb.s 
+```
 armv7a-linux-androideabi35-clang -S -mthumb hello_thumb.c -o hello_thumb.s
+```
 -mthumb 表示使用 thumb 汇编
 
 关于ARM程序生成过程可以参考这篇文章【[详解ARM64可执行程序的生成过程](https://cyrus-studio.github.io/blog/posts/%E8%AF%A6%E8%A7%A3arm64%E5%8F%AF%E6%89%A7%E8%A1%8C%E7%A8%8B%E5%BA%8F%E7%9A%84%E7%94%9F%E6%88%90%E8%BF%87%E7%A8%8B/)】
@@ -184,7 +186,9 @@ main:
 ```
 
 执行下面命令把 thumb 汇编文件编译成可执行程序 hello_thumb。
+```
 armv7a-linux-androideabi35-clang hello_thumb.s -o hello_thumb
+```
 
 把 hello_thumb 推送到 android 设备并执行
 ```

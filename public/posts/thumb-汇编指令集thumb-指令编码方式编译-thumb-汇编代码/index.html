@@ -43,8 +43,8 @@ MOV.W R0, #65535 // 将较大的立即数 65535 加载到 R0，指令长度为 3
   <meta property="og:locale" content="zh_cn">
   <meta property="og:type" content="article">
     <meta property="article:section" content="posts">
-    <meta property="article:published_time" content="2024-11-04T02:29:37+08:00">
-    <meta property="article:modified_time" content="2024-11-04T02:29:37+08:00">
+    <meta property="article:published_time" content="2024-11-04T02:39:15+08:00">
+    <meta property="article:modified_time" content="2024-11-04T02:39:15+08:00">
 
 
   </head>
@@ -201,9 +201,9 @@ int main() {
     printf(&#34;1 + 1 = %d\n&#34;, result);
     return 0;
 }
-</code></pre><p>执行下面命令把 hello_thumb.c 编译成 thumb 汇编代码文件 hello_thumb.s
-armv7a-linux-androideabi35-clang -S -mthumb hello_thumb.c -o hello_thumb.s
--mthumb 表示使用 thumb 汇编</p>
+</code></pre><p>执行下面命令把 hello_thumb.c 编译成 thumb 汇编代码文件 hello_thumb.s</p>
+<pre tabindex="0"><code>armv7a-linux-androideabi35-clang -S -mthumb hello_thumb.c -o hello_thumb.s
+</code></pre><p>-mthumb 表示使用 thumb 汇编</p>
 <p>关于ARM程序生成过程可以参考这篇文章【<a href="https://cyrus-studio.github.io/blog/posts/%E8%AF%A6%E8%A7%A3arm64%E5%8F%AF%E6%89%A7%E8%A1%8C%E7%A8%8B%E5%BA%8F%E7%9A%84%E7%94%9F%E6%88%90%E8%BF%87%E7%A8%8B/">详解ARM64可执行程序的生成过程</a>】</p>
 <p>打开 hello_thumb.s 可以看到，结构上和 ARM 汇编是差不多的，多了一些 thumb 标记，如：.code 16、.thumb_func  标记为 16 位 thumb，还有使用到 thumb 指令。</p>
 <pre tabindex="0"><code>    .text                                // 指令区段开始
@@ -273,9 +273,9 @@ main:
 
     .ident &#34;Android ... clang version ...&#34;  // 编译器标识符
     .section &#34;.note.GNU-stack&#34;,&#34;&#34;,%progbits   // 栈保护
-</code></pre><p>执行下面命令把 thumb 汇编文件编译成可执行程序 hello_thumb。
-armv7a-linux-androideabi35-clang hello_thumb.s -o hello_thumb</p>
-<p>把 hello_thumb 推送到 android 设备并执行</p>
+</code></pre><p>执行下面命令把 thumb 汇编文件编译成可执行程序 hello_thumb。</p>
+<pre tabindex="0"><code>armv7a-linux-androideabi35-clang hello_thumb.s -o hello_thumb
+</code></pre><p>把 hello_thumb 推送到 android 设备并执行</p>
 <pre tabindex="0"><code>adb push .\hello_thumb /data/local/tmp
 adb shell chmod +x /data/local/tmp/hello_thumb
 adb shell /data/local/tmp/hello_thumb

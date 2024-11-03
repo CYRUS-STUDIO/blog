@@ -6,12 +6,12 @@
     <description>Recent content in Posts on CYRUS STUDIO</description>
     <generator>Hugo</generator>
     <language>zh-cn</language>
-    <lastBuildDate>Mon, 04 Nov 2024 02:29:37 +0800</lastBuildDate>
+    <lastBuildDate>Mon, 04 Nov 2024 02:39:15 +0800</lastBuildDate>
     <atom:link href="https://cyrus-studio.github.io/blog/posts/index.xml" rel="self" type="application/rss+xml" />
     <item>
       <title>Thumb 汇编指令集，Thumb 指令编码方式，编译 Thumb 汇编代码</title>
       <link>https://cyrus-studio.github.io/blog/posts/thumb-%E6%B1%87%E7%BC%96%E6%8C%87%E4%BB%A4%E9%9B%86thumb-%E6%8C%87%E4%BB%A4%E7%BC%96%E7%A0%81%E6%96%B9%E5%BC%8F%E7%BC%96%E8%AF%91-thumb-%E6%B1%87%E7%BC%96%E4%BB%A3%E7%A0%81/</link>
-      <pubDate>Mon, 04 Nov 2024 02:29:37 +0800</pubDate>
+      <pubDate>Mon, 04 Nov 2024 02:39:15 +0800</pubDate>
       <guid>https://cyrus-studio.github.io/blog/posts/thumb-%E6%B1%87%E7%BC%96%E6%8C%87%E4%BB%A4%E9%9B%86thumb-%E6%8C%87%E4%BB%A4%E7%BC%96%E7%A0%81%E6%96%B9%E5%BC%8F%E7%BC%96%E8%AF%91-thumb-%E6%B1%87%E7%BC%96%E4%BB%A3%E7%A0%81/</guid>
       <description>版权归作者所有，如有转发，请注明文章出处：https://cyrus-studio.github.io/blog/&#xA;Thumb指令集 ARM 指令集：最早在 1985 年随第一代 ARM 处理器问世。ARM 指令集一开始是 32 位固定长度的指令，用于各种计算任务。&#xA;Thumb 指令集：在 1994 年的 ARM7TDMI 处理器中首次引入。这是在 ARM 指令集基础上开发的一个 16 位指令集，旨在优化嵌入式系统中代码密度和内存效率。&#xA;寄存器 Thumb 跟 ARM 是一样的。&#xA;随着 ARM 架构的演进，后来加入了 32 位的 Thumb 指令，称为 Thumb-2 指令集。&#xA;以简单的加载立即数到寄存器为例，解释一下 16 位和 32 位的 Thumb 指令的区别&#xA;16 位 Thumb 指令&#xA;MOVS R0, #1 // 将立即数 1 加载到 R0，指令长度为 16 位 32 位 Thumb 指令&#xA;MOV.W R0, #65535 // 将较大的立即数 65535 加载到 R0，指令长度为 32 位 由于 16 位 Thumb 指令长度有限，无法直接处理大立即数，而 32 位 Thumb 指令支持更大的立即数范围。32 位指令格式可以容纳更多位的立即数、更复杂的操作码。</description>
     </item>
