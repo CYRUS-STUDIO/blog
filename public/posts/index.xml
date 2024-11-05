@@ -6,21 +6,21 @@
     <description>Recent content in Posts on CYRUS STUDIO</description>
     <generator>Hugo</generator>
     <language>zh-cn</language>
-    <lastBuildDate>Tue, 05 Nov 2024 12:42:37 +0800</lastBuildDate>
+    <lastBuildDate>Tue, 05 Nov 2024 21:06:33 +0800</lastBuildDate>
     <atom:link href="https://cyrus-studio.github.io/blog/posts/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>详解ARM汇编条件标志</title>
+      <link>https://cyrus-studio.github.io/blog/posts/%E8%AF%A6%E8%A7%A3arm%E6%B1%87%E7%BC%96%E6%9D%A1%E4%BB%B6%E6%A0%87%E5%BF%97/</link>
+      <pubDate>Tue, 05 Nov 2024 21:06:33 +0800</pubDate>
+      <guid>https://cyrus-studio.github.io/blog/posts/%E8%AF%A6%E8%A7%A3arm%E6%B1%87%E7%BC%96%E6%9D%A1%E4%BB%B6%E6%A0%87%E5%BF%97/</guid>
+      <description>版权归作者所有，如有转发，请注明文章出处：https://cyrus-studio.github.io/blog/&#xA;条件标志 在 ARM 指令集中，条件标志是控制指令执行的一种机制，它们用于实现条件分支、比较和其他逻辑操作。&#xA;我们平时使用 IDA 调试程序时，在 general registers 窗口中看到的条件标志 ARM 处理器通常使用四个主要的条件标志，它们的状态影响指令的执行。这些条件标志包括：&#xA;1. N (Negative): 负标志，用于指示最后一次操作的结果是否为负值。若结果为负，则 N 被置为 1；否则为 0。&#xA;2. Z (Zero): 零标志，用于指示最后一次操作的结果是否为零。如果结果为零，则 Z 被置为 1；否则为 0。&#xA;3. C (Carry): 进位标志，用于指示加法操作是否产生了进位或减法操作是否没有借位。对于加法，若产生进位，则 C 被置为 1；对于减法，若没有借位，则 C 被置为 1。&#xA;4. V (Overflow): 溢出标志，用于指示最后一次算术操作是否发生了溢出。当两个有符号数相加或相减时，如果结果的符号与操作数的符号不一致，表示发生了溢出，V 被置为 1。&#xA;在 ARM 指令中，条件执行可以通过附加条件码实现，例如：&#xA;EQ (Equal): 当 Z = 1 时执行（相等）。&#xA;NE (Not Equal): 当 Z = 0 时执行（不相等）。&#xA;GT (Greater Than): 当 Z = 0 且 N = V 时执行（大于）。</description>
+    </item>
     <item>
       <title>ARM64汇编寻址、汇编指令、指令编码方式</title>
       <link>https://cyrus-studio.github.io/blog/posts/arm64%E6%B1%87%E7%BC%96%E5%AF%BB%E5%9D%80%E6%B1%87%E7%BC%96%E6%8C%87%E4%BB%A4%E6%8C%87%E4%BB%A4%E7%BC%96%E7%A0%81%E6%96%B9%E5%BC%8F/</link>
       <pubDate>Tue, 05 Nov 2024 12:42:37 +0800</pubDate>
       <guid>https://cyrus-studio.github.io/blog/posts/arm64%E6%B1%87%E7%BC%96%E5%AF%BB%E5%9D%80%E6%B1%87%E7%BC%96%E6%8C%87%E4%BB%A4%E6%8C%87%E4%BB%A4%E7%BC%96%E7%A0%81%E6%96%B9%E5%BC%8F/</guid>
       <description>版权归作者所有，如有转发，请注明文章出处：https://cyrus-studio.github.io/blog/&#xA;ARM64汇编寻址 1. 立即数寻址（Immediate Addressing） 这种方式直接将立即数作为操作数，适合小数据或常量。ARM64的立即数在指令中直接编码。&#xA;MOV X0, #10 ; 将常数10加载到寄存器X0中 2. 寄存器间接寻址（Register Indirect Addressing） 使用寄存器中的地址作为内存地址。适合基于寄存器值进行偏移的简单访问方式。&#xA;LDR X1, [X0] ; 将地址X0指向的内存内容加载到X1中 3. 偏移寻址（Offset Addressing） 在基地址寄存器的基础上添加一个偏移量来确定目标地址，偏移量可以是立即数或寄存器值。&#xA;LDR X1, [X0, #8] ; 从地址X0 + 8的位置加载数据到X1中 4. 预索引寻址（Pre-indexed Addressing） 使用基地址加上偏移量来访问内存，访问完成后，将偏移量更新到基地址寄存器中。&#xA;LDR X1, [X0, #8]! ; 从地址X0 + 8加载数据到X1中，同时更新X0为X0 + 8 5. 后索引寻址（Post-indexed Addressing） 先使用基地址来访问内存，再将偏移量加到基地址寄存器中。这样偏移的效果在读取数据后才生效。&#xA;LDR X1, [X0], #8 ; 先从X0指向的地址加载数据到X1中，随后X0增加8 6. 寄存器偏移寻址（Register Offset Addressing） 偏移量用另一个寄存器指定，便于灵活的偏移操作，特别适合对数据结构的访问。&#xA;LDR X1, [X0, X2] ; 从X0 + X2指向的内存地址加载数据到X1中 7.</description>
-    </item>
-    <item>
-      <title>详解ARM汇编条件标志</title>
-      <link>https://cyrus-studio.github.io/blog/posts/%E8%AF%A6%E8%A7%A3arm%E6%B1%87%E7%BC%96%E6%9D%A1%E4%BB%B6%E6%A0%87%E5%BF%97/</link>
-      <pubDate>Mon, 04 Nov 2024 20:19:51 +0800</pubDate>
-      <guid>https://cyrus-studio.github.io/blog/posts/%E8%AF%A6%E8%A7%A3arm%E6%B1%87%E7%BC%96%E6%9D%A1%E4%BB%B6%E6%A0%87%E5%BF%97/</guid>
-      <description>版权归作者所有，如有转发，请注明文章出处：https://cyrus-studio.github.io/blog/&#xA;条件标志 在 ARM 指令集中，条件标志是控制指令执行的一种机制，它们用于实现条件分支、比较和其他逻辑操作。&#xA;我们平时使用 IDA 调试程序时，在 general registers 窗口中看到的条件标志 ARM 处理器通常使用四个主要的条件标志，它们的状态影响指令的执行。这些条件标志包括：&#xA;1. N (Negative): 负标志，用于指示最后一次操作的结果是否为负值。若结果为负，则 N 被置为 1；否则为 0。&#xA;2. Z (Zero): 零标志，用于指示最后一次操作的结果是否为零。如果结果为零，则 Z 被置为 1；否则为 0。&#xA;3. C (Carry): 进位标志，用于指示加法操作是否产生了进位或减法操作是否没有借位。对于加法，若产生进位，则 C 被置为 1；对于减法，若没有借位，则 C 被置为 1。&#xA;4. V (Overflow): 溢出标志，用于指示最后一次算术操作是否发生了溢出。当两个有符号数相加或相减时，如果结果的符号与操作数的符号不一致，表示发生了溢出，V 被置为 1。&#xA;在 ARM 指令中，条件执行可以通过附加条件码实现，例如：&#xA;EQ (Equal): 当 Z = 1 时执行（相等）。&#xA;NE (Not Equal): 当 Z = 0 时执行（不相等）。&#xA;GT (Greater Than): 当 Z = 0 且 N = V 时执行（大于）。</description>
     </item>
     <item>
       <title>Thumb 汇编指令集，Thumb 指令编码方式，编译 Thumb 汇编代码</title>
