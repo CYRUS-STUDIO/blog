@@ -6,14 +6,14 @@
     <description>Recent content in Posts on CYRUS STUDIO</description>
     <generator>Hugo</generator>
     <language>zh-cn</language>
-    <lastBuildDate>Sat, 09 Nov 2024 02:22:47 +0800</lastBuildDate>
+    <lastBuildDate>Sat, 09 Nov 2024 04:23:34 +0800</lastBuildDate>
     <atom:link href="https://cyrus-studio.github.io/blog/posts/index.xml" rel="self" type="application/rss+xml" />
     <item>
       <title>Android 下内联汇编，Android Studio 汇编开发</title>
       <link>https://cyrus-studio.github.io/blog/posts/android-%E4%B8%8B%E5%86%85%E8%81%94%E6%B1%87%E7%BC%96android-studio-%E6%B1%87%E7%BC%96%E5%BC%80%E5%8F%91/</link>
-      <pubDate>Sat, 09 Nov 2024 02:22:47 +0800</pubDate>
+      <pubDate>Sat, 09 Nov 2024 04:23:34 +0800</pubDate>
       <guid>https://cyrus-studio.github.io/blog/posts/android-%E4%B8%8B%E5%86%85%E8%81%94%E6%B1%87%E7%BC%96android-studio-%E6%B1%87%E7%BC%96%E5%BC%80%E5%8F%91/</guid>
-      <description>版权归作者所有，如有转发，请注明文章出处：https://cyrus-studio.github.io/blog/&#xA;内联汇编 Android 内联汇编非常适用于 ARM 架构的性能优化和底层操作，通常用于加密、解密、特定指令优化等领域。&#xA;1. 基础语法 内联汇编在 C/C++ 代码中通过 asm 或 asm 关键字进行声明，格式如下 asm (&amp;ldquo;汇编指令&amp;rdquo; : 输出操作数 : 输入操作数 : 破坏描述符);&#xA;详细说明：&#xA;汇编指令：这是我们想要执行的汇编代码，通常是 ARM 或 ARM64 指令。&#xA;输出操作数：指定汇编代码的输出结果如何映射到 C++ 变量。&#xA;输入操作数：指定传递给汇编代码的输入。&#xA;破坏描述符：用于告诉编译器哪些寄存器或内存位置将被汇编代码修改，以避免编译器优化引起的问题。&#xA;2. 占位符 占位符用于在汇编指令中插入 C++ 变量，格式为 %0、%1 等，对应输出和输入操作数的顺序。&#xA;例如&#xA;int x = 10, y = 20, result;&#xD;asm(&amp;#34;add %0, %1, %2&amp;#34; : &amp;#34;=r&amp;#34;(result) : &amp;#34;r&amp;#34;(x), &amp;#34;r&amp;#34;(y)); 上面的代码将 x 和 y 相加并将结果存入 result。&#xA;3. 输出操作数和输入操作数 =r 表示输出操作数是一个通用寄存器类型。</description>
+      <description>版权归作者所有，如有转发，请注明文章出处：https://cyrus-studio.github.io/blog/&#xA;内联汇编 Android 内联汇编非常适用于 ARM 架构的性能优化和底层操作，通常用于加密、解密、特定指令优化等领域。&#xA;1. 基础语法 内联汇编在 C/C++ 代码中通过 asm 或 asm 关键字进行声明，格式如下&#xA;asm (&amp;#34;汇编指令&amp;#34; : 输出操作数 : 输入操作数 : 破坏描述符); 详细说明：&#xA;汇编指令：这是我们想要执行的汇编代码，通常是 ARM 或 ARM64 指令。&#xA;输出操作数：指定汇编代码的输出结果如何映射到 C++ 变量。&#xA;输入操作数：指定传递给汇编代码的输入。&#xA;破坏描述符：用于告诉编译器哪些寄存器或内存位置将被汇编代码修改，以避免编译器优化引起的问题。&#xA;2. 占位符 占位符用于在汇编指令中插入 C++ 变量，格式为 %0、%1 等，对应输出和输入操作数的顺序。&#xA;例如&#xA;int x = 10, y = 20, result;&#xD;asm(&amp;#34;add %0, %1, %2&amp;#34; : &amp;#34;=r&amp;#34;(result) : &amp;#34;r&amp;#34;(x), &amp;#34;r&amp;#34;(y)); 上面的代码将 x 和 y 相加并将结果存入 result。&#xA;3. 输出操作数和输入操作数 =r 表示输出操作数是一个通用寄存器类型。</description>
     </item>
     <item>
       <title>详解ARM汇编条件标志</title>
