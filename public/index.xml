@@ -6,8 +6,15 @@
     <description>Recent content on CYRUS STUDIO</description>
     <generator>Hugo</generator>
     <language>zh-cn</language>
-    <lastBuildDate>Sun, 10 Nov 2024 13:11:20 +0800</lastBuildDate>
+    <lastBuildDate>Sun, 24 Nov 2024 23:00:44 +0800</lastBuildDate>
     <atom:link href="https://cyrus-studio.github.io/blog/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>编译 LLVM 源码，使用 Clion 调试 clang</title>
+      <link>https://cyrus-studio.github.io/blog/posts/%E7%BC%96%E8%AF%91-llvm-%E6%BA%90%E7%A0%81%E4%BD%BF%E7%94%A8-clion-%E8%B0%83%E8%AF%95-clang/</link>
+      <pubDate>Sun, 24 Nov 2024 23:00:44 +0800</pubDate>
+      <guid>https://cyrus-studio.github.io/blog/posts/%E7%BC%96%E8%AF%91-llvm-%E6%BA%90%E7%A0%81%E4%BD%BF%E7%94%A8-clion-%E8%B0%83%E8%AF%95-clang/</guid>
+      <description>版权归作者所有，如有转发，请注明文章出处：https://cyrus-studio.github.io/blog/&#xA;1. LLVM 简介 LLVM 是一个开源的编译器基础架构，最初由 Chris Lattner 于 2000 年在伊利诺伊大学开发，后来成为一个广泛应用于编译器和程序分析的项目。&#xA;LLVM 的核心组件：&#xA;LLVM Core Libraries：提供用于编译器开发的核心工具集，包括代码生成、优化、目标机器描述等。&#xA;Clang：一个基于 LLVM 的 C、C++、Objective-C 编译器前端。&#xA;LLVM IR（Intermediate Representation）：一种类似汇编的中间表示语言，是 LLVM 的核心抽象。代码在编译过程中先被转换为 LLVM IR，随后进行各种优化，再生成目标机器码。&#xA;LLVM Optimizer：对 LLVM IR 进行各种优化，如循环优化、内联展开等，以提升性能。&#xA;LLVM Code Generator：将优化后的 LLVM IR 转换为特定平台的机器码。&#xA;Linker：LLVM 也包含了一些链接器工具（如 LLD），用于将编译好的目标文件链接成可执行文件或库。&#xA;LLVM 的优势：&#xA;模块化设计：可用于多种语言的编译器开发（如 Rust、Swift）。&#xA;跨平台支持：支持多种处理器架构（如 x86、ARM、RISC-V）。&#xA;高度优化：提供丰富的优化技术，帮助生成更高效的机器码。&#xA;动态编译支持：适用于 JIT（即时编译），如 WebAssembly 和 Swift 的 REPL 环境。&#xA;LLVM 官网：https://llvm.org/&#xA;Getting Started with LLVM Core Libraries（中文版）&#xA;2. 下载 LLVM 在 Android NDK 中，LLVM/Clang 是默认的编译器。自 Android NDK r18 开始，Google 弃用了 GCC，全面转向使用 LLVM/Clang 作为 NDK 的编译工具链。</description>
+    </item>
     <item>
       <title>使用 Frida Hook Android App</title>
       <link>https://cyrus-studio.github.io/blog/posts/%E4%BD%BF%E7%94%A8-frida-hook-android-app/</link>
