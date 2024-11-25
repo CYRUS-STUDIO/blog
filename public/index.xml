@@ -6,8 +6,15 @@
     <description>Recent content on CYRUS STUDIO</description>
     <generator>Hugo</generator>
     <language>zh-cn</language>
-    <lastBuildDate>Sun, 24 Nov 2024 23:00:44 +0800</lastBuildDate>
+    <lastBuildDate>Tue, 26 Nov 2024 03:23:42 +0800</lastBuildDate>
     <atom:link href="https://cyrus-studio.github.io/blog/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>使用 opt 优化 LLVM IR，定制 clang 实现函数名加密</title>
+      <link>https://cyrus-studio.github.io/blog/posts/%E4%BD%BF%E7%94%A8-opt-%E4%BC%98%E5%8C%96-llvm-ir%E5%AE%9A%E5%88%B6-clang-%E5%AE%9E%E7%8E%B0%E5%87%BD%E6%95%B0%E5%90%8D%E5%8A%A0%E5%AF%86/</link>
+      <pubDate>Tue, 26 Nov 2024 03:23:42 +0800</pubDate>
+      <guid>https://cyrus-studio.github.io/blog/posts/%E4%BD%BF%E7%94%A8-opt-%E4%BC%98%E5%8C%96-llvm-ir%E5%AE%9A%E5%88%B6-clang-%E5%AE%9E%E7%8E%B0%E5%87%BD%E6%95%B0%E5%90%8D%E5%8A%A0%E5%AF%86/</guid>
+      <description>版权归作者所有，如有转发，请注明文章出处：https://cyrus-studio.github.io/blog/&#xA;1. LLVM IR LLVM IR（Intermediate Representation） 是 LLVM 编译框架中的一种中间表示形式，它是一种面向低级的中间代码，是 LLVM 架构的核心部分。LLVM IR 既可以用作 LLVM 编译器的输入，也可以用作输出，供其他编译器或工具链使用。&#xA;LLVM IR 的两种存储形式：&#xA;LLVM IR 语言（文本形式，扩展名 .ll）：可读的 LLVM IR 代码。&#xA;LLVM 位码（Bitcode，扩展名 .bc）：二进制形式的 LLVM IR，主要用于高效存储和传输。&#xA;LLVM IR 是平台无关的，可以跨不同的硬件架构进行移植。&#xA;LLVM IR 语言参考手册：https://llvm.org/docs/LangRef.html&#xA;1.1 将 C 文件转换为 LLVM IR 生成文本形式的 LLVM IR（.ll 文件）&#xA;clang -S -emit-llvm hello.c -o hello.ll 以 hello.ll 为例，生成的内容大概如下&#xA;; Function Attrs: noinline nounwind optnone uwtable&#xD;; 这行注释了函数的属性&#xD;; - noinline: 该函数不会被内联（inline）。&#xD;; - nounwind: 该函数不会引发异常（不会 unwind stack）。&#xD;; - optnone: 编译器不会对此函数进行任何优化。&#xD;; - uwtable: 该函数有一个可用的异常处理表（unwind table）。&#xD;define dso_local i32 @main() #0 {&#xD;; define: 定义一个函数。&#xD;; dso_local: 该函数在本地动态库中可见（仅限于当前编译单元）。&#xD;; i32: 返回类型为 32 位整数。&#xD;; @main: 函数名为 &amp;#39;main&amp;#39;。&#xD;; #0: 函数使用属性组 0 中定义的属性（即上面注释的那一行）。&#xD;entry:&#xD;; entry: 函数的入口基本块（Basic Block）的标签。&#xD;%retval = alloca i32, align 4&#xD;; alloca: 在栈上分配内存。这里分配了一个 32 位整数（i32）。&#xD;; align 4: 分配的内存对齐到 4 字节边界。&#xD;; %retval: 变量的名称（SSA 变量），用于存储 main 函数的返回值。&#xD;store i32 0, ptr %retval, align 4&#xD;; store: 将一个值存储到内存地址中。&#xD;; i32 0: 要存储的值是 32 位整数 0（即 main 函数的返回值）。&#xD;; ptr %retval: 存储的位置是之前分配的栈变量 %retval。&#xD;; align 4: 存储操作按 4 字节对齐。&#xD;%call = call i32 (ptr, .</description>
+    </item>
     <item>
       <title>编译 LLVM 源码，使用 Clion 调试 clang</title>
       <link>https://cyrus-studio.github.io/blog/posts/%E7%BC%96%E8%AF%91-llvm-%E6%BA%90%E7%A0%81%E4%BD%BF%E7%94%A8-clion-%E8%B0%83%E8%AF%95-clang/</link>
