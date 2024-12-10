@@ -1,6 +1,6 @@
 +++
 title = '编译 LLVM 源码，使用 Clion 调试 clang'
-date = 2024-12-08T17:37:29.317577+08:00
+date = 2024-12-10T22:44:36.801234+08:00
 draft = false
 +++
 
@@ -211,10 +211,10 @@ D:\Projects\llvm-project\build>ninja --version
 ```
 
 
-运行 CMake 配置
+运行 CMake 生成编译配置
 
 ```
-cmake -G "Ninja" -DCMAKE_BUILD_TYPE=Debug -DCMAKE_CXX_FLAGS="/utf-8" -DLLVM_ENABLE_PROJECTS="llvm;clang;lld" ../llvm
+cmake -G "Ninja" -DCMAKE_BUILD_TYPE=Debug -DCMAKE_CXX_FLAGS="/utf-8" -DLLVM_ENABLE_RTTI=ON -DLLVM_ENABLE_EH=ON -DLLVM_ENABLE_PROJECTS="llvm;clang;lld" ../llvm
 ```
 可选的构建类型说明：
 
@@ -225,6 +225,24 @@ cmake -G "Ninja" -DCMAKE_BUILD_TYPE=Debug -DCMAKE_CXX_FLAGS="/utf-8" -DLLVM_ENAB
 - RelWithDebInfo: 生成优化后的构建，无断言，但包含调试信息。适合需要调试符号但仍然希望性能接近 Release 的情况。
 
 - MinSizeRel: 生成针对最小尺寸优化的构建，而非速度优化。适合用于空间受限的环境。
+
+
+
+
+
+RTTI（Runtime Type Information）是运行时类型信息，用于在运行时获取对象的实际类型（如通过 typeid 和 dynamic_cast），主要用于支持多态类型检查和类型安全的类型转换。
+
+
+
+
+
+启用 RTTI：
+
+- LLVM_ENABLE_RTTI：启用 RTTI 支持。
+
+- LLVM_ENABLE_EH：启用异常处理支持，许多需要 RTTI 的场景也依赖异常处理。
+
+
 
 
 

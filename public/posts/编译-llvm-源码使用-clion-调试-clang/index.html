@@ -59,8 +59,8 @@ Getting Started with LLVM Core Libraries（中文版）
   <meta property="og:locale" content="zh_cn">
   <meta property="og:type" content="article">
     <meta property="article:section" content="posts">
-    <meta property="article:published_time" content="2024-12-08T17:37:29+08:00">
-    <meta property="article:modified_time" content="2024-12-08T17:37:29+08:00">
+    <meta property="article:published_time" content="2024-12-10T22:44:36+08:00">
+    <meta property="article:modified_time" content="2024-12-10T22:44:36+08:00">
 
 
   </head>
@@ -94,14 +94,14 @@ Getting Started with LLVM Core Libraries（中文版）
   <title>calendar</title>
   <rect x="3" y="4" width="18" height="18" rx="2" ry="2"></rect><line x1="16" y1="2" x2="16" y2="6"></line><line x1="8" y1="2" x2="8" y2="6"></line><line x1="3" y1="10" x2="21" y2="10"></line>
 </svg>
-          Dec 8, 2024
+          Dec 10, 2024
         </div>
         <div>
           <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="icon icon-clock">
   <title>clock</title>
   <circle cx="12" cy="12" r="10"></circle><polyline points="12 6 12 12 16 14"></polyline>
 </svg>
-          9 min read
+          10 min read
         </div>
       </div>
     </header>
@@ -247,8 +247,8 @@ CMake suite maintained and supported by Kitware (kitware.com/cmake).
 
 D:\Projects\llvm-project\build&gt;ninja --version
 1.12.1
-</code></pre><p>运行 CMake 配置</p>
-<pre tabindex="0"><code>cmake -G &#34;Ninja&#34; -DCMAKE_BUILD_TYPE=Debug -DCMAKE_CXX_FLAGS=&#34;/utf-8&#34; -DLLVM_ENABLE_PROJECTS=&#34;llvm;clang;lld&#34; ../llvm
+</code></pre><p>运行 CMake 生成编译配置</p>
+<pre tabindex="0"><code>cmake -G &#34;Ninja&#34; -DCMAKE_BUILD_TYPE=Debug -DCMAKE_CXX_FLAGS=&#34;/utf-8&#34; -DLLVM_ENABLE_RTTI=ON -DLLVM_ENABLE_EH=ON -DLLVM_ENABLE_PROJECTS=&#34;llvm;clang;lld&#34; ../llvm
 </code></pre><p>可选的构建类型说明：</p>
 <ul>
 <li>
@@ -262,6 +262,16 @@ D:\Projects\llvm-project\build&gt;ninja --version
 </li>
 <li>
 <p>MinSizeRel: 生成针对最小尺寸优化的构建，而非速度优化。适合用于空间受限的环境。</p>
+</li>
+</ul>
+<p>RTTI（Runtime Type Information）是运行时类型信息，用于在运行时获取对象的实际类型（如通过 typeid 和 dynamic_cast），主要用于支持多态类型检查和类型安全的类型转换。</p>
+<p>启用 RTTI：</p>
+<ul>
+<li>
+<p>LLVM_ENABLE_RTTI：启用 RTTI 支持。</p>
+</li>
+<li>
+<p>LLVM_ENABLE_EH：启用异常处理支持，许多需要 RTTI 的场景也依赖异常处理。</p>
 </li>
 </ul>
 <p>编译项目</p>
