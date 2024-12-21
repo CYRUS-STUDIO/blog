@@ -6,8 +6,15 @@
     <description>Recent content in Posts on CYRUS STUDIO</description>
     <generator>Hugo</generator>
     <language>zh-cn</language>
-    <lastBuildDate>Fri, 13 Dec 2024 03:56:00 +0800</lastBuildDate>
+    <lastBuildDate>Sat, 21 Dec 2024 23:02:07 +0800</lastBuildDate>
     <atom:link href="https://cyrus-studio.github.io/blog/posts/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>移植 OLLVM 到 LLVM18，修复控制流平坦化报错</title>
+      <link>https://cyrus-studio.github.io/blog/posts/%E7%A7%BB%E6%A4%8D-ollvm-%E5%88%B0-llvm18%E4%BF%AE%E5%A4%8D%E6%8E%A7%E5%88%B6%E6%B5%81%E5%B9%B3%E5%9D%A6%E5%8C%96%E6%8A%A5%E9%94%99/</link>
+      <pubDate>Sat, 21 Dec 2024 23:02:07 +0800</pubDate>
+      <guid>https://cyrus-studio.github.io/blog/posts/%E7%A7%BB%E6%A4%8D-ollvm-%E5%88%B0-llvm18%E4%BF%AE%E5%A4%8D%E6%8E%A7%E5%88%B6%E6%B5%81%E5%B9%B3%E5%9D%A6%E5%8C%96%E6%8A%A5%E9%94%99/</guid>
+      <description>版权归作者所有，如有转发，请注明文章出处：https://cyrus-studio.github.io/blog/&#xA;前言 把 OLLVM 移植到 LLVM18 后，发现 -fla（控制流平坦化）并不能正常使用。&#xA;关于移植过程可以参考这篇文章 【移植 OLLVM 到 LLVM 18，C&amp;amp;C++代码混淆】&#xA;测试代码 fla.c&#xA;#include &amp;lt;stdlib.h&amp;gt;&#xD;int main(int argc, char** argv) {&#xD;int a = atoi(argv[1]);&#xD;if(a == 0)&#xD;return 1;&#xD;else&#xD;return 10;&#xD;return 0;&#xD;} 使用 clang 编译并启用 Control Flow Flattening（控制流平坦化）报错如下：&#xA;D:\Projects\llvm-project\build&amp;gt;clang -mllvm -fla fla.c -o fla.exe&#xD;[OLLVM] run.PipelineStartEPCallback&#xD;PLEASE submit a bug report to https://github.com/llvm/llvm-project/issues/ and include the crash backtrace, preprocessed source, and associated run script.</description>
+    </item>
     <item>
       <title>移植 OLLVM 到 LLVM 18，C&amp;C&#43;&#43;代码混淆</title>
       <link>https://cyrus-studio.github.io/blog/posts/%E7%A7%BB%E6%A4%8D-ollvm-%E5%88%B0-llvm-18cc&#43;&#43;%E4%BB%A3%E7%A0%81%E6%B7%B7%E6%B7%86/</link>
