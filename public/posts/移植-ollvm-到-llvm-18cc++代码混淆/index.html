@@ -45,8 +45,8 @@ mkdir buildcd buildcmake -DCMAKE_BUILD_TYPE=Release ../obfuscator/make -j7 OL
   <meta property="og:locale" content="zh_cn">
   <meta property="og:type" content="article">
     <meta property="article:section" content="posts">
-    <meta property="article:published_time" content="2024-12-13T03:56:00+08:00">
-    <meta property="article:modified_time" content="2024-12-13T03:56:00+08:00">
+    <meta property="article:published_time" content="2024-12-23T03:48:18+08:00">
+    <meta property="article:modified_time" content="2024-12-23T03:48:18+08:00">
 
 
   </head>
@@ -80,14 +80,14 @@ mkdir buildcd buildcmake -DCMAKE_BUILD_TYPE=Release ../obfuscator/make -j7 OL
   <title>calendar</title>
   <rect x="3" y="4" width="18" height="18" rx="2" ry="2"></rect><line x1="16" y1="2" x2="16" y2="6"></line><line x1="8" y1="2" x2="8" y2="6"></line><line x1="3" y1="10" x2="21" y2="10"></line>
 </svg>
-          Dec 13, 2024
+          Dec 23, 2024
         </div>
         <div>
           <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="icon icon-clock">
   <title>clock</title>
   <circle cx="12" cy="12" r="10"></circle><polyline points="12 6 12 12 16 14"></polyline>
 </svg>
-          11 min read
+          12 min read
         </div>
       </div>
     </header>
@@ -254,7 +254,55 @@ D:\Projects\llvm-project\llvm\include\llvm/IR/Function.h(61): note: 参见“llv
 </code></pre><p>改为</p>
 <pre tabindex="0"><code>NF-&gt;splice(NF-&gt;begin(), F)
 </code></pre><p>参考：<a href="https://github.com/DreamSoule/ollvm17/issues/37">https://github.com/DreamSoule/ollvm17/issues/37</a></p>
-<h2 id="6-其他"><strong>6. 其他</strong></h2>
+<h3 id="54-error-c2664-llvmallocainst--llvmdemoteregtostack"><strong>5.4 error C2664: “llvm::AllocaInst  llvm::DemoteRegToStack</strong></h3>
+<pre tabindex="0"><code>[193/2642] Building CXX object lib\Passes\CMakeFiles\LLVMPasses.dir\Obfuscation\Utils.cpp.obj
+FAILED: lib/Passes/CMakeFiles/LLVMPasses.dir/Obfuscation/Utils.cpp.obj
+D:\App\VisualStudio\IDE\VC\Tools\MSVC\14.42.34433\bin\Hostx64\x64\cl.exe  /nologo /TP -DUNICODE -D_CRT_NONSTDC_NO_DEPRECATE -D_CRT_NONSTDC_NO_WARNINGS -D_CRT_SECURE_NO_DEPRECATE -D_CRT_SECURE_NO_WARNINGS -D_SCL_SECURE_NO_DEPRECATE -D_SCL_SECURE_NO_WARNINGS -D_UNICODE -D__STDC_CONSTANT_MACROS -D__STDC_FORMAT_MACROS -D__STDC_LIMIT_MACROS -ID:\Projects\llvm-project\build\lib\Passes -ID:\Projects\llvm-project\llvm\lib\Passes -ID:\Projects\llvm-project\build\include -ID:\Projects\llvm-project\llvm\include /utf-8 /Zc:inline /Zc:preprocessor /Zc:__cplusplus /Oi /bigobj /permissive- /W4 -wd4141 -wd4146 -wd4244 -wd4267 -wd4291 -wd4351 -wd4456 -wd4457 -wd4458 -wd4459 -wd4503 -wd4624 -wd4722 -wd4100 -wd4127 -wd4512 -wd4505 -wd4610 -wd4510 -wd4702 -wd4245 -wd4706 -wd4310 -wd4701 -wd4703 -wd4389 -wd4611 -wd4805 -wd4204 -wd4577 -wd4091 -wd4592 -wd4319 -wd4709 -wd5105 -wd4324 -w14062 -we4238 /Gw /O2 /Ob2 /DNDEBUG -std:c++17 -MD  /EHsc /GR /showIncludes /Folib\Passes\CMakeFiles\LLVMPasses.dir\Obfuscation\Utils.cpp.obj /Fdlib\Passes\CMakeFiles\LLVMPasses.dir\LLVMPasses.pdb /FS -c D:\Projects\llvm-project\llvm\lib\Passes\Obfuscation\Utils.cpp
+D:\Projects\llvm-project\llvm\lib\Passes\Obfuscation\Utils.cpp(213): error C2664: “llvm::AllocaInst *llvm::DemoteRegToStack(llvm::Instruction &amp;,bool,llvm::Instruction *)”: 无法将参数 3 从“llvm::ilist_iterator_w_bits&lt;OptionsT,false,false&gt;”转换为“llvm::Instruction *”
+        with
+        [
+            OptionsT=llvm::ilist_detail::node_options&lt;llvm::Instruction,false,false,llvm::ilist_detail::extract_tag&lt;&gt;::type,true&gt;
+        ]
+D:\Projects\llvm-project\llvm\lib\Passes\Obfuscation\Utils.cpp(213): note: 没有可用于执行该转换的用户定义的转换运算符，或者无法调用该运算符
+D:\Projects\llvm-project\llvm\include\llvm/Transforms/Utils/Local.h(207): note: 参见“llvm::DemoteRegToStack”的声明
+D:\Projects\llvm-project\llvm\lib\Passes\Obfuscation\Utils.cpp(213): note: 尝试匹配参数列表“(llvm::Instruction, bool, llvm::ilist_iterator_w_bits&lt;OptionsT,false,false&gt;)” 时
+        with
+        [
+            OptionsT=llvm::ilist_detail::node_options&lt;llvm::Instruction,false,false,llvm::ilist_detail::extract_tag&lt;&gt;::type,true&gt;
+        ]
+D:\Projects\llvm-project\llvm\lib\Passes\Obfuscation\Utils.cpp(225): error C2664: “llvm::AllocaInst *llvm::DemotePHIToStack(llvm::PHINode *,llvm::Instruction *)”: 无法将 参数 2 从“llvm::ilist_iterator_w_bits&lt;OptionsT,false,false&gt;”转换为“llvm::Instruction *”
+        with
+        [
+            OptionsT=llvm::ilist_detail::node_options&lt;llvm::Instruction,false,false,llvm::ilist_detail::extract_tag&lt;&gt;::type,true&gt;
+        ]
+D:\Projects\llvm-project\llvm\lib\Passes\Obfuscation\Utils.cpp(225): note: 没有可用于执行该转换的用户定义的转换运算符，或者无法调用该运算符
+D:\Projects\llvm-project\llvm\include\llvm/Transforms/Utils/Local.h(214): note: 参见“llvm::DemotePHIToStack”的声明
+D:\Projects\llvm-project\llvm\lib\Passes\Obfuscation\Utils.cpp(225): note: 尝试匹配参数列表“(llvm::PHINode *, llvm::ilist_iterator_w_bits&lt;OptionsT,false,false&gt;)”时
+        with
+        [
+            OptionsT=llvm::ilist_detail::node_options&lt;llvm::Instruction,false,false,llvm::ilist_detail::extract_tag&lt;&gt;::type,true&gt;
+        ]
+</code></pre><p>DemoteRegToStack 函数调用：在LLVM 18.1.8中，DemoteRegToStack 的参数包括：</p>
+<ul>
+<li>
+<p>需要转为栈变量的 Instruction。</p>
+</li>
+<li>
+<p>一个布尔值表示是否添加调试信息。</p>
+</li>
+<li>
+<p>一个插入点指针，指定插入位置。</p>
+</li>
+</ul>
+<p>把</p>
+<pre tabindex="0"><code>DemoteRegToStack(*I, false, AllocaInsertionPoint-&gt;getIterator());
+</code></pre><p>改为</p>
+<pre tabindex="0"><code>DemoteRegToStack(*Inst, false, AllocaInsertionPoint); // 修复函数调用
+</code></pre><p>把</p>
+<pre tabindex="0"><code>DemotePHIToStack(cast&lt;PHINode&gt;(I), AllocaInsertionPoint-&gt;getIterator());
+</code></pre><p>改为</p>
+<pre tabindex="0"><code>DemotePHIToStack(cast&lt;PHINode&gt;(Inst), AllocaInsertionPoint); // 修复函数调用
+</code></pre><h2 id="6-其他"><strong>6. 其他</strong></h2>
 <p>完整源码：<a href="https://github.com/CYRUS-STUDIO/LLVM">https://github.com/CYRUS-STUDIO/LLVM</a></p>
 <p>参考：</p>
 <ul>

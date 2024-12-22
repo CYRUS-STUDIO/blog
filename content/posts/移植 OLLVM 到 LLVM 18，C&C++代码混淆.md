@@ -1,6 +1,6 @@
 +++
 title = '移植 OLLVM 到 LLVM 18，C&C++代码混淆'
-date = 2024-12-13T03:56:00.307813+08:00
+date = 2024-12-23T03:48:18.268921+08:00
 draft = false
 +++
 
@@ -308,6 +308,73 @@ NF->splice(NF->begin(), F)
 
 参考：[https://github.com/DreamSoule/ollvm17/issues/37](https://github.com/DreamSoule/ollvm17/issues/37)
 
+
+
+### **5.4 error C2664: “llvm::AllocaInst  llvm::DemoteRegToStack**
+
+
+
+```
+[193/2642] Building CXX object lib\Passes\CMakeFiles\LLVMPasses.dir\Obfuscation\Utils.cpp.obj
+FAILED: lib/Passes/CMakeFiles/LLVMPasses.dir/Obfuscation/Utils.cpp.obj
+D:\App\VisualStudio\IDE\VC\Tools\MSVC\14.42.34433\bin\Hostx64\x64\cl.exe  /nologo /TP -DUNICODE -D_CRT_NONSTDC_NO_DEPRECATE -D_CRT_NONSTDC_NO_WARNINGS -D_CRT_SECURE_NO_DEPRECATE -D_CRT_SECURE_NO_WARNINGS -D_SCL_SECURE_NO_DEPRECATE -D_SCL_SECURE_NO_WARNINGS -D_UNICODE -D__STDC_CONSTANT_MACROS -D__STDC_FORMAT_MACROS -D__STDC_LIMIT_MACROS -ID:\Projects\llvm-project\build\lib\Passes -ID:\Projects\llvm-project\llvm\lib\Passes -ID:\Projects\llvm-project\build\include -ID:\Projects\llvm-project\llvm\include /utf-8 /Zc:inline /Zc:preprocessor /Zc:__cplusplus /Oi /bigobj /permissive- /W4 -wd4141 -wd4146 -wd4244 -wd4267 -wd4291 -wd4351 -wd4456 -wd4457 -wd4458 -wd4459 -wd4503 -wd4624 -wd4722 -wd4100 -wd4127 -wd4512 -wd4505 -wd4610 -wd4510 -wd4702 -wd4245 -wd4706 -wd4310 -wd4701 -wd4703 -wd4389 -wd4611 -wd4805 -wd4204 -wd4577 -wd4091 -wd4592 -wd4319 -wd4709 -wd5105 -wd4324 -w14062 -we4238 /Gw /O2 /Ob2 /DNDEBUG -std:c++17 -MD  /EHsc /GR /showIncludes /Folib\Passes\CMakeFiles\LLVMPasses.dir\Obfuscation\Utils.cpp.obj /Fdlib\Passes\CMakeFiles\LLVMPasses.dir\LLVMPasses.pdb /FS -c D:\Projects\llvm-project\llvm\lib\Passes\Obfuscation\Utils.cpp
+D:\Projects\llvm-project\llvm\lib\Passes\Obfuscation\Utils.cpp(213): error C2664: “llvm::AllocaInst *llvm::DemoteRegToStack(llvm::Instruction &,bool,llvm::Instruction *)”: 无法将参数 3 从“llvm::ilist_iterator_w_bits<OptionsT,false,false>”转换为“llvm::Instruction *”
+        with
+        [
+            OptionsT=llvm::ilist_detail::node_options<llvm::Instruction,false,false,llvm::ilist_detail::extract_tag<>::type,true>
+        ]
+D:\Projects\llvm-project\llvm\lib\Passes\Obfuscation\Utils.cpp(213): note: 没有可用于执行该转换的用户定义的转换运算符，或者无法调用该运算符
+D:\Projects\llvm-project\llvm\include\llvm/Transforms/Utils/Local.h(207): note: 参见“llvm::DemoteRegToStack”的声明
+D:\Projects\llvm-project\llvm\lib\Passes\Obfuscation\Utils.cpp(213): note: 尝试匹配参数列表“(llvm::Instruction, bool, llvm::ilist_iterator_w_bits<OptionsT,false,false>)” 时
+        with
+        [
+            OptionsT=llvm::ilist_detail::node_options<llvm::Instruction,false,false,llvm::ilist_detail::extract_tag<>::type,true>
+        ]
+D:\Projects\llvm-project\llvm\lib\Passes\Obfuscation\Utils.cpp(225): error C2664: “llvm::AllocaInst *llvm::DemotePHIToStack(llvm::PHINode *,llvm::Instruction *)”: 无法将 参数 2 从“llvm::ilist_iterator_w_bits<OptionsT,false,false>”转换为“llvm::Instruction *”
+        with
+        [
+            OptionsT=llvm::ilist_detail::node_options<llvm::Instruction,false,false,llvm::ilist_detail::extract_tag<>::type,true>
+        ]
+D:\Projects\llvm-project\llvm\lib\Passes\Obfuscation\Utils.cpp(225): note: 没有可用于执行该转换的用户定义的转换运算符，或者无法调用该运算符
+D:\Projects\llvm-project\llvm\include\llvm/Transforms/Utils/Local.h(214): note: 参见“llvm::DemotePHIToStack”的声明
+D:\Projects\llvm-project\llvm\lib\Passes\Obfuscation\Utils.cpp(225): note: 尝试匹配参数列表“(llvm::PHINode *, llvm::ilist_iterator_w_bits<OptionsT,false,false>)”时
+        with
+        [
+            OptionsT=llvm::ilist_detail::node_options<llvm::Instruction,false,false,llvm::ilist_detail::extract_tag<>::type,true>
+        ]
+```
+DemoteRegToStack 函数调用：在LLVM 18.1.8中，DemoteRegToStack 的参数包括：
+
+- 需要转为栈变量的 Instruction。
+
+- 一个布尔值表示是否添加调试信息。
+
+- 一个插入点指针，指定插入位置。
+
+
+
+把
+
+```
+DemoteRegToStack(*I, false, AllocaInsertionPoint->getIterator());
+```
+改为
+
+```
+DemoteRegToStack(*Inst, false, AllocaInsertionPoint); // 修复函数调用
+```
+
+
+把
+
+```
+DemotePHIToStack(cast<PHINode>(I), AllocaInsertionPoint->getIterator());
+```
+改为
+
+```
+DemotePHIToStack(cast<PHINode>(Inst), AllocaInsertionPoint); // 修复函数调用
+```
 
 
 ## **6. 其他**
