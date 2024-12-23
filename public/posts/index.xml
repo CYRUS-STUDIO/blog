@@ -6,8 +6,15 @@
     <description>Recent content in Posts on CYRUS STUDIO</description>
     <generator>Hugo</generator>
     <language>zh-cn</language>
-    <lastBuildDate>Mon, 23 Dec 2024 03:48:18 +0800</lastBuildDate>
+    <lastBuildDate>Tue, 24 Dec 2024 00:01:16 +0800</lastBuildDate>
     <atom:link href="https://cyrus-studio.github.io/blog/posts/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>移植 OLLVM 到 Android NDK，Android Studio 中使用 OLLVM</title>
+      <link>https://cyrus-studio.github.io/blog/posts/%E7%A7%BB%E6%A4%8D-ollvm-%E5%88%B0-android-ndkandroid-studio-%E4%B8%AD%E4%BD%BF%E7%94%A8-ollvm/</link>
+      <pubDate>Tue, 24 Dec 2024 00:01:16 +0800</pubDate>
+      <guid>https://cyrus-studio.github.io/blog/posts/%E7%A7%BB%E6%A4%8D-ollvm-%E5%88%B0-android-ndkandroid-studio-%E4%B8%AD%E4%BD%BF%E7%94%A8-ollvm/</guid>
+      <description>版权归作者所有，如有转发，请注明文章出处：https://cyrus-studio.github.io/blog/&#xA;OLLVM、LLVM 与 Android NDK 在 Android NDK 中，LLVM/Clang 是默认的编译器。自 Android NDK r18 开始，Google 弃用了 GCC，全面转向使用 LLVM/Clang 作为 NDK 的编译工具链。&#xA;NDK 中 LLVM 所在路径：/toolchains/llvm/prebuilt//bin/&#xA;查看 clang 版本，这里版本是 18.0.2&#xA;(base) PS D:\App\android\sdk\ndk\27.1.12297006\toolchains\llvm\prebuilt\windows-x86_64\bin&amp;gt; ./clang --version&#xD;Android (12285214, based on r522817b) clang version 18.0.2 (https://android.googlesource.com/toolchain/llvm-project d8003a456d14a3deb8054cdaa529ffbf02d9b262)&#xD;Target: x86_64-w64-windows-gnu&#xD;Thread model: posix&#xD;InstalledDir: D:/App/android/sdk/ndk/27.1.12297006/toolchains/llvm/prebuilt/windows-x86_64/bin 下载和编译与 NDK 中版本相近的 LLVM，具体可以参考这篇文章【编译 LLVM 源码，使用 Clion 调试 clang】&#xA;OLLVM 是 LLVM 的一个分支，增加了代码混淆功能（如控制流平坦化、指令替换），主要用于保护二进制代码的安全性。&#xA;关于如何移植 OLLVM 到 LLVM 可以参考下面的文章：&#xA;移植 OLLVM 到 LLVM 18，C&amp;amp;C++代码混淆</description>
+    </item>
     <item>
       <title>移植 OLLVM 到 LLVM 18，C&amp;C&#43;&#43;代码混淆</title>
       <link>https://cyrus-studio.github.io/blog/posts/%E7%A7%BB%E6%A4%8D-ollvm-%E5%88%B0-llvm-18cc&#43;&#43;%E4%BB%A3%E7%A0%81%E6%B7%B7%E6%B7%86/</link>
