@@ -6,8 +6,15 @@
     <description>Recent content in Posts on CYRUS STUDIO</description>
     <generator>Hugo</generator>
     <language>zh-cn</language>
-    <lastBuildDate>Tue, 24 Dec 2024 00:01:16 +0800</lastBuildDate>
+    <lastBuildDate>Mon, 13 Jan 2025 21:14:45 +0800</lastBuildDate>
     <atom:link href="https://cyrus-studio.github.io/blog/posts/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>详解如何自定义 Android Dex VMP 保护壳</title>
+      <link>https://cyrus-studio.github.io/blog/posts/%E8%AF%A6%E8%A7%A3%E5%A6%82%E4%BD%95%E8%87%AA%E5%AE%9A%E4%B9%89-android-dex-vmp-%E4%BF%9D%E6%8A%A4%E5%A3%B3/</link>
+      <pubDate>Mon, 13 Jan 2025 21:14:45 +0800</pubDate>
+      <guid>https://cyrus-studio.github.io/blog/posts/%E8%AF%A6%E8%A7%A3%E5%A6%82%E4%BD%95%E8%87%AA%E5%AE%9A%E4%B9%89-android-dex-vmp-%E4%BF%9D%E6%8A%A4%E5%A3%B3/</guid>
+      <description>版权归作者所有，如有转发，请注明文章出处：https://cyrus-studio.github.io/blog/&#xA;前言 Android Dex VMP（Virtual Machine Protection，虚拟机保护）壳是一种常见的应用保护技术，主要用于保护 Android 应用的代码免受反编译和逆向工程的攻击。&#xA;VMP 保护壳通过将应用的原始 Dex（Dalvik Executable）文件进行加密、混淆、虚拟化等处理，使得恶意用户无法轻易获取到应用的原始代码和逻辑。&#xA;比如，实现一个 Android 下的 Dex VMP 保护壳，用来保护 Kotlin 层 sign 算法，防止被逆向。&#xA;假设 sign 算法源码如下：&#xA;package com.cyrus.example.vmp&#xD;import java.security.MessageDigest&#xD;import java.util.Base64&#xD;object SignUtil {&#xD;/**&#xD;* 对输入字符串进行签名并返回 Base64 编码后的字符串&#xD;* @param input 要签名的字符串&#xD;* @return Base64 编码后的字符串&#xD;*/&#xD;fun sign(input: String): String {&#xD;// 使用 SHA-256 计算摘要&#xD;val digest = MessageDigest.getInstance(&amp;#34;SHA-256&amp;#34;)&#xD;val hash = digest.digest(input.toByteArray())&#xD;// 使用 Base64 编码&#xD;return Base64.</description>
+    </item>
     <item>
       <title>移植 OLLVM 到 Android NDK，Android Studio 中使用 OLLVM</title>
       <link>https://cyrus-studio.github.io/blog/posts/%E7%A7%BB%E6%A4%8D-ollvm-%E5%88%B0-android-ndkandroid-studio-%E4%B8%AD%E4%BD%BF%E7%94%A8-ollvm/</link>
