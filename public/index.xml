@@ -6,8 +6,15 @@
     <description>Recent content on CYRUS STUDIO</description>
     <generator>Hugo</generator>
     <language>zh-cn</language>
-    <lastBuildDate>Mon, 13 Jan 2025 21:14:45 +0800</lastBuildDate>
+    <lastBuildDate>Mon, 13 Jan 2025 21:33:28 +0800</lastBuildDate>
     <atom:link href="https://cyrus-studio.github.io/blog/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Android Dex VMP 动态加载加密指令流 </title>
+      <link>https://cyrus-studio.github.io/blog/posts/android-dex-vmp-%E5%8A%A8%E6%80%81%E5%8A%A0%E8%BD%BD%E5%8A%A0%E5%AF%86%E6%8C%87%E4%BB%A4%E6%B5%81-/</link>
+      <pubDate>Mon, 13 Jan 2025 21:33:28 +0800</pubDate>
+      <guid>https://cyrus-studio.github.io/blog/posts/android-dex-vmp-%E5%8A%A8%E6%80%81%E5%8A%A0%E8%BD%BD%E5%8A%A0%E5%AF%86%E6%8C%87%E4%BB%A4%E6%B5%81-/</guid>
+      <description>版权归作者所有，如有转发，请注明文章出处：https://cyrus-studio.github.io/blog/&#xA;上一篇【详解如何自定义 Android Dex VMP 保护壳】实现了 VMP 保护壳。&#xA;为了进一步加强对 dex 指令的保护，实现指令流加密和动态加载，比如使用 AES 加密指令流，在运行时解密执行。&#xA;保存指令流到文件 在 010Editor 中搜索找到 sign 方法的字节码并复制&#xA;新建 Hex 文件&#xA;把 sign 方法字节码粘贴到新建的文件保存文件为 sign&#xA;AES加解密 编写一个 kotlin 语言 AES 加解密算法工具类&#xA;package com.cyrus.vmp&#xD;import java.io.ByteArrayOutputStream&#xD;import java.io.File&#xD;import java.io.FileInputStream&#xD;import java.io.FileOutputStream&#xD;import javax.crypto.Cipher&#xD;import javax.crypto.KeyGenerator&#xD;import javax.crypto.SecretKey&#xD;import javax.crypto.spec.SecretKeySpec&#xD;object AESUtils {&#xD;private const val ALGORITHM = &amp;#34;AES&amp;#34;&#xD;private const val TRANSFORMATION = &amp;#34;AES/ECB/PKCS5Padding&amp;#34; // AES 加密模式&#xD;// 生成一个 128 位的 AES 密钥&#xD;fun generateSecretKey(): SecretKey {&#xD;val keyGenerator = KeyGenerator.</description>
+    </item>
     <item>
       <title>详解如何自定义 Android Dex VMP 保护壳</title>
       <link>https://cyrus-studio.github.io/blog/posts/%E8%AF%A6%E8%A7%A3%E5%A6%82%E4%BD%95%E8%87%AA%E5%AE%9A%E4%B9%89-android-dex-vmp-%E4%BF%9D%E6%8A%A4%E5%A3%B3/</link>
