@@ -124,3 +124,25 @@ th {
 tr:nth-child(even) {
     background-color: rgba(255, 255, 255, 0.05); /* 设置隔行背景色，保持透明度 */
 }
+
+
+
+/* 公众号二维码 */
+.qrcode-container {
+    text-align: center; /* 水平居中 */
+    margin: 0 auto; /* 水平居中 */
+    padding: 2px 0; /* 上下留白 */
+}
+
+.qrcode-image {
+    width: 150px; /* 设置二维码宽度 */
+    height: 150px; /* 设置二维码高度 */
+    display: block; /* 使图片居中 */
+    margin: 0 auto; /* 水平居中 */
+}
+
+.qrcode-text {
+    margin-top: 10px; /* 文字与图片的间距 */
+    font-size: 14px;
+    color: #666;
+}

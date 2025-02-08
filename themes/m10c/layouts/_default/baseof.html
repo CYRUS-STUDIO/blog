@@ -43,9 +43,16 @@
         {{ end }}
       </div>
       {{- end }}
+      
+
+      <div class="qrcode-container">
+          <img src="{{ "gongzhonghao.jpg" | relURL }}" alt="公众号二维码" class="qrcode-image">
+          <p class="qrcode-text">扫码关注公众号</p>
+      </div>
+
       <div class="visitor-counter">
-   	 <img src="https://profile-counter.glitch.me/CYRUS-STUDIO-blog/count.svg" alt="Visitor Count">
-	</div>
+   	    <img src="https://profile-counter.glitch.me/CYRUS-STUDIO-blog/count.svg" alt="Visitor Count">
+	    </div>
     </header>
     <main class="app-container">
       {{ block "main" . }}

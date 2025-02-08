@@ -5,10 +5,16 @@
 }
 
 .app-header-avatar {
-  width: 15rem;
-  height: 15rem;
+  width: 10rem;
+  height: 10rem;
   border-radius: 100%;
-  border: 0.5rem solid $primary-color;
+  border: 0.3rem solid $primary-color;
+  
+
+  display: block;       /* 让图片独占一行 */
+  margin: 0 auto;       /* 自动水平居中 */
+
+  margin-top: 1.5rem;
 }
 
 .app-container {
@@ -30,7 +36,7 @@
 .app-header-title {
   color: $lightest-color;
   display: block;
-  font-size: 2em;
+  font-size: 1.5em;
   margin: 0.67em 0;
   font-weight: bold;
 }
