@@ -6,21 +6,21 @@
     <description>Recent content on CYRUS STUDIO</description>
     <generator>Hugo</generator>
     <language>zh-cn</language>
-    <lastBuildDate>Sun, 09 Feb 2025 01:39:39 +0800</lastBuildDate>
+    <lastBuildDate>Sun, 09 Feb 2025 02:00:32 +0800</lastBuildDate>
     <atom:link href="https://cyrus-studio.github.io/blog/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Frida 实现 JNI 方法地址跟踪、反汇编、Patch</title>
+      <link>https://cyrus-studio.github.io/blog/posts/frida-%E5%AE%9E%E7%8E%B0-jni-%E6%96%B9%E6%B3%95%E5%9C%B0%E5%9D%80%E8%B7%9F%E8%B8%AA%E5%8F%8D%E6%B1%87%E7%BC%96patch/</link>
+      <pubDate>Sun, 09 Feb 2025 02:00:32 +0800</pubDate>
+      <guid>https://cyrus-studio.github.io/blog/posts/frida-%E5%AE%9E%E7%8E%B0-jni-%E6%96%B9%E6%B3%95%E5%9C%B0%E5%9D%80%E8%B7%9F%E8%B8%AA%E5%8F%8D%E6%B1%87%E7%BC%96patch/</guid>
+      <description>版权归作者所有，如有转发，请注明文章出处：https://cyrus-studio.github.io/blog/&#xA;Frida 反汇编 Frida 提供了反汇编 API，主要用于对目标进程的代码进行动态分析，例如：&#xA;获取函数的机器代码并将其反汇编为汇编指令。&#xA;分析内存中的指令流。&#xA;这些功能在 Frida 的 Instruction 类中实现，基于 Capstone 实现的反汇编功能。&#xA;https://frida.re/docs/javascript-api/#instruction&#xA;比如，可以通过 Instruction.parse 方法反汇编指定地址的汇编信息&#xA;[Remote::AndroidExample]-&amp;gt; Instruction.parse(ptr(&amp;#34;0x7e7acdb9a0&amp;#34;));&#xD;{&#xD;&amp;#34;address&amp;#34;: &amp;#34;0x7e7acdb9a0&amp;#34;,&#xD;&amp;#34;groups&amp;#34;: [],&#xD;&amp;#34;mnemonic&amp;#34;: &amp;#34;sub&amp;#34;,&#xD;&amp;#34;next&amp;#34;: &amp;#34;0x7e7acdb9a4&amp;#34;,&#xD;&amp;#34;opStr&amp;#34;: &amp;#34;sp, sp, #0x10&amp;#34;,&#xD;&amp;#34;operands&amp;#34;: [&#xD;{&#xD;&amp;#34;type&amp;#34;: &amp;#34;reg&amp;#34;,&#xD;&amp;#34;value&amp;#34;: &amp;#34;sp&amp;#34;&#xD;},&#xD;{&#xD;&amp;#34;type&amp;#34;: &amp;#34;reg&amp;#34;,&#xD;&amp;#34;value&amp;#34;: &amp;#34;sp&amp;#34;&#xD;},&#xD;{&#xD;&amp;#34;type&amp;#34;: &amp;#34;imm&amp;#34;,&#xD;&amp;#34;value&amp;#34;: &amp;#34;16&amp;#34;&#xD;}&#xD;],&#xD;&amp;#34;regsRead&amp;#34;: [],&#xD;&amp;#34;regsWritten&amp;#34;: [],&#xD;&amp;#34;size&amp;#34;: 4&#xD;} Android 示例代码 定义一个 native 函数 add，计算 1+ 1 + 1 并返回结果。</description>
+    </item>
     <item>
       <title>Capstone、Unicorn 与 Keystone</title>
       <link>https://cyrus-studio.github.io/blog/posts/capstoneunicorn-%E4%B8%8E-keystone/</link>
       <pubDate>Sun, 09 Feb 2025 01:39:39 +0800</pubDate>
       <guid>https://cyrus-studio.github.io/blog/posts/capstoneunicorn-%E4%B8%8E-keystone/</guid>
       <description>版权归作者所有，如有转发，请注明文章出处：https://cyrus-studio.github.io/blog/&#xA;Capstone 简介 Capstone 是一个强大的多平台开源反汇编框架，用于将机器码翻译为汇编代码。&#xA;官网：https://www.capstone-engine.org/&#xA;源码地址：https://github.com/capstone-engine/capstone&#xA;文档：https://www.capstone-engine.org/documentation.html&#xA;相关应用：&#xA;Radare2 内部使用 Capstone 作为其反汇编引擎之一。&#xA;Frida 的底层核心使用 Capstone 作为反汇编引擎，用于分析运行时的指令流、解码和显示二进制代码（例如，用户可以通过 Frida 的 API 获取内存中的指令数据，并使用 Capstone 对其进行解码和分析。）&#xA;使用 Capstone 反汇编 .so 文件中的机器码 要反汇编 .so 文件，首先需要提取其中的代码段内容（通常为 .text 段），然后利用 Capstone 进行反汇编。&#xA;1. 安装 capstone pip install capstone 2. 提取 .so 文件中的代码段 使用 readelf 工具获取 .text 段的偏移和大小（ -A 1：表示匹配行后再输出 1 行）：&#xA;readelf -S libvmp-lib.so | grep -A 1 .text&#xD;[14] .text PROGBITS 000000000009d480 0009d480&#xD;00000000000af0f8 0000000000000000 AX 0 0 16 关键信息：</description>
-    </item>
-    <item>
-      <title>Frida 实现 JNI 方法地址跟踪、反汇编、Patch</title>
-      <link>https://cyrus-studio.github.io/blog/posts/frida-%E5%AE%9E%E7%8E%B0-jni-%E6%96%B9%E6%B3%95%E5%9C%B0%E5%9D%80%E8%B7%9F%E8%B8%AA%E5%8F%8D%E6%B1%87%E7%BC%96patch/</link>
-      <pubDate>Sun, 09 Feb 2025 01:28:39 +0800</pubDate>
-      <guid>https://cyrus-studio.github.io/blog/posts/frida-%E5%AE%9E%E7%8E%B0-jni-%E6%96%B9%E6%B3%95%E5%9C%B0%E5%9D%80%E8%B7%9F%E8%B8%AA%E5%8F%8D%E6%B1%87%E7%BC%96patch/</guid>
-      <description>版权归作者所有，如有转发，请注明文章出处：https://cyrus-studio.github.io/blog/&#xA;Frida 反汇编 Frida 提供了反汇编 API，主要用于对目标进程的代码进行动态分析，例如：&#xA;获取函数的机器代码并将其反汇编为汇编指令。&#xA;分析内存中的指令流。&#xA;这些功能在 Frida 的 Instruction 类中实现，基于 Capstone 实现的反汇编功能。&#xA;https://frida.re/docs/javascript-api/#instruction&#xA;比如，可以通过 Instruction.parse 方法反汇编指定地址的汇编信息&#xA;[Remote::AndroidExample]-&amp;gt; Instruction.parse(ptr(&amp;#34;0x7e7acdb9a0&amp;#34;));&#xD;{&#xD;&amp;#34;address&amp;#34;: &amp;#34;0x7e7acdb9a0&amp;#34;,&#xD;&amp;#34;groups&amp;#34;: [],&#xD;&amp;#34;mnemonic&amp;#34;: &amp;#34;sub&amp;#34;,&#xD;&amp;#34;next&amp;#34;: &amp;#34;0x7e7acdb9a4&amp;#34;,&#xD;&amp;#34;opStr&amp;#34;: &amp;#34;sp, sp, #0x10&amp;#34;,&#xD;&amp;#34;operands&amp;#34;: [&#xD;{&#xD;&amp;#34;type&amp;#34;: &amp;#34;reg&amp;#34;,&#xD;&amp;#34;value&amp;#34;: &amp;#34;sp&amp;#34;&#xD;},&#xD;{&#xD;&amp;#34;type&amp;#34;: &amp;#34;reg&amp;#34;,&#xD;&amp;#34;value&amp;#34;: &amp;#34;sp&amp;#34;&#xD;},&#xD;{&#xD;&amp;#34;type&amp;#34;: &amp;#34;imm&amp;#34;,&#xD;&amp;#34;value&amp;#34;: &amp;#34;16&amp;#34;&#xD;}&#xD;],&#xD;&amp;#34;regsRead&amp;#34;: [],&#xD;&amp;#34;regsWritten&amp;#34;: [],&#xD;&amp;#34;size&amp;#34;: 4&#xD;} Android 示例代码 定义一个 native 函数 add，计算 1+ 1 + 1 并返回结果。</description>
     </item>
     <item>
       <title>使用 Miniconda 管理 Python 环境</title>

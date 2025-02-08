@@ -1,6 +1,6 @@
 +++
 title = 'Frida 实现 JNI 方法地址跟踪、反汇编、Patch'
-date = 2025-02-09T01:28:39.656336+08:00
+date = 2025-02-09T02:00:32.044235+08:00
 draft = false
 +++
 
@@ -299,10 +299,10 @@ function printAssemblyInstructions(methodAddress, numInstructions) {
         // 解析当前地址的指令
         var instruction = Instruction.parse(methodAddress);
 
-        // 打印当前指令的地址、助记符和操作数
+        // 打印当前指令的地址和汇编指令
         console.log(instruction.address + ": " + instruction.toString());
 
-        // 获取下一条指令的地址，4 是指令的大小，ARM64 指令通常是 4 字节
+        // 获取下一条指令的地址，当前地址 + 指令的大小
         methodAddress = methodAddress.add(instruction.size);
     }
 }
