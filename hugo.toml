@@ -1,7 +1,7 @@
 baseURL = 'https://cyrus-studio.github.io/blog/'
 languageCode = "zh-cn"
 title = 'CYRUS STUDIO'
-description = "Android & Python Developer"
+description = "¹«ÖÚºÅ£ºCYRUS STUDIO"
 theme = "m10c"
 
 [menu]
