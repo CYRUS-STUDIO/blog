@@ -6,12 +6,12 @@
     <description>Recent content on CYRUS STUDIO</description>
     <generator>Hugo</generator>
     <language>zh-cn</language>
-    <lastBuildDate>Sun, 09 Feb 2025 01:28:39 +0800</lastBuildDate>
+    <lastBuildDate>Sun, 09 Feb 2025 01:39:39 +0800</lastBuildDate>
     <atom:link href="https://cyrus-studio.github.io/blog/index.xml" rel="self" type="application/rss+xml" />
     <item>
       <title>Capstone、Unicorn 与 Keystone</title>
       <link>https://cyrus-studio.github.io/blog/posts/capstoneunicorn-%E4%B8%8E-keystone/</link>
-      <pubDate>Sun, 09 Feb 2025 01:28:39 +0800</pubDate>
+      <pubDate>Sun, 09 Feb 2025 01:39:39 +0800</pubDate>
       <guid>https://cyrus-studio.github.io/blog/posts/capstoneunicorn-%E4%B8%8E-keystone/</guid>
       <description>版权归作者所有，如有转发，请注明文章出处：https://cyrus-studio.github.io/blog/&#xA;Capstone 简介 Capstone 是一个强大的多平台开源反汇编框架，用于将机器码翻译为汇编代码。&#xA;官网：https://www.capstone-engine.org/&#xA;源码地址：https://github.com/capstone-engine/capstone&#xA;文档：https://www.capstone-engine.org/documentation.html&#xA;相关应用：&#xA;Radare2 内部使用 Capstone 作为其反汇编引擎之一。&#xA;Frida 的底层核心使用 Capstone 作为反汇编引擎，用于分析运行时的指令流、解码和显示二进制代码（例如，用户可以通过 Frida 的 API 获取内存中的指令数据，并使用 Capstone 对其进行解码和分析。）&#xA;使用 Capstone 反汇编 .so 文件中的机器码 要反汇编 .so 文件，首先需要提取其中的代码段内容（通常为 .text 段），然后利用 Capstone 进行反汇编。&#xA;1. 安装 capstone pip install capstone 2. 提取 .so 文件中的代码段 使用 readelf 工具获取 .text 段的偏移和大小（ -A 1：表示匹配行后再输出 1 行）：&#xA;readelf -S libvmp-lib.so | grep -A 1 .text&#xD;[14] .text PROGBITS 000000000009d480 0009d480&#xD;00000000000af0f8 0000000000000000 AX 0 0 16 关键信息：</description>
     </item>

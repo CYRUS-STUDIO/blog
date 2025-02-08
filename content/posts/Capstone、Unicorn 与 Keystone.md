@@ -1,6 +1,6 @@
 +++
 title = 'Capstone、Unicorn 与 Keystone'
-date = 2025-02-09T01:28:39.611158+08:00
+date = 2025-02-09T01:39:39.875555+08:00
 draft = false
 +++
 
@@ -122,8 +122,7 @@ for insn in md.disasm(code, START_ADDRESS):
 0xec708:subv1.2d, v3.2d, v1.2d
 0xec70c:cmeqv2.2d, v2.2d, #0
 0xec710:cmeqv3.2d, v3.2d, #0
-0xec714:bicv0.16b, v0.16b, v2.16b
-0xec718:bicv1.16b, v1.16b, v3.16b
+
 . . . 
 ```
 
@@ -255,7 +254,7 @@ Result of 1 + 1 = 2
 
 
 
-Keystone 是一个轻量级的汇编框架，支持多种架构和编程语言，可以快速生成机器代码（汇编），常用于安全研究和逆向工程。
+Keystone 是一个轻量级的汇编框架，支持多种架构和编程语言，可以快速将汇编指令翻译成机器码。
 
 
 
