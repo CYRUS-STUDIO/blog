@@ -6,8 +6,22 @@
     <description>Recent content on CYRUS STUDIO</description>
     <generator>Hugo</generator>
     <language>zh-cn</language>
-    <lastBuildDate>Sun, 09 Feb 2025 02:00:32 +0800</lastBuildDate>
+    <lastBuildDate>Mon, 10 Feb 2025 00:06:11 +0800</lastBuildDate>
     <atom:link href="https://cyrus-studio.github.io/blog/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Unicorn Hook 详解：指令、代码块、内存、系统调用等</title>
+      <link>https://cyrus-studio.github.io/blog/posts/unicorn-hook-%E8%AF%A6%E8%A7%A3%E6%8C%87%E4%BB%A4%E4%BB%A3%E7%A0%81%E5%9D%97%E5%86%85%E5%AD%98%E7%B3%BB%E7%BB%9F%E8%B0%83%E7%94%A8%E7%AD%89/</link>
+      <pubDate>Mon, 10 Feb 2025 00:06:11 +0800</pubDate>
+      <guid>https://cyrus-studio.github.io/blog/posts/unicorn-hook-%E8%AF%A6%E8%A7%A3%E6%8C%87%E4%BB%A4%E4%BB%A3%E7%A0%81%E5%9D%97%E5%86%85%E5%AD%98%E7%B3%BB%E7%BB%9F%E8%B0%83%E7%94%A8%E7%AD%89/</guid>
+      <description>版权归作者所有，如有转发，请注明文章出处：https://cyrus-studio.github.io/blog/&#xA;在 Unicorn 中，Hook（钩子）用于在模拟过程中拦截 CPU 指令执行、内存访问等操作，以便分析和修改执行行为。&#xA;Hook 主要类型 Unicorn 提供了多种 Hook 类型，每种类型用于不同场景：&#xA;Hook 类型 说明 示例 UC_HOOK_CODE 拦截每一条指令执行 监控指令流，反调试 UC_HOOK_BLOCK 拦截每个基本块执行 统计基本块执行次数 UC_HOOK_INTR 拦截中断指令（如 svc #0） 监控系统调用 UC_HOOK_MEM_READ 读取内存前触发 监视变量读取 UC_HOOK_MEM_WRITE 写入内存前触发 监视变量修改 UC_HOOK_MEM_FETCH 取指令前触发 捕获未映射代码执行 UC_HOOK_MEM_READ_UNMAPPED 读取未映射内存 捕获非法内存读取 UC_HOOK_MEM_WRITE_UNMAPPED 写入未映射内存 捕获非法内存写入 UC_HOOK_MEM_FETCH_UNMAPPED 取指未映射内存 捕获非法指令执行 UC_HOOK_INSN 拦截特定指令 监控 syscall、hlt 等 Hook 指令执行 (UC_HOOK_CODE) 用途：&#xA;监控所有执行的指令&#xA;记录寄存器变化&#xA;反调试&#xA;示例代码&#xA;from unicorn import *&#xD;from unicorn.arm64_const import *&#xD;# Hook 回调函数&#xD;def hook_code(mu, address, size, user_data):&#xD;print(f&amp;#34;Executing instruction at 0x{address:X}, size={size}&amp;#34;)&#xD;# 初始化 Unicorn ARM64&#xD;mu = Uc(UC_ARCH_ARM64, UC_MODE_ARM)&#xD;# 分配内存&#xD;BASE = 0x1000&#xD;mu.</description>
+    </item>
+    <item>
+      <title>使用 Unicorn 调用 android so 中的 JNI 方法</title>
+      <link>https://cyrus-studio.github.io/blog/posts/%E4%BD%BF%E7%94%A8-unicorn-%E8%B0%83%E7%94%A8-android-so-%E4%B8%AD%E7%9A%84-jni-%E6%96%B9%E6%B3%95/</link>
+      <pubDate>Mon, 10 Feb 2025 00:06:11 +0800</pubDate>
+      <guid>https://cyrus-studio.github.io/blog/posts/%E4%BD%BF%E7%94%A8-unicorn-%E8%B0%83%E7%94%A8-android-so-%E4%B8%AD%E7%9A%84-jni-%E6%96%B9%E6%B3%95/</guid>
+      <description>版权归作者所有，如有转发，请注明文章出处：https://cyrus-studio.github.io/blog/&#xA;Android 示例代码 编写一个 jni 方法 add 进行简单的加法运算 ，代码如下：&#xA;#include &amp;lt;jni.h&amp;gt;&#xD;// 实现加法运算&#xD;extern &amp;#34;C&amp;#34;&#xD;JNIEXPORT jint JNICALL&#xD;Java_com_cyrus_example_unicorn_UnicornActivity_add(JNIEnv *env, jobject thiz, jint a, jint b) {&#xD;return a + b;&#xD;} 配置 CMakeLists.txt&#xA;add_library( # 设置库的名称&#xD;unicorn&#xD;# 设置库的类型&#xD;SHARED&#xD;# 设置源文件路径&#xD;unicorn.cpp)&#xD;target_link_libraries( # 将 log 库链接到目标库&#xD;unicorn&#xD;${log-lib}) 完整源码地址：https://github.com/CYRUS-STUDIO/AndroidExample&#xA;编译运行 Android 项目后在 build 目录找打 apk 并解压 libunicorn.so。&#xA;加载 so 并反汇编 通过 IDA 打开 so 文件可以看到 add 方法的开始地址为 0x0608，结束地址为 0x063C</description>
+    </item>
     <item>
       <title>Frida 实现 JNI 方法地址跟踪、反汇编、Patch</title>
       <link>https://cyrus-studio.github.io/blog/posts/frida-%E5%AE%9E%E7%8E%B0-jni-%E6%96%B9%E6%B3%95%E5%9C%B0%E5%9D%80%E8%B7%9F%E8%B8%AA%E5%8F%8D%E6%B1%87%E7%BC%96patch/</link>
