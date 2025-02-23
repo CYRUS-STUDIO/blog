@@ -6,8 +6,15 @@
     <description>Recent content on CYRUS STUDIO</description>
     <generator>Hugo</generator>
     <language>zh-cn</language>
-    <lastBuildDate>Mon, 10 Feb 2025 00:06:11 +0800</lastBuildDate>
+    <lastBuildDate>Sun, 23 Feb 2025 17:56:08 +0800</lastBuildDate>
     <atom:link href="https://cyrus-studio.github.io/blog/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>使用 Unicorn 如何进行栈读写 和 Patch</title>
+      <link>https://cyrus-studio.github.io/blog/posts/%E4%BD%BF%E7%94%A8-unicorn-%E5%A6%82%E4%BD%95%E8%BF%9B%E8%A1%8C%E6%A0%88%E8%AF%BB%E5%86%99-%E5%92%8C-patch/</link>
+      <pubDate>Sun, 23 Feb 2025 17:56:08 +0800</pubDate>
+      <guid>https://cyrus-studio.github.io/blog/posts/%E4%BD%BF%E7%94%A8-unicorn-%E5%A6%82%E4%BD%95%E8%BF%9B%E8%A1%8C%E6%A0%88%E8%AF%BB%E5%86%99-%E5%92%8C-patch/</guid>
+      <description>版权归作者所有，如有转发，请注明文章出处：https://cyrus-studio.github.io/blog/&#xA;struct.pack 方法介绍 struct.pack 是 Python 标准库 struct 模块中的一个函数，它用于将 Python 的基本数据类型（如 int、float、long）打包为字节流，以便在二进制文件、网络传输或内存操作（如 Unicorn 仿真器的 mem_write）中使用。&#xA;语法：&#xA;import struct&#xD;struct.pack(format, value) format：指定数据的格式，例如：&#xA;&amp;lt;f：表示小端（&amp;lt;）的 4 字节浮点数（float）&#xA;&amp;lt;d：表示小端的 8 字节双精度浮点数（double）&#xA;value：要转换的 Python 值。&#xA;数据类型格式&#xA;数据类型 有符号格式（小写） 无符号格式（大写） 大小（字节） byte b (char) B (uchar) 1 short h (short) H (ushort) 2 int i (int) I (uint) 4 long q (long long) Q (ulong long) 8 float f (float) 无 4 double d (double) 无 8 其他特殊类型</description>
+    </item>
     <item>
       <title>Unicorn Hook 详解：指令、代码块、内存、系统调用等</title>
       <link>https://cyrus-studio.github.io/blog/posts/unicorn-hook-%E8%AF%A6%E8%A7%A3%E6%8C%87%E4%BB%A4%E4%BB%A3%E7%A0%81%E5%9D%97%E5%86%85%E5%AD%98%E7%B3%BB%E7%BB%9F%E8%B0%83%E7%94%A8%E7%AD%89/</link>
