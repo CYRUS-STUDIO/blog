@@ -6,8 +6,15 @@
     <description>Recent content on CYRUS STUDIO</description>
     <generator>Hugo</generator>
     <language>zh-cn</language>
-    <lastBuildDate>Sun, 23 Feb 2025 17:56:08 +0800</lastBuildDate>
+    <lastBuildDate>Sun, 23 Feb 2025 18:07:48 +0800</lastBuildDate>
     <atom:link href="https://cyrus-studio.github.io/blog/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>使用 AndroidNativeEmu 调用 JNI 函数</title>
+      <link>https://cyrus-studio.github.io/blog/posts/%E4%BD%BF%E7%94%A8-androidnativeemu-%E8%B0%83%E7%94%A8-jni-%E5%87%BD%E6%95%B0/</link>
+      <pubDate>Sun, 23 Feb 2025 18:07:48 +0800</pubDate>
+      <guid>https://cyrus-studio.github.io/blog/posts/%E4%BD%BF%E7%94%A8-androidnativeemu-%E8%B0%83%E7%94%A8-jni-%E5%87%BD%E6%95%B0/</guid>
+      <description>版权归作者所有，如有转发，请注明文章出处：https://cyrus-studio.github.io/blog/&#xA;AndroidNativeEmu AndroidNativeEmu 专为 Android 原生代码调试和模拟设计，特别关注 JNI 调用和 Android 环境。相比之下，Unicorn 是通用的多平台 CPU 模拟器，适用于更广泛的原生代码分析。&#xA;项目地址：https://github.com/AeonLucid/AndroidNativeEmu&#xA;支持的功能：&#xA;elf 文件解析及 so 加载&#xA;栈支持&#xA;内存管理&#xA;文件系统&#xA;JNI 支持&#xA;常见 syacall 模拟支持&#xA;&amp;hellip;&#xA;但是，暂时不支持 arm64。&#xA;系统调用 AndroidNativeEmu 系统调用的模拟实现都在 cpu/intertupt_handler.py，根据不同的 intno 调用具体的 handler&#xA;目前已经实现的系统调用可以在 syscall_hooks.py 看到&#xA;JNIEnv 对应 JNI 接口的模拟实现在 src/androidemu/java/jni_env.py，通过 write_function_table 方法模拟实现 JNI 函数表&#xA;jni 函数代码是通过 keystone 来生成的，具体代码在：src/androidemu/hooker.py&#xA;so 加载过程中，对 so 中导入符号的 Hook，具体代码在：src/androidemu/native/hooks.py&#xA;AndroidNativeEmu 默认已经实现的外部函数&#xA;native_method 装饰器 native_method 装饰器用于在 AndroidNativeEmu 中将 Python 函数标记为模拟的 JNI 原生方法，允许函数在模拟器中执行并与 Android 的原生方法交互。</description>
+    </item>
     <item>
       <title>使用 Unicorn 如何进行栈读写 和 Patch</title>
       <link>https://cyrus-studio.github.io/blog/posts/%E4%BD%BF%E7%94%A8-unicorn-%E5%A6%82%E4%BD%95%E8%BF%9B%E8%A1%8C%E6%A0%88%E8%AF%BB%E5%86%99-%E5%92%8C-patch/</link>
