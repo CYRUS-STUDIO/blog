@@ -1,6 +1,6 @@
 +++
 title = 'unidbg 加载 so 并调用 so 中函数'
-date = 2025-02-27T13:33:55.986494+08:00
+date = 2025-02-27T23:33:21.924828+08:00
 draft = false
 +++
 
@@ -597,7 +597,7 @@ import com.github.unidbg.memory.Memory;
 import com.github.unidbg.memory.MemoryBlock;
 import com.github.unidbg.pointer.UnidbgPointer;
 import unicorn.Arm64Const;
-
+import com.alibaba.fastjson.util.IOUtils;
 import java.io.File;
 import java.io.IOException;
 
@@ -658,11 +658,7 @@ public class Demo {
         callJniMethod(emulator, vm);
 
         // 清理资源
-        try {
-            emulator.close();
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
+        IOUtils.close(emulator);
     }
 
     public static void callJniMethod(AndroidEmulator emulator, VM vm) {

@@ -63,8 +63,8 @@ MainActivity.java 中示例代码实现了爆破 so 中 test 函数 flag 参数�
   <meta property="og:locale" content="zh_cn">
   <meta property="og:type" content="article">
     <meta property="article:section" content="posts">
-    <meta property="article:published_time" content="2025-02-27T13:33:55+08:00">
-    <meta property="article:modified_time" content="2025-02-27T13:33:55+08:00">
+    <meta property="article:published_time" content="2025-02-27T23:33:21+08:00">
+    <meta property="article:modified_time" content="2025-02-27T23:33:21+08:00">
 
 
   </head>
@@ -520,7 +520,7 @@ import com.github.unidbg.memory.Memory;
 import com.github.unidbg.memory.MemoryBlock;
 import com.github.unidbg.pointer.UnidbgPointer;
 import unicorn.Arm64Const;
-
+import com.alibaba.fastjson.util.IOUtils;
 import java.io.File;
 import java.io.IOException;
 
@@ -581,11 +581,7 @@ public class Demo {
         callJniMethod(emulator, vm);
 
         // 清理资源
-        try {
-            emulator.close();
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
+        IOUtils.close(emulator);
     }
 
     public static void callJniMethod(AndroidEmulator emulator, VM vm) {
