@@ -6,8 +6,15 @@
     <description>Recent content in Posts on CYRUS STUDIO</description>
     <generator>Hugo</generator>
     <language>zh-cn</language>
-    <lastBuildDate>Mon, 03 Mar 2025 10:33:06 +0800</lastBuildDate>
+    <lastBuildDate>Fri, 07 Mar 2025 00:25:26 +0800</lastBuildDate>
     <atom:link href="https://cyrus-studio.github.io/blog/posts/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>常用加解密算法介绍</title>
+      <link>https://cyrus-studio.github.io/blog/posts/%E5%B8%B8%E7%94%A8%E5%8A%A0%E8%A7%A3%E5%AF%86%E7%AE%97%E6%B3%95%E4%BB%8B%E7%BB%8D/</link>
+      <pubDate>Fri, 07 Mar 2025 00:25:26 +0800</pubDate>
+      <guid>https://cyrus-studio.github.io/blog/posts/%E5%B8%B8%E7%94%A8%E5%8A%A0%E8%A7%A3%E5%AF%86%E7%AE%97%E6%B3%95%E4%BB%8B%E7%BB%8D/</guid>
+      <description>版权归作者所有，如有转发，请注明文章出处：https://cyrus-studio.github.io/blog/&#xA;常见加解密工具 CyberChef CyberChef 是一个功能强大的数据处理工具，由 GCHQ（英国政府通信总部）开发。它提供了一系列 加密、解密、编码、解码、数据转换、压缩、哈希、取证分析 等功能，适用于安全研究、数据处理和取证分析等场景。&#xA;CyberChef Web 地址：https://gchq.github.io/CyberChef/&#xA;项目地址：https://github.com/gchq/CyberChef&#xA;openssl OpenSSL 是一个开源加密库，支持 SSL/TLS 协议，实现 RSA、AES、SM2、SM4 等算法，提供加密、证书管理、哈希计算等功能，广泛用于网络安全、身份认证和数据保护。&#xA;项目地址：https://github.com/openssl/openssl&#xA;各种常见的加密算法在 openssl 中都有实现&#xA;cryptopp Crypto++ 是一个开源 C++ 加密库。&#xA;cryptopp 编译相对于 openssl 比较简便，不需要安装特殊依赖环境。&#xA;项目地址：https://github.com/weidai11/cryptopp&#xA;chilkat Chilkat 是一个跨平台加密和网络通信库，收费，不开源，但是已经编译好各种平台的库，直接拿来就用。&#xA;下载地址：https://www.chilkatsoft.com/downloads.asp&#xA;编码算法 编码算法是一种用于数据转换的方法，它将信息从一种格式转换为另一种格式，便于存储和传输。&#xA;Hex Hex 编码是一种将二进制数据转换为十六进制字符串的编码方式&#xA;data = b&amp;#34;Hello&amp;#34;&#xD;hex_encoded = data.hex()&#xD;print(&amp;#34;Hex 编码:&amp;#34;, hex_encoded)&#xD;hex_decoded = bytes.fromhex(hex_encoded)&#xD;print(&amp;#34;Hex 解码:&amp;#34;, hex_decoded.decode()) 输出如下：&#xA;Hex 编码: 48656c6c6f&#xD;Hex 解码: Hello URL Encode / URL Decode URL 编码 是一种用于在 URL 中安全传输特殊字符的编码方式，将非 ASCII 字符、特殊字符转换为百分号（%）+ 两位十六进制数的格式。</description>
+    </item>
     <item>
       <title>unidbg 实现 JNI 与 Java 交互</title>
       <link>https://cyrus-studio.github.io/blog/posts/unidbg-%E5%AE%9E%E7%8E%B0-jni-%E4%B8%8E-java-%E4%BA%A4%E4%BA%92/</link>
