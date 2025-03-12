@@ -6,8 +6,15 @@
     <description>Recent content on CYRUS STUDIO</description>
     <generator>Hugo</generator>
     <language>zh-cn</language>
-    <lastBuildDate>Wed, 12 Mar 2025 20:57:06 +0800</lastBuildDate>
+    <lastBuildDate>Wed, 12 Mar 2025 21:21:08 +0800</lastBuildDate>
     <atom:link href="https://cyrus-studio.github.io/blog/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>安卓逆向魔改版 Base64 算法还原</title>
+      <link>https://cyrus-studio.github.io/blog/posts/%E5%AE%89%E5%8D%93%E9%80%86%E5%90%91%E9%AD%94%E6%94%B9%E7%89%88-base64-%E7%AE%97%E6%B3%95%E8%BF%98%E5%8E%9F/</link>
+      <pubDate>Wed, 12 Mar 2025 21:21:08 +0800</pubDate>
+      <guid>https://cyrus-studio.github.io/blog/posts/%E5%AE%89%E5%8D%93%E9%80%86%E5%90%91%E9%AD%94%E6%94%B9%E7%89%88-base64-%E7%AE%97%E6%B3%95%E8%BF%98%E5%8E%9F/</guid>
+      <description>版权归作者所有，如有转发，请注明文章出处：https://cyrus-studio.github.io/blog/&#xA;目标 app 简介 可以看到 app 中共有 4 种 Base64 算法。选中一个随机字符串，可以选择其中一种算法进行编码解码。&#xA;app地址：https://github.com/CYRUS-STUDIO/AndroidExample&#xA;标准 Java Base64 算法还原 使用 jadx 反编译 apk，搜索找到按钮的代码&#xA;因为 app 中 ui 是用 Compose 实现的，所有 ui 都是 Function，所以这里看到 Text 是一个 Function&#xA;在 Function f57lambda2 上按 X 找到调用该 Function 的地方&#xA;再继续找 m6044getLambda2$app_release 的上层调用是 rememberedValue6&#xA;可以看到 rememberedValue6 中实际是调用了Base64ActivityKt.Base64App&amp;hellip;$lambda$16 方法&#xA;rememberedValue6 = new Function0() { // from class: com.cyrus.example.base64.Base64ActivityKt$$ExternalSyntheticLambda6&#xD;@Override // kotlin.jvm.functions.Function0&#xD;public final Object invoke() {&#xD;Unit Base64App$lambda$37$lambda$36$lambda$20$lambda$17$lambda$16;&#xD;Base64App$lambda$37$lambda$36$lambda$20$lambda$17$lambda$16 = Base64ActivityKt.</description>
+    </item>
     <item>
       <title>安卓实现魔改版 Base64 算法</title>
       <link>https://cyrus-studio.github.io/blog/posts/%E5%AE%89%E5%8D%93%E5%AE%9E%E7%8E%B0%E9%AD%94%E6%94%B9%E7%89%88-base64-%E7%AE%97%E6%B3%95/</link>
