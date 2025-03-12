@@ -2,5 +2,5 @@
 
 公众号：CYRUS STUDIO
 
-![二维码](https://cyrus-studio.github.io/blog/gongzhonghao.jpg)
+<img src="https://cyrus-studio.github.io/blog/gongzhonghao.jpg" width="240">
 
