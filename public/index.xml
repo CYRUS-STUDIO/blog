@@ -6,8 +6,15 @@
     <description>Recent content on CYRUS STUDIO</description>
     <generator>Hugo</generator>
     <language>zh-cn</language>
-    <lastBuildDate>Wed, 12 Mar 2025 21:21:08 +0800</lastBuildDate>
+    <lastBuildDate>Thu, 13 Mar 2025 23:38:55 +0800</lastBuildDate>
     <atom:link href="https://cyrus-studio.github.io/blog/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>安卓实现魔改版 CRC32 算法</title>
+      <link>https://cyrus-studio.github.io/blog/posts/%E5%AE%89%E5%8D%93%E5%AE%9E%E7%8E%B0%E9%AD%94%E6%94%B9%E7%89%88-crc32-%E7%AE%97%E6%B3%95/</link>
+      <pubDate>Thu, 13 Mar 2025 23:38:55 +0800</pubDate>
+      <guid>https://cyrus-studio.github.io/blog/posts/%E5%AE%89%E5%8D%93%E5%AE%9E%E7%8E%B0%E9%AD%94%E6%94%B9%E7%89%88-crc32-%E7%AE%97%E6%B3%95/</guid>
+      <description>版权归作者所有，如有转发，请注明文章出处：https://cyrus-studio.github.io/blog/&#xA;关于 CRC32 算法介绍可以参考这篇文章：常用加解密算法介绍&#xA;标准 CRC32 算法 创建 crc32.cpp，使用 C++ 实现标准 CRC32 算法&#xA;#include &amp;lt;jni.h&amp;gt;&#xD;#include &amp;lt;string&amp;gt;&#xD;#include &amp;lt;android/log.h&amp;gt;&#xD;#define TAG &amp;#34;CRC32&amp;#34;&#xD;unsigned int crc32_table[256];&#xD;// 初始化 CRC32 查找表&#xD;void init_crc32_table() {&#xD;unsigned int crc;&#xD;for (int i = 0; i &amp;lt; 256; i++) {&#xD;crc = i;&#xD;for (int j = 8; j &amp;gt; 0; j--) {&#xD;if (crc &amp;amp; 1) {&#xD;crc = (crc &amp;gt;&amp;gt; 1) ^ 0xedb88320;&#xD;} else {&#xD;crc &amp;gt;&amp;gt;= 1;&#xD;}&#xD;}&#xD;crc32_table[i] = crc;&#xD;}&#xD;}&#xD;// 计算 CRC32&#xD;unsigned int crc32(const std::string&amp;amp; str) {&#xD;unsigned int crc = 0xffffffff;&#xD;for (size_t i = 0; i &amp;lt; str.</description>
+    </item>
     <item>
       <title>安卓逆向魔改版 Base64 算法还原</title>
       <link>https://cyrus-studio.github.io/blog/posts/%E5%AE%89%E5%8D%93%E9%80%86%E5%90%91%E9%AD%94%E6%94%B9%E7%89%88-base64-%E7%AE%97%E6%B3%95%E8%BF%98%E5%8E%9F/</link>
