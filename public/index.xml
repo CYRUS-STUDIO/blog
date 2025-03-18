@@ -6,8 +6,15 @@
     <description>Recent content on CYRUS STUDIO</description>
     <generator>Hugo</generator>
     <language>zh-cn</language>
-    <lastBuildDate>Tue, 18 Mar 2025 18:21:53 +0800</lastBuildDate>
+    <lastBuildDate>Tue, 18 Mar 2025 20:33:21 +0800</lastBuildDate>
     <atom:link href="https://cyrus-studio.github.io/blog/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>使用 Unicorn 还原变异 CRC32 算法</title>
+      <link>https://cyrus-studio.github.io/blog/posts/%E4%BD%BF%E7%94%A8-unicorn-%E8%BF%98%E5%8E%9F%E5%8F%98%E5%BC%82-crc32-%E7%AE%97%E6%B3%95/</link>
+      <pubDate>Tue, 18 Mar 2025 20:33:21 +0800</pubDate>
+      <guid>https://cyrus-studio.github.io/blog/posts/%E4%BD%BF%E7%94%A8-unicorn-%E8%BF%98%E5%8E%9F%E5%8F%98%E5%BC%82-crc32-%E7%AE%97%E6%B3%95/</guid>
+      <description>版权归作者所有，如有转发，请注明文章出处：https://cyrus-studio.github.io/blog/&#xA;ARM64Emulator ARM64Emulator 是基于 Unicorn 实现一个轻量级的 ARM64 模拟器，具备代码加载、内存映射、指令执行、反汇编、寄存器监控、Hook、Patch、字符串处理等功能&#xA;项目地址：https://github.com/CYRUS-STUDIO/ARM64Emulator&#xA;这里主要使用 ARM64Emulator 模拟执行 so 中的汇编指令实现算法还原。&#xA;目标应用信息 app 中实现一个 CRC32 算法变形，具体实现在 so 中 modifiedCRC32 函数，现在要通过 unicorn 和 IDA Pro 逆向还原 so 中的算法。&#xA;项目地址：https://github.com/CYRUS-STUDIO/AndroidExample&#xA;目标 so 文件地址：https://github.com/CYRUS-STUDIO/ARM64Emulator/tree/main/examples&#xA;使用 ARM64Emulator 加载 so 并执行 modifiedCRC32 函数的汇编指令实现算法还原。&#xA;from unicorn.arm64_const import *&#xD;import struct&#xD;import re&#xD;from ARM64Emulator import ARM64Emulator&#xD;def modifiedCRC32(data):&#xD;emulator = ARM64Emulator(&amp;#34;libcrc32.so&amp;#34;)&#xD;mu = emulator.mu&#xD;# 字符串地址&#xD;str_addr = emulator.STACK_BASE + emulator.STACK_SIZE&#xD;emulator.mu.mem_map(str_addr, 0x1000) # 4KB&#xD;.</description>
+    </item>
     <item>
       <title>基于 Unicorn 实现一个轻量级的 ARM64 模拟器</title>
       <link>https://cyrus-studio.github.io/blog/posts/%E5%9F%BA%E4%BA%8E-unicorn-%E5%AE%9E%E7%8E%B0%E4%B8%80%E4%B8%AA%E8%BD%BB%E9%87%8F%E7%BA%A7%E7%9A%84-arm64-%E6%A8%A1%E6%8B%9F%E5%99%A8/</link>
