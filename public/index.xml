@@ -6,8 +6,15 @@
     <description>Recent content on CYRUS STUDIO</description>
     <generator>Hugo</generator>
     <language>zh-cn</language>
-    <lastBuildDate>Thu, 13 Mar 2025 23:38:55 +0800</lastBuildDate>
+    <lastBuildDate>Tue, 18 Mar 2025 18:21:53 +0800</lastBuildDate>
     <atom:link href="https://cyrus-studio.github.io/blog/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>基于 Unicorn 实现一个轻量级的 ARM64 模拟器</title>
+      <link>https://cyrus-studio.github.io/blog/posts/%E5%9F%BA%E4%BA%8E-unicorn-%E5%AE%9E%E7%8E%B0%E4%B8%80%E4%B8%AA%E8%BD%BB%E9%87%8F%E7%BA%A7%E7%9A%84-arm64-%E6%A8%A1%E6%8B%9F%E5%99%A8/</link>
+      <pubDate>Tue, 18 Mar 2025 18:21:53 +0800</pubDate>
+      <guid>https://cyrus-studio.github.io/blog/posts/%E5%9F%BA%E4%BA%8E-unicorn-%E5%AE%9E%E7%8E%B0%E4%B8%80%E4%B8%AA%E8%BD%BB%E9%87%8F%E7%BA%A7%E7%9A%84-arm64-%E6%A8%A1%E6%8B%9F%E5%99%A8/</guid>
+      <description>版权归作者所有，如有转发，请注明文章出处：https://cyrus-studio.github.io/blog/&#xA;基于 Unicorn 实现一个轻量级的 ARM64 模拟器，具备代码加载、内存映射、指令执行、反汇编、寄存器监控、Hook、Patch、字符串处理等功能，适合用于逆向分析或调试 ARM64 代码。&#xA;初始化与内存管理 代码加载：通过 _load_binary() 将 so 文件加载到内存中。&#xA;内存映射：在 _setup_memory() 中分配 10MB 的代码区和 1MB 的栈区。&#xA;寄存器初始化：在 _setup_registers() 中设置栈指针（SP）和程序计数器（PC）。&#xA;寄存器设置：提供了 set_x0()、set_x1() 和 set_x2() 等方法，用于直接设置寄存器值。&#xA;import capstone&#xD;from unicorn import *&#xD;from unicorn.arm64_const import *&#xD;class ARM64Emulator:&#xD;def __init__(self, so_file: str):&#xD;self.so_file = so_file&#xD;# 分配代码区（TEXT 段）&#xD;self.CODE_BASE = 0x000000 # 假设代码段起始地址&#xD;self.CODE_SIZE = 1024 * 1024 * 10 # 10MB&#xD;# 分配栈区（STACK 段）&#xD;self.STACK_BASE = self.</description>
+    </item>
     <item>
       <title>安卓实现魔改版 CRC32 算法</title>
       <link>https://cyrus-studio.github.io/blog/posts/%E5%AE%89%E5%8D%93%E5%AE%9E%E7%8E%B0%E9%AD%94%E6%94%B9%E7%89%88-crc32-%E7%AE%97%E6%B3%95/</link>

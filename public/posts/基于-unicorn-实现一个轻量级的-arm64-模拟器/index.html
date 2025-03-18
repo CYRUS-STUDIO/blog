@@ -1,0 +1,695 @@
+<!doctype html>
+<html lang="zh-cn">
+  <head>
+    <title>基于 Unicorn 实现一个轻量级的 ARM64 模拟器 // CYRUS STUDIO</title>
+    <link rel="shortcut icon" href="/favicon.ico" />
+    <meta charset="utf-8" />
+    <meta name="generator" content="Hugo 0.131.0">
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="author" content="John Doe" />
+    <meta name="description" content="" />
+    <link rel="stylesheet" href="/blog/css/main.min.bb3c8bd40402f0e35e7b43ec0d545e257afe2ef699d11f761ae6d7421dbfdbc3.css" />
+    
+
+    
+  
+
+
+    
+  <meta name="twitter:card" content="summary">
+  <meta name="twitter:title" content="基于 Unicorn 实现一个轻量级的 ARM64 模拟器">
+  <meta name="twitter:description" content="版权归作者所有，如有转发，请注明文章出处：https://cyrus-studio.github.io/blog/
+基于 Unicorn 实现一个轻量级的 ARM64 模拟器，具备代码加载、内存映射、指令执行、反汇编、寄存器监控、Hook、Patch、字符串处理等功能，适合用于逆向分析或调试 ARM64 代码。
+初始化与内存管理 代码加载：通过 _load_binary() 将 so 文件加载到内存中。
+内存映射：在 _setup_memory() 中分配 10MB 的代码区和 1MB 的栈区。
+寄存器初始化：在 _setup_registers() 中设置栈指针（SP）和程序计数器（PC）。
+寄存器设置：提供了 set_x0()、set_x1() 和 set_x2() 等方法，用于直接设置寄存器值。
+import capstonefrom unicorn import *from unicorn.arm64_const import *class ARM64Emulator:def __init__(self, so_file: str):self.so_file = so_file# 分配代码区（TEXT 段）self.CODE_BASE = 0x000000 # 假设代码段起始地址self.CODE_SIZE = 1024 * 1024 * 10 # 10MB# 分配栈区（STACK 段）self.STACK_BASE = self.">
+
+    <meta property="og:url" content="https://cyrus-studio.github.io/blog/posts/%E5%9F%BA%E4%BA%8E-unicorn-%E5%AE%9E%E7%8E%B0%E4%B8%80%E4%B8%AA%E8%BD%BB%E9%87%8F%E7%BA%A7%E7%9A%84-arm64-%E6%A8%A1%E6%8B%9F%E5%99%A8/">
+  <meta property="og:site_name" content="CYRUS STUDIO">
+  <meta property="og:title" content="基于 Unicorn 实现一个轻量级的 ARM64 模拟器">
+  <meta property="og:description" content="版权归作者所有，如有转发，请注明文章出处：https://cyrus-studio.github.io/blog/
+基于 Unicorn 实现一个轻量级的 ARM64 模拟器，具备代码加载、内存映射、指令执行、反汇编、寄存器监控、Hook、Patch、字符串处理等功能，适合用于逆向分析或调试 ARM64 代码。
+初始化与内存管理 代码加载：通过 _load_binary() 将 so 文件加载到内存中。
+内存映射：在 _setup_memory() 中分配 10MB 的代码区和 1MB 的栈区。
+寄存器初始化：在 _setup_registers() 中设置栈指针（SP）和程序计数器（PC）。
+寄存器设置：提供了 set_x0()、set_x1() 和 set_x2() 等方法，用于直接设置寄存器值。
+import capstonefrom unicorn import *from unicorn.arm64_const import *class ARM64Emulator:def __init__(self, so_file: str):self.so_file = so_file# 分配代码区（TEXT 段）self.CODE_BASE = 0x000000 # 假设代码段起始地址self.CODE_SIZE = 1024 * 1024 * 10 # 10MB# 分配栈区（STACK 段）self.STACK_BASE = self.">
+  <meta property="og:locale" content="zh_cn">
+  <meta property="og:type" content="article">
+    <meta property="article:section" content="posts">
+    <meta property="article:published_time" content="2025-03-18T18:21:53+08:00">
+    <meta property="article:modified_time" content="2025-03-18T18:21:53+08:00">
+
+
+  </head>
+  <body>
+    <header class="app-header">
+      <a href="https://cyrus-studio.github.io/blog/"><img class="app-header-avatar" src="/blog/avatar.jpg" alt="John Doe" /></a>
+      <span class="app-header-title">CYRUS STUDIO</span>
+      <nav class="app-header-menu">
+          <a class="app-header-menu-item" href="/blog/">Home</a>
+             - 
+          
+          <a class="app-header-menu-item" href="/blog/about/">About</a>
+             - 
+          
+          <a class="app-header-menu-item" href="https://github.com/CYRUS-STUDIO">GitHub</a>
+      </nav>
+      <p>公众号：CYRUS STUDIO</p>
+      
+
+      <div class="qrcode-container">
+          <img src="/blog/gongzhonghao.jpg" alt="公众号二维码" class="qrcode-image">
+          <p class="qrcode-text">扫码关注公众号</p>
+      </div>
+
+      <div class="visitor-counter">
+   	    <img src="https://profile-counter.glitch.me/CYRUS-STUDIO-blog/count.svg" alt="Visitor Count">
+	    </div>
+    </header>
+    <main class="app-container">
+      
+  <article class="post">
+    <header class="post-header">
+      <meta charset="UTF-8" />
+      <h1 class ="post-title">基于 Unicorn 实现一个轻量级的 ARM64 模拟器</h1>
+      <div class="post-meta">
+        <div>
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="icon icon-calendar">
+  <title>calendar</title>
+  <rect x="3" y="4" width="18" height="18" rx="2" ry="2"></rect><line x1="16" y1="2" x2="16" y2="6"></line><line x1="8" y1="2" x2="8" y2="6"></line><line x1="3" y1="10" x2="21" y2="10"></line>
+</svg>
+          Mar 18, 2025
+        </div>
+        <div>
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="icon icon-clock">
+  <title>clock</title>
+  <circle cx="12" cy="12" r="10"></circle><polyline points="12 6 12 12 16 14"></polyline>
+</svg>
+          8 min read
+        </div>
+      </div>
+    </header>
+    <div class="post-content">
+      <blockquote>
+<p>版权归作者所有，如有转发，请注明文章出处：<a href="https://cyrus-studio.github.io/blog/">https://cyrus-studio.github.io/blog/</a></p>
+</blockquote>
+<p>基于 Unicorn 实现一个轻量级的 ARM64 模拟器，具备代码加载、内存映射、指令执行、反汇编、寄存器监控、Hook、Patch、字符串处理等功能，适合用于逆向分析或调试 ARM64 代码。</p>
+<h1 id="初始化与内存管理"><strong>初始化与内存管理</strong></h1>
+<ul>
+<li>
+<p>代码加载：通过 _load_binary() 将 so 文件加载到内存中。</p>
+</li>
+<li>
+<p>内存映射：在 _setup_memory() 中分配 10MB 的代码区和 1MB 的栈区。</p>
+</li>
+<li>
+<p>寄存器初始化：在 _setup_registers() 中设置栈指针（SP）和程序计数器（PC）。</p>
+</li>
+<li>
+<p>寄存器设置：提供了 set_x0()、set_x1() 和 set_x2() 等方法，用于直接设置寄存器值。</p>
+</li>
+</ul>
+<pre tabindex="0"><code>import capstone
+from unicorn import *
+from unicorn.arm64_const import *
+
+
+class ARM64Emulator:
+
+    def __init__(self, so_file: str):
+        self.so_file = so_file
+
+        # 分配代码区（TEXT 段）
+        self.CODE_BASE = 0x000000  # 假设代码段起始地址
+        self.CODE_SIZE = 1024 * 1024 * 10  # 10MB
+
+        # 分配栈区（STACK 段）
+        self.STACK_BASE = self.CODE_BASE + self.CODE_SIZE
+        self.STACK_SIZE = 1024 * 1024 * 1  # 1MB
+
+        # 初始化 Unicorn
+        self.mu = Uc(UC_ARCH_ARM64, UC_MODE_ARM)
+
+        self._load_binary()
+        self._setup_memory()
+        self._setup_registers()
+        self._setup_hooks()
+
+    def _load_binary(self):
+        with open(self.so_file, &#34;rb&#34;) as f:
+            self.CODE = f.read()
+
+    def _setup_memory(self):
+        self.mu.mem_map(self.CODE_BASE, self.CODE_SIZE)
+        self.mu.mem_map(self.STACK_BASE, self.STACK_SIZE)
+        # 写入指令
+        self.mu.mem_write(self.CODE_BASE, self.CODE)
+
+    def _setup_registers(self):
+        self.mu.reg_write(UC_ARM64_REG_SP, self.STACK_BASE + self.STACK_SIZE - 4)  # 使 SP 从栈的顶部往下移动 4 字节，以 预留一点空间，避免越界错误。
+        self.mu.reg_write(UC_ARM64_REG_PC, self.CODE_BASE)
+
+    def set_x0(self, value):
+        self.mu.reg_write(UC_ARM64_REG_X0, value)
+
+    def set_x1(self, value):
+        self.mu.reg_write(UC_ARM64_REG_X1, value)
+
+
+    def set_x2(self, value):
+        self.mu.reg_write(UC_ARM64_REG_X2, value)
+</code></pre><h1 id="打印寄存器"><strong>打印寄存器</strong></h1>
+<p>dump_registers() 打印所有 ARM64 寄存器的当前值。</p>
+<pre tabindex="0"><code>def dump_registers(self):
+    &#34;&#34;&#34; 打印 Unicorn ARM64 CPU 的所有寄存器 &#34;&#34;&#34;
+    print(&#34;\n====== Registers Dump ======&#34;)
+
+    # 遍历 X0 - X30
+    for i in range(31):  # X0 ~ X30
+        reg_id = getattr(arm64_const, f&#39;UC_ARM64_REG_X{i}&#39;)
+        value = self.mu.reg_read(reg_id)
+        print(f&#34;X{i:02}: 0x{value:016x}&#34;)
+
+    # 打印 SP（栈指针）和 PC（程序计数器）
+    sp = self.mu.reg_read(UC_ARM64_REG_SP)
+    pc = self.mu.reg_read(UC_ARM64_REG_PC)
+
+    print(f&#34;\nSP:  0x{sp:016x}&#34;)
+    print(f&#34;PC:  0x{pc:016x}&#34;)
+    print(&#34;============================\n&#34;)
+</code></pre><h1 id="运行程序"><strong>运行程序</strong></h1>
+<p>run() 使用 emu_start() 运行从 start_address 到 end_address 的指令。</p>
+<pre tabindex="0"><code>def run(self, start_address, end_address):
+    print(&#34;\nBefore execution:&#34;)
+    self.dump_registers()
+    # 运行 Unicorn
+    self.mu.emu_start(self.CODE_BASE + start_address, self.CODE_BASE + end_address)
+    print(&#34;\nAfter execution:&#34;)
+    self.dump_registers()
+</code></pre><h1 id="反汇编"><strong>反汇编</strong></h1>
+<p>disassembly() 使用 Capstone 对指定地址的内存数据进行反汇编。</p>
+<pre tabindex="0"><code>class ARM64Emulator:
+
+    def __init__(self, so_file: str):
+        
+        # 初始化 Capstone 反汇编器 (针对 ARM64 架构)
+        self.cs = capstone.Cs(capstone.CS_ARCH_ARM64, capstone.CS_MODE_ARM)
+
+    def disassembly(self, start_address, end_address):
+        &#34;&#34;&#34;
+        反汇编指定地址的字节码
+        :param start_address: 开始地址
+        :param end_address: 结束地址
+        &#34;&#34;&#34;
+        # 提取目标方法的字节码
+        target_data = self.CODE[start_address:end_address]
+        # 反汇编字节码
+        print(&#34;Disassembly:&#34;)
+        for instruction in self.cs.disasm(target_data, start_address):
+            print(f&#34;0x{instruction.address:x}:\t{instruction.mnemonic}\t{instruction.op_str}&#34;)
+            
+</code></pre><h1 id="hook-管理"><strong>Hook 管理</strong></h1>
+<ul>
+<li>
+<p>代码 Hook：在 _setup_hooks() 中设置 UC_HOOK_CODE 钩子，每次执行到一条指令时触发 hook_code()。</p>
+</li>
+<li>
+<p>注册 Hook：register_hook() 允许用户在特定地址注册自定义的 Hook 函数。</p>
+</li>
+<li>
+<p>取消 Hook：unregister_hook() 提供取消 Hook 的功能。</p>
+</li>
+</ul>
+<pre tabindex="0"><code>class ARM64Emulator:
+
+    def __init__(self, so_file: str):
+        
+        self._hooks = [] # 存储所有注册的 Hook
+        
+        self._setup_hooks()
+        
+    def _setup_hooks(self):
+        self.mu.hook_add(UC_HOOK_CODE, self.hook_code)
+        
+    def hook_code(self, mu, address, size, user_data):
+        code = mu.mem_read(address, size)
+        # 反汇编并打印当前执行的指令
+        for i in self.cs.disasm(code, 0, len(code)):
+            print(&#34;[addr:%x;code:%s]:%s %s&#34; % (address, code.hex(), i.mnemonic, i.op_str))
+    
+        # 遍历所有已注册的 Hook，并执行匹配的 Hook
+        for hook_addr, hook_fn in self._hooks:
+            if address == hook_addr:
+                hook_fn()
+                
+    def register_hook(self, address: int, hook_fn):
+        &#34;&#34;&#34;
+        注册 Hook
+        :param address: 需要 Hook 的地址
+        :param hook_fn: Hook 处理函数
+        &#34;&#34;&#34;
+        self._hooks.append((address, hook_fn))
+        print(f&#34;Hook registered at {hex(address)}&#34;)
+    
+    def unregister_hook(self, address: int):
+        &#34;&#34;&#34;
+        取消 Hook
+        :param address: 需要解除 Hook 的地址
+        &#34;&#34;&#34;
+        self._hooks = [(addr, fn) for addr, fn in self._hooks if addr != address]
+        print(f&#34;Hook unregistered at {hex(address)}&#34;)
+</code></pre><h1 id="寄存器监控"><strong>寄存器监控</strong></h1>
+<ul>
+<li>
+<p>监控寄存器变更：watch_registers() 支持监控特定寄存器的变化，并在变化时打印相关信息。</p>
+</li>
+<li>
+<p>自动更新寄存器值：在 hook_code() 中检测变化，并输出变化信息。</p>
+</li>
+</ul>
+<pre tabindex="0"><code>class ARM64Emulator:
+
+    def __init__(self, so_file: str):
+
+        self._last_registers = {}  # 记录上次的寄存器值
+        self._watch_registers = set()  # 存储需要监控的寄存器
+    
+    def hook_code(self, mu, address, size, user_data):
+        code = mu.mem_read(address, size)
+    
+        insn = next(self.cs.disasm(code, 0, len(code)), None)
+        if not insn:
+            return
+    
+        # 检查监控的寄存器是否变化
+        for reg in self._watch_registers:
+            new_value = mu.reg_read(reg)
+            if self._last_registers[reg] != new_value:
+                print(f&#34;&gt;&gt; PC: 0x{address:X}, {insn.mnemonic} {insn.op_str}, {reg} changed: 0x{self._last_registers[reg]:X} -&gt; 0x{new_value:X}&#34;)
+                self._last_registers[reg] = new_value  # 更新值
+    
+    def watch_registers(self, *regs):
+        &#34;&#34;&#34;
+        添加要监控的寄存器
+    
+        使用示例: emu.watch_registers(&#34;X4&#34;, &#34;X8&#34;)  # 监控 X4 和 X8
+    
+        &#34;&#34;&#34;
+        reg_map = {
+            &#34;X0&#34;: UC_ARM64_REG_X0, &#34;X1&#34;: UC_ARM64_REG_X1, &#34;X2&#34;: UC_ARM64_REG_X2, &#34;X3&#34;: UC_ARM64_REG_X3,
+            &#34;X4&#34;: UC_ARM64_REG_X4, &#34;X5&#34;: UC_ARM64_REG_X5, &#34;X6&#34;: UC_ARM64_REG_X6, &#34;X7&#34;: UC_ARM64_REG_X7,
+            &#34;X8&#34;: UC_ARM64_REG_X8, &#34;X9&#34;: UC_ARM64_REG_X9, &#34;X10&#34;: UC_ARM64_REG_X10, &#34;X11&#34;: UC_ARM64_REG_X11,
+            &#34;X12&#34;: UC_ARM64_REG_X12, &#34;X13&#34;: UC_ARM64_REG_X13, &#34;X14&#34;: UC_ARM64_REG_X14, &#34;X15&#34;: UC_ARM64_REG_X15,
+            &#34;X16&#34;: UC_ARM64_REG_X16, &#34;X17&#34;: UC_ARM64_REG_X17, &#34;X18&#34;: UC_ARM64_REG_X18, &#34;X19&#34;: UC_ARM64_REG_X19,
+            &#34;X20&#34;: UC_ARM64_REG_X20, &#34;X21&#34;: UC_ARM64_REG_X21, &#34;X22&#34;: UC_ARM64_REG_X22, &#34;X23&#34;: UC_ARM64_REG_X23,
+            &#34;X24&#34;: UC_ARM64_REG_X24, &#34;X25&#34;: UC_ARM64_REG_X25, &#34;X26&#34;: UC_ARM64_REG_X26, &#34;X27&#34;: UC_ARM64_REG_X27,
+            &#34;X28&#34;: UC_ARM64_REG_X28, &#34;FP&#34;: UC_ARM64_REG_FP, &#34;LR&#34;: UC_ARM64_REG_LR, &#34;SP&#34;: UC_ARM64_REG_SP,
+            &#34;PC&#34;: UC_ARM64_REG_PC
+        }
+        for reg in regs:
+            if reg in reg_map:
+                self._watch_registers.add(reg_map[reg])
+                self._last_registers[reg_map[reg]] = 0  # 初始化记录值
+</code></pre><h1 id="patch-nop"><strong>Patch NOP</strong></h1>
+<ul>
+<li>
+<p>patch_nop()：将给定地址列表中的指令替换为 NOP（0xD503201F）。</p>
+</li>
+<li>
+<p>patch_nop_range()：将指定地址范围内的所有指令替换为 NOP。</p>
+</li>
+</ul>
+<pre tabindex="0"><code>def patch_nop_range(self, start_addr: int, end_addr: int):
+    &#34;&#34;&#34;
+    在指定范围内将指令 patch 为 NOP (0xD503201F)，**包括 end_addr 位置**
+
+    :param start_addr: 需要 patch 的起始地址 (必须 4 字节对齐)
+    :param end_addr: 需要 patch 的结束地址 (必须 4 字节对齐，包含此地址)
+    &#34;&#34;&#34;
+    # 确保地址对齐
+    if start_addr % 4 != 0 or end_addr % 4 != 0:
+        raise ValueError(&#34;Start and end addresses must be 4-byte aligned.&#34;)
+
+    if end_addr &lt; start_addr:
+        raise ValueError(&#34;End address must be greater than or equal to start address.&#34;)
+
+    # NOP 指令在 AArch64 下的编码
+    NOP_INSTRUCTION = b&#39;\x1F\x20\x03\xD5&#39;  # 0xD503201F
+
+    # 计算 patch 的指令数量 (包括 end_addr)
+    nop_count = ((end_addr - start_addr) // 4) + 1
+
+    # 生成 NOP 指令序列
+    nop_data = NOP_INSTRUCTION * nop_count
+
+    # 写入 Unicorn 内存
+    self.mu.mem_write(start_addr, nop_data)
+
+    print(f&#34;Patched {nop_count} instructions to NOP from {hex(start_addr)} to {hex(end_addr)} (inclusive)&#34;)
+
+def patch_nop(self, addr_list: list):
+    &#34;&#34;&#34;
+    将地址列表中的每个地址 patch 为 NOP (0xD503201F)
+
+    :param addr_list: 需要 patch 的地址列表 (每个地址必须 4 字节对齐)
+    &#34;&#34;&#34;
+    # NOP 指令在 AArch64 下的编码
+    NOP_INSTRUCTION = b&#39;\x1F\x20\x03\xD5&#39;  # 0xD503201F
+
+    for addr in addr_list:
+        if addr % 4 != 0:
+            raise ValueError(f&#34;Address {hex(addr)} is not 4-byte aligned.&#34;)
+
+        self.mu.mem_write(addr, NOP_INSTRUCTION)
+        print(f&#34;Patched NOP at {hex(addr)}&#34;)
+</code></pre><h1 id="字符串操作"><strong>字符串操作</strong></h1>
+<ul>
+<li>
+<p>get_string_utf_chars() 模拟了 GetStringUTFChars()，在指定内存地址写入 UTF-8 编码的字符串，并返回指针地址。</p>
+</li>
+<li>
+<p>read_c_string() 从仿真器内存中读取以 NULL 结尾的 C 语言字符串。</p>
+</li>
+</ul>
+<pre tabindex="0"><code>def get_string_utf_chars(self, input_str: str, str_addr: int):
+    &#34;&#34;&#34;
+    模拟 GetStringUTFChars，把 Python 参数 `input_str` 作为返回的 UTF-8 字符串
+    &#34;&#34;&#34;
+    utf8_str = input_str.encode(&#34;utf-8&#34;) + b&#34;\x00&#34;  # UTF-8 编码并加 NULL 终止符
+
+    # 写入 Unicorn 内存
+    self.mu.mem_write(str_addr, utf8_str)
+
+    # 设置 X0 返回值 (UTF-8 字符串地址)
+    self.mu.reg_write(UC_ARM64_REG_X0, str_addr)
+
+    print(f&#34;GetStringUTFChars Hooked: &#39;{input_str}&#39; -&gt; {hex(str_addr)}&#34;)
+
+def read_c_string(self, addr, max_len=256):
+    &#34;&#34;&#34; 从 Unicorn 模拟内存中读取 C 语言字符串（以 null 结尾） &#34;&#34;&#34;
+    result = b&#34;&#34;
+    for i in range(max_len):
+        byte = self.mu.mem_read(addr + i, 1)
+        if byte == b&#34;\x00&#34;:  # 遇到 null 终止符
+            break
+        result += byte
+    return result.decode(&#34;utf-8&#34;, errors=&#34;ignore&#34;)
+</code></pre><h1 id="完整源码"><strong>完整源码</strong></h1>
+<p>项目地址：<a href="https://github.com/CYRUS-STUDIO/ARM64Emulator">https://github.com/CYRUS-STUDIO/ARM64Emulator</a></p>
+<pre tabindex="0"><code>import capstone
+from unicorn import *
+from unicorn.arm64_const import *
+
+
+class ARM64Emulator:
+
+    def __init__(self, so_file: str):
+        self.so_file = so_file
+
+        self._hooks = [] # 存储所有注册的 Hook
+        self._last_registers = {}  # 记录上次的寄存器值
+        self._watch_registers = set()  # 存储需要监控的寄存器
+
+        # 分配代码区（TEXT 段）
+        self.CODE_BASE = 0x000000  # 假设代码段起始地址
+        self.CODE_SIZE = 1024 * 1024 * 10  # 10MB
+
+        # 分配栈区（STACK 段）
+        self.STACK_BASE = self.CODE_BASE + self.CODE_SIZE
+        self.STACK_SIZE = 1024 * 1024 * 1  # 1MB
+
+        # 初始化 Unicorn
+        self.mu = Uc(UC_ARCH_ARM64, UC_MODE_ARM)
+        # 初始化 Capstone 反汇编器 (针对 ARM64 架构)
+        self.cs = capstone.Cs(capstone.CS_ARCH_ARM64, capstone.CS_MODE_ARM)
+
+        self._load_binary()
+        self._setup_memory()
+        self._setup_registers()
+        self._setup_hooks()
+
+    def _load_binary(self):
+        with open(self.so_file, &#34;rb&#34;) as f:
+            self.CODE = f.read()
+
+    def _setup_memory(self):
+        self.mu.mem_map(self.CODE_BASE, self.CODE_SIZE)
+        self.mu.mem_map(self.STACK_BASE, self.STACK_SIZE)
+        # 写入指令
+        self.mu.mem_write(self.CODE_BASE, self.CODE)
+
+    def _setup_registers(self):
+        self.mu.reg_write(UC_ARM64_REG_SP, self.STACK_BASE + self.STACK_SIZE - 4)  # 使 SP 从栈的顶部往下移动 4 字节，以 预留一点空间，避免越界错误。
+        self.mu.reg_write(UC_ARM64_REG_PC, self.CODE_BASE)
+
+    def set_x0(self, value):
+        self.mu.reg_write(UC_ARM64_REG_X0, value)
+
+
+    def set_x1(self, value):
+        self.mu.reg_write(UC_ARM64_REG_X1, value)
+
+
+    def set_x2(self, value):
+        self.mu.reg_write(UC_ARM64_REG_X2, value)
+
+    def _setup_hooks(self):
+        self.mu.hook_add(UC_HOOK_CODE, self.hook_code)
+
+
+    def dump_registers(self):
+        &#34;&#34;&#34; 打印 Unicorn ARM64 CPU 的所有寄存器 &#34;&#34;&#34;
+        print(&#34;\n====== Registers Dump ======&#34;)
+
+        # 遍历 X0 - X30
+        for i in range(31):  # X0 ~ X30
+            reg_id = getattr(arm64_const, f&#39;UC_ARM64_REG_X{i}&#39;)
+            value = self.mu.reg_read(reg_id)
+            print(f&#34;X{i:02}: 0x{value:016x}&#34;)
+
+        # 打印 SP（栈指针）和 PC（程序计数器）
+        sp = self.mu.reg_read(UC_ARM64_REG_SP)
+        pc = self.mu.reg_read(UC_ARM64_REG_PC)
+
+        print(f&#34;\nSP:  0x{sp:016x}&#34;)
+        print(f&#34;PC:  0x{pc:016x}&#34;)
+        print(&#34;============================\n&#34;)
+
+    def run(self, start_address, end_address):
+        print(&#34;\nBefore execution:&#34;)
+        self.dump_registers()
+        # 运行 Unicorn
+        self.mu.emu_start(self.CODE_BASE + start_address, self.CODE_BASE + end_address)
+        print(&#34;\nAfter execution:&#34;)
+        self.dump_registers()
+
+    def disassembly(self, start_address, end_address):
+        &#34;&#34;&#34;
+        反汇编指定地址的字节码
+        :param start_address: 开始地址
+        :param end_address: 结束地址
+        &#34;&#34;&#34;
+        # 提取目标方法的字节码
+        target_data = self.CODE[start_address:end_address]
+        # 反汇编字节码
+        print(&#34;Disassembly:&#34;)
+        for instruction in self.cs.disasm(target_data, start_address):
+            print(f&#34;0x{instruction.address:x}:\t{instruction.mnemonic}\t{instruction.op_str}&#34;)
+
+
+    def hook_code(self, mu, address, size, user_data):
+        code = mu.mem_read(address, size)
+        # 反汇编并打印当前执行的指令
+        for i in self.cs.disasm(code, 0, len(code)):
+            print(&#34;[addr:%x;code:%s]:%s %s&#34; % (address, code.hex(), i.mnemonic, i.op_str))
+
+        # 遍历所有已注册的 Hook，并执行匹配的 Hook
+        for hook_addr, hook_fn in self._hooks:
+            if address == hook_addr:
+                hook_fn()
+
+        insn = next(self.cs.disasm(code, 0, len(code)), None)
+        if not insn:
+            return
+
+        # 检查监控的寄存器是否变化
+        for reg in self._watch_registers:
+            new_value = mu.reg_read(reg)
+            if self._last_registers[reg] != new_value:
+                print(f&#34;&gt;&gt; PC: 0x{address:X}, {insn.mnemonic} {insn.op_str}, {reg} changed: 0x{self._last_registers[reg]:X} -&gt; 0x{new_value:X}&#34;)
+                self._last_registers[reg] = new_value  # 更新值
+
+
+    def register_hook(self, address: int, hook_fn):
+        &#34;&#34;&#34;
+        注册 Hook
+        :param address: 需要 Hook 的地址
+        :param hook_fn: Hook 处理函数
+        &#34;&#34;&#34;
+        self._hooks.append((address, hook_fn))
+        print(f&#34;Hook registered at {hex(address)}&#34;)
+
+    def unregister_hook(self, address: int):
+        &#34;&#34;&#34;
+        取消 Hook
+        :param address: 需要解除 Hook 的地址
+        &#34;&#34;&#34;
+        self._hooks = [(addr, fn) for addr, fn in self._hooks if addr != address]
+        print(f&#34;Hook unregistered at {hex(address)}&#34;)
+
+    def watch_registers(self, *regs):
+        &#34;&#34;&#34;
+        添加要监控的寄存器
+
+        使用示例: emu.watch_registers(&#34;X4&#34;, &#34;X8&#34;)  # 监控 X4 和 X8
+
+        &#34;&#34;&#34;
+        reg_map = {
+            &#34;X0&#34;: UC_ARM64_REG_X0, &#34;X1&#34;: UC_ARM64_REG_X1, &#34;X2&#34;: UC_ARM64_REG_X2, &#34;X3&#34;: UC_ARM64_REG_X3,
+            &#34;X4&#34;: UC_ARM64_REG_X4, &#34;X5&#34;: UC_ARM64_REG_X5, &#34;X6&#34;: UC_ARM64_REG_X6, &#34;X7&#34;: UC_ARM64_REG_X7,
+            &#34;X8&#34;: UC_ARM64_REG_X8, &#34;X9&#34;: UC_ARM64_REG_X9, &#34;X10&#34;: UC_ARM64_REG_X10, &#34;X11&#34;: UC_ARM64_REG_X11,
+            &#34;X12&#34;: UC_ARM64_REG_X12, &#34;X13&#34;: UC_ARM64_REG_X13, &#34;X14&#34;: UC_ARM64_REG_X14, &#34;X15&#34;: UC_ARM64_REG_X15,
+            &#34;X16&#34;: UC_ARM64_REG_X16, &#34;X17&#34;: UC_ARM64_REG_X17, &#34;X18&#34;: UC_ARM64_REG_X18, &#34;X19&#34;: UC_ARM64_REG_X19,
+            &#34;X20&#34;: UC_ARM64_REG_X20, &#34;X21&#34;: UC_ARM64_REG_X21, &#34;X22&#34;: UC_ARM64_REG_X22, &#34;X23&#34;: UC_ARM64_REG_X23,
+            &#34;X24&#34;: UC_ARM64_REG_X24, &#34;X25&#34;: UC_ARM64_REG_X25, &#34;X26&#34;: UC_ARM64_REG_X26, &#34;X27&#34;: UC_ARM64_REG_X27,
+            &#34;X28&#34;: UC_ARM64_REG_X28, &#34;FP&#34;: UC_ARM64_REG_FP, &#34;LR&#34;: UC_ARM64_REG_LR, &#34;SP&#34;: UC_ARM64_REG_SP,
+            &#34;PC&#34;: UC_ARM64_REG_PC
+        }
+        for reg in regs:
+            if reg in reg_map:
+                self._watch_registers.add(reg_map[reg])
+                self._last_registers[reg_map[reg]] = 0  # 初始化记录值
+
+    def patch_nop_range(self, start_addr: int, end_addr: int):
+        &#34;&#34;&#34;
+        在指定范围内将指令 patch 为 NOP (0xD503201F)，**包括 end_addr 位置**
+
+        :param start_addr: 需要 patch 的起始地址 (必须 4 字节对齐)
+        :param end_addr: 需要 patch 的结束地址 (必须 4 字节对齐，包含此地址)
+        &#34;&#34;&#34;
+        # 确保地址对齐
+        if start_addr % 4 != 0 or end_addr % 4 != 0:
+            raise ValueError(&#34;Start and end addresses must be 4-byte aligned.&#34;)
+
+        if end_addr &lt; start_addr:
+            raise ValueError(&#34;End address must be greater than or equal to start address.&#34;)
+
+        # NOP 指令在 AArch64 下的编码
+        NOP_INSTRUCTION = b&#39;\x1F\x20\x03\xD5&#39;  # 0xD503201F
+
+        # 计算 patch 的指令数量 (包括 end_addr)
+        nop_count = ((end_addr - start_addr) // 4) + 1
+
+        # 生成 NOP 指令序列
+        nop_data = NOP_INSTRUCTION * nop_count
+
+        # 写入 Unicorn 内存
+        self.mu.mem_write(start_addr, nop_data)
+
+        print(f&#34;Patched {nop_count} instructions to NOP from {hex(start_addr)} to {hex(end_addr)} (inclusive)&#34;)
+
+    def patch_nop(self, addr_list: list):
+        &#34;&#34;&#34;
+        将地址列表中的每个地址 patch 为 NOP (0xD503201F)
+
+        :param addr_list: 需要 patch 的地址列表 (每个地址必须 4 字节对齐)
+        &#34;&#34;&#34;
+        # NOP 指令在 AArch64 下的编码
+        NOP_INSTRUCTION = b&#39;\x1F\x20\x03\xD5&#39;  # 0xD503201F
+
+        for addr in addr_list:
+            if addr % 4 != 0:
+                raise ValueError(f&#34;Address {hex(addr)} is not 4-byte aligned.&#34;)
+
+            self.mu.mem_write(addr, NOP_INSTRUCTION)
+            print(f&#34;Patched NOP at {hex(addr)}&#34;)
+
+    def get_string_utf_chars(self, input_str: str, str_addr: int):
+        &#34;&#34;&#34;
+        模拟 GetStringUTFChars，把 Python 参数 `input_str` 作为返回的 UTF-8 字符串
+        &#34;&#34;&#34;
+        utf8_str = input_str.encode(&#34;utf-8&#34;) + b&#34;\x00&#34;  # UTF-8 编码并加 NULL 终止符
+
+        # 写入 Unicorn 内存
+        self.mu.mem_write(str_addr, utf8_str)
+
+        # 设置 X0 返回值 (UTF-8 字符串地址)
+        self.mu.reg_write(UC_ARM64_REG_X0, str_addr)
+
+        print(f&#34;GetStringUTFChars Hooked: &#39;{input_str}&#39; -&gt; {hex(str_addr)}&#34;)
+
+    def read_c_string(self, addr, max_len=256):
+        &#34;&#34;&#34; 从 Unicorn 模拟内存中读取 C 语言字符串（以 null 结尾） &#34;&#34;&#34;
+        result = b&#34;&#34;
+        for i in range(max_len):
+            byte = self.mu.mem_read(addr + i, 1)
+            if byte == b&#34;\x00&#34;:  # 遇到 null 终止符
+                break
+            result += byte
+        return result.decode(&#34;utf-8&#34;, errors=&#34;ignore&#34;)
+</code></pre>
+    </div>
+    <div class="post-footer">
+      
+    </div> 
+  </article>
+
+
+
+<div id="toc" class="toc-container hidden"></div>
+
+
+<button id="toc-toggle" class="toc-toggle" aria-label="目录">
+  &#9776;
+</button>
+
+
+<script src="/blog/js/toc.js"></script>
+
+
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/clipboard.js/2.0.10/clipboard.min.js"></script>
+<script>
+    document.addEventListener('DOMContentLoaded', function() {
+        
+        document.querySelectorAll('pre').forEach(function(block) {
+            
+            var button = document.createElement('button');
+            button.className = 'copy-btn';
+            button.textContent = '复制';
+
+            
+            block.appendChild(button);
+
+            
+            var clipboard = new ClipboardJS(button, {
+                target: function() {
+                    return block.querySelector('code');
+                }
+            });
+
+            
+            clipboard.on('success', function(e) {
+                e.trigger.textContent = '复制成功';
+                setTimeout(function() {
+                    e.trigger.textContent = '复制';
+                }, 2000);
+            });
+
+            
+            clipboard.on('error', function(e) {
+                e.trigger.textContent = '复制失败';
+            });
+        });
+    });
+</script>
+
+
+
+
+    </main>
+  </body>
+</html>
