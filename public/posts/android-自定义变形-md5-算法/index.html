@@ -47,8 +47,8 @@ md5.h
   <meta property="og:locale" content="zh_cn">
   <meta property="og:type" content="article">
     <meta property="article:section" content="posts">
-    <meta property="article:published_time" content="2025-03-22T01:46:13+08:00">
-    <meta property="article:modified_time" content="2025-03-22T01:46:13+08:00">
+    <meta property="article:published_time" content="2025-03-22T02:09:55+08:00">
+    <meta property="article:modified_time" content="2025-03-22T02:09:55+08:00">
 
 
   </head>
@@ -680,7 +680,8 @@ Java_com_cyrus_example_md5_MD5Utils_changeMD5Update(JNIEnv *env, jclass, jstring
 </ul>
 <p>比如，给 md5 方法添加下面注解启用虚假控制流</p>
 <pre tabindex="0"><code>__attribute__((annotate(&#34;bcf&#34;))) 
-</code></pre><pre tabindex="0"><code>extern &#34;C&#34;
+</code></pre><p>修改后：</p>
+<pre tabindex="0"><code>extern &#34;C&#34;
 JNIEXPORT jstring JNICALL
 __attribute__((annotate(&#34;bcf&#34;))) Java_com_cyrus_example_md5_MD5Utils_changeConstant(JNIEnv *env, jclass, jstring input) {
     const char *inputChars = env-&gt;GetStringUTFChars(input, nullptr);
