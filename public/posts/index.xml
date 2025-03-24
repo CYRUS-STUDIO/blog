@@ -6,8 +6,15 @@
     <description>Recent content in Posts on CYRUS STUDIO</description>
     <generator>Hugo</generator>
     <language>zh-cn</language>
-    <lastBuildDate>Sat, 22 Mar 2025 02:09:55 +0800</lastBuildDate>
+    <lastBuildDate>Tue, 25 Mar 2025 02:54:38 +0800</lastBuildDate>
     <atom:link href="https://cyrus-studio.github.io/blog/posts/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Android 自定义变形 SHA1 算法</title>
+      <link>https://cyrus-studio.github.io/blog/posts/android-%E8%87%AA%E5%AE%9A%E4%B9%89%E5%8F%98%E5%BD%A2-sha1-%E7%AE%97%E6%B3%95/</link>
+      <pubDate>Tue, 25 Mar 2025 02:54:38 +0800</pubDate>
+      <guid>https://cyrus-studio.github.io/blog/posts/android-%E8%87%AA%E5%AE%9A%E4%B9%89%E5%8F%98%E5%BD%A2-sha1-%E7%AE%97%E6%B3%95/</guid>
+      <description>版权归作者所有，如有转发，请注明文章出处：https://cyrus-studio.github.io/blog/&#xA;标准 SHA1 SHA1（Secure Hash Algorithm 1）是一种广泛使用的 加密哈希函数，用于生成固定长度的 160 位（20 字节）哈希值。它由 美国国家安全局（NSA） 设计，并由 NIST（美国国家标准与技术研究院） 在 1995 年作为 FIPS PUB 180-1 标准发布。&#xA;SHA1 的基本特点&#xA;输出长度：160 位（20 字节）的哈希值，通常以长度为 40 的 hex 字符串表示&#xA;使用 5 个固定的初始哈希值（MD5 是 4 个）&#xA;不可逆性：无法从哈希值反推出原文&#xA;固定性：相同的输入始终会产生相同的输出&#xA;雪崩效应：输入的微小变化会导致输出哈希值的巨大变化&#xA;抗碰撞性（已破坏）：理论上很难找到两个不同的输入产生相同的哈希值&#xA;SHA1 C++ 标准实现如下：&#xA;sha1.h&#xA;#ifndef SHA1_H&#xD;#define SHA1_H&#xD;#include &amp;lt;stdlib.h&amp;gt;&#xD;#include &amp;lt;string.h&amp;gt;&#xD;#include &amp;lt;asm/types.h&amp;gt;&#xD;#define os_memcpy memcpy&#xD;#define os_memset memset&#xD;#define os_memcmp memcmp&#xD;#define os_strlen strlen&#xD;#define MAX_SHA1_LEN 32&#xD;#define SHA1_MAC_LEN 20&#xD;typedef __u8 u8;&#xD;typedef __u32 u32;&#xD;struct SHA1Context {&#xD;u32 state[5];&#xD;u32 count[2];&#xD;unsigned char buffer[64];&#xD;};&#xD;typedef struct SHA1Context SHA1_CTX;&#xD;void SHA1Init(SHA1_CTX *context);&#xD;void SHA1Update(SHA1_CTX *context, const unsigned char *data, u32 len);&#xD;void SHA1Final(unsigned char digest[20], SHA1_CTX *context);&#xD;#endif /* SHA1_H */ sha1.</description>
+    </item>
     <item>
       <title>Android 自定义变形 MD5 算法</title>
       <link>https://cyrus-studio.github.io/blog/posts/android-%E8%87%AA%E5%AE%9A%E4%B9%89%E5%8F%98%E5%BD%A2-md5-%E7%AE%97%E6%B3%95/</link>
