@@ -6,12 +6,12 @@
     <description>Recent content in Posts on CYRUS STUDIO</description>
     <generator>Hugo</generator>
     <language>zh-cn</language>
-    <lastBuildDate>Tue, 25 Mar 2025 20:19:21 +0800</lastBuildDate>
+    <lastBuildDate>Tue, 25 Mar 2025 22:00:30 +0800</lastBuildDate>
     <atom:link href="https://cyrus-studio.github.io/blog/posts/index.xml" rel="self" type="application/rss+xml" />
     <item>
       <title>OLLVM 增加 C&amp;C&#43;&#43; 字符串加密功能</title>
       <link>https://cyrus-studio.github.io/blog/posts/ollvm-%E5%A2%9E%E5%8A%A0-cc&#43;&#43;-%E5%AD%97%E7%AC%A6%E4%B8%B2%E5%8A%A0%E5%AF%86%E5%8A%9F%E8%83%BD/</link>
-      <pubDate>Tue, 25 Mar 2025 20:19:21 +0800</pubDate>
+      <pubDate>Tue, 25 Mar 2025 22:00:30 +0800</pubDate>
       <guid>https://cyrus-studio.github.io/blog/posts/ollvm-%E5%A2%9E%E5%8A%A0-cc&#43;&#43;-%E5%AD%97%E7%AC%A6%E4%B8%B2%E5%8A%A0%E5%AF%86%E5%8A%9F%E8%83%BD/</guid>
       <description>版权归作者所有，如有转发，请注明文章出处：https://cyrus-studio.github.io/blog/&#xA;前言 当我们如果没有对字符串进行加密，使用 IDA 反汇编一下 so 可以看到 C++ 代码中的字符串就直接暴露了。&#xA;字符串加密原理 sobf.c&#xA;#include &amp;lt;stdio.h&amp;gt;&#xD;int main() {&#xD;// 定义字符串常量&#xD;const char *greeting = &amp;#34;Hello, World!&amp;#34;;&#xD;const char *name = &amp;#34;Cyrus&amp;#34;;&#xD;const char *message = &amp;#34;Welcome to C programming.&amp;#34;;&#xD;// 打印字符串常量&#xD;printf(&amp;#34;%s\n&amp;#34;, greeting);&#xD;printf(&amp;#34;My name is %s.\n&amp;#34;, name);&#xD;printf(&amp;#34;%s\n&amp;#34;, message);&#xD;return 0;&#xD;} 生成 ir 文件&#xA;clang -S -emit-llvm sobf.c -o sobf.ll 通过生成 ir 文件可以看到字符串的定义都是 @&amp;quot;??C@ ，引用的的地方通过 @&amp;quot;??C@ 使用&#xA;; ModuleID = &amp;#39;sobf.</description>
     </item>
