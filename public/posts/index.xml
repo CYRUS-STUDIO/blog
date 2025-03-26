@@ -6,8 +6,15 @@
     <description>Recent content in Posts on CYRUS STUDIO</description>
     <generator>Hugo</generator>
     <language>zh-cn</language>
-    <lastBuildDate>Tue, 25 Mar 2025 22:00:30 +0800</lastBuildDate>
+    <lastBuildDate>Wed, 26 Mar 2025 22:17:56 +0800</lastBuildDate>
     <atom:link href="https://cyrus-studio.github.io/blog/posts/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Android 自定义变形 HMAC 算法</title>
+      <link>https://cyrus-studio.github.io/blog/posts/android-%E8%87%AA%E5%AE%9A%E4%B9%89%E5%8F%98%E5%BD%A2-hmac-%E7%AE%97%E6%B3%95/</link>
+      <pubDate>Wed, 26 Mar 2025 22:17:56 +0800</pubDate>
+      <guid>https://cyrus-studio.github.io/blog/posts/android-%E8%87%AA%E5%AE%9A%E4%B9%89%E5%8F%98%E5%BD%A2-hmac-%E7%AE%97%E6%B3%95/</guid>
+      <description>版权归作者所有，如有转发，请注明文章出处：https://cyrus-studio.github.io/blog/&#xA;HMAC HMAC（Hash-based Message Authentication Code）是一种基于哈希函数的消息认证码，用于验证数据的完整性和真实性。&#xA;HMAC 主要依赖于以下几个要素：&#xA;消息（Message）：需要验证的数据。&#xA;密钥（Key）：共享的秘密密钥，用于保护消息。&#xA;哈希函数（Hash Function）：如 MD5、SHA-256 等。&#xA;HMAC 的计算公式如下：&#xA;其中：&#xA;H 是哈希函数。&#xA;K 是密钥。&#xA;M 是消息。&#xA;opad 是外部填充（0x5c）。&#xA;ipad 是内部填充（0x36）。&#xA;∥ 表示拼接。&#xA;⊕ 表示按位异或。&#xA;所以 HMAC 返回字符串长度取决于具体的哈希函数。&#xA;比如，哈希函数是 MD5 则返回的字符串就是 16 字节（128位），通常由长度为 32 的 十六进制字符串 表示 。&#xA;比如，哈希函数是 SHA256 则返回的字符串就是 32 字节（256位），通常由长度为 64 的 十六进制字符串 表示 。&#xA;HMAC MD5 标准 HMAC MD5 算法实现如下：&#xA;Key 处理： 如果密钥过长，用 MD5 进行压缩至 16 字节。&#xA;如果密钥不足 64 字节，用 0x00 填充至 64 字节。</description>
+    </item>
     <item>
       <title>OLLVM 增加 C&amp;C&#43;&#43; 字符串加密功能</title>
       <link>https://cyrus-studio.github.io/blog/posts/ollvm-%E5%A2%9E%E5%8A%A0-cc&#43;&#43;-%E5%AD%97%E7%AC%A6%E4%B8%B2%E5%8A%A0%E5%AF%86%E5%8A%9F%E8%83%BD/</link>
