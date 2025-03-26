@@ -6,8 +6,15 @@
     <description>Recent content on CYRUS STUDIO</description>
     <generator>Hugo</generator>
     <language>zh-cn</language>
-    <lastBuildDate>Wed, 26 Mar 2025 22:17:56 +0800</lastBuildDate>
+    <lastBuildDate>Thu, 27 Mar 2025 02:41:17 +0800</lastBuildDate>
     <atom:link href="https://cyrus-studio.github.io/blog/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>unidbg 加载 so 并调用 so 中函数</title>
+      <link>https://cyrus-studio.github.io/blog/posts/unidbg-%E5%8A%A0%E8%BD%BD-so-%E5%B9%B6%E8%B0%83%E7%94%A8-so-%E4%B8%AD%E5%87%BD%E6%95%B0/</link>
+      <pubDate>Thu, 27 Mar 2025 02:41:17 +0800</pubDate>
+      <guid>https://cyrus-studio.github.io/blog/posts/unidbg-%E5%8A%A0%E8%BD%BD-so-%E5%B9%B6%E8%B0%83%E7%94%A8-so-%E4%B8%AD%E5%87%BD%E6%95%B0/</guid>
+      <description>版权归作者所有，如有转发，请注明文章出处：https://cyrus-studio.github.io/blog/&#xA;unidbg 简介 unidbg 是一个基于 Java 的 Android 动态分析框架，专注于模拟 Android 应用中的 native 代码。以下是它的主要功能：&#xA;支持对so的加载;&#xA;支持对JNI接口函数的模拟调用;&#xA;支持常见syscalls的模拟调用;&#xA;支持ARM32和ARM64。&#xA;支持Android以及iOS&#xA;基于HookZz实现的inline hook&#xA;xHook实现的hook&#xA;iOS fishhook，substrate、whale hook等&#xA;支持gdb、IDA远程调试等高级功能。&#xA;&amp;hellip;&#xA;Unidgb 项目地址：https://github.com/zhkl0228/unidbg&#xA;unidbg 底层引擎 unidbg 的 CPU 指令模拟主要由 dynarmic 和 unicorn 驱动。&#xA;dynarmic 是专注于 ARM 架构的模拟器，虽然它和 unicorn 都提供 ARM 模拟功能，但它们的设计目标和性能特点不同。unicorn 更加通用，而 dynarmic 则更注重效率。&#xA;dynarmic 项目地址：https://github.com/yuzu-mirror/dynarmic&#xA;Unicorn 项目地址：https://github.com/unicorn-engine/unicorn&#xA;dynarmic 与 unicorn 效率对比 clone unidbg 源码到本地并导入 IDEA，在 unidbg-android/src/test/java/com/kanxue/test2&#xA;MainActivity.java 中示例代码实现了爆破 so 中 test 函数 flag 参数（已知 so 中 test 函数参数为一个字符串，该字符串长度为3且仅包含大小写字母），如果 flag 正确函数会返回 true，通过不断调用该 jni 函数测试所有字母组合直到得到正确结果。</description>
+    </item>
     <item>
       <title>Android 自定义变形 HMAC 算法</title>
       <link>https://cyrus-studio.github.io/blog/posts/android-%E8%87%AA%E5%AE%9A%E4%B9%89%E5%8F%98%E5%BD%A2-hmac-%E7%AE%97%E6%B3%95/</link>
@@ -84,13 +91,6 @@
       <pubDate>Mon, 03 Mar 2025 10:33:06 +0800</pubDate>
       <guid>https://cyrus-studio.github.io/blog/posts/unidbg-%E5%AE%9E%E7%8E%B0-jni-%E4%B8%8E-java-%E4%BA%A4%E4%BA%92/</guid>
       <description>版权归作者所有，如有转发，请注明文章出处：https://cyrus-studio.github.io/blog/&#xA;Android 示例代码 在 com.cyrus.example.unidbg.UnidbgActivity 编写一个静态变量 a 和非静态变量 b，还有 base64 方法。&#xA;代码如下：&#xA;package com.cyrus.example.unidbg&#xD;import android.os.Bundle&#xD;import androidx.appcompat.app.AppCompatActivity&#xD;import android.util.Base64&#xD;class UnidbgActivity : AppCompatActivity() {&#xD;companion object {&#xD;// 静态变量 a&#xD;var a: String? = null&#xD;}&#xD;// 非静态变量 b&#xD;var b: String? = null&#xD;override fun onCreate(savedInstanceState: Bundle?) {&#xD;super.onCreate(savedInstanceState)&#xD;setContentView(R.layout.activity_unidbg)&#xD;// 初始化静态变量 a 和 非静态变量 b&#xD;a = &amp;#34;StaticA&amp;#34;&#xD;b = &amp;#34;NonStaticB&amp;#34;&#xD;}&#xD;// Base64 方法&#xD;fun base64(content: String): String {&#xD;val combined = (a ?</description>
-    </item>
-    <item>
-      <title>unidbg 加载 so 并调用 so 中函数</title>
-      <link>https://cyrus-studio.github.io/blog/posts/unidbg-%E5%8A%A0%E8%BD%BD-so-%E5%B9%B6%E8%B0%83%E7%94%A8-so-%E4%B8%AD%E5%87%BD%E6%95%B0/</link>
-      <pubDate>Thu, 27 Feb 2025 23:33:21 +0800</pubDate>
-      <guid>https://cyrus-studio.github.io/blog/posts/unidbg-%E5%8A%A0%E8%BD%BD-so-%E5%B9%B6%E8%B0%83%E7%94%A8-so-%E4%B8%AD%E5%87%BD%E6%95%B0/</guid>
-      <description>版权归作者所有，如有转发，请注明文章出处：https://cyrus-studio.github.io/blog/&#xA;unidbg 简介 unidbg 是一个基于 Java 的 Android 动态分析框架，专注于模拟 Android 应用中的 native 代码。以下是它的主要功能：&#xA;支持对so的加载;&#xA;支持对JNI接口函数的模拟调用;&#xA;支持常见syscalls的模拟调用;&#xA;支持ARM32和ARM64。&#xA;支持Android以及iOS&#xA;基于HookZz实现的inline hook&#xA;xHook实现的hook&#xA;iOS fishhook，substrate、whale hook等&#xA;支持gdb、IDA远程调试等高级功能。&#xA;&amp;hellip;&#xA;Unidgb 项目地址：https://github.com/zhkl0228/unidbg&#xA;unidbg 底层引擎 unidbg 的 CPU 指令模拟主要由 dynarmic 和 unicorn 驱动。&#xA;dynarmic 是专注于 ARM 架构的模拟器，虽然它和 unicorn 都提供 ARM 模拟功能，但它们的设计目标和性能特点不同。unicorn 更加通用，而 dynarmic 则更注重效率。&#xA;dynarmic 项目地址：https://github.com/yuzu-mirror/dynarmic&#xA;Unicorn 项目地址：https://github.com/unicorn-engine/unicorn&#xA;dynarmic 与 unicorn 效率对比 clone unidbg 源码到本地并导入 IDEA，在 unidbg-android/src/test/java/com/kanxue/test2&#xA;MainActivity.java 中示例代码实现了爆破 so 中 test 函数 flag 参数（已知 so 中 test 函数参数为一个字符串，该字符串长度为3且仅包含大小写字母），如果 flag 正确函数会返回 true，通过不断调用该 jni 函数测试所有字母组合直到得到正确结果。</description>
     </item>
     <item>
       <title>使用 AndroidNativeEmu 调用 JNI 函数</title>

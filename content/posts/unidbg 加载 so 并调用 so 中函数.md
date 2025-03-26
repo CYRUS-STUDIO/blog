@@ -1,6 +1,6 @@
 +++
 title = 'unidbg 加载 so 并调用 so 中函数'
-date = 2025-02-27T23:33:21.924828+08:00
+date = 2025-03-27T02:41:17.626344+08:00
 draft = false
 +++
 
@@ -411,7 +411,7 @@ vm.setVerbose(true);
 ```
 
 
-## **1. 调用 JNI_Onload **
+## **1. 调用 JNI_Onload**
 
 
 
@@ -473,6 +473,10 @@ RegisterNative(com/cyrus/example/unidbg/UnidbgActivity, add(IIIIII)I, RX@0x12000
 
 
 
+### **Android 示例代码**
+
+
+
 在 UnidbgActivity 中声明一个静态的 native 方法 staticAdd 和 非静态的 native 方法 stringLength
 
 ```
@@ -518,6 +522,10 @@ extern "C" JNIEXPORT jint JNICALL Java_com_cyrus_example_unidbg_UnidbgActivity_s
     return length;
 }
 ```
+
+
+### **Unidbg 代码**
+
 
 
 在 unidbg 中注册 UnidbgActivity，得到它的 DvmClass

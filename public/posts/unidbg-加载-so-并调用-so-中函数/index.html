@@ -63,8 +63,8 @@ MainActivity.java 中示例代码实现了爆破 so 中 test 函数 flag 参数�
   <meta property="og:locale" content="zh_cn">
   <meta property="og:type" content="article">
     <meta property="article:section" content="posts">
-    <meta property="article:published_time" content="2025-02-27T23:33:21+08:00">
-    <meta property="article:modified_time" content="2025-02-27T23:33:21+08:00">
+    <meta property="article:published_time" content="2025-03-27T02:41:17+08:00">
+    <meta property="article:modified_time" content="2025-03-27T02:41:17+08:00">
 
 
   </head>
@@ -105,7 +105,7 @@ MainActivity.java 中示例代码实现了爆破 so 中 test 函数 flag 参数�
   <title>calendar</title>
   <rect x="3" y="4" width="18" height="18" rx="2" ry="2"></rect><line x1="16" y1="2" x2="16" y2="6"></line><line x1="8" y1="2" x2="8" y2="6"></line><line x1="3" y1="10" x2="21" y2="10"></line>
 </svg>
-          Feb 27, 2025
+          Mar 27, 2025
         </div>
         <div>
           <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="icon icon-clock">
@@ -399,7 +399,7 @@ Value in register x0: 5
 VM vm = emulator.createDalvikVM();
 // 启用虚拟机的调试输出
 vm.setVerbose(true);
-</code></pre><h2 id="1-调用-jni_onload-">**1. 调用 JNI_Onload **</h2>
+</code></pre><h2 id="1-调用-jni_onload"><strong>1. 调用 JNI_Onload</strong></h2>
 <p>在 cpp 中实现 JNI_Onload 函数并动态注册 add 方法到 UnidbgActivity</p>
 <pre tabindex="0"><code>// native add 函数
 extern &#34;C&#34; JNIEXPORT jint JNICALL native_add(
@@ -440,6 +440,7 @@ extern &#34;C&#34; JNIEXPORT jint JNICALL JNI_OnLoad(JavaVM* vm, void* reserved)
 JNIEnv-&gt;RegisterNatives(com/cyrus/example/unidbg/UnidbgActivity, unidbg@0xe4fff6e0, 1) was called from RX@0x120011f4[libunidbg.so]0x11f4
 RegisterNative(com/cyrus/example/unidbg/UnidbgActivity, add(IIIIII)I, RX@0x12000fbc[libunidbg.so]0xfbc)
 </code></pre><h2 id="2-调用-jni-函数"><strong>2. 调用 JNI 函数</strong></h2>
+<h3 id="android-示例代码"><strong>Android 示例代码</strong></h3>
 <p>在 UnidbgActivity 中声明一个静态的 native 方法 staticAdd 和 非静态的 native 方法 stringLength</p>
 <pre tabindex="0"><code>package com.cyrus.example.unidbg
 
@@ -477,7 +478,8 @@ extern &#34;C&#34; JNIEXPORT jint JNICALL Java_com_cyrus_example_unidbg_UnidbgAc
     env-&gt;ReleaseStringUTFChars(str, str_chars);
     return length;
 }
-</code></pre><p>在 unidbg 中注册 UnidbgActivity，得到它的 DvmClass</p>
+</code></pre><h3 id="unidbg-代码"><strong>Unidbg 代码</strong></h3>
+<p>在 unidbg 中注册 UnidbgActivity，得到它的 DvmClass</p>
 <pre tabindex="0"><code>// 注册 UnidbgActivity 类
 DvmClass unidbgActivityClass = vm.resolveClass(&#34;com/cyrus/example/unidbg/UnidbgActivity&#34;);
 </code></pre><p>通过 UnidbgActivity 的 DvmClass 调用静态 JNI 方法</p>
