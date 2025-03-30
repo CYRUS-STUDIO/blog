@@ -6,8 +6,15 @@
     <description>Recent content in Posts on CYRUS STUDIO</description>
     <generator>Hugo</generator>
     <language>zh-cn</language>
-    <lastBuildDate>Sun, 30 Mar 2025 04:33:31 +0800</lastBuildDate>
+    <lastBuildDate>Sun, 30 Mar 2025 23:35:02 +0800</lastBuildDate>
     <atom:link href="https://cyrus-studio.github.io/blog/posts/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Unidbg Trace 反 OLLVM 控制流平坦化（fla）</title>
+      <link>https://cyrus-studio.github.io/blog/posts/unidbg-trace-%E5%8F%8D-ollvm-%E6%8E%A7%E5%88%B6%E6%B5%81%E5%B9%B3%E5%9D%A6%E5%8C%96fla/</link>
+      <pubDate>Sun, 30 Mar 2025 23:35:02 +0800</pubDate>
+      <guid>https://cyrus-studio.github.io/blog/posts/unidbg-trace-%E5%8F%8D-ollvm-%E6%8E%A7%E5%88%B6%E6%B5%81%E5%B9%B3%E5%9D%A6%E5%8C%96fla/</guid>
+      <description>版权归作者所有，如有转发，请注明文章出处：https://cyrus-studio.github.io/blog/&#xA;目标 so 分析 目标方法反汇编视图如下&#xA;F5 反汇编代码如下，很明显通过 fla 隐藏了真实的执行流&#xA;__int64 __usercall dynamicBase64Encode@&amp;lt;X0&amp;gt;(const unsigned __int8 *a1@&amp;lt;X0&amp;gt;, unsigned __int64 a2@&amp;lt;X1&amp;gt;, __int64 a3@&amp;lt;X8&amp;gt;)&#xD;{&#xD;int v3; // w8&#xD;int v4; // w8&#xD;unsigned __int8 *v5; // x0&#xD;int v6; // w8&#xD;unsigned __int8 *v7; // x0&#xD;__int64 result; // x0&#xD;int i; // [xsp+20h] [xbp-60h]&#xD;unsigned __int64 v11; // [xsp+30h] [xbp-50h]&#xD;int v12; // [xsp+3Ch] [xbp-44h]&#xD;int v13; // [xsp+40h] [xbp-40h]&#xD;char v16[24]; // [xsp+60h] [xbp-20h] BYREF&#xD;__int64 v17; // [xsp+78h] [xbp-8h]&#xD;v17 = *(_QWORD *)(_ReadStatusReg(ARM64_SYSREG(3, 3, 13, 0, 2)) + 40);&#xD;generateDynamicBase64Alphabet(a2);&#xD;sub_29574(a3);&#xD;v13 = 0;&#xD;v12 = -6;&#xD;v11 = 0LL;&#xD;do&#xD;{&#xD;if ( v11 &amp;gt;= a2 )&#xD;v3 = 491;&#xD;else&#xD;v3 = 26962;&#xD;for ( i = v3; ; i = 24464 )&#xD;{&#xD;while ( 1 )&#xD;{&#xD;while ( 1 )&#xD;{&#xD;while ( 1 )&#xD;{&#xD;while ( 1 )&#xD;{&#xD;while ( 1 )&#xD;{&#xD;while ( 1 )&#xD;{&#xD;while ( i == 491 )&#xD;{&#xD;if ( v12 &amp;lt;= -6 )&#xD;v6 = 4827;&#xD;else&#xD;v6 = 2995;&#xD;i = v6;&#xD;}&#xD;if ( i !</description>
+    </item>
     <item>
       <title>使用 Frida Stalker 反 OLLVM 算法还原</title>
       <link>https://cyrus-studio.github.io/blog/posts/%E4%BD%BF%E7%94%A8-frida-stalker-%E5%8F%8D-ollvm-%E7%AE%97%E6%B3%95%E8%BF%98%E5%8E%9F/</link>
