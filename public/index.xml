@@ -6,12 +6,12 @@
     <description>Recent content on CYRUS STUDIO</description>
     <generator>Hugo</generator>
     <language>zh-cn</language>
-    <lastBuildDate>Wed, 02 Apr 2025 18:04:22 +0800</lastBuildDate>
+    <lastBuildDate>Wed, 02 Apr 2025 19:18:02 +0800</lastBuildDate>
     <atom:link href="https://cyrus-studio.github.io/blog/index.xml" rel="self" type="application/rss+xml" />
     <item>
       <title>Frida Hook Native：jobjectArray 参数解析</title>
       <link>https://cyrus-studio.github.io/blog/posts/frida-hook-nativejobjectarray-%E5%8F%82%E6%95%B0%E8%A7%A3%E6%9E%90/</link>
-      <pubDate>Wed, 02 Apr 2025 18:04:22 +0800</pubDate>
+      <pubDate>Wed, 02 Apr 2025 19:18:02 +0800</pubDate>
       <guid>https://cyrus-studio.github.io/blog/posts/frida-hook-nativejobjectarray-%E5%8F%82%E6%95%B0%E8%A7%A3%E6%9E%90/</guid>
       <description>版权归作者所有，如有转发，请注明文章出处：https://cyrus-studio.github.io/blog/&#xA;env.js 常用的 JNI 函数在 frida 的 env.js 中都已经定义好了&#xA;https://github.com/frida/frida-java-bridge/blob/main/lib/env.js&#xA;通过下面代码获取 JNIEnv 引用，就可以调用相关的 JNI 函数&#xA;let env = Java.vm.tryGetEnv() 文档：https://frida.re/docs/javascript-api/&#xA;获取数组长度 let arrLen = env.getArrayLength(objArray)&#xD;console.log(&amp;#39;array length is: &amp;#39; + arrLen); 元素类型判断 通过 getObjectClassName 可以获取到对象的类名进而判断该元素的类型。&#xA;// 获取对象的类名&#xD;let className = env.getObjectClassName(objArray)&#xD;console.log(&amp;#39;className: &amp;#39; + className);&#xD;// 判断是否 jobjectArray&#xD;if (className === &amp;#39;[Ljava.lang.Object;&amp;#39;) {&#xD;} 获取数组元素 let element = env.getObjectArrayElement(objArray, i) Int 元素读取 let intElement = Java.cast(env.getObjectArrayElement(objArray, i), Java.use(&amp;#39;java.lang.Integer&amp;#39;))&#xD;console.log(`element ${i} value: ${intElement}`); Long 元素读取 let longElement = Java.</description>
     </item>

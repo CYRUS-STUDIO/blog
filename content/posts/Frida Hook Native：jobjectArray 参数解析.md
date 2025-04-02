@@ -1,6 +1,6 @@
 +++
 title = 'Frida Hook Native：jobjectArray 参数解析'
-date = 2025-04-02T18:04:22.506528+08:00
+date = 2025-04-02T19:18:02.814736+08:00
 draft = false
 +++
 
@@ -196,8 +196,7 @@ function printObjectArray(objArray) {
 
     // 不是 jobjectArray，则直接打印类型
     if (!className.startsWith('[L')) {
-        console.log(`Argument is not a jobjectArray, actual type: ${className}`);
-        return;
+        return `Argument is not a jobjectArray, actual type: ${className}`;
     }
 
     let arrLen = env.getArrayLength(objArray);
@@ -211,7 +210,7 @@ function printObjectArray(objArray) {
         result += `  [${i}] ${elementClassName}: ${castElement}\n`;
     }
 
-    console.log(result.trim());
+    return result.trim() + '\n';
 }
 ```
 
@@ -220,39 +219,52 @@ hook native 函数并打印 jobjectArray 传参
 
 ```
 function hook_native_func(targetAddress) {
-
     // Hook 目标地址
     Interceptor.attach(targetAddress, {
         onEnter: function (args) {
-            console.log('Entering native function at: ' + targetAddress);
-            printObjectArray(args[2])
+            this.log = 'Entering native function at: ' + targetAddress + '\n';
+            this.log += printObjectArray(args[2])
         },
 
         onLeave: function (retval) {
-            console.log('Leaving native function');
+            // 检查是否包含 "283"
+            if (this.log.includes("283") && !retval.isNull()) {
+                // 类型转换
+                let className = Java.vm.tryGetEnv().getObjectClassName(retval)
+                retval = Java.cast(retval, Java.use(className));
+            }
+            this.log += 'Leaving native function，retval: ' + retval
+            console.log(this.log);
         }
     });
 }
 
-
 setImmediate(function () {
     Java.perform(function () {
-        var baseAddress = Module.findBaseAddress("libnative-lib.so");
-        hook_native_func(baseAddress.add(0x26058))
+        var baseAddress = Module.findBaseAddress("libGameVMP.so");
+        hook_native_func(baseAddress.add(0xdfa8))
     });
 })
+```
+
+
+执行脚本
+
+```
+frida -H 127.0.0.1:1234 -F -l hook_native_func.js
 ```
 
 
 输出如下：
 
 ```
-Entering native function at: 0x77fe13c058
+Entering native function at: 0x7802455fa8
 Object array of type [Ljava.lang.Object;, length: 3
   [0] java.lang.Integer: 283
-  [1] com.cyrus.example.jniexample.JNIExampleActivity: com.cyrus.example.jniexample.JNIExampleActivity@b8df529
-  [2] java.lang.String: HelloWorld
-Leaving native function
+  [1] com.shizhuang.duapp.modules.app.DuApplication: com.shizhuang.duapp.modules.app.DuApplication@d3fdf19
+  [2] java.lang.String: cipherParamuserNamecountryCode86loginTokenpasswordca85e501ec201e140c97d4480a724cffplatformandroidtimestamp1243532540699typepwduserName4860cc943262bab5ef4712e3bf0db355_1uuidac6abb3d17c8fb63v5.43.0
+Leaving native function，retval: dWWoXlbR3K87j2N27Dkv4uOPUnOIN8Kof9Gm2x1kil7S/jpBEVaMS8QgdCHBIMPhVX/bK7s5MFUyLCOl
+B7InMGNA682aYZfSsu0VK8TERMuSq3Bg3C3ATNGKaJPVMWtogFXteBS1/CxbFUdhtv0v1U8zrQCT6QLeaQvM8nBmXDKSOvivdG7xhLLNWmSGP8gdVL0CuAKDFH2Xj9Krb/0jNsPgNnA==
 ```
 
 
