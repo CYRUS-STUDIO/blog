@@ -6,8 +6,15 @@
     <description>Recent content on CYRUS STUDIO</description>
     <generator>Hugo</generator>
     <language>zh-cn</language>
-    <lastBuildDate>Wed, 02 Apr 2025 19:18:02 +0800</lastBuildDate>
+    <lastBuildDate>Thu, 03 Apr 2025 00:46:02 +0800</lastBuildDate>
     <atom:link href="https://cyrus-studio.github.io/blog/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>使用 Frida Hook Android App</title>
+      <link>https://cyrus-studio.github.io/blog/posts/%E4%BD%BF%E7%94%A8-frida-hook-android-app/</link>
+      <pubDate>Thu, 03 Apr 2025 00:46:02 +0800</pubDate>
+      <guid>https://cyrus-studio.github.io/blog/posts/%E4%BD%BF%E7%94%A8-frida-hook-android-app/</guid>
+      <description>版权归作者所有，如有转发，请注明文章出处：https://cyrus-studio.github.io/blog/&#xA;Frida Frida 通过注入自定义 JavaScript 代码，可以 Hook 函数、修改参数、监控函数调用和拦截返回值，适用于逆向工程、调试和安全分析等场景。&#xA;使用 Frida 前需要先下载和安装包括：&#xA;Frida 是核心库，提供 API 和功能。&#xA;Frida-Tool 是命令行工具，通常与 Frida 版本相对应。&#xA;Frida-Server 是运行在 Android 设备上的服务器端组件，允许 Frida 客户端与设备进行通信。&#xA;环境准备 1. 安装 Frida 和 Frida-tools pip install frida-tools 2. Frida-server 获取设备CPU架构&#xA;adb shell getprop ro.product.cpu.abi 下载与设备对应架构的 frida-server：https://github.com/frida/frida/releases&#xA;把 frida-server 推送到设备 /data/local/tmp 目录下&#xA;adb push D:\app逆向\Frida\frida-server-16.5.2-android-arm64 /data/local/tmp/fs 启动 frida-server&#xA;# 启用超级管理员&#xD;adb root&#xD;# 进入命令行&#xD;adb shell # 添加可执行权限&#xD;chmod +x /data/local/tmp/fs&#xD;# 启动frida-server&#xD;/data/local/tmp/fs 3.</description>
+    </item>
     <item>
       <title>Frida Hook Native：jobjectArray 参数解析</title>
       <link>https://cyrus-studio.github.io/blog/posts/frida-hook-nativejobjectarray-%E5%8F%82%E6%95%B0%E8%A7%A3%E6%9E%90/</link>
@@ -217,13 +224,6 @@
       <pubDate>Thu, 28 Nov 2024 00:55:08 +0800</pubDate>
       <guid>https://cyrus-studio.github.io/blog/posts/%E4%BD%BF%E7%94%A8-opt-%E4%BC%98%E5%8C%96-llvm-ir%E5%AE%9A%E5%88%B6-clang-%E5%AE%9E%E7%8E%B0%E5%87%BD%E6%95%B0%E5%90%8D%E5%8A%A0%E5%AF%86/</guid>
       <description>版权归作者所有，如有转发，请注明文章出处：https://cyrus-studio.github.io/blog/&#xA;1. LLVM IR LLVM IR（Intermediate Representation） 是 LLVM 编译框架中的一种中间表示形式，它是一种面向低级的中间代码，是 LLVM 架构的核心部分。LLVM IR 既可以用作 LLVM 编译器的输入，也可以用作输出，供其他编译器或工具链使用。&#xA;LLVM IR 的两种存储形式：&#xA;LLVM IR 语言（文本形式，扩展名 .ll）：可读的 LLVM IR 代码。&#xA;LLVM 位码（Bitcode，扩展名 .bc）：二进制形式的 LLVM IR，主要用于高效存储和传输。&#xA;LLVM IR 是平台无关的，可以跨不同的硬件架构进行移植。&#xA;LLVM IR 语言参考手册：https://llvm.org/docs/LangRef.html&#xA;1.1 将 C 文件转换为 LLVM IR 生成文本形式的 LLVM IR（.ll 文件）&#xA;clang -S -emit-llvm hello.c -o hello.ll 以 hello.ll 为例，生成的内容大概如下&#xA;; Function Attrs: noinline nounwind optnone uwtable&#xD;; 这行注释了函数的属性&#xD;; - noinline: 该函数不会被内联（inline）。&#xD;; - nounwind: 该函数不会引发异常（不会 unwind stack）。&#xD;; - optnone: 编译器不会对此函数进行任何优化。&#xD;; - uwtable: 该函数有一个可用的异常处理表（unwind table）。&#xD;define dso_local i32 @main() #0 {&#xD;; define: 定义一个函数。&#xD;; dso_local: 该函数在本地动态库中可见（仅限于当前编译单元）。&#xD;; i32: 返回类型为 32 位整数。&#xD;; @main: 函数名为 &amp;#39;main&amp;#39;。&#xD;; #0: 函数使用属性组 0 中定义的属性（即上面注释的那一行）。&#xD;entry:&#xD;; entry: 函数的入口基本块（Basic Block）的标签。&#xD;%retval = alloca i32, align 4&#xD;; alloca: 在栈上分配内存。这里分配了一个 32 位整数（i32）。&#xD;; align 4: 分配的内存对齐到 4 字节边界。&#xD;; %retval: 变量的名称（SSA 变量），用于存储 main 函数的返回值。&#xD;store i32 0, ptr %retval, align 4&#xD;; store: 将一个值存储到内存地址中。&#xD;; i32 0: 要存储的值是 32 位整数 0（即 main 函数的返回值）。&#xD;; ptr %retval: 存储的位置是之前分配的栈变量 %retval。&#xD;; align 4: 存储操作按 4 字节对齐。&#xD;%call = call i32 (ptr, .</description>
-    </item>
-    <item>
-      <title>使用 Frida Hook Android App</title>
-      <link>https://cyrus-studio.github.io/blog/posts/%E4%BD%BF%E7%94%A8-frida-hook-android-app/</link>
-      <pubDate>Sun, 10 Nov 2024 13:11:20 +0800</pubDate>
-      <guid>https://cyrus-studio.github.io/blog/posts/%E4%BD%BF%E7%94%A8-frida-hook-android-app/</guid>
-      <description>版权归作者所有，如有转发，请注明文章出处：https://cyrus-studio.github.io/blog/&#xA;Frida Frida 通过注入自定义 JavaScript 代码，可以 Hook 函数、修改参数、监控函数调用和拦截返回值，适用于逆向工程、调试和安全分析等场景。&#xA;使用 Frida 前需要先下载和安装包括：&#xA;Frida 是核心库，提供 API 和功能。&#xA;Frida-Tool 是命令行工具，通常与 Frida 版本相对应。&#xA;Frida-Server 是运行在 Android 设备上的服务器端组件，允许 Frida 客户端与设备进行通信。&#xA;环境准备 1. 安装 Frida 和 Frida-tools pip install frida-tools 2. Frida-server 获取设备CPU架构 adb shell getprop ro.product.cpu.abi&#xA;下载与设备对应架构的 frida-server：https://github.com/frida/frida/releases 把 frida-server 推送到设备 /data/local/tmp 目录下&#xA;adb push D:\app逆向\Frida\frida-server-16.5.2-android-arm64 /data/local/tmp/fs 启动 frida-server&#xA;# 启用超级管理员&#xD;adb root&#xD;# 进入命令行&#xD;adb shell # 添加可执行权限&#xD;chmod +x /data/local/tmp/fs&#xD;# 启动frida-server&#xD;/data/local/tmp/fs 自定义Frida端口 frida-server 默认端口为 27042，如果想自定义端口可以通过下面的命令实现</description>
     </item>
     <item>
       <title>Android下的系统调用 (syscall)，内联汇编syscall</title>
