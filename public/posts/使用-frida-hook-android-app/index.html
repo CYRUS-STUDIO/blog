@@ -47,8 +47,8 @@ adb push D:\app逆向\Frida\frida-server-16.5.2-android-arm64 /data/local/tmp/fs
   <meta property="og:locale" content="zh_cn">
   <meta property="og:type" content="article">
     <meta property="article:section" content="posts">
-    <meta property="article:published_time" content="2025-04-03T20:14:32+08:00">
-    <meta property="article:modified_time" content="2025-04-03T20:14:32+08:00">
+    <meta property="article:published_time" content="2025-04-04T01:51:46+08:00">
+    <meta property="article:modified_time" content="2025-04-04T01:51:46+08:00">
 
 
   </head>
@@ -89,14 +89,14 @@ adb push D:\app逆向\Frida\frida-server-16.5.2-android-arm64 /data/local/tmp/fs
   <title>calendar</title>
   <rect x="3" y="4" width="18" height="18" rx="2" ry="2"></rect><line x1="16" y1="2" x2="16" y2="6"></line><line x1="8" y1="2" x2="8" y2="6"></line><line x1="3" y1="10" x2="21" y2="10"></line>
 </svg>
-          Apr 3, 2025
+          Apr 4, 2025
         </div>
         <div>
           <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="icon icon-clock">
   <title>clock</title>
   <circle cx="12" cy="12" r="10"></circle><polyline points="12 6 12 12 16 14"></polyline>
 </svg>
-          6 min read
+          7 min read
         </div>
       </div>
     </header>
@@ -488,6 +488,39 @@ ERROR: ERROR: Failed to build installable wheels for some pyproject.toml based p
 <pre tabindex="0"><code>frida -H 127.0.0.1:1234 -F -l  script.js -o log.txt
 </code></pre><p>或者通过 tee 命令同时将标准输出内容打印到终端，并写入文件。（实时保存日志到文件）</p>
 <pre tabindex="0"><code>frida -H 127.0.0.1:1234 -F -l  script.js | tee log.txt
+</code></pre><h1 id="打印寄存器"><strong>打印寄存器</strong></h1>
+<p>通过 JSON.stringify(this.context) 获取所有寄存器的值。</p>
+<p>registers.js</p>
+<pre tabindex="0"><code>function hook_native_func(targetAddress) {
+    Interceptor.attach(targetAddress, {
+        onEnter: function (args) {
+            this.log = &#39;Entering native function at: &#39; + targetAddress + &#39;\n&#39;
+            this.log += JSON.stringify(this.context) + &#39;\n&#39;
+        },
+
+        onLeave: function (retval) {
+            this.log += &#39;Leaving native function，retval: &#39; + retval + &#39;\n&#39;
+            console.log(this.log)
+        }
+    });
+}
+
+
+setImmediate(function () {
+    Java.perform(function () {
+        var baseAddress = Module.findBaseAddress(&#34;libGameVMP.so&#34;)
+        hook_native_func(baseAddress.add(0xdfa8))
+    });
+})
+</code></pre><p>执行脚本：</p>
+<pre tabindex="0"><code>frida -H 127.0.0.1:1234 -F -l registers.js
+</code></pre><p>效果如下：</p>
+<pre tabindex="0"><code>Entering native function at: 0x7802451fa8
+{&#34;pc&#34;:&#34;0x7802451fa8&#34;,&#34;sp&#34;:&#34;0x775186b0d0&#34;,&#34;x0&#34;:&#34;0x773f5b7fc0&#34;,&#34;x1&#34;:&#34;0x775186b0e4&#34;,&#34;x2&#34;:&#34;0x775186b0e8&#34;,&#34;x3&#34;:&#34;0x709f8770&#34;,&#34;x4&#34;:&#34;0x14e14fb0&#34;,&#34;x5&#34;:&#34;0xf07
+&#34;,&#34;x6&#34;:&#34;0x14e14fc0&#34;,&#34;x7&#34;:&#34;0x10&#34;,&#34;x8&#34;:&#34;0xc1a1cd6540f6681f&#34;,&#34;x9&#34;:&#34;0xc1a1cd6540f6681f&#34;,&#34;x10&#34;:&#34;0x430000&#34;,&#34;x11&#34;:&#34;0x780d9e1000&#34;,&#34;x12&#34;:&#34;0x4f3b28&#34;,&#34;x13&#34;:&#34;0x
+0&#34;,&#34;x14&#34;:&#34;0x9f5a5a70&#34;,&#34;x15&#34;:&#34;0xe4dc&#34;,&#34;x16&#34;:&#34;0x7805b01000&#34;,&#34;x17&#34;:&#34;0x77a3ec1330&#34;,&#34;x18&#34;:&#34;0x1&#34;,&#34;x19&#34;:&#34;0x770c876800&#34;,&#34;x20&#34;:&#34;0x7802451fa8&#34;,&#34;x21&#34;:&#34;0x13f336
+b0&#34;,&#34;x22&#34;:&#34;0x14e14f68&#34;,&#34;x23&#34;:&#34;0x14e14f98&#34;,&#34;x24&#34;:&#34;0x14e14fb0&#34;,&#34;x25&#34;:&#34;0x9f2de680&#34;,&#34;x26&#34;:&#34;0x1396ba90&#34;,&#34;x27&#34;:&#34;0x14e14ea8&#34;,&#34;x28&#34;:&#34;0x14e14f68&#34;,&#34;fp&#34;:&#34;0x13f336b0&#34;,&#34;lr&#34;:&#34;0x7797f4a4a0&#34;}
+Leaving native function，retval: 0x41
 </code></pre>
     </div>
     <div class="post-footer">

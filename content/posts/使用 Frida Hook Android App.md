@@ -1,6 +1,6 @@
 +++
 title = '使用 Frida Hook Android App'
-date = 2025-04-03T20:14:32.138029+08:00
+date = 2025-04-04T01:51:46.186795+08:00
 draft = false
 +++
 
@@ -673,6 +673,60 @@ frida -H 127.0.0.1:1234 -F -l  script.js -o log.txt
 
 ```
 frida -H 127.0.0.1:1234 -F -l  script.js | tee log.txt
+```
+
+
+# **打印寄存器**
+
+
+
+通过 JSON.stringify(this.context) 获取所有寄存器的值。
+
+
+
+registers.js
+
+```
+function hook_native_func(targetAddress) {
+    Interceptor.attach(targetAddress, {
+        onEnter: function (args) {
+            this.log = 'Entering native function at: ' + targetAddress + '\n'
+            this.log += JSON.stringify(this.context) + '\n'
+        },
+
+        onLeave: function (retval) {
+            this.log += 'Leaving native function，retval: ' + retval + '\n'
+            console.log(this.log)
+        }
+    });
+}
+
+
+setImmediate(function () {
+    Java.perform(function () {
+        var baseAddress = Module.findBaseAddress("libGameVMP.so")
+        hook_native_func(baseAddress.add(0xdfa8))
+    });
+})
+```
+
+
+执行脚本：
+
+```
+frida -H 127.0.0.1:1234 -F -l registers.js
+```
+
+
+效果如下：
+
+```
+Entering native function at: 0x7802451fa8
+{"pc":"0x7802451fa8","sp":"0x775186b0d0","x0":"0x773f5b7fc0","x1":"0x775186b0e4","x2":"0x775186b0e8","x3":"0x709f8770","x4":"0x14e14fb0","x5":"0xf07
+","x6":"0x14e14fc0","x7":"0x10","x8":"0xc1a1cd6540f6681f","x9":"0xc1a1cd6540f6681f","x10":"0x430000","x11":"0x780d9e1000","x12":"0x4f3b28","x13":"0x
+0","x14":"0x9f5a5a70","x15":"0xe4dc","x16":"0x7805b01000","x17":"0x77a3ec1330","x18":"0x1","x19":"0x770c876800","x20":"0x7802451fa8","x21":"0x13f336
+b0","x22":"0x14e14f68","x23":"0x14e14f98","x24":"0x14e14fb0","x25":"0x9f2de680","x26":"0x1396ba90","x27":"0x14e14ea8","x28":"0x14e14f68","fp":"0x13f336b0","lr":"0x7797f4a4a0"}
+Leaving native function，retval: 0x41
 ```
 
 
