@@ -1,6 +1,6 @@
 +++
 title = '使用 Frida Hook Android App'
-date = 2025-04-03T00:46:02.960440+08:00
+date = 2025-04-03T20:14:32.138029+08:00
 draft = false
 +++
 
@@ -656,5 +656,23 @@ ERROR: ERROR: Failed to build installable wheels for some pyproject.toml based p
 
 下载对应版本的 frida-server 并更新到设备上：[https://github.com/frida/frida/releases?page=14](https://github.com/frida/frida/releases?page=14)
 
+
+
+# **把日志输出到文件**
+
+
+
+通过 -o 设置项把日志输出到文件（exit frida 时候保存日志到文件）
+
+```
+frida -H 127.0.0.1:1234 -F -l  script.js -o log.txt
+```
+
+
+或者通过 tee 命令同时将标准输出内容打印到终端，并写入文件。（实时保存日志到文件）
+
+```
+frida -H 127.0.0.1:1234 -F -l  script.js | tee log.txt
+```
 
 
