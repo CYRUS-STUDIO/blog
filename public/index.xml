@@ -6,21 +6,21 @@
     <description>Recent content on CYRUS STUDIO</description>
     <generator>Hugo</generator>
     <language>zh-cn</language>
-    <lastBuildDate>Fri, 04 Apr 2025 01:51:46 +0800</lastBuildDate>
+    <lastBuildDate>Sat, 05 Apr 2025 00:10:43 +0800</lastBuildDate>
     <atom:link href="https://cyrus-studio.github.io/blog/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Frida Hook Android Native 函数</title>
+      <link>https://cyrus-studio.github.io/blog/posts/frida-hook-android-native-%E5%87%BD%E6%95%B0/</link>
+      <pubDate>Sat, 05 Apr 2025 00:10:43 +0800</pubDate>
+      <guid>https://cyrus-studio.github.io/blog/posts/frida-hook-android-native-%E5%87%BD%E6%95%B0/</guid>
+      <description>版权归作者所有，如有转发，请注明文章出处：https://cyrus-studio.github.io/blog/&#xA;RegisterNatives RegisterNatives 是 JNI（Java Native Interface）的一部分，用于在 Java 类和本地 C/C++ 代码之间注册本地方法。其原型如下：&#xA;jint RegisterNatives(JNIEnv* env, jclass clazz, const JNINativeMethod* methods, jint method_count); 参数说明：&#xA;env：JNIEnv 指针。&#xA;clazz：Java 类的 jclass 句柄。&#xA;methods：指向 JNINativeMethod 结构体数组的指针。&#xA;method_count：要注册的方法数量。&#xA;其中，methods 结构体的定义如下：&#xA;typedef struct {&#xD;const char* name; // 方法名称（指向字符串）&#xD;const char* signature; // 方法签名（指向字符串）&#xD;void* fnPtr; // 方法的本地实现（指向本地函数）&#xD;} JNINativeMethod; 可以看到，每个 JNINativeMethod 结构体由 三个指针 组成：&#xA;name（方法名指针）&#xA;signature（方法签名指针）&#xA;fnPtr（本地方法指针）&#xA;一般会有两个 RegisterNatives 函数，CheckJNI 版本只有在调试选项打开时才会调用，我们一般用 JNI 的那个就行。&#xA;[+] Found RegisterNatives symbol: _ZN3art12_GLOBAL__N_18CheckJNI15RegisterNativesEP7_JNIEnvP7_jclassPK15JNINativeMethodi at 0x780d7757a8&#xD;[+] Found RegisterNatives symbol: _ZN3art3JNI15RegisterNativesEP7_JNIEnvP7_jclassPK15JNINativeMethodi at 0x780d7eed10 通过 hook RegisterNatives 实现监控 app 中动态注册的 JNI 函数。代码如下：</description>
+    </item>
     <item>
       <title>使用 Frida Hook Android App</title>
       <link>https://cyrus-studio.github.io/blog/posts/%E4%BD%BF%E7%94%A8-frida-hook-android-app/</link>
       <pubDate>Fri, 04 Apr 2025 01:51:46 +0800</pubDate>
       <guid>https://cyrus-studio.github.io/blog/posts/%E4%BD%BF%E7%94%A8-frida-hook-android-app/</guid>
       <description>版权归作者所有，如有转发，请注明文章出处：https://cyrus-studio.github.io/blog/&#xA;Frida Frida 通过注入自定义 JavaScript 代码，可以 Hook 函数、修改参数、监控函数调用和拦截返回值，适用于逆向工程、调试和安全分析等场景。&#xA;使用 Frida 前需要先下载和安装包括：&#xA;Frida 是核心库，提供 API 和功能。&#xA;Frida-Tool 是命令行工具，通常与 Frida 版本相对应。&#xA;Frida-Server 是运行在 Android 设备上的服务器端组件，允许 Frida 客户端与设备进行通信。&#xA;环境准备 1. 安装 Frida 和 Frida-tools pip install frida-tools 2. Frida-server 获取设备CPU架构&#xA;adb shell getprop ro.product.cpu.abi 下载与设备对应架构的 frida-server：https://github.com/frida/frida/releases&#xA;把 frida-server 推送到设备 /data/local/tmp 目录下&#xA;adb push D:\app逆向\Frida\frida-server-16.5.2-android-arm64 /data/local/tmp/fs 启动 frida-server&#xA;# 启用超级管理员&#xD;adb root&#xD;# 进入命令行&#xD;adb shell # 添加可执行权限&#xD;chmod +x /data/local/tmp/fs&#xD;# 启动frida-server&#xD;/data/local/tmp/fs 3.</description>
-    </item>
-    <item>
-      <title>Frida Hook Android Native 函数</title>
-      <link>https://cyrus-studio.github.io/blog/posts/frida-hook-android-native-%E5%87%BD%E6%95%B0/</link>
-      <pubDate>Thu, 03 Apr 2025 03:43:28 +0800</pubDate>
-      <guid>https://cyrus-studio.github.io/blog/posts/frida-hook-android-native-%E5%87%BD%E6%95%B0/</guid>
-      <description>版权归作者所有，如有转发，请注明文章出处：https://cyrus-studio.github.io/blog/&#xA;RegisterNatives RegisterNatives 是 JNI（Java Native Interface）的一部分，用于在 Java 类和本地 C/C++ 代码之间注册本地方法。其原型如下：&#xA;jint RegisterNatives(JNIEnv* env, jclass clazz, const JNINativeMethod* methods, jint method_count); 参数说明：&#xA;env：JNIEnv 指针。&#xA;clazz：Java 类的 jclass 句柄。&#xA;methods：指向 JNINativeMethod 结构体数组的指针。&#xA;method_count：要注册的方法数量。&#xA;其中，methods 结构体的定义如下：&#xA;typedef struct {&#xD;const char* name; // 方法名称（指向字符串）&#xD;const char* signature; // 方法签名（指向字符串）&#xD;void* fnPtr; // 方法的本地实现（指向本地函数）&#xD;} JNINativeMethod; 可以看到，每个 JNINativeMethod 结构体由 三个指针 组成：&#xA;name（方法名指针）&#xA;signature（方法签名指针）&#xA;fnPtr（本地方法指针）&#xA;一般会有两个 RegisterNatives 函数，CheckJNI 版本只有在调试选项打开时才会调用，我们一般用 JNI 的那个就行。&#xA;[+] Found RegisterNatives symbol: _ZN3art12_GLOBAL__N_18CheckJNI15RegisterNativesEP7_JNIEnvP7_jclassPK15JNINativeMethodi at 0x780d7757a8&#xD;[+] Found RegisterNatives symbol: _ZN3art3JNI15RegisterNativesEP7_JNIEnvP7_jclassPK15JNINativeMethodi at 0x780d7eed10 通过 hook RegisterNatives 实现监控 app 中动态注册的 JNI 函数。代码如下：</description>
     </item>
     <item>
       <title>Frida Hook Native：jobjectArray 参数解析</title>
