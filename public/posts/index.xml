@@ -6,8 +6,15 @@
     <description>Recent content in Posts on CYRUS STUDIO</description>
     <generator>Hugo</generator>
     <language>zh-cn</language>
-    <lastBuildDate>Sat, 05 Apr 2025 00:10:43 +0800</lastBuildDate>
+    <lastBuildDate>Mon, 07 Apr 2025 19:37:54 +0800</lastBuildDate>
     <atom:link href="https://cyrus-studio.github.io/blog/posts/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Frida Stalker Trace 指令跟踪&amp;寄存器变化监控</title>
+      <link>https://cyrus-studio.github.io/blog/posts/frida-stalker-trace-%E6%8C%87%E4%BB%A4%E8%B7%9F%E8%B8%AA%E5%AF%84%E5%AD%98%E5%99%A8%E5%8F%98%E5%8C%96%E7%9B%91%E6%8E%A7/</link>
+      <pubDate>Mon, 07 Apr 2025 19:37:54 +0800</pubDate>
+      <guid>https://cyrus-studio.github.io/blog/posts/frida-stalker-trace-%E6%8C%87%E4%BB%A4%E8%B7%9F%E8%B8%AA%E5%AF%84%E5%AD%98%E5%99%A8%E5%8F%98%E5%8C%96%E7%9B%91%E6%8E%A7/</guid>
+      <description>版权归作者所有，如有转发，请注明文章出处：https://cyrus-studio.github.io/blog/&#xA;Frida Stalker Frida 的 Stalker 是一个强大的代码追踪工具。&#xA;主要功能&#xA;指令级跟踪：Stalker 可精确到指令级别，对应用的原生代码进行实时监控。&#xA;代码插桩：支持在指定指令前后插入自定义的代码逻辑。&#xA;内存访问监控：可以监视内存读写操作，分析数据流向。&#xA;自定义回调：提供回调函数，方便记录和分析执行轨迹。&#xA;文档：https://frida.re/docs/javascript-api/#stalker&#xA;相关文章：&#xA;使用 Frida Hook Android App&#xA;使用 Frida Stalker 反 OLLVM 算法还原&#xA;Frida Stalker Trace 指令跟踪 在 Stalker.follow 的 transform 回调函数中 处理目标线程执行的每一条汇编指令。&#xA;iterator 是一个 指令迭代器对象，它让你能够 逐条处理目标线程将要执行的原始机器指令。&#xA;iterator 支持的方法&#xA;方法 作用 next() 获取下一条指令 keep() 保留指令（否则会被跳过） putCallout(fn) 插入 JS 回调（运行在主线程） 通过实现 transform 回调 trace 指定函数，打印地址、指令、模块信息&#xA;function getModuleByAddressSafe(address) {&#xD;try {&#xD;// 尝试获取模块&#xD;var module = Process.getModuleByAddress(address);&#xD;// 如果模块存在，返回模块&#xD;if (module) {&#xD;return module;&#xD;} else {&#xD;// 如果没有找到模块，返回 null&#xD;return null;&#xD;}&#xD;} catch (e) {&#xD;// 捕获异常，返回 null&#xD;return null;&#xD;}&#xD;}&#xD;/**&#xD;* 指令跟踪&#xD;*&#xD;* @param targetModuleName 目标模块名&#xD;* @param targetSymbol 函数偏移（或导出名）&#xD;*/&#xD;function trace(targetModuleName, targetSymbol) {&#xD;// 获取模块基地址&#xD;const base = Module.</description>
+    </item>
     <item>
       <title>Frida Hook Android Native 函数</title>
       <link>https://cyrus-studio.github.io/blog/posts/frida-hook-android-native-%E5%87%BD%E6%95%B0/</link>
