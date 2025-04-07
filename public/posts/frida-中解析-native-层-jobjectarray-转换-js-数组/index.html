@@ -41,8 +41,8 @@ let env = Java.vm.tryGetEnv() 文档：https://frida.re/docs/javascript-api/
   <meta property="og:locale" content="zh_cn">
   <meta property="og:type" content="article">
     <meta property="article:section" content="posts">
-    <meta property="article:published_time" content="2025-04-08T00:28:30+08:00">
-    <meta property="article:modified_time" content="2025-04-08T00:28:30+08:00">
+    <meta property="article:published_time" content="2025-04-08T04:02:38+08:00">
+    <meta property="article:modified_time" content="2025-04-08T04:02:38+08:00">
 
 
   </head>
@@ -90,7 +90,7 @@ let env = Java.vm.tryGetEnv() 文档：https://frida.re/docs/javascript-api/
   <title>clock</title>
   <circle cx="12" cy="12" r="10"></circle><polyline points="12 6 12 12 16 14"></polyline>
 </svg>
-          3 min read
+          4 min read
         </div>
       </div>
     </header>
@@ -297,6 +297,56 @@ Object array of type [Ljava.lang.Object;, length: 3
   [1] com.abc.duapp.modules.app.DuApplication: com.abc.duapp.modules.app.DuApplication@b68b4ae
   [2] java.lang.String: cipherParamuserNamecountryCode86loginTokenpassword675d0c16c532e8dc96ab17490beplatformandroidtimestamp2195743174404typepwduserNamef573fa1fa140cf340018011db67c963cd733_1uuid84c3a328fb63819bv5.43.0
 Leaving native function，retval: dWWoXlbR3K87j2N27Dkv4uOPUnOsh...
+</code></pre><h1 id="创建-jobjectarray"><strong>创建 jobjectArray</strong></h1>
+<p>通过 frida 创建  jobjectArray 填充数据，调用 NativeFunction</p>
+<pre tabindex="0"><code>function NCall_IL() {
+    Java.perform(function () {
+        let targetAddress = Module.findBaseAddress(&#34;libGameVMP.so&#34;).add(0xdfa8)
+
+        let IL = new NativeFunction(
+            ptr(targetAddress),                 // 函数地址
+            &#39;pointer&#39;,                          // 返回值类型：jstring
+            [&#39;pointer&#39;, &#39;pointer&#39;, &#39;pointer&#39;]   // 参数类型列表（JNIEnv* , jclass, jobjectArray）
+        );
+
+        // 获取 env 和 jclass
+        const env = Java.vm.tryGetEnv();
+        const clazz = env.findClass(&#34;java.lang.Object&#34;);
+
+        // 构造元素
+        const arg0 = 283;
+        const arg1 = Java.use(&#34;com.cyrus.duapp.modules.app.DuApplication&#34;).instance.value; // 读取 static 字段 instance
+        const arg2 = &#34;cipherParamuserNamecoun...&#34;;
+
+        // 获取 java.lang.Object class (jclass)
+        const objectClass = env.findClass(&#34;java.lang.Object&#34;);
+
+        // 创建一个长度为 3 的 jobjectArray（即 Object[]）
+        const arrayLength = 3;
+        const objectArray = env.newObjectArray(arrayLength, objectClass, ptr(0));
+
+        // int 参数
+        const intArg = Memory.alloc(4);
+        intArg.writeS32(arg0);
+
+        // 填充数据
+        env.setObjectArrayElement(objectArray, 0, intArg);
+        env.setObjectArrayElement(objectArray, 1, arg1.$handle); //  $handle 是 Java 层对象的 native JNI 指针表示
+        env.setObjectArrayElement(objectArray, 2, env.newStringUtf(arg2));
+
+        // 调用
+        let result = IL(env.handle, clazz, objectArray);
+        console.log(&#34;函数返回值:&#34;, result);
+    })
+}
+</code></pre><p>调用输出如下：</p>
+<pre tabindex="0"><code>[Remote::CYRUS]-&gt; NCall_IL()
+Entering native function at: 0x6f22499fa8
+Object array of type [Ljava.lang.Object;, length: 3
+  [0] java.lang.Integer: 283
+  [1] com.cyrus.duapp.modules.app.DuApplication: com.cyrus.duapp.modules.app.DuApplication@89c9f57
+  [2] java.lang.String: appKey1e4e9a461f9b4fb09d6a4ae12c1eca83loginTokenplatformandroidsymbol...
+Leaving native function，retval: AC8aG5GIwLORLMYNGmc6BE2c3IgGXgoBn3fqYpySA+...
 </code></pre>
     </div>
     <div class="post-footer">
