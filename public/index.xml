@@ -6,8 +6,15 @@
     <description>Recent content on CYRUS STUDIO</description>
     <generator>Hugo</generator>
     <language>zh-cn</language>
-    <lastBuildDate>Tue, 08 Apr 2025 04:02:38 +0800</lastBuildDate>
+    <lastBuildDate>Wed, 09 Apr 2025 18:17:57 +0800</lastBuildDate>
     <atom:link href="https://cyrus-studio.github.io/blog/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Frida 调用 kill 命令挂起&amp;恢复 Android 线程</title>
+      <link>https://cyrus-studio.github.io/blog/posts/frida-%E8%B0%83%E7%94%A8-kill-%E5%91%BD%E4%BB%A4%E6%8C%82%E8%B5%B7%E6%81%A2%E5%A4%8D-android-%E7%BA%BF%E7%A8%8B/</link>
+      <pubDate>Wed, 09 Apr 2025 18:17:57 +0800</pubDate>
+      <guid>https://cyrus-studio.github.io/blog/posts/frida-%E8%B0%83%E7%94%A8-kill-%E5%91%BD%E4%BB%A4%E6%8C%82%E8%B5%B7%E6%81%A2%E5%A4%8D-android-%E7%BA%BF%E7%A8%8B/</guid>
+      <description>版权归作者所有，如有转发，请注明文章出处：https://cyrus-studio.github.io/blog/&#xA;Android 线程相关命令 获取 PID adb shell pidof com.shizhuang.duapp 查看线程信息 方法一：进入 /proc//task 进入 adb shell 执行下面命令&#xA;cd /proc/$(pidof com.shizhuang.duapp)/task&#xD;ls 这个目录中每一个子目录的名字就是该 App 的一个线程的 TID（Thread ID）。&#xA;你还可以进一步查看每个线程的状态：&#xA;cat /proc/$(pidof com.shizhuang.duapp)/task/&amp;lt;tid&amp;gt;/status 例如：&#xA;cat /proc/$(pidof com.shizhuang.duapp)/task/22432/status 方法二：使用 top 或 htop 查看线程 使用 top 查看线程信息&#xA;top -H -p $(pidof com.shizhuang.duapp) -H 表示以线程方式查看&#xA;-p 指定 PID&#xA;或者使用 htop 查看线程信息&#xA;htop -p $(pidof com.shizhuang.duapp) 通过 kill 命令 停止 / 挂起 / 恢复线程 kill 是 Linux 系统中用来向进程发送信号的命令，最常用于终止进程。虽然它名字叫 “kill”，但它可以发送多种信号，不只是“终止”。</description>
+    </item>
     <item>
       <title>Frida 中解析 Native 层 jobjectArray 转换 JS 数组</title>
       <link>https://cyrus-studio.github.io/blog/posts/frida-%E4%B8%AD%E8%A7%A3%E6%9E%90-native-%E5%B1%82-jobjectarray-%E8%BD%AC%E6%8D%A2-js-%E6%95%B0%E7%BB%84/</link>
