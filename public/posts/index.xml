@@ -6,8 +6,15 @@
     <description>Recent content in Posts on CYRUS STUDIO</description>
     <generator>Hugo</generator>
     <language>zh-cn</language>
-    <lastBuildDate>Wed, 09 Apr 2025 18:17:57 +0800</lastBuildDate>
+    <lastBuildDate>Tue, 15 Apr 2025 12:41:19 +0800</lastBuildDate>
     <atom:link href="https://cyrus-studio.github.io/blog/posts/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Android NDK 编译 so 文件 抹除导出符号 反逆向</title>
+      <link>https://cyrus-studio.github.io/blog/posts/android-ndk-%E7%BC%96%E8%AF%91-so-%E6%96%87%E4%BB%B6-%E6%8A%B9%E9%99%A4%E5%AF%BC%E5%87%BA%E7%AC%A6%E5%8F%B7-%E5%8F%8D%E9%80%86%E5%90%91/</link>
+      <pubDate>Tue, 15 Apr 2025 12:41:19 +0800</pubDate>
+      <guid>https://cyrus-studio.github.io/blog/posts/android-ndk-%E7%BC%96%E8%AF%91-so-%E6%96%87%E4%BB%B6-%E6%8A%B9%E9%99%A4%E5%AF%BC%E5%87%BA%E7%AC%A6%E5%8F%B7-%E5%8F%8D%E9%80%86%E5%90%91/</guid>
+      <description>版权归作者所有，如有转发，请注明文章出处：https://cyrus-studio.github.io/blog/&#xA;前言 NDK 编译 so 默认情况下，所有 public 函数 都会导出，通过 IDA、GHIDRA 可以看到函数名&#xA;但除了必须导出的 JNI 函数外，其余 C/C++ 函数符号不导出其实也完全没影响，编译器/链接器内部可以调用，运行时照样可以正常执行。&#xA;必须导出的 JNI 函数 函数名 是否必须导出 说明 JNI_OnLoad ✅ 是（总是） 系统通过 dlsym() 查找，初始化用 Java_&amp;hellip; ✅ 是（如果用静态注册） Java 层方法通过名称匹配 JNI_OnUnload ❌ 否（可选） 卸载时调用，不导出也不会出错 JNI_OnLoad_LibName（非标准） ❌ 否（特殊系统扩展） Android 未使用 JNI_GetCreatedJavaVMs、JNI_CreateJavaVM ❌ 否 仅在 native 启动 JVM 时使用（一般用不到） 使用 linker version script 精细控制导出 Linker Version Script 是 GNU 链接器（ld）提供的一种机制，用来控制 .so 或 .a 文件中哪些符号可以导出、哪些必须隐藏。&#xA;创建 hide.map 文件（仅导出所有 JNI_ 和 Java_ 开头的 JNI 方法）</description>
+    </item>
     <item>
       <title>Frida 调用 kill 命令挂起&amp;恢复 Android 线程</title>
       <link>https://cyrus-studio.github.io/blog/posts/frida-%E8%B0%83%E7%94%A8-kill-%E5%91%BD%E4%BB%A4%E6%8C%82%E8%B5%B7%E6%81%A2%E5%A4%8D-android-%E7%BA%BF%E7%A8%8B/</link>
