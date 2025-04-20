@@ -1,6 +1,6 @@
 +++
 title = '使用 Frida Hook Android App'
-date = 2025-04-04T01:51:46.186795+08:00
+date = 2025-04-21T01:36:04.554271+08:00
 draft = false
 +++
 
@@ -28,14 +28,14 @@ Frida 通过注入自定义 JavaScript 代码，可以 Hook 函数、修改参�
 
 
 
-## **1. 安装 Frida 和 Frida-tools**
+## **1. 安装 frida 和 frida-tools**
 
 ```
 pip install frida-tools
 ```
 
 
-## **2. Frida-server**
+## **2. frida server**
 
 
 
@@ -77,7 +77,7 @@ chmod +x /data/local/tmp/fs
 ```
 
 
-## **3. 自定义 Frida 端口**
+## **3. 自定义 frida 端口**
 
 
 
@@ -99,9 +99,34 @@ frida -H 127.0.0.1:1234 -l script.js -n com.shizhuang.duapp
 ```
 
 
+## **4. 重启 frida server**
 
 
-## **4. 自动化脚本**
+
+用于某些情况下 frida server 不响应的时候。
+
+
+
+获取 frida server 进程 id，进入 adb shell 指向下面命令
+
+```
+# 获取进程fs的pid
+pidof fs
+
+# 或者
+# 获取1234端口进程的pid
+lsof | grep 1234
+```
+
+
+强制停止进程
+
+```
+ kill -9 pid
+```
+
+
+## **5. 自动化脚本**
 
 
 
@@ -158,11 +183,26 @@ pause
 REM 启用超级管理员权限
 adb root
 
+setlocal
+
+REM 获取 frida server 的 PID，如果已经启动则强制停止进程
+for /f "delims=" %%i in ('adb shell pidof fs') do set PID=%%i
+
+REM 判断 PID 是否为空
+if defined PID (
+    echo Found PID: %PID%
+    adb shell kill -9 %PID%
+) else (
+    echo No fs process found.
+)
+
+endlocal
+
 REM 启动frida-server
 adb shell "/data/local/tmp/fs -l 0.0.0.0:1234 > /dev/null 2>&1 &"
 
-REM 等待 3 秒
-timeout /t 3
+REM 等待 2 秒
+timeout /t 2
 
 REM 查看frida-server进程是否启动成功
 adb shell "lsof | grep 1234"

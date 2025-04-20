@@ -24,7 +24,7 @@ Frida Frida 通过注入自定义 JavaScript 代码，可以 Hook 函数、修�
 Frida 是核心库，提供 API 和功能。
 Frida-Tool 是命令行工具，通常与 Frida 版本相对应。
 Frida-Server 是运行在 Android 设备上的服务器端组件，允许 Frida 客户端与设备进行通信。
-环境准备 1. 安装 Frida 和 Frida-tools pip install frida-tools 2. Frida-server 获取设备CPU架构
+环境准备 1. 安装 frida 和 frida-tools pip install frida-tools 2. frida server 获取设备CPU架构
 adb shell getprop ro.product.cpu.abi 下载与设备对应架构的 frida-server：https://github.com/frida/frida/releases
 把 frida-server 推送到设备 /data/local/tmp 目录下
 adb push D:\app逆向\Frida\frida-server-16.5.2-android-arm64 /data/local/tmp/fs 启动 frida-server
@@ -39,7 +39,7 @@ Frida Frida 通过注入自定义 JavaScript 代码，可以 Hook 函数、修�
 Frida 是核心库，提供 API 和功能。
 Frida-Tool 是命令行工具，通常与 Frida 版本相对应。
 Frida-Server 是运行在 Android 设备上的服务器端组件，允许 Frida 客户端与设备进行通信。
-环境准备 1. 安装 Frida 和 Frida-tools pip install frida-tools 2. Frida-server 获取设备CPU架构
+环境准备 1. 安装 frida 和 frida-tools pip install frida-tools 2. frida server 获取设备CPU架构
 adb shell getprop ro.product.cpu.abi 下载与设备对应架构的 frida-server：https://github.com/frida/frida/releases
 把 frida-server 推送到设备 /data/local/tmp 目录下
 adb push D:\app逆向\Frida\frida-server-16.5.2-android-arm64 /data/local/tmp/fs 启动 frida-server
@@ -47,8 +47,8 @@ adb push D:\app逆向\Frida\frida-server-16.5.2-android-arm64 /data/local/tmp/fs
   <meta property="og:locale" content="zh_cn">
   <meta property="og:type" content="article">
     <meta property="article:section" content="posts">
-    <meta property="article:published_time" content="2025-04-04T01:51:46+08:00">
-    <meta property="article:modified_time" content="2025-04-04T01:51:46+08:00">
+    <meta property="article:published_time" content="2025-04-21T01:36:04+08:00">
+    <meta property="article:modified_time" content="2025-04-21T01:36:04+08:00">
 
 
   </head>
@@ -89,7 +89,7 @@ adb push D:\app逆向\Frida\frida-server-16.5.2-android-arm64 /data/local/tmp/fs
   <title>calendar</title>
   <rect x="3" y="4" width="18" height="18" rx="2" ry="2"></rect><line x1="16" y1="2" x2="16" y2="6"></line><line x1="8" y1="2" x2="8" y2="6"></line><line x1="3" y1="10" x2="21" y2="10"></line>
 </svg>
-          Apr 4, 2025
+          Apr 21, 2025
         </div>
         <div>
           <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="icon icon-clock">
@@ -119,9 +119,9 @@ adb push D:\app逆向\Frida\frida-server-16.5.2-android-arm64 /data/local/tmp/fs
 </li>
 </ul>
 <h1 id="环境准备"><strong>环境准备</strong></h1>
-<h2 id="1-安装-frida-和-frida-tools"><strong>1. 安装 Frida 和 Frida-tools</strong></h2>
+<h2 id="1-安装-frida-和-frida-tools"><strong>1. 安装 frida 和 frida-tools</strong></h2>
 <pre tabindex="0"><code>pip install frida-tools
-</code></pre><h2 id="2-frida-server"><strong>2. Frida-server</strong></h2>
+</code></pre><h2 id="2-frida-server"><strong>2. frida server</strong></h2>
 <p>获取设备CPU架构</p>
 <pre tabindex="0"><code>adb shell getprop ro.product.cpu.abi
 </code></pre><p>下载与设备对应架构的 frida-server：<a href="https://github.com/frida/frida/releases">https://github.com/frida/frida/releases</a></p>
@@ -140,7 +140,7 @@ chmod +x /data/local/tmp/fs
 
 # 启动frida-server
 /data/local/tmp/fs
-</code></pre><h2 id="3-自定义-frida-端口"><strong>3. 自定义 Frida 端口</strong></h2>
+</code></pre><h2 id="3-自定义-frida-端口"><strong>3. 自定义 frida 端口</strong></h2>
 <p>frida-server 默认端口为 27042，如果想自定义端口可以通过下面的命令实现</p>
 <pre tabindex="0"><code># 启动frida-server，并指定端口
 /data/local/tmp/fs -l 0.0.0.0:1234
@@ -149,7 +149,18 @@ chmod +x /data/local/tmp/fs
 adb forward tcp:1234 tcp:1234
 </code></pre><p>frida 通过 -H 自定义地址和端口号</p>
 <pre tabindex="0"><code>frida -H 127.0.0.1:1234 -l script.js -n com.shizhuang.duapp
-</code></pre><h2 id="4-自动化脚本"><strong>4. 自动化脚本</strong></h2>
+</code></pre><h2 id="4-重启-frida-server"><strong>4. 重启 frida server</strong></h2>
+<p>用于某些情况下 frida server 不响应的时候。</p>
+<p>获取 frida server 进程 id，进入 adb shell 指向下面命令</p>
+<pre tabindex="0"><code># 获取进程fs的pid
+pidof fs
+
+# 或者
+# 获取1234端口进程的pid
+lsof | grep 1234
+</code></pre><p>强制停止进程</p>
+<pre tabindex="0"><code> kill -9 pid
+</code></pre><h2 id="5-自动化脚本"><strong>5. 自动化脚本</strong></h2>
 <h3 id="frida-server-uploadbat"><strong>frida-server-upload.bat</strong></h3>
 <p>创建 frida-server-upload.bat，实现拖入 frida-server 直接推送到设备并添加执行权限。</p>
 <pre tabindex="0"><code>@echo off
@@ -190,11 +201,26 @@ pause
 REM 启用超级管理员权限
 adb root
 
+setlocal
+
+REM 获取 frida server 的 PID，如果已经启动则强制停止进程
+for /f &#34;delims=&#34; %%i in (&#39;adb shell pidof fs&#39;) do set PID=%%i
+
+REM 判断 PID 是否为空
+if defined PID (
+    echo Found PID: %PID%
+    adb shell kill -9 %PID%
+) else (
+    echo No fs process found.
+)
+
+endlocal
+
 REM 启动frida-server
 adb shell &#34;/data/local/tmp/fs -l 0.0.0.0:1234 &gt; /dev/null 2&gt;&amp;1 &amp;&#34;
 
-REM 等待 3 秒
-timeout /t 3
+REM 等待 2 秒
+timeout /t 2
 
 REM 查看frida-server进程是否启动成功
 adb shell &#34;lsof | grep 1234&#34;
