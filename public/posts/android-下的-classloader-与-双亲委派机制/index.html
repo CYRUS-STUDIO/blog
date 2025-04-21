@@ -55,8 +55,8 @@ JVM 中主要有以下几种类加载器（ClassLoader）：
   <meta property="og:locale" content="zh_cn">
   <meta property="og:type" content="article">
     <meta property="article:section" content="posts">
-    <meta property="article:published_time" content="2025-04-21T02:30:59+08:00">
-    <meta property="article:modified_time" content="2025-04-21T02:30:59+08:00">
+    <meta property="article:published_time" content="2025-04-21T17:13:32+08:00">
+    <meta property="article:modified_time" content="2025-04-21T17:13:32+08:00">
 
 
   </head>
@@ -179,16 +179,16 @@ JVM 中主要有以下几种类加载器（ClassLoader）：
              ↓
    ExtClassLoader 执行 findClass() → 从 ext 路径找 classX
              ↓
-     ┌──┴──┐
-     ↓     ↓
- [成功]  [失败]
-              ↓
+          ┌──┴──┐
+          ↓     ↓
+       [成功]  [失败]
+                 ↓
    AppClassLoader 执行 findClass() → 从 classpath 找 classX
              ↓
-     ┌──┴──┐
-     ↓     ↓
- [成功]  [失败]
-             ↓
+          ┌──┴──┐
+          ↓     ↓
+       [成功]  [失败]
+                 ↓
      回退给 YourCustomClassLoader
         （开始尝试自己加载 classX）
 </code></pre><h1 id="双亲委派"><strong>双亲委派</strong></h1>
@@ -345,11 +345,11 @@ val clazz = ClassLoader.defineClass(&#34;com.example.MyClass&#34;, bytes, 0, byt
 <td>java.lang.Class</td>
 <td>✅ 是（底层用 loadClass）</td>
 <td>✅ 是</td>
-<td>加载并初始化类（执行 <!-- raw HTML omitted --> ）</td>
+<td>加载并初始化类（执行 &lt;clinit&gt; ）</td>
 </tr>
 </tbody>
 </table>
-<p><!-- raw HTML omitted --> 是类的初始化方法，由编译器自动生成，不是程序员手写的。用于执行类中静态变量初始化和静态代码块。</p>
+<p>&lt;clinit&gt; 是类的初始化方法，由编译器自动生成，不是程序员手写的。用于执行类中静态变量初始化和静态代码块。</p>
 <h1 id="类加载和初始化的过程"><strong>类加载和初始化的过程</strong></h1>
 <p>一个类从“加载” 到 “可以使用” 的完整生命周期：加载（Loading）→ 连接（Linking）→ 初始化（Initialization）。</p>
 <p>JVM 规范中，一个类从加载到完成使用，主要经过以下几个阶段：</p>

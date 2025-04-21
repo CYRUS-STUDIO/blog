@@ -1,6 +1,6 @@
 +++
 title = 'Android 下的 ClassLoader 与 双亲委派机制'
-date = 2025-04-21T02:30:59.451853+08:00
+date = 2025-04-21T17:13:32.300100+08:00
 draft = false
 +++
 
@@ -89,16 +89,16 @@ JVM 中主要有以下几种类加载器（ClassLoader）：
              ↓
    ExtClassLoader 执行 findClass() → 从 ext 路径找 classX
              ↓
-     ┌──┴──┐
-     ↓     ↓
- [成功]  [失败]
-              ↓
+          ┌──┴──┐
+          ↓     ↓
+       [成功]  [失败]
+                 ↓
    AppClassLoader 执行 findClass() → 从 classpath 找 classX
              ↓
-     ┌──┴──┐
-     ↓     ↓
- [成功]  [失败]
-             ↓
+          ┌──┴──┐
+          ↓     ↓
+       [成功]  [失败]
+                 ↓
      回退给 YourCustomClassLoader
         （开始尝试自己加载 classX）
 ```
@@ -267,10 +267,10 @@ val clazz = ClassLoader.defineClass("com.example.MyClass", bytes, 0, bytes.size)
 |--- | --- | --- | --- | ---|
 | loadClass(name) | ClassLoader | ✅ 是 | ❌ 否 | 加载一个类，但不初始化 |
 | findClass(name) | ClassLoader | ❌ 否 | ❌ 否 | 自定义类加载逻辑 |
-| Class.forName() | java.lang.Class | ✅ 是（底层用 loadClass） | ✅ 是 | 加载并初始化类（执行 <clinit> ） |
+| Class.forName() | java.lang.Class | ✅ 是（底层用 loadClass） | ✅ 是 | 加载并初始化类（执行 \<clinit> ） |
 
 
-<clinit> 是类的初始化方法，由编译器自动生成，不是程序员手写的。用于执行类中静态变量初始化和静态代码块。
+\<clinit> 是类的初始化方法，由编译器自动生成，不是程序员手写的。用于执行类中静态变量初始化和静态代码块。
 
 
 
