@@ -6,12 +6,12 @@
     <description>Recent content in Posts on CYRUS STUDIO</description>
     <generator>Hugo</generator>
     <language>zh-cn</language>
-    <lastBuildDate>Mon, 21 Apr 2025 17:13:32 +0800</lastBuildDate>
+    <lastBuildDate>Mon, 21 Apr 2025 20:26:49 +0800</lastBuildDate>
     <atom:link href="https://cyrus-studio.github.io/blog/posts/index.xml" rel="self" type="application/rss+xml" />
     <item>
       <title>Android 下的 ClassLoader 与 双亲委派机制</title>
       <link>https://cyrus-studio.github.io/blog/posts/android-%E4%B8%8B%E7%9A%84-classloader-%E4%B8%8E-%E5%8F%8C%E4%BA%B2%E5%A7%94%E6%B4%BE%E6%9C%BA%E5%88%B6/</link>
-      <pubDate>Mon, 21 Apr 2025 17:13:32 +0800</pubDate>
+      <pubDate>Mon, 21 Apr 2025 20:26:49 +0800</pubDate>
       <guid>https://cyrus-studio.github.io/blog/posts/android-%E4%B8%8B%E7%9A%84-classloader-%E4%B8%8E-%E5%8F%8C%E4%BA%B2%E5%A7%94%E6%B4%BE%E6%9C%BA%E5%88%B6/</guid>
       <description>版权归作者所有，如有转发，请注明文章出处：https://cyrus-studio.github.io/blog/&#xA;类加载器 ClassLoader 在 JVM（Java Virtual Machine）中，类加载器（ClassLoader）负责将 .class 文件加载到内存中，并将其转换为 JVM 可以使用的 Class 对象。&#xA;JVM 中主要有以下几种类加载器（ClassLoader）：&#xA;1. 引导类加载器（Bootstrap ClassLoader） 加载内容：JDK 的核心类库（JAVA_HOME/lib 下的类，如 rt.jar、java.lang、java.util 等系统类）。&#xA;由 C/C++ 实现，是 JVM 的一部分，JVM 的启动就是通过 Bottstrap ，不是 Java 类。&#xA;没有父类加载器（即 getParent() 返回 null）。&#xA;2. 拓展类加载器（Extension ClassLoader） 加载内容：JAVA_HOME/lib/ext/ 目录或由 java.ext.dirs 指定的路径中的类。&#xA;实现类：sun.misc.Launcher$ExtClassLoader&#xA;父加载器：Bootstrap ClassLoader&#xA;3. 应用类加载器（Application ClassLoader） 加载内容：用户类路径（classpath）上的类，比如通过 -cp 或 -classpath 指定的类和 jar。&#xA;实现类：sun.misc.Launcher$AppClassLoader&#xA;父加载器：Extension ClassLoader&#xA;我们编写的大部分 Java 应用程序类就是由它加载的，ClassLoader.getSystemClassLoader 返回的就是它。&#xA;自定义类加载器 通过继承 java.lang.ClassLoader 自定义类加载器，实现自己的类加载逻辑，比如从网络、数据库、加密文件中加载类。&#xA;类加载顺序，比如：YourCustomClassLoader.findClass( classX.class)</description>
     </item>
