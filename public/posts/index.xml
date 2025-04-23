@@ -6,8 +6,15 @@
     <description>Recent content in Posts on CYRUS STUDIO</description>
     <generator>Hugo</generator>
     <language>zh-cn</language>
-    <lastBuildDate>Mon, 21 Apr 2025 20:26:49 +0800</lastBuildDate>
+    <lastBuildDate>Thu, 24 Apr 2025 03:49:04 +0800</lastBuildDate>
     <atom:link href="https://cyrus-studio.github.io/blog/posts/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>详解 Android APP 启动流程</title>
+      <link>https://cyrus-studio.github.io/blog/posts/%E8%AF%A6%E8%A7%A3-android-app-%E5%90%AF%E5%8A%A8%E6%B5%81%E7%A8%8B/</link>
+      <pubDate>Thu, 24 Apr 2025 03:49:04 +0800</pubDate>
+      <guid>https://cyrus-studio.github.io/blog/posts/%E8%AF%A6%E8%A7%A3-android-app-%E5%90%AF%E5%8A%A8%E6%B5%81%E7%A8%8B/</guid>
+      <description>版权归作者所有，如有转发，请注明文章出处：https://cyrus-studio.github.io/blog/&#xA;APP 启动流程 app 启动流程大概如下：&#xA;发起进程（startActivity/startService...）&#xD;↓&#xD;↓（Binder方式）&#xD;↓&#xD;system_server进程（Process.start）&#xD;↓&#xD;↓（Socket方式）&#xD;↓&#xD;Zygote进程（ZygoteInit.runSelectLoop()） ↓&#xD;新建进程（ActivityThread.main） ActivityThread.main() 是 Android 应用进程的入口函数。&#xA;1. 应用 → AMS（Binder） 由 ActivityManager.getService() 返回的 Binder 接口对象调用系统服务：&#xA;// 应用进程&#xD;ContextImpl.startActivity()&#xD;└── Instrumentation.execStartActivity()&#xD;└── ActivityManager.getService().startActivity() ← AIDL Binder 跨进程&#xD;└── ActivityManagerService.startActivity() 通过 AIDL 实现 Binder 跨进程通信，连接系统服务。&#xA;关于 Android 中 AIDL 实现 Binder 跨进程通信 可以参考：Android中的Service与进程间通信（IPC）详解&#xA;AMS 接口实现：&#xA;http://aospxref.com/android-10.0.0_r47/xref/frameworks/base/services/core/java/com/android/server/am/ActivityManagerService.java#startActivity&#xA;2. AMS/system_server → zygote（Socket） startActivity 最终调用到 Process.start 方法&#xA;475 /**&#xD;476 * State associated with the zygote process.</description>
+    </item>
     <item>
       <title>Android 下的 ClassLoader 与 双亲委派机制</title>
       <link>https://cyrus-studio.github.io/blog/posts/android-%E4%B8%8B%E7%9A%84-classloader-%E4%B8%8E-%E5%8F%8C%E4%BA%B2%E5%A7%94%E6%B4%BE%E6%9C%BA%E5%88%B6/</link>
