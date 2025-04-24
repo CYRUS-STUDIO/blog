@@ -6,8 +6,15 @@
     <description>Recent content on CYRUS STUDIO</description>
     <generator>Hugo</generator>
     <language>zh-cn</language>
-    <lastBuildDate>Thu, 24 Apr 2025 03:49:04 +0800</lastBuildDate>
+    <lastBuildDate>Fri, 25 Apr 2025 02:23:38 +0800</lastBuildDate>
     <atom:link href="https://cyrus-studio.github.io/blog/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Android 加壳应用运行流程 与 生命周期类处理方案</title>
+      <link>https://cyrus-studio.github.io/blog/posts/android-%E5%8A%A0%E5%A3%B3%E5%BA%94%E7%94%A8%E8%BF%90%E8%A1%8C%E6%B5%81%E7%A8%8B-%E4%B8%8E-%E7%94%9F%E5%91%BD%E5%91%A8%E6%9C%9F%E7%B1%BB%E5%A4%84%E7%90%86%E6%96%B9%E6%A1%88/</link>
+      <pubDate>Fri, 25 Apr 2025 02:23:38 +0800</pubDate>
+      <guid>https://cyrus-studio.github.io/blog/posts/android-%E5%8A%A0%E5%A3%B3%E5%BA%94%E7%94%A8%E8%BF%90%E8%A1%8C%E6%B5%81%E7%A8%8B-%E4%B8%8E-%E7%94%9F%E5%91%BD%E5%91%A8%E6%9C%9F%E7%B1%BB%E5%A4%84%E7%90%86%E6%96%B9%E6%A1%88/</guid>
+      <description>版权归作者所有，如有转发，请注明文章出处：https://cyrus-studio.github.io/blog/&#xA;DexClassLoader DexClassLoader 可以加载任意路径下的 dex，或者 jar、apk、zip 文件（包含classes.dex）。常用于插件化、热修复以及 dex 加壳。&#xA;源码如下：&#xA;public class DexClassLoader extends BaseDexClassLoader {&#xD;public DexClassLoader(String dexPath, String optimizedDirectory,&#xD;String librarySearchPath, ClassLoader parent) {&#xD;super(dexPath, null, librarySearchPath, parent);&#xD;}&#xD;} http://aospxref.com/android-10.0.0_r47/xref/libcore/dalvik/src/main/java/dalvik/system/DexClassLoader.java&#xA;参数说明&#xA;参数 类型 说明 dexPath String 需要加载的 dex、apk、jar、zip 文件的路径，多个路径用 : 分隔。支持任意目录下的文件。 optimizedDirectory String 用于存放优化后的 dex 文件（即 .odex），在 API level 26 已弃用（Android 8.0 Oreo）。 librarySearchPath String 指定本地库（native library，.so 文件）搜索路径，多个路径用 : 分隔。 parent ClassLoader 父类加载器，用于实现类加载的委托机制。 动态加载 动态加载 = 运行时按需加载代码或资源</description>
+    </item>
     <item>
       <title>详解 Android APP 启动流程</title>
       <link>https://cyrus-studio.github.io/blog/posts/%E8%AF%A6%E8%A7%A3-android-app-%E5%90%AF%E5%8A%A8%E6%B5%81%E7%A8%8B/</link>
