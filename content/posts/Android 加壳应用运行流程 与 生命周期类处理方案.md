@@ -1,6 +1,6 @@
 +++
 title = 'Android 加壳应用运行流程 与 生命周期类处理方案'
-date = 2025-04-25T02:23:38.722496+08:00
+date = 2025-04-25T02:33:43.893646+08:00
 draft = false
 +++
 
@@ -639,5 +639,13 @@ output = "动态加载：${apkPath}\n\ncall ${method}\n\nreuslt=${result}"
           ↳ 反射替换 ActivityThread.mInitialApplication 为真实 Application 对象
           ↳ 已进入原始 app 世界
 ```
+
+
+# **完整源码**
+
+
+
+开源地址：[https://github.com/CYRUS-STUDIO/AndroidExample](https://github.com/CYRUS-STUDIO/AndroidExample)
+
 
 
