@@ -6,8 +6,15 @@
     <description>Recent content in Posts on CYRUS STUDIO</description>
     <generator>Hugo</generator>
     <language>zh-cn</language>
-    <lastBuildDate>Fri, 25 Apr 2025 02:33:43 +0800</lastBuildDate>
+    <lastBuildDate>Fri, 25 Apr 2025 19:43:35 +0800</lastBuildDate>
     <atom:link href="https://cyrus-studio.github.io/blog/posts/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Android APP 热修复原理</title>
+      <link>https://cyrus-studio.github.io/blog/posts/android-app-%E7%83%AD%E4%BF%AE%E5%A4%8D%E5%8E%9F%E7%90%86/</link>
+      <pubDate>Fri, 25 Apr 2025 19:43:35 +0800</pubDate>
+      <guid>https://cyrus-studio.github.io/blog/posts/android-app-%E7%83%AD%E4%BF%AE%E5%A4%8D%E5%8E%9F%E7%90%86/</guid>
+      <description>版权归作者所有，如有转发，请注明文章出处：https://cyrus-studio.github.io/blog/&#xA;dexElements Android 的 ClassLoader（如 PathClassLoader、DexClassLoader）内部结构如下：&#xA;BaseDexClassLoader&#xD;└── pathList : DexPathList&#xD;└── dexElements : Array&amp;lt;DexPathList.Element&amp;gt; DexPathList 是 BaseDexClassLoader 用来管理 .dex 文件、.apk 和 .jar 的内部类，负责构建和维护类加载搜索路径。&#xA;http://aospxref.com/android-10.0.0_r47/xref/libcore/dalvik/src/main/java/dalvik/system/BaseDexClassLoader.java#51&#xA;dexElements 是 DexPathList 中用于保存所有 .dex 文件对应的元素数组，每个 Element 表示一个可用于加载类和资源的路径项，类加载时会依次查找这些元素。&#xA;http://aospxref.com/android-10.0.0_r47/xref/libcore/dalvik/src/main/java/dalvik/system/DexPathList.java#69&#xA;findClass 方法迭代 dexElements 数组查找类&#xA;http://aospxref.com/android-10.0.0_r47/xref/libcore/dalvik/src/main/java/dalvik/system/DexPathList.java&#xA;热修复原理 合并多个 dexElements 数组是插件化框架或热修复系统中的常见操作。你可以通过反射将多个 dex 元素合并成一个新的数组，然后注入回去。&#xA;这就是热修复的原理，把 新的 dex 添加到 dexElements 前面，那么 findClass 的时候就会优先使用最新的 dex 中的类&#xA;代码实现 通过反射拿到 ClassLoader 中的 dexElements 数组 fun getDexElementsFrom(classLoader: ClassLoader): Array&amp;lt;Any&amp;gt;? {&#xD;return try {&#xD;// 1.</description>
+    </item>
     <item>
       <title>Android 加壳应用运行流程 与 生命周期类处理方案</title>
       <link>https://cyrus-studio.github.io/blog/posts/android-%E5%8A%A0%E5%A3%B3%E5%BA%94%E7%94%A8%E8%BF%90%E8%A1%8C%E6%B5%81%E7%A8%8B-%E4%B8%8E-%E7%94%9F%E5%91%BD%E5%91%A8%E6%9C%9F%E7%B1%BB%E5%A4%84%E7%90%86%E6%96%B9%E6%A1%88/</link>
