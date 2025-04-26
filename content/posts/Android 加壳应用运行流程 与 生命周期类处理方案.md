@@ -1,6 +1,6 @@
 +++
 title = 'Android 加壳应用运行流程 与 生命周期类处理方案'
-date = 2025-04-25T02:33:43.893646+08:00
+date = 2025-04-27T05:27:30.813063+08:00
 draft = false
 +++
 
@@ -191,7 +191,7 @@ class PluginClass {
 把 apk 推送到设备 sdcard
 
 ```
-adb push plugin-debug.apk /sdcard/Android/data/com.cyrus.example/files
+adb push plugin-debug.apk /sdcard/Android/data/com.cyrus.example/files/plugin-debug.apk
 ```
 
 
