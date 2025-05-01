@@ -6,8 +6,15 @@
     <description>Recent content in Posts on CYRUS STUDIO</description>
     <generator>Hugo</generator>
     <language>zh-cn</language>
-    <lastBuildDate>Sun, 27 Apr 2025 22:38:15 +0800</lastBuildDate>
+    <lastBuildDate>Thu, 01 May 2025 21:42:47 +0800</lastBuildDate>
     <atom:link href="https://cyrus-studio.github.io/blog/posts/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>LineageOS源码下载和编译（Xiaomi Mi 6X，wayne）</title>
+      <link>https://cyrus-studio.github.io/blog/posts/lineageos%E6%BA%90%E7%A0%81%E4%B8%8B%E8%BD%BD%E5%92%8C%E7%BC%96%E8%AF%91xiaomi-mi-6xwayne/</link>
+      <pubDate>Thu, 01 May 2025 21:42:47 +0800</pubDate>
+      <guid>https://cyrus-studio.github.io/blog/posts/lineageos%E6%BA%90%E7%A0%81%E4%B8%8B%E8%BD%BD%E5%92%8C%E7%BC%96%E8%AF%91xiaomi-mi-6xwayne/</guid>
+      <description>版权归作者所有，如有转发，请注明文章出处：https://cyrus-studio.github.io/blog/&#xA;源码下载 LineageOS官网：https://lineageos.org/&#xA;LineageOS源码 github 地址：https://github.com/LineageOS/android&#xA;LineageOS源码国内镜像地址：https://mirrors.tuna.tsinghua.edu.cn/help/lineageOS/&#xA;源码大概需要150GB的硬盘空间，编译完成差不多300G&#xA;1. 配置git git config --global user.email &amp;#34;you@example.com&amp;#34;&#xD;git config --global user.name &amp;#34;Your Name&amp;#34; 2. 安装 repo mkdir ~/bin&#xD;PATH=~/bin:$PATH&#xD;curl https://storage.googleapis.com/git-repo-downloads/repo &amp;gt; ~/bin/repo&#xD;chmod a+x ~/bin/repo 3. 安装 Git LFS sudo apt install git-lfs&#xD;git lfs install 4. 安装 Android SDK Platform-Tools 在 Linux 中配置 Android SDK Platform-Tools，可以按照以下步骤进行&#xA;4.1 下载 Android SDK Platform-Tools： # cd 到存放 platform-tools 的目录&#xD;cd /mnt/case_sensitive&#xD;# 下载 platform-tools&#xD;wget https://dl.</description>
+    </item>
     <item>
       <title>使用 Dex2C 加壳保护 Android APK 代码</title>
       <link>https://cyrus-studio.github.io/blog/posts/%E4%BD%BF%E7%94%A8-dex2c-%E5%8A%A0%E5%A3%B3%E4%BF%9D%E6%8A%A4-android-apk-%E4%BB%A3%E7%A0%81/</link>
@@ -469,13 +476,6 @@
       <pubDate>Sun, 15 Sep 2024 13:27:26 +0800</pubDate>
       <guid>https://cyrus-studio.github.io/blog/posts/android%E6%BA%90%E7%A0%81%E5%AF%BC%E5%85%A5android-studio/</guid>
       <description>版权归作者所有，如有转发，请注明文章出处：https://cyrus-studio.github.io/blog/&#xA;前言 需要先把 Android 源码编译一遍 然后执行下面指令就可以导入android源码了&#xA;关于 Android 源码编译可以参考这篇文章【LineageOS源码下载和编译（Xiaomi Mi 6X，wayne）】。&#xA;生成 android.ipr 文件 1. 进入到下面的目录&#xA;cd ./development/tools/idegen 2. 使用 mm 命令对当前目录 make，构建 idegen 模块&#xA;mm 执行完成后会在 out 目录生成一个 idegen.jar 文件&#xA;3. 回到 android 源码根目录，执行 idegen.sh 脚本（需要管理员权限）&#xA;# 回到 android 源码根目录&#xD;croot&#xD;# 执行 idegen.sh 脚本&#xD;sudo ./development/tools/idegen/idegen.sh 4. 执行完成后会生成一个 android.ipr 文件，用 android studio 打开这个 android.ipr 文件就可以完成 android 源码的导入了 运行 idegen.sh 脚本时遇到的问题 在运行 development/tools/idegen/idegen.sh 脚本时遇到的问题&#xA;1. 文件系统循环 find: File system loop detected 错误表示在使用 find 命令时遇到了符号链接循环。这通常不会导致脚本失败，但确实会产生一些额外的警告信息。</description>
-    </item>
-    <item>
-      <title>LineageOS源码下载和编译（Xiaomi Mi 6X，wayne）</title>
-      <link>https://cyrus-studio.github.io/blog/posts/lineageos%E6%BA%90%E7%A0%81%E4%B8%8B%E8%BD%BD%E5%92%8C%E7%BC%96%E8%AF%91xiaomi-mi-6xwayne/</link>
-      <pubDate>Sun, 15 Sep 2024 09:48:57 +0800</pubDate>
-      <guid>https://cyrus-studio.github.io/blog/posts/lineageos%E6%BA%90%E7%A0%81%E4%B8%8B%E8%BD%BD%E5%92%8C%E7%BC%96%E8%AF%91xiaomi-mi-6xwayne/</guid>
-      <description>版权归作者所有，如有转发，请注明文章出处：https://cyrus-studio.github.io/blog/&#xA;源码下载 LineageOS官网：https://lineageos.org/&#xA;LineageOS源码 github 地址：https://github.com/LineageOS/android&#xA;LineageOS源码国内镜像地址：https://mirrors.tuna.tsinghua.edu.cn/help/lineageOS/&#xA;源码大概需要150GB的硬盘空间，编译完成差不多300G 1. 配置git git config --global user.email &amp;#34;you@example.com&amp;#34;&#xD;git config --global user.name &amp;#34;Your Name&amp;#34; 2. 安装 repo mkdir ~/bin&#xD;PATH=~/bin:$PATH&#xD;curl https://storage.googleapis.com/git-repo-downloads/repo &amp;gt; ~/bin/repo&#xD;chmod a+x ~/bin/repo 3. 安装 Git LFS sudo apt install git-lfs&#xD;git lfs install 4. 安装 Android SDK Platform-Tools 在 Linux 中配置 Android SDK Platform-Tools，可以按照以下步骤进行&#xA;4.1 下载 Android SDK Platform-Tools： # cd 到存放 platform-tools 的目录&#xD;cd /mnt/case_sensitive&#xD;# 下载 platform-tools&#xD;wget https://dl.</description>
     </item>
     <item>
       <title>LineageOS刷机教程</title>
