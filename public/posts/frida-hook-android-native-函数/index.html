@@ -53,8 +53,8 @@ fnPtr（本地方法指针）
   <meta property="og:locale" content="zh_cn">
   <meta property="og:type" content="article">
     <meta property="article:section" content="posts">
-    <meta property="article:published_time" content="2025-04-05T00:10:43+08:00">
-    <meta property="article:modified_time" content="2025-04-05T00:10:43+08:00">
+    <meta property="article:published_time" content="2025-05-02T23:38:42+08:00">
+    <meta property="article:modified_time" content="2025-05-02T23:38:42+08:00">
 
 
   </head>
@@ -95,7 +95,7 @@ fnPtr（本地方法指针）
   <title>calendar</title>
   <rect x="3" y="4" width="18" height="18" rx="2" ry="2"></rect><line x1="16" y1="2" x2="16" y2="6"></line><line x1="8" y1="2" x2="8" y2="6"></line><line x1="3" y1="10" x2="21" y2="10"></line>
 </svg>
-          Apr 5, 2025
+          May 2, 2025
         </div>
         <div>
           <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="icon icon-clock">
@@ -372,7 +372,36 @@ setImmediate(function () {
 <p>示例代码：</p>
 <pre tabindex="0"><code>let str = env.stringFromJni(stringObj)
 console.log(str);
-</code></pre><h1 id="dlopen"><strong>dlopen</strong></h1>
+</code></pre><h1 id="读取-stdstring-内容"><strong>读取 std::string 内容</strong></h1>
+<pre tabindex="0"><code>function readStdString (str) {
+  const isTiny = (str.readU8() &amp; 1) === 0;
+  if (isTiny) {
+    return str.add(1).readUtf8String();
+  }
+
+  return str.add(2 * Process.pointerSize).readPointer().readUtf8String();
+}
+</code></pre><table>
+<thead>
+<tr>
+<th>情况</th>
+<th>说明</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Tiny String</td>
+<td>内容嵌在 std::string 对象中，直接读取内部 buffer。</td>
+</tr>
+<tr>
+<td>Long String</td>
+<td>内容在堆中，std::string 中存指针，要先读指针再读字符串。</td>
+</tr>
+</tbody>
+</table>
+<p>如果是 Tiny String 则 str.add(1) 跳过第一个控制字节。从之后的位置读取实际字符串。</p>
+<p>如果是长字符串（Heap 分配），在 std::string 对象中，第 2 * pointerSize 的位置是指向实际字符串的指针（这个偏移依赖于具体实现，常见于 libc++）。readPointer() 拿到字符串地址后，再 readUtf8String() 读取字符串内容。</p>
+<h1 id="dlopen"><strong>dlopen</strong></h1>
 <p>dlopen 函数 在 linker 模块，是 Android 系统上的动态库加载函数，用于在运行时加载共享库（.so 文件）。</p>
 <p>你可以在 bionic/linker/dlfcn.cpp 中找到 dlopen 的实现：</p>
 <pre tabindex="0"><code>void* dlopen(const char* filename, int flags) {

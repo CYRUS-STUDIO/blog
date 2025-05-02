@@ -3,12 +3,15 @@
   xmlns:xhtml="http://www.w3.org/1999/xhtml">
   <url>
     <loc>https://cyrus-studio.github.io/blog/</loc>
-    <lastmod>2025-05-01T21:42:47+08:00</lastmod>
+    <lastmod>2025-05-02T23:38:42+08:00</lastmod>
   </url><url>
-    <loc>https://cyrus-studio.github.io/blog/posts/lineageos%E6%BA%90%E7%A0%81%E4%B8%8B%E8%BD%BD%E5%92%8C%E7%BC%96%E8%AF%91xiaomi-mi-6xwayne/</loc>
-    <lastmod>2025-05-01T21:42:47+08:00</lastmod>
+    <loc>https://cyrus-studio.github.io/blog/posts/frida-hook-android-native-%E5%87%BD%E6%95%B0/</loc>
+    <lastmod>2025-05-02T23:38:42+08:00</lastmod>
   </url><url>
     <loc>https://cyrus-studio.github.io/blog/posts/</loc>
+    <lastmod>2025-05-02T23:38:42+08:00</lastmod>
+  </url><url>
+    <loc>https://cyrus-studio.github.io/blog/posts/lineageos%E6%BA%90%E7%A0%81%E4%B8%8B%E8%BD%BD%E5%92%8C%E7%BC%96%E8%AF%91xiaomi-mi-6xwayne/</loc>
     <lastmod>2025-05-01T21:42:47+08:00</lastmod>
   </url><url>
     <loc>https://cyrus-studio.github.io/blog/posts/%E4%BD%BF%E7%94%A8-dex2c-%E5%8A%A0%E5%A3%B3%E4%BF%9D%E6%8A%A4-android-apk-%E4%BB%A3%E7%A0%81/</loc>
@@ -40,9 +43,6 @@
   </url><url>
     <loc>https://cyrus-studio.github.io/blog/posts/frida-stalker-trace-%E6%8C%87%E4%BB%A4%E8%B7%9F%E8%B8%AA%E5%AF%84%E5%AD%98%E5%99%A8%E5%8F%98%E5%8C%96%E7%9B%91%E6%8E%A7/</loc>
     <lastmod>2025-04-07T19:37:54+08:00</lastmod>
-  </url><url>
-    <loc>https://cyrus-studio.github.io/blog/posts/frida-hook-android-native-%E5%87%BD%E6%95%B0/</loc>
-    <lastmod>2025-04-05T00:10:43+08:00</lastmod>
   </url><url>
     <loc>https://cyrus-studio.github.io/blog/posts/unidbg-trace-%E5%8F%8D-ollvm-%E6%8E%A7%E5%88%B6%E6%B5%81%E5%B9%B3%E5%9D%A6%E5%8C%96fla/</loc>
     <lastmod>2025-03-30T23:35:02+08:00</lastmod>

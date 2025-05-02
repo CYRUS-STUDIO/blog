@@ -1,6 +1,6 @@
 +++
 title = 'Frida Hook Android Native 函数'
-date = 2025-04-05T00:10:43.419910+08:00
+date = 2025-05-02T23:38:42.239920+08:00
 draft = false
 +++
 
@@ -348,6 +348,36 @@ let env = Java.vm.tryGetEnv()
 let str = env.stringFromJni(stringObj)
 console.log(str);
 ```
+
+
+# **读取 std::string 内容**
+
+
+
+```
+function readStdString (str) {
+  const isTiny = (str.readU8() & 1) === 0;
+  if (isTiny) {
+    return str.add(1).readUtf8String();
+  }
+
+  return str.add(2 * Process.pointerSize).readPointer().readUtf8String();
+}
+```
+
+
+| 情况 | 说明 |
+|--- | ---|
+| Tiny String | 内容嵌在 std::string 对象中，直接读取内部 buffer。 |
+| Long String | 内容在堆中，std::string 中存指针，要先读指针再读字符串。 |
+
+
+如果是 Tiny String 则 str.add(1) 跳过第一个控制字节。从之后的位置读取实际字符串。
+
+
+
+如果是长字符串（Heap 分配），在 std::string 对象中，第 2 * pointerSize 的位置是指向实际字符串的指针（这个偏移依赖于具体实现，常见于 libc++）。readPointer() 拿到字符串地址后，再 readUtf8String() 读取字符串内容。
+
 
 
 # **dlopen**
