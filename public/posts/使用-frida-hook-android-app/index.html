@@ -47,8 +47,8 @@ adb push D:\app逆向\Frida\frida-server-16.5.2-android-arm64 /data/local/tmp/fs
   <meta property="og:locale" content="zh_cn">
   <meta property="og:type" content="article">
     <meta property="article:section" content="posts">
-    <meta property="article:published_time" content="2025-04-21T01:36:04+08:00">
-    <meta property="article:modified_time" content="2025-04-21T01:36:04+08:00">
+    <meta property="article:published_time" content="2025-05-03T00:15:51+08:00">
+    <meta property="article:modified_time" content="2025-05-03T00:15:51+08:00">
 
 
   </head>
@@ -89,7 +89,7 @@ adb push D:\app逆向\Frida\frida-server-16.5.2-android-arm64 /data/local/tmp/fs
   <title>calendar</title>
   <rect x="3" y="4" width="18" height="18" rx="2" ry="2"></rect><line x1="16" y1="2" x2="16" y2="6"></line><line x1="8" y1="2" x2="8" y2="6"></line><line x1="3" y1="10" x2="21" y2="10"></line>
 </svg>
-          Apr 21, 2025
+          May 3, 2025
         </div>
         <div>
           <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="icon icon-clock">
@@ -264,7 +264,7 @@ frida -H 127.0.0.1:1234 -l script.js -n com.shizhuang.duapp
 </code></pre><p>此命令会自动找到当前设备上的前台应用并附加到它，无需手动指定应用程序包名。</p>
 <h2 id="2-启动应用并附加到当前启动进程"><strong>2. 启动应用并附加到当前启动进程</strong></h2>
 <p>-f 指定要启动的应用包名</p>
-<pre tabindex="0"><code>frida -H 127.0.0.1:1234 -l script.js -n com.shizhuang.duapp
+<pre tabindex="0"><code>frida -H 127.0.0.1:1234 -l script.js -f com.shizhuang.duapp
 </code></pre><p>此命令会自动启动应用并附加到它，启动后应用默认处于暂停状态，执行 %resume 命令恢复执行。</p>
 <h2 id="3-通过包名附加到正在运行的应用"><strong>3. 通过包名附加到正在运行的应用</strong></h2>
 <p>-n 指定要附加的应用包名</p>

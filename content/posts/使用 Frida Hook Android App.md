@@ -1,6 +1,6 @@
 +++
 title = '使用 Frida Hook Android App'
-date = 2025-04-21T01:36:04.554271+08:00
+date = 2025-05-03T00:15:51.264912+08:00
 draft = false
 +++
 
@@ -293,7 +293,7 @@ frida -H 127.0.0.1:1234 -F -l script.js
 -f 指定要启动的应用包名
 
 ```
-frida -H 127.0.0.1:1234 -l script.js -n com.shizhuang.duapp
+frida -H 127.0.0.1:1234 -l script.js -f com.shizhuang.duapp
 ```
 此命令会自动启动应用并附加到它，启动后应用默认处于暂停状态，执行 %resume 命令恢复执行。
 
