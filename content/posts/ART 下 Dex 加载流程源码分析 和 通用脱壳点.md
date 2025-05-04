@@ -1,6 +1,6 @@
 +++
 title = 'ART 下 Dex 加载流程源码分析 和 通用脱壳点'
-date = 2025-05-04T22:16:10.942056+08:00
+date = 2025-05-04T22:27:06.371343+08:00
 draft = false
 +++
 
@@ -889,39 +889,42 @@ OAT 文件主要用于：
 
 
 
-list_art_functions.js
+list_module_functions.js
 
 ```
-function listAllLibartFunctions() {
-    const libart = Module.findBaseAddress("libart.so");
-    if (!libart) {
-        console.error("[-] libart.so not found.");
+function listAllFunctions(moduleName) {
+    const baseAddr = Module.findBaseAddress(moduleName);
+    if (!baseAddr) {
+        console.error(`[-] ${moduleName} not found.`);
         return;
     }
 
-    console.log("[+] libart.so base address:", libart);
+    console.log(`[+] ${moduleName} base address:`, baseAddr);
 
-    const symbols = Module.enumerateSymbolsSync("libart.so");
+    const symbols = Module.enumerateSymbolsSync(moduleName);
     let count = 0;
 
     for (let sym of symbols) {
         if (sym.type === 'function') {
-            console.log("[" + count + "]", sym.address, sym.name);
+            console.log(`[${count}]`, sym.address, sym.name);
             count++;
         }
     }
 
-    console.log("[*] Total function symbols found:", count);
+    console.log(`[*] Total function symbols found in ${moduleName}:`, count);
 }
 
-setImmediate(listAllLibartFunctions);
+// 列出 libart.so 的所有函数
+setImmediate(function () {
+    listAllFunctions("libart.so");
+});
 ```
 
 
 执行脚本
 
 ```
-frida -H 127.0.0.1:1234  -F -l list_art_functions.js -o log.txt
+frida -H 127.0.0.1:1234  -F -l list_module_functions.js -o log.txt
 ```
 
 
