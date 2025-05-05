@@ -6,8 +6,15 @@
     <description>Recent content on CYRUS STUDIO</description>
     <generator>Hugo</generator>
     <language>zh-cn</language>
-    <lastBuildDate>Mon, 05 May 2025 23:42:30 +0800</lastBuildDate>
+    <lastBuildDate>Tue, 06 May 2025 00:53:33 +0800</lastBuildDate>
     <atom:link href="https://cyrus-studio.github.io/blog/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Android 下的 ClassLoader 与 双亲委派机制</title>
+      <link>https://cyrus-studio.github.io/blog/posts/android-%E4%B8%8B%E7%9A%84-classloader-%E4%B8%8E-%E5%8F%8C%E4%BA%B2%E5%A7%94%E6%B4%BE%E6%9C%BA%E5%88%B6/</link>
+      <pubDate>Tue, 06 May 2025 00:53:33 +0800</pubDate>
+      <guid>https://cyrus-studio.github.io/blog/posts/android-%E4%B8%8B%E7%9A%84-classloader-%E4%B8%8E-%E5%8F%8C%E4%BA%B2%E5%A7%94%E6%B4%BE%E6%9C%BA%E5%88%B6/</guid>
+      <description>版权归作者所有，如有转发，请注明文章出处：https://cyrus-studio.github.io/blog/&#xA;类加载器 ClassLoader 在 JVM（Java Virtual Machine）中，类加载器（ClassLoader）负责将 .class 文件加载到内存中，并将其转换为 JVM 可以使用的 Class 对象。&#xA;JVM 中主要有以下几种类加载器（ClassLoader）：&#xA;1. 引导类加载器（Bootstrap ClassLoader） 加载内容：JDK 的核心类库（JAVA_HOME/lib 下的类，如 rt.jar、java.lang、java.util 等系统类）。&#xA;由 C/C++ 实现，是 JVM 的一部分，JVM 的启动就是通过 Bottstrap ，不是 Java 类。&#xA;没有父类加载器（即 getParent() 返回 null）。&#xA;2. 拓展类加载器（Extension ClassLoader） 加载内容：JAVA_HOME/lib/ext/ 目录或由 java.ext.dirs 指定的路径中的类。&#xA;实现类：sun.misc.Launcher$ExtClassLoader&#xA;父加载器：Bootstrap ClassLoader&#xA;3. 应用类加载器（Application ClassLoader） 加载内容：用户类路径（classpath）上的类，比如通过 -cp 或 -classpath 指定的类和 jar。&#xA;实现类：sun.misc.Launcher$AppClassLoader&#xA;父加载器：Extension ClassLoader&#xA;我们编写的大部分 Java 应用程序类就是由它加载的，ClassLoader.getSystemClassLoader 返回的就是它。&#xA;自定义类加载器 通过继承 java.lang.ClassLoader 自定义类加载器，实现自己的类加载逻辑，比如从网络、数据库、加密文件中加载类。&#xA;类加载顺序，比如：YourCustomClassLoader.findClass( classX.class)</description>
+    </item>
     <item>
       <title>关于 dex2oat 以及 vdex、cdex、dex 格式转换</title>
       <link>https://cyrus-studio.github.io/blog/posts/%E5%85%B3%E4%BA%8E-dex2oat-%E4%BB%A5%E5%8F%8A-vdexcdexdex-%E6%A0%BC%E5%BC%8F%E8%BD%AC%E6%8D%A2/</link>
@@ -70,13 +77,6 @@
       <pubDate>Thu, 24 Apr 2025 03:49:04 +0800</pubDate>
       <guid>https://cyrus-studio.github.io/blog/posts/%E8%AF%A6%E8%A7%A3-android-app-%E5%90%AF%E5%8A%A8%E6%B5%81%E7%A8%8B/</guid>
       <description>版权归作者所有，如有转发，请注明文章出处：https://cyrus-studio.github.io/blog/&#xA;APP 启动流程 app 启动流程大概如下：&#xA;发起进程（startActivity/startService...）&#xD;↓&#xD;↓（Binder方式）&#xD;↓&#xD;system_server进程（Process.start）&#xD;↓&#xD;↓（Socket方式）&#xD;↓&#xD;Zygote进程（ZygoteInit.runSelectLoop()） ↓&#xD;新建进程（ActivityThread.main） ActivityThread.main() 是 Android 应用进程的入口函数。&#xA;1. 应用 → AMS（Binder） 由 ActivityManager.getService() 返回的 Binder 接口对象调用系统服务：&#xA;// 应用进程&#xD;ContextImpl.startActivity()&#xD;└── Instrumentation.execStartActivity()&#xD;└── ActivityManager.getService().startActivity() ← AIDL Binder 跨进程&#xD;└── ActivityManagerService.startActivity() 通过 AIDL 实现 Binder 跨进程通信，连接系统服务。&#xA;关于 Android 中 AIDL 实现 Binder 跨进程通信 可以参考：Android中的Service与进程间通信（IPC）详解&#xA;AMS 接口实现：&#xA;http://aospxref.com/android-10.0.0_r47/xref/frameworks/base/services/core/java/com/android/server/am/ActivityManagerService.java#startActivity&#xA;2. AMS/system_server → zygote（Socket） startActivity 最终调用到 Process.start 方法&#xA;475 /**&#xD;476 * State associated with the zygote process.</description>
-    </item>
-    <item>
-      <title>Android 下的 ClassLoader 与 双亲委派机制</title>
-      <link>https://cyrus-studio.github.io/blog/posts/android-%E4%B8%8B%E7%9A%84-classloader-%E4%B8%8E-%E5%8F%8C%E4%BA%B2%E5%A7%94%E6%B4%BE%E6%9C%BA%E5%88%B6/</link>
-      <pubDate>Mon, 21 Apr 2025 20:26:49 +0800</pubDate>
-      <guid>https://cyrus-studio.github.io/blog/posts/android-%E4%B8%8B%E7%9A%84-classloader-%E4%B8%8E-%E5%8F%8C%E4%BA%B2%E5%A7%94%E6%B4%BE%E6%9C%BA%E5%88%B6/</guid>
-      <description>版权归作者所有，如有转发，请注明文章出处：https://cyrus-studio.github.io/blog/&#xA;类加载器 ClassLoader 在 JVM（Java Virtual Machine）中，类加载器（ClassLoader）负责将 .class 文件加载到内存中，并将其转换为 JVM 可以使用的 Class 对象。&#xA;JVM 中主要有以下几种类加载器（ClassLoader）：&#xA;1. 引导类加载器（Bootstrap ClassLoader） 加载内容：JDK 的核心类库（JAVA_HOME/lib 下的类，如 rt.jar、java.lang、java.util 等系统类）。&#xA;由 C/C++ 实现，是 JVM 的一部分，JVM 的启动就是通过 Bottstrap ，不是 Java 类。&#xA;没有父类加载器（即 getParent() 返回 null）。&#xA;2. 拓展类加载器（Extension ClassLoader） 加载内容：JAVA_HOME/lib/ext/ 目录或由 java.ext.dirs 指定的路径中的类。&#xA;实现类：sun.misc.Launcher$ExtClassLoader&#xA;父加载器：Bootstrap ClassLoader&#xA;3. 应用类加载器（Application ClassLoader） 加载内容：用户类路径（classpath）上的类，比如通过 -cp 或 -classpath 指定的类和 jar。&#xA;实现类：sun.misc.Launcher$AppClassLoader&#xA;父加载器：Extension ClassLoader&#xA;我们编写的大部分 Java 应用程序类就是由它加载的，ClassLoader.getSystemClassLoader 返回的就是它。&#xA;自定义类加载器 通过继承 java.lang.ClassLoader 自定义类加载器，实现自己的类加载逻辑，比如从网络、数据库、加密文件中加载类。&#xA;类加载顺序，比如：YourCustomClassLoader.findClass( classX.class)</description>
     </item>
     <item>
       <title>Android NDK 编译 so 文件 抹除导出符号 反逆向</title>
