@@ -6,8 +6,15 @@
     <description>Recent content in Posts on CYRUS STUDIO</description>
     <generator>Hugo</generator>
     <language>zh-cn</language>
-    <lastBuildDate>Sun, 04 May 2025 22:27:06 +0800</lastBuildDate>
+    <lastBuildDate>Mon, 05 May 2025 23:42:30 +0800</lastBuildDate>
     <atom:link href="https://cyrus-studio.github.io/blog/posts/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>关于 dex2oat 以及 vdex、cdex、dex 格式转换</title>
+      <link>https://cyrus-studio.github.io/blog/posts/%E5%85%B3%E4%BA%8E-dex2oat-%E4%BB%A5%E5%8F%8A-vdexcdexdex-%E6%A0%BC%E5%BC%8F%E8%BD%AC%E6%8D%A2/</link>
+      <pubDate>Mon, 05 May 2025 23:42:30 +0800</pubDate>
+      <guid>https://cyrus-studio.github.io/blog/posts/%E5%85%B3%E4%BA%8E-dex2oat-%E4%BB%A5%E5%8F%8A-vdexcdexdex-%E6%A0%BC%E5%BC%8F%E8%BD%AC%E6%8D%A2/</guid>
+      <description>版权归作者所有，如有转发，请注明文章出处：https://cyrus-studio.github.io/blog/&#xA;dex2oat dex2oat 是 Android 系统中的一个核心工具，负责将应用中的 .dex（Dalvik Executable）字节码编译为本地机器代码（native code），以提高运行效率。它的全称是 DEX to OAT（Optimized Android Transport）。&#xA;dex2oat 的作用 在 Android 系统中，Java/Kotlin 编写的应用在编译时会被转换为 .dex 文件。为了提高性能，Android 会将 .dex 文件进一步编译为 .oat 文件（或 .odex/.vdex 文件），以便设备可以直接执行本地代码而不是解释执行 .dex 字节码。&#xA;工作原理（简要流程） 输入：一个或多个 .dex 文件（通常来自 APK 中的 classes.dex）。&#xA;输出：生成 .oat（Optimized Android Executable）、.vdex（Verified DEX）和 .art（Android Runtime）文件。&#xA;过程：&#xA;验证并优化 .dex。&#xA;使用 AOT（Ahead-Of-Time）方式将 .dex 转为本地机器码。&#xA;生成平台相关的可执行文件，用于加快应用启动速度。&#xA;编译模式：&#xA;AOT（Ahead-Of-Time）：安装或开机前就编译好，提高运行速度。&#xA;JIT（Just-In-Time）：运行时动态编译，节省空间但牺牲性能。&#xA;Hybrid（混合）：Android 7.0+ 默认模式，结合 AOT 与 JIT。&#xA;执行时机 第一次开机：系统会对预装的应用使用 dex2oat 编译。&#xA;App 安装时：根据编译策略（speed, quicken, interpret-only 等）选择是否编译。</description>
+    </item>
     <item>
       <title>ART 下 Dex 加载流程源码分析 和 通用脱壳点</title>
       <link>https://cyrus-studio.github.io/blog/posts/art-%E4%B8%8B-dex-%E5%8A%A0%E8%BD%BD%E6%B5%81%E7%A8%8B%E6%BA%90%E7%A0%81%E5%88%86%E6%9E%90-%E5%92%8C-%E9%80%9A%E7%94%A8%E8%84%B1%E5%A3%B3%E7%82%B9/</link>
