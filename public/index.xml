@@ -6,8 +6,15 @@
     <description>Recent content on CYRUS STUDIO</description>
     <generator>Hugo</generator>
     <language>zh-cn</language>
-    <lastBuildDate>Sat, 10 May 2025 20:26:46 +0800</lastBuildDate>
+    <lastBuildDate>Sun, 11 May 2025 22:32:30 +0800</lastBuildDate>
     <atom:link href="https://cyrus-studio.github.io/blog/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Android Native 函数 Hook 技术介绍</title>
+      <link>https://cyrus-studio.github.io/blog/posts/android-native-%E5%87%BD%E6%95%B0-hook-%E6%8A%80%E6%9C%AF%E4%BB%8B%E7%BB%8D/</link>
+      <pubDate>Sun, 11 May 2025 22:32:30 +0800</pubDate>
+      <guid>https://cyrus-studio.github.io/blog/posts/android-native-%E5%87%BD%E6%95%B0-hook-%E6%8A%80%E6%9C%AF%E4%BB%8B%E7%BB%8D/</guid>
+      <description>版权归作者所有，如有转发，请注明文章出处：https://cyrus-studio.github.io/blog/&#xA;前言 Android Native 函数 Hook 技术是一种在应用运行时拦截或替换系统或自身函数行为的手段，常见实现包括 PLT Hook、Inline Hook。&#xA;PLT Hook 和 Inline Hook 是两种不同层次和机制的函数 Hook 技术，常用于逆向工程、安全分析、壳保护或热修复等场景。&#xA;PLT hook 和 Inline hook 有什么区别？ 特性 PLT Hook（符号级） Inline Hook（指令级） Hook 层级 链接层（.plt 或 GOT） 指令层（函数入口指令） Hook 对象 动态库导出的函数 任意函数（不一定导出） 修改内容 修改函数地址指针 修改指令流（如跳转指令） Hook 粒度 通常是库间调用 可以精确到任意函数、库内调用 稳定性 较高 稍差（依赖指令结构、架构） 跨平台兼容性 更好 架构相关（ARM32/ARM64） PLT Hook 原理（也叫 GOT Hook） ELF 中动态链接时使用 PLT（Procedure Linkage Table） 和 GOT（Global Offset Table）；&#xA;程序调用外部函数（如 malloc、fopen）时，实际上是跳到 GOT 表中的地址；</description>
+    </item>
     <item>
       <title>adb 实用命令汇总</title>
       <link>https://cyrus-studio.github.io/blog/posts/adb-%E5%AE%9E%E7%94%A8%E5%91%BD%E4%BB%A4%E6%B1%87%E6%80%BB/</link>
