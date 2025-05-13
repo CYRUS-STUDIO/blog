@@ -1,6 +1,6 @@
 +++
-title = 'Android Native 函数 Hook 技术介绍'
-date = 2025-05-11T22:32:30.627344+08:00
+title = 'Android PLT hook  与 Inline hook'
+date = 2025-05-13T13:03:03.901893+08:00
 draft = false
 +++
 
