@@ -6,8 +6,15 @@
     <description>Recent content on CYRUS STUDIO</description>
     <generator>Hugo</generator>
     <language>zh-cn</language>
-    <lastBuildDate>Tue, 13 May 2025 13:03:03 +0800</lastBuildDate>
+    <lastBuildDate>Wed, 14 May 2025 16:12:27 +0800</lastBuildDate>
     <atom:link href="https://cyrus-studio.github.io/blog/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>基于 art 下的类加载机制，实现函数抽取壳</title>
+      <link>https://cyrus-studio.github.io/blog/posts/%E5%9F%BA%E4%BA%8E-art-%E4%B8%8B%E7%9A%84%E7%B1%BB%E5%8A%A0%E8%BD%BD%E6%9C%BA%E5%88%B6%E5%AE%9E%E7%8E%B0%E5%87%BD%E6%95%B0%E6%8A%BD%E5%8F%96%E5%A3%B3/</link>
+      <pubDate>Wed, 14 May 2025 16:12:27 +0800</pubDate>
+      <guid>https://cyrus-studio.github.io/blog/posts/%E5%9F%BA%E4%BA%8E-art-%E4%B8%8B%E7%9A%84%E7%B1%BB%E5%8A%A0%E8%BD%BD%E6%9C%BA%E5%88%B6%E5%AE%9E%E7%8E%B0%E5%87%BD%E6%95%B0%E6%8A%BD%E5%8F%96%E5%A3%B3/</guid>
+      <description>版权归作者所有，如有转发，请注明文章出处：https://cyrus-studio.github.io/blog/&#xA;ART 下类加载流程 类加载的时机 1、隐式加载：&#xA;创建类的实例&#xA;访问类的静态变量，或者为静态变量赋值&#xA;调用类的静态方法&#xA;使用反射方式来强制创建某个类或接口对应的 java.lang.Class 对象&#xA;初始化某个类的子类&#xA;2、显示加载：&#xA;使用 loadClass() 加载&#xA;使用 forName() 加载&#xA;两者又有所不同。&#xA;类加载的流程 loadClass 和 forName 也是有区别的；&#xA;loadClass 只完成了第一步，就是加载；&#xA;Class.forName 是完成了3步，加载、链接和初始化。&#xA;阶段 发生了什么 加载 字节码文件 -&amp;gt; Class 对象 验证 检查字节码合法性 准备 静态变量分配内存，默认值 解析 符号引用 → 真实引用 初始化 调用 &amp;lt;clinit&amp;gt; 函数，static 代码块执行，静态变量赋值 一个类从“加载” 到 “可以使用” 的完整生命周期：加载（Loading）→ 连接（Linking）→ 初始化（Initialization）。&#xA;加载（Loading）&#xD;↓&#xD;连接（Linking）&#xD;→ 验证（Verification）&#xD;→ 准备（Preparation）&#xD;→ 解析（Resolution）&#xD;↓&#xD;初始化（Initialization）&#xD;↓&#xD;使用（Use）&#xD;↓&#xD;卸载（Unload） 相关文章：Android 下的 ClassLoader 与 双亲委派机制</description>
+    </item>
     <item>
       <title>Android PLT hook  与 Inline hook</title>
       <link>https://cyrus-studio.github.io/blog/posts/android-plt-hook--%E4%B8%8E-inline-hook/</link>
