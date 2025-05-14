@@ -25,13 +25,30 @@
         {{- end }}
       </div>
       {{- end }}
+
+      <link
+        rel="stylesheet"
+        href="https://unpkg.com/@waline/client@v3/dist/waline.css"
+      />
+
     </header>
     <div class="post-content">
       {{ .Content }}
     </div>
     <div class="post-footer">
       {{ template "_internal/disqus.html" . }}
-    </div> 
+    </div>
+
+    <div id="waline"></div>
+    <script type="module">
+      import { init } from 'https://unpkg.com/@waline/client@v3/dist/waline.js';
+
+      init({
+        el: '#waline',
+        serverURL: 'https://waline-15wtwfoa7-cyrus-studios-projects.vercel.app',
+      });
+    </script>
+
   </article>
 
 
