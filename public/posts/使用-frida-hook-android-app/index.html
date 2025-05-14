@@ -10,7 +10,7 @@
     <meta name="description" content="" />
     <meta name="keywords" content="CYRUS STUDIO, 安卓逆向, Android Reverse Engineering, 移动开发, 安卓开发, Python">
     <meta name="robots" content="index, follow">
-    <link rel="stylesheet" href="/blog/css/main.min.bb3c8bd40402f0e35e7b43ec0d545e257afe2ef699d11f761ae6d7421dbfdbc3.css" />
+    <link rel="stylesheet" href="/blog/css/main.min.222e3c114196bc15e243db07e40e37e4323a4b4652c39e93d08b8696796cc2ed.css" />
     
 
     
@@ -85,22 +85,41 @@ adb push D:\app逆向\Frida\frida-server-16.5.2-android-arm64 /data/local/tmp/fs
     <header class="post-header">
       <meta charset="UTF-8" />
       <h1 class ="post-title">使用 Frida Hook Android App</h1>
-      <div class="post-meta">
+      <div class="post-meta" style="display: flex; gap: 1em; flex-wrap: wrap; align-items: center;">
         <div>
-          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="icon icon-calendar">
+    <span class="meta-item">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="icon icon-eye">
+  <title>eye</title>
+  <path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"></path><circle cx="12" cy="12" r="3"></circle>
+</svg>
+      阅读量: <span class="waline-pageview-count" data-path="/blog/posts/%E4%BD%BF%E7%94%A8-frida-hook-android-app/"></span>
+    </span>
+        </div>
+        <div>
+    <span class="meta-item">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="icon icon-calendar">
   <title>calendar</title>
   <rect x="3" y="4" width="18" height="18" rx="2" ry="2"></rect><line x1="16" y1="2" x2="16" y2="6"></line><line x1="8" y1="2" x2="8" y2="6"></line><line x1="3" y1="10" x2="21" y2="10"></line>
 </svg>
-          May 3, 2025
+      May 3, 2025
+    </span>
         </div>
         <div>
-          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="icon icon-clock">
+    <span class="meta-item">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="icon icon-clock">
   <title>clock</title>
   <circle cx="12" cy="12" r="10"></circle><polyline points="12 6 12 12 16 14"></polyline>
 </svg>
-          7 min read
+      7 min read
+    </span>
         </div>
       </div>
+
+      <link
+        rel="stylesheet"
+        href="https://unpkg.com/@waline/client@v3/dist/waline.css"
+      />
+
     </header>
     <div class="post-content">
       <blockquote>
@@ -553,7 +572,20 @@ Leaving native function，retval: 0x41
     </div>
     <div class="post-footer">
       
-    </div> 
+    </div>
+
+    <div id="waline"></div>
+    <script type="module">
+      import { init } from 'https://unpkg.com/@waline/client@v3/dist/waline.js';
+
+      init({
+        el: '#waline',
+        serverURL: 'https://waline-15wtwfoa7-cyrus-studios-projects.vercel.app',
+        path: location.pathname, 
+        pageview: true,          
+      });
+    </script>
+
   </article>
 
 

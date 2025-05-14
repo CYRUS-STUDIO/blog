@@ -10,7 +10,7 @@
     <meta name="description" content="" />
     <meta name="keywords" content="CYRUS STUDIO, 安卓逆向, Android Reverse Engineering, 移动开发, 安卓开发, Python">
     <meta name="robots" content="index, follow">
-    <link rel="stylesheet" href="/blog/css/main.min.bb3c8bd40402f0e35e7b43ec0d545e257afe2ef699d11f761ae6d7421dbfdbc3.css" />
+    <link rel="stylesheet" href="/blog/css/main.min.222e3c114196bc15e243db07e40e37e4323a4b4652c39e93d08b8696796cc2ed.css" />
     
 
     
@@ -66,6 +66,12 @@
     <header class="post-header">
       <meta charset="UTF-8" />
       <h1 class ="post-title">About</h1>
+
+      <link
+        rel="stylesheet"
+        href="https://unpkg.com/@waline/client@v3/dist/waline.css"
+      />
+
     </header>
     <div class="post-content">
       <p>欢迎访问我的博客！在这里分享我的android、python相关知识、经验和项目。</p>
@@ -78,7 +84,20 @@
     </div>
     <div class="post-footer">
       
-    </div> 
+    </div>
+
+    <div id="waline"></div>
+    <script type="module">
+      import { init } from 'https://unpkg.com/@waline/client@v3/dist/waline.js';
+
+      init({
+        el: '#waline',
+        serverURL: 'https://waline-15wtwfoa7-cyrus-studios-projects.vercel.app',
+        path: location.pathname, 
+        pageview: true,          
+      });
+    </script>
+
   </article>
 
 
