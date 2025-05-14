@@ -4,23 +4,35 @@
       <meta charset="UTF-8" />
       <h1 class ="post-title">{{ .Title }}</h1>
       {{- if ne .Type "page" }}
-      <div class="post-meta">
+      <div class="post-meta" style="display: flex; gap: 1em; flex-wrap: wrap; align-items: center;">
         <div>
-          {{ partial "icon.html" (dict "ctx" $ "name" "calendar") }}
-          {{ .PublishDate.Format "Jan 2, 2006" }}
+    <span class="meta-item">
+      {{ partial "icon.html" (dict "ctx" $ "name" "eye") }}
+      阅读量: <span class="waline-pageview-count" data-path="{{ .RelPermalink }}"></span>
+    </span>
         </div>
         <div>
-          {{ partial "icon.html" (dict "ctx" $ "name" "clock") }}
-          {{ .ReadingTime }} min read
+    <span class="meta-item">
+      {{ partial "icon.html" (dict "ctx" $ "name" "calendar") }}
+      {{ .PublishDate.Format "Jan 2, 2006" }}
+    </span>
+        </div>
+        <div>
+    <span class="meta-item">
+      {{ partial "icon.html" (dict "ctx" $ "name" "clock") }}
+      {{ .ReadingTime }} min read
+    </span>
         </div>
         {{- with .Params.tags }}
         <div>
-          {{ partial "icon.html" (dict "ctx" $ "name" "tag") }}
-          {{- range . -}}
-            {{ with $.Site.GetPage (printf "/%s/%s" "tags" . ) }}
-              <a class="tag" href="{{ .Permalink }}">{{ .Title }}</a>
-            {{- end }}
-          {{- end }}
+    <span class="meta-item">
+      {{ partial "icon.html" (dict "ctx" $ "name" "tag") }}
+      {{- range . -}}
+        {{ with $.Site.GetPage (printf "/%s/%s" "tags" . ) }}
+          <a class="tag" href="{{ .Permalink }}">{{ .Title }}</a>
+        {{- end }}
+      {{- end }}
+    </span>
         </div>
         {{- end }}
       </div>
@@ -46,6 +58,8 @@
       init({
         el: '#waline',
         serverURL: 'https://waline-15wtwfoa7-cyrus-studios-projects.vercel.app',
+        path: location.pathname, // ← 当前页面路径
+        pageview: true,          // ← 启用浏览量统计
       });
     </script>
 

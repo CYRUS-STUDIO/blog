@@ -85,3 +85,13 @@ pre:hover .copy-btn {
 ::-moz-selection {
   background: rgba($light-color, .25);
 }
+
+.meta-item {
+  display: inline-flex;
+  align-items: center;
+}
+
+.meta-item svg {
+  margin-right: 0.3em; /* 控制 icon 与文字的距离 */
+}
+
