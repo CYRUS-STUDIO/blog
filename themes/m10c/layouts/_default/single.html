@@ -47,21 +47,28 @@
   <div class="post-content">
     {{ .Content }}
   </div>
+
+
   <div class="post-footer">
-    {{ template "_internal/disqus.html" . }}
+
+    <!-- 可选的 Disqus 评论区（如果你使用 Waline 可以删除这一块） -->
+    <!-- {{ template "_internal/disqus.html" . }} -->
+
+    <!-- 分隔线 -->
+    <hr class="section-divider" />
+
+    <div id="waline"></div>
+    <script type="module">
+      import { init } from 'https://unpkg.com/@waline/client@v3/dist/waline.js';
+
+      init({
+        el: '#waline',
+        serverURL: 'https://waline-15wtwfoa7-cyrus-studios-projects.vercel.app',
+        path: location.pathname, // ← 当前页面路径
+        pageview: true,          // ← 启用浏览量统计
+      });
+    </script>
   </div>
-
-  <div id="waline"></div>
-  <script type="module">
-    import { init } from 'https://unpkg.com/@waline/client@v3/dist/waline.js';
-
-    init({
-      el: '#waline',
-      serverURL: 'https://waline-15wtwfoa7-cyrus-studios-projects.vercel.app',
-      path: location.pathname, // ← 当前页面路径
-      pageview: true,          // ← 启用浏览量统计
-    });
-  </script>
 
 </article>
 

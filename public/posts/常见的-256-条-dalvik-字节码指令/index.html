@@ -10,7 +10,7 @@
     <meta name="description" content="" />
     <meta name="keywords" content="CYRUS STUDIO, 安卓逆向, Android Reverse Engineering, 移动开发, 安卓开发, Python">
     <meta name="robots" content="index, follow">
-    <link rel="stylesheet" href="/blog/css/main.min.222e3c114196bc15e243db07e40e37e4323a4b4652c39e93d08b8696796cc2ed.css" />
+    <link rel="stylesheet" href="/blog/css/main.min.d970c1dc93ec518baa03345e73aafb7a5a0879e5830ca966a23c6d3552430ab1.css" />
     
 
     
@@ -65,48 +65,48 @@ Dalvik 字节码指令是 Android 虚拟机的指令集，广泛用于处理 .de
     </header>
     <main class="app-container">
       
-  <article class="post">
-    <header class="post-header">
-      <meta charset="UTF-8" />
-      <h1 class ="post-title">常见的 256 条 Dalvik 字节码指令</h1>
-      <div class="post-meta" style="display: flex; gap: 1em; flex-wrap: wrap; align-items: center;">
-        <div>
-    <span class="meta-item">
-      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="icon icon-eye">
+<article class="post">
+  <header class="post-header">
+    <meta charset="UTF-8"/>
+    <h1 class="post-title">常见的 256 条 Dalvik 字节码指令</h1>
+    <div class="post-meta" style="display: flex; gap: 1em; flex-wrap: wrap; align-items: center;">
+      <div>
+        <span class="meta-item">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="icon icon-eye">
   <title>eye</title>
   <path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"></path><circle cx="12" cy="12" r="3"></circle>
 </svg>
-      阅读量: <span class="waline-pageview-count" data-path="/blog/posts/%E5%B8%B8%E8%A7%81%E7%9A%84-256-%E6%9D%A1-dalvik-%E5%AD%97%E8%8A%82%E7%A0%81%E6%8C%87%E4%BB%A4/"></span>
-    </span>
-        </div>
-        <div>
-    <span class="meta-item">
-      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="icon icon-calendar">
+          阅读量: <span class="waline-pageview-count" data-path="/blog/posts/%E5%B8%B8%E8%A7%81%E7%9A%84-256-%E6%9D%A1-dalvik-%E5%AD%97%E8%8A%82%E7%A0%81%E6%8C%87%E4%BB%A4/"></span>
+        </span>
+      </div>
+      <div>
+        <span class="meta-item">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="icon icon-calendar">
   <title>calendar</title>
   <rect x="3" y="4" width="18" height="18" rx="2" ry="2"></rect><line x1="16" y1="2" x2="16" y2="6"></line><line x1="8" y1="2" x2="8" y2="6"></line><line x1="3" y1="10" x2="21" y2="10"></line>
 </svg>
-      Oct 5, 2024
-    </span>
-        </div>
-        <div>
-    <span class="meta-item">
-      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="icon icon-clock">
+          Oct 5, 2024
+        </span>
+      </div>
+      <div>
+        <span class="meta-item">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="icon icon-clock">
   <title>clock</title>
   <circle cx="12" cy="12" r="10"></circle><polyline points="12 6 12 12 16 14"></polyline>
 </svg>
-      3 min read
-    </span>
-        </div>
+          3 min read
+        </span>
       </div>
+    </div>
 
-      <link
-        rel="stylesheet"
-        href="https://unpkg.com/@waline/client@v3/dist/waline.css"
-      />
+    <link
+      rel="stylesheet"
+      href="https://unpkg.com/@waline/client@v3/dist/waline.css"
+    />
 
-    </header>
-    <div class="post-content">
-      <blockquote>
+  </header>
+  <div class="post-content">
+    <blockquote>
 <p>版权归作者所有，如有转发，请注明文章出处：<a href="https://cyrus-studio.github.io/blog/">https://cyrus-studio.github.io/blog/</a></p>
 </blockquote>
 <p>Dalvik 字节码指令是 Android 虚拟机的指令集，广泛用于处理 .dex 文件中的代码。下面列出一些常用的 Dalvik 指令，但 Dalvik 指令集有很多操作码，这里仅列出 256 个常用指令及其功能简述。为简明起见，指令按类别分类。</p>
@@ -245,10 +245,16 @@ Dalvik 字节码指令是 Android 虚拟机的指令集，广泛用于处理 .de
 </ul>
 <p>这 256 条指令涵盖了 Dalvik 指令集中常用的加载、移动、算术运算、逻辑运算、条件跳转、方法调用等指令类别。</p>
 
-    </div>
-    <div class="post-footer">
-      
-    </div>
+  </div>
+
+
+  <div class="post-footer">
+
+    
+    
+
+    
+    <hr class="section-divider" />
 
     <div id="waline"></div>
     <script type="module">
@@ -261,8 +267,9 @@ Dalvik 字节码指令是 Android 虚拟机的指令集，广泛用于处理 .de
         pageview: true,          
       });
     </script>
+  </div>
 
-  </article>
+</article>
 
 
 
@@ -280,40 +287,39 @@ Dalvik 字节码指令是 Android 虚拟机的指令集，广泛用于处理 .de
 
 <script src="https://cdnjs.cloudflare.com/ajax/libs/clipboard.js/2.0.10/clipboard.min.js"></script>
 <script>
-    document.addEventListener('DOMContentLoaded', function() {
-        
-        document.querySelectorAll('pre').forEach(function(block) {
-            
-            var button = document.createElement('button');
-            button.className = 'copy-btn';
-            button.textContent = '复制';
+  document.addEventListener('DOMContentLoaded', function() {
+      
+      document.querySelectorAll('pre').forEach(function(block) {
+          
+          var button = document.createElement('button');
+          button.className = 'copy-btn';
+          button.textContent = '复制';
 
-            
-            block.appendChild(button);
+          
+          block.appendChild(button);
 
-            
-            var clipboard = new ClipboardJS(button, {
-                target: function() {
-                    return block.querySelector('code');
-                }
-            });
+          
+          var clipboard = new ClipboardJS(button, {
+              target: function() {
+                  return block.querySelector('code');
+              }
+          });
 
-            
-            clipboard.on('success', function(e) {
-                e.trigger.textContent = '复制成功';
-                setTimeout(function() {
-                    e.trigger.textContent = '复制';
-                }, 2000);
-            });
+          
+          clipboard.on('success', function(e) {
+              e.trigger.textContent = '复制成功';
+              setTimeout(function() {
+                  e.trigger.textContent = '复制';
+              }, 2000);
+          });
 
-            
-            clipboard.on('error', function(e) {
-                e.trigger.textContent = '复制失败';
-            });
-        });
-    });
+          
+          clipboard.on('error', function(e) {
+              e.trigger.textContent = '复制失败';
+          });
+      });
+  });
 </script>
-
 
 
 
