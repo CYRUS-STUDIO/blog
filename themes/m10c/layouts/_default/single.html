@@ -1,69 +1,69 @@
 ﻿{{ define "main" }}
-  <article class="post">
-    <header class="post-header">
-      <meta charset="UTF-8" />
-      <h1 class ="post-title">{{ .Title }}</h1>
-      {{- if ne .Type "page" }}
-      <div class="post-meta" style="display: flex; gap: 1em; flex-wrap: wrap; align-items: center;">
-        <div>
-    <span class="meta-item">
-      {{ partial "icon.html" (dict "ctx" $ "name" "eye") }}
-      阅读量: <span class="waline-pageview-count" data-path="{{ .RelPermalink }}"></span>
-    </span>
-        </div>
-        <div>
-    <span class="meta-item">
-      {{ partial "icon.html" (dict "ctx" $ "name" "calendar") }}
-      {{ .PublishDate.Format "Jan 2, 2006" }}
-    </span>
-        </div>
-        <div>
-    <span class="meta-item">
-      {{ partial "icon.html" (dict "ctx" $ "name" "clock") }}
-      {{ .ReadingTime }} min read
-    </span>
-        </div>
-        {{- with .Params.tags }}
-        <div>
-    <span class="meta-item">
-      {{ partial "icon.html" (dict "ctx" $ "name" "tag") }}
-      {{- range . -}}
-        {{ with $.Site.GetPage (printf "/%s/%s" "tags" . ) }}
-          <a class="tag" href="{{ .Permalink }}">{{ .Title }}</a>
-        {{- end }}
-      {{- end }}
-    </span>
-        </div>
-        {{- end }}
+<article class="post">
+  <header class="post-header">
+    <meta charset="UTF-8"/>
+    <h1 class="post-title">{{ .Title }}</h1>
+    {{- if ne .Type "page" }}
+    <div class="post-meta" style="display: flex; gap: 1em; flex-wrap: wrap; align-items: center;">
+      <div>
+        <span class="meta-item">
+          {{ partial "icon.html" (dict "ctx" $ "name" "eye") }}
+          阅读量: <span class="waline-pageview-count" data-path="{{ .RelPermalink }}"></span>
+        </span>
+      </div>
+      <div>
+        <span class="meta-item">
+          {{ partial "icon.html" (dict "ctx" $ "name" "calendar") }}
+          {{ .PublishDate.Format "Jan 2, 2006" }}
+        </span>
+      </div>
+      <div>
+        <span class="meta-item">
+          {{ partial "icon.html" (dict "ctx" $ "name" "clock") }}
+          {{ .ReadingTime }} min read
+        </span>
+      </div>
+      {{- with .Params.tags }}
+      <div>
+        <span class="meta-item">
+          {{ partial "icon.html" (dict "ctx" $ "name" "tag") }}
+          {{- range . -}}
+            {{ with $.Site.GetPage (printf "/%s/%s" "tags" . ) }}
+              <a class="tag" href="{{ .Permalink }}">{{ .Title }}</a>
+            {{- end }}
+          {{- end }}
+        </span>
       </div>
       {{- end }}
-
-      <link
-        rel="stylesheet"
-        href="https://unpkg.com/@waline/client@v3/dist/waline.css"
-      />
-
-    </header>
-    <div class="post-content">
-      {{ .Content }}
     </div>
-    <div class="post-footer">
-      {{ template "_internal/disqus.html" . }}
-    </div>
+    {{- end }}
 
-    <div id="waline"></div>
-    <script type="module">
-      import { init } from 'https://unpkg.com/@waline/client@v3/dist/waline.js';
+    <link
+      rel="stylesheet"
+      href="https://unpkg.com/@waline/client@v3/dist/waline.css"
+    />
 
-      init({
-        el: '#waline',
-        serverURL: 'https://waline-15wtwfoa7-cyrus-studios-projects.vercel.app',
-        path: location.pathname, // ← 当前页面路径
-        pageview: true,          // ← 启用浏览量统计
-      });
-    </script>
+  </header>
+  <div class="post-content">
+    {{ .Content }}
+  </div>
+  <div class="post-footer">
+    {{ template "_internal/disqus.html" . }}
+  </div>
 
-  </article>
+  <div id="waline"></div>
+  <script type="module">
+    import { init } from 'https://unpkg.com/@waline/client@v3/dist/waline.js';
+
+    init({
+      el: '#waline',
+      serverURL: 'https://waline-15wtwfoa7-cyrus-studios-projects.vercel.app',
+      path: location.pathname, // ← 当前页面路径
+      pageview: true,          // ← 启用浏览量统计
+    });
+  </script>
+
+</article>
 
 
 <!-- TOC 容器 -->
@@ -81,40 +81,39 @@
 <!-- 复制代码 -->
 <script src="https://cdnjs.cloudflare.com/ajax/libs/clipboard.js/2.0.10/clipboard.min.js"></script>
 <script>
-    document.addEventListener('DOMContentLoaded', function() {
-        // 查找页面中所有的 <pre> 标签
-        document.querySelectorAll('pre').forEach(function(block) {
-            // 创建复制按钮
-            var button = document.createElement('button');
-            button.className = 'copy-btn';
-            button.textContent = '复制';
+  document.addEventListener('DOMContentLoaded', function() {
+      // 查找页面中所有的 <pre> 标签
+      document.querySelectorAll('pre').forEach(function(block) {
+          // 创建复制按钮
+          var button = document.createElement('button');
+          button.className = 'copy-btn';
+          button.textContent = '复制';
 
-            // 将按钮插入到 <pre> 元素中
-            block.appendChild(button);
+          // 将按钮插入到 <pre> 元素中
+          block.appendChild(button);
 
-            // 初始化 Clipboard.js 复制功能
-            var clipboard = new ClipboardJS(button, {
-                target: function() {
-                    return block.querySelector('code');
-                }
-            });
+          // 初始化 Clipboard.js 复制功能
+          var clipboard = new ClipboardJS(button, {
+              target: function() {
+                  return block.querySelector('code');
+              }
+          });
 
-            // 成功复制时显示提示
-            clipboard.on('success', function(e) {
-                e.trigger.textContent = '复制成功';
-                setTimeout(function() {
-                    e.trigger.textContent = '复制';
-                }, 2000);
-            });
+          // 成功复制时显示提示
+          clipboard.on('success', function(e) {
+              e.trigger.textContent = '复制成功';
+              setTimeout(function() {
+                  e.trigger.textContent = '复制';
+              }, 2000);
+          });
 
-            // 复制失败时处理
-            clipboard.on('error', function(e) {
-                e.trigger.textContent = '复制失败';
-            });
-        });
-    });
+          // 复制失败时处理
+          clipboard.on('error', function(e) {
+              e.trigger.textContent = '复制失败';
+          });
+      });
+  });
 </script>
-
 
 
 {{ end }}
