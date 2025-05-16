@@ -6,8 +6,15 @@
     <description>Recent content on CYRUS STUDIO</description>
     <generator>Hugo</generator>
     <language>zh-cn</language>
-    <lastBuildDate>Thu, 15 May 2025 15:41:19 +0800</lastBuildDate>
+    <lastBuildDate>Fri, 16 May 2025 18:56:56 +0800</lastBuildDate>
     <atom:link href="https://cyrus-studio.github.io/blog/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>如何让 Google 收录 Github Pages 个人博客</title>
+      <link>https://cyrus-studio.github.io/blog/posts/%E5%A6%82%E4%BD%95%E8%AE%A9-google-%E6%94%B6%E5%BD%95-github-pages-%E4%B8%AA%E4%BA%BA%E5%8D%9A%E5%AE%A2/</link>
+      <pubDate>Fri, 16 May 2025 18:56:56 +0800</pubDate>
+      <guid>https://cyrus-studio.github.io/blog/posts/%E5%A6%82%E4%BD%95%E8%AE%A9-google-%E6%94%B6%E5%BD%95-github-pages-%E4%B8%AA%E4%BA%BA%E5%8D%9A%E5%AE%A2/</guid>
+      <description>版权归作者所有，如有转发，请注明文章出处：https://cyrus-studio.github.io/blog/&#xA;如何确认自己的网站有没有被 google 收录 假设网址是：https://cyrus-studio.github.io/blog&#xA;搜索：site:https://cyrus-studio.github.io/blog，如果没有任何内容就是没有被收录。&#xA;提交站点到 Google Search Console 点击 “尝试使用 Google Search Console”，输入网址，点击继续&#xA;验证站点所有权，下载一个 googlexxxx.html 文件&#xA;将此文件放在你的 GitHub Pages 仓库下的根目录下，git push 重新构建网站&#xA;确认能正常访问：https://cyrus-studio.github.io/blog/google831ed0d6f75c24f0.html&#xA;点击验证按钮&#xA;验证完成&#xA;等待收录&#xA;提交 Sitemap（可选但推荐） Sitemap 能帮助 Google 更好地理解你的网站结构。&#xA;Hugo 默认生成 sitemap 于：&#xA;https://cyrus-studio.github.io/blog/sitemap.xml 在 Google Search Console 中提交这个 sitemap：&#xA;打开你的属性&#xA;点击左侧“索引 &amp;gt; Sitemap”&#xA;输入 sitemap.xml 并提交&#xA;添加 robots.txt（确认允许爬取） 在你的仓库中添加 robots.txt 文件：&#xA;User-agent: *&#xD;Allow: /&#xD;Sitemap: https://cyrus-studio.github.io/blog/sitemap.xml 确保 Google bot 被允许访问页面。&#xA;git push</description>
+    </item>
     <item>
       <title>在 Hugo 博客中集成评论系统 Waline 与 浏览量统计</title>
       <link>https://cyrus-studio.github.io/blog/posts/%E5%9C%A8-hugo-%E5%8D%9A%E5%AE%A2%E4%B8%AD%E9%9B%86%E6%88%90%E8%AF%84%E8%AE%BA%E7%B3%BB%E7%BB%9F-waline-%E4%B8%8E-%E6%B5%8F%E8%A7%88%E9%87%8F%E7%BB%9F%E8%AE%A1/</link>
