@@ -6,8 +6,15 @@
     <description>Recent content in Posts on CYRUS STUDIO</description>
     <generator>Hugo</generator>
     <language>zh-cn</language>
-    <lastBuildDate>Fri, 16 May 2025 18:56:56 +0800</lastBuildDate>
+    <lastBuildDate>Mon, 19 May 2025 22:34:23 +0800</lastBuildDate>
     <atom:link href="https://cyrus-studio.github.io/blog/posts/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>FART 主动调用组件设计和源码分析</title>
+      <link>https://cyrus-studio.github.io/blog/posts/fart-%E4%B8%BB%E5%8A%A8%E8%B0%83%E7%94%A8%E7%BB%84%E4%BB%B6%E8%AE%BE%E8%AE%A1%E5%92%8C%E6%BA%90%E7%A0%81%E5%88%86%E6%9E%90/</link>
+      <pubDate>Mon, 19 May 2025 22:34:23 +0800</pubDate>
+      <guid>https://cyrus-studio.github.io/blog/posts/fart-%E4%B8%BB%E5%8A%A8%E8%B0%83%E7%94%A8%E7%BB%84%E4%BB%B6%E8%AE%BE%E8%AE%A1%E5%92%8C%E6%BA%90%E7%A0%81%E5%88%86%E6%9E%90/</guid>
+      <description>版权归作者所有，如有转发，请注明文章出处：https://cyrus-studio.github.io/blog/&#xA;现有脱壳方法存在的问题 脱壳粒度集中在 DexFile 整体，当前对 apk 保护的粒度在函数粒度，这就导致了脱壳与加固的不对等，无法应对函数粒度的加固保护。&#xA;Dalvik 下的基于主动调用的自动化脱壳方案，首次将粒度下降到函数粒度&#xA;https://github.com/zyq8709/DexHunter&#xA;https://github.com/F8LEFT/FUPK3&#xA;存在问题：&#xA;1、Dalvik 慢慢淡出视野，无法应对 ART 环境&#xA;2、当前没有一个好的脱壳修复框架，无法应用到 VMP 函数的修复&#xA;主动调用相关概念 1、被动调用&#xA;指 app 正常运行过程中发生的调用，该过程只对 dex 中部分的类完成了加载，同时也只是对 dex 中的部分函数完成了调用。&#xA;2、主动调用&#xA;通过构造虚拟调用，从而达到欺骗 “壳” ，让壳误以为 app 在执行正常的函数调用流程从而达成对 dex 中所有类函数的虚拟调用。&#xA;被动调用也可以用来完成函数粒度的修复。如当前通过正常运行 app ，待 app 将 dex 中的类正常加载并完成相关的函数的正常调用后再进行 dex 的 dump 的脱壳方法。&#xA;被动调用脱壳的缺点： 存在修复函数不全的问题。由于测试用例无法覆盖 dex 中所有的函数，导致代码覆盖率低，只能对 app 运行过程中调用过的函数的修复。&#xA;主动调用的优点： 能够覆盖 dex 中所有的函数，从而完成更彻底的函数粒度的修复。同时，函数的修复准确度同主动调用链的构造深度有关。&#xA;FART 中要解决的三个问题 1、如何构造主动调用链并让每一个函数都到达主动调用过程，但是又不影响 app 的正常运行？&#xA;2、如何根据 ArtMethod 定位内存中对应的 CodeItem 的起始地址？&#xA;3、如何遍历 dex 中的所有函数并完成主动调用？</description>
+    </item>
     <item>
       <title>如何让 Google 收录 Github Pages 个人博客</title>
       <link>https://cyrus-studio.github.io/blog/posts/%E5%A6%82%E4%BD%95%E8%AE%A9-google-%E6%94%B6%E5%BD%95-github-pages-%E4%B8%AA%E4%BA%BA%E5%8D%9A%E5%AE%A2/</link>
