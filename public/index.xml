@@ -6,8 +6,15 @@
     <description>Recent content on CYRUS STUDIO</description>
     <generator>Hugo</generator>
     <language>zh-cn</language>
-    <lastBuildDate>Mon, 19 May 2025 23:35:03 +0800</lastBuildDate>
+    <lastBuildDate>Tue, 20 May 2025 19:30:05 +0800</lastBuildDate>
     <atom:link href="https://cyrus-studio.github.io/blog/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>LineageOS源码下载和编译（Xiaomi Mi 6X，wayne）</title>
+      <link>https://cyrus-studio.github.io/blog/posts/lineageos%E6%BA%90%E7%A0%81%E4%B8%8B%E8%BD%BD%E5%92%8C%E7%BC%96%E8%AF%91xiaomi-mi-6xwayne/</link>
+      <pubDate>Tue, 20 May 2025 19:30:05 +0800</pubDate>
+      <guid>https://cyrus-studio.github.io/blog/posts/lineageos%E6%BA%90%E7%A0%81%E4%B8%8B%E8%BD%BD%E5%92%8C%E7%BC%96%E8%AF%91xiaomi-mi-6xwayne/</guid>
+      <description>版权归作者所有，如有转发，请注明文章出处：https://cyrus-studio.github.io/blog/&#xA;源码下载 LineageOS官网：https://lineageos.org/&#xA;LineageOS源码 github 地址：https://github.com/LineageOS/android&#xA;LineageOS源码国内镜像地址：https://mirrors.tuna.tsinghua.edu.cn/help/lineageOS/&#xA;源码大概需要150GB的硬盘空间，编译完成差不多300G&#xA;1. 配置git git config --global user.email &amp;#34;you@example.com&amp;#34;&#xD;git config --global user.name &amp;#34;Your Name&amp;#34; 2. 安装 repo mkdir ~/bin&#xD;PATH=~/bin:$PATH&#xD;curl https://storage.googleapis.com/git-repo-downloads/repo &amp;gt; ~/bin/repo&#xD;chmod a+x ~/bin/repo 3. 安装 Git LFS sudo apt install git-lfs&#xD;git lfs install 4. 安装 Android SDK Platform-Tools 在 Linux 中配置 Android SDK Platform-Tools，可以按照以下步骤进行&#xA;4.1 下载 Android SDK Platform-Tools： # cd 到存放 platform-tools 的目录&#xD;cd /mnt/case_sensitive&#xD;# 下载 platform-tools&#xD;wget https://dl.</description>
+    </item>
     <item>
       <title>FART 自动化脱壳框架简介与脱壳点的选择</title>
       <link>https://cyrus-studio.github.io/blog/posts/fart-%E8%87%AA%E5%8A%A8%E5%8C%96%E8%84%B1%E5%A3%B3%E6%A1%86%E6%9E%B6%E7%AE%80%E4%BB%8B%E4%B8%8E%E8%84%B1%E5%A3%B3%E7%82%B9%E7%9A%84%E9%80%89%E6%8B%A9/</link>
@@ -91,13 +98,6 @@
       <pubDate>Fri, 02 May 2025 23:38:42 +0800</pubDate>
       <guid>https://cyrus-studio.github.io/blog/posts/frida-hook-android-native-%E5%87%BD%E6%95%B0/</guid>
       <description>版权归作者所有，如有转发，请注明文章出处：https://cyrus-studio.github.io/blog/&#xA;RegisterNatives RegisterNatives 是 JNI（Java Native Interface）的一部分，用于在 Java 类和本地 C/C++ 代码之间注册本地方法。其原型如下：&#xA;jint RegisterNatives(JNIEnv* env, jclass clazz, const JNINativeMethod* methods, jint method_count); 参数说明：&#xA;env：JNIEnv 指针。&#xA;clazz：Java 类的 jclass 句柄。&#xA;methods：指向 JNINativeMethod 结构体数组的指针。&#xA;method_count：要注册的方法数量。&#xA;其中，methods 结构体的定义如下：&#xA;typedef struct {&#xD;const char* name; // 方法名称（指向字符串）&#xD;const char* signature; // 方法签名（指向字符串）&#xD;void* fnPtr; // 方法的本地实现（指向本地函数）&#xD;} JNINativeMethod; 可以看到，每个 JNINativeMethod 结构体由 三个指针 组成：&#xA;name（方法名指针）&#xA;signature（方法签名指针）&#xA;fnPtr（本地方法指针）&#xA;一般会有两个 RegisterNatives 函数，CheckJNI 版本只有在调试选项打开时才会调用，我们一般用 JNI 的那个就行。&#xA;[+] Found RegisterNatives symbol: _ZN3art12_GLOBAL__N_18CheckJNI15RegisterNativesEP7_JNIEnvP7_jclassPK15JNINativeMethodi at 0x780d7757a8&#xD;[+] Found RegisterNatives symbol: _ZN3art3JNI15RegisterNativesEP7_JNIEnvP7_jclassPK15JNINativeMethodi at 0x780d7eed10 通过 hook RegisterNatives 实现监控 app 中动态注册的 JNI 函数。代码如下：</description>
-    </item>
-    <item>
-      <title>LineageOS源码下载和编译（Xiaomi Mi 6X，wayne）</title>
-      <link>https://cyrus-studio.github.io/blog/posts/lineageos%E6%BA%90%E7%A0%81%E4%B8%8B%E8%BD%BD%E5%92%8C%E7%BC%96%E8%AF%91xiaomi-mi-6xwayne/</link>
-      <pubDate>Thu, 01 May 2025 21:42:47 +0800</pubDate>
-      <guid>https://cyrus-studio.github.io/blog/posts/lineageos%E6%BA%90%E7%A0%81%E4%B8%8B%E8%BD%BD%E5%92%8C%E7%BC%96%E8%AF%91xiaomi-mi-6xwayne/</guid>
-      <description>版权归作者所有，如有转发，请注明文章出处：https://cyrus-studio.github.io/blog/&#xA;源码下载 LineageOS官网：https://lineageos.org/&#xA;LineageOS源码 github 地址：https://github.com/LineageOS/android&#xA;LineageOS源码国内镜像地址：https://mirrors.tuna.tsinghua.edu.cn/help/lineageOS/&#xA;源码大概需要150GB的硬盘空间，编译完成差不多300G&#xA;1. 配置git git config --global user.email &amp;#34;you@example.com&amp;#34;&#xD;git config --global user.name &amp;#34;Your Name&amp;#34; 2. 安装 repo mkdir ~/bin&#xD;PATH=~/bin:$PATH&#xD;curl https://storage.googleapis.com/git-repo-downloads/repo &amp;gt; ~/bin/repo&#xD;chmod a+x ~/bin/repo 3. 安装 Git LFS sudo apt install git-lfs&#xD;git lfs install 4. 安装 Android SDK Platform-Tools 在 Linux 中配置 Android SDK Platform-Tools，可以按照以下步骤进行&#xA;4.1 下载 Android SDK Platform-Tools： # cd 到存放 platform-tools 的目录&#xD;cd /mnt/case_sensitive&#xD;# 下载 platform-tools&#xD;wget https://dl.</description>
     </item>
     <item>
       <title>使用 Dex2C 加壳保护 Android APK 代码</title>
