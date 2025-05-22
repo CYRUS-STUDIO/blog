@@ -1,6 +1,6 @@
 +++
 title = 'adb 实用命令汇总'
-date = 2025-05-10T20:26:46.367258+08:00
+date = 2025-05-23T00:08:03.708451+08:00
 draft = false
 +++
 
@@ -41,7 +41,7 @@ getprop ro.build.version.sdk
 ```
 
 
-以下是 Android 版本与 API Level 的对应表（截至 Android 15）：
+以下是 **Android 版本与 API Level 的对应表** （截至 Android 15）：
 
 | Android 版本 | API Level | 代号 | 发布时间 |
 |--- | --- | --- | ---|
@@ -302,6 +302,117 @@ adb shell screencap /sdcard/screenshot.png
 adb pull /sdcard/screenshot.png
 # 删除设备中的截图文件
 adb shell rm /sdcard/screenshot.png
+```
+
+
+# Logcat
+
+
+
+## 1. 过滤出 Error 日志（E级别）
+
+
+
+```
+adb logcat *:E
+```
+日志优先级从低到高依次为：
+
+- V - Verbose
+
+- D - Debug
+
+- I - Info
+
+- W - Warn
+
+- E - Error
+
+- F - Fatal
+
+- S - Silent (屏蔽所有日志)
+
+
+
+## 2. 过滤指定包名的日志
+
+
+
+先启动app 再执行下面的命令
+
+```
+adb logcat --pid=$(adb shell pidof com.cyrus.example)
+```
+
+
+## 3. 过滤包含指定字符串的日志
+
+
+
+linux / mac：
+
+```
+adb logcat | grep "关键字"
+```
+
+
+windows：
+
+```
+adb logcat | Select-String "关键字"
+```
+
+
+## 4. 按 Tag 和 Level 过滤
+
+```
+adb logcat System.err:D *:S
+```
+表示只显示 System.err 的 Debug 日志，其他 tag 的都不显示。
+
+
+
+说明：
+
+- 第一个参数指定 System.err:D，设置该 tag 日志级别为 D（Debug）
+
+- 第二个参数 *:S 把其他所有 tag 的日志设为 Silent
+
+
+
+## 5. 清空日志缓存
+
+```
+adb logcat -c
+```
+
+
+## 6. 输出日志到文件
+
+```
+adb logcat -v time > logcat.txt
+```
+- -v time：显示时间戳（还有 brief, process, tag, raw, threadtime, long）
+
+- 输出保存到文件中
+
+
+
+## 7. 结合多种过滤方式
+
+
+
+举例：过滤包名为 com.cyrus.example 的 Error 级别日志，并包含字符串 Exception：
+
+```
+adb logcat --pid=$(adb shell pidof com.cyrus.example) *:E | grep "Exception"
+```
+
+
+windows：
+
+```
+adb logcat --pid=$(adb shell pidof com.cyrus.example) *:E | Select-String "Exception"
 ```
 
 

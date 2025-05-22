@@ -6,8 +6,15 @@
     <description>Recent content on CYRUS STUDIO</description>
     <generator>Hugo</generator>
     <language>zh-cn</language>
-    <lastBuildDate>Tue, 20 May 2025 19:30:05 +0800</lastBuildDate>
+    <lastBuildDate>Fri, 23 May 2025 00:08:03 +0800</lastBuildDate>
     <atom:link href="https://cyrus-studio.github.io/blog/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>adb 实用命令汇总</title>
+      <link>https://cyrus-studio.github.io/blog/posts/adb-%E5%AE%9E%E7%94%A8%E5%91%BD%E4%BB%A4%E6%B1%87%E6%80%BB/</link>
+      <pubDate>Fri, 23 May 2025 00:08:03 +0800</pubDate>
+      <guid>https://cyrus-studio.github.io/blog/posts/adb-%E5%AE%9E%E7%94%A8%E5%91%BD%E4%BB%A4%E6%B1%87%E6%80%BB/</guid>
+      <description>版权归作者所有，如有转发，请注明文章出处：https://cyrus-studio.github.io/blog/&#xA;基础adb命令 # 重启adb adb kill-server&#xD;# 查看已连接的设备&#xD;adb devices&#xD;# 进入命令行&#xD;adb shell&#xD;# 使用 -s 参数来指定设备&#xD;adb -s &amp;lt;设备序列号&amp;gt; shell&#xD;# 显示日志&#xD;adb logcat 获取 API Level 进入 adb shell ，执行下面命令获取当前 Android 系统的 API Level（即 SDK 版本）：&#xA;getprop ro.build.version.sdk 以下是 Android 版本与 API Level 的对应表 （截至 Android 15）：&#xA;Android 版本 API Level 代号 发布时间 Android 15 35 Vanilla Ice Cream 2024年9月 Android 14 34 Upside Down Cake 2023年10月 Android 13 33 Tiramisu 2022年8月 Android 12L 32 2022年3月 Android 12 31 Snow Cone 2021年10月 Android 11 30 Red Velvet Cake 2020年9月 Android 10 29 Q 2019年9月 Android 9 28 Pie 2018年8月 Android 8.</description>
+    </item>
     <item>
       <title>LineageOS源码下载和编译（Xiaomi Mi 6X，wayne）</title>
       <link>https://cyrus-studio.github.io/blog/posts/lineageos%E6%BA%90%E7%A0%81%E4%B8%8B%E8%BD%BD%E5%92%8C%E7%BC%96%E8%AF%91xiaomi-mi-6xwayne/</link>
@@ -56,13 +63,6 @@
       <pubDate>Tue, 13 May 2025 13:03:03 +0800</pubDate>
       <guid>https://cyrus-studio.github.io/blog/posts/android-plt-hook--%E4%B8%8E-inline-hook/</guid>
       <description>版权归作者所有，如有转发，请注明文章出处：https://cyrus-studio.github.io/blog/&#xA;前言 Android Native 函数 Hook 技术是一种在应用运行时拦截或替换系统或自身函数行为的手段，常见实现包括 PLT Hook、Inline Hook。&#xA;PLT Hook 和 Inline Hook 是两种不同层次和机制的函数 Hook 技术，常用于逆向工程、安全分析、壳保护或热修复等场景。&#xA;PLT hook 和 Inline hook 有什么区别？ 特性 PLT Hook（符号级） Inline Hook（指令级） Hook 层级 链接层（.plt 或 GOT） 指令层（函数入口指令） Hook 对象 动态库导出的函数 任意函数（不一定导出） 修改内容 修改函数地址指针 修改指令流（如跳转指令） Hook 粒度 通常是库间调用 可以精确到任意函数、库内调用 稳定性 较高 稍差（依赖指令结构、架构） 跨平台兼容性 更好 架构相关（ARM32/ARM64） PLT Hook 原理（也叫 GOT Hook） ELF 中动态链接时使用 PLT（Procedure Linkage Table） 和 GOT（Global Offset Table）；&#xA;程序调用外部函数（如 malloc、fopen）时，实际上是跳到 GOT 表中的地址；</description>
-    </item>
-    <item>
-      <title>adb 实用命令汇总</title>
-      <link>https://cyrus-studio.github.io/blog/posts/adb-%E5%AE%9E%E7%94%A8%E5%91%BD%E4%BB%A4%E6%B1%87%E6%80%BB/</link>
-      <pubDate>Sat, 10 May 2025 20:26:46 +0800</pubDate>
-      <guid>https://cyrus-studio.github.io/blog/posts/adb-%E5%AE%9E%E7%94%A8%E5%91%BD%E4%BB%A4%E6%B1%87%E6%80%BB/</guid>
-      <description>版权归作者所有，如有转发，请注明文章出处：https://cyrus-studio.github.io/blog/&#xA;基础adb命令 # 重启adb adb kill-server&#xD;# 查看已连接的设备&#xD;adb devices&#xD;# 进入命令行&#xD;adb shell&#xD;# 使用 -s 参数来指定设备&#xD;adb -s &amp;lt;设备序列号&amp;gt; shell&#xD;# 显示日志&#xD;adb logcat 获取 API Level 进入 adb shell ，执行下面命令获取当前 Android 系统的 API Level（即 SDK 版本）：&#xA;getprop ro.build.version.sdk 以下是 Android 版本与 API Level 的对应表（截至 Android 15）：&#xA;Android 版本 API Level 代号 发布时间 Android 15 35 Vanilla Ice Cream 2024年9月 Android 14 34 Upside Down Cake 2023年10月 Android 13 33 Tiramisu 2022年8月 Android 12L 32 2022年3月 Android 12 31 Snow Cone 2021年10月 Android 11 30 Red Velvet Cake 2020年9月 Android 10 29 Q 2019年9月 Android 9 28 Pie 2018年8月 Android 8.</description>
     </item>
     <item>
       <title>关于 dex2oat 以及 vdex、cdex、dex 格式转换</title>
