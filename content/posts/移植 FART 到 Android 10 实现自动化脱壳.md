@@ -1,6 +1,6 @@
 +++
 title = '移植 FART 到 Android 10 实现自动化脱壳'
-date = 2025-05-24T00:19:17.294524+08:00
+date = 2025-05-24T15:17:52.935432+08:00
 draft = false
 +++
 
@@ -1574,6 +1574,13 @@ wayne:/sdcard/fart/com.cyrus.example $ ls
 
 - *.bin 是从 ArtMethod::Invoke 方法中 dump 下来的方法的 CodeItem；
 
+
+
+列出 /sdcard/fart 目录下的文件
+
+```
+adb shell ls /sdcard/fart
+```
 
 
 把整个目录拉取到本地

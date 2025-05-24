@@ -6,12 +6,12 @@
     <description>Recent content on CYRUS STUDIO</description>
     <generator>Hugo</generator>
     <language>zh-cn</language>
-    <lastBuildDate>Sat, 24 May 2025 00:19:17 +0800</lastBuildDate>
+    <lastBuildDate>Sat, 24 May 2025 15:17:52 +0800</lastBuildDate>
     <atom:link href="https://cyrus-studio.github.io/blog/index.xml" rel="self" type="application/rss+xml" />
     <item>
       <title>移植 FART 到 Android 10 实现自动化脱壳</title>
       <link>https://cyrus-studio.github.io/blog/posts/%E7%A7%BB%E6%A4%8D-fart-%E5%88%B0-android-10-%E5%AE%9E%E7%8E%B0%E8%87%AA%E5%8A%A8%E5%8C%96%E8%84%B1%E5%A3%B3/</link>
-      <pubDate>Sat, 24 May 2025 00:19:17 +0800</pubDate>
+      <pubDate>Sat, 24 May 2025 15:17:52 +0800</pubDate>
       <guid>https://cyrus-studio.github.io/blog/posts/%E7%A7%BB%E6%A4%8D-fart-%E5%88%B0-android-10-%E5%AE%9E%E7%8E%B0%E8%87%AA%E5%8A%A8%E5%8C%96%E8%84%B1%E5%A3%B3/</guid>
       <description>版权归作者所有，如有转发，请注明文章出处：https://cyrus-studio.github.io/blog/&#xA;FART 源码 FART 是 ART 环境下基于主动调用的自动化脱壳方案。&#xA;关于 FART 详细介绍参考：&#xA;FART 自动化脱壳框架简介与脱壳点的选择&#xA;FART 主动调用组件设计和源码分析&#xA;开源地址：https://github.com/hanbinglengyue/FART&#xA;目前 FART 是基于 Android 6.0 实现，源码文件结构如下：&#xA;把 FART 源码移植到 LineageOS 17.1（Android 10）。&#xA;关于 LineageOS 源码的下载与编译参考：LineageOS源码下载和编译（Xiaomi Mi 6X，wayne）&#xA;移植 FART 到 Android 10 对比 android 6.0 中的源码和 FART 的源码找到修改的地方并移植到 Android 10 源码中&#xA;interpreter.cc 路径：art/runtime/interpreter/interpreter.cc&#xA;Android 6.0 源码：https://cs.android.com/android/platform/superproject/+/android-6.0.0_r1:art/runtime/interpreter/interpreter.cc&#xA;namespace art 中增加 dumpDexFileByExecute 函数声明&#xA;//add&#xD;extern &amp;#34;C&amp;#34; void dumpDexFileByExecute(ArtMethod* artmethod); 在 Execute 函数头部增加 dumpDexFileByExecute 调用&#xA;static inline JValue Execute(&#xD;Thread* self,&#xD;const CodeItemDataAccessor&amp;amp; accessor,&#xD;ShadowFrame&amp;amp; shadow_frame,&#xD;JValue result_register,&#xD;bool stay_in_interpreter = false,&#xD;bool from_deoptimize = false) REQUIRES_SHARED(Locks::mutator_lock_) {&#xD;//add&#xD;LOG(INFO) &amp;lt;&amp;lt; &amp;#34;[Execute]&amp;#34; &amp;lt;&amp;lt; shadow_frame.</description>
     </item>

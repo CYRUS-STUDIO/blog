@@ -57,8 +57,8 @@ static inline JValue Execute(Thread* self,const CodeItemDataAccessor&amp; acce
   <meta property="og:locale" content="zh_cn">
   <meta property="og:type" content="article">
     <meta property="article:section" content="posts">
-    <meta property="article:published_time" content="2025-05-24T00:19:17+08:00">
-    <meta property="article:modified_time" content="2025-05-24T00:19:17+08:00">
+    <meta property="article:published_time" content="2025-05-24T15:17:52+08:00">
+    <meta property="article:modified_time" content="2025-05-24T15:17:52+08:00">
 
 
   </head>
@@ -1288,7 +1288,9 @@ LOG(INFO) &lt;&lt; &#34;written_fp2_end: &#34; &lt;&lt; &#34;, written = &#34; &
 <p>*.bin 是从 ArtMethod::Invoke 方法中 dump 下来的方法的 CodeItem；</p>
 </li>
 </ul>
-<p>把整个目录拉取到本地</p>
+<p>列出 /sdcard/fart 目录下的文件</p>
+<pre tabindex="0"><code>adb shell ls /sdcard/fart
+</code></pre><p>把整个目录拉取到本地</p>
 <pre tabindex="0"><code>adb pull /sdcard/fart/com.cyrus.example
 </code></pre><h1 id="sprintf-缓冲区溢出">sprintf 缓冲区溢出</h1>
 <p>在测试某个电商 app 脱壳时偶现报错如下：</p>
