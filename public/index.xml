@@ -6,8 +6,15 @@
     <description>Recent content on CYRUS STUDIO</description>
     <generator>Hugo</generator>
     <language>zh-cn</language>
-    <lastBuildDate>Sat, 24 May 2025 15:17:52 +0800</lastBuildDate>
+    <lastBuildDate>Wed, 28 May 2025 00:00:55 +0800</lastBuildDate>
     <atom:link href="https://cyrus-studio.github.io/blog/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>FART 自动化脱壳框架一些 bug 修复记录</title>
+      <link>https://cyrus-studio.github.io/blog/posts/fart-%E8%87%AA%E5%8A%A8%E5%8C%96%E8%84%B1%E5%A3%B3%E6%A1%86%E6%9E%B6%E4%B8%80%E4%BA%9B-bug-%E4%BF%AE%E5%A4%8D%E8%AE%B0%E5%BD%95/</link>
+      <pubDate>Wed, 28 May 2025 00:00:55 +0800</pubDate>
+      <guid>https://cyrus-studio.github.io/blog/posts/fart-%E8%87%AA%E5%8A%A8%E5%8C%96%E8%84%B1%E5%A3%B3%E6%A1%86%E6%9E%B6%E4%B8%80%E4%BA%9B-bug-%E4%BF%AE%E5%A4%8D%E8%AE%B0%E5%BD%95/</guid>
+      <description>版权归作者所有，如有转发，请注明文章出处：https://cyrus-studio.github.io/blog/&#xA;open() 判断不严谨 https://github.com/CYRUS-STUDIO/FART/blob/master/fart10/art/runtime/art_method.cc&#xA;比如：&#xA;int dexfilefp = open(dex_path.c_str(), O_RDONLY);&#xD;if (dexfilefp &amp;gt; 0) {&#xD;close(dexfilefp);&#xD;} 这个判断条件其实是不严谨的，导致 if 中 的 close(dexfilefp); 一直没有执行。&#xA;open() 的返回值语义是：&#xA;成功时：返回一个非负整数（即 &amp;gt;= 0），它是打开的文件描述符。&#xA;失败时：返回 -1&#xA;正确的判断方式应该是：&#xA;if (fp &amp;gt;= 0) {&#xD;// 成功打开&#xD;} else {&#xD;// 打开失败，打印错误信息&#xD;LOG(ERROR) &amp;lt;&amp;lt; &amp;#34;open dex file failed&amp;#34;;&#xD;} mkdir failed errno: 13 FART 中通过 mkdir 函数在 sdcard 上创建 dump 文件存放目录，但是这样必须 app 拥有存储卡读写权限。不然 mkdir 会执行失败。&#xA;下面时一个 frida 脚本，调用系统 的 mkdir 函数创建目录</description>
+    </item>
     <item>
       <title>移植 FART 到 Android 10 实现自动化脱壳</title>
       <link>https://cyrus-studio.github.io/blog/posts/%E7%A7%BB%E6%A4%8D-fart-%E5%88%B0-android-10-%E5%AE%9E%E7%8E%B0%E8%87%AA%E5%8A%A8%E5%8C%96%E8%84%B1%E5%A3%B3/</link>
