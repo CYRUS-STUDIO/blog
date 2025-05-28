@@ -6,8 +6,15 @@
     <description>Recent content on CYRUS STUDIO</description>
     <generator>Hugo</generator>
     <language>zh-cn</language>
-    <lastBuildDate>Wed, 28 May 2025 00:00:55 +0800</lastBuildDate>
+    <lastBuildDate>Wed, 28 May 2025 23:24:22 +0800</lastBuildDate>
     <atom:link href="https://cyrus-studio.github.io/blog/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>使用 Frida 增强 FART：实现更强大的 Android 脱壳能力</title>
+      <link>https://cyrus-studio.github.io/blog/posts/%E4%BD%BF%E7%94%A8-frida-%E5%A2%9E%E5%BC%BA-fart%E5%AE%9E%E7%8E%B0%E6%9B%B4%E5%BC%BA%E5%A4%A7%E7%9A%84-android-%E8%84%B1%E5%A3%B3%E8%83%BD%E5%8A%9B/</link>
+      <pubDate>Wed, 28 May 2025 23:24:22 +0800</pubDate>
+      <guid>https://cyrus-studio.github.io/blog/posts/%E4%BD%BF%E7%94%A8-frida-%E5%A2%9E%E5%BC%BA-fart%E5%AE%9E%E7%8E%B0%E6%9B%B4%E5%BC%BA%E5%A4%A7%E7%9A%84-android-%E8%84%B1%E5%A3%B3%E8%83%BD%E5%8A%9B/</guid>
+      <description>版权归作者所有，如有转发，请注明文章出处：https://cyrus-studio.github.io/blog/&#xA;FART 和 Frida 结合会发生什么？ 对 FART 进一步增强：&#xA;增强 FART 的脱壳能力：解决对抗 FART 的壳、动态加载的 dex 的 dump 和修复；&#xA;控制 FART 主动调用的范围，让 FART 更精细化，比如按需进行类甚至是函数的修复。&#xA;非双亲委派关系下动态加载的 dex 脱壳问题 由于动态加载的 dex 没有取改变 android 中 ClassLoader 双亲委派关系，所以动态加载的 dex 没有自动脱壳。&#xA;相关文章：&#xA;Android 下的 ClassLoader 与 双亲委派机制&#xA;Android 加壳应用运行流程 与 生命周期类处理方案&#xA;在 android studio 中创建一个 plugin module 其中包含一个 FartTest 类源码如下：&#xA;package com.cyrus.example.plugin&#xD;import android.util.Log&#xD;class FartTest {&#xD;fun test(): String {&#xD;Log.d(&amp;#34;FartTest&amp;#34;, &amp;#34;call FartTest test().&amp;#34;)&#xD;return &amp;#34;String from FartTest.</description>
+    </item>
     <item>
       <title>FART 自动化脱壳框架一些 bug 修复记录</title>
       <link>https://cyrus-studio.github.io/blog/posts/fart-%E8%87%AA%E5%8A%A8%E5%8C%96%E8%84%B1%E5%A3%B3%E6%A1%86%E6%9E%B6%E4%B8%80%E4%BA%9B-bug-%E4%BF%AE%E5%A4%8D%E8%AE%B0%E5%BD%95/</link>
