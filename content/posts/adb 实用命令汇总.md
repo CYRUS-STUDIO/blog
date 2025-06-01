@@ -1,6 +1,6 @@
 +++
 title = 'adb 实用命令汇总'
-date = 2025-05-23T00:08:03.708451+08:00
+date = 2025-06-01T17:03:02.303897+08:00
 draft = false
 +++
 
@@ -163,6 +163,59 @@ mkdir -p /sdcard/dump_dex && cp /data/data/com.shizhuang.duapp/8681372.dex /sdca
 
 # 移动文件
 mv /data/data/com.shizhuang.duapp/8681372.dex /sdcard/dump_dex
+```
+
+
+# 删除文件/目录
+
+
+
+删除单个文件：
+
+```
+rm file.txt
+```
+
+
+删除多个文件：
+
+```
+rm file1.txt file2.log
+```
+
+
+删除所有 txt 文件
+
+```
+rm mydir/*.txt
+```
+
+
+删除空目录（只能删除空目录）：
+
+```
+rmdir mydir/
+```
+
+
+删除整个目录及其内容，可以使用下面的命令：
+
+```
+rm -r mydir
+```
+
+
+如果你想更安全些，可以加 -i，逐个确认：
+
+```
+rm -ri mydir
+```
+
+
+如果你要强制删除，不显示任何提示，可以用：
+
+```
+rm -rf mydir
 ```
 
 

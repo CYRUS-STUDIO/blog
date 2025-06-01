@@ -35,8 +35,8 @@ Android 版本 API Level 代号 发布时间 Android 15 35 Vanilla Ice Cream 202
   <meta property="og:locale" content="zh_cn">
   <meta property="og:type" content="article">
     <meta property="article:section" content="posts">
-    <meta property="article:published_time" content="2025-05-23T00:08:03+08:00">
-    <meta property="article:modified_time" content="2025-05-23T00:08:03+08:00">
+    <meta property="article:published_time" content="2025-06-01T17:03:02+08:00">
+    <meta property="article:modified_time" content="2025-06-01T17:03:02+08:00">
 
 
   </head>
@@ -87,7 +87,7 @@ Android 版本 API Level 代号 发布时间 Android 15 35 Vanilla Ice Cream 202
   <title>calendar</title>
   <rect x="3" y="4" width="18" height="18" rx="2" ry="2"></rect><line x1="16" y1="2" x2="16" y2="6"></line><line x1="8" y1="2" x2="8" y2="6"></line><line x1="3" y1="10" x2="21" y2="10"></line>
 </svg>
-          May 23, 2025
+          Jun 1, 2025
         </span>
       </div>
       <div>
@@ -295,6 +295,21 @@ mkdir -p /sdcard/dump_dex &amp;&amp; cp /data/data/com.shizhuang.duapp/8681372.d
 
 # 移动文件
 mv /data/data/com.shizhuang.duapp/8681372.dex /sdcard/dump_dex
+</code></pre><h1 id="删除文件目录">删除文件/目录</h1>
+<p>删除单个文件：</p>
+<pre tabindex="0"><code>rm file.txt
+</code></pre><p>删除多个文件：</p>
+<pre tabindex="0"><code>rm file1.txt file2.log
+</code></pre><p>删除所有 txt 文件</p>
+<pre tabindex="0"><code>rm mydir/*.txt
+</code></pre><p>删除空目录（只能删除空目录）：</p>
+<pre tabindex="0"><code>rmdir mydir/
+</code></pre><p>删除整个目录及其内容，可以使用下面的命令：</p>
+<pre tabindex="0"><code>rm -r mydir
+</code></pre><p>如果你想更安全些，可以加 -i，逐个确认：</p>
+<pre tabindex="0"><code>rm -ri mydir
+</code></pre><p>如果你要强制删除，不显示任何提示，可以用：</p>
+<pre tabindex="0"><code>rm -rf mydir
 </code></pre><h1 id="查找文件目录">查找文件/目录</h1>
 <p>查找 /data 路径下所有包含 com.cyrus.example 的文件或目录</p>
 <pre tabindex="0"><code> find /data -iname &#39;*com.cyrus.example*&#39;
