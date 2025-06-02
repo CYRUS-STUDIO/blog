@@ -1,6 +1,6 @@
 +++
 title = 'adb 实用命令汇总'
-date = 2025-06-01T17:03:02.303897+08:00
+date = 2025-06-02T18:48:44.977759+08:00
 draft = false
 +++
 
@@ -223,10 +223,51 @@ rm -rf mydir
 
 
 
-查找 /data 路径下所有包含 com.cyrus.example 的文件或目录
+查找 /data 路径下所有名字包含 com.cyrus.example 的文件或目录
 
 ```
  find /data -iname '*com.cyrus.example*'
+```
+
+
+# 查找包含指定内容的文件
+
+
+
+```
+grep -rl "关键字" .
+```
+参数说明：
+
+- grep: 文本搜索工具
+
+- -r: 递归查找目录下的所有文件
+
+- -l: 只输出匹配的文件名（不输出匹配内容）
+
+- "关键字": 你要查找的字符串
+
+- .: 当前目录
+
+
+
+示例：
+
+```
+wayne:/data/data/com.cyrus.example/cyrus # grep -rl "ba0.g" .
+./1437648_class_list_execute.txt
+./1437648_class_list.txt
+./1437648_ins_12347.bin
+./1437648_ins_13638.bin
+```
+
+
+如需过滤特定文件类型（例如只查 .txt）：
+
+```
+wayne:/data/data/com.cyrus.example/cyrus # grep -r "ba0.g" *.txt
+1437648_class_list.txt:Lba0/g;
+1437648_class_list_execute.txt:Lba0/g;
 ```
 
 
