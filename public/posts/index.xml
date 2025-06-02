@@ -6,21 +6,21 @@
     <description>Recent content in Posts on CYRUS STUDIO</description>
     <generator>Hugo</generator>
     <language>zh-cn</language>
-    <lastBuildDate>Mon, 02 Jun 2025 18:48:44 +0800</lastBuildDate>
+    <lastBuildDate>Mon, 02 Jun 2025 20:08:55 +0800</lastBuildDate>
     <atom:link href="https://cyrus-studio.github.io/blog/posts/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>攻防 FART 脱壳：特征检测识别 &#43; 对抗绕过全解析</title>
+      <link>https://cyrus-studio.github.io/blog/posts/%E6%94%BB%E9%98%B2-fart-%E8%84%B1%E5%A3%B3%E7%89%B9%E5%BE%81%E6%A3%80%E6%B5%8B%E8%AF%86%E5%88%AB-&#43;-%E5%AF%B9%E6%8A%97%E7%BB%95%E8%BF%87%E5%85%A8%E8%A7%A3%E6%9E%90/</link>
+      <pubDate>Mon, 02 Jun 2025 20:08:55 +0800</pubDate>
+      <guid>https://cyrus-studio.github.io/blog/posts/%E6%94%BB%E9%98%B2-fart-%E8%84%B1%E5%A3%B3%E7%89%B9%E5%BE%81%E6%A3%80%E6%B5%8B%E8%AF%86%E5%88%AB-&#43;-%E5%AF%B9%E6%8A%97%E7%BB%95%E8%BF%87%E5%85%A8%E8%A7%A3%E6%9E%90/</guid>
+      <description>版权归作者所有，如有转发，请注明文章出处：https://cyrus-studio.github.io/blog/&#xA;FART 对抗 某视频 app 的壳在启动的时候会检测 FART 特征，日志输出如下：&#xA;2025-05-29 02:16:25.612 2557-2557 ActivityThread cn.cntv E go into handleBindApplication&#xD;2025-05-29 02:16:25.630 2557-2557 cn.cntv cn.cntv I The ClassLoaderContext is a special shared library.&#xD;2025-05-29 02:16:25.807 1512-17245 ActivityManager system_process I Process cn.cntv (pid 2557) has died: fore TOP 2025-05-29 02:16:25.875 1512-1588 ActivityManager system_process I Start proc 2628:cn.cntv/u0a140 for top-activity {cn.cntv/com.cctv.mcctv.ui.activity.SplashActivity}&#xD;2025-05-29 02:16:25.932 2628-2628 ActivityThread cn.cntv E go into handleBindApplication&#xD;2025-05-29 02:16:25.945 2628-2628 cn.cntv cn.</description>
+    </item>
     <item>
       <title>adb 实用命令汇总</title>
       <link>https://cyrus-studio.github.io/blog/posts/adb-%E5%AE%9E%E7%94%A8%E5%91%BD%E4%BB%A4%E6%B1%87%E6%80%BB/</link>
       <pubDate>Mon, 02 Jun 2025 18:48:44 +0800</pubDate>
       <guid>https://cyrus-studio.github.io/blog/posts/adb-%E5%AE%9E%E7%94%A8%E5%91%BD%E4%BB%A4%E6%B1%87%E6%80%BB/</guid>
       <description>版权归作者所有，如有转发，请注明文章出处：https://cyrus-studio.github.io/blog/&#xA;基础adb命令 # 重启adb adb kill-server&#xD;# 查看已连接的设备&#xD;adb devices&#xD;# 进入命令行&#xD;adb shell&#xD;# 使用 -s 参数来指定设备&#xD;adb -s &amp;lt;设备序列号&amp;gt; shell&#xD;# 显示日志&#xD;adb logcat 获取 API Level 进入 adb shell ，执行下面命令获取当前 Android 系统的 API Level（即 SDK 版本）：&#xA;getprop ro.build.version.sdk 以下是 Android 版本与 API Level 的对应表 （截至 Android 15）：&#xA;Android 版本 API Level 代号 发布时间 Android 15 35 Vanilla Ice Cream 2024年9月 Android 14 34 Upside Down Cake 2023年10月 Android 13 33 Tiramisu 2022年8月 Android 12L 32 2022年3月 Android 12 31 Snow Cone 2021年10月 Android 11 30 Red Velvet Cake 2020年9月 Android 10 29 Q 2019年9月 Android 9 28 Pie 2018年8月 Android 8.</description>
-    </item>
-    <item>
-      <title>攻防 FART 脱壳：特征检测识别 &#43; 对抗绕过全解析</title>
-      <link>https://cyrus-studio.github.io/blog/posts/%E6%94%BB%E9%98%B2-fart-%E8%84%B1%E5%A3%B3%E7%89%B9%E5%BE%81%E6%A3%80%E6%B5%8B%E8%AF%86%E5%88%AB-&#43;-%E5%AF%B9%E6%8A%97%E7%BB%95%E8%BF%87%E5%85%A8%E8%A7%A3%E6%9E%90/</link>
-      <pubDate>Sun, 01 Jun 2025 21:04:30 +0800</pubDate>
-      <guid>https://cyrus-studio.github.io/blog/posts/%E6%94%BB%E9%98%B2-fart-%E8%84%B1%E5%A3%B3%E7%89%B9%E5%BE%81%E6%A3%80%E6%B5%8B%E8%AF%86%E5%88%AB-&#43;-%E5%AF%B9%E6%8A%97%E7%BB%95%E8%BF%87%E5%85%A8%E8%A7%A3%E6%9E%90/</guid>
-      <description>版权归作者所有，如有转发，请注明文章出处：https://cyrus-studio.github.io/blog/&#xA;FART 对抗 某视频 app 的壳在启动的时候会检测 FART 特征，日志输出如下：&#xA;2025-05-29 02:16:25.612 2557-2557 ActivityThread cn.cntv E go into handleBindApplication&#xD;2025-05-29 02:16:25.630 2557-2557 cn.cntv cn.cntv I The ClassLoaderContext is a special shared library.&#xD;2025-05-29 02:16:25.807 1512-17245 ActivityManager system_process I Process cn.cntv (pid 2557) has died: fore TOP 2025-05-29 02:16:25.875 1512-1588 ActivityManager system_process I Start proc 2628:cn.cntv/u0a140 for top-activity {cn.cntv/com.cctv.mcctv.ui.activity.SplashActivity}&#xD;2025-05-29 02:16:25.932 2628-2628 ActivityThread cn.cntv E go into handleBindApplication&#xD;2025-05-29 02:16:25.945 2628-2628 cn.cntv cn.</description>
     </item>
     <item>
       <title>使用 Frida 增强 FART：实现更强大的 Android 脱壳能力</title>
