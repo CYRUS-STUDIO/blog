@@ -1,12 +1,10 @@
 +++
-title = 'adb 实用命令汇总'
-date = 2025-06-02T18:48:44.977759+08:00
+title = 'ADB 命令使用大全（建议收藏） Android 调试必备'
+date = 2025-06-10T21:38:48.895601+08:00
 draft = false
 +++
 
 > 版权归作者所有，如有转发，请注明文章出处：<https://cyrus-studio.github.io/blog/>
-
-# 
 
 # 基础adb命令
 
@@ -508,6 +506,48 @@ windows：
 ```
 adb logcat --pid=$(adb shell pidof com.cyrus.example) *:E | Select-String "Exception"
 ```
+
+
+# /proc/self/maps
+
+
+
+/proc/self/maps 是 Linux（含 Android）系统中一个非常重要的伪文件，它提供了当前进程内存映射（memory mapping）信息，是分析当前进程加载了哪些资源的重要窗口。
+
+
+
+包括：
+
+- 加载的 .so 动态库
+
+- 加载的 .dex 文件（包含 ODEX / VDEX）
+
+- 映射的 Java 堆、native 堆、stack 等
+
+- 匿名 mmap 内存区域
+
+- JIT 编译生成的代码段
+
+- 映射的 /system/, /data/, /apex/, /dev/ashmem 等文件
+
+
+
+进入 adb shell 执行下面命令读取 maps
+
+```
+cat /proc/$(pidof <packageName>)/maps
+```
+
+
+示例：
+
+```
+wayne:/ # cat /proc/$(pidof com.shizhuang.duapp)/maps | grep GameVMP
+7b6ae7c000-7b6ae7d000 r--p 0001d000 103:20 19266                         /data/app/com.shizhuang.duapp-fTxemmnM8l6298xbBELksQ==/lib/arm64/libGameVMP.so
+7b6ae7d000-7b6ae7f000 rw-p 0001e000 103:20 19266                         /data/app/com.shizhuang.duapp-fTxemmnM8l6298xbBELksQ==/lib/arm64/libGameVMP.so
+```
+
+
 
 
 
