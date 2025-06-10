@@ -6,8 +6,15 @@
     <description>Recent content on CYRUS STUDIO</description>
     <generator>Hugo</generator>
     <language>zh-cn</language>
-    <lastBuildDate>Tue, 10 Jun 2025 21:38:48 +0800</lastBuildDate>
+    <lastBuildDate>Wed, 11 Jun 2025 01:23:58 +0800</lastBuildDate>
     <atom:link href="https://cyrus-studio.github.io/blog/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>一文搞懂 SO 脱壳全流程：识别加壳、Frida Dump、原理深入解析</title>
+      <link>https://cyrus-studio.github.io/blog/posts/%E4%B8%80%E6%96%87%E6%90%9E%E6%87%82-so-%E8%84%B1%E5%A3%B3%E5%85%A8%E6%B5%81%E7%A8%8B%E8%AF%86%E5%88%AB%E5%8A%A0%E5%A3%B3frida-dump%E5%8E%9F%E7%90%86%E6%B7%B1%E5%85%A5%E8%A7%A3%E6%9E%90/</link>
+      <pubDate>Wed, 11 Jun 2025 01:23:58 +0800</pubDate>
+      <guid>https://cyrus-studio.github.io/blog/posts/%E4%B8%80%E6%96%87%E6%90%9E%E6%87%82-so-%E8%84%B1%E5%A3%B3%E5%85%A8%E6%B5%81%E7%A8%8B%E8%AF%86%E5%88%AB%E5%8A%A0%E5%A3%B3frida-dump%E5%8E%9F%E7%90%86%E6%B7%B1%E5%85%A5%E8%A7%A3%E6%9E%90/</guid>
+      <description>版权归作者所有，如有转发，请注明文章出处：https://cyrus-studio.github.io/blog/&#xA;加壳 so 识别 使用 IDA 打开 so 提示无法正确识别 ELF 文件结构。&#xA;section 定义无效或不符合预期格式。&#xA;有很多红色的汇编代码块，表示错误或者未能正常解析的地址/数据&#xA;这通常就是 so 可能被“混淆”、“裁剪”或“加壳”了。&#xA;使用 frida_dump 实现 so 脱壳 frida_dump 是基于 frida 的 so 和 dex 的脱壳工具。&#xA;开源地址：https://github.com/lasting-yang/frida_dump&#xA;关于 Frida 的使用参考：使用 Frida Hook Android App&#xA;先把 frida_dump 源码 clone 到本地。&#xA;如果使用的是远程链接，把 dump_so.py 中的&#xA;device: frida.core.Device = frida.get_usb_device() 改成&#xA;device = frida.get_device_manager().add_remote_device(&amp;#34;127.0.0.1:1234&amp;#34;) 比如目标 so 是 libGameVMP.so，通过下面命令执行 dump_so.py&#xA;python dump_so.py libGameVMP.so 输出如下：&#xA;(anti-app) PS D:\Python\anti-app\frida_dump&amp;gt; python dump_so.py libGameVMP.so&#xD;{&amp;#39;name&amp;#39;: &amp;#39;libGameVMP.</description>
+    </item>
     <item>
       <title>ADB 命令使用大全（建议收藏） Android 调试必备</title>
       <link>https://cyrus-studio.github.io/blog/posts/adb-%E5%91%BD%E4%BB%A4%E4%BD%BF%E7%94%A8%E5%A4%A7%E5%85%A8%E5%BB%BA%E8%AE%AE%E6%94%B6%E8%97%8F-android-%E8%B0%83%E8%AF%95%E5%BF%85%E5%A4%87/</link>
