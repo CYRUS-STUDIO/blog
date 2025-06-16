@@ -6,8 +6,15 @@
     <description>Recent content on CYRUS STUDIO</description>
     <generator>Hugo</generator>
     <language>zh-cn</language>
-    <lastBuildDate>Sun, 15 Jun 2025 02:25:04 +0800</lastBuildDate>
+    <lastBuildDate>Mon, 16 Jun 2025 18:42:40 +0800</lastBuildDate>
     <atom:link href="https://cyrus-studio.github.io/blog/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>深入解析 AES 加密算法：原理、变体与 LibTomCrypt 在 Android 中的实战应用</title>
+      <link>https://cyrus-studio.github.io/blog/posts/%E6%B7%B1%E5%85%A5%E8%A7%A3%E6%9E%90-aes-%E5%8A%A0%E5%AF%86%E7%AE%97%E6%B3%95%E5%8E%9F%E7%90%86%E5%8F%98%E4%BD%93%E4%B8%8E-libtomcrypt-%E5%9C%A8-android-%E4%B8%AD%E7%9A%84%E5%AE%9E%E6%88%98%E5%BA%94%E7%94%A8/</link>
+      <pubDate>Mon, 16 Jun 2025 18:42:40 +0800</pubDate>
+      <guid>https://cyrus-studio.github.io/blog/posts/%E6%B7%B1%E5%85%A5%E8%A7%A3%E6%9E%90-aes-%E5%8A%A0%E5%AF%86%E7%AE%97%E6%B3%95%E5%8E%9F%E7%90%86%E5%8F%98%E4%BD%93%E4%B8%8E-libtomcrypt-%E5%9C%A8-android-%E4%B8%AD%E7%9A%84%E5%AE%9E%E6%88%98%E5%BA%94%E7%94%A8/</guid>
+      <description>版权归作者所有，如有转发，请注明文章出处：https://cyrus-studio.github.io/blog/&#xA;前言 AES（Advanced Encryption Standard，高级加密标准） 是一种 对称加密算法，用于加密和解密数据。AES 由 美国国家标准与技术研究院（NIST） 在 2001 年正式发布，取代了 DES 和 3DES，目前被广泛应用于 网络安全、金融、通信 等领域。&#xA;支持 128（16字节）、192（24字节）、256（32字节） 位密钥。&#xA;特性 描述 加密方式 对称加密（加密和解密使用相同的密钥） 分组长度 128 位（16 字节） 密钥长度 128 位、192 位、256 位（分别对应 10、12、14 轮加密） 安全性 目前无已知有效攻击，比 3DES 更安全 运算模式 支持 ECB、CBC、CFB、OFB、CTR 等模式 关于算法的详细介绍可以参考这篇文章：常用加解密算法介绍&#xA;LibTomCrypt LibTomCrypt 是一个开源的轻量级加密库，提供了多种加密算法和密码学相关功能。它是用 C 语言编写的，专注于嵌入式系统和资源受限的设备，非常适合在 Android 等平台上使用。&#xA;特点:&#xA;算法支持丰富：包括对称加密（AES、DES 等）、非对称加密（RSA、ECC 等）、哈希算法（SHA-256、MD5 等）&#xA;轻量级，代码简单。&#xA;支持多种加密模式：ECB、CBC、CFB、OFB 等。&#xA;适用场景: 如果你需要一个开源、可自定义的库。&#xA;集成 LibTomCrypt 到 Android 工程 在 Android Studio 中集成 LibTomCrypt 并调用 JNI，可以按以下步骤操作：</description>
+    </item>
     <item>
       <title>Frida Native 层 Hook 技巧：JNI 函数调用、字符串解析、so 加载</title>
       <link>https://cyrus-studio.github.io/blog/posts/frida-native-%E5%B1%82-hook-%E6%8A%80%E5%B7%A7jni-%E5%87%BD%E6%95%B0%E8%B0%83%E7%94%A8%E5%AD%97%E7%AC%A6%E4%B8%B2%E8%A7%A3%E6%9E%90so-%E5%8A%A0%E8%BD%BD/</link>
@@ -217,13 +224,6 @@
       <pubDate>Sun, 30 Mar 2025 04:33:31 +0800</pubDate>
       <guid>https://cyrus-studio.github.io/blog/posts/%E4%BD%BF%E7%94%A8-frida-stalker-%E5%8F%8D-ollvm-%E7%AE%97%E6%B3%95%E8%BF%98%E5%8E%9F/</guid>
       <description>版权归作者所有，如有转发，请注明文章出处：https://cyrus-studio.github.io/blog/&#xA;前言 比如我们像分析某个 so 中偏移为 0x23AD0 的加密函数&#xA;IDA 反汇编 so，可以看到 so 中该函数做了混淆&#xA;控制流平坦化&#xA;Frida Stalker Frida 的 Stalker 是一个强大的代码追踪工具。&#xA;主要功能&#xA;指令级跟踪：Stalker 可精确到指令级别，对应用的原生代码进行实时监控。&#xA;代码插桩：支持在指定指令前后插入自定义的代码逻辑。&#xA;内存访问监控：可以监视内存读写操作，分析数据流向。&#xA;自定义回调：提供回调函数，方便记录和分析执行轨迹。&#xA;文档：https://frida.re/docs/javascript-api/#stalker&#xA;目前 Stalker 对于 arm64 支持比较好，但是 arm32 并不是很完善。&#xA;https://frida.re/docs/stalker/&#xA;关于 Frida 的使用可以参考这篇文章：使用 Frida Hook Android App&#xA;onCallSummary（函数调用摘要) onCallSummary 用于返回函数调用的摘要信息。&#xA;Stalker.follow() 使用 onCallSummary 时，不会实时回调，而是在合适的时间点返回已汇总的调用信息。&#xA;通常是在：&#xA;函数执行结束后&#xA;线程空闲或上下文切换时&#xA;Stalker缓冲区达到一定大小时&#xA;Stalker.flush();&#xA;因此，你会在目标函数执行完毕后，看到 onCallSummary 输出的调用信息。&#xA;summary 数据结构通常类似于以下格式：&#xA;{&#xD;&amp;#34;函数地址&amp;#34;: 调用次数&#xD;} hook 目标函数，跟踪 call 事件并打印 call summary&#xA;function onCallSummary() {&#xD;// 目标 so&#xD;var soName = &amp;#34;libaes.</description>
-    </item>
-    <item>
-      <title>Android 中实现一个自定义的 AES 算法</title>
-      <link>https://cyrus-studio.github.io/blog/posts/android-%E4%B8%AD%E5%AE%9E%E7%8E%B0%E4%B8%80%E4%B8%AA%E8%87%AA%E5%AE%9A%E4%B9%89%E7%9A%84-aes-%E7%AE%97%E6%B3%95/</link>
-      <pubDate>Sat, 29 Mar 2025 04:53:31 +0800</pubDate>
-      <guid>https://cyrus-studio.github.io/blog/posts/android-%E4%B8%AD%E5%AE%9E%E7%8E%B0%E4%B8%80%E4%B8%AA%E8%87%AA%E5%AE%9A%E4%B9%89%E7%9A%84-aes-%E7%AE%97%E6%B3%95/</guid>
-      <description>版权归作者所有，如有转发，请注明文章出处：https://cyrus-studio.github.io/blog/&#xA;前言 AES（Advanced Encryption Standard，高级加密标准） 是一种 对称加密算法，用于加密和解密数据。AES 由 美国国家标准与技术研究院（NIST） 在 2001 年正式发布，取代了 DES 和 3DES，目前被广泛应用于 网络安全、金融、通信 等领域。&#xA;支持 128（16字节）、192（24字节）、256（32字节） 位密钥。&#xA;特性 描述 加密方式 对称加密（加密和解密使用相同的密钥） 分组长度 128 位（16 字节） 密钥长度 128 位、192 位、256 位（分别对应 10、12、14 轮加密） 安全性 目前无已知有效攻击，比 3DES 更安全 运算模式 支持 ECB、CBC、CFB、OFB、CTR 等模式 关于算法的详细介绍可以参考这篇文章：常用加解密算法介绍&#xA;LibTomCrypt LibTomCrypt 是一个开源的轻量级加密库，提供了多种加密算法和密码学相关功能。它是用 C 语言编写的，专注于嵌入式系统和资源受限的设备，非常适合在 Android 等平台上使用。&#xA;特点:&#xA;算法支持丰富：包括对称加密（AES、DES 等）、非对称加密（RSA、ECC 等）、哈希算法（SHA-256、MD5 等）&#xA;轻量级，代码简单。&#xA;支持多种加密模式：ECB、CBC、CFB、OFB 等。&#xA;适用场景: 如果你需要一个开源、可自定义的库。&#xA;集成 LibTomCrypt 到 Android 工程 在 Android Studio 中集成 LibTomCrypt 并调用 JNI，可以按以下步骤操作：</description>
     </item>
     <item>
       <title>unidbg 加载 so 并调用 so 中函数</title>
