@@ -6,8 +6,15 @@
     <description>Recent content in Posts on CYRUS STUDIO</description>
     <generator>Hugo</generator>
     <language>zh-cn</language>
-    <lastBuildDate>Mon, 16 Jun 2025 18:42:40 +0800</lastBuildDate>
+    <lastBuildDate>Tue, 17 Jun 2025 04:05:05 +0800</lastBuildDate>
     <atom:link href="https://cyrus-studio.github.io/blog/posts/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>搞懂 Android Hook 的两大核心：PLT Hook 与 Inline Hook 全解析</title>
+      <link>https://cyrus-studio.github.io/blog/posts/%E6%90%9E%E6%87%82-android-hook-%E7%9A%84%E4%B8%A4%E5%A4%A7%E6%A0%B8%E5%BF%83plt-hook-%E4%B8%8E-inline-hook-%E5%85%A8%E8%A7%A3%E6%9E%90/</link>
+      <pubDate>Tue, 17 Jun 2025 04:05:05 +0800</pubDate>
+      <guid>https://cyrus-studio.github.io/blog/posts/%E6%90%9E%E6%87%82-android-hook-%E7%9A%84%E4%B8%A4%E5%A4%A7%E6%A0%B8%E5%BF%83plt-hook-%E4%B8%8E-inline-hook-%E5%85%A8%E8%A7%A3%E6%9E%90/</guid>
+      <description>版权归作者所有，如有转发，请注明文章出处：https://cyrus-studio.github.io/blog/&#xA;前言 在 Android Native 层开发和逆向分析中，Hook 技术是一项绕不开的核心能力。&#xA;Hook 技术是一种在应用运行时拦截或替换系统或自身函数行为的手段，常见实现包括 PLT Hook、Inline Hook。&#xA;PLT Hook 和 Inline Hook 是两种不同层次和机制的函数 Hook 技术，常用于逆向工程、安全分析、壳保护或热修复等场景。&#xA;PLT hook 和 Inline hook 有什么区别？ 特性 PLT Hook（符号级） Inline Hook（指令级） Hook 层级 链接层（.plt 或 GOT） 指令层（函数入口指令） Hook 对象 动态库导出的函数 任意函数（不一定导出） 修改内容 修改函数地址指针 修改指令流（如跳转指令） Hook 粒度 通常是库间调用 可以精确到任意函数、库内调用 稳定性 较高 稍差（依赖指令结构、架构） 跨平台兼容性 更好 架构相关（ARM32/ARM64） PLT Hook 原理（也叫 GOT Hook） ELF 中动态链接时使用 PLT（Procedure Linkage Table） 和 GOT（Global Offset Table） ；</description>
+    </item>
     <item>
       <title>深入解析 AES 加密算法：原理、变体与 LibTomCrypt 在 Android 中的实战应用</title>
       <link>https://cyrus-studio.github.io/blog/posts/%E6%B7%B1%E5%85%A5%E8%A7%A3%E6%9E%90-aes-%E5%8A%A0%E5%AF%86%E7%AE%97%E6%B3%95%E5%8E%9F%E7%90%86%E5%8F%98%E4%BD%93%E4%B8%8E-libtomcrypt-%E5%9C%A8-android-%E4%B8%AD%E7%9A%84%E5%AE%9E%E6%88%98%E5%BA%94%E7%94%A8/</link>
@@ -119,13 +126,6 @@
       <pubDate>Wed, 14 May 2025 16:12:27 +0800</pubDate>
       <guid>https://cyrus-studio.github.io/blog/posts/%E5%9F%BA%E4%BA%8E-art-%E4%B8%8B%E7%9A%84%E7%B1%BB%E5%8A%A0%E8%BD%BD%E6%9C%BA%E5%88%B6%E5%AE%9E%E7%8E%B0%E5%87%BD%E6%95%B0%E6%8A%BD%E5%8F%96%E5%A3%B3/</guid>
       <description>版权归作者所有，如有转发，请注明文章出处：https://cyrus-studio.github.io/blog/&#xA;ART 下类加载流程 类加载的时机 1、隐式加载：&#xA;创建类的实例&#xA;访问类的静态变量，或者为静态变量赋值&#xA;调用类的静态方法&#xA;使用反射方式来强制创建某个类或接口对应的 java.lang.Class 对象&#xA;初始化某个类的子类&#xA;2、显示加载：&#xA;使用 loadClass() 加载&#xA;使用 forName() 加载&#xA;两者又有所不同。&#xA;类加载的流程 loadClass 和 forName 也是有区别的；&#xA;loadClass 只完成了第一步，就是加载；&#xA;Class.forName 是完成了3步，加载、链接和初始化。&#xA;阶段 发生了什么 加载 字节码文件 -&amp;gt; Class 对象 验证 检查字节码合法性 准备 静态变量分配内存，默认值 解析 符号引用 → 真实引用 初始化 调用 &amp;lt;clinit&amp;gt; 函数，static 代码块执行，静态变量赋值 一个类从“加载” 到 “可以使用” 的完整生命周期：加载（Loading）→ 连接（Linking）→ 初始化（Initialization）。&#xA;加载（Loading）&#xD;↓&#xD;连接（Linking）&#xD;→ 验证（Verification）&#xD;→ 准备（Preparation）&#xD;→ 解析（Resolution）&#xD;↓&#xD;初始化（Initialization）&#xD;↓&#xD;使用（Use）&#xD;↓&#xD;卸载（Unload） 相关文章：Android 下的 ClassLoader 与 双亲委派机制</description>
-    </item>
-    <item>
-      <title>Android PLT hook  与 Inline hook</title>
-      <link>https://cyrus-studio.github.io/blog/posts/android-plt-hook--%E4%B8%8E-inline-hook/</link>
-      <pubDate>Tue, 13 May 2025 13:03:03 +0800</pubDate>
-      <guid>https://cyrus-studio.github.io/blog/posts/android-plt-hook--%E4%B8%8E-inline-hook/</guid>
-      <description>版权归作者所有，如有转发，请注明文章出处：https://cyrus-studio.github.io/blog/&#xA;前言 Android Native 函数 Hook 技术是一种在应用运行时拦截或替换系统或自身函数行为的手段，常见实现包括 PLT Hook、Inline Hook。&#xA;PLT Hook 和 Inline Hook 是两种不同层次和机制的函数 Hook 技术，常用于逆向工程、安全分析、壳保护或热修复等场景。&#xA;PLT hook 和 Inline hook 有什么区别？ 特性 PLT Hook（符号级） Inline Hook（指令级） Hook 层级 链接层（.plt 或 GOT） 指令层（函数入口指令） Hook 对象 动态库导出的函数 任意函数（不一定导出） 修改内容 修改函数地址指针 修改指令流（如跳转指令） Hook 粒度 通常是库间调用 可以精确到任意函数、库内调用 稳定性 较高 稍差（依赖指令结构、架构） 跨平台兼容性 更好 架构相关（ARM32/ARM64） PLT Hook 原理（也叫 GOT Hook） ELF 中动态链接时使用 PLT（Procedure Linkage Table） 和 GOT（Global Offset Table）；&#xA;程序调用外部函数（如 malloc、fopen）时，实际上是跳到 GOT 表中的地址；</description>
     </item>
     <item>
       <title>关于 dex2oat 以及 vdex、cdex、dex 格式转换</title>

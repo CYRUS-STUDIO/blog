@@ -1,6 +1,6 @@
 +++
-title = 'Android PLT hook  与 Inline hook'
-date = 2025-05-13T13:03:03.901893+08:00
+title = '搞懂 Android Hook 的两大核心：PLT Hook 与 Inline Hook 全解析'
+date = 2025-06-17T04:05:05.990337+08:00
 draft = false
 +++
 
@@ -10,7 +10,11 @@ draft = false
 
 
 
-Android Native 函数 Hook 技术是一种在应用运行时拦截或替换系统或自身函数行为的手段，常见实现包括 PLT Hook、Inline Hook。
+在 Android Native 层开发和逆向分析中，Hook 技术是一项绕不开的核心能力。
+
+
+
+Hook 技术是一种在应用运行时拦截或替换系统或自身函数行为的手段，常见实现包括 PLT Hook、Inline Hook。
 
 
 
@@ -36,7 +40,7 @@ PLT Hook 和 Inline Hook 是两种不同层次和机制的函数 Hook 技术，�
 
 
 
-ELF 中动态链接时使用 PLT（Procedure Linkage Table） 和 GOT（Global Offset Table）；
+ELF 中动态链接时使用 **PLT（Procedure Linkage Table）**  和 **GOT（Global Offset Table）** ；
 
 程序调用外部函数（如 malloc、fopen）时，实际上是跳到 GOT 表中的地址；
 
@@ -54,7 +58,7 @@ ELF 中动态链接时使用 PLT（Procedure Linkage Table） 和 GOT（Global O
 
 ❌ 缺点：
 
-- 只能 Hook 动态链接函数（如 libc.so 中的函数）
+- 只能 Hook **动态链接函数** （如 libc.so 中的函数）
 
 - 无法 Hook 静态链接或内部函数调用
 
@@ -72,7 +76,7 @@ ELF 中动态链接时使用 PLT（Procedure Linkage Table） 和 GOT（Global O
 
 ✅ 优点：
 
-- 可以 Hook 几乎任意函数（导出或非导出、静态或动态）
+- 可以 Hook 几乎**任意函数** （导出或非导出、静态或动态）
 
 - 精细控制，适合保护/加壳/代码注入等底层用途
 
@@ -96,7 +100,7 @@ ELF 中动态链接时使用 PLT（Procedure Linkage Table） 和 GOT（Global O
 
 
 
-**PLT Hook 方式：**
+**PLT Hook 方式：** 
 
 - 找到 .got 中 malloc 的地址
 
@@ -110,7 +114,7 @@ void* my_malloc(size_t size) {
 ```
 
 
-**Inline Hook 方式：**
+**Inline Hook 方式：** 
 
 - 找到 malloc 函数地址，直接改入口 4~8 字节为跳转指令
 
@@ -125,11 +129,11 @@ b my_malloc  ; ARM
 
 
 
-是否互相影响，取决于 Hook 的层级 和 Hook 方式，以下是详细分析：
+是否互相影响，取决于 **Hook 的层级**  和 **Hook 方式** ，以下是详细分析：
 
 
 
-关键点：Android 的进程隔离机制
+关键点：**Android 的进程隔离机制** 
 
 
 
@@ -161,7 +165,7 @@ b my_malloc  ; ARM
 
 
 
-✅ 如果你有权限（如 Riru、Zygisk 模块），就能影响整个系统服务，其他 App 可能间接受影响
+✅ 如果你有权限（如 Riru、Zygisk 模块），就能影响整个系统服务，**其他 App 可能间接受影响** 
 
 
 
@@ -217,11 +221,11 @@ Affected Modules: app, shadowhook, systest
 
 打开 Android SDK 配置
 
-- 点击右下角 Show Package Details。
+- 点击右下角 **Show Package Details** 。
 
-- 找到并勾选 CMake 3.30.5。
+- 找到并勾选 **CMake 3.30.5** 。
 
-- 点击 Apply → 自动下载并安装。
+- 点击 **Apply**  → 自动下载并安装。
 
 
 
