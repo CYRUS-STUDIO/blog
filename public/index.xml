@@ -6,8 +6,15 @@
     <description>Recent content on CYRUS STUDIO</description>
     <generator>Hugo</generator>
     <language>zh-cn</language>
-    <lastBuildDate>Wed, 18 Jun 2025 16:50:01 +0800</lastBuildDate>
+    <lastBuildDate>Thu, 19 Jun 2025 21:32:15 +0800</lastBuildDate>
     <atom:link href="https://cyrus-studio.github.io/blog/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>逆向 JNI 函数找不到入口？动态注册定位技巧全解析</title>
+      <link>https://cyrus-studio.github.io/blog/posts/%E9%80%86%E5%90%91-jni-%E5%87%BD%E6%95%B0%E6%89%BE%E4%B8%8D%E5%88%B0%E5%85%A5%E5%8F%A3%E5%8A%A8%E6%80%81%E6%B3%A8%E5%86%8C%E5%AE%9A%E4%BD%8D%E6%8A%80%E5%B7%A7%E5%85%A8%E8%A7%A3%E6%9E%90/</link>
+      <pubDate>Thu, 19 Jun 2025 21:32:15 +0800</pubDate>
+      <guid>https://cyrus-studio.github.io/blog/posts/%E9%80%86%E5%90%91-jni-%E5%87%BD%E6%95%B0%E6%89%BE%E4%B8%8D%E5%88%B0%E5%85%A5%E5%8F%A3%E5%8A%A8%E6%80%81%E6%B3%A8%E5%86%8C%E5%AE%9A%E4%BD%8D%E6%8A%80%E5%B7%A7%E5%85%A8%E8%A7%A3%E6%9E%90/</guid>
+      <description>版权归作者所有，如有转发，请注明文章出处：https://cyrus-studio.github.io/blog/&#xA;前言 使用 IDA Pro 静态分析时，JNI 函数并没有出现在导出表中，根本找不到函数实现的位置。&#xA;这是因为很多 App 为了安全性和混淆目的，采用了 JNI 动态注册（RegisterNatives） 的方式，绕开了传统的静态绑定机制。&#xA;那么遇到这种情况我们该怎么办？&#xA;通过源码分析JNI 函数调用流程 ArtMethod 是 ART 虚拟机中用于表示 Java 方法的底层结构体，Java 中每个方法在运行时都会对应一个 ArtMethod 实例，用于管理其执行入口、访问标志、Dex 信息等元数据。&#xA;entry_point_from_jni_ 是 ArtMethod 结构体的一个字段，专门用于存储 Java 方法对应的 JNI 函数地址。&#xA;在编译 JNI 方法时，ArtJniCompileMethodInternal 中通过调用 EntryPointFromJniOffset 方法获取 entry_point_from_jni_ 字段的偏移，并生成一条调用该 jni 函数的机器指令插入到编译结果中。&#xA;// 9. Plant call to native code associated with method.&#xD;// 计算 ArtMethod 中 JNI 入口地址的字段偏移（即 ptr_sized_fields_.data_ 偏移）&#xD;// 根据目标指令集（如 arm64、x86）传入对应的指针大小（PointerSize::k64 或 k32）&#xD;MemberOffset jni_entrypoint_offset =&#xD;ArtMethod::EntryPointFromJniOffset(InstructionSetPointerSize(instruction_set));&#xD;// 这部分代码生成了一条机器指令，用于调用 ArtMethod::entry_point_from_jni 所指向的 native 函数：&#xD;__ Call(main_jni_conv-&amp;gt;MethodStackOffset(), // 栈中 ArtMethod* 相对偏移&#xD;jni_entrypoint_offset, // ArtMethod 内部 entry_point_from_jni 字段的偏移&#xD;mr_conv-&amp;gt;InterproceduralScratchRegister()); // 用于保存临时地址的寄存器 https://cs.</description>
+    </item>
     <item>
       <title>一文搞懂如何使用 Frida Hook Android App</title>
       <link>https://cyrus-studio.github.io/blog/posts/%E4%B8%80%E6%96%87%E6%90%9E%E6%87%82%E5%A6%82%E4%BD%95%E4%BD%BF%E7%94%A8-frida-hook-android-app/</link>
@@ -462,20 +469,6 @@
       <pubDate>Sat, 02 Nov 2024 23:01:02 +0800</pubDate>
       <guid>https://cyrus-studio.github.io/blog/posts/%E8%AF%A6%E8%A7%A3arm64%E5%8F%AF%E6%89%A7%E8%A1%8C%E7%A8%8B%E5%BA%8F%E7%9A%84%E7%94%9F%E6%88%90%E8%BF%87%E7%A8%8B/</guid>
       <description>版权归作者所有，如有转发，请注明文章出处：https://cyrus-studio.github.io/blog/&#xA;ARM64可执行程序的生成过程 根据 ARM64 可执行程序生成的四个主要步骤：预处理、编译、汇编、链接，我们可以详细分解整个过程如下&#xA;1. 预处理（Preprocessing） 预处理是源代码文件在正式编译前的准备工作，由预处理器完成。其主要任务包括：&#xA;宏替换：处理 #define 定义的宏，将代码中出现的宏替换为实际值。&#xA;文件包含：处理 #include 指令，将所需的头文件内容直接插入代码中，确保所有引用的函数和变量声明都在同一文件中。&#xA;条件编译：处理 #ifdef、#ifndef 等条件编译指令，以控制代码中不同部分的编译。&#xA;预处理后的输出仍然是代码文件，但没有任何宏、条件编译等指令，通常以 .i 或 .ii 作为扩展名。&#xA;2. 编译（Compilation） 编译器（如 GCC 或 Clang）将预处理后的代码文件转换为汇编代码，产生汇编语言表示的文件。此阶段包括以下子步骤：&#xA;词法分析：将源代码转化为基本的语法单元（token），如变量名、运算符、关键字等。&#xA;语法分析：将代码组织成抽象语法树（AST），根据编程语言的语法规则生成层次结构。&#xA;语义分析：检查语法树的正确性，如类型检查、作用域检查等，确保代码符合语言语义。&#xA;中间代码生成：编译器生成与平台无关的中间代码，方便后续优化。&#xA;优化：编译器对中间代码进行优化，如消除冗余代码、进行循环优化等，以提升程序效率。&#xA;生成汇编代码：编译器将优化后的中间代码转换为特定平台（如 ARM64）的汇编代码，通常输出 .s 文件。&#xA;编译阶段的最终输出是汇编代码文件，包含了基于 ARM64 指令集的指令。&#xA;3. 汇编（Assemble） 汇编器（如 GNU Assembler，as）将汇编代码文件（.s 文件）转换为机器代码，生成二进制的目标文件（.o 文件）。目标文件包含了二进制的机器指令，但符号引用还未解析，因此目标文件本身并非独立的可执行文件。&#xA;汇编阶段的主要工作包括：&#xA;指令翻译：将汇编语言指令转换为 ARM64 指令集对应的二进制机器指令。&#xA;符号表生成：记录所有函数和变量的符号地址，以便链接阶段使用。&#xA;机器码生成：生成目标文件（.o），将每条指令翻译成可执行的机器码。&#xA;目标文件是 ARM64 可执行程序生成过程中不可或缺的中间文件。&#xA;4. 链接（Linking） 链接器（如 GNU Linker，ld）将一个或多个目标文件链接在一起，并解决外部依赖，生成最终的可执行文件。链接的过程分为静态链接和动态链接两种：&#xA;静态链接：将程序所需的库代码直接嵌入到可执行文件中，生成一个完全自包含的文件。&#xA;动态链接：生成的可执行文件依赖外部共享库（如 .so 文件），在程序运行时加载这些共享库。&#xA;链接阶段的关键步骤包括：&#xA;符号解析：将不同目标文件中的符号（如函数和变量）解析为对应的内存地址，解决跨文件调用。&#xA;重定位：调整目标文件中指令和数据的地址，使得所有模块可以在一个统一的地址空间中正常运行。&#xA;生成可执行文件：链接器根据 ELF（Executable and Linkable Format）等格式生成最终的可执行文件，包含程序代码段、数据段、以及其他加载器所需的元信息。</description>
-    </item>
-    <item>
-      <title>使用 Frida 定位 JNI 方法内存地址</title>
-      <link>https://cyrus-studio.github.io/blog/posts/%E4%BD%BF%E7%94%A8-frida-%E5%AE%9A%E4%BD%8D-jni-%E6%96%B9%E6%B3%95%E5%86%85%E5%AD%98%E5%9C%B0%E5%9D%80/</link>
-      <pubDate>Tue, 29 Oct 2024 18:42:24 +0800</pubDate>
-      <guid>https://cyrus-studio.github.io/blog/posts/%E4%BD%BF%E7%94%A8-frida-%E5%AE%9A%E4%BD%8D-jni-%E6%96%B9%E6%B3%95%E5%86%85%E5%AD%98%E5%9C%B0%E5%9D%80/</guid>
-      <description>版权归作者所有，如有转发，请注明文章出处：https://cyrus-studio.github.io/blog/&#xA;java 调用 native 方法流程 ArtMethod 是 Android Runtime (ART) 中一个非常重要的数据结构，它在 Android 系统中用于表示每个 Java 方法。&#xA;entry_point_from_jni_ 是 ArtMethod 结构体的一个字段，专门用于存储一个 Java 方法的 JNI（Java Native Interface）入口点。&#xA;当 Java 代码调用一个 native 方法时，ART 会通过entry_point_from_jni_ 字段找到对应的 JNI 函数入口，然后切换到 C/C++ 层执行该方法。&#xA;确定 entry_point_from_jni 的偏移量_ 先通过查找 ART 中 ArtMethod 结构体中 entry_point_from_jni_ 的偏移量，最终确定 JNI 函数的地址。&#xA;let entry_point_from_jni_offset = -1;&#xD;/**&#xD;* 找到 entry_point_from_jni_ 在 ArtMethod 结构体中的偏移量（根据 Android 版本不同可能会变化）&#xD;*&#xD;* @returns {number} 返回 entry_point_from_jni_ 的偏移量，若未找到返回 -1&#xD;*/&#xD;function get_jni_offset() {&#xD;// 如果偏移量已经计算过（不为 -1），直接返回已保存的偏移量&#xD;if (entry_point_from_jni_offset !</description>
-    </item>
-    <item>
-      <title>frida脚本，自动化寻址JNI方法</title>
-      <link>https://cyrus-studio.github.io/blog/posts/frida%E8%84%9A%E6%9C%AC%E8%87%AA%E5%8A%A8%E5%8C%96%E5%AF%BB%E5%9D%80jni%E6%96%B9%E6%B3%95/</link>
-      <pubDate>Tue, 29 Oct 2024 18:39:06 +0800</pubDate>
-      <guid>https://cyrus-studio.github.io/blog/posts/frida%E8%84%9A%E6%9C%AC%E8%87%AA%E5%8A%A8%E5%8C%96%E5%AF%BB%E5%9D%80jni%E6%96%B9%E6%B3%95/</guid>
-      <description>版权归作者所有，如有转发，请注明文章出处：https://cyrus-studio.github.io/blog/&#xA;1. 通过 ArtMethod 结构体找到 jni 方法在内存中的地址，并把寻址方法通过 rpc.exports 暴露给 Python 脚本调用&#xA;jni_addr.js&#xA;let entry_point_from_jni_offset = -1;&#xD;/**&#xD;* 找到 entry_point_from_jni_ 在 ArtMethod 结构体中的偏移量（根据 Android 版本不同可能会变化）&#xD;*&#xD;* @returns {number} 返回 entry_point_from_jni_ 的偏移量，若未找到返回 -1&#xD;*/&#xD;function get_jni_offset() {&#xD;// 如果偏移量已经计算过（不为 -1），直接返回已保存的偏移量&#xD;if (entry_point_from_jni_offset !== -1) {&#xD;return entry_point_from_jni_offset;&#xD;}&#xD;// 获取 getUidForName JNI 方法的内存地址，该方法位于 &amp;#34;libandroid_runtime.so&amp;#34; 中&#xD;let native_addr = Module.findExportByName(&amp;#34;libandroid_runtime.so&amp;#34;, &amp;#34;_Z32android_os_Process_getUidForNameP7_JNIEnvP8_jobjectP8_jstring&amp;#34;);&#xD;// console.log(&amp;#34;native_addr:&amp;#34;,native_addr);&#xD;// 目标类名 &amp;#34;android.os.Process&amp;#34;&#xD;let className = &amp;#34;android.os.Process&amp;#34;;&#xD;// 使用 Java.</description>
     </item>
     <item>
       <title>Windows下创建FTP服务器，实现文件共享</title>
