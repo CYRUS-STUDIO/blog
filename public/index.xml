@@ -6,8 +6,15 @@
     <description>Recent content on CYRUS STUDIO</description>
     <generator>Hugo</generator>
     <language>zh-cn</language>
-    <lastBuildDate>Fri, 20 Jun 2025 16:43:26 +0800</lastBuildDate>
+    <lastBuildDate>Sat, 21 Jun 2025 16:33:56 +0800</lastBuildDate>
     <atom:link href="https://cyrus-studio.github.io/blog/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>逆向某物 App 登录接口：抓包分析 &#43; Frida Hook 还原加密算法</title>
+      <link>https://cyrus-studio.github.io/blog/posts/%E9%80%86%E5%90%91%E6%9F%90%E7%89%A9-app-%E7%99%BB%E5%BD%95%E6%8E%A5%E5%8F%A3%E6%8A%93%E5%8C%85%E5%88%86%E6%9E%90-&#43;-frida-hook-%E8%BF%98%E5%8E%9F%E5%8A%A0%E5%AF%86%E7%AE%97%E6%B3%95/</link>
+      <pubDate>Sat, 21 Jun 2025 16:33:56 +0800</pubDate>
+      <guid>https://cyrus-studio.github.io/blog/posts/%E9%80%86%E5%90%91%E6%9F%90%E7%89%A9-app-%E7%99%BB%E5%BD%95%E6%8E%A5%E5%8F%A3%E6%8A%93%E5%8C%85%E5%88%86%E6%9E%90-&#43;-frida-hook-%E8%BF%98%E5%8E%9F%E5%8A%A0%E5%AF%86%E7%AE%97%E6%B3%95/</guid>
+      <description>版权归作者所有，如有转发，请注明文章出处：https://cyrus-studio.github.io/blog/&#xA;登录接口抓包分析 使用 Charles 分析登录接口，打开 APP，输入用户名和密码，点击登录后，可以看到会调用一个 unionLogin 接口&#xA;Charles 的详细使用教程参考：安卓抓包实战：使用 Charles 抓取 App 数据全流程详解&#xA;response：&#xA;{&#xD;&amp;#34;code&amp;#34;: 704,&#xD;&amp;#34;data&amp;#34;: &amp;#34;3YlD20Mglo7XabT4cSg0p_sFlOH7UrRp2-SV2xAVsXYfLssqWSX1NpUQ9HhlWEnRgXF0phtI-2BfqI9Cl1cGmih8veCmWZU-ItqKSv_gs3stFlw_*****************************************fRv25yucw==&amp;#34;,&#xD;&amp;#34;status&amp;#34;: 704&#xD;} curl 转 request（https://spidertools.cn/#/curl2Request）&#xA;通过 Python 请求接口&#xA;import requests&#xD;import json&#xD;headers = {&#xD;&amp;#34;ipvx&amp;#34;: &amp;#34;**************&amp;#34;,&#xD;&amp;#34;webua&amp;#34;: &amp;#34;Mozilla/5.0 (Linux; Android 7.1.2; MI8 Build/N2G47J; wv) AppleWebKit/537.36 (KHTML, like Gecko) Version/4.0 Chrome/66.0.3359.158 Mobile Safari/537.36/duapp/5.43.0(android;7.1.2)&amp;#34;,&#xD;&amp;#34;app_build&amp;#34;: &amp;#34;5.43.0.10&amp;#34;,&#xD;&amp;#34;cookieToken&amp;#34;: &amp;#34;&amp;#34;,&#xD;&amp;#34;ltk&amp;#34;: &amp;#34;*****************************************&amp;#34;,&#xD;&amp;#34;duplatform&amp;#34;: &amp;#34;android&amp;#34;,&#xD;&amp;#34;appId&amp;#34;: &amp;#34;duapp&amp;#34;,&#xD;&amp;#34;duchannel&amp;#34;: &amp;#34;xiaomi&amp;#34;,&#xD;&amp;#34;humeChannel&amp;#34;: &amp;#34;&amp;#34;,&#xD;&amp;#34;duv&amp;#34;: &amp;#34;5.</description>
+    </item>
     <item>
       <title>破解 VMP&#43;OLLVM 混淆：通过 Hook jstring 快速定位加密算法入口</title>
       <link>https://cyrus-studio.github.io/blog/posts/%E7%A0%B4%E8%A7%A3-vmp&#43;ollvm-%E6%B7%B7%E6%B7%86%E9%80%9A%E8%BF%87-hook-jstring-%E5%BF%AB%E9%80%9F%E5%AE%9A%E4%BD%8D%E5%8A%A0%E5%AF%86%E7%AE%97%E6%B3%95%E5%85%A5%E5%8F%A3/</link>
