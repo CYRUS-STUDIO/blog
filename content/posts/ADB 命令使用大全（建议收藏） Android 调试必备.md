@@ -1,6 +1,6 @@
 +++
 title = 'ADB 命令使用大全（建议收藏） Android 调试必备'
-date = 2025-06-10T21:38:48.895601+08:00
+date = 2025-06-22T14:12:55.080805+08:00
 draft = false
 +++
 
@@ -93,6 +93,32 @@ dumpsys activity activities | grep "mResumedActivity"
 # 获取活动栈中的所有 Activity，并从中提取出最近的 5 个 Activity
 dumpsys activity activities | grep "Hist #" | head -n 5
 ```
+
+
+# 获取当前应用包名
+
+
+
+Mac/Linux：
+
+```
+adb shell dumpsys activity activities | grep "mResumedActivity"
+```
+Windows：
+
+```
+adb shell dumpsys activity activities | findstr "mResumedActivity"
+```
+
+
+调用实例：
+
+```
+(base) PS D:\test> adb shell dumpsys activity activities | findstr "mResumedActivity"
+    mResumedActivity: ActivityRecord{b40059e u0 com.shizhuang.duapp/.du_login.optimize.LoginContainerActivityV2 t110}
+```
+其中 com.shizhuang.duapp 就是当前应用的包名
+
 
 
 # 获取进程信息

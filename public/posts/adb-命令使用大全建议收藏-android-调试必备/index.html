@@ -35,8 +35,8 @@ Android 版本 API Level 代号 发布时间 Android 15 35 Vanilla Ice Cream 202
   <meta property="og:locale" content="zh_cn">
   <meta property="og:type" content="article">
     <meta property="article:section" content="posts">
-    <meta property="article:published_time" content="2025-06-10T21:38:48+08:00">
-    <meta property="article:modified_time" content="2025-06-10T21:38:48+08:00">
+    <meta property="article:published_time" content="2025-06-22T14:12:55+08:00">
+    <meta property="article:modified_time" content="2025-06-22T14:12:55+08:00">
 
 
   </head>
@@ -87,7 +87,7 @@ Android 版本 API Level 代号 发布时间 Android 15 35 Vanilla Ice Cream 202
   <title>calendar</title>
   <rect x="3" y="4" width="18" height="18" rx="2" ry="2"></rect><line x1="16" y1="2" x2="16" y2="6"></line><line x1="8" y1="2" x2="8" y2="6"></line><line x1="3" y1="10" x2="21" y2="10"></line>
 </svg>
-          Jun 10, 2025
+          Jun 22, 2025
         </span>
       </div>
       <div>
@@ -246,7 +246,16 @@ dumpsys activity activities | grep &#34;mResumedActivity&#34;
 
 # 获取活动栈中的所有 Activity，并从中提取出最近的 5 个 Activity
 dumpsys activity activities | grep &#34;Hist #&#34; | head -n 5
-</code></pre><h1 id="获取进程信息">获取进程信息</h1>
+</code></pre><h1 id="获取当前应用包名">获取当前应用包名</h1>
+<p>Mac/Linux：</p>
+<pre tabindex="0"><code>adb shell dumpsys activity activities | grep &#34;mResumedActivity&#34;
+</code></pre><p>Windows：</p>
+<pre tabindex="0"><code>adb shell dumpsys activity activities | findstr &#34;mResumedActivity&#34;
+</code></pre><p>调用实例：</p>
+<pre tabindex="0"><code>(base) PS D:\test&gt; adb shell dumpsys activity activities | findstr &#34;mResumedActivity&#34;
+    mResumedActivity: ActivityRecord{b40059e u0 com.shizhuang.duapp/.du_login.optimize.LoginContainerActivityV2 t110}
+</code></pre><p>其中 com.shizhuang.duapp 就是当前应用的包名</p>
+<h1 id="获取进程信息">获取进程信息</h1>
 <pre tabindex="0"><code># 显示当前系统中正在运行的进程信息、CPU、内存使用率等
 top
 

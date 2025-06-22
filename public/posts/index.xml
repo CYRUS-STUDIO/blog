@@ -6,8 +6,22 @@
     <description>Recent content in Posts on CYRUS STUDIO</description>
     <generator>Hugo</generator>
     <language>zh-cn</language>
-    <lastBuildDate>Sat, 21 Jun 2025 16:33:56 +0800</lastBuildDate>
+    <lastBuildDate>Sun, 22 Jun 2025 14:12:55 +0800</lastBuildDate>
     <atom:link href="https://cyrus-studio.github.io/blog/posts/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>ADB 命令使用大全（建议收藏） Android 调试必备</title>
+      <link>https://cyrus-studio.github.io/blog/posts/adb-%E5%91%BD%E4%BB%A4%E4%BD%BF%E7%94%A8%E5%A4%A7%E5%85%A8%E5%BB%BA%E8%AE%AE%E6%94%B6%E8%97%8F-android-%E8%B0%83%E8%AF%95%E5%BF%85%E5%A4%87/</link>
+      <pubDate>Sun, 22 Jun 2025 14:12:55 +0800</pubDate>
+      <guid>https://cyrus-studio.github.io/blog/posts/adb-%E5%91%BD%E4%BB%A4%E4%BD%BF%E7%94%A8%E5%A4%A7%E5%85%A8%E5%BB%BA%E8%AE%AE%E6%94%B6%E8%97%8F-android-%E8%B0%83%E8%AF%95%E5%BF%85%E5%A4%87/</guid>
+      <description>版权归作者所有，如有转发，请注明文章出处：https://cyrus-studio.github.io/blog/&#xA;基础adb命令 # 重启adb adb kill-server&#xD;# 查看已连接的设备&#xD;adb devices&#xD;# 进入命令行&#xD;adb shell&#xD;# 使用 -s 参数来指定设备&#xD;adb -s &amp;lt;设备序列号&amp;gt; shell&#xD;# 显示日志&#xD;adb logcat 获取 API Level 进入 adb shell ，执行下面命令获取当前 Android 系统的 API Level（即 SDK 版本）：&#xA;getprop ro.build.version.sdk 以下是 Android 版本与 API Level 的对应表 （截至 Android 15）：&#xA;Android 版本 API Level 代号 发布时间 Android 15 35 Vanilla Ice Cream 2024年9月 Android 14 34 Upside Down Cake 2023年10月 Android 13 33 Tiramisu 2022年8月 Android 12L 32 2022年3月 Android 12 31 Snow Cone 2021年10月 Android 11 30 Red Velvet Cake 2020年9月 Android 10 29 Q 2019年9月 Android 9 28 Pie 2018年8月 Android 8.</description>
+    </item>
+    <item>
+      <title>安卓抓包实战：使用 Charles 抓取 App 数据全流程详解</title>
+      <link>https://cyrus-studio.github.io/blog/posts/%E5%AE%89%E5%8D%93%E6%8A%93%E5%8C%85%E5%AE%9E%E6%88%98%E4%BD%BF%E7%94%A8-charles-%E6%8A%93%E5%8F%96-app-%E6%95%B0%E6%8D%AE%E5%85%A8%E6%B5%81%E7%A8%8B%E8%AF%A6%E8%A7%A3/</link>
+      <pubDate>Sun, 22 Jun 2025 14:12:55 +0800</pubDate>
+      <guid>https://cyrus-studio.github.io/blog/posts/%E5%AE%89%E5%8D%93%E6%8A%93%E5%8C%85%E5%AE%9E%E6%88%98%E4%BD%BF%E7%94%A8-charles-%E6%8A%93%E5%8F%96-app-%E6%95%B0%E6%8D%AE%E5%85%A8%E6%B5%81%E7%A8%8B%E8%AF%A6%E8%A7%A3/</guid>
+      <description>版权归作者所有，如有转发，请注明文章出处：https://cyrus-studio.github.io/blog/&#xA;抓包环境准备 1. 下载安装charles charles下载地址：https://www.charlesproxy.com/latest-release/download.do&#xA;2. SSL代理设置 SSL Proxying Settings&amp;hellip;&#xA;说明：如果需要抓 PC 上的数据就开启 Windows Proxy，如果只是抓手机上的数据可以不用开启。&#xA;配置说明：&#xA;*:443 — 表示拦截所有域名的 HTTPS 请求&#xA;*:80 — 表示拦截所有域名的 HTTP 请求&#xA;3. Enable transparent HTTP proxying 打开 Proxy Settings 勾选 Enable transparent HTTP proxying&#xA;transparent HTTP proxying：客户端无需设置代理，Charles 通过网络层拦截（如防火墙、端口转发、网关路由等）来强制把 HTTP 流量转发到 Charles&#xA;4. 设置Charles与Clash共存 如果开启了Clash，需要设置Charles与Clash共存&#xA;打开扩展代理设置&#xA;分别点击 Web Proxy、Seure Web Proxy 和 SOCKS Proxy 设置一下Clash的地址和端口&#xA;5. 共享热点 通过 ipconfg 或者打开【网络和Internet】找到电脑的 ip 地址&#xA;电脑开启共享热点，手机连接热点并设置代理&#xA;6. 安装证书 手机端访问 http://chls.</description>
+    </item>
     <item>
       <title>逆向某物 App 登录接口：抓包分析 &#43; Frida Hook 还原加密算法</title>
       <link>https://cyrus-studio.github.io/blog/posts/%E9%80%86%E5%90%91%E6%9F%90%E7%89%A9-app-%E7%99%BB%E5%BD%95%E6%8E%A5%E5%8F%A3%E6%8A%93%E5%8C%85%E5%88%86%E6%9E%90-&#43;-frida-hook-%E8%BF%98%E5%8E%9F%E5%8A%A0%E5%AF%86%E7%AE%97%E6%B3%95/</link>
@@ -37,13 +51,6 @@
       <description>版权归作者所有，如有转发，请注明文章出处：https://cyrus-studio.github.io/blog/&#xA;Frida Frida 通过注入自定义 JavaScript 代码，可以 Hook 函数、修改参数、监控函数调用和拦截返回值，适用于逆向工程、调试和安全分析等场景。&#xA;使用 Frida 前需要先下载和安装包括：&#xA;Frida 是核心库，提供 API 和功能。&#xA;Frida-Tool 是命令行工具，通常与 Frida 版本相对应。&#xA;Frida-Server 是运行在 Android 设备上的服务器端组件，允许 Frida 客户端与设备进行通信。&#xA;环境准备 1. 安装 frida 和 frida-tools pip install frida-tools 2. frida server 获取设备CPU架构&#xA;adb shell getprop ro.product.cpu.abi 下载与设备对应架构的 frida-server：https://github.com/frida/frida/releases&#xA;把 frida-server 推送到设备 /data/local/tmp 目录下&#xA;adb push D:\app逆向\Frida\frida-server-16.5.2-android-arm64 /data/local/tmp/fs 启动 frida-server&#xA;# 启用超级管理员&#xD;adb root&#xD;# 进入命令行&#xD;adb shell # 添加可执行权限&#xD;chmod +x /data/local/tmp/fs&#xD;# 启动frida-server&#xD;/data/local/tmp/fs 3.</description>
     </item>
     <item>
-      <title>安卓抓包实战：使用 Charles 抓取 App 数据全流程详解</title>
-      <link>https://cyrus-studio.github.io/blog/posts/%E5%AE%89%E5%8D%93%E6%8A%93%E5%8C%85%E5%AE%9E%E6%88%98%E4%BD%BF%E7%94%A8-charles-%E6%8A%93%E5%8F%96-app-%E6%95%B0%E6%8D%AE%E5%85%A8%E6%B5%81%E7%A8%8B%E8%AF%A6%E8%A7%A3/</link>
-      <pubDate>Wed, 18 Jun 2025 04:04:19 +0800</pubDate>
-      <guid>https://cyrus-studio.github.io/blog/posts/%E5%AE%89%E5%8D%93%E6%8A%93%E5%8C%85%E5%AE%9E%E6%88%98%E4%BD%BF%E7%94%A8-charles-%E6%8A%93%E5%8F%96-app-%E6%95%B0%E6%8D%AE%E5%85%A8%E6%B5%81%E7%A8%8B%E8%AF%A6%E8%A7%A3/</guid>
-      <description>版权归作者所有，如有转发，请注明文章出处：https://cyrus-studio.github.io/blog/&#xA;抓包环境准备 1. 下载安装charles charles下载地址：https://www.charlesproxy.com/latest-release/download.do&#xA;2. SSL代理设置 3. http代理和socks代理配置 4. 设置Charles与Clash共存 如果开启了Clash，需要设置Charles与Clash共存&#xA;打开扩展代理设置&#xA;分别点击 Web Proxy、Seure Web Proxy 和 SOCKS Proxy 设置一下Clash的地址和端口&#xA;5. 共享热点 通过 ipconfg 或者打开【网络和Internet】找到电脑的 ip 地址&#xA;电脑开启共享热点，手机连接热点并设置代理&#xA;6. 安装证书 手机端访问 http://chls.pro/ssl 安装证书&#xA;下载并保存Charlles证书&#xA;Android 7.0 之后抓取HTTPS数据出现unknown 和证书无效的解决方案 1. 保存Charles证书 2. 计算证书的Hash值 下载安装 OpenSSL：https://slproweb.com/products/Win32OpenSSL.html&#xA;计算证书的Hash值&#xA;cd D:\App\OpenSSL-Win64\bin&#xD;./openssl x509 -inform PEM -subject_hash_old -in E:\charles.pem 比如这里得到的hash值为e4473cf9，把证书的文件名改为 e4473cf9.0&#xA;3. 安装证书到系统证书目录 把证书 push 到 /system/etc/security/cacerts（系统证书目录）&#xA;# 把证书 push 到 sdcard&#xD;adb push E:\e4473cf9.</description>
-    </item>
-    <item>
       <title>搞懂 Android Hook 的两大核心：PLT Hook 与 Inline Hook 全解析</title>
       <link>https://cyrus-studio.github.io/blog/posts/%E6%90%9E%E6%87%82-android-hook-%E7%9A%84%E4%B8%A4%E5%A4%A7%E6%A0%B8%E5%BF%83plt-hook-%E4%B8%8E-inline-hook-%E5%85%A8%E8%A7%A3%E6%9E%90/</link>
       <pubDate>Tue, 17 Jun 2025 04:05:05 +0800</pubDate>
@@ -70,13 +77,6 @@
       <pubDate>Wed, 11 Jun 2025 01:23:58 +0800</pubDate>
       <guid>https://cyrus-studio.github.io/blog/posts/%E4%B8%80%E6%96%87%E6%90%9E%E6%87%82-so-%E8%84%B1%E5%A3%B3%E5%85%A8%E6%B5%81%E7%A8%8B%E8%AF%86%E5%88%AB%E5%8A%A0%E5%A3%B3frida-dump%E5%8E%9F%E7%90%86%E6%B7%B1%E5%85%A5%E8%A7%A3%E6%9E%90/</guid>
       <description>版权归作者所有，如有转发，请注明文章出处：https://cyrus-studio.github.io/blog/&#xA;加壳 so 识别 使用 IDA 打开 so 提示无法正确识别 ELF 文件结构。&#xA;section 定义无效或不符合预期格式。&#xA;有很多红色的汇编代码块，表示错误或者未能正常解析的地址/数据&#xA;这通常就是 so 可能被“混淆”、“裁剪”或“加壳”了。&#xA;使用 frida_dump 实现 so 脱壳 frida_dump 是基于 frida 的 so 和 dex 的脱壳工具。&#xA;开源地址：https://github.com/lasting-yang/frida_dump&#xA;关于 Frida 的使用参考：使用 Frida Hook Android App&#xA;先把 frida_dump 源码 clone 到本地。&#xA;如果使用的是远程链接，把 dump_so.py 中的&#xA;device: frida.core.Device = frida.get_usb_device() 改成&#xA;device = frida.get_device_manager().add_remote_device(&amp;#34;127.0.0.1:1234&amp;#34;) 比如目标 so 是 libGameVMP.so，通过下面命令执行 dump_so.py&#xA;python dump_so.py libGameVMP.so 输出如下：&#xA;(anti-app) PS D:\Python\anti-app\frida_dump&amp;gt; python dump_so.py libGameVMP.so&#xD;{&amp;#39;name&amp;#39;: &amp;#39;libGameVMP.</description>
-    </item>
-    <item>
-      <title>ADB 命令使用大全（建议收藏） Android 调试必备</title>
-      <link>https://cyrus-studio.github.io/blog/posts/adb-%E5%91%BD%E4%BB%A4%E4%BD%BF%E7%94%A8%E5%A4%A7%E5%85%A8%E5%BB%BA%E8%AE%AE%E6%94%B6%E8%97%8F-android-%E8%B0%83%E8%AF%95%E5%BF%85%E5%A4%87/</link>
-      <pubDate>Tue, 10 Jun 2025 21:38:48 +0800</pubDate>
-      <guid>https://cyrus-studio.github.io/blog/posts/adb-%E5%91%BD%E4%BB%A4%E4%BD%BF%E7%94%A8%E5%A4%A7%E5%85%A8%E5%BB%BA%E8%AE%AE%E6%94%B6%E8%97%8F-android-%E8%B0%83%E8%AF%95%E5%BF%85%E5%A4%87/</guid>
-      <description>版权归作者所有，如有转发，请注明文章出处：https://cyrus-studio.github.io/blog/&#xA;基础adb命令 # 重启adb adb kill-server&#xD;# 查看已连接的设备&#xD;adb devices&#xD;# 进入命令行&#xD;adb shell&#xD;# 使用 -s 参数来指定设备&#xD;adb -s &amp;lt;设备序列号&amp;gt; shell&#xD;# 显示日志&#xD;adb logcat 获取 API Level 进入 adb shell ，执行下面命令获取当前 Android 系统的 API Level（即 SDK 版本）：&#xA;getprop ro.build.version.sdk 以下是 Android 版本与 API Level 的对应表 （截至 Android 15）：&#xA;Android 版本 API Level 代号 发布时间 Android 15 35 Vanilla Ice Cream 2024年9月 Android 14 34 Upside Down Cake 2023年10月 Android 13 33 Tiramisu 2022年8月 Android 12L 32 2022年3月 Android 12 31 Snow Cone 2021年10月 Android 11 30 Red Velvet Cake 2020年9月 Android 10 29 Q 2019年9月 Android 9 28 Pie 2018年8月 Android 8.</description>
     </item>
     <item>
       <title>FART 脱壳某大厂 App &#43; CodeItem 修复 dex &#43; 反编译还原源码</title>
