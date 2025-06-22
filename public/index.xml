@@ -6,8 +6,15 @@
     <description>Recent content on CYRUS STUDIO</description>
     <generator>Hugo</generator>
     <language>zh-cn</language>
-    <lastBuildDate>Sun, 22 Jun 2025 14:12:55 +0800</lastBuildDate>
+    <lastBuildDate>Sun, 22 Jun 2025 21:24:23 +0800</lastBuildDate>
     <atom:link href="https://cyrus-studio.github.io/blog/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>逆向某物 App 登录接口：还原 newSign 算法全流程</title>
+      <link>https://cyrus-studio.github.io/blog/posts/%E9%80%86%E5%90%91%E6%9F%90%E7%89%A9-app-%E7%99%BB%E5%BD%95%E6%8E%A5%E5%8F%A3%E8%BF%98%E5%8E%9F-newsign-%E7%AE%97%E6%B3%95%E5%85%A8%E6%B5%81%E7%A8%8B/</link>
+      <pubDate>Sun, 22 Jun 2025 21:24:23 +0800</pubDate>
+      <guid>https://cyrus-studio.github.io/blog/posts/%E9%80%86%E5%90%91%E6%9F%90%E7%89%A9-app-%E7%99%BB%E5%BD%95%E6%8E%A5%E5%8F%A3%E8%BF%98%E5%8E%9F-newsign-%E7%AE%97%E6%B3%95%E5%85%A8%E6%B5%81%E7%A8%8B/</guid>
+      <description>版权归作者所有，如有转发，请注明文章出处：https://cyrus-studio.github.io/blog/&#xA;newSign 参数分析 通过 Hook Java 层加密算法得到 newSign 参数相关信息如下：&#xA;具体参考：逆向某物 App 登录接口：抓包分析 + Frida Hook 还原加密算法&#xA;入参：&#xA;MD5 update data Utf8: dWWoXlbR3K87j2N27Dkv4uOPUnOsh0xrJ5t+atsiQXC+/dIN8Kof9Gm2x1kil7S/A+KLRtWKw+AfFWotfKtx+5J+ONciO*********************************************************************************************kK+Xiqtb6FajKK3aJ2vwB5l5lAKIhnvpOWXFWqYSQJy5g7oQ61Vwo+6MVB3U/wBT2CpM7AKDFH2Xj9Krb/0jNsPgNnA== MD5 加密后的结果：&#xA;MD5 digest result Hex: 8f03e2117c**********d9b9b18c58 调用堆栈：&#xA;MessageDigest.digest() is called!&#xD;java.lang.Throwable&#xD;at java.security.MessageDigest.digest(Native Method)&#xD;at ff.l0.h(RequestUtils.java:3)&#xD;at ff.l0.c(RequestUtils.java:12)&#xD;at lte.NCall.IL(Native Method)&#xD;at com.shizhuang.duapp.common.helper.net.interceptor.HttpRequestInterceptor.intercept(HttpRequestInterceptor.java)&#xD;at okhttp3.internal.http.RealInterceptorChain.proceed(RealInterceptorChain.java:10)&#xD;at okhttp3.internal.http.RealInterceptorChain.proceed(RealInterceptorChain.java:1)&#xD;at kb.b.intercept(MergeHostAfterInterceptor.java:11)&#xD;at okhttp3.internal.http.RealInterceptorChain.proceed(RealInterceptorChain.java:10)&#xD;at okhttp3.internal.http.RealInterceptorChain.proceed(RealInterceptorChain.java:1)&#xD;at kb.d.intercept(MergeHostInterceptor.java:8)&#xD;at okhttp3.internal.http.RealInterceptorChain.proceed(RealInterceptorChain.java:10)&#xD;at okhttp3.internal.http.RealInterceptorChain.proceed(RealInterceptorChain.java:1)&#xD;at okhttp3.RealCall.getResponseWithInterceptorChain(RealCall.java:13)&#xD;at okhttp3.RealCall.execute(RealCall.java:8)&#xD;at retrofit2.OkHttpCall.execute(OkHttpCall.java:18)&#xD;at retrofit2.</description>
+    </item>
     <item>
       <title>ADB 命令使用大全（建议收藏） Android 调试必备</title>
       <link>https://cyrus-studio.github.io/blog/posts/adb-%E5%91%BD%E4%BB%A4%E4%BD%BF%E7%94%A8%E5%A4%A7%E5%85%A8%E5%BB%BA%E8%AE%AE%E6%94%B6%E8%97%8F-android-%E8%B0%83%E8%AF%95%E5%BF%85%E5%A4%87/</link>
