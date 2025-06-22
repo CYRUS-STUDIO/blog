@@ -6,8 +6,15 @@
     <description>Recent content in Posts on CYRUS STUDIO</description>
     <generator>Hugo</generator>
     <language>zh-cn</language>
-    <lastBuildDate>Sun, 22 Jun 2025 21:24:23 +0800</lastBuildDate>
+    <lastBuildDate>Sun, 22 Jun 2025 22:38:57 +0800</lastBuildDate>
     <atom:link href="https://cyrus-studio.github.io/blog/posts/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>逆向某物 App 登录接口：热修复逻辑挖掘隐藏参数、接口完整调用</title>
+      <link>https://cyrus-studio.github.io/blog/posts/%E9%80%86%E5%90%91%E6%9F%90%E7%89%A9-app-%E7%99%BB%E5%BD%95%E6%8E%A5%E5%8F%A3%E7%83%AD%E4%BF%AE%E5%A4%8D%E9%80%BB%E8%BE%91%E6%8C%96%E6%8E%98%E9%9A%90%E8%97%8F%E5%8F%82%E6%95%B0%E6%8E%A5%E5%8F%A3%E5%AE%8C%E6%95%B4%E8%B0%83%E7%94%A8/</link>
+      <pubDate>Sun, 22 Jun 2025 22:38:57 +0800</pubDate>
+      <guid>https://cyrus-studio.github.io/blog/posts/%E9%80%86%E5%90%91%E6%9F%90%E7%89%A9-app-%E7%99%BB%E5%BD%95%E6%8E%A5%E5%8F%A3%E7%83%AD%E4%BF%AE%E5%A4%8D%E9%80%BB%E8%BE%91%E6%8C%96%E6%8E%98%E9%9A%90%E8%97%8F%E5%8F%82%E6%95%B0%E6%8E%A5%E5%8F%A3%E5%AE%8C%E6%95%B4%E8%B0%83%E7%94%A8/</guid>
+      <description>版权归作者所有，如有转发，请注明文章出处：https://cyrus-studio.github.io/blog/&#xA;uuid 参数分析 通过反编译 ff.l0.c 方法可以知道 uuid 来自于 he.a.i.t() 方法&#xA;map.put(&amp;#34;uuid&amp;#34;, he.a.i.t()); 具体参考：&#xA;逆向某物 App 登录接口：抓包分析 + Frida Hook 还原加密算法&#xA;逆向某物 App 登录接口：还原 newSign 算法全流程&#xA;查找一下 he.a.i 在哪些 dex 有引用&#xA;2|wayne:/data/data/com.shizhuang.duapp/cyrus # grep -rl &amp;#34;he.a.i&amp;#34; *.txt&#xD;11994176_class_list.txt&#xD;11994176_class_list_execute.txt&#xD;1321896_class_list_execute.txt&#xD;1571616_class_list.txt&#xD;1571616_class_list_execute.txt&#xD;8183732_class_list.txt&#xD;8183732_class_list_execute.txt&#xD;8391604_class_list_execute.txt&#xD;9085048_class_list.txt&#xD;9085048_class_list_execute.txt 通过 jadx 反编译 he.a 源码如下：&#xA;package he;&#xD;/* loaded from: 11994176_dex_file_execute.jar:he/a.class */&#xD;public class a {&#xD;public static i i = new C0253a();&#xD;/* renamed from: he.</description>
+    </item>
     <item>
       <title>逆向某物 App 登录接口：还原 newSign 算法全流程</title>
       <link>https://cyrus-studio.github.io/blog/posts/%E9%80%86%E5%90%91%E6%9F%90%E7%89%A9-app-%E7%99%BB%E5%BD%95%E6%8E%A5%E5%8F%A3%E8%BF%98%E5%8E%9F-newsign-%E7%AE%97%E6%B3%95%E5%85%A8%E6%B5%81%E7%A8%8B/</link>
