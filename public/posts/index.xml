@@ -6,8 +6,15 @@
     <description>Recent content in Posts on CYRUS STUDIO</description>
     <generator>Hugo</generator>
     <language>zh-cn</language>
-    <lastBuildDate>Sun, 22 Jun 2025 22:38:57 +0800</lastBuildDate>
+    <lastBuildDate>Tue, 24 Jun 2025 21:07:57 +0800</lastBuildDate>
     <atom:link href="https://cyrus-studio.github.io/blog/posts/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>手把手教你用 Chrome 断点调试 Frida 脚本，JS 调试不再是黑盒</title>
+      <link>https://cyrus-studio.github.io/blog/posts/%E6%89%8B%E6%8A%8A%E6%89%8B%E6%95%99%E4%BD%A0%E7%94%A8-chrome-%E6%96%AD%E7%82%B9%E8%B0%83%E8%AF%95-frida-%E8%84%9A%E6%9C%ACjs-%E8%B0%83%E8%AF%95%E4%B8%8D%E5%86%8D%E6%98%AF%E9%BB%91%E7%9B%92/</link>
+      <pubDate>Tue, 24 Jun 2025 21:07:57 +0800</pubDate>
+      <guid>https://cyrus-studio.github.io/blog/posts/%E6%89%8B%E6%8A%8A%E6%89%8B%E6%95%99%E4%BD%A0%E7%94%A8-chrome-%E6%96%AD%E7%82%B9%E8%B0%83%E8%AF%95-frida-%E8%84%9A%E6%9C%ACjs-%E8%B0%83%E8%AF%95%E4%B8%8D%E5%86%8D%E6%98%AF%E9%BB%91%E7%9B%92/</guid>
+      <description>版权归作者所有，如有转发，请注明文章出处：https://cyrus-studio.github.io/blog/&#xA;使用 Chrome 断点调试 JS 只需要在执行 frida 命令时，加上下面参数即可：&#xA;--runtime=v8 --debug 参数说明：&#xA;&amp;ndash;runtime=v8，指定 Frida 使用 V8 引擎（Google Chrome 使用的 JS 引擎）来运行 JS 脚本。默认 Frida 使用 QuickJS 引擎（轻量但功能有限，调试能力较差）。&#xA;&amp;ndash;debug，启用调试模式，输出更多细节信息，包括：脚本加载日志、错误栈追踪、JS 异常信息等&#xA;关于 Frida 的详细使用参考：一文搞懂如何使用 Frida Hook Android App&#xA;比如：&#xA;启动应用并附加到当前启动进程 frida -H 127.0.0.1:1234 -l classloader_utils.js -f com.shizhuang.duapp --runtime=v8 --debug 附加到当前设备的前台应用 frida -H 127.0.0.1:1234 -F -l classloader_utils.js --runtime=v8 --debug 当你看到：Chrome Inspector server listening on port 9229，这说明你已经成功开启了一个 Frida（V8 模式）调试服务&#xA;(anti-app) PS D:\Python\anti-app\frida_java&amp;gt; frida -H 127.</description>
+    </item>
     <item>
       <title>逆向某物 App 登录接口：热修复逻辑挖掘隐藏参数、接口完整调用</title>
       <link>https://cyrus-studio.github.io/blog/posts/%E9%80%86%E5%90%91%E6%9F%90%E7%89%A9-app-%E7%99%BB%E5%BD%95%E6%8E%A5%E5%8F%A3%E7%83%AD%E4%BF%AE%E5%A4%8D%E9%80%BB%E8%BE%91%E6%8C%96%E6%8E%98%E9%9A%90%E8%97%8F%E5%8F%82%E6%95%B0%E6%8E%A5%E5%8F%A3%E5%AE%8C%E6%95%B4%E8%B0%83%E7%94%A8/</link>
