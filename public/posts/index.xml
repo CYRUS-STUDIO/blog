@@ -6,8 +6,15 @@
     <description>Recent content in Posts on CYRUS STUDIO</description>
     <generator>Hugo</generator>
     <language>zh-cn</language>
-    <lastBuildDate>Tue, 24 Jun 2025 21:07:57 +0800</lastBuildDate>
+    <lastBuildDate>Wed, 25 Jun 2025 17:08:04 +0800</lastBuildDate>
     <atom:link href="https://cyrus-studio.github.io/blog/posts/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>打造基于 ART 的 Android 函数抽取壳：原理剖析与完整源码实战</title>
+      <link>https://cyrus-studio.github.io/blog/posts/%E6%89%93%E9%80%A0%E5%9F%BA%E4%BA%8E-art-%E7%9A%84-android-%E5%87%BD%E6%95%B0%E6%8A%BD%E5%8F%96%E5%A3%B3%E5%8E%9F%E7%90%86%E5%89%96%E6%9E%90%E4%B8%8E%E5%AE%8C%E6%95%B4%E6%BA%90%E7%A0%81%E5%AE%9E%E6%88%98/</link>
+      <pubDate>Wed, 25 Jun 2025 17:08:04 +0800</pubDate>
+      <guid>https://cyrus-studio.github.io/blog/posts/%E6%89%93%E9%80%A0%E5%9F%BA%E4%BA%8E-art-%E7%9A%84-android-%E5%87%BD%E6%95%B0%E6%8A%BD%E5%8F%96%E5%A3%B3%E5%8E%9F%E7%90%86%E5%89%96%E6%9E%90%E4%B8%8E%E5%AE%8C%E6%95%B4%E6%BA%90%E7%A0%81%E5%AE%9E%E6%88%98/</guid>
+      <description>版权归作者所有，如有转发，请注明文章出处：https://cyrus-studio.github.io/blog/&#xA;ART 下类加载流程 1. 类加载的时机 1、隐式加载：&#xA;创建类的实例&#xA;访问类的静态变量，或者为静态变量赋值&#xA;调用类的静态方法&#xA;使用反射方式来强制创建某个类或接口对应的 java.lang.Class 对象&#xA;初始化某个类的子类&#xA;2、显示加载：&#xA;使用 loadClass() 加载&#xA;使用 forName() 加载&#xA;两者又有所不同。&#xA;2. 类加载的流程 loadClass 和 forName 也是有区别的；&#xA;loadClass 只完成了第一步，就是加载；&#xA;Class.forName 是完成了3步，加载、链接和初始化。&#xA;阶段 发生了什么 加载 字节码文件 -&amp;gt; Class 对象 验证 检查字节码合法性 准备 静态变量分配内存，默认值 解析 符号引用 → 真实引用 初始化 调用 &amp;lt;clinit&amp;gt; 函数，static 代码块执行，静态变量赋值 一个类从“加载” 到 “可以使用” 的完整生命周期：加载（Loading）→ 连接（Linking）→ 初始化（Initialization）。&#xA;加载（Loading）&#xD;↓&#xD;连接（Linking）&#xD;→ 验证（Verification）&#xD;→ 准备（Preparation）&#xD;→ 解析（Resolution）&#xD;↓&#xD;初始化（Initialization）&#xD;↓&#xD;使用（Use）&#xD;↓&#xD;卸载（Unload） 相关文章：Android 下的 ClassLoader 与 双亲委派机制</description>
+    </item>
     <item>
       <title>手把手教你用 Chrome 断点调试 Frida 脚本，JS 调试不再是黑盒</title>
       <link>https://cyrus-studio.github.io/blog/posts/%E6%89%8B%E6%8A%8A%E6%89%8B%E6%95%99%E4%BD%A0%E7%94%A8-chrome-%E6%96%AD%E7%82%B9%E8%B0%83%E8%AF%95-frida-%E8%84%9A%E6%9C%ACjs-%E8%B0%83%E8%AF%95%E4%B8%8D%E5%86%8D%E6%98%AF%E9%BB%91%E7%9B%92/</link>
@@ -175,13 +182,6 @@
       <pubDate>Thu, 15 May 2025 15:41:19 +0800</pubDate>
       <guid>https://cyrus-studio.github.io/blog/posts/%E5%9C%A8-hugo-%E5%8D%9A%E5%AE%A2%E4%B8%AD%E9%9B%86%E6%88%90%E8%AF%84%E8%AE%BA%E7%B3%BB%E7%BB%9F-waline-%E4%B8%8E-%E6%B5%8F%E8%A7%88%E9%87%8F%E7%BB%9F%E8%AE%A1/</guid>
       <description>版权归作者所有，如有转发，请注明文章出处：https://cyrus-studio.github.io/blog/&#xA;关于 Waline Waline 是一个轻量级、快速且安全的评论系统，适用于静态网站。&#xA;其主要特点包括：&#xA;轻量级：前端仅约 50KB，加载速度快。&#xA;支持 Markdown：支持完整的 Markdown 语法，方便用户撰写格式化评论。&#xA;多种部署方式：支持 Vercel、Netlify、CloudBase、Docker 等多种部署方式。&#xA;多种存储后端支持：支持 LeanCloud、MongoDB、MySQL、SQLite 等多种数据库。&#xA;安全性：具备防刷频、IP 黑名单、评论内容重复检查等安全功能。&#xA;社交登录支持：支持 QQ、微信、Telegram 等社交平台登录。&#xA;通知功能：支持邮件、微信、QQ、Telegram 等通知方式。&#xA;Waline 是开源的，采用 GPL-2.0 许可证。&#xA;官网：https://waline.js.org/&#xA;开源地址：https://github.com/walinejs/waline&#xA;快速上手：https://waline.js.org/guide/get-started/&#xA;LeanCloud 设置 (数据库) 创建评论数据存储数据库。&#xA;1、登录 或 注册 LeanCloud 国际版 并进入 控制台&#xA;https://console.leancloud.app/apps&#xA;2、点击左上角 创建应用 并起一个你喜欢的名字 (请选择免费的开发版):&#xA;3、进入应用，选择左下角的 设置 &amp;gt; 应用 Key。你可以看到你的 APP ID,APP Key 和 Master Key。请记录它们，以便后续使用。&#xA;Vercel 部署 (服务端) 1、点击下面链接，跳转至 Vercel 进行 Server 端部署。&#xA;https://vercel.com/new/clone?repository-url=https%3A%2F%2Fgithub.com%2Fwalinejs%2Fwaline%2Ftree%2Fmain%2Fexample&#xA;注：如果你未登录的话，Vercel 会让你注册或登录，请使用 GitHub 账户进行快捷登录。</description>
-    </item>
-    <item>
-      <title>基于 art 下的类加载机制，实现函数抽取壳</title>
-      <link>https://cyrus-studio.github.io/blog/posts/%E5%9F%BA%E4%BA%8E-art-%E4%B8%8B%E7%9A%84%E7%B1%BB%E5%8A%A0%E8%BD%BD%E6%9C%BA%E5%88%B6%E5%AE%9E%E7%8E%B0%E5%87%BD%E6%95%B0%E6%8A%BD%E5%8F%96%E5%A3%B3/</link>
-      <pubDate>Wed, 14 May 2025 16:12:27 +0800</pubDate>
-      <guid>https://cyrus-studio.github.io/blog/posts/%E5%9F%BA%E4%BA%8E-art-%E4%B8%8B%E7%9A%84%E7%B1%BB%E5%8A%A0%E8%BD%BD%E6%9C%BA%E5%88%B6%E5%AE%9E%E7%8E%B0%E5%87%BD%E6%95%B0%E6%8A%BD%E5%8F%96%E5%A3%B3/</guid>
-      <description>版权归作者所有，如有转发，请注明文章出处：https://cyrus-studio.github.io/blog/&#xA;ART 下类加载流程 类加载的时机 1、隐式加载：&#xA;创建类的实例&#xA;访问类的静态变量，或者为静态变量赋值&#xA;调用类的静态方法&#xA;使用反射方式来强制创建某个类或接口对应的 java.lang.Class 对象&#xA;初始化某个类的子类&#xA;2、显示加载：&#xA;使用 loadClass() 加载&#xA;使用 forName() 加载&#xA;两者又有所不同。&#xA;类加载的流程 loadClass 和 forName 也是有区别的；&#xA;loadClass 只完成了第一步，就是加载；&#xA;Class.forName 是完成了3步，加载、链接和初始化。&#xA;阶段 发生了什么 加载 字节码文件 -&amp;gt; Class 对象 验证 检查字节码合法性 准备 静态变量分配内存，默认值 解析 符号引用 → 真实引用 初始化 调用 &amp;lt;clinit&amp;gt; 函数，static 代码块执行，静态变量赋值 一个类从“加载” 到 “可以使用” 的完整生命周期：加载（Loading）→ 连接（Linking）→ 初始化（Initialization）。&#xA;加载（Loading）&#xD;↓&#xD;连接（Linking）&#xD;→ 验证（Verification）&#xD;→ 准备（Preparation）&#xD;→ 解析（Resolution）&#xD;↓&#xD;初始化（Initialization）&#xD;↓&#xD;使用（Use）&#xD;↓&#xD;卸载（Unload） 相关文章：Android 下的 ClassLoader 与 双亲委派机制</description>
     </item>
     <item>
       <title>关于 dex2oat 以及 vdex、cdex、dex 格式转换</title>

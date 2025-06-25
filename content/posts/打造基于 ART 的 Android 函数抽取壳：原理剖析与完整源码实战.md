@@ -1,6 +1,6 @@
 +++
-title = '基于 art 下的类加载机制，实现函数抽取壳'
-date = 2025-05-14T16:12:27.414583+08:00
+title = '打造基于 ART 的 Android 函数抽取壳：原理剖析与完整源码实战'
+date = 2025-06-25T17:08:04.980370+08:00
 draft = false
 +++
 
@@ -10,7 +10,7 @@ draft = false
 
 
 
-## 类加载的时机
+## 1. 类加载的时机
 
 
 
@@ -38,7 +38,7 @@ draft = false
 
 
 
-## 类加载的流程
+## 2. 类加载的流程
 
 
 
@@ -83,7 +83,7 @@ Class.forName 是完成了3步，加载、链接和初始化。
 
 
 
-ClassLinker::LoadMethod 是 ART 中负责将 dex 文件中的方法信息解析并填充到 ArtMethod 结构体中的关键函数，是抽取壳的实现基础。
+ClassLinker::LoadMethod 是 ART 中负责将 dex 文件中的方法信息解析并填充到 ArtMethod（Java 函数的 native 表示） 结构体中的关键函数，是抽取壳的实现基础。
 
 
 
@@ -160,7 +160,7 @@ DexFile.defineClassNative(name)
 
 
 
-ClassLinker::LoadMethod 真正进入到对类中 java 函数对应的 ArtMethod 对象的初始化，ArtMethod 包含了当前指向内存中 CodeItem 的偏移
+ClassLinker::LoadMethod 真正进入到对类中 Java 函数对应的 ArtMethod 对象的初始化，ArtMethod 包含了当前指向内存中 CodeItem 的偏移
 
 
 
@@ -197,7 +197,7 @@ ART 下实现抽取壳的另一个难点：dex2oat 编译流程。
 
 
 
-**怎么禁用掉 dex2oat 的编译过程？**
+**怎么禁用掉 dex2oat 的编译过程？** 
 
 
 
@@ -421,7 +421,7 @@ private:
 
 
 
-**CodeItem 前 16 字节是固定结构**
+**CodeItem 前 16 字节是固定结构** 
 
 | 字节偏移 | 字段名 | 含义说明 | 大小（字节） |
 |--- | --- | --- | ---|
@@ -615,7 +615,7 @@ classLoader = InMemoryDexClassLoader(dexBuffer, context.classLoader)
 ```
 
 
-使用 Inline Hook 把 ClassLinker::LoadMethod 函数替换成自定义的 my_LoadMethod 函数。（具体参考：[Android PLT hook 与 Inline hook](https://cyrus-studio.github.io/blog/posts/android-plt-hook--%E4%B8%8E-inline-hook/)）
+使用 Inline Hook 把 ClassLinker::LoadMethod 函数替换成自定义的 my_LoadMethod 函数。（具体参考：[搞懂 Android Hook 的两大核心：PLT Hook 与 Inline Hook 全解析](https://cyrus-studio.github.io/blog/posts/%E6%90%9E%E6%87%82-android-hook-%E7%9A%84%E4%B8%A4%E5%A4%A7%E6%A0%B8%E5%BF%83plt-hook-%E4%B8%8E-inline-hook-%E5%85%A8%E8%A7%A3%E6%9E%90/)）
 
 ```
 extern "C"
@@ -846,7 +846,13 @@ PluginClass 的 getString() 也正常调用并返回结果。
 
 
 
-函数抽取壳其实就是基于 art 下的类加载机制，只有 ArtMethod 初始化完成后，java 函数才能被调用，所以通过劫持 ClassLinker::LoadMethod 函数对 ArtMethod 中的 CodeItem 打补丁的方式实现脱壳。
+函数抽取壳大概流程如下：
+
+1. 函数抽取：将 CodeItem 数据写出保存；
+
+1. Dex 动态加载：利用 InMemoryDexClassLoader 动态加载已修改的 dex 文件；
+
+1. 回填 CodeItem：基于 ART 下的类加载机制，劫持 ArtMethod 初始化过程的 ClassLinker::LoadMethod 函数调用对 ArtMethod 中的 CodeItem 打补丁的方式实现脱壳。
 
 
 
@@ -860,11 +866,11 @@ PluginClass 的 getString() 也正常调用并返回结果。
 
 相关文章：
 
-- _[分享一个自己做的函数抽取壳](https://bbs.kanxue.com/thread-271139.htm)_
+- [分享一个自己做的函数抽取壳](https://bbs.kanxue.com/thread-271139.htm)
 
 - [https://github.com/luoyesiqiu/dpt-shell/blob/main/README.zh-CN.md](https://github.com/luoyesiqiu/dpt-shell/blob/main/README.zh-CN.md)
 
-- [Android PLT hook 与 Inline hook](https://cyrus-studio.github.io/blog/posts/android-plt-hook--%E4%B8%8E-inline-hook/)
+- [搞懂 Android Hook 的两大核心：PLT Hook 与 Inline Hook 全解析](https://cyrus-studio.github.io/blog/posts/%E6%90%9E%E6%87%82-android-hook-%E7%9A%84%E4%B8%A4%E5%A4%A7%E6%A0%B8%E5%BF%83plt-hook-%E4%B8%8E-inline-hook-%E5%85%A8%E8%A7%A3%E6%9E%90/)
 
 
 
