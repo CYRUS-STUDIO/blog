@@ -1,6 +1,6 @@
 +++
 title = '全面解析 OkHttp 原理与实战：从拦截器机制到 Frida Hook 打印请求响应'
-date = 2025-06-26T19:32:07.539709+08:00
+date = 2025-06-26T20:44:36.454533+08:00
 draft = false
 +++
 
@@ -51,7 +51,7 @@ dependencies {
 
 
 ```
-kotlin复制编辑implementation("com.squareup.okhttp3:logging-interceptor:4.12.0")
+implementation("com.squareup.okhttp3:logging-interceptor:4.12.0")
 ```
 
 
