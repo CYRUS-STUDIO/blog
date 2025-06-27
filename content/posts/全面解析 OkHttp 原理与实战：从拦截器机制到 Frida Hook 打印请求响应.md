@@ -1,6 +1,6 @@
 +++
 title = '全面解析 OkHttp 原理与实战：从拦截器机制到 Frida Hook 打印请求响应'
-date = 2025-06-26T20:44:36.454533+08:00
+date = 2025-06-27T14:51:22.793154+08:00
 draft = false
 +++
 
@@ -791,7 +791,7 @@ setImmediate(function () {
     "User-Agent": "okhttp/4.12.0",
     "X-Amzn-Trace-Id": "Root=1-685d0b71-457cdaa22f842d8a2be6ddf3"
   },
-  "origin": "120.235.21.61",
+  "origin": "***.***.***.***",
   "url": "https://httpbin.org/get"
 }
 
@@ -842,7 +842,7 @@ setImmediate(function () {
     "name": "Cyrus",
     "number": 16
   },
-  "origin": "120.235.21.61",
+  "origin": "***.***.***.***",
   "url": "https://httpbin.org/post"
 }
 
@@ -893,7 +893,7 @@ username=admin&password=123456
     "X-Amzn-Trace-Id": "Root=1-685d0b74-198fb926040887a13664be2c"
   },
   "json": null,
-  "origin": "120.235.21.61",
+  "origin": "***.***.***.***",
   "url": "https://httpbin.org/post"
 }
 
@@ -950,7 +950,7 @@ Content-Length: 24
     "X-Amzn-Trace-Id": "Root=1-685d0b75-31bde9c37f1da8127bcdff1c"
   },
   "json": null,
-  "origin": "120.235.21.61",
+  "origin": "***.***.***.***",
   "url": "https://httpbin.org/post"
 }
 
@@ -1084,7 +1084,7 @@ function detectOkHttpVersion() {
 ```
 [Remote::**]-> detectOkHttpVersion()
 🔍 Scanning for OkHttp...
-✅ Detected OkHttp via internal.Version: okhttp/3.12.13.18
+✅ Detected OkHttp via internal.Version: okhttp/***.***.***.***
 ```
 
 
