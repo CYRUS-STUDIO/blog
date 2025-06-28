@@ -6,8 +6,15 @@
     <description>Recent content on CYRUS STUDIO</description>
     <generator>Hugo</generator>
     <language>zh-cn</language>
-    <lastBuildDate>Sat, 28 Jun 2025 11:11:38 +0800</lastBuildDate>
+    <lastBuildDate>Sun, 29 Jun 2025 04:17:57 +0800</lastBuildDate>
     <atom:link href="https://cyrus-studio.github.io/blog/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>如何变形一个 MD5 算法？Android 实现 &#43; OLLVM 防护实战解析</title>
+      <link>https://cyrus-studio.github.io/blog/posts/%E5%A6%82%E4%BD%95%E5%8F%98%E5%BD%A2%E4%B8%80%E4%B8%AA-md5-%E7%AE%97%E6%B3%95android-%E5%AE%9E%E7%8E%B0-&#43;-ollvm-%E9%98%B2%E6%8A%A4%E5%AE%9E%E6%88%98%E8%A7%A3%E6%9E%90/</link>
+      <pubDate>Sun, 29 Jun 2025 04:17:57 +0800</pubDate>
+      <guid>https://cyrus-studio.github.io/blog/posts/%E5%A6%82%E4%BD%95%E5%8F%98%E5%BD%A2%E4%B8%80%E4%B8%AA-md5-%E7%AE%97%E6%B3%95android-%E5%AE%9E%E7%8E%B0-&#43;-ollvm-%E9%98%B2%E6%8A%A4%E5%AE%9E%E6%88%98%E8%A7%A3%E6%9E%90/</guid>
+      <description>版权归作者所有，如有转发，请注明文章出处：https://cyrus-studio.github.io/blog/&#xA;MD5是一种哈希函数，用于将任意长度的数据映射为一个固定长度的哈希值。它由 Ron Rivest 在 1991 年设计，是继 MD4 之后的改进版本。&#xA;MD5 的基本特征：&#xA;固定长度输出：将任意长度的数据转换为 128 位（16 字节） 的哈希值，通常以 32 位十六进制 字符串表示。&#xA;不可逆性：无法从哈希值反推原始数据。&#xA;雪崩效应：输入的微小变化会导致哈希值完全不同。&#xA;抗碰撞性较弱：不同输入产生相同哈希值的概率较低，但已存在有效的碰撞攻击。&#xA;计算速度快：采用简单的位运算，处理速度快，适合大数据量。&#xA;标准 MD5 标准 MD5 的 C++ 实现如下：&#xA;md5.h&#xA;#ifndef __MD5_INCLUDE__&#xD;/* typedef a 32-bit type */&#xD;#ifdef _LP64&#xD;typedef unsigned int UINT4;&#xD;typedef int INT4;&#xD;#else&#xD;typedef unsigned long UINT4;&#xD;typedef long INT4;&#xD;#endif&#xD;#define _UINT4_T&#xD;/* Data structure for MD5 (Message-Digest) computation */&#xD;typedef struct {&#xD;UINT4 i[2]; /* number of _bits_ handled mod 2^64 */&#xD;UINT4 buf[4]; /* scratch buffer */&#xD;unsigned char in[64]; /* input buffer */&#xD;unsigned char digest[16]; /* actual digest after MD5Final call */&#xD;} MD5_CTX;&#xD;void MD5_Init (MD5_CTX *mdContext);&#xD;void MD5_Update (MD5_CTX *mdContext, unsigned char *inBuf, unsigned int inLen);&#xD;void MD5_Final (unsigned char hash[], MD5_CTX *mdContext);&#xD;#define __MD5_INCLUDE__&#xD;#endif /* __MD5_INCLUDE__ */ md5.</description>
+    </item>
     <item>
       <title>全面解析 Android App 启动流程与事件循环机制底层原理</title>
       <link>https://cyrus-studio.github.io/blog/posts/%E5%85%A8%E9%9D%A2%E8%A7%A3%E6%9E%90-android-app-%E5%90%AF%E5%8A%A8%E6%B5%81%E7%A8%8B%E4%B8%8E%E4%BA%8B%E4%BB%B6%E5%BE%AA%E7%8E%AF%E6%9C%BA%E5%88%B6%E5%BA%95%E5%B1%82%E5%8E%9F%E7%90%86/</link>
@@ -308,13 +315,6 @@
       <pubDate>Tue, 25 Mar 2025 02:54:38 +0800</pubDate>
       <guid>https://cyrus-studio.github.io/blog/posts/android-%E8%87%AA%E5%AE%9A%E4%B9%89%E5%8F%98%E5%BD%A2-sha1-%E7%AE%97%E6%B3%95/</guid>
       <description>版权归作者所有，如有转发，请注明文章出处：https://cyrus-studio.github.io/blog/&#xA;标准 SHA1 SHA1（Secure Hash Algorithm 1）是一种广泛使用的 加密哈希函数，用于生成固定长度的 160 位（20 字节）哈希值。它由 美国国家安全局（NSA） 设计，并由 NIST（美国国家标准与技术研究院） 在 1995 年作为 FIPS PUB 180-1 标准发布。&#xA;SHA1 的基本特点&#xA;输出长度：160 位（20 字节）的哈希值，通常以长度为 40 的 hex 字符串表示&#xA;使用 5 个固定的初始哈希值（MD5 是 4 个）&#xA;不可逆性：无法从哈希值反推出原文&#xA;固定性：相同的输入始终会产生相同的输出&#xA;雪崩效应：输入的微小变化会导致输出哈希值的巨大变化&#xA;抗碰撞性（已破坏）：理论上很难找到两个不同的输入产生相同的哈希值&#xA;SHA1 C++ 标准实现如下：&#xA;sha1.h&#xA;#ifndef SHA1_H&#xD;#define SHA1_H&#xD;#include &amp;lt;stdlib.h&amp;gt;&#xD;#include &amp;lt;string.h&amp;gt;&#xD;#include &amp;lt;asm/types.h&amp;gt;&#xD;#define os_memcpy memcpy&#xD;#define os_memset memset&#xD;#define os_memcmp memcmp&#xD;#define os_strlen strlen&#xD;#define MAX_SHA1_LEN 32&#xD;#define SHA1_MAC_LEN 20&#xD;typedef __u8 u8;&#xD;typedef __u32 u32;&#xD;struct SHA1Context {&#xD;u32 state[5];&#xD;u32 count[2];&#xD;unsigned char buffer[64];&#xD;};&#xD;typedef struct SHA1Context SHA1_CTX;&#xD;void SHA1Init(SHA1_CTX *context);&#xD;void SHA1Update(SHA1_CTX *context, const unsigned char *data, u32 len);&#xD;void SHA1Final(unsigned char digest[20], SHA1_CTX *context);&#xD;#endif /* SHA1_H */ sha1.</description>
-    </item>
-    <item>
-      <title>Android 自定义变形 MD5 算法</title>
-      <link>https://cyrus-studio.github.io/blog/posts/android-%E8%87%AA%E5%AE%9A%E4%B9%89%E5%8F%98%E5%BD%A2-md5-%E7%AE%97%E6%B3%95/</link>
-      <pubDate>Sat, 22 Mar 2025 02:09:55 +0800</pubDate>
-      <guid>https://cyrus-studio.github.io/blog/posts/android-%E8%87%AA%E5%AE%9A%E4%B9%89%E5%8F%98%E5%BD%A2-md5-%E7%AE%97%E6%B3%95/</guid>
-      <description>版权归作者所有，如有转发，请注明文章出处：https://cyrus-studio.github.io/blog/&#xA;MD5是一种哈希函数，用于将任意长度的数据映射为一个固定长度的哈希值。它由 Ron Rivest 在 1991 年设计，是继 MD4 之后的改进版本。&#xA;MD5 的基本特征：&#xA;固定长度输出：将任意长度的数据转换为 128 位（16 字节） 的哈希值，通常以 32 位十六进制 字符串表示。&#xA;不可逆性：无法从哈希值反推原始数据。&#xA;雪崩效应：输入的微小变化会导致哈希值完全不同。&#xA;抗碰撞性较弱：不同输入产生相同哈希值的概率较低，但已存在有效的碰撞攻击。&#xA;计算速度快：采用简单的位运算，处理速度快，适合大数据量。&#xA;标准 MD5 标准 MD5 的 C++ 实现如下：&#xA;md5.h&#xA;#ifndef __MD5_INCLUDE__&#xD;/* typedef a 32-bit type */&#xD;#ifdef _LP64&#xD;typedef unsigned int UINT4;&#xD;typedef int INT4;&#xD;#else&#xD;typedef unsigned long UINT4;&#xD;typedef long INT4;&#xD;#endif&#xD;#define _UINT4_T&#xD;/* Data structure for MD5 (Message-Digest) computation */&#xD;typedef struct {&#xD;UINT4 i[2]; /* number of _bits_ handled mod 2^64 */&#xD;UINT4 buf[4]; /* scratch buffer */&#xD;unsigned char in[64]; /* input buffer */&#xD;unsigned char digest[16]; /* actual digest after MD5Final call */&#xD;} MD5_CTX;&#xD;void MD5_Init (MD5_CTX *mdContext);&#xD;void MD5_Update (MD5_CTX *mdContext, unsigned char *inBuf, unsigned int inLen);&#xD;void MD5_Final (unsigned char hash[], MD5_CTX *mdContext);&#xD;#define __MD5_INCLUDE__&#xD;#endif /* __MD5_INCLUDE__ */ md5.</description>
     </item>
     <item>
       <title>使用 Unicorn 还原变异 CRC32 算法</title>
