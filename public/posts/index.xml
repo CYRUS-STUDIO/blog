@@ -6,12 +6,12 @@
     <description>Recent content in Posts on CYRUS STUDIO</description>
     <generator>Hugo</generator>
     <language>zh-cn</language>
-    <lastBuildDate>Sun, 29 Jun 2025 04:17:57 +0800</lastBuildDate>
+    <lastBuildDate>Sun, 29 Jun 2025 04:24:55 +0800</lastBuildDate>
     <atom:link href="https://cyrus-studio.github.io/blog/posts/index.xml" rel="self" type="application/rss+xml" />
     <item>
       <title>如何变形一个 MD5 算法？Android 实现 &#43; OLLVM 防护实战解析</title>
       <link>https://cyrus-studio.github.io/blog/posts/%E5%A6%82%E4%BD%95%E5%8F%98%E5%BD%A2%E4%B8%80%E4%B8%AA-md5-%E7%AE%97%E6%B3%95android-%E5%AE%9E%E7%8E%B0-&#43;-ollvm-%E9%98%B2%E6%8A%A4%E5%AE%9E%E6%88%98%E8%A7%A3%E6%9E%90/</link>
-      <pubDate>Sun, 29 Jun 2025 04:17:57 +0800</pubDate>
+      <pubDate>Sun, 29 Jun 2025 04:24:55 +0800</pubDate>
       <guid>https://cyrus-studio.github.io/blog/posts/%E5%A6%82%E4%BD%95%E5%8F%98%E5%BD%A2%E4%B8%80%E4%B8%AA-md5-%E7%AE%97%E6%B3%95android-%E5%AE%9E%E7%8E%B0-&#43;-ollvm-%E9%98%B2%E6%8A%A4%E5%AE%9E%E6%88%98%E8%A7%A3%E6%9E%90/</guid>
       <description>版权归作者所有，如有转发，请注明文章出处：https://cyrus-studio.github.io/blog/&#xA;MD5是一种哈希函数，用于将任意长度的数据映射为一个固定长度的哈希值。它由 Ron Rivest 在 1991 年设计，是继 MD4 之后的改进版本。&#xA;MD5 的基本特征：&#xA;固定长度输出：将任意长度的数据转换为 128 位（16 字节） 的哈希值，通常以 32 位十六进制 字符串表示。&#xA;不可逆性：无法从哈希值反推原始数据。&#xA;雪崩效应：输入的微小变化会导致哈希值完全不同。&#xA;抗碰撞性较弱：不同输入产生相同哈希值的概率较低，但已存在有效的碰撞攻击。&#xA;计算速度快：采用简单的位运算，处理速度快，适合大数据量。&#xA;标准 MD5 标准 MD5 的 C++ 实现如下：&#xA;md5.h&#xA;#ifndef __MD5_INCLUDE__&#xD;/* typedef a 32-bit type */&#xD;#ifdef _LP64&#xD;typedef unsigned int UINT4;&#xD;typedef int INT4;&#xD;#else&#xD;typedef unsigned long UINT4;&#xD;typedef long INT4;&#xD;#endif&#xD;#define _UINT4_T&#xD;/* Data structure for MD5 (Message-Digest) computation */&#xD;typedef struct {&#xD;UINT4 i[2]; /* number of _bits_ handled mod 2^64 */&#xD;UINT4 buf[4]; /* scratch buffer */&#xD;unsigned char in[64]; /* input buffer */&#xD;unsigned char digest[16]; /* actual digest after MD5Final call */&#xD;} MD5_CTX;&#xD;void MD5_Init (MD5_CTX *mdContext);&#xD;void MD5_Update (MD5_CTX *mdContext, unsigned char *inBuf, unsigned int inLen);&#xD;void MD5_Final (unsigned char hash[], MD5_CTX *mdContext);&#xD;#define __MD5_INCLUDE__&#xD;#endif /* __MD5_INCLUDE__ */ md5.</description>
     </item>
