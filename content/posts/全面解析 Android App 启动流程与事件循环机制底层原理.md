@@ -1,6 +1,6 @@
 +++
 title = '全面解析 Android App 启动流程与事件循环机制底层原理'
-date = 2025-06-28T11:04:18.022686+08:00
+date = 2025-06-28T11:11:38.901036+08:00
 draft = false
 +++
 
@@ -586,7 +586,7 @@ LoadedApk 中的 mClassLoader
 
 
 
- Looper** ** 是一个“消息循环器”，用于循环读取 MessageQueue 中的消息，并分发给目标 Handler 处理。
+ Looper 是一个“消息循环器”，用于循环读取 MessageQueue 中的消息，并分发给目标 Handler 处理。
 
 
 - 每个线程只能有一个 Looper。
@@ -604,7 +604,7 @@ MessageQueue 是 “消息队列”，用于存储 Handler 发送过来的消息
 
 
 
-Handler** ** 是“消息的发送和处理者”。
+Handler 是“消息的发送和处理者”。
 
 
 - 用来发送消息或任务到 MessageQueue。
