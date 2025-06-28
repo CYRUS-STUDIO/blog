@@ -6,12 +6,19 @@
     <description>Recent content on CYRUS STUDIO</description>
     <generator>Hugo</generator>
     <language>zh-cn</language>
-    <lastBuildDate>Fri, 27 Jun 2025 15:30:09 +0800</lastBuildDate>
+    <lastBuildDate>Sat, 28 Jun 2025 11:04:18 +0800</lastBuildDate>
     <atom:link href="https://cyrus-studio.github.io/blog/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>全面解析 Android App 启动流程与事件循环机制底层原理</title>
+      <link>https://cyrus-studio.github.io/blog/posts/%E5%85%A8%E9%9D%A2%E8%A7%A3%E6%9E%90-android-app-%E5%90%AF%E5%8A%A8%E6%B5%81%E7%A8%8B%E4%B8%8E%E4%BA%8B%E4%BB%B6%E5%BE%AA%E7%8E%AF%E6%9C%BA%E5%88%B6%E5%BA%95%E5%B1%82%E5%8E%9F%E7%90%86/</link>
+      <pubDate>Sat, 28 Jun 2025 11:04:18 +0800</pubDate>
+      <guid>https://cyrus-studio.github.io/blog/posts/%E5%85%A8%E9%9D%A2%E8%A7%A3%E6%9E%90-android-app-%E5%90%AF%E5%8A%A8%E6%B5%81%E7%A8%8B%E4%B8%8E%E4%BA%8B%E4%BB%B6%E5%BE%AA%E7%8E%AF%E6%9C%BA%E5%88%B6%E5%BA%95%E5%B1%82%E5%8E%9F%E7%90%86/</guid>
+      <description>版权归作者所有，如有转发，请注明文章出处：https://cyrus-studio.github.io/blog/&#xA;APP 启动流程 app 启动流程大概如下：&#xA;发起进程（startActivity/startService...）&#xD;↓&#xD;↓（Binder方式）&#xD;↓&#xD;system_server进程（Process.start）&#xD;↓&#xD;↓（Socket方式）&#xD;↓&#xD;Zygote进程（ZygoteInit.runSelectLoop()） ↓&#xD;新建进程（ActivityThread.main） ActivityThread.main() 是 Android 应用进程的入口函数。&#xA;1. 应用 → AMS（Binder） 由 ActivityManager.getService() 返回的 Binder 接口对象调用系统服务：&#xA;// 应用进程&#xD;ContextImpl.startActivity()&#xD;└── Instrumentation.execStartActivity()&#xD;└── ActivityManager.getService().startActivity() ← AIDL Binder 跨进程&#xD;└── ActivityManagerService.startActivity() 通过 AIDL 实现 Binder 跨进程通信，连接系统服务。&#xA;关于 Android 中 AIDL 实现 Binder 跨进程通信 可以参考：Android中的Service与进程间通信（IPC）详解&#xA;AMS 接口实现：&#xA;https://cs.android.com/android/platform/superproject/+/android-10.0.0_r47:frameworks/base/services/core/java/com/android/server/am/ActivityManagerService.java;l=3496&#xA;2. AMS/system_server → zygote（Socket） startActivity 最终调用到 Process.start 方法&#xA;475 /**&#xD;476 * State associated with the zygote process.</description>
+    </item>
     <item>
       <title>安卓抓包实战：使用 Charles 抓取 App 数据全流程详解</title>
       <link>https://cyrus-studio.github.io/blog/posts/%E5%AE%89%E5%8D%93%E6%8A%93%E5%8C%85%E5%AE%9E%E6%88%98%E4%BD%BF%E7%94%A8-charles-%E6%8A%93%E5%8F%96-app-%E6%95%B0%E6%8D%AE%E5%85%A8%E6%B5%81%E7%A8%8B%E8%AF%A6%E8%A7%A3/</link>
-      <pubDate>Fri, 27 Jun 2025 15:30:09 +0800</pubDate>
+      <pubDate>Fri, 27 Jun 2025 15:39:56 +0800</pubDate>
       <guid>https://cyrus-studio.github.io/blog/posts/%E5%AE%89%E5%8D%93%E6%8A%93%E5%8C%85%E5%AE%9E%E6%88%98%E4%BD%BF%E7%94%A8-charles-%E6%8A%93%E5%8F%96-app-%E6%95%B0%E6%8D%AE%E5%85%A8%E6%B5%81%E7%A8%8B%E8%AF%A6%E8%A7%A3/</guid>
       <description>版权归作者所有，如有转发，请注明文章出处：https://cyrus-studio.github.io/blog/&#xA;抓包环境准备 1. 下载安装charles charles下载地址：https://www.charlesproxy.com/latest-release/download.do&#xA;2. SSL代理设置 SSL Proxying Settings&amp;hellip;&#xA;说明：如果需要抓 PC 上的数据就开启 Windows Proxy，如果只是抓手机上的数据可以不用开启。&#xA;配置说明：&#xA;*:443 — 表示拦截所有域名的 HTTPS 请求&#xA;*:80 — 表示拦截所有域名的 HTTP 请求&#xA;3. Enable transparent HTTP proxying 打开 Proxy Settings 勾选 Enable transparent HTTP proxying&#xA;transparent HTTP proxying：客户端无需设置代理，Charles 通过网络层拦截（如防火墙、端口转发、网关路由等）来强制把 HTTP 流量转发到 Charles&#xA;4. 设置Charles与Clash共存 如果开启了Clash，需要设置Charles与Clash共存&#xA;打开扩展代理设置&#xA;分别点击 Web Proxy、Seure Web Proxy 和 SOCKS Proxy 设置一下Clash的地址和端口&#xA;5. 共享热点 通过 ipconfig 命令找到电脑的 ip 地址&#xA;或者打开【网络和Internet】找到电脑的 ip 地址</description>
     </item>
@@ -231,13 +238,6 @@
       <pubDate>Sun, 27 Apr 2025 05:27:30 +0800</pubDate>
       <guid>https://cyrus-studio.github.io/blog/posts/android-%E5%8A%A0%E5%A3%B3%E5%BA%94%E7%94%A8%E8%BF%90%E8%A1%8C%E6%B5%81%E7%A8%8B-%E4%B8%8E-%E7%94%9F%E5%91%BD%E5%91%A8%E6%9C%9F%E7%B1%BB%E5%A4%84%E7%90%86%E6%96%B9%E6%A1%88/</guid>
       <description>版权归作者所有，如有转发，请注明文章出处：https://cyrus-studio.github.io/blog/&#xA;DexClassLoader DexClassLoader 可以加载任意路径下的 dex，或者 jar、apk、zip 文件（包含classes.dex）。常用于插件化、热修复以及 dex 加壳。&#xA;源码如下：&#xA;public class DexClassLoader extends BaseDexClassLoader {&#xD;public DexClassLoader(String dexPath, String optimizedDirectory,&#xD;String librarySearchPath, ClassLoader parent) {&#xD;super(dexPath, null, librarySearchPath, parent);&#xD;}&#xD;} http://aospxref.com/android-10.0.0_r47/xref/libcore/dalvik/src/main/java/dalvik/system/DexClassLoader.java&#xA;参数说明&#xA;参数 类型 说明 dexPath String 需要加载的 dex、apk、jar、zip 文件的路径，多个路径用 : 分隔。支持任意目录下的文件。 optimizedDirectory String 用于存放优化后的 dex 文件（即 .odex），在 API level 26 已弃用（Android 8.0 Oreo）。 librarySearchPath String 指定本地库（native library，.so 文件）搜索路径，多个路径用 : 分隔。 parent ClassLoader 父类加载器，用于实现类加载的委托机制。 动态加载 动态加载 = 运行时按需加载代码或资源</description>
-    </item>
-    <item>
-      <title>详解 Android APP 启动流程</title>
-      <link>https://cyrus-studio.github.io/blog/posts/%E8%AF%A6%E8%A7%A3-android-app-%E5%90%AF%E5%8A%A8%E6%B5%81%E7%A8%8B/</link>
-      <pubDate>Thu, 24 Apr 2025 03:49:04 +0800</pubDate>
-      <guid>https://cyrus-studio.github.io/blog/posts/%E8%AF%A6%E8%A7%A3-android-app-%E5%90%AF%E5%8A%A8%E6%B5%81%E7%A8%8B/</guid>
-      <description>版权归作者所有，如有转发，请注明文章出处：https://cyrus-studio.github.io/blog/&#xA;APP 启动流程 app 启动流程大概如下：&#xA;发起进程（startActivity/startService...）&#xD;↓&#xD;↓（Binder方式）&#xD;↓&#xD;system_server进程（Process.start）&#xD;↓&#xD;↓（Socket方式）&#xD;↓&#xD;Zygote进程（ZygoteInit.runSelectLoop()） ↓&#xD;新建进程（ActivityThread.main） ActivityThread.main() 是 Android 应用进程的入口函数。&#xA;1. 应用 → AMS（Binder） 由 ActivityManager.getService() 返回的 Binder 接口对象调用系统服务：&#xA;// 应用进程&#xD;ContextImpl.startActivity()&#xD;└── Instrumentation.execStartActivity()&#xD;└── ActivityManager.getService().startActivity() ← AIDL Binder 跨进程&#xD;└── ActivityManagerService.startActivity() 通过 AIDL 实现 Binder 跨进程通信，连接系统服务。&#xA;关于 Android 中 AIDL 实现 Binder 跨进程通信 可以参考：Android中的Service与进程间通信（IPC）详解&#xA;AMS 接口实现：&#xA;http://aospxref.com/android-10.0.0_r47/xref/frameworks/base/services/core/java/com/android/server/am/ActivityManagerService.java#startActivity&#xA;2. AMS/system_server → zygote（Socket） startActivity 最终调用到 Process.start 方法&#xA;475 /**&#xD;476 * State associated with the zygote process.</description>
     </item>
     <item>
       <title>Android NDK 编译 so 文件 抹除导出符号 反逆向</title>
