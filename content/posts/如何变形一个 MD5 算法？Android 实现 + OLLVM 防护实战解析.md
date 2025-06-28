@@ -1,6 +1,6 @@
 +++
 title = '如何变形一个 MD5 算法？Android 实现 + OLLVM 防护实战解析'
-date = 2025-06-29T04:24:55.933624+08:00
+date = 2025-06-29T04:29:58.448088+08:00
 draft = false
 +++
 
@@ -569,7 +569,7 @@ G函数：
 ## HH 宏（Round 3）
 
 ```
-cpp复制编辑#define HH(a, b, c, d, x, s, ac) \
+#define HH(a, b, c, d, x, s, ac) \
   {(a) += H ((b), (c), (d)) + (x) + (UINT4)(ac); \
    (a) = ROTATE_LEFT ((a), (s)); \
    (a) += (b); \
@@ -581,7 +581,7 @@ H函数：
 
 
 ```
-cpp复制编辑#define H(x, y, z) ((x) ^ (y) ^ (z))
+#define H(x, y, z) ((x) ^ (y) ^ (z))
 ```
 逻辑解析：
 
