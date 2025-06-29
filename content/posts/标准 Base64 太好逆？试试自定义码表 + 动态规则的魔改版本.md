@@ -1,12 +1,12 @@
 +++
-title = '安卓实现魔改版 Base64 算法'
-date = 2025-03-12T20:57:06.608339+08:00
+title = '标准 Base64 太好逆？试试自定义码表 + 动态规则的魔改版本'
+date = 2025-06-29T15:50:01.771158+08:00
 draft = false
 +++
 
 > 版权归作者所有，如有转发，请注明文章出处：<https://cyrus-studio.github.io/blog/>
 
-# **Java 实现标准 Base64 编码和解码**
+# Java 实现标准 Base64 编码和解码
 
 
 
@@ -25,7 +25,7 @@ val decodedString = String(decoded)
 ```
 
 
-# **C++ 实现标准 Base64 编d码和解码**
+# C++ 实现标准 Base64 编码和解码
 
 
 
@@ -198,7 +198,7 @@ val decodedString = String(nativeBase64Decode(selected))
 ```
 
 
-# **自定义码表**
+# 自定义码表
 
 
 
@@ -311,7 +311,7 @@ val decodedString = String(customBase64Decode(selected))
 ```
 
 
-# **动态码表**
+# 动态码表
 
 
 
@@ -474,7 +474,7 @@ val decodedString = String(decodedBytes)
 ```
 
 
-# **完整源码**
+# 完整源码
 
 
 
