@@ -1,10 +1,12 @@
 +++
-title = '基于 Unicorn 实现一个轻量级的 ARM64 模拟器'
-date = 2025-03-18T18:21:53.934111+08:00
+title = '基于 Unicorn 实现轻量级 ARM64 模拟器：支持 Hook、Patch、寄存器监控等功能'
+date = 2025-06-29T16:41:05.338025+08:00
 draft = false
 +++
 
 > 版权归作者所有，如有转发，请注明文章出处：<https://cyrus-studio.github.io/blog/>
+
+# 前言
 
 
 
@@ -12,7 +14,7 @@ draft = false
 
 
 
-# **初始化与内存管理**
+# 初始化与内存管理
 
 - 代码加载：通过 _load_binary() 将 so 文件加载到内存中。
 
@@ -75,7 +77,7 @@ class ARM64Emulator:
 ```
 
 
-# **打印寄存器**
+# 打印寄存器
 
 
 
@@ -102,7 +104,7 @@ def dump_registers(self):
 ```
 
 
-# **运行程序**
+# 运行程序
 
 
 
@@ -119,7 +121,7 @@ def run(self, start_address, end_address):
 ```
 
 
-# **反汇编**
+# 反汇编
 
 
 
@@ -149,7 +151,7 @@ class ARM64Emulator:
 ```
 
 
-# **Hook 管理**
+# Hook 管理
 
 - 代码 Hook：在 _setup_hooks() 中设置 UC_HOOK_CODE 钩子，每次执行到一条指令时触发 hook_code()。
 
@@ -201,7 +203,7 @@ class ARM64Emulator:
 ```
 
 
-# **寄存器监控**
+# 寄存器监控
 
 - 监控寄存器变更：watch_registers() 支持监控特定寄存器的变化，并在变化时打印相关信息。
 
@@ -256,7 +258,7 @@ class ARM64Emulator:
 ```
 
 
-# **Patch NOP**
+# Patch NOP
 
 - patch_nop()：将给定地址列表中的指令替换为 NOP（0xD503201F）。
 
@@ -311,7 +313,7 @@ def patch_nop(self, addr_list: list):
 ```
 
 
-# **字符串操作**
+# 字符串操作
 
 - get_string_utf_chars() 模拟了 GetStringUTFChars()，在指定内存地址写入 UTF-8 编码的字符串，并返回指针地址。
 
@@ -344,11 +346,7 @@ def read_c_string(self, addr, max_len=256):
 ```
 
 
-# **完整源码**
-
-
-
-项目地址：[https://github.com/CYRUS-STUDIO/ARM64Emulator](https://github.com/CYRUS-STUDIO/ARM64Emulator)
+# 完整源码
 
 
 
@@ -585,5 +583,11 @@ class ARM64Emulator:
             result += byte
         return result.decode("utf-8", errors="ignore")
 ```
+
+
+开源地址：[https://github.com/CYRUS-STUDIO/ARM64Emulator](https://github.com/CYRUS-STUDIO/ARM64Emulator)
+
+
+
 
 
