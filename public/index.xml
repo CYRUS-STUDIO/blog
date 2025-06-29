@@ -6,8 +6,15 @@
     <description>Recent content on CYRUS STUDIO</description>
     <generator>Hugo</generator>
     <language>zh-cn</language>
-    <lastBuildDate>Sun, 29 Jun 2025 04:29:58 +0800</lastBuildDate>
+    <lastBuildDate>Sun, 29 Jun 2025 15:22:49 +0800</lastBuildDate>
     <atom:link href="https://cyrus-studio.github.io/blog/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>如何变形 SHA-1 算法？从标准实现到 Android 定制加密实践</title>
+      <link>https://cyrus-studio.github.io/blog/posts/%E5%A6%82%E4%BD%95%E5%8F%98%E5%BD%A2-sha-1-%E7%AE%97%E6%B3%95%E4%BB%8E%E6%A0%87%E5%87%86%E5%AE%9E%E7%8E%B0%E5%88%B0-android-%E5%AE%9A%E5%88%B6%E5%8A%A0%E5%AF%86%E5%AE%9E%E8%B7%B5/</link>
+      <pubDate>Sun, 29 Jun 2025 15:22:49 +0800</pubDate>
+      <guid>https://cyrus-studio.github.io/blog/posts/%E5%A6%82%E4%BD%95%E5%8F%98%E5%BD%A2-sha-1-%E7%AE%97%E6%B3%95%E4%BB%8E%E6%A0%87%E5%87%86%E5%AE%9E%E7%8E%B0%E5%88%B0-android-%E5%AE%9A%E5%88%B6%E5%8A%A0%E5%AF%86%E5%AE%9E%E8%B7%B5/</guid>
+      <description>版权归作者所有，如有转发，请注明文章出处：https://cyrus-studio.github.io/blog/&#xA;标准 SHA1 SHA1（Secure Hash Algorithm 1）是一种广泛使用的 加密哈希函数，用于生成固定长度的 160 位（20 字节）哈希值。它由 美国国家安全局（NSA） 设计，并由 NIST（美国国家标准与技术研究院） 在 1995 年作为 FIPS PUB 180-1 标准发布。&#xA;SHA1 的基本特点&#xA;输出长度：160 位（20 字节）的哈希值，通常以长度为 40 的 hex 字符串表示&#xA;使用 5 个固定的初始哈希值（MD5 是 4 个）&#xA;不可逆性：无法从哈希值反推出原文&#xA;固定性：相同的输入始终会产生相同的输出&#xA;雪崩效应：输入的微小变化会导致输出哈希值的巨大变化&#xA;抗碰撞性（已破坏）：理论上很难找到两个不同的输入产生相同的哈希值&#xA;SHA1 C++ 标准实现如下：&#xA;sha1.h&#xA;#ifndef SHA1_H&#xD;#define SHA1_H&#xD;#include &amp;lt;stdlib.h&amp;gt;&#xD;#include &amp;lt;string.h&amp;gt;&#xD;#include &amp;lt;asm/types.h&amp;gt;&#xD;#define os_memcpy memcpy&#xD;#define os_memset memset&#xD;#define os_memcmp memcmp&#xD;#define os_strlen strlen&#xD;#define MAX_SHA1_LEN 32&#xD;#define SHA1_MAC_LEN 20&#xD;typedef __u8 u8;&#xD;typedef __u32 u32;&#xD;struct SHA1Context {&#xD;u32 state[5];&#xD;u32 count[2];&#xD;unsigned char buffer[64];&#xD;};&#xD;typedef struct SHA1Context SHA1_CTX;&#xD;void SHA1Init(SHA1_CTX *context);&#xD;void SHA1Update(SHA1_CTX *context, const unsigned char *data, u32 len);&#xD;void SHA1Final(unsigned char digest[20], SHA1_CTX *context);&#xD;#endif /* SHA1_H */ sha1.</description>
+    </item>
     <item>
       <title>如何变形一个 MD5 算法？Android 实现 &#43; OLLVM 防护实战解析</title>
       <link>https://cyrus-studio.github.io/blog/posts/%E5%A6%82%E4%BD%95%E5%8F%98%E5%BD%A2%E4%B8%80%E4%B8%AA-md5-%E7%AE%97%E6%B3%95android-%E5%AE%9E%E7%8E%B0-&#43;-ollvm-%E9%98%B2%E6%8A%A4%E5%AE%9E%E6%88%98%E8%A7%A3%E6%9E%90/</link>
@@ -308,13 +315,6 @@
       <pubDate>Tue, 25 Mar 2025 22:00:30 +0800</pubDate>
       <guid>https://cyrus-studio.github.io/blog/posts/ollvm-%E5%A2%9E%E5%8A%A0-cc&#43;&#43;-%E5%AD%97%E7%AC%A6%E4%B8%B2%E5%8A%A0%E5%AF%86%E5%8A%9F%E8%83%BD/</guid>
       <description>版权归作者所有，如有转发，请注明文章出处：https://cyrus-studio.github.io/blog/&#xA;前言 当我们如果没有对字符串进行加密，使用 IDA 反汇编一下 so 可以看到 C++ 代码中的字符串就直接暴露了。&#xA;字符串加密原理 sobf.c&#xA;#include &amp;lt;stdio.h&amp;gt;&#xD;int main() {&#xD;// 定义字符串常量&#xD;const char *greeting = &amp;#34;Hello, World!&amp;#34;;&#xD;const char *name = &amp;#34;Cyrus&amp;#34;;&#xD;const char *message = &amp;#34;Welcome to C programming.&amp;#34;;&#xD;// 打印字符串常量&#xD;printf(&amp;#34;%s\n&amp;#34;, greeting);&#xD;printf(&amp;#34;My name is %s.\n&amp;#34;, name);&#xD;printf(&amp;#34;%s\n&amp;#34;, message);&#xD;return 0;&#xD;} 生成 ir 文件&#xA;clang -S -emit-llvm sobf.c -o sobf.ll 通过生成 ir 文件可以看到字符串的定义都是 @&amp;quot;??C@ ，引用的的地方通过 @&amp;quot;??C@ 使用&#xA;; ModuleID = &amp;#39;sobf.</description>
-    </item>
-    <item>
-      <title>Android 自定义变形 SHA1 算法</title>
-      <link>https://cyrus-studio.github.io/blog/posts/android-%E8%87%AA%E5%AE%9A%E4%B9%89%E5%8F%98%E5%BD%A2-sha1-%E7%AE%97%E6%B3%95/</link>
-      <pubDate>Tue, 25 Mar 2025 02:54:38 +0800</pubDate>
-      <guid>https://cyrus-studio.github.io/blog/posts/android-%E8%87%AA%E5%AE%9A%E4%B9%89%E5%8F%98%E5%BD%A2-sha1-%E7%AE%97%E6%B3%95/</guid>
-      <description>版权归作者所有，如有转发，请注明文章出处：https://cyrus-studio.github.io/blog/&#xA;标准 SHA1 SHA1（Secure Hash Algorithm 1）是一种广泛使用的 加密哈希函数，用于生成固定长度的 160 位（20 字节）哈希值。它由 美国国家安全局（NSA） 设计，并由 NIST（美国国家标准与技术研究院） 在 1995 年作为 FIPS PUB 180-1 标准发布。&#xA;SHA1 的基本特点&#xA;输出长度：160 位（20 字节）的哈希值，通常以长度为 40 的 hex 字符串表示&#xA;使用 5 个固定的初始哈希值（MD5 是 4 个）&#xA;不可逆性：无法从哈希值反推出原文&#xA;固定性：相同的输入始终会产生相同的输出&#xA;雪崩效应：输入的微小变化会导致输出哈希值的巨大变化&#xA;抗碰撞性（已破坏）：理论上很难找到两个不同的输入产生相同的哈希值&#xA;SHA1 C++ 标准实现如下：&#xA;sha1.h&#xA;#ifndef SHA1_H&#xD;#define SHA1_H&#xD;#include &amp;lt;stdlib.h&amp;gt;&#xD;#include &amp;lt;string.h&amp;gt;&#xD;#include &amp;lt;asm/types.h&amp;gt;&#xD;#define os_memcpy memcpy&#xD;#define os_memset memset&#xD;#define os_memcmp memcmp&#xD;#define os_strlen strlen&#xD;#define MAX_SHA1_LEN 32&#xD;#define SHA1_MAC_LEN 20&#xD;typedef __u8 u8;&#xD;typedef __u32 u32;&#xD;struct SHA1Context {&#xD;u32 state[5];&#xD;u32 count[2];&#xD;unsigned char buffer[64];&#xD;};&#xD;typedef struct SHA1Context SHA1_CTX;&#xD;void SHA1Init(SHA1_CTX *context);&#xD;void SHA1Update(SHA1_CTX *context, const unsigned char *data, u32 len);&#xD;void SHA1Final(unsigned char digest[20], SHA1_CTX *context);&#xD;#endif /* SHA1_H */ sha1.</description>
     </item>
     <item>
       <title>使用 Unicorn 还原变异 CRC32 算法</title>
