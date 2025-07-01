@@ -6,8 +6,15 @@
     <description>Recent content on CYRUS STUDIO</description>
     <generator>Hugo</generator>
     <language>zh-cn</language>
-    <lastBuildDate>Sun, 29 Jun 2025 16:51:34 +0800</lastBuildDate>
+    <lastBuildDate>Wed, 02 Jul 2025 03:12:27 +0800</lastBuildDate>
     <atom:link href="https://cyrus-studio.github.io/blog/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>如何实现 Android App 的抓包防护？又该如何绕过？一文看懂攻防博弈</title>
+      <link>https://cyrus-studio.github.io/blog/posts/%E5%A6%82%E4%BD%95%E5%AE%9E%E7%8E%B0-android-app-%E7%9A%84%E6%8A%93%E5%8C%85%E9%98%B2%E6%8A%A4%E5%8F%88%E8%AF%A5%E5%A6%82%E4%BD%95%E7%BB%95%E8%BF%87%E4%B8%80%E6%96%87%E7%9C%8B%E6%87%82%E6%94%BB%E9%98%B2%E5%8D%9A%E5%BC%88/</link>
+      <pubDate>Wed, 02 Jul 2025 03:12:27 +0800</pubDate>
+      <guid>https://cyrus-studio.github.io/blog/posts/%E5%A6%82%E4%BD%95%E5%AE%9E%E7%8E%B0-android-app-%E7%9A%84%E6%8A%93%E5%8C%85%E9%98%B2%E6%8A%A4%E5%8F%88%E8%AF%A5%E5%A6%82%E4%BD%95%E7%BB%95%E8%BF%87%E4%B8%80%E6%96%87%E7%9C%8B%E6%87%82%E6%94%BB%E9%98%B2%E5%8D%9A%E5%BC%88/</guid>
+      <description>版权归作者所有，如有转发，请注明文章出处：https://cyrus-studio.github.io/blog/&#xA;Android 下常见反抓包方案 常见反抓包手段：&#xA;No Proxy（禁用代理）&#xA;启用 HTTPS + SSL Pinning&#xA;使用 DNS-over-HTTPS / DoT（隐藏 DNS 请求）&#xA;检查系统代理（Java 层检查 System.getProperty(&amp;ldquo;http.proxyHost&amp;rdquo;)）&#xA;检测 VPN 或 adb 代理&#xA;使用 native 层自己实现网络请求（绕过 Java 层）&#xA;证书双向校验&#xA;No Proxy（无代理模式） 所谓 “无代理模式” 实际上是通过主动避免走系统代理，从而规避传统的中间人抓包。&#xA;设置 OkHttp 不使用系统代理，直接访问服务器：&#xA;val client = OkHttpClient.Builder()&#xD;.proxy(Proxy.NO_PROXY) // 禁用系统代理&#xD;.build() 设置 NO_PROXY 后，Charles 并没有抓取到 httpbin.org 相关请求&#xA;App 中请求 httpbin.org 正常&#xA;通过 VPN 绕过 No Proxy 如果使用 VPN 或全局代理，NO_PROXY 也无法绕过抓包。比如，通过第三方代理应用 Drony 强制 APP 走代理。</description>
+    </item>
     <item>
       <title>逆向还原变异 CRC32 算法：Unicorn &#43; 汇编分析 &#43; 模拟执行</title>
       <link>https://cyrus-studio.github.io/blog/posts/%E9%80%86%E5%90%91%E8%BF%98%E5%8E%9F%E5%8F%98%E5%BC%82-crc32-%E7%AE%97%E6%B3%95unicorn-&#43;-%E6%B1%87%E7%BC%96%E5%88%86%E6%9E%90-&#43;-%E6%A8%A1%E6%8B%9F%E6%89%A7%E8%A1%8C/</link>
