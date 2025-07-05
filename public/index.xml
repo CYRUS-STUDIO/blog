@@ -6,8 +6,22 @@
     <description>Recent content on CYRUS STUDIO</description>
     <generator>Hugo</generator>
     <language>zh-cn</language>
-    <lastBuildDate>Sat, 05 Jul 2025 18:41:44 +0800</lastBuildDate>
+    <lastBuildDate>Sat, 05 Jul 2025 19:34:40 +0800</lastBuildDate>
     <atom:link href="https://cyrus-studio.github.io/blog/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>ARM64 汇编实战指南：寻址方式 &#43; 指令分类 &#43; 编码原理全掌握</title>
+      <link>https://cyrus-studio.github.io/blog/posts/arm64-%E6%B1%87%E7%BC%96%E5%AE%9E%E6%88%98%E6%8C%87%E5%8D%97%E5%AF%BB%E5%9D%80%E6%96%B9%E5%BC%8F-&#43;-%E6%8C%87%E4%BB%A4%E5%88%86%E7%B1%BB-&#43;-%E7%BC%96%E7%A0%81%E5%8E%9F%E7%90%86%E5%85%A8%E6%8E%8C%E6%8F%A1/</link>
+      <pubDate>Sat, 05 Jul 2025 19:34:40 +0800</pubDate>
+      <guid>https://cyrus-studio.github.io/blog/posts/arm64-%E6%B1%87%E7%BC%96%E5%AE%9E%E6%88%98%E6%8C%87%E5%8D%97%E5%AF%BB%E5%9D%80%E6%96%B9%E5%BC%8F-&#43;-%E6%8C%87%E4%BB%A4%E5%88%86%E7%B1%BB-&#43;-%E7%BC%96%E7%A0%81%E5%8E%9F%E7%90%86%E5%85%A8%E6%8E%8C%E6%8F%A1/</guid>
+      <description>版权归作者所有，如有转发，请注明文章出处：https://cyrus-studio.github.io/blog/&#xA;ARM64汇编寻址 1. 立即数寻址（Immediate Addressing） 这种方式直接将立即数作为操作数，适合小数据或常量。ARM64的立即数在指令中直接编码。&#xA;MOV X0, #10 ; 将常数10加载到寄存器X0中 2. 寄存器间接寻址（Register Indirect Addressing） 使用寄存器中的地址作为内存地址。适合基于寄存器值进行偏移的简单访问方式。&#xA;LDR X1, [X0] ; 将地址X0指向的内存内容加载到X1中 3. 偏移寻址（Offset Addressing） 在基地址寄存器的基础上添加一个偏移量来确定目标地址，偏移量可以是立即数或寄存器值。&#xA;LDR X1, [X0, #8] ; 从地址X0 + 8的位置加载数据到X1中 4. 预索引寻址（Pre-indexed Addressing） 使用基地址加上偏移量来访问内存，访问完成后，将偏移量更新到基地址寄存器中。&#xA;LDR X1, [X0, #8]! ; 从地址X0 + 8加载数据到X1中，同时更新X0为X0 + 8 5. 后索引寻址（Post-indexed Addressing） 先使用基地址来访问内存，再将偏移量加到基地址寄存器中。这样偏移的效果在读取数据后才生效。&#xA;LDR X1, [X0], #8 ; 先从X0指向的地址加载数据到X1中，随后X0增加8 6. 寄存器偏移寻址（Register Offset Addressing） 偏移量用另一个寄存器指定，便于灵活的偏移操作，特别适合对数据结构的访问。&#xA;LDR X1, [X0, X2] ; 从X0 + X2指向的内存地址加载数据到X1中 7.</description>
+    </item>
+    <item>
+      <title>ARM64 可执行程序是如何诞生的？编译流程 &#43; 指令调试全解析</title>
+      <link>https://cyrus-studio.github.io/blog/posts/arm64-%E5%8F%AF%E6%89%A7%E8%A1%8C%E7%A8%8B%E5%BA%8F%E6%98%AF%E5%A6%82%E4%BD%95%E8%AF%9E%E7%94%9F%E7%9A%84%E7%BC%96%E8%AF%91%E6%B5%81%E7%A8%8B-&#43;-%E6%8C%87%E4%BB%A4%E8%B0%83%E8%AF%95%E5%85%A8%E8%A7%A3%E6%9E%90/</link>
+      <pubDate>Sat, 05 Jul 2025 19:33:58 +0800</pubDate>
+      <guid>https://cyrus-studio.github.io/blog/posts/arm64-%E5%8F%AF%E6%89%A7%E8%A1%8C%E7%A8%8B%E5%BA%8F%E6%98%AF%E5%A6%82%E4%BD%95%E8%AF%9E%E7%94%9F%E7%9A%84%E7%BC%96%E8%AF%91%E6%B5%81%E7%A8%8B-&#43;-%E6%8C%87%E4%BB%A4%E8%B0%83%E8%AF%95%E5%85%A8%E8%A7%A3%E6%9E%90/</guid>
+      <description>版权归作者所有，如有转发，请注明文章出处：https://cyrus-studio.github.io/blog/&#xA;ARM64可执行程序的生成过程 根据 ARM64 可执行程序生成的四个主要步骤：预处理、编译、汇编、链接，我们可以详细分解整个过程如下&#xA;1. 预处理（Preprocessing） 预处理是源代码文件在正式编译前的准备工作，由预处理器完成。其主要任务包括：&#xA;宏替换：处理 #define 定义的宏，将代码中出现的宏替换为实际值。&#xA;文件包含：处理 #include 指令，将所需的头文件内容直接插入代码中，确保所有引用的函数和变量声明都在同一文件中。&#xA;条件编译：处理 #ifdef、#ifndef 等条件编译指令，以控制代码中不同部分的编译。&#xA;预处理后的输出仍然是代码文件，但没有任何宏、条件编译等指令，通常以 .i 或 .ii 作为扩展名。&#xA;2. 编译（Compilation） 编译器（如 GCC 或 Clang）将预处理后的代码文件转换为汇编代码，产生汇编语言表示的文件。此阶段包括以下子步骤：&#xA;词法分析：将源代码转化为基本的语法单元（token），如变量名、运算符、关键字等。&#xA;语法分析：将代码组织成抽象语法树（AST），根据编程语言的语法规则生成层次结构。&#xA;语义分析：检查语法树的正确性，如类型检查、作用域检查等，确保代码符合语言语义。&#xA;中间代码生成：编译器生成与平台无关的中间代码，方便后续优化。&#xA;优化：编译器对中间代码进行优化，如消除冗余代码、进行循环优化等，以提升程序效率。&#xA;生成汇编代码：编译器将优化后的中间代码转换为特定平台（如 ARM64）的汇编代码，通常输出 .s 文件。&#xA;编译阶段的最终输出是汇编代码文件，包含了基于 ARM64 指令集的指令。&#xA;3. 汇编（Assemble） 汇编器（如 GNU Assembler，as）将汇编代码文件（.s 文件）转换为机器代码，生成二进制的目标文件（.o 文件）。目标文件包含了二进制的机器指令，但符号引用还未解析，因此目标文件本身并非独立的可执行文件。&#xA;汇编阶段的主要工作包括：&#xA;指令翻译：将汇编语言指令转换为 ARM64 指令集对应的二进制机器指令。&#xA;符号表生成：记录所有函数和变量的符号地址，以便链接阶段使用。&#xA;机器码生成：生成目标文件（.o），将每条指令翻译成可执行的机器码。&#xA;目标文件是 ARM64 可执行程序生成过程中不可或缺的中间文件。&#xA;4. 链接（Linking） 链接器（如 GNU Linker，ld）将一个或多个目标文件链接在一起，并解决外部依赖，生成最终的可执行文件。链接的过程分为静态链接和动态链接两种：&#xA;静态链接：将程序所需的库代码直接嵌入到可执行文件中，生成一个完全自包含的文件。&#xA;动态链接：生成的可执行文件依赖外部共享库（如 .so 文件），在程序运行时加载这些共享库。&#xA;链接阶段的关键步骤包括：&#xA;符号解析：将不同目标文件中的符号（如函数和变量）解析为对应的内存地址，解决跨文件调用。&#xA;重定位：调整目标文件中指令和数据的地址，使得所有模块可以在一个统一的地址空间中正常运行。&#xA;生成可执行文件：链接器根据 ELF（Executable and Linkable Format）等格式生成最终的可执行文件，包含程序代码段、数据段、以及其他加载器所需的元信息。</description>
+    </item>
     <item>
       <title>Capstone &#43; Keystone &#43; Unicorn：逆向分析三件套全解</title>
       <link>https://cyrus-studio.github.io/blog/posts/capstone-&#43;-keystone-&#43;-unicorn%E9%80%86%E5%90%91%E5%88%86%E6%9E%90%E4%B8%89%E4%BB%B6%E5%A5%97%E5%85%A8%E8%A7%A3/</link>
@@ -499,13 +513,6 @@
       <description>版权归作者所有，如有转发，请注明文章出处：https://cyrus-studio.github.io/blog/&#xA;条件标志 在 ARM 指令集中，条件标志是控制指令执行的一种机制，它们用于实现条件分支、比较和其他逻辑操作。&#xA;我们平时使用 IDA 调试程序时，在 general registers 窗口中看到的条件标志 ARM 处理器通常使用四个主要的条件标志，它们的状态影响指令的执行。这些条件标志包括：&#xA;1. N (Negative): 负标志，用于指示最后一次操作的结果是否为负值。若结果为负，则 N 被置为 1；否则为 0。&#xA;2. Z (Zero): 零标志，用于指示最后一次操作的结果是否为零。如果结果为零，则 Z 被置为 1；否则为 0。&#xA;3. C (Carry): 进位标志，用于指示加法操作是否产生了进位或减法操作是否没有借位。对于加法，若产生进位，则 C 被置为 1；对于减法，若没有借位，则 C 被置为 1。&#xA;4. V (Overflow): 溢出标志，用于指示最后一次算术操作是否发生了溢出。当两个有符号数相加或相减时，如果结果的符号与操作数的符号不一致，表示发生了溢出，V 被置为 1。&#xA;在 ARM 指令中，条件执行可以通过附加条件码实现，例如：&#xA;EQ (Equal): 当 Z = 1 时执行（相等）。&#xA;NE (Not Equal): 当 Z = 0 时执行（不相等）。&#xA;GT (Greater Than): 当 Z = 0 且 N = V 时执行（大于）。</description>
     </item>
     <item>
-      <title>ARM64汇编寻址、汇编指令、指令编码方式</title>
-      <link>https://cyrus-studio.github.io/blog/posts/arm64%E6%B1%87%E7%BC%96%E5%AF%BB%E5%9D%80%E6%B1%87%E7%BC%96%E6%8C%87%E4%BB%A4%E6%8C%87%E4%BB%A4%E7%BC%96%E7%A0%81%E6%96%B9%E5%BC%8F/</link>
-      <pubDate>Tue, 05 Nov 2024 12:42:37 +0800</pubDate>
-      <guid>https://cyrus-studio.github.io/blog/posts/arm64%E6%B1%87%E7%BC%96%E5%AF%BB%E5%9D%80%E6%B1%87%E7%BC%96%E6%8C%87%E4%BB%A4%E6%8C%87%E4%BB%A4%E7%BC%96%E7%A0%81%E6%96%B9%E5%BC%8F/</guid>
-      <description>版权归作者所有，如有转发，请注明文章出处：https://cyrus-studio.github.io/blog/&#xA;ARM64汇编寻址 1. 立即数寻址（Immediate Addressing） 这种方式直接将立即数作为操作数，适合小数据或常量。ARM64的立即数在指令中直接编码。&#xA;MOV X0, #10 ; 将常数10加载到寄存器X0中 2. 寄存器间接寻址（Register Indirect Addressing） 使用寄存器中的地址作为内存地址。适合基于寄存器值进行偏移的简单访问方式。&#xA;LDR X1, [X0] ; 将地址X0指向的内存内容加载到X1中 3. 偏移寻址（Offset Addressing） 在基地址寄存器的基础上添加一个偏移量来确定目标地址，偏移量可以是立即数或寄存器值。&#xA;LDR X1, [X0, #8] ; 从地址X0 + 8的位置加载数据到X1中 4. 预索引寻址（Pre-indexed Addressing） 使用基地址加上偏移量来访问内存，访问完成后，将偏移量更新到基地址寄存器中。&#xA;LDR X1, [X0, #8]! ; 从地址X0 + 8加载数据到X1中，同时更新X0为X0 + 8 5. 后索引寻址（Post-indexed Addressing） 先使用基地址来访问内存，再将偏移量加到基地址寄存器中。这样偏移的效果在读取数据后才生效。&#xA;LDR X1, [X0], #8 ; 先从X0指向的地址加载数据到X1中，随后X0增加8 6. 寄存器偏移寻址（Register Offset Addressing） 偏移量用另一个寄存器指定，便于灵活的偏移操作，特别适合对数据结构的访问。&#xA;LDR X1, [X0, X2] ; 从X0 + X2指向的内存地址加载数据到X1中 7.</description>
-    </item>
-    <item>
       <title>Thumb 汇编指令集，Thumb 指令编码方式，编译 Thumb 汇编代码</title>
       <link>https://cyrus-studio.github.io/blog/posts/thumb-%E6%B1%87%E7%BC%96%E6%8C%87%E4%BB%A4%E9%9B%86thumb-%E6%8C%87%E4%BB%A4%E7%BC%96%E7%A0%81%E6%96%B9%E5%BC%8F%E7%BC%96%E8%AF%91-thumb-%E6%B1%87%E7%BC%96%E4%BB%A3%E7%A0%81/</link>
       <pubDate>Mon, 04 Nov 2024 19:17:49 +0800</pubDate>
@@ -518,13 +525,6 @@
       <pubDate>Sun, 03 Nov 2024 04:49:00 +0800</pubDate>
       <guid>https://cyrus-studio.github.io/blog/posts/adb-%E8%BF%9C%E7%A8%8B%E8%B0%83%E8%AF%95%E6%89%8B%E5%8A%A8%E4%BF%AE%E6%94%B9-adb-%E8%B0%83%E8%AF%95%E6%8E%88%E6%9D%83%E4%BF%A1%E6%81%AF/</guid>
       <description>版权归作者所有，如有转发，请注明文章出处：https://cyrus-studio.github.io/blog/&#xA;adb 远程调试 手机上开发者选项中打开网络调试 或者连接 USB 执行下面命令将 ADB 设置为通过端口 5555 进行 TCP/IP 调试 adb tcpip 5555 启用 TCP/IP 模式后可以断开 USB 连接&#xA;如果网络调试开关中没有显示设备ip地址，通过下面方法获取设备的 IP 地址：&#xA;在设备上，进入设置 &amp;gt; 网络与互联网 &amp;gt; Wi-Fi，选择当前连接的网络。&#xA;找到设备的 IP 地址（通常在网络详情中）。&#xA;根据设备 ip 地址和端口号连接到设备，并在手机上确认授权调试提示&#xA;adb connect 192.168.0.101:5555&#xD;already connected to 192.168.0.101:5555 第一次授权可能会提示 unauthorized&#xA;adb devices&#xD;List of devices attached&#xD;192.168.0.101:5555 unauthorized 重启 adb，重新再连接&#xA;adb kill-server&#xD;adb connect 192.168.0.101:5555&#xD;* daemon not running; starting now at tcp:5037&#xD;* daemon started successfully&#xD;connected to 192.</description>
-    </item>
-    <item>
-      <title>详解ARM64可执行程序的生成过程</title>
-      <link>https://cyrus-studio.github.io/blog/posts/%E8%AF%A6%E8%A7%A3arm64%E5%8F%AF%E6%89%A7%E8%A1%8C%E7%A8%8B%E5%BA%8F%E7%9A%84%E7%94%9F%E6%88%90%E8%BF%87%E7%A8%8B/</link>
-      <pubDate>Sat, 02 Nov 2024 23:01:02 +0800</pubDate>
-      <guid>https://cyrus-studio.github.io/blog/posts/%E8%AF%A6%E8%A7%A3arm64%E5%8F%AF%E6%89%A7%E8%A1%8C%E7%A8%8B%E5%BA%8F%E7%9A%84%E7%94%9F%E6%88%90%E8%BF%87%E7%A8%8B/</guid>
-      <description>版权归作者所有，如有转发，请注明文章出处：https://cyrus-studio.github.io/blog/&#xA;ARM64可执行程序的生成过程 根据 ARM64 可执行程序生成的四个主要步骤：预处理、编译、汇编、链接，我们可以详细分解整个过程如下&#xA;1. 预处理（Preprocessing） 预处理是源代码文件在正式编译前的准备工作，由预处理器完成。其主要任务包括：&#xA;宏替换：处理 #define 定义的宏，将代码中出现的宏替换为实际值。&#xA;文件包含：处理 #include 指令，将所需的头文件内容直接插入代码中，确保所有引用的函数和变量声明都在同一文件中。&#xA;条件编译：处理 #ifdef、#ifndef 等条件编译指令，以控制代码中不同部分的编译。&#xA;预处理后的输出仍然是代码文件，但没有任何宏、条件编译等指令，通常以 .i 或 .ii 作为扩展名。&#xA;2. 编译（Compilation） 编译器（如 GCC 或 Clang）将预处理后的代码文件转换为汇编代码，产生汇编语言表示的文件。此阶段包括以下子步骤：&#xA;词法分析：将源代码转化为基本的语法单元（token），如变量名、运算符、关键字等。&#xA;语法分析：将代码组织成抽象语法树（AST），根据编程语言的语法规则生成层次结构。&#xA;语义分析：检查语法树的正确性，如类型检查、作用域检查等，确保代码符合语言语义。&#xA;中间代码生成：编译器生成与平台无关的中间代码，方便后续优化。&#xA;优化：编译器对中间代码进行优化，如消除冗余代码、进行循环优化等，以提升程序效率。&#xA;生成汇编代码：编译器将优化后的中间代码转换为特定平台（如 ARM64）的汇编代码，通常输出 .s 文件。&#xA;编译阶段的最终输出是汇编代码文件，包含了基于 ARM64 指令集的指令。&#xA;3. 汇编（Assemble） 汇编器（如 GNU Assembler，as）将汇编代码文件（.s 文件）转换为机器代码，生成二进制的目标文件（.o 文件）。目标文件包含了二进制的机器指令，但符号引用还未解析，因此目标文件本身并非独立的可执行文件。&#xA;汇编阶段的主要工作包括：&#xA;指令翻译：将汇编语言指令转换为 ARM64 指令集对应的二进制机器指令。&#xA;符号表生成：记录所有函数和变量的符号地址，以便链接阶段使用。&#xA;机器码生成：生成目标文件（.o），将每条指令翻译成可执行的机器码。&#xA;目标文件是 ARM64 可执行程序生成过程中不可或缺的中间文件。&#xA;4. 链接（Linking） 链接器（如 GNU Linker，ld）将一个或多个目标文件链接在一起，并解决外部依赖，生成最终的可执行文件。链接的过程分为静态链接和动态链接两种：&#xA;静态链接：将程序所需的库代码直接嵌入到可执行文件中，生成一个完全自包含的文件。&#xA;动态链接：生成的可执行文件依赖外部共享库（如 .so 文件），在程序运行时加载这些共享库。&#xA;链接阶段的关键步骤包括：&#xA;符号解析：将不同目标文件中的符号（如函数和变量）解析为对应的内存地址，解决跨文件调用。&#xA;重定位：调整目标文件中指令和数据的地址，使得所有模块可以在一个统一的地址空间中正常运行。&#xA;生成可执行文件：链接器根据 ELF（Executable and Linkable Format）等格式生成最终的可执行文件，包含程序代码段、数据段、以及其他加载器所需的元信息。</description>
     </item>
     <item>
       <title>Windows下创建FTP服务器，实现文件共享</title>
