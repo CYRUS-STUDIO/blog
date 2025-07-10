@@ -6,8 +6,15 @@
     <description>Recent content on CYRUS STUDIO</description>
     <generator>Hugo</generator>
     <language>zh-cn</language>
-    <lastBuildDate>Thu, 10 Jul 2025 23:35:38 +0800</lastBuildDate>
+    <lastBuildDate>Thu, 10 Jul 2025 23:45:23 +0800</lastBuildDate>
     <atom:link href="https://cyrus-studio.github.io/blog/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Android 下内联汇编开发指南：从基础语法到多架构适配全掌握</title>
+      <link>https://cyrus-studio.github.io/blog/posts/android-%E4%B8%8B%E5%86%85%E8%81%94%E6%B1%87%E7%BC%96%E5%BC%80%E5%8F%91%E6%8C%87%E5%8D%97%E4%BB%8E%E5%9F%BA%E7%A1%80%E8%AF%AD%E6%B3%95%E5%88%B0%E5%A4%9A%E6%9E%B6%E6%9E%84%E9%80%82%E9%85%8D%E5%85%A8%E6%8E%8C%E6%8F%A1/</link>
+      <pubDate>Thu, 10 Jul 2025 23:45:23 +0800</pubDate>
+      <guid>https://cyrus-studio.github.io/blog/posts/android-%E4%B8%8B%E5%86%85%E8%81%94%E6%B1%87%E7%BC%96%E5%BC%80%E5%8F%91%E6%8C%87%E5%8D%97%E4%BB%8E%E5%9F%BA%E7%A1%80%E8%AF%AD%E6%B3%95%E5%88%B0%E5%A4%9A%E6%9E%B6%E6%9E%84%E9%80%82%E9%85%8D%E5%85%A8%E6%8E%8C%E6%8F%A1/</guid>
+      <description>版权归作者所有，如有转发，请注明文章出处：https://cyrus-studio.github.io/blog/&#xA;内联汇编 Android 内联汇编非常适用于 ARM 架构的性能优化和底层操作，通常用于加密、解密、特定指令优化等领域。&#xA;1. 基础语法 内联汇编在 C/C++ 代码中通过 asm 或 asm 关键字进行声明，格式如下&#xA;asm (&amp;#34;汇编指令&amp;#34; : 输出操作数 : 输入操作数 : 破坏描述符); 详细说明：&#xA;汇编指令：这是我们想要执行的汇编代码，通常是 ARM 或 ARM64 指令。&#xA;输出操作数：指定汇编代码的输出结果如何映射到 C++ 变量。&#xA;输入操作数：指定传递给汇编代码的输入。&#xA;破坏描述符：用于告诉编译器哪些寄存器或内存位置将被汇编代码修改，以避免编译器优化引起的问题。&#xA;2. 占位符 占位符用于在汇编指令中插入 C++ 变量，格式为 %0、%1 等，对应输出和输入操作数的顺序。&#xA;例如&#xA;int x = 10, y = 20, result;&#xD;asm(&amp;#34;add %0, %1, %2&amp;#34; : &amp;#34;=r&amp;#34;(result) : &amp;#34;r&amp;#34;(x), &amp;#34;r&amp;#34;(y)); 上面的代码将 x 和 y 相加并将结果存入 result。&#xA;3. 输出操作数和输入操作数 =r 表示输出操作数是一个通用寄存器类型。</description>
+    </item>
     <item>
       <title>彻底搞懂 ARM 汇编中的条件标志：N、Z、C、V 有什么用？</title>
       <link>https://cyrus-studio.github.io/blog/posts/%E5%BD%BB%E5%BA%95%E6%90%9E%E6%87%82-arm-%E6%B1%87%E7%BC%96%E4%B8%AD%E7%9A%84%E6%9D%A1%E4%BB%B6%E6%A0%87%E5%BF%97nzcv-%E6%9C%89%E4%BB%80%E4%B9%88%E7%94%A8/</link>
@@ -511,13 +518,6 @@
       <pubDate>Sun, 10 Nov 2024 06:30:32 +0800</pubDate>
       <guid>https://cyrus-studio.github.io/blog/posts/android%E4%B8%8B%E7%9A%84%E7%B3%BB%E7%BB%9F%E8%B0%83%E7%94%A8-syscall%E5%86%85%E8%81%94%E6%B1%87%E7%BC%96syscall/</guid>
       <description>版权归作者所有，如有转发，请注明文章出处：https://cyrus-studio.github.io/blog/&#xA;什么是系统调用 (syscall) 系统调用是操作系统提供给应用程序的一组接口，允许用户空间程序与内核进行交互。&#xA;在 Android（基于 Linux 内核）中，系统调用由 软中断 实现，通常通过 svc 指令（在 ARM 架构中）触发。系统调用会将 CPU 从用户模式切换到内核模式，使得程序可以执行更高权限的操作。&#xA;Android 使用的 C 库是 Bionic，它是为移动设备优化的轻量级 C 库。对应的模块为 libc.so。&#xA;Bionic 提供了对系统调用的封装。大多数标准库函数（如 printf、malloc、pthread_create）都通过 Bionic 实现，底层调用了相应的系统调用。&#xA;在 NDK 目录中可以找到相关的系统调用号定义头文件。例如&#xA;&amp;lt;NDK_PATH&amp;gt;\27.1.12297006\toolchains\llvm\prebuilt\windows-x86_64\sysroot\usr\include\asm-generic\unistd.h 搜索 bionic 模块 可以找到不同CPU架构下的 syscall 实现 在 http://androidxref.com/9.0.0_r3/xref/bionic/libc/arch-arm/syscalls/ 可以找到 Android 中所有系统调用的汇编代码文件 syscall 在 Android 上的应用场景 系统工具和调试：如 strace、lsof 等工具，通过 syscall 获取系统状态。&#xA;安全与反调试：某些安全检测和反调试技术会直接使用 syscall 绕过标准的 libc 函数，以防止被 hook。&#xA;嵌入式开发：在一些嵌入式系统中，开发者需要直接控制硬件，这时通常会使用 syscall。&#xA;如何在 Android 中使用 syscall 假设我们希望通过 syscall 直接读取文件内容，编写 native 方法代码如下</description>
-    </item>
-    <item>
-      <title>Android 下内联汇编，Android Studio 汇编开发</title>
-      <link>https://cyrus-studio.github.io/blog/posts/android-%E4%B8%8B%E5%86%85%E8%81%94%E6%B1%87%E7%BC%96android-studio-%E6%B1%87%E7%BC%96%E5%BC%80%E5%8F%91/</link>
-      <pubDate>Sat, 09 Nov 2024 04:23:34 +0800</pubDate>
-      <guid>https://cyrus-studio.github.io/blog/posts/android-%E4%B8%8B%E5%86%85%E8%81%94%E6%B1%87%E7%BC%96android-studio-%E6%B1%87%E7%BC%96%E5%BC%80%E5%8F%91/</guid>
-      <description>版权归作者所有，如有转发，请注明文章出处：https://cyrus-studio.github.io/blog/&#xA;内联汇编 Android 内联汇编非常适用于 ARM 架构的性能优化和底层操作，通常用于加密、解密、特定指令优化等领域。&#xA;1. 基础语法 内联汇编在 C/C++ 代码中通过 asm 或 asm 关键字进行声明，格式如下&#xA;asm (&amp;#34;汇编指令&amp;#34; : 输出操作数 : 输入操作数 : 破坏描述符); 详细说明：&#xA;汇编指令：这是我们想要执行的汇编代码，通常是 ARM 或 ARM64 指令。&#xA;输出操作数：指定汇编代码的输出结果如何映射到 C++ 变量。&#xA;输入操作数：指定传递给汇编代码的输入。&#xA;破坏描述符：用于告诉编译器哪些寄存器或内存位置将被汇编代码修改，以避免编译器优化引起的问题。&#xA;2. 占位符 占位符用于在汇编指令中插入 C++ 变量，格式为 %0、%1 等，对应输出和输入操作数的顺序。&#xA;例如&#xA;int x = 10, y = 20, result;&#xD;asm(&amp;#34;add %0, %1, %2&amp;#34; : &amp;#34;=r&amp;#34;(result) : &amp;#34;r&amp;#34;(x), &amp;#34;r&amp;#34;(y)); 上面的代码将 x 和 y 相加并将结果存入 result。&#xA;3. 输出操作数和输入操作数 =r 表示输出操作数是一个通用寄存器类型。</description>
     </item>
     <item>
       <title>adb 远程调试，手动修改 adb 调试授权信息</title>
