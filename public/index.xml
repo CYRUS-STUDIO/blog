@@ -6,8 +6,15 @@
     <description>Recent content on CYRUS STUDIO</description>
     <generator>Hugo</generator>
     <language>zh-cn</language>
-    <lastBuildDate>Thu, 10 Jul 2025 23:45:23 +0800</lastBuildDate>
+    <lastBuildDate>Fri, 11 Jul 2025 00:29:50 +0800</lastBuildDate>
     <atom:link href="https://cyrus-studio.github.io/blog/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>深入 Android syscall 实现：内联汇编系统调用 &#43; NDK 汇编构建</title>
+      <link>https://cyrus-studio.github.io/blog/posts/%E6%B7%B1%E5%85%A5-android-syscall-%E5%AE%9E%E7%8E%B0%E5%86%85%E8%81%94%E6%B1%87%E7%BC%96%E7%B3%BB%E7%BB%9F%E8%B0%83%E7%94%A8-&#43;-ndk-%E6%B1%87%E7%BC%96%E6%9E%84%E5%BB%BA/</link>
+      <pubDate>Fri, 11 Jul 2025 00:29:50 +0800</pubDate>
+      <guid>https://cyrus-studio.github.io/blog/posts/%E6%B7%B1%E5%85%A5-android-syscall-%E5%AE%9E%E7%8E%B0%E5%86%85%E8%81%94%E6%B1%87%E7%BC%96%E7%B3%BB%E7%BB%9F%E8%B0%83%E7%94%A8-&#43;-ndk-%E6%B1%87%E7%BC%96%E6%9E%84%E5%BB%BA/</guid>
+      <description>版权归作者所有，如有转发，请注明文章出处：https://cyrus-studio.github.io/blog/&#xA;什么是系统调用 (syscall) 系统调用是操作系统提供给应用程序的一组接口，允许用户空间程序与内核进行交互。&#xA;在 Android（基于 Linux 内核）中，系统调用由 软中断 实现，通常通过 svc 指令（在 ARM 架构中）触发。系统调用会将 CPU 从用户模式切换到内核模式，使得程序可以执行更高权限的操作。&#xA;Android 使用的 C 库是 Bionic，它是为移动设备优化的轻量级 C 库。对应的模块为 libc.so。&#xA;Bionic 提供了对系统调用的封装。大多数标准库函数（如 printf、malloc、pthread_create）都通过 Bionic 实现，底层调用了相应的系统调用。&#xA;在 NDK 目录中可以找到相关的系统调用号定义头文件。例如&#xA;&amp;lt;NDK_PATH&amp;gt;\27.1.12297006\toolchains\llvm\prebuilt\windows-x86_64\sysroot\usr\include\asm-generic\unistd.h 搜索 bionic 模块 可以找到不同CPU架构下的 syscall 实现&#xA;在 bionic/libc/arch-arm64/syscalls/ 可以找到 Android 中所有系统调用的汇编代码文件&#xA;https://cs.android.com/android/platform/superproject/+/android10-release:bionic/libc/arch-arm64/syscalls/&#xA;syscall 在 Android 上的应用场景 系统工具和调试：如 strace、lsof 等工具，通过 syscall 获取系统状态。&#xA;安全与反调试：某些安全检测和反调试技术会直接使用 syscall 绕过标准的 libc 函数，以防止被 hook。&#xA;嵌入式开发：在一些嵌入式系统中，开发者需要直接控制硬件，这时通常会使用 syscall。&#xA;如何在 Android 中使用 syscall 假设我们希望通过 syscall 直接读取文件内容，编写 native 方法代码如下</description>
+    </item>
     <item>
       <title>Android 下内联汇编开发指南：从基础语法到多架构适配全掌握</title>
       <link>https://cyrus-studio.github.io/blog/posts/android-%E4%B8%8B%E5%86%85%E8%81%94%E6%B1%87%E7%BC%96%E5%BC%80%E5%8F%91%E6%8C%87%E5%8D%97%E4%BB%8E%E5%9F%BA%E7%A1%80%E8%AF%AD%E6%B3%95%E5%88%B0%E5%A4%9A%E6%9E%B6%E6%9E%84%E9%80%82%E9%85%8D%E5%85%A8%E6%8E%8C%E6%8F%A1/</link>
@@ -511,13 +518,6 @@
       <pubDate>Thu, 28 Nov 2024 00:55:08 +0800</pubDate>
       <guid>https://cyrus-studio.github.io/blog/posts/%E4%BD%BF%E7%94%A8-opt-%E4%BC%98%E5%8C%96-llvm-ir%E5%AE%9A%E5%88%B6-clang-%E5%AE%9E%E7%8E%B0%E5%87%BD%E6%95%B0%E5%90%8D%E5%8A%A0%E5%AF%86/</guid>
       <description>版权归作者所有，如有转发，请注明文章出处：https://cyrus-studio.github.io/blog/&#xA;1. LLVM IR LLVM IR（Intermediate Representation） 是 LLVM 编译框架中的一种中间表示形式，它是一种面向低级的中间代码，是 LLVM 架构的核心部分。LLVM IR 既可以用作 LLVM 编译器的输入，也可以用作输出，供其他编译器或工具链使用。&#xA;LLVM IR 的两种存储形式：&#xA;LLVM IR 语言（文本形式，扩展名 .ll）：可读的 LLVM IR 代码。&#xA;LLVM 位码（Bitcode，扩展名 .bc）：二进制形式的 LLVM IR，主要用于高效存储和传输。&#xA;LLVM IR 是平台无关的，可以跨不同的硬件架构进行移植。&#xA;LLVM IR 语言参考手册：https://llvm.org/docs/LangRef.html&#xA;1.1 将 C 文件转换为 LLVM IR 生成文本形式的 LLVM IR（.ll 文件）&#xA;clang -S -emit-llvm hello.c -o hello.ll 以 hello.ll 为例，生成的内容大概如下&#xA;; Function Attrs: noinline nounwind optnone uwtable&#xD;; 这行注释了函数的属性&#xD;; - noinline: 该函数不会被内联（inline）。&#xD;; - nounwind: 该函数不会引发异常（不会 unwind stack）。&#xD;; - optnone: 编译器不会对此函数进行任何优化。&#xD;; - uwtable: 该函数有一个可用的异常处理表（unwind table）。&#xD;define dso_local i32 @main() #0 {&#xD;; define: 定义一个函数。&#xD;; dso_local: 该函数在本地动态库中可见（仅限于当前编译单元）。&#xD;; i32: 返回类型为 32 位整数。&#xD;; @main: 函数名为 &amp;#39;main&amp;#39;。&#xD;; #0: 函数使用属性组 0 中定义的属性（即上面注释的那一行）。&#xD;entry:&#xD;; entry: 函数的入口基本块（Basic Block）的标签。&#xD;%retval = alloca i32, align 4&#xD;; alloca: 在栈上分配内存。这里分配了一个 32 位整数（i32）。&#xD;; align 4: 分配的内存对齐到 4 字节边界。&#xD;; %retval: 变量的名称（SSA 变量），用于存储 main 函数的返回值。&#xD;store i32 0, ptr %retval, align 4&#xD;; store: 将一个值存储到内存地址中。&#xD;; i32 0: 要存储的值是 32 位整数 0（即 main 函数的返回值）。&#xD;; ptr %retval: 存储的位置是之前分配的栈变量 %retval。&#xD;; align 4: 存储操作按 4 字节对齐。&#xD;%call = call i32 (ptr, .</description>
-    </item>
-    <item>
-      <title>Android下的系统调用 (syscall)，内联汇编syscall</title>
-      <link>https://cyrus-studio.github.io/blog/posts/android%E4%B8%8B%E7%9A%84%E7%B3%BB%E7%BB%9F%E8%B0%83%E7%94%A8-syscall%E5%86%85%E8%81%94%E6%B1%87%E7%BC%96syscall/</link>
-      <pubDate>Sun, 10 Nov 2024 06:30:32 +0800</pubDate>
-      <guid>https://cyrus-studio.github.io/blog/posts/android%E4%B8%8B%E7%9A%84%E7%B3%BB%E7%BB%9F%E8%B0%83%E7%94%A8-syscall%E5%86%85%E8%81%94%E6%B1%87%E7%BC%96syscall/</guid>
-      <description>版权归作者所有，如有转发，请注明文章出处：https://cyrus-studio.github.io/blog/&#xA;什么是系统调用 (syscall) 系统调用是操作系统提供给应用程序的一组接口，允许用户空间程序与内核进行交互。&#xA;在 Android（基于 Linux 内核）中，系统调用由 软中断 实现，通常通过 svc 指令（在 ARM 架构中）触发。系统调用会将 CPU 从用户模式切换到内核模式，使得程序可以执行更高权限的操作。&#xA;Android 使用的 C 库是 Bionic，它是为移动设备优化的轻量级 C 库。对应的模块为 libc.so。&#xA;Bionic 提供了对系统调用的封装。大多数标准库函数（如 printf、malloc、pthread_create）都通过 Bionic 实现，底层调用了相应的系统调用。&#xA;在 NDK 目录中可以找到相关的系统调用号定义头文件。例如&#xA;&amp;lt;NDK_PATH&amp;gt;\27.1.12297006\toolchains\llvm\prebuilt\windows-x86_64\sysroot\usr\include\asm-generic\unistd.h 搜索 bionic 模块 可以找到不同CPU架构下的 syscall 实现 在 http://androidxref.com/9.0.0_r3/xref/bionic/libc/arch-arm/syscalls/ 可以找到 Android 中所有系统调用的汇编代码文件 syscall 在 Android 上的应用场景 系统工具和调试：如 strace、lsof 等工具，通过 syscall 获取系统状态。&#xA;安全与反调试：某些安全检测和反调试技术会直接使用 syscall 绕过标准的 libc 函数，以防止被 hook。&#xA;嵌入式开发：在一些嵌入式系统中，开发者需要直接控制硬件，这时通常会使用 syscall。&#xA;如何在 Android 中使用 syscall 假设我们希望通过 syscall 直接读取文件内容，编写 native 方法代码如下</description>
     </item>
     <item>
       <title>adb 远程调试，手动修改 adb 调试授权信息</title>
