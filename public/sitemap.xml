@@ -2,13 +2,16 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"
   xmlns:xhtml="http://www.w3.org/1999/xhtml">
   <url>
-    <loc>https://cyrus-studio.github.io/blog/posts/arm64-%E6%B1%87%E7%BC%96%E5%AE%9E%E6%88%98%E6%8C%87%E5%8D%97%E5%AF%BB%E5%9D%80%E6%96%B9%E5%BC%8F-&#43;-%E6%8C%87%E4%BB%A4%E5%88%86%E7%B1%BB-&#43;-%E7%BC%96%E7%A0%81%E5%8E%9F%E7%90%86%E5%85%A8%E6%8E%8C%E6%8F%A1/</loc>
-    <lastmod>2025-07-05T19:34:40+08:00</lastmod>
-  </url><url>
     <loc>https://cyrus-studio.github.io/blog/</loc>
-    <lastmod>2025-07-05T19:34:40+08:00</lastmod>
+    <lastmod>2025-07-10T23:17:03+08:00</lastmod>
   </url><url>
     <loc>https://cyrus-studio.github.io/blog/posts/</loc>
+    <lastmod>2025-07-10T23:17:03+08:00</lastmod>
+  </url><url>
+    <loc>https://cyrus-studio.github.io/blog/posts/%E6%90%9E%E6%87%82-thumb-%E6%B1%87%E7%BC%96%E6%8C%87%E4%BB%A4%E9%9B%86%E7%BC%96%E7%A0%81%E6%96%B9%E5%BC%8F%E4%B8%8E%E8%B0%83%E8%AF%95%E6%8A%80%E5%B7%A7%E5%85%A8%E8%A7%A3%E6%9E%90/</loc>
+    <lastmod>2025-07-10T23:17:03+08:00</lastmod>
+  </url><url>
+    <loc>https://cyrus-studio.github.io/blog/posts/arm64-%E6%B1%87%E7%BC%96%E5%AE%9E%E6%88%98%E6%8C%87%E5%8D%97%E5%AF%BB%E5%9D%80%E6%96%B9%E5%BC%8F-&#43;-%E6%8C%87%E4%BB%A4%E5%88%86%E7%B1%BB-&#43;-%E7%BC%96%E7%A0%81%E5%8E%9F%E7%90%86%E5%85%A8%E6%8E%8C%E6%8F%A1/</loc>
     <lastmod>2025-07-05T19:34:40+08:00</lastmod>
   </url><url>
     <loc>https://cyrus-studio.github.io/blog/posts/arm64-%E5%8F%AF%E6%89%A7%E8%A1%8C%E7%A8%8B%E5%BA%8F%E6%98%AF%E5%A6%82%E4%BD%95%E8%AF%9E%E7%94%9F%E7%9A%84%E7%BC%96%E8%AF%91%E6%B5%81%E7%A8%8B-&#43;-%E6%8C%87%E4%BB%A4%E8%B0%83%E8%AF%95%E5%85%A8%E8%A7%A3%E6%9E%90/</loc>
@@ -223,9 +226,6 @@
   </url><url>
     <loc>https://cyrus-studio.github.io/blog/posts/%E8%AF%A6%E8%A7%A3arm%E6%B1%87%E7%BC%96%E6%9D%A1%E4%BB%B6%E6%A0%87%E5%BF%97/</loc>
     <lastmod>2024-11-05T21:06:33+08:00</lastmod>
-  </url><url>
-    <loc>https://cyrus-studio.github.io/blog/posts/thumb-%E6%B1%87%E7%BC%96%E6%8C%87%E4%BB%A4%E9%9B%86thumb-%E6%8C%87%E4%BB%A4%E7%BC%96%E7%A0%81%E6%96%B9%E5%BC%8F%E7%BC%96%E8%AF%91-thumb-%E6%B1%87%E7%BC%96%E4%BB%A3%E7%A0%81/</loc>
-    <lastmod>2024-11-04T19:17:49+08:00</lastmod>
   </url><url>
     <loc>https://cyrus-studio.github.io/blog/posts/adb-%E8%BF%9C%E7%A8%8B%E8%B0%83%E8%AF%95%E6%89%8B%E5%8A%A8%E4%BF%AE%E6%94%B9-adb-%E8%B0%83%E8%AF%95%E6%8E%88%E6%9D%83%E4%BF%A1%E6%81%AF/</loc>
     <lastmod>2024-11-03T04:49:00+08:00</lastmod>

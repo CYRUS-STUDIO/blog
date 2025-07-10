@@ -6,8 +6,15 @@
     <description>Recent content in Posts on CYRUS STUDIO</description>
     <generator>Hugo</generator>
     <language>zh-cn</language>
-    <lastBuildDate>Sat, 05 Jul 2025 19:34:40 +0800</lastBuildDate>
+    <lastBuildDate>Thu, 10 Jul 2025 23:17:03 +0800</lastBuildDate>
     <atom:link href="https://cyrus-studio.github.io/blog/posts/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>搞懂 Thumb 汇编：指令集、编码方式与调试技巧全解析</title>
+      <link>https://cyrus-studio.github.io/blog/posts/%E6%90%9E%E6%87%82-thumb-%E6%B1%87%E7%BC%96%E6%8C%87%E4%BB%A4%E9%9B%86%E7%BC%96%E7%A0%81%E6%96%B9%E5%BC%8F%E4%B8%8E%E8%B0%83%E8%AF%95%E6%8A%80%E5%B7%A7%E5%85%A8%E8%A7%A3%E6%9E%90/</link>
+      <pubDate>Thu, 10 Jul 2025 23:17:03 +0800</pubDate>
+      <guid>https://cyrus-studio.github.io/blog/posts/%E6%90%9E%E6%87%82-thumb-%E6%B1%87%E7%BC%96%E6%8C%87%E4%BB%A4%E9%9B%86%E7%BC%96%E7%A0%81%E6%96%B9%E5%BC%8F%E4%B8%8E%E8%B0%83%E8%AF%95%E6%8A%80%E5%B7%A7%E5%85%A8%E8%A7%A3%E6%9E%90/</guid>
+      <description>版权归作者所有，如有转发，请注明文章出处：https://cyrus-studio.github.io/blog/&#xA;Thumb指令集 ARM 指令集：最早在 1985 年随第一代 ARM 处理器问世。ARM 指令集一开始是 32 位固定长度的指令，用于各种计算任务。&#xA;Thumb 指令集：在 1994 年的 ARM7TDMI 处理器中首次引入。这是在 ARM 指令集基础上开发的一个 16 位指令集，旨在优化嵌入式系统中代码密度和内存效率。&#xA;寄存器 Thumb 跟 ARM 是一样的。&#xA;随着 ARM 架构的演进，后来加入了 32 位的 Thumb 指令，称为 Thumb-2 指令集。&#xA;以简单的加载立即数到寄存器为例，解释一下 16 位和 32 位的 Thumb 指令的区别&#xA;16 位 Thumb 指令&#xA;MOVS R0, #1 // 将立即数 1 加载到 R0，指令长度为 16 位 32 位 Thumb 指令&#xA;MOV.W R0, #65535 // 将较大的立即数 65535 加载到 R0，指令长度为 32 位 由于 16 位 Thumb 指令长度有限，无法直接处理大立即数，而 32 位 Thumb 指令支持更大的立即数范围。32 位指令格式可以容纳更多位的立即数、更复杂的操作码。</description>
+    </item>
     <item>
       <title>ARM64 汇编实战指南：寻址方式 &#43; 指令分类 &#43; 编码原理全掌握</title>
       <link>https://cyrus-studio.github.io/blog/posts/arm64-%E6%B1%87%E7%BC%96%E5%AE%9E%E6%88%98%E6%8C%87%E5%8D%97%E5%AF%BB%E5%9D%80%E6%96%B9%E5%BC%8F-&#43;-%E6%8C%87%E4%BB%A4%E5%88%86%E7%B1%BB-&#43;-%E7%BC%96%E7%A0%81%E5%8E%9F%E7%90%86%E5%85%A8%E6%8E%8C%E6%8F%A1/</link>
@@ -511,13 +518,6 @@
       <pubDate>Tue, 05 Nov 2024 21:06:33 +0800</pubDate>
       <guid>https://cyrus-studio.github.io/blog/posts/%E8%AF%A6%E8%A7%A3arm%E6%B1%87%E7%BC%96%E6%9D%A1%E4%BB%B6%E6%A0%87%E5%BF%97/</guid>
       <description>版权归作者所有，如有转发，请注明文章出处：https://cyrus-studio.github.io/blog/&#xA;条件标志 在 ARM 指令集中，条件标志是控制指令执行的一种机制，它们用于实现条件分支、比较和其他逻辑操作。&#xA;我们平时使用 IDA 调试程序时，在 general registers 窗口中看到的条件标志 ARM 处理器通常使用四个主要的条件标志，它们的状态影响指令的执行。这些条件标志包括：&#xA;1. N (Negative): 负标志，用于指示最后一次操作的结果是否为负值。若结果为负，则 N 被置为 1；否则为 0。&#xA;2. Z (Zero): 零标志，用于指示最后一次操作的结果是否为零。如果结果为零，则 Z 被置为 1；否则为 0。&#xA;3. C (Carry): 进位标志，用于指示加法操作是否产生了进位或减法操作是否没有借位。对于加法，若产生进位，则 C 被置为 1；对于减法，若没有借位，则 C 被置为 1。&#xA;4. V (Overflow): 溢出标志，用于指示最后一次算术操作是否发生了溢出。当两个有符号数相加或相减时，如果结果的符号与操作数的符号不一致，表示发生了溢出，V 被置为 1。&#xA;在 ARM 指令中，条件执行可以通过附加条件码实现，例如：&#xA;EQ (Equal): 当 Z = 1 时执行（相等）。&#xA;NE (Not Equal): 当 Z = 0 时执行（不相等）。&#xA;GT (Greater Than): 当 Z = 0 且 N = V 时执行（大于）。</description>
-    </item>
-    <item>
-      <title>Thumb 汇编指令集，Thumb 指令编码方式，编译 Thumb 汇编代码</title>
-      <link>https://cyrus-studio.github.io/blog/posts/thumb-%E6%B1%87%E7%BC%96%E6%8C%87%E4%BB%A4%E9%9B%86thumb-%E6%8C%87%E4%BB%A4%E7%BC%96%E7%A0%81%E6%96%B9%E5%BC%8F%E7%BC%96%E8%AF%91-thumb-%E6%B1%87%E7%BC%96%E4%BB%A3%E7%A0%81/</link>
-      <pubDate>Mon, 04 Nov 2024 19:17:49 +0800</pubDate>
-      <guid>https://cyrus-studio.github.io/blog/posts/thumb-%E6%B1%87%E7%BC%96%E6%8C%87%E4%BB%A4%E9%9B%86thumb-%E6%8C%87%E4%BB%A4%E7%BC%96%E7%A0%81%E6%96%B9%E5%BC%8F%E7%BC%96%E8%AF%91-thumb-%E6%B1%87%E7%BC%96%E4%BB%A3%E7%A0%81/</guid>
-      <description>版权归作者所有，如有转发，请注明文章出处：https://cyrus-studio.github.io/blog/&#xA;Thumb指令集 ARM 指令集：最早在 1985 年随第一代 ARM 处理器问世。ARM 指令集一开始是 32 位固定长度的指令，用于各种计算任务。&#xA;Thumb 指令集：在 1994 年的 ARM7TDMI 处理器中首次引入。这是在 ARM 指令集基础上开发的一个 16 位指令集，旨在优化嵌入式系统中代码密度和内存效率。&#xA;寄存器 Thumb 跟 ARM 是一样的。&#xA;随着 ARM 架构的演进，后来加入了 32 位的 Thumb 指令，称为 Thumb-2 指令集。&#xA;以简单的加载立即数到寄存器为例，解释一下 16 位和 32 位的 Thumb 指令的区别&#xA;16 位 Thumb 指令&#xA;MOVS R0, #1 // 将立即数 1 加载到 R0，指令长度为 16 位 32 位 Thumb 指令&#xA;MOV.W R0, #65535 // 将较大的立即数 65535 加载到 R0，指令长度为 32 位 由于 16 位 Thumb 指令长度有限，无法直接处理大立即数，而 32 位 Thumb 指令支持更大的立即数范围。32 位指令格式可以容纳更多位的立即数、更复杂的操作码。</description>
     </item>
     <item>
       <title>adb 远程调试，手动修改 adb 调试授权信息</title>
