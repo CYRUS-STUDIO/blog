@@ -6,8 +6,15 @@
     <description>Recent content in Posts on CYRUS STUDIO</description>
     <generator>Hugo</generator>
     <language>zh-cn</language>
-    <lastBuildDate>Fri, 11 Jul 2025 00:29:50 +0800</lastBuildDate>
+    <lastBuildDate>Fri, 11 Jul 2025 00:41:47 +0800</lastBuildDate>
     <atom:link href="https://cyrus-studio.github.io/blog/posts/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Unicorn Hook 机制全解析：指令、代码块、内存、系统调用</title>
+      <link>https://cyrus-studio.github.io/blog/posts/unicorn-hook-%E6%9C%BA%E5%88%B6%E5%85%A8%E8%A7%A3%E6%9E%90%E6%8C%87%E4%BB%A4%E4%BB%A3%E7%A0%81%E5%9D%97%E5%86%85%E5%AD%98%E7%B3%BB%E7%BB%9F%E8%B0%83%E7%94%A8/</link>
+      <pubDate>Fri, 11 Jul 2025 00:41:47 +0800</pubDate>
+      <guid>https://cyrus-studio.github.io/blog/posts/unicorn-hook-%E6%9C%BA%E5%88%B6%E5%85%A8%E8%A7%A3%E6%9E%90%E6%8C%87%E4%BB%A4%E4%BB%A3%E7%A0%81%E5%9D%97%E5%86%85%E5%AD%98%E7%B3%BB%E7%BB%9F%E8%B0%83%E7%94%A8/</guid>
+      <description>版权归作者所有，如有转发，请注明文章出处：https://cyrus-studio.github.io/blog/&#xA;Hook 主要类型 在 Unicorn 中，Hook（钩子）用于在模拟过程中拦截 CPU 指令执行、内存访问等操作，以便分析和修改执行行为。&#xA;Unicorn 提供了多种 Hook 类型，每种类型用于不同场景：&#xA;Hook 类型 说明 示例 UC_HOOK_CODE 拦截每一条指令执行 监控指令流，反调试 UC_HOOK_BLOCK 拦截每个基本块执行 统计基本块执行次数 UC_HOOK_INTR 拦截中断指令（如 svc #0） 监控系统调用 UC_HOOK_MEM_READ 读取内存前触发 监视变量读取 UC_HOOK_MEM_WRITE 写入内存前触发 监视变量修改 UC_HOOK_MEM_FETCH 取指令前触发 捕获未映射代码执行 UC_HOOK_MEM_READ_UNMAPPED 读取未映射内存 捕获非法内存读取 UC_HOOK_MEM_WRITE_UNMAPPED 写入未映射内存 捕获非法内存写入 UC_HOOK_MEM_FETCH_UNMAPPED 取指未映射内存 捕获非法指令执行 UC_HOOK_INSN 拦截特定指令 监控 syscall、hlt 等 Hook 指令执行 (UC_HOOK_CODE) 用途 ：&#xA;监控所有执行的指令&#xA;记录寄存器变化&#xA;反调试&#xA;示例代码&#xA;from unicorn import *&#xD;from unicorn.arm64_const import *&#xD;# Hook 回调函数&#xD;def hook_code(mu, address, size, user_data):&#xD;print(f&amp;#34;Executing instruction at 0x{address:X}, size={size}&amp;#34;)&#xD;# 初始化 Unicorn ARM64&#xD;mu = Uc(UC_ARCH_ARM64, UC_MODE_ARM)&#xD;# 分配内存&#xD;BASE = 0x1000&#xD;mu.</description>
+    </item>
     <item>
       <title>深入 Android syscall 实现：内联汇编系统调用 &#43; NDK 汇编构建</title>
       <link>https://cyrus-studio.github.io/blog/posts/%E6%B7%B1%E5%85%A5-android-syscall-%E5%AE%9E%E7%8E%B0%E5%86%85%E8%81%94%E6%B1%87%E7%BC%96%E7%B3%BB%E7%BB%9F%E8%B0%83%E7%94%A8-&#43;-ndk-%E6%B1%87%E7%BC%96%E6%9E%84%E5%BB%BA/</link>
@@ -441,13 +448,6 @@
       <pubDate>Sun, 23 Feb 2025 17:56:08 +0800</pubDate>
       <guid>https://cyrus-studio.github.io/blog/posts/%E4%BD%BF%E7%94%A8-unicorn-%E5%A6%82%E4%BD%95%E8%BF%9B%E8%A1%8C%E6%A0%88%E8%AF%BB%E5%86%99-%E5%92%8C-patch/</guid>
       <description>版权归作者所有，如有转发，请注明文章出处：https://cyrus-studio.github.io/blog/&#xA;struct.pack 方法介绍 struct.pack 是 Python 标准库 struct 模块中的一个函数，它用于将 Python 的基本数据类型（如 int、float、long）打包为字节流，以便在二进制文件、网络传输或内存操作（如 Unicorn 仿真器的 mem_write）中使用。&#xA;语法：&#xA;import struct&#xD;struct.pack(format, value) format：指定数据的格式，例如：&#xA;&amp;lt;f：表示小端（&amp;lt;）的 4 字节浮点数（float）&#xA;&amp;lt;d：表示小端的 8 字节双精度浮点数（double）&#xA;value：要转换的 Python 值。&#xA;数据类型格式&#xA;数据类型 有符号格式（小写） 无符号格式（大写） 大小（字节） byte b (char) B (uchar) 1 short h (short) H (ushort) 2 int i (int) I (uint) 4 long q (long long) Q (ulong long) 8 float f (float) 无 4 double d (double) 无 8 其他特殊类型</description>
-    </item>
-    <item>
-      <title>Unicorn Hook 详解：指令、代码块、内存、系统调用等</title>
-      <link>https://cyrus-studio.github.io/blog/posts/unicorn-hook-%E8%AF%A6%E8%A7%A3%E6%8C%87%E4%BB%A4%E4%BB%A3%E7%A0%81%E5%9D%97%E5%86%85%E5%AD%98%E7%B3%BB%E7%BB%9F%E8%B0%83%E7%94%A8%E7%AD%89/</link>
-      <pubDate>Mon, 10 Feb 2025 00:06:11 +0800</pubDate>
-      <guid>https://cyrus-studio.github.io/blog/posts/unicorn-hook-%E8%AF%A6%E8%A7%A3%E6%8C%87%E4%BB%A4%E4%BB%A3%E7%A0%81%E5%9D%97%E5%86%85%E5%AD%98%E7%B3%BB%E7%BB%9F%E8%B0%83%E7%94%A8%E7%AD%89/</guid>
-      <description>版权归作者所有，如有转发，请注明文章出处：https://cyrus-studio.github.io/blog/&#xA;在 Unicorn 中，Hook（钩子）用于在模拟过程中拦截 CPU 指令执行、内存访问等操作，以便分析和修改执行行为。&#xA;Hook 主要类型 Unicorn 提供了多种 Hook 类型，每种类型用于不同场景：&#xA;Hook 类型 说明 示例 UC_HOOK_CODE 拦截每一条指令执行 监控指令流，反调试 UC_HOOK_BLOCK 拦截每个基本块执行 统计基本块执行次数 UC_HOOK_INTR 拦截中断指令（如 svc #0） 监控系统调用 UC_HOOK_MEM_READ 读取内存前触发 监视变量读取 UC_HOOK_MEM_WRITE 写入内存前触发 监视变量修改 UC_HOOK_MEM_FETCH 取指令前触发 捕获未映射代码执行 UC_HOOK_MEM_READ_UNMAPPED 读取未映射内存 捕获非法内存读取 UC_HOOK_MEM_WRITE_UNMAPPED 写入未映射内存 捕获非法内存写入 UC_HOOK_MEM_FETCH_UNMAPPED 取指未映射内存 捕获非法指令执行 UC_HOOK_INSN 拦截特定指令 监控 syscall、hlt 等 Hook 指令执行 (UC_HOOK_CODE) 用途：&#xA;监控所有执行的指令&#xA;记录寄存器变化&#xA;反调试&#xA;示例代码&#xA;from unicorn import *&#xD;from unicorn.arm64_const import *&#xD;# Hook 回调函数&#xD;def hook_code(mu, address, size, user_data):&#xD;print(f&amp;#34;Executing instruction at 0x{address:X}, size={size}&amp;#34;)&#xD;# 初始化 Unicorn ARM64&#xD;mu = Uc(UC_ARCH_ARM64, UC_MODE_ARM)&#xD;# 分配内存&#xD;BASE = 0x1000&#xD;mu.</description>
     </item>
     <item>
       <title>使用 Unicorn 调用 android so 中的 JNI 方法</title>

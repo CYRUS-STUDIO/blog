@@ -1,16 +1,16 @@
 +++
-title = 'Unicorn Hook 详解：指令、代码块、内存、系统调用等'
-date = 2025-02-10T00:06:11.591453+08:00
+title = 'Unicorn Hook 机制全解析：指令、代码块、内存、系统调用'
+date = 2025-07-11T00:41:47.246013+08:00
 draft = false
 +++
 
 > 版权归作者所有，如有转发，请注明文章出处：<https://cyrus-studio.github.io/blog/>
 
+# Hook 主要类型
+
+
+
 在 Unicorn 中，Hook（钩子）用于在模拟过程中拦截 CPU 指令执行、内存访问等操作，以便分析和修改执行行为。
-
-
-
-# **Hook 主要类型**
 
 
 
@@ -30,11 +30,11 @@ Unicorn 提供了多种 Hook 类型，每种类型用于不同场景：
 | UC_HOOK_INSN | 拦截特定指令 | 监控 syscall、hlt 等 |
 
 
-# **Hook 指令执行 (UC_HOOK_CODE)**
+# Hook 指令执行 (UC_HOOK_CODE)
 
 
 
-**用途：**
+**用途** ：
 
 - 监控所有执行的指令
 
@@ -81,7 +81,7 @@ Executing instruction at 0x1000, size=4
 ```
 
 
-# **Hook 代码块（UC_HOOK_BLOCK ）**
+# Hook 代码块（UC_HOOK_BLOCK ）
 
 
 
@@ -154,11 +154,11 @@ except UcError as e:
 ```
 
 
-# **Hook 内存读写 (UC_HOOK_MEM_READ & UC_HOOK_MEM_WRITE)**
+# Hook 内存读写 (UC_HOOK_MEM_READ & UC_HOOK_MEM_WRITE)
 
 
 
-**用途：**
+**用途** ：
 
 - 监视特定变量
 
@@ -249,11 +249,11 @@ mu.hook_add(UC_HOOK_MEM_WRITE, hook_mem_write, begin=0x1000, end=0x2000)
 
 
 
-# **Hook 未映射内存 (UC_HOOK_MEM_READ_UNMAPPED)**
+# Hook 未映射内存 (UC_HOOK_MEM_READ_UNMAPPED)
 
 
 
-**用途：**
+**用途** ：
 
 - 捕获非法内存访问
 
@@ -309,11 +309,11 @@ except UcError as e:
 ```
 
 
-# **Hook 系统调用 (UC_HOOK_INTR)**
+# Hook 系统调用 (UC_HOOK_INTR)
 
 
 
-**用途：**
+**用途** ：
 
 - 监视 svc #0 系统调用
 
@@ -321,7 +321,7 @@ except UcError as e:
 
 
 
-关于系统调用可以参考这篇文章：[Android下的系统调用 (syscall)，内联汇编syscall](https://cyrus-studio.github.io/blog/posts/android%E4%B8%8B%E7%9A%84%E7%B3%BB%E7%BB%9F%E8%B0%83%E7%94%A8-syscall%E5%86%85%E8%81%94%E6%B1%87%E7%BC%96syscall/)
+关于Android系统调用参考这篇文章：[深入 Android syscall 实现：内联汇编系统调用 + NDK 汇编构建](https://cyrus-studio.github.io/blog/posts/%E6%B7%B1%E5%85%A5-android-syscall-%E5%AE%9E%E7%8E%B0%E5%86%85%E8%81%94%E6%B1%87%E7%BC%96%E7%B3%BB%E7%BB%9F%E8%B0%83%E7%94%A8-+-ndk-%E6%B1%87%E7%BC%96%E6%9E%84%E5%BB%BA/)
 
 
 
@@ -388,7 +388,7 @@ except UcError as e:
 ```
 
 
-# **Hook 的移除**
+# Hook 的移除
 
 
 
