@@ -72,23 +72,30 @@ rememberedValue6 = new Function0() { // from class: com.cyrus.example.base64.Bas
       </div>
 
       <div class="visitor-counter">               
-   	    
+        
         <div id="pageview-wrapper" style="display: none; margin-top: 1rem; font-size: 0.9rem; color: #888;">
           👀 访问次数：<span class="waline-pageview-count" data-path="/">0</span>
         </div>
-	    </div>
+      </div>
 
       <script type="module">
         import { pageviewCount } from 'https://unpkg.com/@waline/client@v3/dist/pageview.js';
 
+        
         pageviewCount({
-          serverURL: 'https://waline-15wtwfoa7-cyrus-studios-projects.vercel.app', 
+          serverURL: 'https://waline-15wtwfoa7-cyrus-studios-projects.vercel.app',
           path: '/',
-        }).then(() => {
-          document.getElementById('pageview-wrapper').style.display = 'block';
-        }).catch(err => {
-          console.error('访客统计加载失败:', err);
+          update: true
         });
+
+        
+        setTimeout(() => {
+          const el = document.querySelector('.waline-pageview-count[data-path="/"]');
+          const count = el?.innerText?.trim();
+          if (count && count !== '0') {
+            document.getElementById('pageview-wrapper').style.display = 'block';
+          }
+        }, 2000);
       </script>
 
     </header>
