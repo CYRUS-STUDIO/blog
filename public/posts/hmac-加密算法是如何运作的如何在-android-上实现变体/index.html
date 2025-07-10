@@ -97,9 +97,26 @@ HMAC MD5 标准 HMAC MD5 算法实现如下：
           <p class="qrcode-text">扫码关注公众号</p>
       </div>
 
-      <div class="visitor-counter">
-   	    <img src="https://profile-counter.glitch.me/CYRUS-STUDIO-blog/count.svg" alt="Visitor Count">
+      <div class="visitor-counter">               
+   	    
+        <div id="pageview-wrapper" style="display: none; margin-top: 1rem; font-size: 0.9rem; color: #888;">
+          👀 访问次数：<span class="waline-pageview-count" data-path="/">0</span>
+        </div>
 	    </div>
+
+      <script type="module">
+        import { pageviewCount } from 'https://unpkg.com/@waline/client@v3/dist/pageview.js';
+
+        pageviewCount({
+          serverURL: 'https://waline-15wtwfoa7-cyrus-studios-projects.vercel.app', 
+          path: '/',
+        }).then(() => {
+          document.getElementById('pageview-wrapper').style.display = 'block';
+        }).catch(err => {
+          console.error('访客统计加载失败:', err);
+        });
+      </script>
+
     </header>
     <main class="app-container">
       
