@@ -6,8 +6,15 @@
     <description>Recent content in Posts on CYRUS STUDIO</description>
     <generator>Hugo</generator>
     <language>zh-cn</language>
-    <lastBuildDate>Fri, 11 Jul 2025 03:52:46 +0800</lastBuildDate>
+    <lastBuildDate>Fri, 11 Jul 2025 13:00:34 +0800</lastBuildDate>
     <atom:link href="https://cyrus-studio.github.io/blog/posts/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Frida 玩转 JNI：方法地址追踪 &#43; 指令反汇编 &#43; Patch 注入</title>
+      <link>https://cyrus-studio.github.io/blog/posts/frida-%E7%8E%A9%E8%BD%AC-jni%E6%96%B9%E6%B3%95%E5%9C%B0%E5%9D%80%E8%BF%BD%E8%B8%AA-&#43;-%E6%8C%87%E4%BB%A4%E5%8F%8D%E6%B1%87%E7%BC%96-&#43;-patch-%E6%B3%A8%E5%85%A5/</link>
+      <pubDate>Fri, 11 Jul 2025 13:00:34 +0800</pubDate>
+      <guid>https://cyrus-studio.github.io/blog/posts/frida-%E7%8E%A9%E8%BD%AC-jni%E6%96%B9%E6%B3%95%E5%9C%B0%E5%9D%80%E8%BF%BD%E8%B8%AA-&#43;-%E6%8C%87%E4%BB%A4%E5%8F%8D%E6%B1%87%E7%BC%96-&#43;-patch-%E6%B3%A8%E5%85%A5/</guid>
+      <description>版权归作者所有，如有转发，请注明文章出处：https://cyrus-studio.github.io/blog/&#xA;Frida 反汇编 Frida 提供了反汇编 API，主要用于对目标进程的代码进行动态分析，例如：&#xA;获取函数的机器代码并将其反汇编为汇编指令。&#xA;分析内存中的指令流。&#xA;这些功能在 Frida 的 Instruction 类中实现，基于 Capstone 实现的反汇编功能。&#xA;https://frida.re/docs/javascript-api/#instruction&#xA;比如，可以通过 Instruction.parse 方法反汇编指定地址的汇编信息&#xA;[Remote::AndroidExample]-&amp;gt; Instruction.parse(ptr(&amp;#34;0x7e7acdb9a0&amp;#34;));&#xD;{&#xD;&amp;#34;address&amp;#34;: &amp;#34;0x7e7acdb9a0&amp;#34;,&#xD;&amp;#34;groups&amp;#34;: [],&#xD;&amp;#34;mnemonic&amp;#34;: &amp;#34;sub&amp;#34;,&#xD;&amp;#34;next&amp;#34;: &amp;#34;0x7e7acdb9a4&amp;#34;,&#xD;&amp;#34;opStr&amp;#34;: &amp;#34;sp, sp, #0x10&amp;#34;,&#xD;&amp;#34;operands&amp;#34;: [&#xD;{&#xD;&amp;#34;type&amp;#34;: &amp;#34;reg&amp;#34;,&#xD;&amp;#34;value&amp;#34;: &amp;#34;sp&amp;#34;&#xD;},&#xD;{&#xD;&amp;#34;type&amp;#34;: &amp;#34;reg&amp;#34;,&#xD;&amp;#34;value&amp;#34;: &amp;#34;sp&amp;#34;&#xD;},&#xD;{&#xD;&amp;#34;type&amp;#34;: &amp;#34;imm&amp;#34;,&#xD;&amp;#34;value&amp;#34;: &amp;#34;16&amp;#34;&#xD;}&#xD;],&#xD;&amp;#34;regsRead&amp;#34;: [],&#xD;&amp;#34;regsWritten&amp;#34;: [],&#xD;&amp;#34;size&amp;#34;: 4&#xD;} Android 示例代码 定义一个 native 函数 add，计算 1+ 1 + 1 并返回结果。</description>
+    </item>
     <item>
       <title>在 Hugo 博客中集成评论系统 Waline 与 浏览量统计</title>
       <link>https://cyrus-studio.github.io/blog/posts/%E5%9C%A8-hugo-%E5%8D%9A%E5%AE%A2%E4%B8%AD%E9%9B%86%E6%88%90%E8%AF%84%E8%AE%BA%E7%B3%BB%E7%BB%9F-waline-%E4%B8%8E-%E6%B5%8F%E8%A7%88%E9%87%8F%E7%BB%9F%E8%AE%A1/</link>
@@ -455,13 +462,6 @@
       <pubDate>Mon, 10 Feb 2025 00:06:11 +0800</pubDate>
       <guid>https://cyrus-studio.github.io/blog/posts/%E4%BD%BF%E7%94%A8-unicorn-%E8%B0%83%E7%94%A8-android-so-%E4%B8%AD%E7%9A%84-jni-%E6%96%B9%E6%B3%95/</guid>
       <description>版权归作者所有，如有转发，请注明文章出处：https://cyrus-studio.github.io/blog/&#xA;Android 示例代码 编写一个 jni 方法 add 进行简单的加法运算 ，代码如下：&#xA;#include &amp;lt;jni.h&amp;gt;&#xD;// 实现加法运算&#xD;extern &amp;#34;C&amp;#34;&#xD;JNIEXPORT jint JNICALL&#xD;Java_com_cyrus_example_unicorn_UnicornActivity_add(JNIEnv *env, jobject thiz, jint a, jint b) {&#xD;return a + b;&#xD;} 配置 CMakeLists.txt&#xA;add_library( # 设置库的名称&#xD;unicorn&#xD;# 设置库的类型&#xD;SHARED&#xD;# 设置源文件路径&#xD;unicorn.cpp)&#xD;target_link_libraries( # 将 log 库链接到目标库&#xD;unicorn&#xD;${log-lib}) 完整源码地址：https://github.com/CYRUS-STUDIO/AndroidExample&#xA;编译运行 Android 项目后在 build 目录找打 apk 并解压 libunicorn.so。&#xA;加载 so 并反汇编 通过 IDA 打开 so 文件可以看到 add 方法的开始地址为 0x0608，结束地址为 0x063C</description>
-    </item>
-    <item>
-      <title>Frida 实现 JNI 方法地址跟踪、反汇编、Patch</title>
-      <link>https://cyrus-studio.github.io/blog/posts/frida-%E5%AE%9E%E7%8E%B0-jni-%E6%96%B9%E6%B3%95%E5%9C%B0%E5%9D%80%E8%B7%9F%E8%B8%AA%E5%8F%8D%E6%B1%87%E7%BC%96patch/</link>
-      <pubDate>Sun, 09 Feb 2025 02:00:32 +0800</pubDate>
-      <guid>https://cyrus-studio.github.io/blog/posts/frida-%E5%AE%9E%E7%8E%B0-jni-%E6%96%B9%E6%B3%95%E5%9C%B0%E5%9D%80%E8%B7%9F%E8%B8%AA%E5%8F%8D%E6%B1%87%E7%BC%96patch/</guid>
-      <description>版权归作者所有，如有转发，请注明文章出处：https://cyrus-studio.github.io/blog/&#xA;Frida 反汇编 Frida 提供了反汇编 API，主要用于对目标进程的代码进行动态分析，例如：&#xA;获取函数的机器代码并将其反汇编为汇编指令。&#xA;分析内存中的指令流。&#xA;这些功能在 Frida 的 Instruction 类中实现，基于 Capstone 实现的反汇编功能。&#xA;https://frida.re/docs/javascript-api/#instruction&#xA;比如，可以通过 Instruction.parse 方法反汇编指定地址的汇编信息&#xA;[Remote::AndroidExample]-&amp;gt; Instruction.parse(ptr(&amp;#34;0x7e7acdb9a0&amp;#34;));&#xD;{&#xD;&amp;#34;address&amp;#34;: &amp;#34;0x7e7acdb9a0&amp;#34;,&#xD;&amp;#34;groups&amp;#34;: [],&#xD;&amp;#34;mnemonic&amp;#34;: &amp;#34;sub&amp;#34;,&#xD;&amp;#34;next&amp;#34;: &amp;#34;0x7e7acdb9a4&amp;#34;,&#xD;&amp;#34;opStr&amp;#34;: &amp;#34;sp, sp, #0x10&amp;#34;,&#xD;&amp;#34;operands&amp;#34;: [&#xD;{&#xD;&amp;#34;type&amp;#34;: &amp;#34;reg&amp;#34;,&#xD;&amp;#34;value&amp;#34;: &amp;#34;sp&amp;#34;&#xD;},&#xD;{&#xD;&amp;#34;type&amp;#34;: &amp;#34;reg&amp;#34;,&#xD;&amp;#34;value&amp;#34;: &amp;#34;sp&amp;#34;&#xD;},&#xD;{&#xD;&amp;#34;type&amp;#34;: &amp;#34;imm&amp;#34;,&#xD;&amp;#34;value&amp;#34;: &amp;#34;16&amp;#34;&#xD;}&#xD;],&#xD;&amp;#34;regsRead&amp;#34;: [],&#xD;&amp;#34;regsWritten&amp;#34;: [],&#xD;&amp;#34;size&amp;#34;: 4&#xD;} Android 示例代码 定义一个 native 函数 add，计算 1+ 1 + 1 并返回结果。</description>
     </item>
     <item>
       <title>使用 Miniconda 管理 Python 环境</title>
