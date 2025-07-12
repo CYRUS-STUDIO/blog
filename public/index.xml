@@ -6,8 +6,22 @@
     <description>Recent content on CYRUS STUDIO</description>
     <generator>Hugo</generator>
     <language>zh-cn</language>
-    <lastBuildDate>Sat, 12 Jul 2025 15:46:20 +0800</lastBuildDate>
+    <lastBuildDate>Sat, 12 Jul 2025 16:33:46 +0800</lastBuildDate>
     <atom:link href="https://cyrus-studio.github.io/blog/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>使用 Unicorn 执行 JNI 函数：so 反汇编 &#43; 参数传递 &#43; 结果读取</title>
+      <link>https://cyrus-studio.github.io/blog/posts/%E4%BD%BF%E7%94%A8-unicorn-%E6%89%A7%E8%A1%8C-jni-%E5%87%BD%E6%95%B0so-%E5%8F%8D%E6%B1%87%E7%BC%96-&#43;-%E5%8F%82%E6%95%B0%E4%BC%A0%E9%80%92-&#43;-%E7%BB%93%E6%9E%9C%E8%AF%BB%E5%8F%96/</link>
+      <pubDate>Sat, 12 Jul 2025 16:33:46 +0800</pubDate>
+      <guid>https://cyrus-studio.github.io/blog/posts/%E4%BD%BF%E7%94%A8-unicorn-%E6%89%A7%E8%A1%8C-jni-%E5%87%BD%E6%95%B0so-%E5%8F%8D%E6%B1%87%E7%BC%96-&#43;-%E5%8F%82%E6%95%B0%E4%BC%A0%E9%80%92-&#43;-%E7%BB%93%E6%9E%9C%E8%AF%BB%E5%8F%96/</guid>
+      <description>版权归作者所有，如有转发，请注明文章出处：https://cyrus-studio.github.io/blog/&#xA;Android 示例代码 编写一个 jni 方法 add 进行简单的加法运算 ，代码如下：&#xA;#include &amp;lt;jni.h&amp;gt;&#xD;// 实现加法运算&#xD;extern &amp;#34;C&amp;#34;&#xD;JNIEXPORT jint JNICALL&#xD;Java_com_cyrus_example_unicorn_UnicornActivity_add(JNIEnv *env, jobject thiz, jint a, jint b) {&#xD;return a + b;&#xD;} 配置 CMakeLists.txt&#xA;add_library( # 设置库的名称&#xD;unicorn&#xD;# 设置库的类型&#xD;SHARED&#xD;# 设置源文件路径&#xD;unicorn.cpp)&#xD;target_link_libraries( # 将 log 库链接到目标库&#xD;unicorn&#xD;${log-lib}) 完整源码地址：https://github.com/CYRUS-STUDIO/AndroidExample&#xA;编译运行 Android 项目后在 build 目录找打 apk 并解压 libunicorn.so。&#xA;加载 so 并反汇编 通过 IDA 打开 so 文件可以看到 add 方法的开始地址为 0x0608，结束地址为 0x063C</description>
+    </item>
+    <item>
+      <title>用 AndroidNativeEmu 实现 JNI 函数调用模拟</title>
+      <link>https://cyrus-studio.github.io/blog/posts/%E7%94%A8-androidnativeemu-%E5%AE%9E%E7%8E%B0-jni-%E5%87%BD%E6%95%B0%E8%B0%83%E7%94%A8%E6%A8%A1%E6%8B%9F/</link>
+      <pubDate>Sat, 12 Jul 2025 16:33:18 +0800</pubDate>
+      <guid>https://cyrus-studio.github.io/blog/posts/%E7%94%A8-androidnativeemu-%E5%AE%9E%E7%8E%B0-jni-%E5%87%BD%E6%95%B0%E8%B0%83%E7%94%A8%E6%A8%A1%E6%8B%9F/</guid>
+      <description>版权归作者所有，如有转发，请注明文章出处：https://cyrus-studio.github.io/blog/&#xA;AndroidNativeEmu AndroidNativeEmu 专为 Android 原生代码调试和模拟设计，特别关注 JNI 调用和 Android 环境。相比之下，Unicorn 是通用的多平台 CPU 模拟器，适用于更广泛的原生代码分析。&#xA;项目地址：https://github.com/AeonLucid/AndroidNativeEmu&#xA;支持的功能：&#xA;elf 文件解析及 so 加载&#xA;栈支持&#xA;内存管理&#xA;文件系统&#xA;JNI 支持&#xA;常见 syacall 模拟支持&#xA;&amp;hellip;&#xA;但是，暂时不支持 arm64。&#xA;系统调用 AndroidNativeEmu 系统调用的模拟实现都在 cpu/intertupt_handler.py，根据不同的 intno 调用具体的 handler&#xA;目前已经实现的系统调用可以在 syscall_hooks.py 看到&#xA;JNIEnv 对应 JNI 接口的模拟实现在 src/androidemu/java/jni_env.py，通过 write_function_table 方法模拟实现 JNI 函数表&#xA;jni 函数代码是通过 keystone 来生成的，具体代码在：src/androidemu/hooker.py&#xA;so 加载过程中，对 so 中导入符号的 Hook，具体代码在：src/androidemu/native/hooks.py&#xA;AndroidNativeEmu 默认已经实现的外部函数&#xA;native_method 装饰器 native_method 装饰器用于在 AndroidNativeEmu 中将 Python 函数标记为模拟的 JNI 原生方法，允许函数在模拟器中执行并与 Android 的原生方法交互。</description>
+    </item>
     <item>
       <title>如何让 Google 收录你的 GitHub Pages 博客？一文讲透 SEO 设置全流程</title>
       <link>https://cyrus-studio.github.io/blog/posts/%E5%A6%82%E4%BD%95%E8%AE%A9-google-%E6%94%B6%E5%BD%95%E4%BD%A0%E7%9A%84-github-pages-%E5%8D%9A%E5%AE%A2%E4%B8%80%E6%96%87%E8%AE%B2%E9%80%8F-seo-%E8%AE%BE%E7%BD%AE%E5%85%A8%E6%B5%81%E7%A8%8B/</link>
@@ -464,25 +478,11 @@
       <description>版权归作者所有，如有转发，请注明文章出处：https://cyrus-studio.github.io/blog/&#xA;Android 示例代码 在 com.cyrus.example.unidbg.UnidbgActivity 编写一个静态变量 a 和非静态变量 b，还有 base64 方法。&#xA;代码如下：&#xA;package com.cyrus.example.unidbg&#xD;import android.os.Bundle&#xD;import androidx.appcompat.app.AppCompatActivity&#xD;import android.util.Base64&#xD;class UnidbgActivity : AppCompatActivity() {&#xD;companion object {&#xD;// 静态变量 a&#xD;var a: String? = null&#xD;}&#xD;// 非静态变量 b&#xD;var b: String? = null&#xD;override fun onCreate(savedInstanceState: Bundle?) {&#xD;super.onCreate(savedInstanceState)&#xD;setContentView(R.layout.activity_unidbg)&#xD;// 初始化静态变量 a 和 非静态变量 b&#xD;a = &amp;#34;StaticA&amp;#34;&#xD;b = &amp;#34;NonStaticB&amp;#34;&#xD;}&#xD;// Base64 方法&#xD;fun base64(content: String): String {&#xD;val combined = (a ?</description>
     </item>
     <item>
-      <title>使用 AndroidNativeEmu 调用 JNI 函数</title>
-      <link>https://cyrus-studio.github.io/blog/posts/%E4%BD%BF%E7%94%A8-androidnativeemu-%E8%B0%83%E7%94%A8-jni-%E5%87%BD%E6%95%B0/</link>
-      <pubDate>Sun, 23 Feb 2025 18:07:48 +0800</pubDate>
-      <guid>https://cyrus-studio.github.io/blog/posts/%E4%BD%BF%E7%94%A8-androidnativeemu-%E8%B0%83%E7%94%A8-jni-%E5%87%BD%E6%95%B0/</guid>
-      <description>版权归作者所有，如有转发，请注明文章出处：https://cyrus-studio.github.io/blog/&#xA;AndroidNativeEmu AndroidNativeEmu 专为 Android 原生代码调试和模拟设计，特别关注 JNI 调用和 Android 环境。相比之下，Unicorn 是通用的多平台 CPU 模拟器，适用于更广泛的原生代码分析。&#xA;项目地址：https://github.com/AeonLucid/AndroidNativeEmu&#xA;支持的功能：&#xA;elf 文件解析及 so 加载&#xA;栈支持&#xA;内存管理&#xA;文件系统&#xA;JNI 支持&#xA;常见 syacall 模拟支持&#xA;&amp;hellip;&#xA;但是，暂时不支持 arm64。&#xA;系统调用 AndroidNativeEmu 系统调用的模拟实现都在 cpu/intertupt_handler.py，根据不同的 intno 调用具体的 handler&#xA;目前已经实现的系统调用可以在 syscall_hooks.py 看到&#xA;JNIEnv 对应 JNI 接口的模拟实现在 src/androidemu/java/jni_env.py，通过 write_function_table 方法模拟实现 JNI 函数表&#xA;jni 函数代码是通过 keystone 来生成的，具体代码在：src/androidemu/hooker.py&#xA;so 加载过程中，对 so 中导入符号的 Hook，具体代码在：src/androidemu/native/hooks.py&#xA;AndroidNativeEmu 默认已经实现的外部函数&#xA;native_method 装饰器 native_method 装饰器用于在 AndroidNativeEmu 中将 Python 函数标记为模拟的 JNI 原生方法，允许函数在模拟器中执行并与 Android 的原生方法交互。</description>
-    </item>
-    <item>
       <title>使用 Unicorn 如何进行栈读写 和 Patch</title>
       <link>https://cyrus-studio.github.io/blog/posts/%E4%BD%BF%E7%94%A8-unicorn-%E5%A6%82%E4%BD%95%E8%BF%9B%E8%A1%8C%E6%A0%88%E8%AF%BB%E5%86%99-%E5%92%8C-patch/</link>
       <pubDate>Sun, 23 Feb 2025 17:56:08 +0800</pubDate>
       <guid>https://cyrus-studio.github.io/blog/posts/%E4%BD%BF%E7%94%A8-unicorn-%E5%A6%82%E4%BD%95%E8%BF%9B%E8%A1%8C%E6%A0%88%E8%AF%BB%E5%86%99-%E5%92%8C-patch/</guid>
       <description>版权归作者所有，如有转发，请注明文章出处：https://cyrus-studio.github.io/blog/&#xA;struct.pack 方法介绍 struct.pack 是 Python 标准库 struct 模块中的一个函数，它用于将 Python 的基本数据类型（如 int、float、long）打包为字节流，以便在二进制文件、网络传输或内存操作（如 Unicorn 仿真器的 mem_write）中使用。&#xA;语法：&#xA;import struct&#xD;struct.pack(format, value) format：指定数据的格式，例如：&#xA;&amp;lt;f：表示小端（&amp;lt;）的 4 字节浮点数（float）&#xA;&amp;lt;d：表示小端的 8 字节双精度浮点数（double）&#xA;value：要转换的 Python 值。&#xA;数据类型格式&#xA;数据类型 有符号格式（小写） 无符号格式（大写） 大小（字节） byte b (char) B (uchar) 1 short h (short) H (ushort) 2 int i (int) I (uint) 4 long q (long long) Q (ulong long) 8 float f (float) 无 4 double d (double) 无 8 其他特殊类型</description>
-    </item>
-    <item>
-      <title>使用 Unicorn 调用 android so 中的 JNI 方法</title>
-      <link>https://cyrus-studio.github.io/blog/posts/%E4%BD%BF%E7%94%A8-unicorn-%E8%B0%83%E7%94%A8-android-so-%E4%B8%AD%E7%9A%84-jni-%E6%96%B9%E6%B3%95/</link>
-      <pubDate>Mon, 10 Feb 2025 00:06:11 +0800</pubDate>
-      <guid>https://cyrus-studio.github.io/blog/posts/%E4%BD%BF%E7%94%A8-unicorn-%E8%B0%83%E7%94%A8-android-so-%E4%B8%AD%E7%9A%84-jni-%E6%96%B9%E6%B3%95/</guid>
-      <description>版权归作者所有，如有转发，请注明文章出处：https://cyrus-studio.github.io/blog/&#xA;Android 示例代码 编写一个 jni 方法 add 进行简单的加法运算 ，代码如下：&#xA;#include &amp;lt;jni.h&amp;gt;&#xD;// 实现加法运算&#xD;extern &amp;#34;C&amp;#34;&#xD;JNIEXPORT jint JNICALL&#xD;Java_com_cyrus_example_unicorn_UnicornActivity_add(JNIEnv *env, jobject thiz, jint a, jint b) {&#xD;return a + b;&#xD;} 配置 CMakeLists.txt&#xA;add_library( # 设置库的名称&#xD;unicorn&#xD;# 设置库的类型&#xD;SHARED&#xD;# 设置源文件路径&#xD;unicorn.cpp)&#xD;target_link_libraries( # 将 log 库链接到目标库&#xD;unicorn&#xD;${log-lib}) 完整源码地址：https://github.com/CYRUS-STUDIO/AndroidExample&#xA;编译运行 Android 项目后在 build 目录找打 apk 并解压 libunicorn.so。&#xA;加载 so 并反汇编 通过 IDA 打开 so 文件可以看到 add 方法的开始地址为 0x0608，结束地址为 0x063C</description>
     </item>
     <item>
       <title>使用 Miniconda 管理 Python 环境</title>
@@ -686,13 +686,6 @@
       <pubDate>Thu, 29 Aug 2024 04:25:16 +0800</pubDate>
       <guid>https://cyrus-studio.github.io/blog/posts/linux%E4%B8%8B%E4%BB%A3%E7%90%86%E8%AE%BE%E7%BD%AE/</guid>
       <description>版权归作者所有，如有转发，请注明文章出处：https://cyrus-studio.github.io/blog/&#xA;1. 下载安装clash-verge 下载 clash-verge https://github.com/clash-verge-rev/clash-verge-rev/releases&#xA;我这边用的是 ubuntu22，下载 clash-verge_1.7.5_amd64.deb&#xA;安装 clash-verge&#xA;# 安装相关依赖&#xD;sudo apt update&#xD;sudo apt install -f&#xD;sudo apt install libayatana-appindicator3-1 libwebkit2gtk-4.0-37 libgtk-3-0&#xD;# 安装clash-verge&#xD;sudo dpkg -i clash-verge_1.7.5_amd64.deb&#xD;# 卸载clash-verge&#xD;sudo dpkg -r clash-verge&#xD;# 启动 Clash Verge（nohup 命令可以让进程在后台运行，即使关闭终端也不会影响进程运行。）&#xD;# nohup 会创建一个 nohup.out 文件来记录输出日志。&#xD;nohup clash-verge &amp;amp; 2. 解决显示乱码问题 安装一些常见的字体包&#xA;sudo apt update&#xD;sudo apt install fonts-noto-cjk fonts-noto fonts-noto-core fonts-noto-ui-core fonts-wqy-zenhei 3. 导入订阅地址，开启代理 设置 关闭 IPV6 设置 勾选 系统代理 我这里科学上网使用的是魔戒，注册地址：https://mojie.</description>
-    </item>
-    <item>
-      <title>荣耀Magicbook x14 扩容1TB固态</title>
-      <link>https://cyrus-studio.github.io/blog/posts/%E8%8D%A3%E8%80%80magicbook-x14-%E6%89%A9%E5%AE%B91tb%E5%9B%BA%E6%80%81/</link>
-      <pubDate>Sun, 18 Aug 2024 03:06:59 +0800</pubDate>
-      <guid>https://cyrus-studio.github.io/blog/posts/%E8%8D%A3%E8%80%80magicbook-x14-%E6%89%A9%E5%AE%B91tb%E5%9B%BA%E6%80%81/</guid>
-      <description>版权归作者所有，如有转发，请注明文章出处：https://cyrus-studio.github.io/blog/&#xA;固态硬盘规格 在官网查看加装固态硬盘的接口规格 https://www.honor.com/cn/laptops/honor-magicbook-x14-2023/ https://club.honor.com/cn/thread-28473794-1-1.html&#xA;或者在荣耀手机上的【荣耀商城app】里联系在线客服 选购固态硬盘 三星的性能不错，但是发热控制得不好，不适合用在轻薄本&#xA;凯侠的发热和性能都很平衡&#xA;笔记本自带的是铠侠KBG50ZNV1T02&#xA;综合看下来，凯侠SE10是不错的选择，但是是2280尺寸的&#xA;扩展固态的插槽规格是M2 2242&#xA;最后选出两款合适的：&#xA;西部数据SN740，性能不错，温控还可以，1T价格499。&#xA;凯侠BG5，性能中规中矩，温控很不错，1T价格359。&#xA;最后选择了凯侠G5 还有拆机工具 拆机加装过程 首先用吸盘吸住底盘的一角，拉出一条缝后，用撬棒插进去慢慢撬开 底盘拆开后，可以看到固态硬盘加装插口就在图中红圈位置 接着就是扭开加装接口那颗螺丝，就可以把固态硬盘插进去了 但买到的螺丝刀实在太辣鸡了，扭一下就损坏了。。。 最终还是跑去荣耀服务点把固态硬盘装进去了 接着开机，打开【设置】【系统】【存储】【磁盘和卷】 点击“初始化”，因为我们是扩容，选择GPT就行。 接下来点击“创建卷”。 为新硬盘取个分区名字，点击“格式化”。 再打开此电脑就能看到新磁盘了 用CrystalDiskInfo打开看看 用CrystalDiskMark测试一下读写 硬盘检测相关工具 CrystalDiskInfo中文版(硬盘检测工具) v9.3.2 https://www.423down.com/5432.html&#xA;AS SSD Benchmark 2.0.7316 汉化版单文件 https://www.423down.com/6751.html&#xA;硬盘检测工具CrystalDiskMark v8.0.5中文版 https://www.423down.com/10418.html&#xA;重新分配磁盘空间 由于C盘空间不太够用，需要重新分配一下磁盘空间&#xA;下载【傲梅分区助手】，使用码是1122&#xA;在D盘上右键，点击【分配空闲空间】 分配20GB给C盘 左上角点击【提交】 点击【执行】 点击【确定】 等待创建Windows PE后重启分区 重新分区中 分区完成后重启，可以看到C盘已经扩容了20GB 参考： 荣耀magicbook x16 2023扩容2T固态成功笔记 价格大跳水！顶级固态硬盘终于敢买了！铠侠SE10 1T上手体验 海力士BC711/BC901 西数SN740 铠侠BG4/BG5/BG6 美光2550/2400A 群联P0221 建兴CL4 M2 2230 NVME写入测试 加装固态硬盘主机扩容分步教程，手把手教你，进来学！ 想不格式化硬盘重新分区？4个方法轻松解决！</description>
     </item>
     <item>
       <title>小米5c解除BL锁&amp;刷机&amp;root</title>
