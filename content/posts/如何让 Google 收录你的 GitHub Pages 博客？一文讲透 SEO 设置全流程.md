@@ -1,6 +1,6 @@
 +++
-title = '如何让 Google 收录 Github Pages 个人博客'
-date = 2025-05-16T18:56:56.623425+08:00
+title = '如何让 Google 收录你的 GitHub Pages 博客？一文讲透 SEO 设置全流程'
+date = 2025-07-12T15:46:20.223481+08:00
 draft = false
 +++
 
@@ -98,7 +98,7 @@ https://cyrus-studio.github.io/blog/sitemap.xml
 
 - 打开你的属性
 
-- 点击左侧“索引 > Sitemap”
+- 点击左侧“**索引 > Sitemap** ”
 
 - 输入 sitemap.xml 并提交
 
