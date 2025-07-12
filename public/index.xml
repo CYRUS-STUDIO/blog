@@ -6,8 +6,15 @@
     <description>Recent content on CYRUS STUDIO</description>
     <generator>Hugo</generator>
     <language>zh-cn</language>
-    <lastBuildDate>Sat, 12 Jul 2025 16:43:03 +0800</lastBuildDate>
+    <lastBuildDate>Sat, 12 Jul 2025 16:59:02 +0800</lastBuildDate>
     <atom:link href="https://cyrus-studio.github.io/blog/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>如何用 unidbg 模拟 JNI 与 Java 交互？完整教程 &#43; 源码实战</title>
+      <link>https://cyrus-studio.github.io/blog/posts/%E5%A6%82%E4%BD%95%E7%94%A8-unidbg-%E6%A8%A1%E6%8B%9F-jni-%E4%B8%8E-java-%E4%BA%A4%E4%BA%92%E5%AE%8C%E6%95%B4%E6%95%99%E7%A8%8B-&#43;-%E6%BA%90%E7%A0%81%E5%AE%9E%E6%88%98/</link>
+      <pubDate>Sat, 12 Jul 2025 16:59:02 +0800</pubDate>
+      <guid>https://cyrus-studio.github.io/blog/posts/%E5%A6%82%E4%BD%95%E7%94%A8-unidbg-%E6%A8%A1%E6%8B%9F-jni-%E4%B8%8E-java-%E4%BA%A4%E4%BA%92%E5%AE%8C%E6%95%B4%E6%95%99%E7%A8%8B-&#43;-%E6%BA%90%E7%A0%81%E5%AE%9E%E6%88%98/</guid>
+      <description>版权归作者所有，如有转发，请注明文章出处：https://cyrus-studio.github.io/blog/&#xA;Android 示例代码 在 com.cyrus.example.unidbg.UnidbgActivity 编写一个静态变量 a 和非静态变量 b，还有 base64 方法。&#xA;代码如下：&#xA;package com.cyrus.example.unidbg&#xD;import android.os.Bundle&#xD;import androidx.appcompat.app.AppCompatActivity&#xD;import android.util.Base64&#xD;class UnidbgActivity : AppCompatActivity() {&#xD;companion object {&#xD;// 静态变量 a&#xD;var a: String? = null&#xD;}&#xD;// 非静态变量 b&#xD;var b: String? = null&#xD;override fun onCreate(savedInstanceState: Bundle?) {&#xD;super.onCreate(savedInstanceState)&#xD;setContentView(R.layout.activity_unidbg)&#xD;// 初始化静态变量 a 和 非静态变量 b&#xD;a = &amp;#34;StaticA&amp;#34;&#xD;b = &amp;#34;NonStaticB&amp;#34;&#xD;}&#xD;// Base64 方法&#xD;fun base64(content: String): String {&#xD;val combined = (a ?</description>
+    </item>
     <item>
       <title>如何用 Unicorn 模拟器进行栈访问与 Patch 操作？</title>
       <link>https://cyrus-studio.github.io/blog/posts/%E5%A6%82%E4%BD%95%E7%94%A8-unicorn-%E6%A8%A1%E6%8B%9F%E5%99%A8%E8%BF%9B%E8%A1%8C%E6%A0%88%E8%AE%BF%E9%97%AE%E4%B8%8E-patch-%E6%93%8D%E4%BD%9C/</link>
@@ -476,13 +483,6 @@
       <pubDate>Tue, 18 Mar 2025 20:33:21 +0800</pubDate>
       <guid>https://cyrus-studio.github.io/blog/posts/%E4%BD%BF%E7%94%A8-unicorn-%E8%BF%98%E5%8E%9F%E5%8F%98%E5%BC%82-crc32-%E7%AE%97%E6%B3%95/</guid>
       <description>版权归作者所有，如有转发，请注明文章出处：https://cyrus-studio.github.io/blog/&#xA;ARM64Emulator ARM64Emulator 是基于 Unicorn 实现一个轻量级的 ARM64 模拟器，具备代码加载、内存映射、指令执行、反汇编、寄存器监控、Hook、Patch、字符串处理等功能&#xA;项目地址：https://github.com/CYRUS-STUDIO/ARM64Emulator&#xA;这里主要使用 ARM64Emulator 模拟执行 so 中的汇编指令实现算法还原。&#xA;目标应用信息 app 中实现一个 CRC32 算法变形，具体实现在 so 中 modifiedCRC32 函数，现在要通过 unicorn 和 IDA Pro 逆向还原 so 中的算法。&#xA;项目地址：https://github.com/CYRUS-STUDIO/AndroidExample&#xA;目标 so 文件地址：https://github.com/CYRUS-STUDIO/ARM64Emulator/tree/main/examples&#xA;使用 ARM64Emulator 加载 so 并执行 modifiedCRC32 函数的汇编指令实现算法还原。&#xA;from unicorn.arm64_const import *&#xD;import struct&#xD;import re&#xD;from ARM64Emulator import ARM64Emulator&#xD;def modifiedCRC32(data):&#xD;emulator = ARM64Emulator(&amp;#34;libcrc32.so&amp;#34;)&#xD;mu = emulator.mu&#xD;# 字符串地址&#xD;str_addr = emulator.STACK_BASE + emulator.STACK_SIZE&#xD;emulator.mu.mem_map(str_addr, 0x1000) # 4KB&#xD;.</description>
-    </item>
-    <item>
-      <title>unidbg 实现 JNI 与 Java 交互</title>
-      <link>https://cyrus-studio.github.io/blog/posts/unidbg-%E5%AE%9E%E7%8E%B0-jni-%E4%B8%8E-java-%E4%BA%A4%E4%BA%92/</link>
-      <pubDate>Mon, 03 Mar 2025 10:33:06 +0800</pubDate>
-      <guid>https://cyrus-studio.github.io/blog/posts/unidbg-%E5%AE%9E%E7%8E%B0-jni-%E4%B8%8E-java-%E4%BA%A4%E4%BA%92/</guid>
-      <description>版权归作者所有，如有转发，请注明文章出处：https://cyrus-studio.github.io/blog/&#xA;Android 示例代码 在 com.cyrus.example.unidbg.UnidbgActivity 编写一个静态变量 a 和非静态变量 b，还有 base64 方法。&#xA;代码如下：&#xA;package com.cyrus.example.unidbg&#xD;import android.os.Bundle&#xD;import androidx.appcompat.app.AppCompatActivity&#xD;import android.util.Base64&#xD;class UnidbgActivity : AppCompatActivity() {&#xD;companion object {&#xD;// 静态变量 a&#xD;var a: String? = null&#xD;}&#xD;// 非静态变量 b&#xD;var b: String? = null&#xD;override fun onCreate(savedInstanceState: Bundle?) {&#xD;super.onCreate(savedInstanceState)&#xD;setContentView(R.layout.activity_unidbg)&#xD;// 初始化静态变量 a 和 非静态变量 b&#xD;a = &amp;#34;StaticA&amp;#34;&#xD;b = &amp;#34;NonStaticB&amp;#34;&#xD;}&#xD;// Base64 方法&#xD;fun base64(content: String): String {&#xD;val combined = (a ?</description>
     </item>
     <item>
       <title>使用 Unicorn 如何进行栈读写 和 Patch</title>
