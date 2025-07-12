@@ -6,8 +6,15 @@
     <description>Recent content on CYRUS STUDIO</description>
     <generator>Hugo</generator>
     <language>zh-cn</language>
-    <lastBuildDate>Sat, 12 Jul 2025 16:59:02 +0800</lastBuildDate>
+    <lastBuildDate>Sat, 12 Jul 2025 18:13:18 +0800</lastBuildDate>
     <atom:link href="https://cyrus-studio.github.io/blog/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>unidbg 加载 so 并调用函数：dynarmic &amp; unicorn、指针传参、寄存器读取</title>
+      <link>https://cyrus-studio.github.io/blog/posts/unidbg-%E5%8A%A0%E8%BD%BD-so-%E5%B9%B6%E8%B0%83%E7%94%A8%E5%87%BD%E6%95%B0dynarmic--unicorn%E6%8C%87%E9%92%88%E4%BC%A0%E5%8F%82%E5%AF%84%E5%AD%98%E5%99%A8%E8%AF%BB%E5%8F%96/</link>
+      <pubDate>Sat, 12 Jul 2025 18:13:18 +0800</pubDate>
+      <guid>https://cyrus-studio.github.io/blog/posts/unidbg-%E5%8A%A0%E8%BD%BD-so-%E5%B9%B6%E8%B0%83%E7%94%A8%E5%87%BD%E6%95%B0dynarmic--unicorn%E6%8C%87%E9%92%88%E4%BC%A0%E5%8F%82%E5%AF%84%E5%AD%98%E5%99%A8%E8%AF%BB%E5%8F%96/</guid>
+      <description>版权归作者所有，如有转发，请注明文章出处：https://cyrus-studio.github.io/blog/&#xA;unidbg 简介 unidbg 是一个基于 Java 的 Android 动态分析框架，专注于模拟 Android 应用中的 native 代码。以下是它的主要功能：&#xA;支持对so的加载;&#xA;支持对JNI接口函数的模拟调用;&#xA;支持常见syscalls的模拟调用;&#xA;支持ARM32和ARM64。&#xA;支持Android以及iOS&#xA;基于HookZz实现的inline hook&#xA;xHook实现的hook&#xA;iOS fishhook，substrate、whale hook等&#xA;支持gdb、IDA远程调试等高级功能。&#xA;&amp;hellip;&#xA;Unidgb 项目地址：https://github.com/zhkl0228/unidbg&#xA;unidbg 底层引擎 unidbg 的 CPU 指令模拟主要由 dynarmic 和 unicorn 驱动。&#xA;dynarmic 是专注于 ARM 架构的模拟器，虽然它和 unicorn 都提供 ARM 模拟功能，但它们的设计目标和性能特点不同。unicorn 更加通用，而 dynarmic 则更注重效率。&#xA;dynarmic 项目地址：https://github.com/yuzu-mirror/dynarmic&#xA;Unicorn 项目地址：https://github.com/unicorn-engine/unicorn&#xA;dynarmic 与 unicorn 效率对比 clone unidbg 源码到本地并导入 IDEA，在 unidbg-android/src/test/java/com/kanxue/test2&#xA;MainActivity.java 中示例代码实现了爆破 so 中 test 函数 flag 参数（已知 so 中 test 函数参数为一个字符串，该字符串长度为3且仅包含大小写字母），如果 flag 正确函数会返回 true，通过不断调用该 jni 函数测试所有字母组合直到得到正确结果。</description>
+    </item>
     <item>
       <title>如何用 unidbg 模拟 JNI 与 Java 交互？完整教程 &#43; 源码实战</title>
       <link>https://cyrus-studio.github.io/blog/posts/%E5%A6%82%E4%BD%95%E7%94%A8-unidbg-%E6%A8%A1%E6%8B%9F-jni-%E4%B8%8E-java-%E4%BA%A4%E4%BA%92%E5%AE%8C%E6%95%B4%E6%95%99%E7%A8%8B-&#43;-%E6%BA%90%E7%A0%81%E5%AE%9E%E6%88%98/</link>
@@ -462,13 +469,6 @@
       <pubDate>Sun, 30 Mar 2025 04:33:31 +0800</pubDate>
       <guid>https://cyrus-studio.github.io/blog/posts/%E4%BD%BF%E7%94%A8-frida-stalker-%E5%8F%8D-ollvm-%E7%AE%97%E6%B3%95%E8%BF%98%E5%8E%9F/</guid>
       <description>版权归作者所有，如有转发，请注明文章出处：https://cyrus-studio.github.io/blog/&#xA;前言 比如我们像分析某个 so 中偏移为 0x23AD0 的加密函数&#xA;IDA 反汇编 so，可以看到 so 中该函数做了混淆&#xA;控制流平坦化&#xA;Frida Stalker Frida 的 Stalker 是一个强大的代码追踪工具。&#xA;主要功能&#xA;指令级跟踪：Stalker 可精确到指令级别，对应用的原生代码进行实时监控。&#xA;代码插桩：支持在指定指令前后插入自定义的代码逻辑。&#xA;内存访问监控：可以监视内存读写操作，分析数据流向。&#xA;自定义回调：提供回调函数，方便记录和分析执行轨迹。&#xA;文档：https://frida.re/docs/javascript-api/#stalker&#xA;目前 Stalker 对于 arm64 支持比较好，但是 arm32 并不是很完善。&#xA;https://frida.re/docs/stalker/&#xA;关于 Frida 的使用可以参考这篇文章：使用 Frida Hook Android App&#xA;onCallSummary（函数调用摘要) onCallSummary 用于返回函数调用的摘要信息。&#xA;Stalker.follow() 使用 onCallSummary 时，不会实时回调，而是在合适的时间点返回已汇总的调用信息。&#xA;通常是在：&#xA;函数执行结束后&#xA;线程空闲或上下文切换时&#xA;Stalker缓冲区达到一定大小时&#xA;Stalker.flush();&#xA;因此，你会在目标函数执行完毕后，看到 onCallSummary 输出的调用信息。&#xA;summary 数据结构通常类似于以下格式：&#xA;{&#xD;&amp;#34;函数地址&amp;#34;: 调用次数&#xD;} hook 目标函数，跟踪 call 事件并打印 call summary&#xA;function onCallSummary() {&#xD;// 目标 so&#xD;var soName = &amp;#34;libaes.</description>
-    </item>
-    <item>
-      <title>unidbg 加载 so 并调用 so 中函数</title>
-      <link>https://cyrus-studio.github.io/blog/posts/unidbg-%E5%8A%A0%E8%BD%BD-so-%E5%B9%B6%E8%B0%83%E7%94%A8-so-%E4%B8%AD%E5%87%BD%E6%95%B0/</link>
-      <pubDate>Thu, 27 Mar 2025 17:12:07 +0800</pubDate>
-      <guid>https://cyrus-studio.github.io/blog/posts/unidbg-%E5%8A%A0%E8%BD%BD-so-%E5%B9%B6%E8%B0%83%E7%94%A8-so-%E4%B8%AD%E5%87%BD%E6%95%B0/</guid>
-      <description>版权归作者所有，如有转发，请注明文章出处：https://cyrus-studio.github.io/blog/&#xA;unidbg 简介 unidbg 是一个基于 Java 的 Android 动态分析框架，专注于模拟 Android 应用中的 native 代码。以下是它的主要功能：&#xA;支持对so的加载;&#xA;支持对JNI接口函数的模拟调用;&#xA;支持常见syscalls的模拟调用;&#xA;支持ARM32和ARM64。&#xA;支持Android以及iOS&#xA;基于HookZz实现的inline hook&#xA;xHook实现的hook&#xA;iOS fishhook，substrate、whale hook等&#xA;支持gdb、IDA远程调试等高级功能。&#xA;&amp;hellip;&#xA;Unidgb 项目地址：https://github.com/zhkl0228/unidbg&#xA;unidbg 底层引擎 unidbg 的 CPU 指令模拟主要由 dynarmic 和 unicorn 驱动。&#xA;dynarmic 是专注于 ARM 架构的模拟器，虽然它和 unicorn 都提供 ARM 模拟功能，但它们的设计目标和性能特点不同。unicorn 更加通用，而 dynarmic 则更注重效率。&#xA;dynarmic 项目地址：https://github.com/yuzu-mirror/dynarmic&#xA;Unicorn 项目地址：https://github.com/unicorn-engine/unicorn&#xA;dynarmic 与 unicorn 效率对比 clone unidbg 源码到本地并导入 IDEA，在 unidbg-android/src/test/java/com/kanxue/test2&#xA;MainActivity.java 中示例代码实现了爆破 so 中 test 函数 flag 参数（已知 so 中 test 函数参数为一个字符串，该字符串长度为3且仅包含大小写字母），如果 flag 正确函数会返回 true，通过不断调用该 jni 函数测试所有字母组合直到得到正确结果。</description>
     </item>
     <item>
       <title>OLLVM 增加 C&amp;C&#43;&#43; 字符串加密功能</title>

@@ -1,14 +1,12 @@
 +++
-title = 'unidbg 加载 so 并调用 so 中函数'
-date = 2025-03-27T17:12:07.200714+08:00
+title = 'unidbg 加载 so 并调用函数：dynarmic & unicorn、指针传参、寄存器读取'
+date = 2025-07-12T18:13:18.218756+08:00
 draft = false
 +++
 
 > 版权归作者所有，如有转发，请注明文章出处：<https://cyrus-studio.github.io/blog/>
 
-
-
-# **unidbg 简介**
+# unidbg 简介
 
 
 
@@ -42,7 +40,7 @@ Unidgb 项目地址：[https://github.com/zhkl0228/unidbg](https://github.com/zh
 
 
 
-# **unidbg 底层引擎**
+# unidbg 底层引擎
 
 
 
@@ -60,7 +58,7 @@ dynarmic 是专注于 ARM 架构的模拟器，虽然它和 unicorn 都提供 AR
 
 
 
-# **dynarmic 与 unicorn 效率对比**
+# dynarmic 与 unicorn 效率对比
 
 
 
@@ -169,7 +167,7 @@ Found: XuE, off=1647ms
 ```
 
 
-# **加载 so 并调用 init、init_array**
+# 加载 so 并调用 init、init_array
 
 
 
@@ -289,11 +287,11 @@ public class Demo {
 ```
 
 
-# **调用 so 中函数**
+# 调用 so 中函数
 
 
 
-## **示例代码**
+## 示例代码
 
 
 
@@ -324,7 +322,7 @@ extern "C" int string_length(const char* str) {
 ```
 
 
-## **callFunction**
+## callFunction
 
 
 
@@ -355,7 +353,7 @@ System.out.println(result.intValue());
 ```
 
 
-## **通过 offset callFunction**
+## 通过 offset callFunction
 
 
 
@@ -382,7 +380,7 @@ callFunction string_length by offset reuslt: 12
 ```
 
 
-## **指针对象形式传参**
+## 指针对象形式传参
 
 
 
@@ -404,7 +402,7 @@ System.out.println("Result from string_length function: " + result);  // 打印 
 ```
 
 
-## **读取 X0 寄存器得到返回值**
+## 读取 X0 寄存器得到返回值
 
 
 
@@ -426,7 +424,7 @@ Value in register x0: 5
 ```
 
 
-# **JNI 相关调用**
+# JNI 相关调用
 
 
 
@@ -454,7 +452,7 @@ vm.setVerbose(true);
 ```
 
 
-## **1. 调用 JNI_Onload**
+## 1. 调用 JNI_Onload
 
 
 
@@ -512,11 +510,11 @@ RegisterNative(com/cyrus/example/unidbg/UnidbgActivity, add(IIIIII)I, RX@0x12000
 ```
 
 
-## **2. 调用 JNI 函数**
+## 2. 调用 JNI 函数
 
 
 
-### **Android 示例代码**
+### Android 示例代码
 
 
 
@@ -567,7 +565,7 @@ extern "C" JNIEXPORT jint JNICALL Java_com_cyrus_example_unidbg_UnidbgActivity_s
 ```
 
 
-### **Unidbg 代码**
+### Unidbg 代码
 
 
 
@@ -630,7 +628,7 @@ stringLength(StringObject) result:5
 ```
 
 
-# **完整代码**
+# 完整代码
 
 
 
