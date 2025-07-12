@@ -1,0 +1,502 @@
+<!doctype html>
+<html lang="zh-cn">
+  <head>
+    <title>如何用 Unicorn 模拟器进行栈访问与 Patch 操作？ // CYRUS STUDIO</title>
+    <link rel="shortcut icon" href="/favicon.ico" />
+    <meta charset="utf-8" />
+    <meta name="generator" content="Hugo 0.131.0">
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="author" content="John Doe" />
+    <meta name="description" content="" />
+    <meta name="keywords" content="CYRUS STUDIO, 安卓逆向, Android Reverse Engineering, 移动开发, 安卓开发, Python">
+    <meta name="robots" content="index, follow">
+    <link rel="stylesheet" href="/blog/css/main.min.d970c1dc93ec518baa03345e73aafb7a5a0879e5830ca966a23c6d3552430ab1.css" />
+    
+
+    
+  
+
+
+    
+  <meta name="twitter:card" content="summary">
+  <meta name="twitter:title" content="如何用 Unicorn 模拟器进行栈访问与 Patch 操作？">
+  <meta name="twitter:description" content="版权归作者所有，如有转发，请注明文章出处：https://cyrus-studio.github.io/blog/
+struct.pack 方法介绍 struct.pack 是 Python 标准库 struct 模块中的一个函数，它用于将 Python 的基本数据类型（如 int、float、long）打包为字节流，以便在二进制文件、网络传输或内存操作（如 Unicorn 仿真器的 mem_write）中使用。
+语法：
+import structstruct.pack(format, value) format：指定数据的格式，例如：
+&lt;f：表示小端（&lt;）的 4 字节浮点数（float）
+&lt;d：表示小端的 8 字节双精度浮点数（double）
+value：要转换的 Python 值。
+数据类型格式
+数据类型 有符号格式（小写） 无符号格式（大写） 大小（字节） byte b (char) B (uchar) 1 short h (short) H (ushort) 2 int i (int) I (uint) 4 long q (long long) Q (ulong long) 8 float f (float) 无 4 double d (double) 无 8 其他特殊类型">
+
+    <meta property="og:url" content="https://cyrus-studio.github.io/blog/posts/%E5%A6%82%E4%BD%95%E7%94%A8-unicorn-%E6%A8%A1%E6%8B%9F%E5%99%A8%E8%BF%9B%E8%A1%8C%E6%A0%88%E8%AE%BF%E9%97%AE%E4%B8%8E-patch-%E6%93%8D%E4%BD%9C/">
+  <meta property="og:site_name" content="CYRUS STUDIO">
+  <meta property="og:title" content="如何用 Unicorn 模拟器进行栈访问与 Patch 操作？">
+  <meta property="og:description" content="版权归作者所有，如有转发，请注明文章出处：https://cyrus-studio.github.io/blog/
+struct.pack 方法介绍 struct.pack 是 Python 标准库 struct 模块中的一个函数，它用于将 Python 的基本数据类型（如 int、float、long）打包为字节流，以便在二进制文件、网络传输或内存操作（如 Unicorn 仿真器的 mem_write）中使用。
+语法：
+import structstruct.pack(format, value) format：指定数据的格式，例如：
+&lt;f：表示小端（&lt;）的 4 字节浮点数（float）
+&lt;d：表示小端的 8 字节双精度浮点数（double）
+value：要转换的 Python 值。
+数据类型格式
+数据类型 有符号格式（小写） 无符号格式（大写） 大小（字节） byte b (char) B (uchar) 1 short h (short) H (ushort) 2 int i (int) I (uint) 4 long q (long long) Q (ulong long) 8 float f (float) 无 4 double d (double) 无 8 其他特殊类型">
+  <meta property="og:locale" content="zh_cn">
+  <meta property="og:type" content="article">
+    <meta property="article:section" content="posts">
+    <meta property="article:published_time" content="2025-07-12T16:43:03+08:00">
+    <meta property="article:modified_time" content="2025-07-12T16:43:03+08:00">
+
+
+  </head>
+  <body>
+    <header class="app-header">
+      <a href="https://cyrus-studio.github.io/blog/"><img class="app-header-avatar" src="/blog/avatar.jpg" alt="John Doe" /></a>
+      <span class="app-header-title">CYRUS STUDIO</span>
+      <nav class="app-header-menu">
+          <a class="app-header-menu-item" href="/blog/">Home</a>
+             - 
+          
+          <a class="app-header-menu-item" href="/blog/about/">About</a>
+             - 
+          
+          <a class="app-header-menu-item" href="https://github.com/CYRUS-STUDIO">GitHub</a>
+      </nav>
+      <p>公众号：CYRUS STUDIO</p>
+      
+
+      <div class="qrcode-container">
+          <img src="/blog/gongzhonghao.jpg" alt="公众号二维码" class="qrcode-image">
+          <p class="qrcode-text">扫码关注公众号</p>
+      </div>
+
+      <div class="visitor-counter">               
+        
+        <div id="pageview-wrapper" style="display: none; margin-top: 1rem; font-size: 0.9rem; color: #888;">
+          👀 访问次数：<span class="waline-pageview-count" data-path="/">0</span>
+        </div>
+      </div>
+
+      <script type="module">
+        import { pageviewCount } from 'https://unpkg.com/@waline/client@v3/dist/pageview.js';
+
+        
+        pageviewCount({
+          serverURL: 'https://waline-15wtwfoa7-cyrus-studios-projects.vercel.app',
+          path: '/',
+          update: true
+        });
+
+        
+        setTimeout(() => {
+          const el = document.querySelector('.waline-pageview-count[data-path="/"]');
+          const count = el?.innerText?.trim();
+          if (count && count !== '0') {
+            document.getElementById('pageview-wrapper').style.display = 'block';
+          }
+        }, 2000);
+      </script>
+
+    </header>
+    <main class="app-container">
+      
+<article class="post">
+  <header class="post-header">
+    <meta charset="UTF-8"/>
+    <h1 class="post-title">如何用 Unicorn 模拟器进行栈访问与 Patch 操作？</h1>
+    <div class="post-meta" style="display: flex; gap: 1em; flex-wrap: wrap; align-items: center;">
+      <div>
+        <span class="meta-item">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="icon icon-eye">
+  <title>eye</title>
+  <path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"></path><circle cx="12" cy="12" r="3"></circle>
+</svg>
+          阅读量: <span class="waline-pageview-count" data-path="/blog/posts/%E5%A6%82%E4%BD%95%E7%94%A8-unicorn-%E6%A8%A1%E6%8B%9F%E5%99%A8%E8%BF%9B%E8%A1%8C%E6%A0%88%E8%AE%BF%E9%97%AE%E4%B8%8E-patch-%E6%93%8D%E4%BD%9C/"></span>
+        </span>
+      </div>
+      <div>
+        <span class="meta-item">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="icon icon-calendar">
+  <title>calendar</title>
+  <rect x="3" y="4" width="18" height="18" rx="2" ry="2"></rect><line x1="16" y1="2" x2="16" y2="6"></line><line x1="8" y1="2" x2="8" y2="6"></line><line x1="3" y1="10" x2="21" y2="10"></line>
+</svg>
+          Jul 12, 2025
+        </span>
+      </div>
+      <div>
+        <span class="meta-item">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="icon icon-clock">
+  <title>clock</title>
+  <circle cx="12" cy="12" r="10"></circle><polyline points="12 6 12 12 16 14"></polyline>
+</svg>
+          3 min read
+        </span>
+      </div>
+    </div>
+
+    <link
+      rel="stylesheet"
+      href="https://unpkg.com/@waline/client@v3/dist/waline.css"
+    />
+
+    <link rel="stylesheet" href="/blog/css/waline-custom.css">
+
+  </header>
+  <div class="post-content">
+    <blockquote>
+<p>版权归作者所有，如有转发，请注明文章出处：<a href="https://cyrus-studio.github.io/blog/">https://cyrus-studio.github.io/blog/</a></p>
+</blockquote>
+<h1 id="structpack-方法介绍">struct.pack 方法介绍</h1>
+<p>struct.pack 是 Python 标准库 struct 模块中的一个函数，它用于将 Python 的基本数据类型（如 int、float、long）打包为字节流，以便在二进制文件、网络传输或内存操作（如 Unicorn 仿真器的 mem_write）中使用。</p>
+<p>语法：</p>
+<pre tabindex="0"><code>import struct
+
+struct.pack(format, value)
+</code></pre><ul>
+<li>
+<p>format：指定数据的格式，例如：</p>
+</li>
+<li>
+<p>&lt;f：表示小端（&lt;）的 4 字节浮点数（float）</p>
+</li>
+<li>
+<p>&lt;d：表示小端的 8 字节双精度浮点数（double）</p>
+</li>
+<li>
+<p>value：要转换的 Python 值。</p>
+</li>
+</ul>
+<p><strong>数据类型格式</strong></p>
+<table>
+<thead>
+<tr>
+<th>数据类型</th>
+<th>有符号格式（小写）</th>
+<th>无符号格式（大写）</th>
+<th>大小（字节）</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>byte</td>
+<td>b (char)</td>
+<td>B (uchar)</td>
+<td>1</td>
+</tr>
+<tr>
+<td>short</td>
+<td>h (short)</td>
+<td>H (ushort)</td>
+<td>2</td>
+</tr>
+<tr>
+<td>int</td>
+<td>i (int)</td>
+<td>I (uint)</td>
+<td>4</td>
+</tr>
+<tr>
+<td>long</td>
+<td>q (long long)</td>
+<td>Q (ulong long)</td>
+<td>8</td>
+</tr>
+<tr>
+<td>float</td>
+<td>f (float)</td>
+<td>无</td>
+<td>4</td>
+</tr>
+<tr>
+<td>double</td>
+<td>d (double)</td>
+<td>无</td>
+<td>8</td>
+</tr>
+</tbody>
+</table>
+<p><strong>其他特殊类型</strong></p>
+<table>
+<thead>
+<tr>
+<th>格式</th>
+<th>说明</th>
+<th>字节数</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>x</td>
+<td>跳过的填充字节</td>
+<td>1</td>
+</tr>
+<tr>
+<td>s</td>
+<td>char[]（字符串）</td>
+<td>可变</td>
+</tr>
+<tr>
+<td>p</td>
+<td>Pascal 风格字符串（首字节存长度）</td>
+<td>可变</td>
+</tr>
+<tr>
+<td>?</td>
+<td>bool（布尔值）</td>
+<td>1</td>
+</tr>
+</tbody>
+</table>
+<p><strong>字节顺序（大小端）</strong></p>
+<table>
+<thead>
+<tr>
+<th>前缀</th>
+<th>说明</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>@</td>
+<td>按本机字节顺序存储</td>
+</tr>
+<tr>
+<td>&lt;</td>
+<td>小端（Little-Endian）</td>
+</tr>
+<tr>
+<td>&gt;</td>
+<td>大端（Big-Endian）</td>
+</tr>
+<tr>
+<td>=</td>
+<td>按本机字节序存储（无对齐）</td>
+</tr>
+<tr>
+<td>!</td>
+<td>网络字节序（大端，等价于 &gt; ）</td>
+</tr>
+</tbody>
+</table>
+<h1 id="unicorn-中栈读写示例">Unicorn 中栈读写示例</h1>
+<p>使用 Unicorn 模拟器进行栈操作，并使用 struct 处理数据打包/解包。</p>
+<pre tabindex="0"><code>from unicorn import Uc, UC_ARCH_ARM64, UC_MODE_ARM
+from unicorn.arm64_const import *
+import struct
+
+# 定义内存布局
+STACK_ADDR = 0x400000  # 栈基址
+STACK_SIZE = 0x10000   # 栈大小
+
+# 初始化 Unicorn
+mu = Uc(UC_ARCH_ARM64, UC_MODE_ARM)
+
+# 分配栈空间
+mu.mem_map(STACK_ADDR, STACK_SIZE)
+
+# 设置 SP（栈指针）
+sp_init = STACK_ADDR + STACK_SIZE - 0x10  # 预留一点空间
+mu.reg_write(UC_ARM64_REG_SP, sp_init)
+
+# 直接写入各种数据类型到栈
+sp = mu.reg_read(UC_ARM64_REG_SP)
+
+# 写入 byte
+byte_value = 0x12
+sp -= 1
+mu.mem_write(sp, struct.pack(&#39;&lt;B&#39;, byte_value))
+print(f&#34;Pushed byte {hex(byte_value)} to stack at {hex(sp)}&#34;)
+
+# 写入 short
+short_value = 0x1234
+sp -= 2
+mu.mem_write(sp, struct.pack(&#39;&lt;H&#39;, short_value))
+print(f&#34;Pushed short {hex(short_value)} to stack at {hex(sp)}&#34;)
+
+# 写入 int
+int_value = 0x12345678
+sp -= 4
+mu.mem_write(sp, struct.pack(&#39;&lt;I&#39;, int_value))
+print(f&#34;Pushed int {hex(int_value)} to stack at {hex(sp)}&#34;)
+
+# 写入 long
+long_value = 0x12345678ABCDEF01
+sp -= 8
+mu.mem_write(sp, struct.pack(&#39;&lt;Q&#39;, long_value))
+print(f&#34;Pushed long {hex(long_value)} to stack at {hex(sp)}&#34;)
+
+# 写入 float
+float_value = 3.14
+sp -= 4
+mu.mem_write(sp, struct.pack(&#39;&lt;f&#39;, float_value))
+print(f&#34;Pushed float {float_value} to stack at {hex(sp)}&#34;)
+
+# 写入 double
+double_value = 2.718281828459
+sp -= 8
+mu.mem_write(sp, struct.pack(&#39;&lt;d&#39;, double_value))
+print(f&#34;Pushed double {double_value} to stack at {hex(sp)}&#34;)
+
+mu.reg_write(UC_ARM64_REG_SP, sp)
+
+# 直接从栈读取数据
+# 读取 double
+double_read = struct.unpack(&#39;&lt;d&#39;, mu.mem_read(sp, 8))[0]
+print(f&#34;Popped double {double_read} from stack at {hex(sp)}&#34;)
+sp += 8
+
+# 读取 float
+float_read = struct.unpack(&#39;&lt;f&#39;, mu.mem_read(sp, 4))[0]
+print(f&#34;Popped float {float_read} from stack at {hex(sp)}&#34;)
+sp += 4
+
+# 读取 long
+long_read = struct.unpack(&#39;&lt;Q&#39;, mu.mem_read(sp, 8))[0]
+print(f&#34;Popped long {hex(long_read)} from stack at {hex(sp)}&#34;)
+sp += 8
+
+# 读取 int
+int_read = struct.unpack(&#39;&lt;I&#39;, mu.mem_read(sp, 4))[0]
+print(f&#34;Popped int {hex(int_read)} from stack at {hex(sp)}&#34;)
+sp += 4
+
+# 读取 short
+short_read = struct.unpack(&#39;&lt;H&#39;, mu.mem_read(sp, 2))[0]
+print(f&#34;Popped short {hex(short_read)} from stack at {hex(sp)}&#34;)
+sp += 2
+
+# 读取 byte
+byte_read = struct.unpack(&#39;&lt;B&#39;, mu.mem_read(sp, 1))[0]
+print(f&#34;Popped byte {hex(byte_read)} from stack at {hex(sp)}&#34;)
+sp += 1
+
+mu.reg_write(UC_ARM64_REG_SP, sp)
+print(&#34;Stack read/write successful for all data types!&#34;)
+</code></pre><p>输出如下：</p>
+<pre tabindex="0"><code>Pushed byte 0x12 to stack at 0x40ffef
+Pushed short 0x1234 to stack at 0x40ffed
+Pushed int 0x12345678 to stack at 0x40ffe9
+Pushed long 0x12345678abcdef01 to stack at 0x40ffe1
+Pushed float 3.14 to stack at 0x40ffdd
+Pushed double 2.718281828459 to stack at 0x40ffd5
+Popped double 2.718281828459 from stack at 0x40ffd5
+Popped float 3.140000104904175 from stack at 0x40ffdd
+Popped long 0x12345678abcdef01 from stack at 0x40ffe1
+Popped int 0x12345678 from stack at 0x40ffe9
+Popped short 0x1234 from stack at 0x40ffed
+Popped byte 0x12 from stack at 0x40ffef
+Stack read/write successful for all data types!
+</code></pre><h1 id="unicorn-中-patch-示例">Unicorn 中 Patch 示例</h1>
+<p>在 Unicorn 中，可以通过 mem_write 方法直接修改指定地址的指令数据。例如，要将某个位置的指令替换为 NOP。</p>
+<p>在 ARM64 架构下，NOP 指令的机器码是：</p>
+<pre tabindex="0"><code>NOP = 0xD503201F  # (ARM64 指令，大端)
+</code></pre><p>它占用 4 字节。</p>
+<p>假设你要将 0x1000 处的指令替换为 NOP：</p>
+<pre tabindex="0"><code>import struct
+from unicorn import Uc, UC_ARCH_ARM64, UC_MODE_ARM
+
+# 初始化 Unicorn
+mu = Uc(UC_ARCH_ARM64, UC_MODE_ARM)
+
+# 分配内存（假设代码段在 0x1000 处）
+CODE_ADDR = 0x1000
+CODE_SIZE = 0x1000
+mu.mem_map(CODE_ADDR, CODE_SIZE)
+
+# 写入示例代码（假设已有一些指令）
+original_code = b&#34;\x00\x00\xA0\xE3&#34;  # 伪造一条指令（MOV R0, #0）
+mu.mem_write(CODE_ADDR, original_code)
+
+# 替换为 NOP 指令
+nop_opcode = struct.pack(&#34;&lt;I&#34;, 0xD503201F)  # ARM64 NOP 指令（小端存储）
+mu.mem_write(CODE_ADDR, nop_opcode)
+
+# 读取并验证
+patched_code = mu.mem_read(CODE_ADDR, 4)
+print(f&#34;Patched instruction: {patched_code.hex()}&#34;)  # 应输出 &#34;1f2003d5&#34;
+</code></pre><p>输出如下：</p>
+<pre tabindex="0"><code>Patched instruction: 1f2003d5
+</code></pre><p>从输出可以看到已经成功将指定地址的指令 Patch 为 NOP 了。</p>
+
+  </div>
+
+
+  <div class="post-footer">
+
+    
+    
+
+    
+    <hr class="section-divider" />
+
+    <div id="waline"></div>
+    <script type="module">
+      import { init } from 'https://unpkg.com/@waline/client@v3/dist/waline.js';
+
+      init({
+        el: '#waline',
+        serverURL: 'https://waline-15wtwfoa7-cyrus-studios-projects.vercel.app',
+        path: location.pathname, 
+        pageview: true,          
+      });
+    </script>
+  </div>
+
+</article>
+
+
+
+<div id="toc" class="toc-container hidden"></div>
+
+
+<button id="toc-toggle" class="toc-toggle" aria-label="目录">
+  &#9776;
+</button>
+
+
+<script src="/blog/js/toc.js"></script>
+
+
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/clipboard.js/2.0.10/clipboard.min.js"></script>
+<script>
+  document.addEventListener('DOMContentLoaded', function() {
+      
+      document.querySelectorAll('pre').forEach(function(block) {
+          
+          var button = document.createElement('button');
+          button.className = 'copy-btn';
+          button.textContent = '复制';
+
+          
+          block.appendChild(button);
+
+          
+          var clipboard = new ClipboardJS(button, {
+              target: function() {
+                  return block.querySelector('code');
+              }
+          });
+
+          
+          clipboard.on('success', function(e) {
+              e.trigger.textContent = '复制成功';
+              setTimeout(function() {
+                  e.trigger.textContent = '复制';
+              }, 2000);
+          });
+
+          
+          clipboard.on('error', function(e) {
+              e.trigger.textContent = '复制失败';
+          });
+      });
+  });
+</script>
+
+
+
+    </main>
+  </body>
+</html>
