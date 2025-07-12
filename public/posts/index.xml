@@ -6,8 +6,15 @@
     <description>Recent content in Posts on CYRUS STUDIO</description>
     <generator>Hugo</generator>
     <language>zh-cn</language>
-    <lastBuildDate>Sat, 12 Jul 2025 18:13:18 +0800</lastBuildDate>
+    <lastBuildDate>Sat, 12 Jul 2025 18:24:38 +0800</lastBuildDate>
     <atom:link href="https://cyrus-studio.github.io/blog/posts/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>unidbg 调试技巧全指南：掌握 Console Debugger 的正确姿势</title>
+      <link>https://cyrus-studio.github.io/blog/posts/unidbg-%E8%B0%83%E8%AF%95%E6%8A%80%E5%B7%A7%E5%85%A8%E6%8C%87%E5%8D%97%E6%8E%8C%E6%8F%A1-console-debugger-%E7%9A%84%E6%AD%A3%E7%A1%AE%E5%A7%BF%E5%8A%BF/</link>
+      <pubDate>Sat, 12 Jul 2025 18:24:38 +0800</pubDate>
+      <guid>https://cyrus-studio.github.io/blog/posts/unidbg-%E8%B0%83%E8%AF%95%E6%8A%80%E5%B7%A7%E5%85%A8%E6%8C%87%E5%8D%97%E6%8E%8C%E6%8F%A1-console-debugger-%E7%9A%84%E6%AD%A3%E7%A1%AE%E5%A7%BF%E5%8A%BF/</guid>
+      <description>版权归作者所有，如有转发，请注明文章出处：https://cyrus-studio.github.io/blog/&#xA;打开debug日志 编辑 unidbg-android/src/test/resources/log4j.properties 把 log4j.logger.com.github.unidbg.AbstractEmulator 改为 DEBUG&#xA;当运行报错时会自动断点，可以看到具体报错的位置、寄存器、机器码等等信息。&#xA;[03:20:11 438] DEBUG [com.github.unidbg.AbstractEmulator] (AbstractEmulator:364) - emulate RX@0x121daa74[libc.so]0x1aa74 started sp=unidbg@0xe4fff700&#xD;[03:20:11 457] DEBUG [com.github.unidbg.AbstractEmulator] (AbstractEmulator:402) - emulate RX@0x121daa74[libc.so]0x1aa74 finished sp=unidbg@0xe4fff700, offset=18ms&#xD;[03:20:11 458] DEBUG [com.github.unidbg.AbstractEmulator] (AbstractEmulator:364) - emulate RX@0x121daa98[libc.so]0x1aa98 started sp=unidbg@0xe4fff700&#xD;[03:20:11 458] DEBUG [com.github.unidbg.AbstractEmulator] (AbstractEmulator:402) - emulate RX@0x121daa98[libc.so]0x1aa98 finished sp=unidbg@0xe4fff700, offset=0ms&#xD;[03:20:11 458] DEBUG [com.github.unidbg.AbstractEmulator] (AbstractEmulator:364) - emulate RX@0x121daaac[libc.so]0x1aaac started sp=unidbg@0xe4fff700&#xD;[03:20:11 459] DEBUG [com.github.unidbg.AbstractEmulator] (AbstractEmulator:402) - emulate RX@0x121daaac[libc.so]0x1aaac finished sp=unidbg@0xe4fff700, offset=0ms&#xD;[03:20:11 459] DEBUG [com.</description>
+    </item>
     <item>
       <title>unidbg 加载 so 并调用函数：dynarmic &amp; unicorn、指针传参、寄存器读取</title>
       <link>https://cyrus-studio.github.io/blog/posts/unidbg-%E5%8A%A0%E8%BD%BD-so-%E5%B9%B6%E8%B0%83%E7%94%A8%E5%87%BD%E6%95%B0dynarmic--unicorn%E6%8C%87%E9%92%88%E4%BC%A0%E5%8F%82%E5%AF%84%E5%AD%98%E5%99%A8%E8%AF%BB%E5%8F%96/</link>
@@ -581,13 +588,6 @@
       <pubDate>Fri, 18 Oct 2024 22:55:01 +0800</pubDate>
       <guid>https://cyrus-studio.github.io/blog/posts/android-%E4%B8%8B%E9%80%9A%E8%BF%87%E8%A7%A6%E5%8F%91-sigtrap-%E4%BF%A1%E5%8F%B7%E5%AE%9E%E7%8E%B0%E5%8F%8D%E8%B0%83%E8%AF%95/</guid>
       <description>版权归作者所有，如有转发，请注明文章出处：https://cyrus-studio.github.io/blog/&#xA;详细的 Linux 信号列表 Linux 信号是一种用于进程间通信（IPC）和异常处理的机制。以下是详细的 Linux 信号列表，包含信号名称、默认行为及用途&#xA;信号编号 信号名称 默认行为 说明 1 SIGHUP 终止进程 终止控制终端或配置文件发生变化时发出。 2 SIGINT 终止进程 来自用户输入（通常是 Ctrl+C）。 3 SIGQUIT 终止进程并生成core文件 来自用户输入（通常是 Ctrl+\）。 4 SIGILL 终止进程并生成core文件 非法指令执行。 5 SIGTRAP 终止进程并生成core文件 调试陷阱。 6 SIGABRT 终止进程并生成core文件 调用 abort 函数时发出。 7 SIGBUS 终止进程并生成core文件 总线错误（内存访问不对齐）。 8 SIGFPE 终止进程并生成core文件 浮点运算错误。 9 SIGKILL 终止进程 强制终止进程，无法被捕获或忽略。 10 SIGUSR1 终止进程 用户自定义信号 1。 11 SIGSEGV 终止进程并生成core文件 无效的内存访问。 12 SIGUSR2 终止进程 用户自定义信号 2。 13 SIGPIPE 终止进程 向没有读取端的管道写入数据时发出。 14 SIGALRM 终止进程 由 alarm 函数发出的定时器信号。 15 SIGTERM 终止进程 请求终止进程，可以被捕获和忽略。 16 SIGSTKFLT 终止进程 协处理器栈错误。 17 SIGCHLD 忽略 子进程停止或终止时发出。 18 SIGCONT 继续执行 让停止的进程继续运行。 19 SIGSTOP 停止进程 停止进程，无法被捕获或忽略。 20 SIGTSTP 停止进程 来自用户输入的停止信号（通常是 Ctrl+Z）。 21 SIGTTIN 停止进程 后台进程尝试从终端读取输入时发出。 22 SIGTTOU 停止进程 后台进程尝试向终端写入输出时发出。 23 SIGURG 忽略 套接字有紧急数据到达时发出。 24 SIGXCPU 终止进程 超出 CPU 时间限制。 25 SIGXFSZ 终止进程 超出文件大小限制。 26 SIGVTALRM 终止进程 虚拟时钟信号，由 27 SIGPROF 终止进程 定时器到期，由 28 SIGWINCH 忽略 终端窗口大小改变时发出。 29 SIGIO 忽略 I/O 事件发生时发出。 30 SIGPWR 终止进程 电源故障时发出。 31 SIGSYS 终止进程并生成core文件 非法的系统调用。 此外，Linux 还支持实时信号（Real-Time Signals），编号从 32 开始，通常是用于用户自定义的信号，应用程序可根据需要使用这些信号。</description>
-    </item>
-    <item>
-      <title>unidbg console debugger 调试技巧</title>
-      <link>https://cyrus-studio.github.io/blog/posts/unidbg-console-debugger-%E8%B0%83%E8%AF%95%E6%8A%80%E5%B7%A7/</link>
-      <pubDate>Sun, 13 Oct 2024 19:46:25 +0800</pubDate>
-      <guid>https://cyrus-studio.github.io/blog/posts/unidbg-console-debugger-%E8%B0%83%E8%AF%95%E6%8A%80%E5%B7%A7/</guid>
-      <description>版权归作者所有，如有转发，请注明文章出处：https://cyrus-studio.github.io/blog/&#xA;打开debug日志 编辑 unidbg-android/src/test/resources/log4j.properties 把 log4j.logger.com.github.unidbg.AbstractEmulator 改为 DEBUG 当运行报错时会自动断点，可以看到具体报错的位置、寄存器、机器码等等信息。&#xA;[03:20:11 438] DEBUG [com.github.unidbg.AbstractEmulator] (AbstractEmulator:364) - emulate RX@0x121daa74[libc.so]0x1aa74 started sp=unidbg@0xe4fff700&#xD;[03:20:11 457] DEBUG [com.github.unidbg.AbstractEmulator] (AbstractEmulator:402) - emulate RX@0x121daa74[libc.so]0x1aa74 finished sp=unidbg@0xe4fff700, offset=18ms&#xD;[03:20:11 458] DEBUG [com.github.unidbg.AbstractEmulator] (AbstractEmulator:364) - emulate RX@0x121daa98[libc.so]0x1aa98 started sp=unidbg@0xe4fff700&#xD;[03:20:11 458] DEBUG [com.github.unidbg.AbstractEmulator] (AbstractEmulator:402) - emulate RX@0x121daa98[libc.so]0x1aa98 finished sp=unidbg@0xe4fff700, offset=0ms&#xD;[03:20:11 458] DEBUG [com.github.unidbg.AbstractEmulator] (AbstractEmulator:364) - emulate RX@0x121daaac[libc.so]0x1aaac started sp=unidbg@0xe4fff700&#xD;[03:20:11 459] DEBUG [com.github.unidbg.AbstractEmulator] (AbstractEmulator:402) - emulate RX@0x121daaac[libc.so]0x1aaac finished sp=unidbg@0xe4fff700, offset=0ms&#xD;[03:20:11 459] DEBUG [com.</description>
     </item>
     <item>
       <title>IDA静态分析中伪代码显示优化</title>
