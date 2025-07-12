@@ -6,8 +6,15 @@
     <description>Recent content on CYRUS STUDIO</description>
     <generator>Hugo</generator>
     <language>zh-cn</language>
-    <lastBuildDate>Sat, 12 Jul 2025 15:29:30 +0800</lastBuildDate>
+    <lastBuildDate>Sat, 12 Jul 2025 15:42:33 +0800</lastBuildDate>
     <atom:link href="https://cyrus-studio.github.io/blog/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>从 DOCX 到 Markdown 多平台发布：Hugo &#43; GitHub Pages 全流程实战</title>
+      <link>https://cyrus-studio.github.io/blog/posts/%E4%BB%8E-docx-%E5%88%B0-markdown-%E5%A4%9A%E5%B9%B3%E5%8F%B0%E5%8F%91%E5%B8%83hugo-&#43;-github-pages-%E5%85%A8%E6%B5%81%E7%A8%8B%E5%AE%9E%E6%88%98/</link>
+      <pubDate>Sat, 12 Jul 2025 15:42:33 +0800</pubDate>
+      <guid>https://cyrus-studio.github.io/blog/posts/%E4%BB%8E-docx-%E5%88%B0-markdown-%E5%A4%9A%E5%B9%B3%E5%8F%B0%E5%8F%91%E5%B8%83hugo-&#43;-github-pages-%E5%85%A8%E6%B5%81%E7%A8%8B%E5%AE%9E%E6%88%98/</guid>
+      <description>版权归作者所有，如有转发，请注明文章出处：https://cyrus-studio.github.io/blog/&#xA;docx转换markdown 尝试了几个docx转markdown的python库后，最终选择了python-mammoth，轻量，效率高，可自定义转换满足特定需求。&#xA;python-mammoth python-mammoth 是一个用于将 Microsoft Word (DOCX) 文档转换为 HTML 或 Markdown 的 Python 库。&#xA;github地址：https://github.com/mwilliamson/python-mammoth&#xA;安装 python-mammoth&#xA;pip install mammoth 自定义代码块样式 通过自定义 transform 来实现自定义的代码块样式来支持有道云docx的代码块&#xA;def ynote_docx_markdown_transform(document):&#xD;...&#xD;pass&#xD;result = convert_to_markdown(docx_file, transform_document=ynote_docx_markdown_transform) 通过在自定义 transform 断点调试可以看到 document 都是由一个一个 Paragraph 组成的，代码块的 Bookmark 的 name 都是相同的，由此代码块其中一个特征就是相同且相邻的 Bookmark name。&#xA;但是有的代码块只是单独的一段&#xA;这时可以通过自定义 代码/bash 特征判断该 Paragraph 中的 Text 是不是一段 代码/bash。&#xA;def is_possible_code_or_bash(text):&#xD;# 常见的代码关键字&#xD;code_keywords = [&#xD;r&amp;#39;\bif\b&amp;#39;, r&amp;#39;\bfor\b&amp;#39;, r&amp;#39;\bwhile\b&amp;#39;, r&amp;#39;\bdef\b&amp;#39;, r&amp;#39;\bclass\b&amp;#39;, r&amp;#39;\breturn\b&amp;#39;, r&amp;#39;\bimport\b&amp;#39;,&#xD;r&amp;#39;\bint\b&amp;#39;, r&amp;#39;\bfloat\b&amp;#39;, r&amp;#39;\bmain\b&amp;#39;, r&amp;#39;\binclude\b&amp;#39;, r&amp;#39;#include&amp;#39;, r&amp;#39;\becho\b&amp;#39;, r&amp;#39;\bcd\b&amp;#39;,&#xD;r&amp;#39;\bgrep\b&amp;#39;, r&amp;#39;\bexit\b&amp;#39;, r&amp;#39;\belse\b&amp;#39;, r&amp;#39;\belif\b&amp;#39;, r&amp;#39;#!</description>
+    </item>
     <item>
       <title>0 成本搭建个人技术博客：用 Hugo &#43; GitHub Pages 快速上线</title>
       <link>https://cyrus-studio.github.io/blog/posts/0-%E6%88%90%E6%9C%AC%E6%90%AD%E5%BB%BA%E4%B8%AA%E4%BA%BA%E6%8A%80%E6%9C%AF%E5%8D%9A%E5%AE%A2%E7%94%A8-hugo-&#43;-github-pages-%E5%BF%AB%E9%80%9F%E4%B8%8A%E7%BA%BF/</link>
@@ -700,13 +707,6 @@
       <pubDate>Fri, 16 Aug 2024 00:04:11 +0800</pubDate>
       <guid>https://cyrus-studio.github.io/blog/posts/%E4%BF%AE%E6%94%B9android%E7%B3%BB%E7%BB%9Fro.debuggable%E4%BD%BF%E5%85%A8%E5%B1%80%E5%8F%AF%E8%B0%83%E8%AF%95/</guid>
       <description>版权归作者所有，如有转发，请注明文章出处：https://cyrus-studio.github.io/blog/&#xA;修改 android 系统 中的 ro.debuggable 属性使设备上所有 app 可调试。&#xA;下载MagiskHidePropsConf：https://github.com/Magisk-Modules-Repo/MagiskHidePropsConf/tags&#xA;把下载下来的MagiskHidePropsConf推送到手机sdcard上&#xA;adb push &amp;#34;D:\app逆向\MagiskHidePropsConf-v6.1.2.zip&amp;#34; /sdcard/ 安装MagiskHidePropsConf，打开Magick【模块】【本地安装】【选择MagiskHidePropsConf-v6.1.2.zi p】&#xA;重启手机，进入 adb shell&#xA;输入props&#xA;meri:/ # props&#xD;Loading... Please wait.&#xD;MagiskHide Props Config v6.1.2&#xD;by Didgeridoohan @ XDA Developers&#xD;=====================================&#xD;Updating fingerprints list&#xD;=====================================&#xD;Checking list version.&#xD;! File not downloaded!&#xD;Checking for module update.&#xD;! File not downloaded!&#xD;MagiskHide Props Config v6.1.2&#xD;by Didgeridoohan @ XDA Developers&#xD;=====================================&#xD;Select an option below.</description>
-    </item>
-    <item>
-      <title>有道云docx转换markdown，导入hugo发布到github page，多平台发布适配</title>
-      <link>https://cyrus-studio.github.io/blog/posts/%E6%9C%89%E9%81%93%E4%BA%91docx%E8%BD%AC%E6%8D%A2markdown%E5%AF%BC%E5%85%A5hugo%E5%8F%91%E5%B8%83%E5%88%B0github-page%E5%A4%9A%E5%B9%B3%E5%8F%B0%E5%8F%91%E5%B8%83%E9%80%82%E9%85%8D/</link>
-      <pubDate>Sun, 11 Aug 2024 06:09:27 +0800</pubDate>
-      <guid>https://cyrus-studio.github.io/blog/posts/%E6%9C%89%E9%81%93%E4%BA%91docx%E8%BD%AC%E6%8D%A2markdown%E5%AF%BC%E5%85%A5hugo%E5%8F%91%E5%B8%83%E5%88%B0github-page%E5%A4%9A%E5%B9%B3%E5%8F%B0%E5%8F%91%E5%B8%83%E9%80%82%E9%85%8D/</guid>
-      <description>版权归作者所有，如有转发，请注明文章出处：https://cyrus-studio.github.io/blog/&#xA;有道云导出docx&#xA;有道云笔记右上角更多按钮选择【导出为Word】，可以导出docx文档 docx转换markdown&#xA;尝试了几个docx转markdown的python库后，最终选择了python-mammoth，轻量，效率高，可自定义转换满足特定需求。&#xA;python-mammoth&#xA;python-mammoth 是一个用于将 Microsoft Word (DOCX) 文档转换为 HTML 或 Markdown 的 Python 库。&#xA;github地址：https://github.com/mwilliamson/python-mammoth&#xA;安装 python-mammoth&#xA;pip install mammoth 自定义代码块样式&#xA;通过自定义 transform 来实现自定义的代码块样式来支持有道云docx的代码块&#xA;def ynote_docx_markdown_transform(document):&#xD;...&#xD;pass&#xD;result = convert_to_markdown(docx_file, transform_document=ynote_docx_markdown_transform) 通过在自定义 transform 断点调试可以看到 document 都是由一个一个 Paragraph 组成的，代码块的 Bookmark 的 name 都是相同的，由此代码块其中一个特征就是相同且相邻的 Bookmark name。 但是有的代码块只是单独的一段 这时可以通过自定义 代码/bash 特征判断该 Paragraph 中的 Text 是不是一段 代码/bash。&#xA;def is_possible_code_or_bash(text):&#xD;# 常见的代码关键字&#xD;code_keywords = [&#xD;r&amp;#39;\bif\b&amp;#39;, r&amp;#39;\bfor\b&amp;#39;, r&amp;#39;\bwhile\b&amp;#39;, r&amp;#39;\bdef\b&amp;#39;, r&amp;#39;\bclass\b&amp;#39;, r&amp;#39;\breturn\b&amp;#39;, r&amp;#39;\bimport\b&amp;#39;,&#xD;r&amp;#39;\bint\b&amp;#39;, r&amp;#39;\bfloat\b&amp;#39;, r&amp;#39;\bmain\b&amp;#39;, r&amp;#39;\binclude\b&amp;#39;, r&amp;#39;#include&amp;#39;, r&amp;#39;\becho\b&amp;#39;, r&amp;#39;\bcd\b&amp;#39;,&#xD;r&amp;#39;\bgrep\b&amp;#39;, r&amp;#39;\bexit\b&amp;#39;, r&amp;#39;\belse\b&amp;#39;, r&amp;#39;\belif\b&amp;#39;, r&amp;#39;#!</description>
     </item>
     <item>
       <title>About</title>
