@@ -6,8 +6,15 @@
     <description>Recent content in Posts on CYRUS STUDIO</description>
     <generator>Hugo</generator>
     <language>zh-cn</language>
-    <lastBuildDate>Sat, 12 Jul 2025 18:38:53 +0800</lastBuildDate>
+    <lastBuildDate>Thu, 17 Jul 2025 19:14:56 +0800</lastBuildDate>
     <atom:link href="https://cyrus-studio.github.io/blog/posts/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>ADB 命令使用大全（建议收藏） Android 调试必备</title>
+      <link>https://cyrus-studio.github.io/blog/posts/adb-%E5%91%BD%E4%BB%A4%E4%BD%BF%E7%94%A8%E5%A4%A7%E5%85%A8%E5%BB%BA%E8%AE%AE%E6%94%B6%E8%97%8F-android-%E8%B0%83%E8%AF%95%E5%BF%85%E5%A4%87/</link>
+      <pubDate>Thu, 17 Jul 2025 19:14:56 +0800</pubDate>
+      <guid>https://cyrus-studio.github.io/blog/posts/adb-%E5%91%BD%E4%BB%A4%E4%BD%BF%E7%94%A8%E5%A4%A7%E5%85%A8%E5%BB%BA%E8%AE%AE%E6%94%B6%E8%97%8F-android-%E8%B0%83%E8%AF%95%E5%BF%85%E5%A4%87/</guid>
+      <description>版权归作者所有，如有转发，请注明文章出处：https://cyrus-studio.github.io/blog/&#xA;基础adb命令 # 重启adb adb kill-server&#xD;# 查看已连接的设备&#xD;adb devices&#xD;# 进入命令行&#xD;adb shell&#xD;# 使用 -s 参数来指定设备&#xD;adb -s &amp;lt;设备序列号&amp;gt; shell&#xD;# 显示日志&#xD;adb logcat 获取 API Level 进入 adb shell ，执行下面命令获取当前 Android 系统的 API Level（即 SDK 版本）：&#xA;getprop ro.build.version.sdk 以下是 Android 版本与 API Level 的对应表 （截至 Android 15）：&#xA;Android 版本 API Level 代号 发布时间 Android 15 35 Vanilla Ice Cream 2024年9月 Android 14 34 Upside Down Cake 2023年10月 Android 13 33 Tiramisu 2022年8月 Android 12L 32 2022年3月 Android 12 31 Snow Cone 2021年10月 Android 11 30 Red Velvet Cake 2020年9月 Android 10 29 Q 2019年9月 Android 9 28 Pie 2018年8月 Android 8.</description>
+    </item>
     <item>
       <title>Unidbg Trace 实战：一步步还原 OLLVM 控制流平坦化算法</title>
       <link>https://cyrus-studio.github.io/blog/posts/unidbg-trace-%E5%AE%9E%E6%88%98%E4%B8%80%E6%AD%A5%E6%AD%A5%E8%BF%98%E5%8E%9F-ollvm-%E6%8E%A7%E5%88%B6%E6%B5%81%E5%B9%B3%E5%9D%A6%E5%8C%96%E7%AE%97%E6%B3%95/</link>
@@ -273,13 +280,6 @@
       <pubDate>Sun, 22 Jun 2025 21:24:23 +0800</pubDate>
       <guid>https://cyrus-studio.github.io/blog/posts/%E9%80%86%E5%90%91%E6%9F%90%E7%89%A9-app-%E7%99%BB%E5%BD%95%E6%8E%A5%E5%8F%A3%E8%BF%98%E5%8E%9F-newsign-%E7%AE%97%E6%B3%95%E5%85%A8%E6%B5%81%E7%A8%8B/</guid>
       <description>版权归作者所有，如有转发，请注明文章出处：https://cyrus-studio.github.io/blog/&#xA;newSign 参数分析 通过 Hook Java 层加密算法得到 newSign 参数相关信息如下：&#xA;具体参考：逆向某物 App 登录接口：抓包分析 + Frida Hook 还原加密算法&#xA;入参：&#xA;MD5 update data Utf8: dWWoXlbR3K87j2N27Dkv4uOPUnOsh0xrJ5t+atsiQXC+/dIN8Kof9Gm2x1kil7S/A+KLRtWKw+AfFWotfKtx+5J+ONciO*********************************************************************************************kK+Xiqtb6FajKK3aJ2vwB5l5lAKIhnvpOWXFWqYSQJy5g7oQ61Vwo+6MVB3U/wBT2CpM7AKDFH2Xj9Krb/0jNsPgNnA== MD5 加密后的结果：&#xA;MD5 digest result Hex: 8f03e2117c**********d9b9b18c58 调用堆栈：&#xA;MessageDigest.digest() is called!&#xD;java.lang.Throwable&#xD;at java.security.MessageDigest.digest(Native Method)&#xD;at ff.l0.h(RequestUtils.java:3)&#xD;at ff.l0.c(RequestUtils.java:12)&#xD;at lte.NCall.IL(Native Method)&#xD;at com.shizhuang.duapp.common.helper.net.interceptor.HttpRequestInterceptor.intercept(HttpRequestInterceptor.java)&#xD;at okhttp3.internal.http.RealInterceptorChain.proceed(RealInterceptorChain.java:10)&#xD;at okhttp3.internal.http.RealInterceptorChain.proceed(RealInterceptorChain.java:1)&#xD;at kb.b.intercept(MergeHostAfterInterceptor.java:11)&#xD;at okhttp3.internal.http.RealInterceptorChain.proceed(RealInterceptorChain.java:10)&#xD;at okhttp3.internal.http.RealInterceptorChain.proceed(RealInterceptorChain.java:1)&#xD;at kb.d.intercept(MergeHostInterceptor.java:8)&#xD;at okhttp3.internal.http.RealInterceptorChain.proceed(RealInterceptorChain.java:10)&#xD;at okhttp3.internal.http.RealInterceptorChain.proceed(RealInterceptorChain.java:1)&#xD;at okhttp3.RealCall.getResponseWithInterceptorChain(RealCall.java:13)&#xD;at okhttp3.RealCall.execute(RealCall.java:8)&#xD;at retrofit2.OkHttpCall.execute(OkHttpCall.java:18)&#xD;at retrofit2.</description>
-    </item>
-    <item>
-      <title>ADB 命令使用大全（建议收藏） Android 调试必备</title>
-      <link>https://cyrus-studio.github.io/blog/posts/adb-%E5%91%BD%E4%BB%A4%E4%BD%BF%E7%94%A8%E5%A4%A7%E5%85%A8%E5%BB%BA%E8%AE%AE%E6%94%B6%E8%97%8F-android-%E8%B0%83%E8%AF%95%E5%BF%85%E5%A4%87/</link>
-      <pubDate>Sun, 22 Jun 2025 14:12:55 +0800</pubDate>
-      <guid>https://cyrus-studio.github.io/blog/posts/adb-%E5%91%BD%E4%BB%A4%E4%BD%BF%E7%94%A8%E5%A4%A7%E5%85%A8%E5%BB%BA%E8%AE%AE%E6%94%B6%E8%97%8F-android-%E8%B0%83%E8%AF%95%E5%BF%85%E5%A4%87/</guid>
-      <description>版权归作者所有，如有转发，请注明文章出处：https://cyrus-studio.github.io/blog/&#xA;基础adb命令 # 重启adb adb kill-server&#xD;# 查看已连接的设备&#xD;adb devices&#xD;# 进入命令行&#xD;adb shell&#xD;# 使用 -s 参数来指定设备&#xD;adb -s &amp;lt;设备序列号&amp;gt; shell&#xD;# 显示日志&#xD;adb logcat 获取 API Level 进入 adb shell ，执行下面命令获取当前 Android 系统的 API Level（即 SDK 版本）：&#xA;getprop ro.build.version.sdk 以下是 Android 版本与 API Level 的对应表 （截至 Android 15）：&#xA;Android 版本 API Level 代号 发布时间 Android 15 35 Vanilla Ice Cream 2024年9月 Android 14 34 Upside Down Cake 2023年10月 Android 13 33 Tiramisu 2022年8月 Android 12L 32 2022年3月 Android 12 31 Snow Cone 2021年10月 Android 11 30 Red Velvet Cake 2020年9月 Android 10 29 Q 2019年9月 Android 9 28 Pie 2018年8月 Android 8.</description>
     </item>
     <item>
       <title>逆向某物 App 登录接口：抓包分析 &#43; Frida Hook 还原加密算法</title>
