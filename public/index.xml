@@ -6,8 +6,15 @@
     <description>Recent content on CYRUS STUDIO</description>
     <generator>Hugo</generator>
     <language>zh-cn</language>
-    <lastBuildDate>Thu, 17 Jul 2025 19:14:56 +0800</lastBuildDate>
+    <lastBuildDate>Sat, 19 Jul 2025 00:37:35 +0800</lastBuildDate>
     <atom:link href="https://cyrus-studio.github.io/blog/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>彻底搞懂 Retrofit：使用、封装与 Converter 原理</title>
+      <link>https://cyrus-studio.github.io/blog/posts/%E5%BD%BB%E5%BA%95%E6%90%9E%E6%87%82-retrofit%E4%BD%BF%E7%94%A8%E5%B0%81%E8%A3%85%E4%B8%8E-converter-%E5%8E%9F%E7%90%86/</link>
+      <pubDate>Sat, 19 Jul 2025 00:37:35 +0800</pubDate>
+      <guid>https://cyrus-studio.github.io/blog/posts/%E5%BD%BB%E5%BA%95%E6%90%9E%E6%87%82-retrofit%E4%BD%BF%E7%94%A8%E5%B0%81%E8%A3%85%E4%B8%8E-converter-%E5%8E%9F%E7%90%86/</guid>
+      <description>版权归作者所有，如有转发，请注明文章出处：https://cyrus-studio.github.io/blog/&#xA;Retrofit 简介 Retrofit 是 Square 公司开发的一个 类型安全的 HTTP 网络请求库，广泛应用于 Android 开发中。它极大地简化了 REST API 的调用方式，让网络请求就像调用本地接口一样简单。&#xA;基于 OkHttp 实现底层通信，提供了：&#xA;注解方式定义 API 接口&#xA;自动将 JSON/XML 响应解析为 Java/Kotlin 对象&#xA;支持多种 Converter（如 Gson、Moshi、Protobuf）&#xA;支持协程、RxJava、LiveData 等异步处理方式&#xA;与 OkHttp 关系：&#xA;Retrofit 是高级封装，负责将请求/响应转换为 Java 对象&#xA;OkHttp 是底层网络传输库，处理连接、缓存、拦截器等&#xA;Retrofit 默认使用 OkHttp，可以无缝集成 OkHttp 的功能（如添加 Token 拦截器）&#xA;开源地址：https://github.com/square/retrofit&#xA;集成 Retrofit 在 app 的 build.gradle.kts 添加如下依赖：&#xA;// Retrofit 核心库&#xD;implementation(&amp;#34;com.squareup.retrofit2:retrofit:2.9.0&amp;#34;)&#xD;// JSON 转换器（使用 Gson）&#xD;implementation(&amp;#34;com.squareup.retrofit2:converter-gson:2.9.0&amp;#34;)&#xD;// OkHttp&#xD;implementation(&amp;#34;com.squareup.okhttp3:okhttp:4.12.0&amp;#34;)&#xD;// OkHttp 日志拦截器（可选，用于调试）&#xD;implementation(&amp;#34;com.</description>
+    </item>
     <item>
       <title>ADB 命令使用大全（建议收藏） Android 调试必备</title>
       <link>https://cyrus-studio.github.io/blog/posts/adb-%E5%91%BD%E4%BB%A4%E4%BD%BF%E7%94%A8%E5%A4%A7%E5%85%A8%E5%BB%BA%E8%AE%AE%E6%94%B6%E8%97%8F-android-%E8%B0%83%E8%AF%95%E5%BF%85%E5%A4%87/</link>
