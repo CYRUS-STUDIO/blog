@@ -6,8 +6,15 @@
     <description>Recent content on CYRUS STUDIO</description>
     <generator>Hugo</generator>
     <language>zh-cn</language>
-    <lastBuildDate>Sun, 20 Jul 2025 18:43:51 +0800</lastBuildDate>
+    <lastBuildDate>Sun, 20 Jul 2025 23:11:43 +0800</lastBuildDate>
     <atom:link href="https://cyrus-studio.github.io/blog/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>打造自己的 Jar 文件分析工具：类名匹配 &#43; 二进制搜索 &#43; 日志输出全搞定</title>
+      <link>https://cyrus-studio.github.io/blog/posts/%E6%89%93%E9%80%A0%E8%87%AA%E5%B7%B1%E7%9A%84-jar-%E6%96%87%E4%BB%B6%E5%88%86%E6%9E%90%E5%B7%A5%E5%85%B7%E7%B1%BB%E5%90%8D%E5%8C%B9%E9%85%8D-&#43;-%E4%BA%8C%E8%BF%9B%E5%88%B6%E6%90%9C%E7%B4%A2-&#43;-%E6%97%A5%E5%BF%97%E8%BE%93%E5%87%BA%E5%85%A8%E6%90%9E%E5%AE%9A/</link>
+      <pubDate>Sun, 20 Jul 2025 23:11:43 +0800</pubDate>
+      <guid>https://cyrus-studio.github.io/blog/posts/%E6%89%93%E9%80%A0%E8%87%AA%E5%B7%B1%E7%9A%84-jar-%E6%96%87%E4%BB%B6%E5%88%86%E6%9E%90%E5%B7%A5%E5%85%B7%E7%B1%BB%E5%90%8D%E5%8C%B9%E9%85%8D-&#43;-%E4%BA%8C%E8%BF%9B%E5%88%B6%E6%90%9C%E7%B4%A2-&#43;-%E6%97%A5%E5%BF%97%E8%BE%93%E5%87%BA%E5%85%A8%E6%90%9E%E5%AE%9A/</guid>
+      <description>版权归作者所有，如有转发，请注明文章出处：https://cyrus-studio.github.io/blog/&#xA;前言 在逆向分析、APK 解包或 Java 工程排查中，我们常常需要检查某个 .class 文件是否存在于某个 JAR 包中，或者判断某个关键字是否被硬编码在类的字节码里。&#xA;如何通过编写 Python 脚本，帮助你在 JAR 文件中快速定位类、字段，甚至二进制内容。&#xA;类路径匹配（路径前缀） JAR 文件本质是 ZIP 文件，通过 zipfile.ZipFile 解压后可遍历所有文件名（也就是 .class 路径），我们只需检查是否以某个前缀开头即可。&#xA;with zipfile.ZipFile(jar_path, &amp;#39;r&amp;#39;) as jar:&#xD;for entry in jar.namelist():&#xD;if entry.endswith(&amp;#34;.class&amp;#34;) and entry.startswith(class_prefix_path):&#xD;print(f&amp;#34;[✓] Found in: {jar_path} → {entry}&amp;#34;)&#xD;found.append((jar_path, entry)) 字节码字段查找（二进制匹配） 通过读取 .class 文件的二进制数据，可以判断是否存在某个硬编码字符串。比如我们要查找 &amp;ldquo;VERSION_NAME&amp;rdquo; 是否被写入类的常量池中，就可以用这种方式。&#xA;with zipfile.ZipFile(jar_path, &amp;#39;r&amp;#39;) as jar:&#xD;for entry in jar.namelist():&#xD;if entry.endswith(&amp;#34;.class&amp;#34;):&#xD;try:&#xD;with jar.open(entry) as class_file:&#xD;content = class_file.</description>
+    </item>
     <item>
       <title>一文搞懂 Smali 与 Baksmali：Java 层逆向必备技能</title>
       <link>https://cyrus-studio.github.io/blog/posts/%E4%B8%80%E6%96%87%E6%90%9E%E6%87%82-smali-%E4%B8%8E-baksmalijava-%E5%B1%82%E9%80%86%E5%90%91%E5%BF%85%E5%A4%87%E6%8A%80%E8%83%BD/</link>
