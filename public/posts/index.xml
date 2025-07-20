@@ -6,8 +6,15 @@
     <description>Recent content in Posts on CYRUS STUDIO</description>
     <generator>Hugo</generator>
     <language>zh-cn</language>
-    <lastBuildDate>Sun, 20 Jul 2025 23:11:43 +0800</lastBuildDate>
+    <lastBuildDate>Sun, 20 Jul 2025 23:58:05 +0800</lastBuildDate>
     <atom:link href="https://cyrus-studio.github.io/blog/posts/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>深入 ART Dex 加载流程，玩转 Android 通用脱壳点</title>
+      <link>https://cyrus-studio.github.io/blog/posts/%E6%B7%B1%E5%85%A5-art-dex-%E5%8A%A0%E8%BD%BD%E6%B5%81%E7%A8%8B%E7%8E%A9%E8%BD%AC-android-%E9%80%9A%E7%94%A8%E8%84%B1%E5%A3%B3%E7%82%B9/</link>
+      <pubDate>Sun, 20 Jul 2025 23:58:05 +0800</pubDate>
+      <guid>https://cyrus-studio.github.io/blog/posts/%E6%B7%B1%E5%85%A5-art-dex-%E5%8A%A0%E8%BD%BD%E6%B5%81%E7%A8%8B%E7%8E%A9%E8%BD%AC-android-%E9%80%9A%E7%94%A8%E8%84%B1%E5%A3%B3%E7%82%B9/</guid>
+      <description>版权归作者所有，如有转发，请注明文章出处：https://cyrus-studio.github.io/blog/&#xA;DEF CON DEF CON 是全球最大的计算机安全会议之一（极客的奥斯卡），自1993年6月起，每年在美国内华达州的拉斯维加斯举办。&#xA;官网：https://media.defcon.org/，DEF CON 黑客大会官方的媒体存档站点，提供历年 DEF CON 大会的公开演讲、幻灯片、视频、音频、代码示例和其他相关资源的免费下载。&#xA;在 DEF CON 25（2017 年）上，Check Point 的安全研究员 Slava Makkaveev 和 Avi Bashan 发表了题为《Unboxing Android: Everything You Wanted to Know About Android Packers》的演讲，深入探讨了 Android 应用程序中的加壳技术及其安全影响。&#xA;报告文件地址：&#xA;https://media.defcon.org/DEF%20CON%2025/DEF%20CON%2025%20presentations/DEF%20CON%2025%20-%20Slava-Makkaveev-and-Avi-Bashan-Unboxing-Android.pdf&#xA;对于国内加壳厂商也有分析&#xA;DEF 的安全研究员选择的两个脱壳点：art::OpenAndReadMagic 和 DexFile::DexFile&#xA;Unboxing Android 在 DEF CON 25 (2017) 上，Avi Bashan 和 Slava Makkaveev 提出过一种非常实用的 Android 加壳脱壳技术：&#xA;通过修改 DexFile::DexFile() 构造函数和 OpenAndReadMagic() 方法，可以在应用运行时，拦截 DEX 文件加载过程，从而拿到已经解密后的内存数据，完成脱壳。&#xA;1. DexFile::DexFile 构造函数 可以看到 DexFile::DexFile() 的构造函数参数里包含了：</description>
+    </item>
     <item>
       <title>打造自己的 Jar 文件分析工具：类名匹配 &#43; 二进制搜索 &#43; 日志输出全搞定</title>
       <link>https://cyrus-studio.github.io/blog/posts/%E6%89%93%E9%80%A0%E8%87%AA%E5%B7%B1%E7%9A%84-jar-%E6%96%87%E4%BB%B6%E5%88%86%E6%9E%90%E5%B7%A5%E5%85%B7%E7%B1%BB%E5%90%8D%E5%8C%B9%E9%85%8D-&#43;-%E4%BA%8C%E8%BF%9B%E5%88%B6%E6%90%9C%E7%B4%A2-&#43;-%E6%97%A5%E5%BF%97%E8%BE%93%E5%87%BA%E5%85%A8%E6%90%9E%E5%AE%9A/</link>
@@ -434,13 +441,6 @@
       <pubDate>Tue, 06 May 2025 00:53:33 +0800</pubDate>
       <guid>https://cyrus-studio.github.io/blog/posts/android-%E4%B8%8B%E7%9A%84-classloader-%E4%B8%8E-%E5%8F%8C%E4%BA%B2%E5%A7%94%E6%B4%BE%E6%9C%BA%E5%88%B6/</guid>
       <description>版权归作者所有，如有转发，请注明文章出处：https://cyrus-studio.github.io/blog/&#xA;类加载器 ClassLoader 在 JVM（Java Virtual Machine）中，类加载器（ClassLoader）负责将 .class 文件加载到内存中，并将其转换为 JVM 可以使用的 Class 对象。&#xA;JVM 中主要有以下几种类加载器（ClassLoader）：&#xA;1. 引导类加载器（Bootstrap ClassLoader） 加载内容：JDK 的核心类库（JAVA_HOME/lib 下的类，如 rt.jar、java.lang、java.util 等系统类）。&#xA;由 C/C++ 实现，是 JVM 的一部分，JVM 的启动就是通过 Bottstrap ，不是 Java 类。&#xA;没有父类加载器（即 getParent() 返回 null）。&#xA;2. 拓展类加载器（Extension ClassLoader） 加载内容：JAVA_HOME/lib/ext/ 目录或由 java.ext.dirs 指定的路径中的类。&#xA;实现类：sun.misc.Launcher$ExtClassLoader&#xA;父加载器：Bootstrap ClassLoader&#xA;3. 应用类加载器（Application ClassLoader） 加载内容：用户类路径（classpath）上的类，比如通过 -cp 或 -classpath 指定的类和 jar。&#xA;实现类：sun.misc.Launcher$AppClassLoader&#xA;父加载器：Extension ClassLoader&#xA;我们编写的大部分 Java 应用程序类就是由它加载的，ClassLoader.getSystemClassLoader 返回的就是它。&#xA;自定义类加载器 通过继承 java.lang.ClassLoader 自定义类加载器，实现自己的类加载逻辑，比如从网络、数据库、加密文件中加载类。&#xA;类加载顺序，比如：YourCustomClassLoader.findClass( classX.class)</description>
-    </item>
-    <item>
-      <title>ART 下 Dex 加载流程源码分析 和 通用脱壳点</title>
-      <link>https://cyrus-studio.github.io/blog/posts/art-%E4%B8%8B-dex-%E5%8A%A0%E8%BD%BD%E6%B5%81%E7%A8%8B%E6%BA%90%E7%A0%81%E5%88%86%E6%9E%90-%E5%92%8C-%E9%80%9A%E7%94%A8%E8%84%B1%E5%A3%B3%E7%82%B9/</link>
-      <pubDate>Sun, 04 May 2025 22:27:06 +0800</pubDate>
-      <guid>https://cyrus-studio.github.io/blog/posts/art-%E4%B8%8B-dex-%E5%8A%A0%E8%BD%BD%E6%B5%81%E7%A8%8B%E6%BA%90%E7%A0%81%E5%88%86%E6%9E%90-%E5%92%8C-%E9%80%9A%E7%94%A8%E8%84%B1%E5%A3%B3%E7%82%B9/</guid>
-      <description>版权归作者所有，如有转发，请注明文章出处：https://cyrus-studio.github.io/blog/&#xA;DEF CON DEF CON 是全球最大的计算机安全会议之一（极客的奥斯卡），自1993年6月起，每年在美国内华达州的拉斯维加斯举办。&#xA;官网：https://media.defcon.org/，DEF CON 黑客大会官方的媒体存档站点，提供历年 DEF CON 大会的公开演讲、幻灯片、视频、音频、代码示例和其他相关资源的免费下载。&#xA;在 DEF CON 25（2017 年）上，Check Point 的安全研究员 Slava Makkaveev 和 Avi Bashan 发表了题为《Unboxing Android: Everything You Wanted to Know About Android Packers》的演讲，深入探讨了 Android 应用程序中的加壳技术及其安全影响。&#xA;报告文件地址：&#xA;https://media.defcon.org/DEF%20CON%2025/DEF%20CON%2025%20presentations/DEF%20CON%2025%20-%20Slava-Makkaveev-and-Avi-Bashan-Unboxing-Android.pdf&#xA;对于国内加壳厂商也有分析&#xA;DEF 的安全研究员选择的两个脱壳点：art::OpenAndReadMagic 和 DexFile::DexFile&#xA;Unboxing Android 在 DEF CON 25 (2017) 上，Avi Bashan 和 Slava Makkaveev 提出过一种非常实用的 Android 加壳脱壳技术：&#xA;通过修改 DexFile::DexFile() 构造函数和 OpenAndReadMagic() 方法，可以在应用运行时，拦截 DEX 文件加载过程，从而拿到已经解密后的内存数据，完成脱壳。&#xA;1. DexFile::DexFile 构造函数 可以看到 DexFile::DexFile() 的构造函数参数里包含了：</description>
     </item>
     <item>
       <title>使用 Dex2C 加壳保护 Android APK 代码</title>
