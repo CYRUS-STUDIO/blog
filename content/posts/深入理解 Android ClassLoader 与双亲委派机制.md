@@ -1,6 +1,6 @@
 +++
-title = 'Android 下的 ClassLoader 与 双亲委派机制'
-date = 2025-05-06T00:53:33.603146+08:00
+title = '深入理解 Android ClassLoader 与双亲委派机制'
+date = 2025-07-21T00:40:30.841318+08:00
 draft = false
 +++
 
@@ -261,7 +261,7 @@ val clazz = ClassLoader.defineClass("com.example.MyClass", bytes, 0, bytes.size)
 
 
 
-**区别对比表：**
+**区别对比表：** 
 
 | 方法 | 所属类/接口 | 是否委托父类加载 | 是否初始化类 | 常用于 |
 |--- | --- | --- | --- | ---|
@@ -278,7 +278,7 @@ val clazz = ClassLoader.defineClass("com.example.MyClass", bytes, 0, bytes.size)
 
 
 
-一个类从“加载” 到 “可以使用” 的完整生命周期：加载（Loading）→ 连接（Linking）→ 初始化（Initialization）。
+一个类从**“加载” ** 到 **“可以使用”**  的完整生命周期：**加载（Loading）→ 连接（Linking）→ 初始化（Initialization）** 。
 
 
 
@@ -715,7 +715,7 @@ while (entries.hasMoreElements()) {
 
 
 
-关于 Frida 的使用可以参考这篇文章：[使用 Frida Hook Android App](https://cyrus-studio.github.io/blog/posts/%E4%BD%BF%E7%94%A8-frida-hook-android-app/)
+关于 Frida 的使用可以参考这篇文章：[一文搞懂如何使用 Frida Hook Android App](https://cyrus-studio.github.io/blog/posts/%E4%B8%80%E6%96%87%E6%90%9E%E6%87%82%E5%A6%82%E4%BD%95%E4%BD%BF%E7%94%A8-frida-hook-android-app/)
 
 
 
@@ -933,7 +933,7 @@ JNI 实现（C++），调用 ART 虚拟机内部逻辑：
 
 
 
-**类加载过程调用链**
+**类加载过程调用链** 
 
 ```
 PathClassLoader.loadClass()
