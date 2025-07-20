@@ -6,8 +6,15 @@
     <description>Recent content in Posts on CYRUS STUDIO</description>
     <generator>Hugo</generator>
     <language>zh-cn</language>
-    <lastBuildDate>Sat, 19 Jul 2025 00:37:35 +0800</lastBuildDate>
+    <lastBuildDate>Sun, 20 Jul 2025 18:43:51 +0800</lastBuildDate>
     <atom:link href="https://cyrus-studio.github.io/blog/posts/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>一文搞懂 Smali 与 Baksmali：Java 层逆向必备技能</title>
+      <link>https://cyrus-studio.github.io/blog/posts/%E4%B8%80%E6%96%87%E6%90%9E%E6%87%82-smali-%E4%B8%8E-baksmalijava-%E5%B1%82%E9%80%86%E5%90%91%E5%BF%85%E5%A4%87%E6%8A%80%E8%83%BD/</link>
+      <pubDate>Sun, 20 Jul 2025 18:43:51 +0800</pubDate>
+      <guid>https://cyrus-studio.github.io/blog/posts/%E4%B8%80%E6%96%87%E6%90%9E%E6%87%82-smali-%E4%B8%8E-baksmalijava-%E5%B1%82%E9%80%86%E5%90%91%E5%BF%85%E5%A4%87%E6%8A%80%E8%83%BD/</guid>
+      <description>版权归作者所有，如有转发，请注明文章出处：https://cyrus-studio.github.io/blog/&#xA;smali 与 baksmali smali 和 baksmali 是用于 Android 平台中 DEX 文件的汇编器和反汇编器，广泛应用于 Android 逆向分析与调试。&#xA;smali 和 baksmali 是一对工具，分别用于：&#xA;smali：将 smali 代码（Java汇编语言）编译成 DEX 文件。&#xA;baksmali：将 DEX 文件反汇编为 smali 代码。&#xA;开源地址：&#xA;https://github.com/JesusFreke/smali&#xA;https://github.com/google/smali&#xA;Release版本下载地址：https://github.com/baksmali/smali/releases&#xA;使用 baksmali.jar 将 .dex 文件反汇编为 .smali java -jar baksmali.jar disassemble &amp;#34;D:\Python\anti-app\app\douyin\dump_dex\base.apk.dex&amp;#34; -o smali 输入 DEX 文件路径。&#xA;-o smali：指定输出目录，保存生成的 .smali 文件。&#xA;你也可以加上 &amp;ndash;api 指定 Android API 级别：&#xA;java -jar baksmali.jar d &amp;#34;D:\Python\anti-app\app\douyin\dump_dex\base.apk.dex&amp;#34; -o smali --api 33 使用 smali.jar 将 .</description>
+    </item>
     <item>
       <title>彻底搞懂 Retrofit：使用、封装与 Converter 原理</title>
       <link>https://cyrus-studio.github.io/blog/posts/%E5%BD%BB%E5%BA%95%E6%90%9E%E6%87%82-retrofit%E4%BD%BF%E7%94%A8%E5%B0%81%E8%A3%85%E4%B8%8E-converter-%E5%8E%9F%E7%90%86/</link>
