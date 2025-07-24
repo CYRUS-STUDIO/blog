@@ -6,8 +6,15 @@
     <description>Recent content in Posts on CYRUS STUDIO</description>
     <generator>Hugo</generator>
     <language>zh-cn</language>
-    <lastBuildDate>Fri, 25 Jul 2025 02:56:37 +0800</lastBuildDate>
+    <lastBuildDate>Fri, 25 Jul 2025 03:09:58 +0800</lastBuildDate>
     <atom:link href="https://cyrus-studio.github.io/blog/posts/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>小米刷机全攻略：解锁BL、刷机、Root 一步到位</title>
+      <link>https://cyrus-studio.github.io/blog/posts/%E5%B0%8F%E7%B1%B3%E5%88%B7%E6%9C%BA%E5%85%A8%E6%94%BB%E7%95%A5%E8%A7%A3%E9%94%81bl%E5%88%B7%E6%9C%BAroot-%E4%B8%80%E6%AD%A5%E5%88%B0%E4%BD%8D/</link>
+      <pubDate>Fri, 25 Jul 2025 03:09:58 +0800</pubDate>
+      <guid>https://cyrus-studio.github.io/blog/posts/%E5%B0%8F%E7%B1%B3%E5%88%B7%E6%9C%BA%E5%85%A8%E6%94%BB%E7%95%A5%E8%A7%A3%E9%94%81bl%E5%88%B7%E6%9C%BAroot-%E4%B8%80%E6%AD%A5%E5%88%B0%E4%BD%8D/</guid>
+      <description>版权归作者所有，如有转发，请注明文章出处：https://cyrus-studio.github.io/blog/&#xA;解锁BL锁 下载安装 miflash_unlock：https://miuiver.com/miunlock/，登录小米账号（需要和解锁设备绑定的账号一致） 连接手机，关机后按住 “音量-” + 开机键进入 fastboot 模式，根据提示解锁手机 如果连接不上设备，点击右上角设置按钮【驱动检测】，手机进入recovery模式下重新连接，等待驱动安装完成。&#xA;如果还是连不上，参考下面链接的解决办法&#xA;https://miuiver.com/usb3-fix/&#xA;重启手机开发者模式中查看解锁状态 刷机 ROM下载：https://magiskcn.com/rom&#xA;下载小米线刷工具：https://xiaomirom.com/download-xiaomi-flash-tool-miflash/&#xA;下载设备开发版线刷包，并解压线刷包&#xA;打开miflash&#xA;连接手机，关机，按住 &amp;ldquo;开机&amp;rdquo; + &amp;ldquo;音量-&amp;rdquo; 进入fastboot模式&#xA;选择线刷包解压目录开始刷机&#xA;等待刷机成功&#xA;刷机成功后，重新解除BL锁&#xA;打开手机管家——应用管理——权限——ROOT权限——开启ROOT权限&#xA;结果发现root工具一直下载失败&#xA;使用Magisk进行root 下载 Magisk：https://github.com/topjohnwu/Magisk/releases&#xA;安装 Magisk adb install Magisk-v27.0.apk 解压线刷包中的 boot.img，并 push 到手机 adb push boot.img /sdcard/boot.img Magisk中【安装】【下一步】【选择并修补一个文件】【选择boot.img】，把处理完后的magisk_patched 下载到电脑 Android sdk\platform-tools 目录（这里下载 Android SDK Platform Tools） adb pull /sdcard/Download/magisk_patched-27000_RIC3F.img D:\App\android\sdk\platform-tools 使用 adb 命令将设备重启到 fastboot 模式 adb reboot bootloader 把 magisk_patched 刷新到系统 # 切换到platform-tools目录&#xD;cd D:\App\android\sdk\platform-tools&#xD;# 刷入 magisk_patched&#xD;fastboot flash boot magisk_patched-27000_RIC3F.</description>
+    </item>
     <item>
       <title>解决90%踩坑问题！LineageOS 源码下载与编译保姆级教程</title>
       <link>https://cyrus-studio.github.io/blog/posts/%E8%A7%A3%E5%86%B390%E8%B8%A9%E5%9D%91%E9%97%AE%E9%A2%98lineageos-%E6%BA%90%E7%A0%81%E4%B8%8B%E8%BD%BD%E4%B8%8E%E7%BC%96%E8%AF%91%E4%BF%9D%E5%A7%86%E7%BA%A7%E6%95%99%E7%A8%8B/</link>
@@ -707,13 +714,6 @@
       <pubDate>Thu, 29 Aug 2024 04:25:16 +0800</pubDate>
       <guid>https://cyrus-studio.github.io/blog/posts/linux%E4%B8%8B%E4%BB%A3%E7%90%86%E8%AE%BE%E7%BD%AE/</guid>
       <description>版权归作者所有，如有转发，请注明文章出处：https://cyrus-studio.github.io/blog/&#xA;1. 下载安装clash-verge 下载 clash-verge https://github.com/clash-verge-rev/clash-verge-rev/releases&#xA;我这边用的是 ubuntu22，下载 clash-verge_1.7.5_amd64.deb&#xA;安装 clash-verge&#xA;# 安装相关依赖&#xD;sudo apt update&#xD;sudo apt install -f&#xD;sudo apt install libayatana-appindicator3-1 libwebkit2gtk-4.0-37 libgtk-3-0&#xD;# 安装clash-verge&#xD;sudo dpkg -i clash-verge_1.7.5_amd64.deb&#xD;# 卸载clash-verge&#xD;sudo dpkg -r clash-verge&#xD;# 启动 Clash Verge（nohup 命令可以让进程在后台运行，即使关闭终端也不会影响进程运行。）&#xD;# nohup 会创建一个 nohup.out 文件来记录输出日志。&#xD;nohup clash-verge &amp;amp; 2. 解决显示乱码问题 安装一些常见的字体包&#xA;sudo apt update&#xD;sudo apt install fonts-noto-cjk fonts-noto fonts-noto-core fonts-noto-ui-core fonts-wqy-zenhei 3. 导入订阅地址，开启代理 设置 关闭 IPV6 设置 勾选 系统代理 我这里科学上网使用的是魔戒，注册地址：https://mojie.</description>
-    </item>
-    <item>
-      <title>小米5c解除BL锁&amp;刷机&amp;root</title>
-      <link>https://cyrus-studio.github.io/blog/posts/%E5%B0%8F%E7%B1%B35c%E8%A7%A3%E9%99%A4bl%E9%94%81%E5%88%B7%E6%9C%BAroot/</link>
-      <pubDate>Sun, 18 Aug 2024 01:54:50 +0800</pubDate>
-      <guid>https://cyrus-studio.github.io/blog/posts/%E5%B0%8F%E7%B1%B35c%E8%A7%A3%E9%99%A4bl%E9%94%81%E5%88%B7%E6%9C%BAroot/</guid>
-      <description>版权归作者所有，如有转发，请注明文章出处：https://cyrus-studio.github.io/blog/&#xA;解锁BL锁 1. 下载安装 miflash_unlock：https://miuiver.com/miunlock/，登录小米账号（需要和解锁设备绑定的账号一致） 2. 连接手机，关机后按住 “音量-” + 开机键进入 fastboot 模式，根据提示解锁手机 3. 重启手机开发者模式中查看解锁状态 刷机 ROM下载：https://magiskcn.com/rom&#xA;1. 下载小米线刷工具：https://xiaomirom.com/download-xiaomi-flash-tool-miflash/&#xA;2. 下载小米5c开发版线刷包，并解压线刷包 3. 打开miflash&#xA;4. 连接手机，关机，按住 &amp;ldquo;开机&amp;rdquo; + &amp;ldquo;音量-&amp;rdquo; 进入fastboot模式&#xA;5. 选择线刷包解压目录开始刷机 等待刷机成功 6. 刷机成功后，重新解除BL锁&#xA;7. 打开手机管家——应用管理——权限——ROOT权限——开启ROOT权限 结果发现root工具一直下载失败&#xA;使用Magisk进行root 下载 Magisk：https://github.com/topjohnwu/Magisk/releases&#xA;1. 安装 Magisk&#xA;adb install Magisk-v27.0.apk 2. 解压线刷包中的 boot.img，并 push 到手机&#xA;adb push boot.img /sdcard/boot.img 3. Magisk中【安装】【下一步】【选择并修补一个文件】【选择boot.img】，把处理完后的magisk_patched 下载到电脑 Android sdk\platform-tools 目录（这里下载 Android SDK Platform Tools）&#xA;adb pull /sdcard/Download/magisk_patched-27000_RIC3F.img D:\App\android\sdk\platform-tools 4. 使用 adb 命令将设备重启到 fastboot 模式</description>
     </item>
     <item>
       <title>修改android系统ro.debuggable使全局可调试</title>
