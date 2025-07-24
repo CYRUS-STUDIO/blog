@@ -1,6 +1,6 @@
 +++
-title = 'Magisk 修改 ro.debuggable 实现全局可调试'
-date = 2025-07-25T03:28:28.277272+08:00
+title = 'Magisk 修改 ro.debuggable 开启 Android 系统全局调试模式'
+date = 2025-07-25T03:30:50.020577+08:00
 draft = false
 +++
 

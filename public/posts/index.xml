@@ -6,13 +6,13 @@
     <description>Recent content in Posts on CYRUS STUDIO</description>
     <generator>Hugo</generator>
     <language>zh-cn</language>
-    <lastBuildDate>Fri, 25 Jul 2025 03:28:28 +0800</lastBuildDate>
+    <lastBuildDate>Fri, 25 Jul 2025 03:30:50 +0800</lastBuildDate>
     <atom:link href="https://cyrus-studio.github.io/blog/posts/index.xml" rel="self" type="application/rss+xml" />
     <item>
-      <title>Magisk 修改 ro.debuggable 实现全局可调试</title>
-      <link>https://cyrus-studio.github.io/blog/posts/magisk-%E4%BF%AE%E6%94%B9-ro.debuggable-%E5%AE%9E%E7%8E%B0%E5%85%A8%E5%B1%80%E5%8F%AF%E8%B0%83%E8%AF%95/</link>
-      <pubDate>Fri, 25 Jul 2025 03:28:28 +0800</pubDate>
-      <guid>https://cyrus-studio.github.io/blog/posts/magisk-%E4%BF%AE%E6%94%B9-ro.debuggable-%E5%AE%9E%E7%8E%B0%E5%85%A8%E5%B1%80%E5%8F%AF%E8%B0%83%E8%AF%95/</guid>
+      <title>Magisk 修改 ro.debuggable 开启 Android 系统全局调试模式</title>
+      <link>https://cyrus-studio.github.io/blog/posts/magisk-%E4%BF%AE%E6%94%B9-ro.debuggable-%E5%BC%80%E5%90%AF-android-%E7%B3%BB%E7%BB%9F%E5%85%A8%E5%B1%80%E8%B0%83%E8%AF%95%E6%A8%A1%E5%BC%8F/</link>
+      <pubDate>Fri, 25 Jul 2025 03:30:50 +0800</pubDate>
+      <guid>https://cyrus-studio.github.io/blog/posts/magisk-%E4%BF%AE%E6%94%B9-ro.debuggable-%E5%BC%80%E5%90%AF-android-%E7%B3%BB%E7%BB%9F%E5%85%A8%E5%B1%80%E8%B0%83%E8%AF%95%E6%A8%A1%E5%BC%8F/</guid>
       <description>版权归作者所有，如有转发，请注明文章出处：https://cyrus-studio.github.io/blog/&#xA;ro.debuggable 通过修改 android 系统 中的 ro.debuggable 属性，开启系统调试通道，使设备上所有 app 可调试。&#xA;ro.debuggable 一般在系统的 build.prop 或构建配置文件中设置，比如：&#xA;ro.debuggable=1 在编译 AOSP 时，这个值通常在 build/core/main.mk 中由 user, userdebug, eng 等 build 类型决定：&#xA;build 类型 ro.debuggable user 0 userdebug 1 eng 1 如何查看当前设备的 ro.debuggable 通过 adb 命令查看：&#xA;adb shell getprop ro.debuggable 输出：&#xA;0：系统为非调试版本（普通用户设备）&#xA;1：系统为调试版本（如 LineageOS 的 userdebug 或 eng 版本）&#xA;MagiskHidePropsConf MagiskHidePropsConf 是一个基于 Magisk 模块系统的工具模块，主要功能是：修改 Android 设备的系统属性（System Properties）以“伪装”或“欺骗”应用和检测机制。&#xA;下载 MagiskHidePropsConf：https://github.com/Magisk-Modules-Repo/MagiskHidePropsConf/tags&#xA;把下载下来的 MagiskHidePropsConf 推送到手机 sdcard 上&#xA;adb push &amp;#34;D:\app逆向\MagiskHidePropsConf-v6.</description>
     </item>
     <item>
