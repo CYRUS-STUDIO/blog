@@ -1,26 +1,83 @@
 +++
-title = '修改android系统ro.debuggable使全局可调试'
-date = 2024-08-16T00:04:11.953663+08:00
+title = 'Magisk 修改 ro.debuggable 实现全局可调试'
+date = 2025-07-25T03:28:28.277272+08:00
 draft = false
 +++
 
 > 版权归作者所有，如有转发，请注明文章出处：<https://cyrus-studio.github.io/blog/>
 
-修改 android 系统 中的 ro.debuggable 属性使设备上所有 app 可调试。
+# ro.debuggable
 
-下载MagiskHidePropsConf：[https://github.com/Magisk-Modules-Repo/MagiskHidePropsConf/tags](https://github.com/Magisk-Modules-Repo/MagiskHidePropsConf/tags)
 
-把下载下来的MagiskHidePropsConf推送到手机sdcard上
+
+通过修改 android 系统 中的 ro.debuggable 属性，开启系统调试通道，使设备上所有 app 可调试。
+
+
+
+ro.debuggable 一般在系统的 build.prop 或构建配置文件中设置，比如：
+
 ```
-adb push "D:\app逆向\MagiskHidePropsConf-v6.1.2.zip" /sdcard/
+ro.debuggable=1
 ```
 
-安装MagiskHidePropsConf，打开Magick【模块】【本地安装】【选择MagiskHidePropsConf-v6.1.2.zi
+
+在编译 AOSP 时，这个值通常在 build/core/main.mk 中由 user, userdebug, eng 等 build 类型决定：
+
+| build 类型 | ro.debuggable |
+|--- | ---|
+| user | 0 |
+| userdebug | 1 |
+| eng | 1 |
+
+
+# 如何查看当前设备的 ro.debuggable
+
+
+
+通过 adb 命令查看：
+
+```
+adb shell getprop ro.debuggable
+```
+输出：
+
+- 0：系统为非调试版本（普通用户设备）
+
+- 1：系统为调试版本（如 LineageOS 的 userdebug 或 eng 版本）
+
+
+
+# MagiskHidePropsConf
+
+
+
+MagiskHidePropsConf 是一个基于 Magisk 模块系统的工具模块，主要功能是：修改 Android 设备的系统属性（System Properties）以“伪装”或“欺骗”应用和检测机制。
+
+
+
+下载 MagiskHidePropsConf：[https://github.com/Magisk-Modules-Repo/MagiskHidePropsConf/tags](https://github.com/Magisk-Modules-Repo/MagiskHidePropsConf/tags)
+
+
+
+把下载下来的 MagiskHidePropsConf 推送到手机 sdcard 上
+
+```
+adb push "D:\app逆向\MagiskHidePropsConf-v6.1.2.zi
+p" /sdcard/
+```
+
+
+安装 MagiskHidePropsConf，打开 Magick【模块】【本地安装】【选择MagiskHidePropsConf-v6.1.2.zi
 p】
+
+
 
 重启手机，进入 adb shell
 
+
+
 输入props
+
 ```
 meri:/ # props
 
@@ -65,7 +122,9 @@ See the module readme or the
 support thread @ XDA for details.
 ```
 
+
 输入 5 - Add/edit custom props
+
 
 ```
 Enter your desired option: 5
@@ -92,7 +151,9 @@ See the module readme or the
 support thread @ XDA for details.
 ```
 
+
 输入n
+
 ```
 Enter your desired option: n
 
@@ -110,7 +171,9 @@ b - Go back
 e - Exit
 ```
 
+
 输入 ro.debuggable
+
 ```
 Enter your desired option: ro.debuggable
 
@@ -132,7 +195,9 @@ n - No
 e - Exit
 ```
 
+
 输入y
+
 ```
 Enter your desired option: y
 
@@ -155,7 +220,9 @@ b - Go back
 e - Exit
 ```
 
+
 输入1
+
 ```
 Enter your desired option: 1
 
@@ -181,7 +248,9 @@ be set in, or set/reset a delay:
 d - Delay
 ```
 
+
 输入y，设置完成后重启手机
+
 ```
 Do you want to continue?
 
@@ -214,13 +283,10 @@ Enter y(es), n(o) or e(xit): y
 Rebooting...
 ```
 
+
 重置完成后，进入adb shell 执行 getprop ro.debuggable 检查值是否为1
 
-参考：
-1. [Android修改ro.debuggable 的四种方法](https://blog.csdn.net/jinmie0193/article/details/111355867)
-2. [Android搞机之打开系统调试总开关ro.debuggable](https://segmentfault.com/a/1190000044292145)
 
 
-               
-               
+
 

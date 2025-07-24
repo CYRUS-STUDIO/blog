@@ -6,8 +6,15 @@
     <description>Recent content on CYRUS STUDIO</description>
     <generator>Hugo</generator>
     <language>zh-cn</language>
-    <lastBuildDate>Fri, 25 Jul 2025 03:09:58 +0800</lastBuildDate>
+    <lastBuildDate>Fri, 25 Jul 2025 03:28:28 +0800</lastBuildDate>
     <atom:link href="https://cyrus-studio.github.io/blog/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Magisk 修改 ro.debuggable 实现全局可调试</title>
+      <link>https://cyrus-studio.github.io/blog/posts/magisk-%E4%BF%AE%E6%94%B9-ro.debuggable-%E5%AE%9E%E7%8E%B0%E5%85%A8%E5%B1%80%E5%8F%AF%E8%B0%83%E8%AF%95/</link>
+      <pubDate>Fri, 25 Jul 2025 03:28:28 +0800</pubDate>
+      <guid>https://cyrus-studio.github.io/blog/posts/magisk-%E4%BF%AE%E6%94%B9-ro.debuggable-%E5%AE%9E%E7%8E%B0%E5%85%A8%E5%B1%80%E5%8F%AF%E8%B0%83%E8%AF%95/</guid>
+      <description>版权归作者所有，如有转发，请注明文章出处：https://cyrus-studio.github.io/blog/&#xA;ro.debuggable 通过修改 android 系统 中的 ro.debuggable 属性，开启系统调试通道，使设备上所有 app 可调试。&#xA;ro.debuggable 一般在系统的 build.prop 或构建配置文件中设置，比如：&#xA;ro.debuggable=1 在编译 AOSP 时，这个值通常在 build/core/main.mk 中由 user, userdebug, eng 等 build 类型决定：&#xA;build 类型 ro.debuggable user 0 userdebug 1 eng 1 如何查看当前设备的 ro.debuggable 通过 adb 命令查看：&#xA;adb shell getprop ro.debuggable 输出：&#xA;0：系统为非调试版本（普通用户设备）&#xA;1：系统为调试版本（如 LineageOS 的 userdebug 或 eng 版本）&#xA;MagiskHidePropsConf MagiskHidePropsConf 是一个基于 Magisk 模块系统的工具模块，主要功能是：修改 Android 设备的系统属性（System Properties）以“伪装”或“欺骗”应用和检测机制。&#xA;下载 MagiskHidePropsConf：https://github.com/Magisk-Modules-Repo/MagiskHidePropsConf/tags&#xA;把下载下来的 MagiskHidePropsConf 推送到手机 sdcard 上&#xA;adb push &amp;#34;D:\app逆向\MagiskHidePropsConf-v6.</description>
+    </item>
     <item>
       <title>小米刷机全攻略：解锁BL、刷机、Root 一步到位</title>
       <link>https://cyrus-studio.github.io/blog/posts/%E5%B0%8F%E7%B1%B3%E5%88%B7%E6%9C%BA%E5%85%A8%E6%94%BB%E7%95%A5%E8%A7%A3%E9%94%81bl%E5%88%B7%E6%9C%BAroot-%E4%B8%80%E6%AD%A5%E5%88%B0%E4%BD%8D/</link>
@@ -688,13 +695,6 @@
       <description>版权归作者所有，如有转发，请注明文章出处：https://cyrus-studio.github.io/blog/&#xA;前言 需要先把 Android 源码编译一遍 然后执行下面指令就可以导入android源码了&#xA;关于 Android 源码编译可以参考这篇文章【LineageOS源码下载和编译（Xiaomi Mi 6X，wayne）】。&#xA;生成 android.ipr 文件 1. 进入到下面的目录&#xA;cd ./development/tools/idegen 2. 使用 mm 命令对当前目录 make，构建 idegen 模块&#xA;mm 执行完成后会在 out 目录生成一个 idegen.jar 文件&#xA;3. 回到 android 源码根目录，执行 idegen.sh 脚本（需要管理员权限）&#xA;# 回到 android 源码根目录&#xD;croot&#xD;# 执行 idegen.sh 脚本&#xD;sudo ./development/tools/idegen/idegen.sh 4. 执行完成后会生成一个 android.ipr 文件，用 android studio 打开这个 android.ipr 文件就可以完成 android 源码的导入了 运行 idegen.sh 脚本时遇到的问题 在运行 development/tools/idegen/idegen.sh 脚本时遇到的问题&#xA;1. 文件系统循环 find: File system loop detected 错误表示在使用 find 命令时遇到了符号链接循环。这通常不会导致脚本失败，但确实会产生一些额外的警告信息。</description>
     </item>
     <item>
-      <title>小米手机解除BL锁&amp;刷机&amp;root</title>
-      <link>https://cyrus-studio.github.io/blog/posts/%E5%B0%8F%E7%B1%B3%E6%89%8B%E6%9C%BA%E8%A7%A3%E9%99%A4bl%E9%94%81%E5%88%B7%E6%9C%BAroot/</link>
-      <pubDate>Fri, 13 Sep 2024 23:49:13 +0800</pubDate>
-      <guid>https://cyrus-studio.github.io/blog/posts/%E5%B0%8F%E7%B1%B3%E6%89%8B%E6%9C%BA%E8%A7%A3%E9%99%A4bl%E9%94%81%E5%88%B7%E6%9C%BAroot/</guid>
-      <description>版权归作者所有，如有转发，请注明文章出处：https://cyrus-studio.github.io/blog/&#xA;解锁BL锁 1. 下载安装 miflash_unlock：https://miuiver.com/miunlock/，登录小米账号（需要和解锁设备绑定的账号一致） 2. 连接手机，关机后按住 “音量-” + 开机键进入 fastboot 模式，根据提示解锁手机 如果连接不上设备，点击右上角设置按钮【驱动检测】，手机进入recovery模式下重新连接，等待驱动安装完成。 如果还是连不上，参考下面链接的解决办法 https://miuiver.com/usb3-fix/&#xA;3. 重启手机开发者模式中查看解锁状态 刷机 ROM下载：https://magiskcn.com/rom&#xA;1. 下载小米线刷工具：https://xiaomirom.com/download-xiaomi-flash-tool-miflash/&#xA;2. 下载设备开发版线刷包，并解压线刷包 3. 打开miflash&#xA;4. 连接手机，关机，按住 &amp;ldquo;开机&amp;rdquo; + &amp;ldquo;音量-&amp;rdquo; 进入fastboot模式&#xA;5. 选择线刷包解压目录开始刷机 等待刷机成功 6. 刷机成功后，重新解除BL锁&#xA;7. 打开手机管家——应用管理——权限——ROOT权限——开启ROOT权限 结果发现root工具一直下载失败&#xA;使用Magisk进行root 下载 Magisk：https://github.com/topjohnwu/Magisk/releases&#xA;1. 安装 Magisk&#xA;adb install Magisk-v27.0.apk 2. 解压线刷包中的 boot.img，并 push 到手机&#xA;adb push boot.img /sdcard/boot.img 3. Magisk中【安装】【下一步】【选择并修补一个文件】【选择boot.img】，把处理完后的magisk_patched 下载到电脑 Android sdk\platform-tools 目录（这里下载 Android SDK Platform Tools）&#xA;adb pull /sdcard/Download/magisk_patched-27000_RIC3F.</description>
-    </item>
-    <item>
       <title>编译LineageOS模拟器镜像，导出到AndroidStudio</title>
       <link>https://cyrus-studio.github.io/blog/posts/%E7%BC%96%E8%AF%91lineageos%E6%A8%A1%E6%8B%9F%E5%99%A8%E9%95%9C%E5%83%8F%E5%AF%BC%E5%87%BA%E5%88%B0androidstudio/</link>
       <pubDate>Sun, 01 Sep 2024 12:39:32 +0800</pubDate>
@@ -714,13 +714,6 @@
       <pubDate>Thu, 29 Aug 2024 04:25:16 +0800</pubDate>
       <guid>https://cyrus-studio.github.io/blog/posts/linux%E4%B8%8B%E4%BB%A3%E7%90%86%E8%AE%BE%E7%BD%AE/</guid>
       <description>版权归作者所有，如有转发，请注明文章出处：https://cyrus-studio.github.io/blog/&#xA;1. 下载安装clash-verge 下载 clash-verge https://github.com/clash-verge-rev/clash-verge-rev/releases&#xA;我这边用的是 ubuntu22，下载 clash-verge_1.7.5_amd64.deb&#xA;安装 clash-verge&#xA;# 安装相关依赖&#xD;sudo apt update&#xD;sudo apt install -f&#xD;sudo apt install libayatana-appindicator3-1 libwebkit2gtk-4.0-37 libgtk-3-0&#xD;# 安装clash-verge&#xD;sudo dpkg -i clash-verge_1.7.5_amd64.deb&#xD;# 卸载clash-verge&#xD;sudo dpkg -r clash-verge&#xD;# 启动 Clash Verge（nohup 命令可以让进程在后台运行，即使关闭终端也不会影响进程运行。）&#xD;# nohup 会创建一个 nohup.out 文件来记录输出日志。&#xD;nohup clash-verge &amp;amp; 2. 解决显示乱码问题 安装一些常见的字体包&#xA;sudo apt update&#xD;sudo apt install fonts-noto-cjk fonts-noto fonts-noto-core fonts-noto-ui-core fonts-wqy-zenhei 3. 导入订阅地址，开启代理 设置 关闭 IPV6 设置 勾选 系统代理 我这里科学上网使用的是魔戒，注册地址：https://mojie.</description>
-    </item>
-    <item>
-      <title>修改android系统ro.debuggable使全局可调试</title>
-      <link>https://cyrus-studio.github.io/blog/posts/%E4%BF%AE%E6%94%B9android%E7%B3%BB%E7%BB%9Fro.debuggable%E4%BD%BF%E5%85%A8%E5%B1%80%E5%8F%AF%E8%B0%83%E8%AF%95/</link>
-      <pubDate>Fri, 16 Aug 2024 00:04:11 +0800</pubDate>
-      <guid>https://cyrus-studio.github.io/blog/posts/%E4%BF%AE%E6%94%B9android%E7%B3%BB%E7%BB%9Fro.debuggable%E4%BD%BF%E5%85%A8%E5%B1%80%E5%8F%AF%E8%B0%83%E8%AF%95/</guid>
-      <description>版权归作者所有，如有转发，请注明文章出处：https://cyrus-studio.github.io/blog/&#xA;修改 android 系统 中的 ro.debuggable 属性使设备上所有 app 可调试。&#xA;下载MagiskHidePropsConf：https://github.com/Magisk-Modules-Repo/MagiskHidePropsConf/tags&#xA;把下载下来的MagiskHidePropsConf推送到手机sdcard上&#xA;adb push &amp;#34;D:\app逆向\MagiskHidePropsConf-v6.1.2.zip&amp;#34; /sdcard/ 安装MagiskHidePropsConf，打开Magick【模块】【本地安装】【选择MagiskHidePropsConf-v6.1.2.zi p】&#xA;重启手机，进入 adb shell&#xA;输入props&#xA;meri:/ # props&#xD;Loading... Please wait.&#xD;MagiskHide Props Config v6.1.2&#xD;by Didgeridoohan @ XDA Developers&#xD;=====================================&#xD;Updating fingerprints list&#xD;=====================================&#xD;Checking list version.&#xD;! File not downloaded!&#xD;Checking for module update.&#xD;! File not downloaded!&#xD;MagiskHide Props Config v6.1.2&#xD;by Didgeridoohan @ XDA Developers&#xD;=====================================&#xD;Select an option below.</description>
     </item>
     <item>
       <title>About</title>
