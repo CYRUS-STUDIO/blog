@@ -6,8 +6,15 @@
     <description>Recent content on CYRUS STUDIO</description>
     <generator>Hugo</generator>
     <language>zh-cn</language>
-    <lastBuildDate>Fri, 25 Jul 2025 03:30:50 +0800</lastBuildDate>
+    <lastBuildDate>Fri, 25 Jul 2025 04:01:52 +0800</lastBuildDate>
     <atom:link href="https://cyrus-studio.github.io/blog/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>手把手教你玩转 MagiskBoot：内核解包打包全流程</title>
+      <link>https://cyrus-studio.github.io/blog/posts/%E6%89%8B%E6%8A%8A%E6%89%8B%E6%95%99%E4%BD%A0%E7%8E%A9%E8%BD%AC-magiskboot%E5%86%85%E6%A0%B8%E8%A7%A3%E5%8C%85%E6%89%93%E5%8C%85%E5%85%A8%E6%B5%81%E7%A8%8B/</link>
+      <pubDate>Fri, 25 Jul 2025 04:01:52 +0800</pubDate>
+      <guid>https://cyrus-studio.github.io/blog/posts/%E6%89%8B%E6%8A%8A%E6%89%8B%E6%95%99%E4%BD%A0%E7%8E%A9%E8%BD%AC-magiskboot%E5%86%85%E6%A0%B8%E8%A7%A3%E5%8C%85%E6%89%93%E5%8C%85%E5%85%A8%E6%B5%81%E7%A8%8B/</guid>
+      <description>版权归作者所有，如有转发，请注明文章出处：https://cyrus-studio.github.io/blog/&#xA;MagiskBoot MagiskBoot 是 Magisk 项目的一个核心子组件，专门用于 解包、修改、重打包 Android 的 boot 镜像（boot.img）。&#xA;编译 MagiskBoot 编译环境准备 Windows下 启用开发者模式，因为需要 symbolic link 支持（编译过程中需要使用到符号链接） Symbolic Link（符号链接），也叫 软链接，是一种特殊类型的文件，它 指向另一个文件或目录，本身不保存数据，只起到“快捷通道”的作用。&#xA;类似于 Windows 中的 快捷方式（.lnk 文件），但更底层、更透明，对程序来说就像访问真实文件一样。&#xA;出于安全原因，Windows 默认不允许普通用户创建符号链接，防止恶意程序引导系统或用户操作到错误位置 。&#xA;安装 python3.8+，并配置PATH环境变量 # 查看python版本信息&#xD;py --version&#xD;# 查看所有已安装的 Python 解释器路径&#xD;py -0p git 启用 symbolic links # 启用 symbolic links&#xD;git config --global core.symlinks true&#xD;# 查看 git 配置&#xD;git config --global --list 安装 Android Studio ，设置环境变量 ANDROID_HOME 为 Android SDK 文件夹的路径。该路径可以在 Android Studio 的设置中找到。</description>
+    </item>
     <item>
       <title>Magisk 修改 ro.debuggable 开启 Android 系统全局调试模式</title>
       <link>https://cyrus-studio.github.io/blog/posts/magisk-%E4%BF%AE%E6%94%B9-ro.debuggable-%E5%BC%80%E5%90%AF-android-%E7%B3%BB%E7%BB%9F%E5%85%A8%E5%B1%80%E8%B0%83%E8%AF%95%E6%A8%A1%E5%BC%8F/</link>
@@ -700,13 +707,6 @@
       <pubDate>Sun, 01 Sep 2024 12:39:32 +0800</pubDate>
       <guid>https://cyrus-studio.github.io/blog/posts/%E7%BC%96%E8%AF%91lineageos%E6%A8%A1%E6%8B%9F%E5%99%A8%E9%95%9C%E5%83%8F%E5%AF%BC%E5%87%BA%E5%88%B0androidstudio/</guid>
       <description>版权归作者所有，如有转发，请注明文章出处：https://cyrus-studio.github.io/blog/&#xA;源码下载 LineageOS官网：https://lineageos.org/ LineageOS源码 github 地址：https://github.com/LineageOS/android LineageOS源码国内镜像地址：https://mirrors.tuna.tsinghua.edu.cn/help/lineageOS/&#xA;源码大概需要150GB的硬盘空间，编译完成差不多300G 1. 配置git git config --global user.email &amp;#34;you@example.com&amp;#34;&#xD;git config --global user.name &amp;#34;Your Name&amp;#34; 2. 安装 repo mkdir ~/bin&#xD;PATH=~/bin:$PATH&#xD;curl https://storage.googleapis.com/git-repo-downloads/repo &amp;gt; ~/bin/repo&#xD;chmod a+x ~/bin/repo 3. 安装 Git LFS sudo apt install git-lfs&#xD;git lfs install 4. 设置REPO_URL 找到 repo 所在路径&#xA;which repo 编辑 repo&#xA;nano /home/cyrus/bin/repo 可以看到repo会优先取环境变量中的REPO_URL，否则默认使用googlesource&#xA;Ctrl +X 退出nano&#xA;通过下面的命令设置 REPO_URL 环境变量，设置为清华大学镜像源，解决国内访问不了 googlesource 问题&#xA;export REPO_URL=https://mirrors.tuna.tsinghua.edu.cn/git/git-repo/ 5. 下载源码 创建目录</description>
-    </item>
-    <item>
-      <title>MagiskBoot编译&amp;解包&amp;打包boot.img</title>
-      <link>https://cyrus-studio.github.io/blog/posts/magiskboot%E7%BC%96%E8%AF%91%E8%A7%A3%E5%8C%85%E6%89%93%E5%8C%85boot.img/</link>
-      <pubDate>Thu, 29 Aug 2024 04:25:23 +0800</pubDate>
-      <guid>https://cyrus-studio.github.io/blog/posts/magiskboot%E7%BC%96%E8%AF%91%E8%A7%A3%E5%8C%85%E6%89%93%E5%8C%85boot.img/</guid>
-      <description>版权归作者所有，如有转发，请注明文章出处：https://cyrus-studio.github.io/blog/&#xA;编译环境准备 1. Windows下启用开发者模式，因为需要 symbolic link 支持 2. 安装 python3.8+，并配置PATH环境变量&#xA;# 查看python版本信息&#xD;py --version&#xD;# 查看所有已安装的 Python 解释器路径&#xD;py -0p 3. git 启用 symbolic links&#xA;# 启用 symbolic links&#xD;git config --global core.symlinks true&#xD;# 查看 git 配置&#xD;git config --global --list 4. 安装 Android Studio ，设置环境变量 ANDROID_HOME 为 Android SDK 文件夹的路径。该路径可以在 Android Studio 的设置中找到。&#xA;5. 下载 Magisk 源码&#xA;# 下载 Magisk 源码&#xD;git clone --recurse-submodules https://github.com/topjohnwu/Magisk.git&#xD;# 如果子模块克隆失败，可以手动克隆这些子模块。进入对应的子模块路径，然后执行以下命令&#xD;git submodule update --init --recursive 6.</description>
     </item>
     <item>
       <title>Linux下代理设置</title>

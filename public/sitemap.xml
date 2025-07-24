@@ -3,12 +3,15 @@
   xmlns:xhtml="http://www.w3.org/1999/xhtml">
   <url>
     <loc>https://cyrus-studio.github.io/blog/</loc>
-    <lastmod>2025-07-25T03:30:50+08:00</lastmod>
-  </url><url>
-    <loc>https://cyrus-studio.github.io/blog/posts/magisk-%E4%BF%AE%E6%94%B9-ro.debuggable-%E5%BC%80%E5%90%AF-android-%E7%B3%BB%E7%BB%9F%E5%85%A8%E5%B1%80%E8%B0%83%E8%AF%95%E6%A8%A1%E5%BC%8F/</loc>
-    <lastmod>2025-07-25T03:30:50+08:00</lastmod>
+    <lastmod>2025-07-25T04:01:52+08:00</lastmod>
   </url><url>
     <loc>https://cyrus-studio.github.io/blog/posts/</loc>
+    <lastmod>2025-07-25T04:01:52+08:00</lastmod>
+  </url><url>
+    <loc>https://cyrus-studio.github.io/blog/posts/%E6%89%8B%E6%8A%8A%E6%89%8B%E6%95%99%E4%BD%A0%E7%8E%A9%E8%BD%AC-magiskboot%E5%86%85%E6%A0%B8%E8%A7%A3%E5%8C%85%E6%89%93%E5%8C%85%E5%85%A8%E6%B5%81%E7%A8%8B/</loc>
+    <lastmod>2025-07-25T04:01:52+08:00</lastmod>
+  </url><url>
+    <loc>https://cyrus-studio.github.io/blog/posts/magisk-%E4%BF%AE%E6%94%B9-ro.debuggable-%E5%BC%80%E5%90%AF-android-%E7%B3%BB%E7%BB%9F%E5%85%A8%E5%B1%80%E8%B0%83%E8%AF%95%E6%A8%A1%E5%BC%8F/</loc>
     <lastmod>2025-07-25T03:30:50+08:00</lastmod>
   </url><url>
     <loc>https://cyrus-studio.github.io/blog/posts/%E5%B0%8F%E7%B1%B3%E5%88%B7%E6%9C%BA%E5%85%A8%E6%94%BB%E7%95%A5%E8%A7%A3%E9%94%81bl%E5%88%B7%E6%9C%BAroot-%E4%B8%80%E6%AD%A5%E5%88%B0%E4%BD%8D/</loc>
@@ -304,9 +307,6 @@
   </url><url>
     <loc>https://cyrus-studio.github.io/blog/posts/%E7%BC%96%E8%AF%91lineageos%E6%A8%A1%E6%8B%9F%E5%99%A8%E9%95%9C%E5%83%8F%E5%AF%BC%E5%87%BA%E5%88%B0androidstudio/</loc>
     <lastmod>2024-09-01T12:39:32+08:00</lastmod>
-  </url><url>
-    <loc>https://cyrus-studio.github.io/blog/posts/magiskboot%E7%BC%96%E8%AF%91%E8%A7%A3%E5%8C%85%E6%89%93%E5%8C%85boot.img/</loc>
-    <lastmod>2024-08-29T04:25:23+08:00</lastmod>
   </url><url>
     <loc>https://cyrus-studio.github.io/blog/posts/linux%E4%B8%8B%E4%BB%A3%E7%90%86%E8%AE%BE%E7%BD%AE/</loc>
     <lastmod>2024-08-29T04:25:16+08:00</lastmod>
