@@ -6,8 +6,15 @@
     <description>Recent content in Posts on CYRUS STUDIO</description>
     <generator>Hugo</generator>
     <language>zh-cn</language>
-    <lastBuildDate>Fri, 25 Jul 2025 02:01:18 +0800</lastBuildDate>
+    <lastBuildDate>Fri, 25 Jul 2025 02:53:13 +0800</lastBuildDate>
     <atom:link href="https://cyrus-studio.github.io/blog/posts/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>教你从零刷入 LineageOS：Recovery &#43; Sideload 全流程实操指南</title>
+      <link>https://cyrus-studio.github.io/blog/posts/%E6%95%99%E4%BD%A0%E4%BB%8E%E9%9B%B6%E5%88%B7%E5%85%A5-lineageosrecovery-&#43;-sideload-%E5%85%A8%E6%B5%81%E7%A8%8B%E5%AE%9E%E6%93%8D%E6%8C%87%E5%8D%97/</link>
+      <pubDate>Fri, 25 Jul 2025 02:53:13 +0800</pubDate>
+      <guid>https://cyrus-studio.github.io/blog/posts/%E6%95%99%E4%BD%A0%E4%BB%8E%E9%9B%B6%E5%88%B7%E5%85%A5-lineageosrecovery-&#43;-sideload-%E5%85%A8%E6%B5%81%E7%A8%8B%E5%AE%9E%E6%93%8D%E6%8C%87%E5%8D%97/</guid>
+      <description>版权归作者所有，如有转发，请注明文章出处：https://cyrus-studio.github.io/blog/&#xA;LineageOS 简介 LineageOS 是一个基于 Android 开源项目（AOSP）的开源操作系统，主要由社区开发者维护。它起源于 CyanogenMod 项目，该项目于 2016 年关闭后，LineageOS 成为了其继任者。&#xA;主要特点：&#xA;开源：所有源代码都是开源的，任何人都可以查看、修改和分发。&#xA;无预装垃圾软件：相比一些预装大量应用的定制 ROM，LineageOS 保持了简洁和干净的系统环境。&#xA;定期更新：社区提供持续的安全补丁和新功能更新。&#xA;广泛设备支持：支持各种品牌和型号的设备，尤其是一些官方已停止支持的老旧设备。&#xA;隐私保护：LineageOS 提供了增强的隐私保护功能，如权限管理器和私密模式。&#xA;注意：在刷机之前，请确认你的设备已经解除BL锁。&#xA;下载 LineageOS 开始刷机之前，先在 LineageOS官网 找到自己的设备型号，下载对应的刷机包&#xA;或者下载 LineageOS 源码 自己编译系统&#xA;下载 GMS套件包 （可选）&#xA;刷机环境准备 在 Linux 中配置 Android SDK Platform-Tools，可以按照以下步骤进行&#xA;1. 下载 Android SDK Platform-Tools： # cd 到存放 platform-tools 的目录&#xD;cd /mnt/case_sensitive&#xD;# 下载 platform-tools&#xD;wget https://dl.google.com/android/repository/platform-tools-latest-linux.zip&#xD;# 解压 platform-tools&#xD;unzip platform-tools-latest-linux.zip 2. 配置环境变量： 为了在任何地方都能使用 adb 和 fastboot 命令，你需要将 platform-tools 目录添加到你的 PATH 中。</description>
+    </item>
     <item>
       <title>搞懂 Android Hook 的两大核心：PLT Hook 与 Inline Hook 全解析</title>
       <link>https://cyrus-studio.github.io/blog/posts/%E6%90%9E%E6%87%82-android-hook-%E7%9A%84%E4%B8%A4%E5%A4%A7%E6%A0%B8%E5%BF%83plt-hook-%E4%B8%8E-inline-hook-%E5%85%A8%E8%A7%A3%E6%9E%90/</link>
@@ -436,13 +443,6 @@
       <description>版权归作者所有，如有转发，请注明文章出处：https://cyrus-studio.github.io/blog/&#xA;FART 源码 FART 是 ART 环境下基于主动调用的自动化脱壳方案。&#xA;关于 FART 详细介绍参考：&#xA;FART 自动化脱壳框架简介与脱壳点的选择&#xA;FART 主动调用组件设计和源码分析&#xA;开源地址：https://github.com/hanbinglengyue/FART&#xA;目前 FART 是基于 Android 6.0 实现，源码文件结构如下：&#xA;把 FART 源码移植到 LineageOS 17.1（Android 10）。&#xA;关于 LineageOS 源码的下载与编译参考：LineageOS源码下载和编译（Xiaomi Mi 6X，wayne）&#xA;移植 FART 到 Android 10 对比 android 6.0 中的源码和 FART 的源码找到修改的地方并移植到 Android 10 源码中&#xA;interpreter.cc 路径：art/runtime/interpreter/interpreter.cc&#xA;Android 6.0 源码：https://cs.android.com/android/platform/superproject/+/android-6.0.0_r1:art/runtime/interpreter/interpreter.cc&#xA;namespace art 中增加 dumpDexFileByExecute 函数声明&#xA;//add&#xD;extern &amp;#34;C&amp;#34; void dumpDexFileByExecute(ArtMethod* artmethod); 在 Execute 函数头部增加 dumpDexFileByExecute 调用&#xA;static inline JValue Execute(&#xD;Thread* self,&#xD;const CodeItemDataAccessor&amp;amp; accessor,&#xD;ShadowFrame&amp;amp; shadow_frame,&#xD;JValue result_register,&#xD;bool stay_in_interpreter = false,&#xD;bool from_deoptimize = false) REQUIRES_SHARED(Locks::mutator_lock_) {&#xD;//add&#xD;LOG(INFO) &amp;lt;&amp;lt; &amp;#34;[Execute]&amp;#34; &amp;lt;&amp;lt; shadow_frame.</description>
     </item>
     <item>
-      <title>LineageOS源码下载和编译（Xiaomi Mi 6X，wayne）</title>
-      <link>https://cyrus-studio.github.io/blog/posts/lineageos%E6%BA%90%E7%A0%81%E4%B8%8B%E8%BD%BD%E5%92%8C%E7%BC%96%E8%AF%91xiaomi-mi-6xwayne/</link>
-      <pubDate>Tue, 20 May 2025 19:30:05 +0800</pubDate>
-      <guid>https://cyrus-studio.github.io/blog/posts/lineageos%E6%BA%90%E7%A0%81%E4%B8%8B%E8%BD%BD%E5%92%8C%E7%BC%96%E8%AF%91xiaomi-mi-6xwayne/</guid>
-      <description>版权归作者所有，如有转发，请注明文章出处：https://cyrus-studio.github.io/blog/&#xA;源码下载 LineageOS官网：https://lineageos.org/&#xA;LineageOS源码 github 地址：https://github.com/LineageOS/android&#xA;LineageOS源码国内镜像地址：https://mirrors.tuna.tsinghua.edu.cn/help/lineageOS/&#xA;源码大概需要150GB的硬盘空间，编译完成差不多300G&#xA;1. 配置git git config --global user.email &amp;#34;you@example.com&amp;#34;&#xD;git config --global user.name &amp;#34;Your Name&amp;#34; 2. 安装 repo mkdir ~/bin&#xD;PATH=~/bin:$PATH&#xD;curl https://storage.googleapis.com/git-repo-downloads/repo &amp;gt; ~/bin/repo&#xD;chmod a+x ~/bin/repo 3. 安装 Git LFS sudo apt install git-lfs&#xD;git lfs install 4. 安装 Android SDK Platform-Tools 在 Linux 中配置 Android SDK Platform-Tools，可以按照以下步骤进行&#xA;4.1 下载 Android SDK Platform-Tools： # cd 到存放 platform-tools 的目录&#xD;cd /mnt/case_sensitive&#xD;# 下载 platform-tools&#xD;wget https://dl.</description>
-    </item>
-    <item>
       <title>FART 自动化脱壳框架简介与脱壳点的选择</title>
       <link>https://cyrus-studio.github.io/blog/posts/fart-%E8%87%AA%E5%8A%A8%E5%8C%96%E8%84%B1%E5%A3%B3%E6%A1%86%E6%9E%B6%E7%AE%80%E4%BB%8B%E4%B8%8E%E8%84%B1%E5%A3%B3%E7%82%B9%E7%9A%84%E9%80%89%E6%8B%A9/</link>
       <pubDate>Mon, 19 May 2025 23:35:03 +0800</pubDate>
@@ -672,13 +672,6 @@
       <pubDate>Sun, 15 Sep 2024 13:27:26 +0800</pubDate>
       <guid>https://cyrus-studio.github.io/blog/posts/android%E6%BA%90%E7%A0%81%E5%AF%BC%E5%85%A5android-studio/</guid>
       <description>版权归作者所有，如有转发，请注明文章出处：https://cyrus-studio.github.io/blog/&#xA;前言 需要先把 Android 源码编译一遍 然后执行下面指令就可以导入android源码了&#xA;关于 Android 源码编译可以参考这篇文章【LineageOS源码下载和编译（Xiaomi Mi 6X，wayne）】。&#xA;生成 android.ipr 文件 1. 进入到下面的目录&#xA;cd ./development/tools/idegen 2. 使用 mm 命令对当前目录 make，构建 idegen 模块&#xA;mm 执行完成后会在 out 目录生成一个 idegen.jar 文件&#xA;3. 回到 android 源码根目录，执行 idegen.sh 脚本（需要管理员权限）&#xA;# 回到 android 源码根目录&#xD;croot&#xD;# 执行 idegen.sh 脚本&#xD;sudo ./development/tools/idegen/idegen.sh 4. 执行完成后会生成一个 android.ipr 文件，用 android studio 打开这个 android.ipr 文件就可以完成 android 源码的导入了 运行 idegen.sh 脚本时遇到的问题 在运行 development/tools/idegen/idegen.sh 脚本时遇到的问题&#xA;1. 文件系统循环 find: File system loop detected 错误表示在使用 find 命令时遇到了符号链接循环。这通常不会导致脚本失败，但确实会产生一些额外的警告信息。</description>
-    </item>
-    <item>
-      <title>LineageOS刷机教程</title>
-      <link>https://cyrus-studio.github.io/blog/posts/lineageos%E5%88%B7%E6%9C%BA%E6%95%99%E7%A8%8B/</link>
-      <pubDate>Sun, 15 Sep 2024 01:50:08 +0800</pubDate>
-      <guid>https://cyrus-studio.github.io/blog/posts/lineageos%E5%88%B7%E6%9C%BA%E6%95%99%E7%A8%8B/</guid>
-      <description>版权归作者所有，如有转发，请注明文章出处：https://cyrus-studio.github.io/blog/&#xA;LineageOS 是一个基于 Android 开源项目（AOSP）的开源操作系统，主要由社区开发者维护。它起源于 CyanogenMod 项目，该项目于 2016 年关闭后，LineageOS 成为了其继任者。&#xA;主要特点：&#xA;开源：所有源代码都是开源的，任何人都可以查看、修改和分发。&#xA;无预装垃圾软件：相比一些预装大量应用的定制 ROM，LineageOS 保持了简洁和干净的系统环境。&#xA;定期更新：社区提供持续的安全补丁和新功能更新。&#xA;广泛设备支持：支持各种品牌和型号的设备，尤其是一些官方已停止支持的老旧设备。&#xA;隐私保护：LineageOS 提供了增强的隐私保护功能，如权限管理器和私密模式。&#xA;注意：在刷机之前，请确认你的设备已经解除BL锁。&#xA;LineageOS 开始刷机之前，先在 LineageOS官网 找到自己的设备型号，下载对应的刷机包&#xA;或者下载 LineageOS 源码 自己编译系统&#xA;下载 GMS套件包 （可选） 刷机环境准备 在 Linux 中配置 Android SDK Platform-Tools，可以按照以下步骤进行&#xA;1. 下载 Android SDK Platform-Tools： # cd 到存放 platform-tools 的目录&#xD;cd /mnt/case_sensitive&#xD;# 下载 platform-tools&#xD;wget https://dl.google.com/android/repository/platform-tools-latest-linux.zip&#xD;# 解压 platform-tools&#xD;unzip platform-tools-latest-linux.zip 2. 配置环境变量： 为了在任何地方都能使用 adb 和 fastboot 命令，你需要将 platform-tools 目录添加到你的 PATH 中。</description>
     </item>
     <item>
       <title>小米手机解除BL锁&amp;刷机&amp;root</title>
