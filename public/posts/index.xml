@@ -6,8 +6,36 @@
     <description>Recent content in Posts on CYRUS STUDIO</description>
     <generator>Hugo</generator>
     <language>zh-cn</language>
-    <lastBuildDate>Mon, 21 Jul 2025 01:36:07 +0800</lastBuildDate>
+    <lastBuildDate>Fri, 25 Jul 2025 02:01:18 +0800</lastBuildDate>
     <atom:link href="https://cyrus-studio.github.io/blog/posts/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>搞懂 Android Hook 的两大核心：PLT Hook 与 Inline Hook 全解析</title>
+      <link>https://cyrus-studio.github.io/blog/posts/%E6%90%9E%E6%87%82-android-hook-%E7%9A%84%E4%B8%A4%E5%A4%A7%E6%A0%B8%E5%BF%83plt-hook-%E4%B8%8E-inline-hook-%E5%85%A8%E8%A7%A3%E6%9E%90/</link>
+      <pubDate>Fri, 25 Jul 2025 02:01:18 +0800</pubDate>
+      <guid>https://cyrus-studio.github.io/blog/posts/%E6%90%9E%E6%87%82-android-hook-%E7%9A%84%E4%B8%A4%E5%A4%A7%E6%A0%B8%E5%BF%83plt-hook-%E4%B8%8E-inline-hook-%E5%85%A8%E8%A7%A3%E6%9E%90/</guid>
+      <description>版权归作者所有，如有转发，请注明文章出处：https://cyrus-studio.github.io/blog/&#xA;前言 在 Android Native 层开发和逆向分析中，Hook 技术是一项绕不开的核心能力。&#xA;Hook 技术是一种在应用运行时拦截或替换系统或自身函数行为的手段，常见实现包括 PLT Hook、Inline Hook。&#xA;PLT Hook 和 Inline Hook 是两种不同层次和机制的函数 Hook 技术，常用于逆向工程、安全分析、壳保护或热修复等场景。&#xA;PLT hook 和 Inline hook 有什么区别？ 特性 PLT Hook（符号级） Inline Hook（指令级） Hook 层级 链接层（.plt 或 GOT） 指令层（函数入口指令） Hook 对象 动态库导出的函数 任意函数（不一定导出） 修改内容 修改函数地址指针 修改指令流（如跳转指令） Hook 粒度 通常是库间调用 可以精确到任意函数、库内调用 稳定性 较高 稍差（依赖指令结构、架构） 跨平台兼容性 更好 架构相关（ARM32/ARM64） PLT Hook 原理（也叫 GOT Hook） ELF 中动态链接时使用 PLT（Procedure Linkage Table） 和 GOT（Global Offset Table） ；</description>
+    </item>
+    <item>
+      <title>如何实现 Android App 的抓包防护？又该如何绕过？一文看懂攻防博弈</title>
+      <link>https://cyrus-studio.github.io/blog/posts/%E5%A6%82%E4%BD%95%E5%AE%9E%E7%8E%B0-android-app-%E7%9A%84%E6%8A%93%E5%8C%85%E9%98%B2%E6%8A%A4%E5%8F%88%E8%AF%A5%E5%A6%82%E4%BD%95%E7%BB%95%E8%BF%87%E4%B8%80%E6%96%87%E7%9C%8B%E6%87%82%E6%94%BB%E9%98%B2%E5%8D%9A%E5%BC%88/</link>
+      <pubDate>Fri, 25 Jul 2025 02:01:17 +0800</pubDate>
+      <guid>https://cyrus-studio.github.io/blog/posts/%E5%A6%82%E4%BD%95%E5%AE%9E%E7%8E%B0-android-app-%E7%9A%84%E6%8A%93%E5%8C%85%E9%98%B2%E6%8A%A4%E5%8F%88%E8%AF%A5%E5%A6%82%E4%BD%95%E7%BB%95%E8%BF%87%E4%B8%80%E6%96%87%E7%9C%8B%E6%87%82%E6%94%BB%E9%98%B2%E5%8D%9A%E5%BC%88/</guid>
+      <description>版权归作者所有，如有转发，请注明文章出处：https://cyrus-studio.github.io/blog/&#xA;Android 下常见反抓包方案 常见反抓包手段：&#xA;No Proxy（禁用代理）&#xA;启用 HTTPS + SSL Pinning&#xA;使用 DNS-over-HTTPS / DoT（隐藏 DNS 请求）&#xA;检查系统代理（Java 层检查 System.getProperty(&amp;ldquo;http.proxyHost&amp;rdquo;)）&#xA;检测 VPN 或 adb 代理&#xA;使用 native 层自己实现网络请求（绕过 Java 层）&#xA;证书双向校验&#xA;No Proxy（无代理模式） 所谓 “无代理模式” 实际上是通过主动避免走系统代理，从而规避传统的中间人抓包。&#xA;设置 OkHttp 不使用系统代理，直接访问服务器：&#xA;val client = OkHttpClient.Builder()&#xD;.proxy(Proxy.NO_PROXY) // 禁用系统代理&#xD;.build() 设置 NO_PROXY 后，Charles 并没有抓取到 httpbin.org 相关请求&#xA;App 中请求 httpbin.org 正常&#xA;通过 VPN 绕过 No Proxy 如果使用 VPN 或全局代理，NO_PROXY 也无法绕过抓包。比如，通过第三方代理应用 Drony 强制 APP 走代理。</description>
+    </item>
+    <item>
+      <title>ADB 命令使用大全（建议收藏） Android 调试必备</title>
+      <link>https://cyrus-studio.github.io/blog/posts/adb-%E5%91%BD%E4%BB%A4%E4%BD%BF%E7%94%A8%E5%A4%A7%E5%85%A8%E5%BB%BA%E8%AE%AE%E6%94%B6%E8%97%8F-android-%E8%B0%83%E8%AF%95%E5%BF%85%E5%A4%87/</link>
+      <pubDate>Fri, 25 Jul 2025 02:01:16 +0800</pubDate>
+      <guid>https://cyrus-studio.github.io/blog/posts/adb-%E5%91%BD%E4%BB%A4%E4%BD%BF%E7%94%A8%E5%A4%A7%E5%85%A8%E5%BB%BA%E8%AE%AE%E6%94%B6%E8%97%8F-android-%E8%B0%83%E8%AF%95%E5%BF%85%E5%A4%87/</guid>
+      <description>版权归作者所有，如有转发，请注明文章出处：https://cyrus-studio.github.io/blog/&#xA;基础adb命令 # 重启adb adb kill-server&#xD;# 查看已连接的设备&#xD;adb devices&#xD;# 进入命令行&#xD;adb shell&#xD;# 使用 -s 参数来指定设备&#xD;adb -s &amp;lt;设备序列号&amp;gt; shell&#xD;# 显示日志&#xD;adb logcat 获取 API Level 进入 adb shell ，执行下面命令获取当前 Android 系统的 API Level（即 SDK 版本）：&#xA;getprop ro.build.version.sdk 以下是 Android 版本与 API Level 的对应表 （截至 Android 15）：&#xA;Android 版本 API Level 代号 发布时间 Android 15 35 Vanilla Ice Cream 2024年9月 Android 14 34 Upside Down Cake 2023年10月 Android 13 33 Tiramisu 2022年8月 Android 12L 32 2022年3月 Android 12 31 Snow Cone 2021年10月 Android 11 30 Red Velvet Cake 2020年9月 Android 10 29 Q 2019年9月 Android 9 28 Pie 2018年8月 Android 8.</description>
+    </item>
+    <item>
+      <title>一键反编译、签名、安装 APK！手把手带你玩转 ApkTool &#43; 签名工具</title>
+      <link>https://cyrus-studio.github.io/blog/posts/%E4%B8%80%E9%94%AE%E5%8F%8D%E7%BC%96%E8%AF%91%E7%AD%BE%E5%90%8D%E5%AE%89%E8%A3%85-apk%E6%89%8B%E6%8A%8A%E6%89%8B%E5%B8%A6%E4%BD%A0%E7%8E%A9%E8%BD%AC-apktool-&#43;-%E7%AD%BE%E5%90%8D%E5%B7%A5%E5%85%B7/</link>
+      <pubDate>Fri, 25 Jul 2025 02:01:16 +0800</pubDate>
+      <guid>https://cyrus-studio.github.io/blog/posts/%E4%B8%80%E9%94%AE%E5%8F%8D%E7%BC%96%E8%AF%91%E7%AD%BE%E5%90%8D%E5%AE%89%E8%A3%85-apk%E6%89%8B%E6%8A%8A%E6%89%8B%E5%B8%A6%E4%BD%A0%E7%8E%A9%E8%BD%AC-apktool-&#43;-%E7%AD%BE%E5%90%8D%E5%B7%A5%E5%85%B7/</guid>
+      <description>版权归作者所有，如有转发，请注明文章出处：https://cyrus-studio.github.io/blog/&#xA;ApkTool 简介 apktool 用于对 Android 应用（.apk 文件）进行 反编译 和 重打包（回编译）。它可以将 APK 中的资源文件、AndroidManifest.xml 以及 DEX 代码（转换为 smali 代码）提取出来并可编辑，便于进行逆向分析、修改资源或注入逻辑等操作。&#xA;官网：https://apktool.org/&#xA;使用 ApkTool 反编译和回编译 APK 从官网下载 apktool 的 jar 文件到本地，需要 Java 环境（JDK 8+）。&#xA;1. 反编译 APK apktool d myapp.apk&#xD;# 或指定输出目录&#xD;apktool d myapp.apk -o myapp_decoded 会得到如下结构：&#xA;myapp_decoded/&#xD;├── AndroidManifest.xml&#xD;├── smali/ &amp;lt;-- 反编译后的 Java 代码（smali）&#xD;├── res/ &amp;lt;-- 资源文件&#xD;├── assets/&#xD;└── original/ &amp;lt;-- 原始META信息 你可以：&#xA;编辑 res/layout 里的 XML 修改 UI；</description>
+    </item>
     <item>
       <title>深入理解 Android 热修复机制：掌握 dexElements 注入技巧</title>
       <link>https://cyrus-studio.github.io/blog/posts/%E6%B7%B1%E5%85%A5%E7%90%86%E8%A7%A3-android-%E7%83%AD%E4%BF%AE%E5%A4%8D%E6%9C%BA%E5%88%B6%E6%8E%8C%E6%8F%A1-dexelements-%E6%B3%A8%E5%85%A5%E6%8A%80%E5%B7%A7/</link>
@@ -56,13 +84,6 @@
       <pubDate>Sat, 19 Jul 2025 00:37:35 +0800</pubDate>
       <guid>https://cyrus-studio.github.io/blog/posts/%E5%BD%BB%E5%BA%95%E6%90%9E%E6%87%82-retrofit%E4%BD%BF%E7%94%A8%E5%B0%81%E8%A3%85%E4%B8%8E-converter-%E5%8E%9F%E7%90%86/</guid>
       <description>版权归作者所有，如有转发，请注明文章出处：https://cyrus-studio.github.io/blog/&#xA;Retrofit 简介 Retrofit 是 Square 公司开发的一个 类型安全的 HTTP 网络请求库，广泛应用于 Android 开发中。它极大地简化了 REST API 的调用方式，让网络请求就像调用本地接口一样简单。&#xA;基于 OkHttp 实现底层通信，提供了：&#xA;注解方式定义 API 接口&#xA;自动将 JSON/XML 响应解析为 Java/Kotlin 对象&#xA;支持多种 Converter（如 Gson、Moshi、Protobuf）&#xA;支持协程、RxJava、LiveData 等异步处理方式&#xA;与 OkHttp 关系：&#xA;Retrofit 是高级封装，负责将请求/响应转换为 Java 对象&#xA;OkHttp 是底层网络传输库，处理连接、缓存、拦截器等&#xA;Retrofit 默认使用 OkHttp，可以无缝集成 OkHttp 的功能（如添加 Token 拦截器）&#xA;开源地址：https://github.com/square/retrofit&#xA;集成 Retrofit 在 app 的 build.gradle.kts 添加如下依赖：&#xA;// Retrofit 核心库&#xD;implementation(&amp;#34;com.squareup.retrofit2:retrofit:2.9.0&amp;#34;)&#xD;// JSON 转换器（使用 Gson）&#xD;implementation(&amp;#34;com.squareup.retrofit2:converter-gson:2.9.0&amp;#34;)&#xD;// OkHttp&#xD;implementation(&amp;#34;com.squareup.okhttp3:okhttp:4.12.0&amp;#34;)&#xD;// OkHttp 日志拦截器（可选，用于调试）&#xD;implementation(&amp;#34;com.</description>
-    </item>
-    <item>
-      <title>ADB 命令使用大全（建议收藏） Android 调试必备</title>
-      <link>https://cyrus-studio.github.io/blog/posts/adb-%E5%91%BD%E4%BB%A4%E4%BD%BF%E7%94%A8%E5%A4%A7%E5%85%A8%E5%BB%BA%E8%AE%AE%E6%94%B6%E8%97%8F-android-%E8%B0%83%E8%AF%95%E5%BF%85%E5%A4%87/</link>
-      <pubDate>Thu, 17 Jul 2025 19:14:56 +0800</pubDate>
-      <guid>https://cyrus-studio.github.io/blog/posts/adb-%E5%91%BD%E4%BB%A4%E4%BD%BF%E7%94%A8%E5%A4%A7%E5%85%A8%E5%BB%BA%E8%AE%AE%E6%94%B6%E8%97%8F-android-%E8%B0%83%E8%AF%95%E5%BF%85%E5%A4%87/</guid>
-      <description>版权归作者所有，如有转发，请注明文章出处：https://cyrus-studio.github.io/blog/&#xA;基础adb命令 # 重启adb adb kill-server&#xD;# 查看已连接的设备&#xD;adb devices&#xD;# 进入命令行&#xD;adb shell&#xD;# 使用 -s 参数来指定设备&#xD;adb -s &amp;lt;设备序列号&amp;gt; shell&#xD;# 显示日志&#xD;adb logcat 获取 API Level 进入 adb shell ，执行下面命令获取当前 Android 系统的 API Level（即 SDK 版本）：&#xA;getprop ro.build.version.sdk 以下是 Android 版本与 API Level 的对应表 （截至 Android 15）：&#xA;Android 版本 API Level 代号 发布时间 Android 15 35 Vanilla Ice Cream 2024年9月 Android 14 34 Upside Down Cake 2023年10月 Android 13 33 Tiramisu 2022年8月 Android 12L 32 2022年3月 Android 12 31 Snow Cone 2021年10月 Android 11 30 Red Velvet Cake 2020年9月 Android 10 29 Q 2019年9月 Android 9 28 Pie 2018年8月 Android 8.</description>
     </item>
     <item>
       <title>Unidbg Trace 实战：一步步还原 OLLVM 控制流平坦化算法</title>
@@ -212,13 +233,6 @@
       <description>版权归作者所有，如有转发，请注明文章出处：https://cyrus-studio.github.io/blog/&#xA;Capstone 简介 Capstone 是一个强大的多平台开源反汇编框架，用于将机器码翻译为汇编代码。&#xA;官网：https://www.capstone-engine.org/&#xA;源码地址：https://github.com/capstone-engine/capstone&#xA;文档：https://www.capstone-engine.org/documentation.html&#xA;相关应用：&#xA;Radare2 内部使用 Capstone 作为其反汇编引擎之一。&#xA;Frida 的底层核心使用 Capstone 作为反汇编引擎，用于分析运行时的指令流、解码和显示二进制代码（例如，用户可以通过 Frida 的 API 获取内存中的指令数据，并使用 Capstone 对其进行解码和分析。）&#xA;使用 Capstone 反汇编 .so 文件中的机器码 要反汇编 .so 文件，首先需要提取其中的代码段内容（通常为 .text 段），然后利用 Capstone 进行反汇编。&#xA;1. 安装 capstone pip install capstone 2. 提取 .so 文件中的代码段 使用 readelf 工具获取 .text 段的偏移和大小（ -A 1：表示匹配行后再输出 1 行）：&#xA;readelf -S libvmp-lib.so | grep -A 1 .text&#xD;[14] .text PROGBITS 000000000009d480 0009d480&#xD;00000000000af0f8 0000000000000000 AX 0 0 16 关键信息：</description>
     </item>
     <item>
-      <title>如何实现 Android App 的抓包防护？又该如何绕过？一文看懂攻防博弈</title>
-      <link>https://cyrus-studio.github.io/blog/posts/%E5%A6%82%E4%BD%95%E5%AE%9E%E7%8E%B0-android-app-%E7%9A%84%E6%8A%93%E5%8C%85%E9%98%B2%E6%8A%A4%E5%8F%88%E8%AF%A5%E5%A6%82%E4%BD%95%E7%BB%95%E8%BF%87%E4%B8%80%E6%96%87%E7%9C%8B%E6%87%82%E6%94%BB%E9%98%B2%E5%8D%9A%E5%BC%88/</link>
-      <pubDate>Wed, 02 Jul 2025 03:12:27 +0800</pubDate>
-      <guid>https://cyrus-studio.github.io/blog/posts/%E5%A6%82%E4%BD%95%E5%AE%9E%E7%8E%B0-android-app-%E7%9A%84%E6%8A%93%E5%8C%85%E9%98%B2%E6%8A%A4%E5%8F%88%E8%AF%A5%E5%A6%82%E4%BD%95%E7%BB%95%E8%BF%87%E4%B8%80%E6%96%87%E7%9C%8B%E6%87%82%E6%94%BB%E9%98%B2%E5%8D%9A%E5%BC%88/</guid>
-      <description>版权归作者所有，如有转发，请注明文章出处：https://cyrus-studio.github.io/blog/&#xA;Android 下常见反抓包方案 常见反抓包手段：&#xA;No Proxy（禁用代理）&#xA;启用 HTTPS + SSL Pinning&#xA;使用 DNS-over-HTTPS / DoT（隐藏 DNS 请求）&#xA;检查系统代理（Java 层检查 System.getProperty(&amp;ldquo;http.proxyHost&amp;rdquo;)）&#xA;检测 VPN 或 adb 代理&#xA;使用 native 层自己实现网络请求（绕过 Java 层）&#xA;证书双向校验&#xA;No Proxy（无代理模式） 所谓 “无代理模式” 实际上是通过主动避免走系统代理，从而规避传统的中间人抓包。&#xA;设置 OkHttp 不使用系统代理，直接访问服务器：&#xA;val client = OkHttpClient.Builder()&#xD;.proxy(Proxy.NO_PROXY) // 禁用系统代理&#xD;.build() 设置 NO_PROXY 后，Charles 并没有抓取到 httpbin.org 相关请求&#xA;App 中请求 httpbin.org 正常&#xA;通过 VPN 绕过 No Proxy 如果使用 VPN 或全局代理，NO_PROXY 也无法绕过抓包。比如，通过第三方代理应用 Drony 强制 APP 走代理。</description>
-    </item>
-    <item>
       <title>逆向还原变异 CRC32 算法：Unicorn &#43; 汇编分析 &#43; 模拟执行</title>
       <link>https://cyrus-studio.github.io/blog/posts/%E9%80%86%E5%90%91%E8%BF%98%E5%8E%9F%E5%8F%98%E5%BC%82-crc32-%E7%AE%97%E6%B3%95unicorn-&#43;-%E6%B1%87%E7%BC%96%E5%88%86%E6%9E%90-&#43;-%E6%A8%A1%E6%8B%9F%E6%89%A7%E8%A1%8C/</link>
       <pubDate>Sun, 29 Jun 2025 16:51:34 +0800</pubDate>
@@ -357,13 +371,6 @@
       <pubDate>Wed, 18 Jun 2025 16:50:01 +0800</pubDate>
       <guid>https://cyrus-studio.github.io/blog/posts/%E4%B8%80%E6%96%87%E6%90%9E%E6%87%82%E5%A6%82%E4%BD%95%E4%BD%BF%E7%94%A8-frida-hook-android-app/</guid>
       <description>版权归作者所有，如有转发，请注明文章出处：https://cyrus-studio.github.io/blog/&#xA;Frida Frida 通过注入自定义 JavaScript 代码，可以 Hook 函数、修改参数、监控函数调用和拦截返回值，适用于逆向工程、调试和安全分析等场景。&#xA;使用 Frida 前需要先下载和安装包括：&#xA;Frida 是核心库，提供 API 和功能。&#xA;Frida-Tool 是命令行工具，通常与 Frida 版本相对应。&#xA;Frida-Server 是运行在 Android 设备上的服务器端组件，允许 Frida 客户端与设备进行通信。&#xA;环境准备 1. 安装 frida 和 frida-tools pip install frida-tools 2. frida server 获取设备CPU架构&#xA;adb shell getprop ro.product.cpu.abi 下载与设备对应架构的 frida-server：https://github.com/frida/frida/releases&#xA;把 frida-server 推送到设备 /data/local/tmp 目录下&#xA;adb push D:\app逆向\Frida\frida-server-16.5.2-android-arm64 /data/local/tmp/fs 启动 frida-server&#xA;# 启用超级管理员&#xD;adb root&#xD;# 进入命令行&#xD;adb shell # 添加可执行权限&#xD;chmod +x /data/local/tmp/fs&#xD;# 启动frida-server&#xD;/data/local/tmp/fs 3.</description>
-    </item>
-    <item>
-      <title>搞懂 Android Hook 的两大核心：PLT Hook 与 Inline Hook 全解析</title>
-      <link>https://cyrus-studio.github.io/blog/posts/%E6%90%9E%E6%87%82-android-hook-%E7%9A%84%E4%B8%A4%E5%A4%A7%E6%A0%B8%E5%BF%83plt-hook-%E4%B8%8E-inline-hook-%E5%85%A8%E8%A7%A3%E6%9E%90/</link>
-      <pubDate>Tue, 17 Jun 2025 04:05:05 +0800</pubDate>
-      <guid>https://cyrus-studio.github.io/blog/posts/%E6%90%9E%E6%87%82-android-hook-%E7%9A%84%E4%B8%A4%E5%A4%A7%E6%A0%B8%E5%BF%83plt-hook-%E4%B8%8E-inline-hook-%E5%85%A8%E8%A7%A3%E6%9E%90/</guid>
-      <description>版权归作者所有，如有转发，请注明文章出处：https://cyrus-studio.github.io/blog/&#xA;前言 在 Android Native 层开发和逆向分析中，Hook 技术是一项绕不开的核心能力。&#xA;Hook 技术是一种在应用运行时拦截或替换系统或自身函数行为的手段，常见实现包括 PLT Hook、Inline Hook。&#xA;PLT Hook 和 Inline Hook 是两种不同层次和机制的函数 Hook 技术，常用于逆向工程、安全分析、壳保护或热修复等场景。&#xA;PLT hook 和 Inline hook 有什么区别？ 特性 PLT Hook（符号级） Inline Hook（指令级） Hook 层级 链接层（.plt 或 GOT） 指令层（函数入口指令） Hook 对象 动态库导出的函数 任意函数（不一定导出） 修改内容 修改函数地址指针 修改指令流（如跳转指令） Hook 粒度 通常是库间调用 可以精确到任意函数、库内调用 稳定性 较高 稍差（依赖指令结构、架构） 跨平台兼容性 更好 架构相关（ARM32/ARM64） PLT Hook 原理（也叫 GOT Hook） ELF 中动态链接时使用 PLT（Procedure Linkage Table） 和 GOT（Global Offset Table） ；</description>
     </item>
     <item>
       <title>深入解析 AES 加密算法：原理、变体与 LibTomCrypt 在 Android 中的实战应用</title>

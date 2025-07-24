@@ -37,8 +37,8 @@ PLT hook 和 Inline hook 有什么区别？ 特性 PLT Hook（符号级） Inlin
   <meta property="og:locale" content="zh_cn">
   <meta property="og:type" content="article">
     <meta property="article:section" content="posts">
-    <meta property="article:published_time" content="2025-06-17T04:05:05+08:00">
-    <meta property="article:modified_time" content="2025-06-17T04:05:05+08:00">
+    <meta property="article:published_time" content="2025-07-25T02:01:18+08:00">
+    <meta property="article:modified_time" content="2025-07-25T02:01:18+08:00">
 
 
   </head>
@@ -113,7 +113,7 @@ PLT hook 和 Inline hook 有什么区别？ 特性 PLT Hook（符号级） Inlin
   <title>calendar</title>
   <rect x="3" y="4" width="18" height="18" rx="2" ry="2"></rect><line x1="16" y1="2" x2="16" y2="6"></line><line x1="8" y1="2" x2="8" y2="6"></line><line x1="3" y1="10" x2="21" y2="10"></line>
 </svg>
-          Jun 17, 2025
+          Jul 25, 2025
         </span>
       </div>
       <div>
@@ -122,7 +122,7 @@ PLT hook 和 Inline hook 有什么区别？ 特性 PLT Hook（符号级） Inlin
   <title>clock</title>
   <circle cx="12" cy="12" r="10"></circle><polyline points="12 6 12 12 16 14"></polyline>
 </svg>
-          15 min read
+          16 min read
         </span>
       </div>
     </div>
@@ -356,6 +356,18 @@ shadowhook = { group = &#34;com.bytedance.android&#34;, name = &#34;shadowhook&#
 }
 </code></pre><p>参考：<a href="https://github.com/bytedance/android-inline-hook/blob/main/doc/manual.zh-CN.md">ShadowHook 手册</a></p>
 <h1 id="初始化-shadowhook">初始化 ShadowHook</h1>
+<ul>
+<li>
+<p>可以在 java 层或 native 层初始化，二选一即可。</p>
+</li>
+<li>
+<p>java 层初始化逻辑实际上只做了两件事：System.loadLibrary、调用 native 层的 init 函数。</p>
+</li>
+<li>
+<p>可以并发的多次的执行初始化，但只有第一次实际生效，后续的初始化调用将直接返回第一次初始化的返回值。</p>
+</li>
+</ul>
+<p>java 层初始化：</p>
 <pre tabindex="0"><code>// 初始化 ShadowHook
 ShadowHook.init(
     ConfigBuilder()
@@ -373,6 +385,16 @@ ShadowHook.init(
         // 构建配置对象
         .build()
 )
+</code></pre><p>native 层初始化：</p>
+<pre tabindex="0"><code>#include &#34;shadowhook.h&#34;
+
+// 初始化 ShadowHook
+shadowhook_init(SHADOWHOOK_MODE_UNIQUE, true);  // debug 开启日志
+</code></pre><p>shadowhook_mode_t 枚举定义如下：</p>
+<pre tabindex="0"><code>typedef enum {
+    SHADOWHOOK_MODE_SHARED = 0,
+    SHADOWHOOK_MODE_UNIQUE = 1
+} shadowhook_mode_t;
 </code></pre><h1 id="cmakeliststxt-配置">CMakeLists.txt 配置</h1>
 <pre tabindex="0"><code>add_library( # 设置库的名称
         cyrus_studio_hook

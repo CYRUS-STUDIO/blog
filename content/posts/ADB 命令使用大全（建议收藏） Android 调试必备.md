@@ -1,6 +1,6 @@
 +++
 title = 'ADB 命令使用大全（建议收藏） Android 调试必备'
-date = 2025-07-17T19:14:56.354230+08:00
+date = 2025-07-25T02:01:16.769788+08:00
 draft = false
 +++
 
@@ -84,14 +84,14 @@ adb pull /data/app/com.shizhuang.duapp-fTxemmnM8l6298xbBELksQ==/base.apk
 
 
 
-进入 adb shell 
+进入 adb shell 执行下面命令：
 
 ```
 # 获取设备上当前运行的 Activity
-dumpsys activity activities | grep "mResumedActivity"
+dumpsys activity activities | grep "Resumed"
 
 # 获取活动栈中的所有 Activity，并从中提取出最近的 5 个 Activity
-dumpsys activity activities | grep "Hist #" | head -n 5
+dumpsys activity activities | grep "Hist" | head -n 5
 ```
 
 

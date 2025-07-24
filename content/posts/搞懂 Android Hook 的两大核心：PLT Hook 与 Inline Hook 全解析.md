@@ -1,6 +1,6 @@
 +++
 title = '搞懂 Android Hook 的两大核心：PLT Hook 与 Inline Hook 全解析'
-date = 2025-06-17T04:05:05.990337+08:00
+date = 2025-07-25T02:01:18.211605+08:00
 draft = false
 +++
 
@@ -341,6 +341,16 @@ dependencies {
 
 
 
+- 可以在 java 层或 native 层初始化，二选一即可。
+
+- java 层初始化逻辑实际上只做了两件事：System.loadLibrary、调用 native 层的 init 函数。
+
+- 可以并发的多次的执行初始化，但只有第一次实际生效，后续的初始化调用将直接返回第一次初始化的返回值。
+
+
+
+java 层初始化：
+
 ```
 // 初始化 ShadowHook
 ShadowHook.init(
@@ -359,6 +369,26 @@ ShadowHook.init(
         // 构建配置对象
         .build()
 )
+```
+
+
+native 层初始化：
+
+```
+#include "shadowhook.h"
+
+// 初始化 ShadowHook
+shadowhook_init(SHADOWHOOK_MODE_UNIQUE, true);  // debug 开启日志
+```
+
+
+shadowhook_mode_t 枚举定义如下：
+
+```
+typedef enum {
+    SHADOWHOOK_MODE_SHARED = 0,
+    SHADOWHOOK_MODE_UNIQUE = 1
+} shadowhook_mode_t;
 ```
 
 
