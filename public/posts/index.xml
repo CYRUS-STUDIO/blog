@@ -6,8 +6,15 @@
     <description>Recent content in Posts on CYRUS STUDIO</description>
     <generator>Hugo</generator>
     <language>zh-cn</language>
-    <lastBuildDate>Fri, 25 Jul 2025 04:01:52 +0800</lastBuildDate>
+    <lastBuildDate>Sat, 26 Jul 2025 01:46:43 +0800</lastBuildDate>
     <atom:link href="https://cyrus-studio.github.io/blog/posts/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>手把手教你改造 AAR：解包、注入逻辑、重打包，一条龙玩转第三方 SDK！</title>
+      <link>https://cyrus-studio.github.io/blog/posts/%E6%89%8B%E6%8A%8A%E6%89%8B%E6%95%99%E4%BD%A0%E6%94%B9%E9%80%A0-aar%E8%A7%A3%E5%8C%85%E6%B3%A8%E5%85%A5%E9%80%BB%E8%BE%91%E9%87%8D%E6%89%93%E5%8C%85%E4%B8%80%E6%9D%A1%E9%BE%99%E7%8E%A9%E8%BD%AC%E7%AC%AC%E4%B8%89%E6%96%B9-sdk/</link>
+      <pubDate>Sat, 26 Jul 2025 01:46:43 +0800</pubDate>
+      <guid>https://cyrus-studio.github.io/blog/posts/%E6%89%8B%E6%8A%8A%E6%89%8B%E6%95%99%E4%BD%A0%E6%94%B9%E9%80%A0-aar%E8%A7%A3%E5%8C%85%E6%B3%A8%E5%85%A5%E9%80%BB%E8%BE%91%E9%87%8D%E6%89%93%E5%8C%85%E4%B8%80%E6%9D%A1%E9%BE%99%E7%8E%A9%E8%BD%AC%E7%AC%AC%E4%B8%89%E6%96%B9-sdk/</guid>
+      <description>版权归作者所有，如有转发，请注明文章出处：https://cyrus-studio.github.io/blog/&#xA;一、什么是 AAR 文件？ AAR 文件（Android Archive）是 Android Studio 用来打包 Android Library（库模块） 的一种压缩文件格式，扩展名是 .aar，类似于 Java 的 .jar 文件，但功能更丰富，用于复用 UI 组件、资源和代码。&#xA;AAR 文件结构（解压后）&#xA;your-lib.aar&#xD;├── AndroidManifest.xml # 库模块的清单文件&#xD;├── classes.jar # 编译后的 Java/Kotlin 类文件（字节码）&#xD;├── res/ # 资源目录（layout、drawable、values 等）&#xD;├── R.txt # 编译生成的 R 类符号文件&#xD;├── assets/ # assets 目录中的内容&#xD;├── libs/ # 依赖的 .jar 库&#xD;├── jni/ # native 库（.so 文件）&#xD;├── proguard.txt # 混淆配置文件&#xD;├── public.txt # 声明哪些资源是公开的&#xD;└── META-INF/ # 元数据（如 aar metadata、许可证等） 使用 AAR 的场景举例：</description>
+    </item>
     <item>
       <title>手把手教你玩转 MagiskBoot：内核解包打包全流程</title>
       <link>https://cyrus-studio.github.io/blog/posts/%E6%89%8B%E6%8A%8A%E6%89%8B%E6%95%99%E4%BD%A0%E7%8E%A9%E8%BD%AC-magiskboot%E5%86%85%E6%A0%B8%E8%A7%A3%E5%8C%85%E6%89%93%E5%8C%85%E5%85%A8%E6%B5%81%E7%A8%8B/</link>
