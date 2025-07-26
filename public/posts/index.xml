@@ -6,8 +6,15 @@
     <description>Recent content in Posts on CYRUS STUDIO</description>
     <generator>Hugo</generator>
     <language>zh-cn</language>
-    <lastBuildDate>Sat, 26 Jul 2025 01:46:43 +0800</lastBuildDate>
+    <lastBuildDate>Sat, 26 Jul 2025 16:12:02 +0800</lastBuildDate>
     <atom:link href="https://cyrus-studio.github.io/blog/posts/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>逆向 JNI 函数找不到入口？动态注册定位技巧全解析</title>
+      <link>https://cyrus-studio.github.io/blog/posts/%E9%80%86%E5%90%91-jni-%E5%87%BD%E6%95%B0%E6%89%BE%E4%B8%8D%E5%88%B0%E5%85%A5%E5%8F%A3%E5%8A%A8%E6%80%81%E6%B3%A8%E5%86%8C%E5%AE%9A%E4%BD%8D%E6%8A%80%E5%B7%A7%E5%85%A8%E8%A7%A3%E6%9E%90/</link>
+      <pubDate>Sat, 26 Jul 2025 16:12:02 +0800</pubDate>
+      <guid>https://cyrus-studio.github.io/blog/posts/%E9%80%86%E5%90%91-jni-%E5%87%BD%E6%95%B0%E6%89%BE%E4%B8%8D%E5%88%B0%E5%85%A5%E5%8F%A3%E5%8A%A8%E6%80%81%E6%B3%A8%E5%86%8C%E5%AE%9A%E4%BD%8D%E6%8A%80%E5%B7%A7%E5%85%A8%E8%A7%A3%E6%9E%90/</guid>
+      <description>版权归作者所有，如有转发，请注明文章出处：https://cyrus-studio.github.io/blog/&#xA;前言 使用 IDA Pro 静态分析时，JNI 函数并没有出现在导出表中，根本找不到函数实现的位置。&#xA;这是因为很多 App 为了安全性和混淆目的，采用了 JNI 动态注册（RegisterNatives） 的方式，绕开了传统的静态绑定机制。&#xA;那么遇到这种情况我们该怎么办？&#xA;通过源码分析JNI 函数调用流程 ArtMethod 是 ART 虚拟机中用于表示 Java 方法的底层结构体，Java 中每个方法在运行时都会对应一个 ArtMethod 实例，用于管理其执行入口、访问标志、Dex 信息等元数据。&#xA;entry_point_from_jni_ 是 ArtMethod 结构体的一个字段，专门用于存储 Java 方法对应的 JNI 函数地址。&#xA;在编译 JNI 方法时，ArtJniCompileMethodInternal 中通过调用 EntryPointFromJniOffset 方法获取 entry_point_from_jni_ 字段的偏移，并生成一条调用该 jni 函数的机器指令插入到编译结果中。&#xA;// 9. Plant call to native code associated with method.&#xD;// 计算 ArtMethod 中 JNI 入口地址的字段偏移（即 ptr_sized_fields_.data_ 偏移）&#xD;// 根据目标指令集（如 arm64、x86）传入对应的指针大小（PointerSize::k64 或 k32）&#xD;MemberOffset jni_entrypoint_offset =&#xD;ArtMethod::EntryPointFromJniOffset(InstructionSetPointerSize(instruction_set));&#xD;// 这部分代码生成了一条机器指令，用于调用 ArtMethod::entry_point_from_jni 所指向的 native 函数：&#xD;__ Call(main_jni_conv-&amp;gt;MethodStackOffset(), // 栈中 ArtMethod* 相对偏移&#xD;jni_entrypoint_offset, // ArtMethod 内部 entry_point_from_jni 字段的偏移&#xD;mr_conv-&amp;gt;InterproceduralScratchRegister()); // 用于保存临时地址的寄存器 https://cs.</description>
+    </item>
     <item>
       <title>手把手教你改造 AAR：解包、注入逻辑、重打包，一条龙玩转第三方 SDK！</title>
       <link>https://cyrus-studio.github.io/blog/posts/%E6%89%8B%E6%8A%8A%E6%89%8B%E6%95%99%E4%BD%A0%E6%94%B9%E9%80%A0-aar%E8%A7%A3%E5%8C%85%E6%B3%A8%E5%85%A5%E9%80%BB%E8%BE%91%E9%87%8D%E6%89%93%E5%8C%85%E4%B8%80%E6%9D%A1%E9%BE%99%E7%8E%A9%E8%BD%AC%E7%AC%AC%E4%B8%89%E6%96%B9-sdk/</link>
@@ -399,13 +406,6 @@
       <pubDate>Fri, 20 Jun 2025 16:43:26 +0800</pubDate>
       <guid>https://cyrus-studio.github.io/blog/posts/%E7%A0%B4%E8%A7%A3-vmp&#43;ollvm-%E6%B7%B7%E6%B7%86%E9%80%9A%E8%BF%87-hook-jstring-%E5%BF%AB%E9%80%9F%E5%AE%9A%E4%BD%8D%E5%8A%A0%E5%AF%86%E7%AE%97%E6%B3%95%E5%85%A5%E5%8F%A3/</guid>
       <description>版权归作者所有，如有转发，请注明文章出处：https://cyrus-studio.github.io/blog/&#xA;VMP 壳 + OLLVM 的加密算法 某电商APP的加密算法经过dex脱壳分析，找到参数加密的方法在 DuHelper.doWork 中&#xA;package com.shizhuang.duapp.common.helper.ee;&#xD;import com.meituan.robust.ChangeQuickRedirect;&#xD;import lte.NCall;&#xD;/* loaded from: base.apk_classes9.jar:com/shizhuang/duapp/common/helper/ee/DuHelper.class */&#xD;public class DuHelper {&#xD;public static ChangeQuickRedirect changeQuickRedirect;&#xD;static {&#xD;NCall.IV(new Object[]{282});&#xD;}&#xD;public static native int checkSignature(Object obj);&#xD;public static String doWork(Object obj, String str) {&#xD;return (String) NCall.IL(new Object[]{283, obj, str});&#xD;}&#xD;public static native String encodeByte(byte[] bArr, String str);&#xD;public static native String getByteValues();&#xD;public static native String getLeanCloudAppID();&#xD;public static native String getLeanCloudAppKey();&#xD;public static native String getWxAppId(Object obj);&#xD;public static native String getWxAppKey();&#xD;} DuHelper.</description>
-    </item>
-    <item>
-      <title>逆向 JNI 函数找不到入口？动态注册定位技巧全解析</title>
-      <link>https://cyrus-studio.github.io/blog/posts/%E9%80%86%E5%90%91-jni-%E5%87%BD%E6%95%B0%E6%89%BE%E4%B8%8D%E5%88%B0%E5%85%A5%E5%8F%A3%E5%8A%A8%E6%80%81%E6%B3%A8%E5%86%8C%E5%AE%9A%E4%BD%8D%E6%8A%80%E5%B7%A7%E5%85%A8%E8%A7%A3%E6%9E%90/</link>
-      <pubDate>Thu, 19 Jun 2025 21:32:15 +0800</pubDate>
-      <guid>https://cyrus-studio.github.io/blog/posts/%E9%80%86%E5%90%91-jni-%E5%87%BD%E6%95%B0%E6%89%BE%E4%B8%8D%E5%88%B0%E5%85%A5%E5%8F%A3%E5%8A%A8%E6%80%81%E6%B3%A8%E5%86%8C%E5%AE%9A%E4%BD%8D%E6%8A%80%E5%B7%A7%E5%85%A8%E8%A7%A3%E6%9E%90/</guid>
-      <description>版权归作者所有，如有转发，请注明文章出处：https://cyrus-studio.github.io/blog/&#xA;前言 使用 IDA Pro 静态分析时，JNI 函数并没有出现在导出表中，根本找不到函数实现的位置。&#xA;这是因为很多 App 为了安全性和混淆目的，采用了 JNI 动态注册（RegisterNatives） 的方式，绕开了传统的静态绑定机制。&#xA;那么遇到这种情况我们该怎么办？&#xA;通过源码分析JNI 函数调用流程 ArtMethod 是 ART 虚拟机中用于表示 Java 方法的底层结构体，Java 中每个方法在运行时都会对应一个 ArtMethod 实例，用于管理其执行入口、访问标志、Dex 信息等元数据。&#xA;entry_point_from_jni_ 是 ArtMethod 结构体的一个字段，专门用于存储 Java 方法对应的 JNI 函数地址。&#xA;在编译 JNI 方法时，ArtJniCompileMethodInternal 中通过调用 EntryPointFromJniOffset 方法获取 entry_point_from_jni_ 字段的偏移，并生成一条调用该 jni 函数的机器指令插入到编译结果中。&#xA;// 9. Plant call to native code associated with method.&#xD;// 计算 ArtMethod 中 JNI 入口地址的字段偏移（即 ptr_sized_fields_.data_ 偏移）&#xD;// 根据目标指令集（如 arm64、x86）传入对应的指针大小（PointerSize::k64 或 k32）&#xD;MemberOffset jni_entrypoint_offset =&#xD;ArtMethod::EntryPointFromJniOffset(InstructionSetPointerSize(instruction_set));&#xD;// 这部分代码生成了一条机器指令，用于调用 ArtMethod::entry_point_from_jni 所指向的 native 函数：&#xD;__ Call(main_jni_conv-&amp;gt;MethodStackOffset(), // 栈中 ArtMethod* 相对偏移&#xD;jni_entrypoint_offset, // ArtMethod 内部 entry_point_from_jni 字段的偏移&#xD;mr_conv-&amp;gt;InterproceduralScratchRegister()); // 用于保存临时地址的寄存器 https://cs.</description>
     </item>
     <item>
       <title>一文搞懂如何使用 Frida Hook Android App</title>
