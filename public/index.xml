@@ -6,8 +6,15 @@
     <description>Recent content on CYRUS STUDIO</description>
     <generator>Hugo</generator>
     <language>zh-cn</language>
-    <lastBuildDate>Wed, 30 Jul 2025 21:54:18 +0800</lastBuildDate>
+    <lastBuildDate>Sat, 02 Aug 2025 12:14:15 +0800</lastBuildDate>
     <atom:link href="https://cyrus-studio.github.io/blog/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Android 源码如何导入 Android Studio？踩坑与解决方案详解</title>
+      <link>https://cyrus-studio.github.io/blog/posts/android-%E6%BA%90%E7%A0%81%E5%A6%82%E4%BD%95%E5%AF%BC%E5%85%A5-android-studio%E8%B8%A9%E5%9D%91%E4%B8%8E%E8%A7%A3%E5%86%B3%E6%96%B9%E6%A1%88%E8%AF%A6%E8%A7%A3/</link>
+      <pubDate>Sat, 02 Aug 2025 12:14:15 +0800</pubDate>
+      <guid>https://cyrus-studio.github.io/blog/posts/android-%E6%BA%90%E7%A0%81%E5%A6%82%E4%BD%95%E5%AF%BC%E5%85%A5-android-studio%E8%B8%A9%E5%9D%91%E4%B8%8E%E8%A7%A3%E5%86%B3%E6%96%B9%E6%A1%88%E8%AF%A6%E8%A7%A3/</guid>
+      <description>版权归作者所有，如有转发，请注明文章出处：https://cyrus-studio.github.io/blog/&#xA;前言 需要先把 Android 源码编译一遍，Android 源码编译参考这篇文章：解决90%踩坑问题！LineageOS 源码下载与编译保姆级教程&#xA;idegen.sh 脚本生成项目文件，一步步排除导入过程中常见的坑点，将 Android 源码集成进 Android Studio 环境中，从而实现高效阅读与调试系统代码。&#xA;生成 android.ipr 文件 进入到下面的目录 cd ./development/tools/idegen 使用 mm 命令对当前目录 make，构建 idegen 模块 mm 执行完成后会在 out 目录生成一个 idegen.jar 文件&#xA;回到 android 源码根目录，执行 idegen.sh 脚本（需要管理员权限） # 回到 android 源码根目录&#xD;croot&#xD;# 执行 idegen.sh 脚本&#xD;sudo ./development/tools/idegen/idegen.sh 执行完成后会生成一个 android.ipr 文件，用 android studio 打开这个 android.ipr 文件就可以完成 android 源码的导入了 运行 idegen.sh 脚本时遇到的问题 在运行 development/tools/idegen/idegen.sh 脚本时遇到的问题&#xA;1. 文件系统循环 find: File system loop detected 错误表示在使用 find 命令时遇到了符号链接循环。这通常不会导致脚本失败，但确实会产生一些额外的警告信息。</description>
+    </item>
     <item>
       <title>逆向某短视频App搜索协议：破解加密通信，还原真实数据！</title>
       <link>https://cyrus-studio.github.io/blog/posts/%E9%80%86%E5%90%91%E6%9F%90%E7%9F%AD%E8%A7%86%E9%A2%91app%E6%90%9C%E7%B4%A2%E5%8D%8F%E8%AE%AE%E7%A0%B4%E8%A7%A3%E5%8A%A0%E5%AF%86%E9%80%9A%E4%BF%A1%E8%BF%98%E5%8E%9F%E7%9C%9F%E5%AE%9E%E6%95%B0%E6%8D%AE/</link>
@@ -721,13 +728,6 @@
       <pubDate>Mon, 16 Sep 2024 21:05:17 +0800</pubDate>
       <guid>https://cyrus-studio.github.io/blog/posts/%E4%BD%BF%E7%94%A8-release-key-%E5%AF%B9-lineageos-%E8%BF%9B%E8%A1%8C%E7%BC%96%E8%AF%91%E5%92%8C%E7%AD%BE%E5%90%8D/</guid>
       <description>版权归作者所有，如有转发，请注明文章出处：https://cyrus-studio.github.io/blog/&#xA;为什么需要使用 release key test-key 是一个公开的、众所周知的开发测试密钥，广泛用于测试阶段。这意味着任何人都可以获取这个密钥，并用它签署自己修改的 APK 或系统文件。&#xA;使用 test-key 签署的系统镜像通常无法通过 Google 的 CTS（兼容性测试套件）认证，Google Play 商店、Google 服务框架等应用可能无法正常运行，某些第三方应用（例如银行应用或数字版权管理应用）也可能拒绝在设备上运行。&#xA;OTA 更新包必须使用 Release Key 来签名。签名的更新包经过验证，只有具有相同 Release Key 的设备才能接收和安装更新。&#xA;生成 release key 执行 nano make_keys.sh 创建脚本，内容如下&#xA;subject=&amp;#39;/C=US/ST=California/L=Mountain View/O=Android/OU=Android/CN=Android/emailAddress=linchaolong.dev@gmail.com&amp;#39;&#xD;# 创建 keys 目录（如果不存在）&#xD;mkdir -p keys&#xD;for cert in bluetooth cyngn-app media networkstack nfc platform releasekey sdk_sandbox shared testcert testkey verity; do \&#xD;./development/tools/make_key keys/$cert &amp;#34;$subject&amp;#34;; \&#xD;done 通过脚本创建 keys 目录并使用 make_key 命令生成你自己的密钥。&#xA;运行脚本生成密钥文件。</description>
-    </item>
-    <item>
-      <title>Android源码导入Android Studio</title>
-      <link>https://cyrus-studio.github.io/blog/posts/android%E6%BA%90%E7%A0%81%E5%AF%BC%E5%85%A5android-studio/</link>
-      <pubDate>Sun, 15 Sep 2024 13:27:26 +0800</pubDate>
-      <guid>https://cyrus-studio.github.io/blog/posts/android%E6%BA%90%E7%A0%81%E5%AF%BC%E5%85%A5android-studio/</guid>
-      <description>版权归作者所有，如有转发，请注明文章出处：https://cyrus-studio.github.io/blog/&#xA;前言 需要先把 Android 源码编译一遍 然后执行下面指令就可以导入android源码了&#xA;关于 Android 源码编译可以参考这篇文章【LineageOS源码下载和编译（Xiaomi Mi 6X，wayne）】。&#xA;生成 android.ipr 文件 1. 进入到下面的目录&#xA;cd ./development/tools/idegen 2. 使用 mm 命令对当前目录 make，构建 idegen 模块&#xA;mm 执行完成后会在 out 目录生成一个 idegen.jar 文件&#xA;3. 回到 android 源码根目录，执行 idegen.sh 脚本（需要管理员权限）&#xA;# 回到 android 源码根目录&#xD;croot&#xD;# 执行 idegen.sh 脚本&#xD;sudo ./development/tools/idegen/idegen.sh 4. 执行完成后会生成一个 android.ipr 文件，用 android studio 打开这个 android.ipr 文件就可以完成 android 源码的导入了 运行 idegen.sh 脚本时遇到的问题 在运行 development/tools/idegen/idegen.sh 脚本时遇到的问题&#xA;1. 文件系统循环 find: File system loop detected 错误表示在使用 find 命令时遇到了符号链接循环。这通常不会导致脚本失败，但确实会产生一些额外的警告信息。</description>
     </item>
     <item>
       <title>编译LineageOS模拟器镜像，导出到AndroidStudio</title>
