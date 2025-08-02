@@ -6,8 +6,15 @@
     <description>Recent content in Posts on CYRUS STUDIO</description>
     <generator>Hugo</generator>
     <language>zh-cn</language>
-    <lastBuildDate>Sat, 02 Aug 2025 14:06:08 +0800</lastBuildDate>
+    <lastBuildDate>Sat, 02 Aug 2025 14:22:15 +0800</lastBuildDate>
     <atom:link href="https://cyrus-studio.github.io/blog/posts/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>ADB 远程调试全教程：弹不出授权弹窗？手动授权搞定！</title>
+      <link>https://cyrus-studio.github.io/blog/posts/adb-%E8%BF%9C%E7%A8%8B%E8%B0%83%E8%AF%95%E5%85%A8%E6%95%99%E7%A8%8B%E5%BC%B9%E4%B8%8D%E5%87%BA%E6%8E%88%E6%9D%83%E5%BC%B9%E7%AA%97%E6%89%8B%E5%8A%A8%E6%8E%88%E6%9D%83%E6%90%9E%E5%AE%9A/</link>
+      <pubDate>Sat, 02 Aug 2025 14:22:15 +0800</pubDate>
+      <guid>https://cyrus-studio.github.io/blog/posts/adb-%E8%BF%9C%E7%A8%8B%E8%B0%83%E8%AF%95%E5%85%A8%E6%95%99%E7%A8%8B%E5%BC%B9%E4%B8%8D%E5%87%BA%E6%8E%88%E6%9D%83%E5%BC%B9%E7%AA%97%E6%89%8B%E5%8A%A8%E6%8E%88%E6%9D%83%E6%90%9E%E5%AE%9A/</guid>
+      <description>版权归作者所有，如有转发，请注明文章出处：https://cyrus-studio.github.io/blog/&#xA;adb 远程调试 手机上开发者选项中打开网络调试&#xA;或者连接 USB 执行下面命令将 ADB 设置为通过端口 5555 进行 TCP/IP 调试&#xA;adb tcpip 5555 启用 TCP/IP 模式后可以断开 USB 连接&#xA;如果网络调试开关中没有显示设备ip地址，通过下面方法获取设备的 IP 地址：&#xA;在设备上，进入设置 &amp;gt; 网络与互联网 &amp;gt; Wi-Fi，选择当前连接的网络。&#xA;找到设备的 IP 地址（通常在网络详情中）。&#xA;根据设备 ip 地址和端口号连接到设备，并在手机上确认授权调试提示&#xA;adb connect 192.168.0.101:5555&#xD;already connected to 192.168.0.101:5555 第一次授权可能会提示 unauthorized&#xA;adb devices&#xD;List of devices attached&#xD;192.168.0.101:5555 unauthorized 重启 adb，重新再连接&#xA;adb kill-server&#xD;adb connect 192.168.0.101:5555&#xD;* daemon not running; starting now at tcp:5037&#xD;* daemon started successfully&#xD;connected to 192.</description>
+    </item>
     <item>
       <title>深入WSL与USB：教你如何编译 Linux 内核支持 USB 共享</title>
       <link>https://cyrus-studio.github.io/blog/posts/%E6%B7%B1%E5%85%A5wsl%E4%B8%8Eusb%E6%95%99%E4%BD%A0%E5%A6%82%E4%BD%95%E7%BC%96%E8%AF%91-linux-%E5%86%85%E6%A0%B8%E6%94%AF%E6%8C%81-usb-%E5%85%B1%E4%BA%AB/</link>
@@ -665,13 +672,6 @@
       <pubDate>Thu, 28 Nov 2024 00:55:08 +0800</pubDate>
       <guid>https://cyrus-studio.github.io/blog/posts/%E4%BD%BF%E7%94%A8-opt-%E4%BC%98%E5%8C%96-llvm-ir%E5%AE%9A%E5%88%B6-clang-%E5%AE%9E%E7%8E%B0%E5%87%BD%E6%95%B0%E5%90%8D%E5%8A%A0%E5%AF%86/</guid>
       <description>版权归作者所有，如有转发，请注明文章出处：https://cyrus-studio.github.io/blog/&#xA;1. LLVM IR LLVM IR（Intermediate Representation） 是 LLVM 编译框架中的一种中间表示形式，它是一种面向低级的中间代码，是 LLVM 架构的核心部分。LLVM IR 既可以用作 LLVM 编译器的输入，也可以用作输出，供其他编译器或工具链使用。&#xA;LLVM IR 的两种存储形式：&#xA;LLVM IR 语言（文本形式，扩展名 .ll）：可读的 LLVM IR 代码。&#xA;LLVM 位码（Bitcode，扩展名 .bc）：二进制形式的 LLVM IR，主要用于高效存储和传输。&#xA;LLVM IR 是平台无关的，可以跨不同的硬件架构进行移植。&#xA;LLVM IR 语言参考手册：https://llvm.org/docs/LangRef.html&#xA;1.1 将 C 文件转换为 LLVM IR 生成文本形式的 LLVM IR（.ll 文件）&#xA;clang -S -emit-llvm hello.c -o hello.ll 以 hello.ll 为例，生成的内容大概如下&#xA;; Function Attrs: noinline nounwind optnone uwtable&#xD;; 这行注释了函数的属性&#xD;; - noinline: 该函数不会被内联（inline）。&#xD;; - nounwind: 该函数不会引发异常（不会 unwind stack）。&#xD;; - optnone: 编译器不会对此函数进行任何优化。&#xD;; - uwtable: 该函数有一个可用的异常处理表（unwind table）。&#xD;define dso_local i32 @main() #0 {&#xD;; define: 定义一个函数。&#xD;; dso_local: 该函数在本地动态库中可见（仅限于当前编译单元）。&#xD;; i32: 返回类型为 32 位整数。&#xD;; @main: 函数名为 &amp;#39;main&amp;#39;。&#xD;; #0: 函数使用属性组 0 中定义的属性（即上面注释的那一行）。&#xD;entry:&#xD;; entry: 函数的入口基本块（Basic Block）的标签。&#xD;%retval = alloca i32, align 4&#xD;; alloca: 在栈上分配内存。这里分配了一个 32 位整数（i32）。&#xD;; align 4: 分配的内存对齐到 4 字节边界。&#xD;; %retval: 变量的名称（SSA 变量），用于存储 main 函数的返回值。&#xD;store i32 0, ptr %retval, align 4&#xD;; store: 将一个值存储到内存地址中。&#xD;; i32 0: 要存储的值是 32 位整数 0（即 main 函数的返回值）。&#xD;; ptr %retval: 存储的位置是之前分配的栈变量 %retval。&#xD;; align 4: 存储操作按 4 字节对齐。&#xD;%call = call i32 (ptr, .</description>
-    </item>
-    <item>
-      <title>adb 远程调试，手动修改 adb 调试授权信息</title>
-      <link>https://cyrus-studio.github.io/blog/posts/adb-%E8%BF%9C%E7%A8%8B%E8%B0%83%E8%AF%95%E6%89%8B%E5%8A%A8%E4%BF%AE%E6%94%B9-adb-%E8%B0%83%E8%AF%95%E6%8E%88%E6%9D%83%E4%BF%A1%E6%81%AF/</link>
-      <pubDate>Sun, 03 Nov 2024 04:49:00 +0800</pubDate>
-      <guid>https://cyrus-studio.github.io/blog/posts/adb-%E8%BF%9C%E7%A8%8B%E8%B0%83%E8%AF%95%E6%89%8B%E5%8A%A8%E4%BF%AE%E6%94%B9-adb-%E8%B0%83%E8%AF%95%E6%8E%88%E6%9D%83%E4%BF%A1%E6%81%AF/</guid>
-      <description>版权归作者所有，如有转发，请注明文章出处：https://cyrus-studio.github.io/blog/&#xA;adb 远程调试 手机上开发者选项中打开网络调试 或者连接 USB 执行下面命令将 ADB 设置为通过端口 5555 进行 TCP/IP 调试 adb tcpip 5555 启用 TCP/IP 模式后可以断开 USB 连接&#xA;如果网络调试开关中没有显示设备ip地址，通过下面方法获取设备的 IP 地址：&#xA;在设备上，进入设置 &amp;gt; 网络与互联网 &amp;gt; Wi-Fi，选择当前连接的网络。&#xA;找到设备的 IP 地址（通常在网络详情中）。&#xA;根据设备 ip 地址和端口号连接到设备，并在手机上确认授权调试提示&#xA;adb connect 192.168.0.101:5555&#xD;already connected to 192.168.0.101:5555 第一次授权可能会提示 unauthorized&#xA;adb devices&#xD;List of devices attached&#xD;192.168.0.101:5555 unauthorized 重启 adb，重新再连接&#xA;adb kill-server&#xD;adb connect 192.168.0.101:5555&#xD;* daemon not running; starting now at tcp:5037&#xD;* daemon started successfully&#xD;connected to 192.</description>
     </item>
     <item>
       <title>Windows下创建FTP服务器，实现文件共享</title>
