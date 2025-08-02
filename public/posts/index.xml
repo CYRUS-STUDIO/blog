@@ -6,8 +6,15 @@
     <description>Recent content in Posts on CYRUS STUDIO</description>
     <generator>Hugo</generator>
     <language>zh-cn</language>
-    <lastBuildDate>Sat, 02 Aug 2025 12:44:21 +0800</lastBuildDate>
+    <lastBuildDate>Sat, 02 Aug 2025 13:19:24 +0800</lastBuildDate>
     <atom:link href="https://cyrus-studio.github.io/blog/posts/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>刷入 LineageOS 后无法联网？一文解决IP配置失败与网络受限</title>
+      <link>https://cyrus-studio.github.io/blog/posts/%E5%88%B7%E5%85%A5-lineageos-%E5%90%8E%E6%97%A0%E6%B3%95%E8%81%94%E7%BD%91%E4%B8%80%E6%96%87%E8%A7%A3%E5%86%B3ip%E9%85%8D%E7%BD%AE%E5%A4%B1%E8%B4%A5%E4%B8%8E%E7%BD%91%E7%BB%9C%E5%8F%97%E9%99%90/</link>
+      <pubDate>Sat, 02 Aug 2025 13:19:24 +0800</pubDate>
+      <guid>https://cyrus-studio.github.io/blog/posts/%E5%88%B7%E5%85%A5-lineageos-%E5%90%8E%E6%97%A0%E6%B3%95%E8%81%94%E7%BD%91%E4%B8%80%E6%96%87%E8%A7%A3%E5%86%B3ip%E9%85%8D%E7%BD%AE%E5%A4%B1%E8%B4%A5%E4%B8%8E%E7%BD%91%E7%BB%9C%E5%8F%97%E9%99%90/</guid>
+      <description>版权归作者所有，如有转发，请注明文章出处：https://cyrus-studio.github.io/blog/&#xA;解决连接网络提示 IP 配置失败 连接所有网络都提示IP配置失败。&#xA;使用 Magisk root 后就这样了，LineageOS 17.1（wayne），重新刷回刷机包的 boot.img 后就没问题了。&#xA;但是如果需要用到 root 权限怎么办？&#xA;如何以 Root 身份进入 ADB Shell？ 首先，进入设置中【开发者选项】，开启【Root 身份的调试】&#xA;接着执行下面的命令获取 root 权限&#xA;# 启用 adb root 身份&#xD;adb root&#xD;restarting adbd as root&#xD;# 以 root 身份进入&#xD;adb shell&#xD;# 验证 Root 权限&#xD;whoami&#xD;root # 返回结果为 root，说明你已经成功以 root 身份进入 ADB shell。 解决 LineageOS 提示网络受限 问题原因 由于 LineageOS 源码里默认是使用 google captive连接验证服务，所以国内会一直提示网络受限，但是实际上是可以访问网络的。&#xA;要解决这个问题可以通过把 captive_portal_https_url 改为国内的就好了，比如用MIUI的。&#xA;更换 captive 连接验证服务器 1.</description>
+    </item>
     <item>
       <title>手把手教你编译 LineageOS 模拟器镜像，并导入 Android Studio 使用！</title>
       <link>https://cyrus-studio.github.io/blog/posts/%E6%89%8B%E6%8A%8A%E6%89%8B%E6%95%99%E4%BD%A0%E7%BC%96%E8%AF%91-lineageos-%E6%A8%A1%E6%8B%9F%E5%99%A8%E9%95%9C%E5%83%8F%E5%B9%B6%E5%AF%BC%E5%85%A5-android-studio-%E4%BD%BF%E7%94%A8/</link>
@@ -721,20 +728,6 @@
       <pubDate>Thu, 19 Sep 2024 06:44:08 +0800</pubDate>
       <guid>https://cyrus-studio.github.io/blog/posts/android%E4%B8%8B%E5%8F%8D%E8%B0%83%E8%AF%95%E4%B8%8E%E5%8F%8D%E5%8F%8D%E8%B0%83%E8%AF%95/</guid>
       <description>版权归作者所有，如有转发，请注明文章出处：https://cyrus-studio.github.io/blog/&#xA;反调试检测 反调试检测的几种方式。&#xA;1. TrackerId 首先，通过 IDA Pro 的调试器附加到当前 app 进程 关于IDA Pro调试android app的详细教程可以参考这篇文章【使用IDA Pro动态调试Android APP】&#xA;使用 top 命令查看进程状态&#xA;top | grep com.cyrus.example&#xD;17305 u0_a137 10 -10 4.8G 104M 42M t 0.0 1.8 0:02.02 com.cyrus.example 在输出中，S 表示进程状态，17305 是 PID。&#xA;通过head /proc/[pid]/status 可以查看详细的进程状态。&#xA;head -n 6 /proc/17305/status&#xD;Name: m.cyrus.example&#xD;State: S (sleeping)&#xD;Tgid: 17305&#xD;Pid: 17305&#xD;PPid: 728&#xD;TracerPid: 16208 TracerPid: 16208 说明当前的进程正在被进程 16208 调试或跟踪，否则没有被调试值应该为0。&#xA;2. stat 这时我们断点调试 app 再通过 head /proc/[pid]/status 可以查看详细的进程状态，包括是否被调试等信息。</description>
-    </item>
-    <item>
-      <title>LineageOS连接网络提示IP配置失败</title>
-      <link>https://cyrus-studio.github.io/blog/posts/lineageos%E8%BF%9E%E6%8E%A5%E7%BD%91%E7%BB%9C%E6%8F%90%E7%A4%BAip%E9%85%8D%E7%BD%AE%E5%A4%B1%E8%B4%A5/</link>
-      <pubDate>Wed, 18 Sep 2024 15:35:46 +0800</pubDate>
-      <guid>https://cyrus-studio.github.io/blog/posts/lineageos%E8%BF%9E%E6%8E%A5%E7%BD%91%E7%BB%9C%E6%8F%90%E7%A4%BAip%E9%85%8D%E7%BD%AE%E5%A4%B1%E8%B4%A5/</guid>
-      <description> 版权归作者所有，如有转发，请注明文章出处：https://cyrus-studio.github.io/blog/&#xA;IP配置失败 连接所有网络都提示IP配置失败，通过配置静态IP也连不上网络，感觉就是WIFI模块不能用了。&#xA;使用 Magisk root 后就这样了，LineageOS 17.1（wayne），重新刷回刷机包的 boot.img 后就没问题了。&#xA;但是如果需要用到 root 权限怎么办？&#xA;以 Root 身份进入 ADB Shell 首先，进入设置中【开发者选项】，开启【Root 身份的调试】 接着执行下面的命令获取 root 权限&#xA;# 启用 adb root 身份&#xD;adb root&#xD;restarting adbd as root&#xD;# 以 root 身份进入&#xD;adb shell&#xD;# 验证 Root 权限&#xD;whoami&#xD;root # 返回结果为 root，说明你已经成功以 root 身份进入 ADB shell。 </description>
-    </item>
-    <item>
-      <title>解决LineageOS提示网络受限问题</title>
-      <link>https://cyrus-studio.github.io/blog/posts/%E8%A7%A3%E5%86%B3lineageos%E6%8F%90%E7%A4%BA%E7%BD%91%E7%BB%9C%E5%8F%97%E9%99%90%E9%97%AE%E9%A2%98/</link>
-      <pubDate>Mon, 16 Sep 2024 21:34:05 +0800</pubDate>
-      <guid>https://cyrus-studio.github.io/blog/posts/%E8%A7%A3%E5%86%B3lineageos%E6%8F%90%E7%A4%BA%E7%BD%91%E7%BB%9C%E5%8F%97%E9%99%90%E9%97%AE%E9%A2%98/</guid>
-      <description>版权归作者所有，如有转发，请注明文章出处：https://cyrus-studio.github.io/blog/&#xA;问题原因 由于 LineageOS 源码里默认是使用 google captive连接验证服务，所以国内会一直提示网络受限，但是实际上是可以访问网络的。&#xA;要解决这个问题可以通过把 captive_portal_https_url 改为国内的就好了，比如用MIUI的。&#xA;更换 captive 连接验证服务器 1. 通过 adb 修改 adb shell settings put global captive_portal_https_url https://connect.rom.miui.com/generate_204&#xD;adb shell settings put global captive_portal_http_url http://connect.rom.miui.com/generate_204 2. 修改源码 编辑 packages/modules/NetworkStack/res/values/config.xml&#xA;&amp;lt;!-- HTTP URL for network validation, to use for detecting captive portals. --&amp;gt;&#xD;&amp;lt;string name=&amp;#34;default_captive_portal_http_url&amp;#34; translatable=&amp;#34;false&amp;#34;&amp;gt;http://connectivitycheck.gstatic.com/generate_204&amp;lt;/string&amp;gt;&#xD;&amp;lt;!-- HTTPS URL for network validation, to use for confirming internet connectivity. --&amp;gt;&#xD;&amp;lt;string name=&amp;#34;default_captive_portal_https_url&amp;#34; translatable=&amp;#34;false&amp;#34;&amp;gt;https://www.google.com/generate_204&amp;lt;/string&amp;gt;&#xD;&amp;lt;!-- List of fallback URLs to use for detecting captive portals.</description>
     </item>
     <item>
       <title>使用 release key 对 LineageOS 进行编译和签名</title>
