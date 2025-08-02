@@ -1,6 +1,6 @@
 :root {
   /* 字体与背景 */
-  --waline-color: #fff;                   /* 评论文字颜色 */
+  --waline-color: #007acc;                   /* 评论文字颜色 */
   --waline-bg-color: #fff;                /* 主背景：白色 */
   --waline-bg-color-light: #fafafa;       /* 提示背景/输入框 */
   --waline-bg-color-hover: #f5f5f5;        /* hover 状态背景 */
