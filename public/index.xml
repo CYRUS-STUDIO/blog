@@ -6,8 +6,15 @@
     <description>Recent content on CYRUS STUDIO</description>
     <generator>Hugo</generator>
     <language>zh-cn</language>
-    <lastBuildDate>Sat, 02 Aug 2025 12:14:15 +0800</lastBuildDate>
+    <lastBuildDate>Sat, 02 Aug 2025 12:24:41 +0800</lastBuildDate>
     <atom:link href="https://cyrus-studio.github.io/blog/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Linux 下配置 Clash 代理详细教程（解决乱码、自动脚本）</title>
+      <link>https://cyrus-studio.github.io/blog/posts/linux-%E4%B8%8B%E9%85%8D%E7%BD%AE-clash-%E4%BB%A3%E7%90%86%E8%AF%A6%E7%BB%86%E6%95%99%E7%A8%8B%E8%A7%A3%E5%86%B3%E4%B9%B1%E7%A0%81%E8%87%AA%E5%8A%A8%E8%84%9A%E6%9C%AC/</link>
+      <pubDate>Sat, 02 Aug 2025 12:24:41 +0800</pubDate>
+      <guid>https://cyrus-studio.github.io/blog/posts/linux-%E4%B8%8B%E9%85%8D%E7%BD%AE-clash-%E4%BB%A3%E7%90%86%E8%AF%A6%E7%BB%86%E6%95%99%E7%A8%8B%E8%A7%A3%E5%86%B3%E4%B9%B1%E7%A0%81%E8%87%AA%E5%8A%A8%E8%84%9A%E6%9C%AC/</guid>
+      <description>版权归作者所有，如有转发，请注明文章出处：https://cyrus-studio.github.io/blog/&#xA;1. 下载安装clash-verge 下载 clash-verge&#xA;https://github.com/clash-verge-rev/clash-verge-rev/releases&#xA;我这边用的是 ubuntu22，下载 clash-verge_1.7.5_amd64.deb&#xA;安装 clash-verge&#xA;# 安装相关依赖&#xD;sudo apt update&#xD;sudo apt install -f&#xD;sudo apt install libayatana-appindicator3-1 libwebkit2gtk-4.0-37 libgtk-3-0&#xD;# 安装clash-verge&#xD;sudo dpkg -i clash-verge_1.7.5_amd64.deb&#xD;# 卸载clash-verge&#xD;sudo dpkg -r clash-verge&#xD;# 启动 Clash Verge（nohup 命令可以让进程在后台运行，即使关闭终端也不会影响进程运行。）&#xD;# nohup 会创建一个 nohup.out 文件来记录输出日志。&#xD;nohup clash-verge &amp;amp; 2. 解决显示乱码问题 安装一些常见的字体包&#xA;sudo apt update&#xD;sudo apt install fonts-noto-cjk fonts-noto fonts-noto-core fonts-noto-ui-core fonts-wqy-zenhei 3. 导入订阅地址，开启代理 设置 关闭 IPV6 设置 勾选 系统代理</description>
+    </item>
     <item>
       <title>Android 源码如何导入 Android Studio？踩坑与解决方案详解</title>
       <link>https://cyrus-studio.github.io/blog/posts/android-%E6%BA%90%E7%A0%81%E5%A6%82%E4%BD%95%E5%AF%BC%E5%85%A5-android-studio%E8%B8%A9%E5%9D%91%E4%B8%8E%E8%A7%A3%E5%86%B3%E6%96%B9%E6%A1%88%E8%AF%A6%E8%A7%A3/</link>
@@ -735,13 +742,6 @@
       <pubDate>Sun, 01 Sep 2024 12:39:32 +0800</pubDate>
       <guid>https://cyrus-studio.github.io/blog/posts/%E7%BC%96%E8%AF%91lineageos%E6%A8%A1%E6%8B%9F%E5%99%A8%E9%95%9C%E5%83%8F%E5%AF%BC%E5%87%BA%E5%88%B0androidstudio/</guid>
       <description>版权归作者所有，如有转发，请注明文章出处：https://cyrus-studio.github.io/blog/&#xA;源码下载 LineageOS官网：https://lineageos.org/ LineageOS源码 github 地址：https://github.com/LineageOS/android LineageOS源码国内镜像地址：https://mirrors.tuna.tsinghua.edu.cn/help/lineageOS/&#xA;源码大概需要150GB的硬盘空间，编译完成差不多300G 1. 配置git git config --global user.email &amp;#34;you@example.com&amp;#34;&#xD;git config --global user.name &amp;#34;Your Name&amp;#34; 2. 安装 repo mkdir ~/bin&#xD;PATH=~/bin:$PATH&#xD;curl https://storage.googleapis.com/git-repo-downloads/repo &amp;gt; ~/bin/repo&#xD;chmod a+x ~/bin/repo 3. 安装 Git LFS sudo apt install git-lfs&#xD;git lfs install 4. 设置REPO_URL 找到 repo 所在路径&#xA;which repo 编辑 repo&#xA;nano /home/cyrus/bin/repo 可以看到repo会优先取环境变量中的REPO_URL，否则默认使用googlesource&#xA;Ctrl +X 退出nano&#xA;通过下面的命令设置 REPO_URL 环境变量，设置为清华大学镜像源，解决国内访问不了 googlesource 问题&#xA;export REPO_URL=https://mirrors.tuna.tsinghua.edu.cn/git/git-repo/ 5. 下载源码 创建目录</description>
-    </item>
-    <item>
-      <title>Linux下代理设置</title>
-      <link>https://cyrus-studio.github.io/blog/posts/linux%E4%B8%8B%E4%BB%A3%E7%90%86%E8%AE%BE%E7%BD%AE/</link>
-      <pubDate>Thu, 29 Aug 2024 04:25:16 +0800</pubDate>
-      <guid>https://cyrus-studio.github.io/blog/posts/linux%E4%B8%8B%E4%BB%A3%E7%90%86%E8%AE%BE%E7%BD%AE/</guid>
-      <description>版权归作者所有，如有转发，请注明文章出处：https://cyrus-studio.github.io/blog/&#xA;1. 下载安装clash-verge 下载 clash-verge https://github.com/clash-verge-rev/clash-verge-rev/releases&#xA;我这边用的是 ubuntu22，下载 clash-verge_1.7.5_amd64.deb&#xA;安装 clash-verge&#xA;# 安装相关依赖&#xD;sudo apt update&#xD;sudo apt install -f&#xD;sudo apt install libayatana-appindicator3-1 libwebkit2gtk-4.0-37 libgtk-3-0&#xD;# 安装clash-verge&#xD;sudo dpkg -i clash-verge_1.7.5_amd64.deb&#xD;# 卸载clash-verge&#xD;sudo dpkg -r clash-verge&#xD;# 启动 Clash Verge（nohup 命令可以让进程在后台运行，即使关闭终端也不会影响进程运行。）&#xD;# nohup 会创建一个 nohup.out 文件来记录输出日志。&#xD;nohup clash-verge &amp;amp; 2. 解决显示乱码问题 安装一些常见的字体包&#xA;sudo apt update&#xD;sudo apt install fonts-noto-cjk fonts-noto fonts-noto-core fonts-noto-ui-core fonts-wqy-zenhei 3. 导入订阅地址，开启代理 设置 关闭 IPV6 设置 勾选 系统代理 我这里科学上网使用的是魔戒，注册地址：https://mojie.</description>
     </item>
     <item>
       <title>About</title>
