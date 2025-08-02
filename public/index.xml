@@ -6,8 +6,15 @@
     <description>Recent content on CYRUS STUDIO</description>
     <generator>Hugo</generator>
     <language>zh-cn</language>
-    <lastBuildDate>Sat, 02 Aug 2025 13:19:24 +0800</lastBuildDate>
+    <lastBuildDate>Sat, 02 Aug 2025 13:47:13 +0800</lastBuildDate>
     <atom:link href="https://cyrus-studio.github.io/blog/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>教你签自己的系统！LineageOS Release Key 签名刷机教程</title>
+      <link>https://cyrus-studio.github.io/blog/posts/%E6%95%99%E4%BD%A0%E7%AD%BE%E8%87%AA%E5%B7%B1%E7%9A%84%E7%B3%BB%E7%BB%9Flineageos-release-key-%E7%AD%BE%E5%90%8D%E5%88%B7%E6%9C%BA%E6%95%99%E7%A8%8B/</link>
+      <pubDate>Sat, 02 Aug 2025 13:47:13 +0800</pubDate>
+      <guid>https://cyrus-studio.github.io/blog/posts/%E6%95%99%E4%BD%A0%E7%AD%BE%E8%87%AA%E5%B7%B1%E7%9A%84%E7%B3%BB%E7%BB%9Flineageos-release-key-%E7%AD%BE%E5%90%8D%E5%88%B7%E6%9C%BA%E6%95%99%E7%A8%8B/</guid>
+      <description>版权归作者所有，如有转发，请注明文章出处：https://cyrus-studio.github.io/blog/&#xA;为什么需要使用 release key test-key 是一个公开的、众所周知的开发测试密钥，广泛用于测试阶段。这意味着任何人都可以获取这个密钥，并用它签署自己修改的 APK 或系统文件。&#xA;使用 test-key 签署的系统镜像通常无法通过 Google 的 CTS（兼容性测试套件）认证，Google Play 商店、Google 服务框架等应用可能无法正常运行，某些第三方应用（例如银行应用或数字版权管理应用）也可能拒绝在设备上运行。&#xA;OTA 更新包必须使用 Release Key 来签名。签名的更新包经过验证，只有具有相同 Release Key 的设备才能接收和安装更新。&#xA;生成 release key 执行 nano make_keys.sh 创建脚本，内容如下&#xA;subject=&amp;#39;/C=US/ST=California/L=Mountain View/O=Android/OU=Android/CN=Android/emailAddress=linchaolong.dev@gmail.com&amp;#39;&#xD;# 创建 keys 目录（如果不存在）&#xD;mkdir -p keys&#xD;for cert in bluetooth cyngn-app media networkstack nfc platform releasekey sdk_sandbox shared testcert testkey verity; do \&#xD;./development/tools/make_key keys/$cert &amp;#34;$subject&amp;#34;; \&#xD;done 通过脚本创建 keys 目录并使用 make_key 命令生成你自己的密钥。&#xA;运行脚本生成密钥文件。</description>
+    </item>
     <item>
       <title>刷入 LineageOS 后无法联网？一文解决IP配置失败与网络受限</title>
       <link>https://cyrus-studio.github.io/blog/posts/%E5%88%B7%E5%85%A5-lineageos-%E5%90%8E%E6%97%A0%E6%B3%95%E8%81%94%E7%BD%91%E4%B8%80%E6%96%87%E8%A7%A3%E5%86%B3ip%E9%85%8D%E7%BD%AE%E5%A4%B1%E8%B4%A5%E4%B8%8E%E7%BD%91%E7%BB%9C%E5%8F%97%E9%99%90/</link>
@@ -728,13 +735,6 @@
       <pubDate>Thu, 19 Sep 2024 06:44:08 +0800</pubDate>
       <guid>https://cyrus-studio.github.io/blog/posts/android%E4%B8%8B%E5%8F%8D%E8%B0%83%E8%AF%95%E4%B8%8E%E5%8F%8D%E5%8F%8D%E8%B0%83%E8%AF%95/</guid>
       <description>版权归作者所有，如有转发，请注明文章出处：https://cyrus-studio.github.io/blog/&#xA;反调试检测 反调试检测的几种方式。&#xA;1. TrackerId 首先，通过 IDA Pro 的调试器附加到当前 app 进程 关于IDA Pro调试android app的详细教程可以参考这篇文章【使用IDA Pro动态调试Android APP】&#xA;使用 top 命令查看进程状态&#xA;top | grep com.cyrus.example&#xD;17305 u0_a137 10 -10 4.8G 104M 42M t 0.0 1.8 0:02.02 com.cyrus.example 在输出中，S 表示进程状态，17305 是 PID。&#xA;通过head /proc/[pid]/status 可以查看详细的进程状态。&#xA;head -n 6 /proc/17305/status&#xD;Name: m.cyrus.example&#xD;State: S (sleeping)&#xD;Tgid: 17305&#xD;Pid: 17305&#xD;PPid: 728&#xD;TracerPid: 16208 TracerPid: 16208 说明当前的进程正在被进程 16208 调试或跟踪，否则没有被调试值应该为0。&#xA;2. stat 这时我们断点调试 app 再通过 head /proc/[pid]/status 可以查看详细的进程状态，包括是否被调试等信息。</description>
-    </item>
-    <item>
-      <title>使用 release key 对 LineageOS 进行编译和签名</title>
-      <link>https://cyrus-studio.github.io/blog/posts/%E4%BD%BF%E7%94%A8-release-key-%E5%AF%B9-lineageos-%E8%BF%9B%E8%A1%8C%E7%BC%96%E8%AF%91%E5%92%8C%E7%AD%BE%E5%90%8D/</link>
-      <pubDate>Mon, 16 Sep 2024 21:05:17 +0800</pubDate>
-      <guid>https://cyrus-studio.github.io/blog/posts/%E4%BD%BF%E7%94%A8-release-key-%E5%AF%B9-lineageos-%E8%BF%9B%E8%A1%8C%E7%BC%96%E8%AF%91%E5%92%8C%E7%AD%BE%E5%90%8D/</guid>
-      <description>版权归作者所有，如有转发，请注明文章出处：https://cyrus-studio.github.io/blog/&#xA;为什么需要使用 release key test-key 是一个公开的、众所周知的开发测试密钥，广泛用于测试阶段。这意味着任何人都可以获取这个密钥，并用它签署自己修改的 APK 或系统文件。&#xA;使用 test-key 签署的系统镜像通常无法通过 Google 的 CTS（兼容性测试套件）认证，Google Play 商店、Google 服务框架等应用可能无法正常运行，某些第三方应用（例如银行应用或数字版权管理应用）也可能拒绝在设备上运行。&#xA;OTA 更新包必须使用 Release Key 来签名。签名的更新包经过验证，只有具有相同 Release Key 的设备才能接收和安装更新。&#xA;生成 release key 执行 nano make_keys.sh 创建脚本，内容如下&#xA;subject=&amp;#39;/C=US/ST=California/L=Mountain View/O=Android/OU=Android/CN=Android/emailAddress=linchaolong.dev@gmail.com&amp;#39;&#xD;# 创建 keys 目录（如果不存在）&#xD;mkdir -p keys&#xD;for cert in bluetooth cyngn-app media networkstack nfc platform releasekey sdk_sandbox shared testcert testkey verity; do \&#xD;./development/tools/make_key keys/$cert &amp;#34;$subject&amp;#34;; \&#xD;done 通过脚本创建 keys 目录并使用 make_key 命令生成你自己的密钥。&#xA;运行脚本生成密钥文件。</description>
     </item>
     <item>
       <title>About</title>
