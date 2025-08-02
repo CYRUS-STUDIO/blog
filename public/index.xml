@@ -6,8 +6,15 @@
     <description>Recent content on CYRUS STUDIO</description>
     <generator>Hugo</generator>
     <language>zh-cn</language>
-    <lastBuildDate>Sat, 02 Aug 2025 12:24:41 +0800</lastBuildDate>
+    <lastBuildDate>Sat, 02 Aug 2025 12:44:21 +0800</lastBuildDate>
     <atom:link href="https://cyrus-studio.github.io/blog/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>手把手教你编译 LineageOS 模拟器镜像，并导入 Android Studio 使用！</title>
+      <link>https://cyrus-studio.github.io/blog/posts/%E6%89%8B%E6%8A%8A%E6%89%8B%E6%95%99%E4%BD%A0%E7%BC%96%E8%AF%91-lineageos-%E6%A8%A1%E6%8B%9F%E5%99%A8%E9%95%9C%E5%83%8F%E5%B9%B6%E5%AF%BC%E5%85%A5-android-studio-%E4%BD%BF%E7%94%A8/</link>
+      <pubDate>Sat, 02 Aug 2025 12:44:21 +0800</pubDate>
+      <guid>https://cyrus-studio.github.io/blog/posts/%E6%89%8B%E6%8A%8A%E6%89%8B%E6%95%99%E4%BD%A0%E7%BC%96%E8%AF%91-lineageos-%E6%A8%A1%E6%8B%9F%E5%99%A8%E9%95%9C%E5%83%8F%E5%B9%B6%E5%AF%BC%E5%85%A5-android-studio-%E4%BD%BF%E7%94%A8/</guid>
+      <description>版权归作者所有，如有转发，请注明文章出处：https://cyrus-studio.github.io/blog/&#xA;前言 从源码下载、环境配置到编译与导出完整模拟器镜像，逐步实现将 LineageOS 运行在 Android Studio 模拟器中。&#xA;相比官方系统镜像，自编译的 LineageOS 镜像更容易进行定制与修改，适合深入探索 Android 系统底层。&#xA;源码下载 LineageOS官网：https://lineageos.org/&#xA;LineageOS源码 github 地址：https://github.com/LineageOS/android&#xA;LineageOS源码国内镜像地址：https://mirrors.tuna.tsinghua.edu.cn/help/lineageOS/&#xA;源码大概需要150GB的硬盘空间，编译完成差不多300G&#xA;1. 配置git git config --global user.email &amp;#34;you@example.com&amp;#34;&#xD;git config --global user.name &amp;#34;Your Name&amp;#34; 2. 安装 repo mkdir ~/bin&#xD;PATH=~/bin:$PATH&#xD;curl https://storage.googleapis.com/git-repo-downloads/repo &amp;gt; ~/bin/repo&#xD;chmod a+x ~/bin/repo 3. 安装 Git LFS sudo apt install git-lfs&#xD;git lfs install 4. 设置REPO_URL 找到 repo 所在路径&#xA;which repo 编辑 repo&#xA;nano /home/cyrus/bin/repo 可以看到repo会优先取环境变量中的REPO_URL，否则默认使用googlesource</description>
+    </item>
     <item>
       <title>Linux 下配置 Clash 代理详细教程（解决乱码、自动脚本）</title>
       <link>https://cyrus-studio.github.io/blog/posts/linux-%E4%B8%8B%E9%85%8D%E7%BD%AE-clash-%E4%BB%A3%E7%90%86%E8%AF%A6%E7%BB%86%E6%95%99%E7%A8%8B%E8%A7%A3%E5%86%B3%E4%B9%B1%E7%A0%81%E8%87%AA%E5%8A%A8%E8%84%9A%E6%9C%AC/</link>
@@ -735,13 +742,6 @@
       <pubDate>Mon, 16 Sep 2024 21:05:17 +0800</pubDate>
       <guid>https://cyrus-studio.github.io/blog/posts/%E4%BD%BF%E7%94%A8-release-key-%E5%AF%B9-lineageos-%E8%BF%9B%E8%A1%8C%E7%BC%96%E8%AF%91%E5%92%8C%E7%AD%BE%E5%90%8D/</guid>
       <description>版权归作者所有，如有转发，请注明文章出处：https://cyrus-studio.github.io/blog/&#xA;为什么需要使用 release key test-key 是一个公开的、众所周知的开发测试密钥，广泛用于测试阶段。这意味着任何人都可以获取这个密钥，并用它签署自己修改的 APK 或系统文件。&#xA;使用 test-key 签署的系统镜像通常无法通过 Google 的 CTS（兼容性测试套件）认证，Google Play 商店、Google 服务框架等应用可能无法正常运行，某些第三方应用（例如银行应用或数字版权管理应用）也可能拒绝在设备上运行。&#xA;OTA 更新包必须使用 Release Key 来签名。签名的更新包经过验证，只有具有相同 Release Key 的设备才能接收和安装更新。&#xA;生成 release key 执行 nano make_keys.sh 创建脚本，内容如下&#xA;subject=&amp;#39;/C=US/ST=California/L=Mountain View/O=Android/OU=Android/CN=Android/emailAddress=linchaolong.dev@gmail.com&amp;#39;&#xD;# 创建 keys 目录（如果不存在）&#xD;mkdir -p keys&#xD;for cert in bluetooth cyngn-app media networkstack nfc platform releasekey sdk_sandbox shared testcert testkey verity; do \&#xD;./development/tools/make_key keys/$cert &amp;#34;$subject&amp;#34;; \&#xD;done 通过脚本创建 keys 目录并使用 make_key 命令生成你自己的密钥。&#xA;运行脚本生成密钥文件。</description>
-    </item>
-    <item>
-      <title>编译LineageOS模拟器镜像，导出到AndroidStudio</title>
-      <link>https://cyrus-studio.github.io/blog/posts/%E7%BC%96%E8%AF%91lineageos%E6%A8%A1%E6%8B%9F%E5%99%A8%E9%95%9C%E5%83%8F%E5%AF%BC%E5%87%BA%E5%88%B0androidstudio/</link>
-      <pubDate>Sun, 01 Sep 2024 12:39:32 +0800</pubDate>
-      <guid>https://cyrus-studio.github.io/blog/posts/%E7%BC%96%E8%AF%91lineageos%E6%A8%A1%E6%8B%9F%E5%99%A8%E9%95%9C%E5%83%8F%E5%AF%BC%E5%87%BA%E5%88%B0androidstudio/</guid>
-      <description>版权归作者所有，如有转发，请注明文章出处：https://cyrus-studio.github.io/blog/&#xA;源码下载 LineageOS官网：https://lineageos.org/ LineageOS源码 github 地址：https://github.com/LineageOS/android LineageOS源码国内镜像地址：https://mirrors.tuna.tsinghua.edu.cn/help/lineageOS/&#xA;源码大概需要150GB的硬盘空间，编译完成差不多300G 1. 配置git git config --global user.email &amp;#34;you@example.com&amp;#34;&#xD;git config --global user.name &amp;#34;Your Name&amp;#34; 2. 安装 repo mkdir ~/bin&#xD;PATH=~/bin:$PATH&#xD;curl https://storage.googleapis.com/git-repo-downloads/repo &amp;gt; ~/bin/repo&#xD;chmod a+x ~/bin/repo 3. 安装 Git LFS sudo apt install git-lfs&#xD;git lfs install 4. 设置REPO_URL 找到 repo 所在路径&#xA;which repo 编辑 repo&#xA;nano /home/cyrus/bin/repo 可以看到repo会优先取环境变量中的REPO_URL，否则默认使用googlesource&#xA;Ctrl +X 退出nano&#xA;通过下面的命令设置 REPO_URL 环境变量，设置为清华大学镜像源，解决国内访问不了 googlesource 问题&#xA;export REPO_URL=https://mirrors.tuna.tsinghua.edu.cn/git/git-repo/ 5. 下载源码 创建目录</description>
     </item>
     <item>
       <title>About</title>
