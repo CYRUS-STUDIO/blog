@@ -6,8 +6,15 @@
     <description>Recent content on CYRUS STUDIO</description>
     <generator>Hugo</generator>
     <language>zh-cn</language>
-    <lastBuildDate>Sat, 02 Aug 2025 14:22:15 +0800</lastBuildDate>
+    <lastBuildDate>Mon, 04 Aug 2025 18:03:18 +0800</lastBuildDate>
     <atom:link href="https://cyrus-studio.github.io/blog/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Frida Native 层 Hook 技巧：JNI 函数调用、字符串解析、so 加载</title>
+      <link>https://cyrus-studio.github.io/blog/posts/frida-native-%E5%B1%82-hook-%E6%8A%80%E5%B7%A7jni-%E5%87%BD%E6%95%B0%E8%B0%83%E7%94%A8%E5%AD%97%E7%AC%A6%E4%B8%B2%E8%A7%A3%E6%9E%90so-%E5%8A%A0%E8%BD%BD/</link>
+      <pubDate>Mon, 04 Aug 2025 18:03:18 +0800</pubDate>
+      <guid>https://cyrus-studio.github.io/blog/posts/frida-native-%E5%B1%82-hook-%E6%8A%80%E5%B7%A7jni-%E5%87%BD%E6%95%B0%E8%B0%83%E7%94%A8%E5%AD%97%E7%AC%A6%E4%B8%B2%E8%A7%A3%E6%9E%90so-%E5%8A%A0%E8%BD%BD/</guid>
+      <description>版权归作者所有，如有转发，请注明文章出处：https://cyrus-studio.github.io/blog/&#xA;RegisterNatives RegisterNatives 是 JNI（Java Native Interface）的一部分，用于在 Java 类和本地 C/C++ 代码之间注册本地方法。其原型如下：&#xA;jint RegisterNatives(JNIEnv* env, jclass clazz, const JNINativeMethod* methods, jint method_count); 参数说明：&#xA;env：JNIEnv 指针。&#xA;clazz：Java 类的 jclass 句柄。&#xA;methods：指向 JNINativeMethod 结构体数组的指针。&#xA;method_count：要注册的方法数量。&#xA;其中，methods 结构体的定义如下：&#xA;typedef struct {&#xD;const char* name; // 方法名称（指向字符串）&#xD;const char* signature; // 方法签名（指向字符串）&#xD;void* fnPtr; // 方法的本地实现（指向本地函数）&#xD;} JNINativeMethod; 可以看到，每个 JNINativeMethod 结构体由 三个指针 组成：&#xA;name（方法名指针）&#xA;signature（方法签名指针）&#xA;fnPtr（本地方法指针）&#xA;一般会有两个 RegisterNatives 函数，CheckJNI 版本只有在调试选项打开时才会调用，我们一般用 JNI 的那个就行。&#xA;[+] Found RegisterNatives symbol: _ZN3art12_GLOBAL__N_18CheckJNI15RegisterNativesEP7_JNIEnvP7_jclassPK15JNINativeMethodi at 0x780d7757a8&#xD;[+] Found RegisterNatives symbol: _ZN3art3JNI15RegisterNativesEP7_JNIEnvP7_jclassPK15JNINativeMethodi at 0x780d7eed10 通过 hook RegisterNatives 实现监控 app 中动态注册的 JNI 函数。代码如下：</description>
+    </item>
     <item>
       <title>ADB 远程调试全教程：弹不出授权弹窗？手动授权搞定！</title>
       <link>https://cyrus-studio.github.io/blog/posts/adb-%E8%BF%9C%E7%A8%8B%E8%B0%83%E8%AF%95%E5%85%A8%E6%95%99%E7%A8%8B%E5%BC%B9%E4%B8%8D%E5%87%BA%E6%8E%88%E6%9D%83%E5%BC%B9%E7%AA%97%E6%89%8B%E5%8A%A8%E6%8E%88%E6%9D%83%E6%90%9E%E5%AE%9A/</link>
@@ -490,13 +497,6 @@
       <pubDate>Mon, 16 Jun 2025 18:42:40 +0800</pubDate>
       <guid>https://cyrus-studio.github.io/blog/posts/%E6%B7%B1%E5%85%A5%E8%A7%A3%E6%9E%90-aes-%E5%8A%A0%E5%AF%86%E7%AE%97%E6%B3%95%E5%8E%9F%E7%90%86%E5%8F%98%E4%BD%93%E4%B8%8E-libtomcrypt-%E5%9C%A8-android-%E4%B8%AD%E7%9A%84%E5%AE%9E%E6%88%98%E5%BA%94%E7%94%A8/</guid>
       <description>版权归作者所有，如有转发，请注明文章出处：https://cyrus-studio.github.io/blog/&#xA;前言 AES（Advanced Encryption Standard，高级加密标准） 是一种 对称加密算法，用于加密和解密数据。AES 由 美国国家标准与技术研究院（NIST） 在 2001 年正式发布，取代了 DES 和 3DES，目前被广泛应用于 网络安全、金融、通信 等领域。&#xA;支持 128（16字节）、192（24字节）、256（32字节） 位密钥。&#xA;特性 描述 加密方式 对称加密（加密和解密使用相同的密钥） 分组长度 128 位（16 字节） 密钥长度 128 位、192 位、256 位（分别对应 10、12、14 轮加密） 安全性 目前无已知有效攻击，比 3DES 更安全 运算模式 支持 ECB、CBC、CFB、OFB、CTR 等模式 关于算法的详细介绍可以参考这篇文章：常用加解密算法介绍&#xA;LibTomCrypt LibTomCrypt 是一个开源的轻量级加密库，提供了多种加密算法和密码学相关功能。它是用 C 语言编写的，专注于嵌入式系统和资源受限的设备，非常适合在 Android 等平台上使用。&#xA;特点:&#xA;算法支持丰富：包括对称加密（AES、DES 等）、非对称加密（RSA、ECC 等）、哈希算法（SHA-256、MD5 等）&#xA;轻量级，代码简单。&#xA;支持多种加密模式：ECB、CBC、CFB、OFB 等。&#xA;适用场景: 如果你需要一个开源、可自定义的库。&#xA;集成 LibTomCrypt 到 Android 工程 在 Android Studio 中集成 LibTomCrypt 并调用 JNI，可以按以下步骤操作：</description>
-    </item>
-    <item>
-      <title>Frida Native 层 Hook 技巧：JNI 函数调用、字符串解析、so 加载</title>
-      <link>https://cyrus-studio.github.io/blog/posts/frida-native-%E5%B1%82-hook-%E6%8A%80%E5%B7%A7jni-%E5%87%BD%E6%95%B0%E8%B0%83%E7%94%A8%E5%AD%97%E7%AC%A6%E4%B8%B2%E8%A7%A3%E6%9E%90so-%E5%8A%A0%E8%BD%BD/</link>
-      <pubDate>Sun, 15 Jun 2025 02:25:04 +0800</pubDate>
-      <guid>https://cyrus-studio.github.io/blog/posts/frida-native-%E5%B1%82-hook-%E6%8A%80%E5%B7%A7jni-%E5%87%BD%E6%95%B0%E8%B0%83%E7%94%A8%E5%AD%97%E7%AC%A6%E4%B8%B2%E8%A7%A3%E6%9E%90so-%E5%8A%A0%E8%BD%BD/</guid>
-      <description>版权归作者所有，如有转发，请注明文章出处：https://cyrus-studio.github.io/blog/&#xA;RegisterNatives RegisterNatives 是 JNI（Java Native Interface）的一部分，用于在 Java 类和本地 C/C++ 代码之间注册本地方法。其原型如下：&#xA;jint RegisterNatives(JNIEnv* env, jclass clazz, const JNINativeMethod* methods, jint method_count); 参数说明：&#xA;env：JNIEnv 指针。&#xA;clazz：Java 类的 jclass 句柄。&#xA;methods：指向 JNINativeMethod 结构体数组的指针。&#xA;method_count：要注册的方法数量。&#xA;其中，methods 结构体的定义如下：&#xA;typedef struct {&#xD;const char* name; // 方法名称（指向字符串）&#xD;const char* signature; // 方法签名（指向字符串）&#xD;void* fnPtr; // 方法的本地实现（指向本地函数）&#xD;} JNINativeMethod; 可以看到，每个 JNINativeMethod 结构体由 三个指针 组成：&#xA;name（方法名指针）&#xA;signature（方法签名指针）&#xA;fnPtr（本地方法指针）&#xA;一般会有两个 RegisterNatives 函数，CheckJNI 版本只有在调试选项打开时才会调用，我们一般用 JNI 的那个就行。&#xA;[+] Found RegisterNatives symbol: _ZN3art12_GLOBAL__N_18CheckJNI15RegisterNativesEP7_JNIEnvP7_jclassPK15JNINativeMethodi at 0x780d7757a8&#xD;[+] Found RegisterNatives symbol: _ZN3art3JNI15RegisterNativesEP7_JNIEnvP7_jclassPK15JNINativeMethodi at 0x780d7eed10 通过 hook RegisterNatives 实现监控 app 中动态注册的 JNI 函数。代码如下：</description>
     </item>
     <item>
       <title>一文搞懂 SO 脱壳全流程：识别加壳、Frida Dump、原理深入解析</title>

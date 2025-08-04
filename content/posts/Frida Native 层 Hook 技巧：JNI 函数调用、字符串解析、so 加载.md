@@ -1,6 +1,6 @@
 +++
 title = 'Frida Native 层 Hook 技巧：JNI 函数调用、字符串解析、so 加载'
-date = 2025-06-15T02:25:04.575984+08:00
+date = 2025-08-04T18:03:18.489300+08:00
 draft = false
 +++
 
@@ -64,77 +64,94 @@ RegisterNatives.js
 // 查找 libart.so 中的 RegisterNatives 地址
 function findRegisterNativesAddr() {
     let symbols = Module.enumerateSymbolsSync("libart.so");
-    let addrRegisterNatives = null;
-
-    // 遍历所有符号，查找非 CheckJNI 版本的 RegisterNatives
-    for (let i = 0; i < symbols.length; i++) {
-        let symbol = symbols[i];
-
-        // 确认符合 RegisterNatives 标准的符号（非 CheckJNI 版本）
-        if (symbol.name.indexOf("CheckJNI") < 0 &&
-            symbol.name.indexOf("RegisterNatives") >= 0) {
-            addrRegisterNatives = symbol.address;
+    for (let symbol of symbols) {
+        if (symbol.name.indexOf("RegisterNatives") >= 0 &&
+            symbol.name.indexOf("CheckJNI") < 0) {
             console.log("[+] Found RegisterNatives symbol: " + symbol.name + " at " + symbol.address);
-            break;  // 找到第一个匹配的符号即可
+            return symbol.address;
         }
     }
-
-    // 如果没有找到 RegisterNatives 地址，返回 null
-    if (addrRegisterNatives === null) {
-        console.log("[!] No non-CheckJNI RegisterNatives symbol found!");
-    }
-    return addrRegisterNatives;
+    console.log("[!] No non-CheckJNI RegisterNatives symbol found!");
+    return null;
 }
 
 // Hook RegisterNatives 函数，打印方法相关信息
 function hookRegisterNatives(addrRegisterNatives) {
-    if (addrRegisterNatives !== null) {
-        // 使用 Interceptor 附加到 RegisterNatives 地址
-        Interceptor.attach(addrRegisterNatives, {
-            onEnter: function (args) {
+    if (!addrRegisterNatives) {
+        console.log("[!] Cannot hook RegisterNatives because the address is null.");
+        return;
+    }
 
-                // 获取 java 类和方法列表
-                let javaClass = args[1];
-                let className = Java.vm.tryGetEnv().getClassName(javaClass); // 获取类名
+    Interceptor.attach(addrRegisterNatives, {
+        onEnter: function (args) {
+            let logs = [];
+            try {
+                const env = Java.vm.tryGetEnv();
+                const javaClass = args[1];
+                const methodsPtr = ptr(args[2]);
+                const methodCount = args[3].toInt32();
 
-                // 打印 RegisterNatives 的方法参数
-                let methodsPtr = ptr(args[2]);
-
-                let methodCount = args[3].toInt32();
-                console.log("[RegisterNatives] method_count:", methodCount);
+                const className = env.getClassName(javaClass);
+                logs.push("\n==================== RegisterNatives ====================");
+                logs.push("[*] Class: " + className);
+                logs.push("[*] Method Count: " + methodCount);
 
                 // 遍历注册的每个 JNI 方法
                 for (let i = 0; i < methodCount; i++) {
-                    let methodPtr = methodsPtr.add(i * Process.pointerSize * 3); // 获取每个方法的指针
 
                     // 读取每个方法的名称、签名和函数指针
-                    let namePtr = Memory.readPointer(methodPtr);
-                    let sigPtr = Memory.readPointer(methodPtr.add(Process.pointerSize));
-                    let fnPtr = Memory.readPointer(methodPtr.add(Process.pointerSize * 2));
+                    const methodPtr = methodsPtr.add(i * Process.pointerSize * 3);
+                    const namePtr = Memory.readPointer(methodPtr);
+                    const sigPtr = Memory.readPointer(methodPtr.add(Process.pointerSize));
+                    const fnPtr = Memory.readPointer(methodPtr.add(Process.pointerSize * 2));
 
-                    let name = Memory.readCString(namePtr); // 方法名称
-                    let sig = Memory.readCString(sigPtr);   // 方法签名
-                    let symbol = DebugSymbol.fromAddress(fnPtr); // 函数符号信息
+                    const name = Memory.readCString(namePtr);
+                    const sig = Memory.readCString(sigPtr);
+                    const symbol = DebugSymbol.fromAddress(fnPtr);
+                    const module = Process.findModuleByAddress(fnPtr);
 
                     // 打印每个 JNI 方法的详细信息
-                    console.log("[RegisterNatives] Class:", className);
-                    console.log("  Method: " + name);
-                    console.log("  Signature: " + sig);
-                    console.log("  Function Pointer: " + fnPtr);
-                    console.log("  Function Symbol: " + symbol);
+                    logs.push(`  [${i}] Method: ${name}`);
+                    logs.push(`      Signature: ${sig}`);
+                    logs.push(`      Function Symbol: ${symbol.name} (${fnPtr})`);
+
+                    // JNI 方法所在模块信息
+                    if (module) {
+                        const offset = fnPtr.sub(module.base);
+                        logs.push(`      Module: ${module.name}`);
+                        logs.push(`      Offset in Module: ${offset}`);
+                    } else {
+                        logs.push(`      Module: Unknown`);
+                    }
                 }
+
+                // 打印调用堆栈
+                const backtrace = Thread.backtrace(this.context, Backtracer.ACCURATE)
+                    .map(DebugSymbol.fromAddress)
+                    .join('\n');
+                logs.push("\n[*] Backtrace:\n" + backtrace);
+                logs.push("=========================================================");
+
+            } catch (e) {
+                logs.push("[!] Exception in hookRegisterNatives: " + e);
             }
-        });
-    } else {
-        console.log("[!] Cannot hook RegisterNatives because the address is null.");
-    }
+
+            // 统一打印
+            console.log(logs.join('\n'));
+        }
+    });
 }
 
 // 执行查找并 hook RegisterNatives
-setImmediate(function() {
-    let addrRegisterNatives = findRegisterNativesAddr();
+setImmediate(function () {
+    const addrRegisterNatives = findRegisterNativesAddr();
     hookRegisterNatives(addrRegisterNatives);
 });
+
+
+// frida -H 127.0.0.1:1234 -l register_natives.js -f com.shizhuang.duapp -o register_natives.txt
+// frida -H 127.0.0.1:1234 -l register_natives.js -f com.shizhuang.duapp
+// frida -H 127.0.0.1:1234 -F -l register_natives.js
 ```
 
 
@@ -148,74 +165,267 @@ frida -H 127.0.0.1:1234 -l register_natives.js -f packageName
 输出如下：
 
 ```
-[+] Found RegisterNatives symbol: _ZN3art3JNI15RegisterNativesEP7_JNIEnvP7_jclassPK15JNINativeMethodi at 0x780d7eed10
-Spawned `com.shizhuang.duapp`. Use %resume to let the main thread start executing!
-[Remote::com.shizhuang.duapp]-> %resume
-[Remote::com.shizhuang.duapp]-> [RegisterNatives] method_count: 1
-[RegisterNatives] Class: lte.NCall
-  Method: dI
-  Signature: (I)I
-  Function Symbol: 0x77a435693c libGameVMP.so!0xb93c
-[RegisterNatives] method_count: 1
-[RegisterNatives] Class: lte.NCall
-  Method: dS
-  Signature: (Ljava/lang/String;)Ljava/lang/String;
-  Function Symbol: 0x77a4356aec libGameVMP.so!0xbaec
-[RegisterNatives] method_count: 1
-[RegisterNatives] Class: lte.NCall
-  Method: dL
-  Signature: (J)J
-  Function Symbol: 0x77a4356ad0 libGameVMP.so!0xbad0
-[RegisterNatives] method_count: 1
-[RegisterNatives] Class: lte.NCall
-  Method: IV
-  Signature: ([Ljava/lang/Object;)V
-  Function Symbol: 0x77a4358fa8 libGameVMP.so!0xdfa8
-[RegisterNatives] method_count: 1
-[RegisterNatives] Class: lte.NCall
-  Method: IZ
-  Signature: ([Ljava/lang/Object;)Z
-  Function Symbol: 0x77a4358fa8 libGameVMP.so!0xdfa8
-[RegisterNatives] method_count: 1
-[RegisterNatives] Class: lte.NCall
-  Method: IB
-  Signature: ([Ljava/lang/Object;)B
-  Function Symbol: 0x77a4358fa8 libGameVMP.so!0xdfa8
-[RegisterNatives] method_count: 1
-[RegisterNatives] Class: lte.NCall
-  Method: IC
-  Signature: ([Ljava/lang/Object;)C
-  Function Symbol: 0x77a4358fa8 libGameVMP.so!0xdfa8
-[RegisterNatives] method_count: 1
-[RegisterNatives] Class: lte.NCall
-  Method: IS
-  Signature: ([Ljava/lang/Object;)S
-  Function Symbol: 0x77a4358fa8 libGameVMP.so!0xdfa8
-[RegisterNatives] method_count: 1
-[RegisterNatives] Class: lte.NCall
-  Method: II
-  Signature: ([Ljava/lang/Object;)I
-  Function Symbol: 0x77a4358fa8 libGameVMP.so!0xdfa8
-[RegisterNatives] method_count: 1
-[RegisterNatives] Class: lte.NCall
-  Method: IF
-  Signature: ([Ljava/lang/Object;)F
-  Function Symbol: 0x77a4358fe8 libGameVMP.so!0xdfe8
-[RegisterNatives] method_count: 1
-[RegisterNatives] Class: lte.NCall
-  Method: IJ
-  Signature: ([Ljava/lang/Object;)J
-  Function Symbol: 0x77a4358fa8 libGameVMP.so!0xdfa8
-[RegisterNatives] method_count: 1
-[RegisterNatives] Class: lte.NCall
-  Method: ID
-  Signature: ([Ljava/lang/Object;)D
-  Function Symbol: 0x77a4359028 libGameVMP.so!0xe028
-[RegisterNatives] method_count: 1
-[RegisterNatives] Class: lte.NCall
-  Method: IL
-  Signature: ([Ljava/lang/Object;)Ljava/lang/Object;
-  Function Symbol: 0x77a4358fa8 libGameVMP.so!0xdfa8
+[+] Found RegisterNatives symbol: _ZN3art3JNI15RegisterNativesEP7_JNIEnvP7_jclassPK15JNINativeMethodi at 0x7256fe4560
+
+==================== RegisterNatives ====================
+[*] Class: lte.NCall
+[*] Method Count: 1
+  [0] Method: dI
+      Signature: (I)I
+      Function Symbol: 0xb93c (0x71dd90f93c)
+      Module: libGameVMP.so
+      Offset in Module: 0xb93c
+
+[*] Backtrace:
+0x71dd90a998 libGameVMP.so!0x6998
+0x71dd912650 libGameVMP.so!0xe650
+0x71dd9105d8 libGameVMP.so!0xc5d8
+0x71dd9068ac libGameVMP.so!0x28ac
+0x71dd9081b4 libGameVMP.so!JNI_OnLoad+0x904
+0x7256f85944 libart.so!_ZN3art9JavaVMExt17LoadNativeLibraryEP7_JNIEnvRKNSt3__112basic_stringIcNS3_11char_traitsIcEENS3_9allocatorIcEEEEP8_jobjectP7_jclassPS9_+0xc9c
+0x724d2ae184 libopenjdkjvm.so!JVM_NativeLoad+0x19c
+0x71454af4 boot.oat!0xb6af4
+=========================================================
+
+==================== RegisterNatives ====================
+[*] Class: lte.NCall
+[*] Method Count: 1
+  [0] Method: dS
+      Signature: (Ljava/lang/String;)Ljava/lang/String;
+      Function Symbol: 0xbaec (0x71dd90faec)
+      Module: libGameVMP.so
+      Offset in Module: 0xbaec
+
+[*] Backtrace:
+0x71dd90a998 libGameVMP.so!0x6998
+0x71dd912650 libGameVMP.so!0xe650
+0x71dd9105d8 libGameVMP.so!0xc5d8
+0x71dd9068ac libGameVMP.so!0x28ac
+0x71dd9081b4 libGameVMP.so!JNI_OnLoad+0x904
+0x7256f85944 libart.so!_ZN3art9JavaVMExt17LoadNativeLibraryEP7_JNIEnvRKNSt3__112basic_stringIcNS3_11char_traitsIcEENS3_9allocatorIcEEEEP8_jobjectP7_jclassPS9_+0xc9c
+0x724d2ae184 libopenjdkjvm.so!JVM_NativeLoad+0x19c
+0x71454af4 boot.oat!0xb6af4
+=========================================================
+
+==================== RegisterNatives ====================
+[*] Class: lte.NCall
+[*] Method Count: 1
+  [0] Method: dL
+      Signature: (J)J
+      Function Symbol: 0xbad0 (0x71dd90fad0)
+      Module: libGameVMP.so
+      Offset in Module: 0xbad0
+
+[*] Backtrace:
+0x71dd90a998 libGameVMP.so!0x6998
+0x71dd912650 libGameVMP.so!0xe650
+0x71dd9105d8 libGameVMP.so!0xc5d8
+0x71dd9068ac libGameVMP.so!0x28ac
+0x71dd9081b4 libGameVMP.so!JNI_OnLoad+0x904
+0x7256f85944 libart.so!_ZN3art9JavaVMExt17LoadNativeLibraryEP7_JNIEnvRKNSt3__112basic_stringIcNS3_11char_traitsIcEENS3_9allocatorIcEEEEP8_jobjectP7_jclassPS9_+0xc9c
+0x724d2ae184 libopenjdkjvm.so!JVM_NativeLoad+0x19c
+0x71454af4 boot.oat!0xb6af4
+=========================================================
+
+==================== RegisterNatives ====================
+[*] Class: lte.NCall
+[*] Method Count: 1
+  [0] Method: IV
+      Signature: ([Ljava/lang/Object;)V
+      Function Symbol: 0xdfa8 (0x71dd911fa8)
+      Module: libGameVMP.so
+      Offset in Module: 0xdfa8
+
+[*] Backtrace:
+0x71dd90a998 libGameVMP.so!0x6998
+0x71dd912650 libGameVMP.so!0xe650
+0x71dd9105d8 libGameVMP.so!0xc5d8
+0x71dd9068ac libGameVMP.so!0x28ac
+0x71dd9081b4 libGameVMP.so!JNI_OnLoad+0x904
+0x7256f85944 libart.so!_ZN3art9JavaVMExt17LoadNativeLibraryEP7_JNIEnvRKNSt3__112basic_stringIcNS3_11char_traitsIcEENS3_9allocatorIcEEEEP8_jobjectP7_jclassPS9_+0xc9c
+0x724d2ae184 libopenjdkjvm.so!JVM_NativeLoad+0x19c
+0x71454af4 boot.oat!0xb6af4
+=========================================================
+
+==================== RegisterNatives ====================
+[*] Class: lte.NCall
+[*] Method Count: 1
+  [0] Method: IZ
+      Signature: ([Ljava/lang/Object;)Z
+      Function Symbol: 0xdfa8 (0x71dd911fa8)
+      Module: libGameVMP.so
+      Offset in Module: 0xdfa8
+
+[*] Backtrace:
+0x71dd90a998 libGameVMP.so!0x6998
+0x71dd912650 libGameVMP.so!0xe650
+0x71dd9105d8 libGameVMP.so!0xc5d8
+0x71dd9068ac libGameVMP.so!0x28ac
+0x71dd9081b4 libGameVMP.so!JNI_OnLoad+0x904
+0x7256f85944 libart.so!_ZN3art9JavaVMExt17LoadNativeLibraryEP7_JNIEnvRKNSt3__112basic_stringIcNS3_11char_traitsIcEENS3_9allocatorIcEEEEP8_jobjectP7_jclassPS9_+0xc9c
+0x724d2ae184 libopenjdkjvm.so!JVM_NativeLoad+0x19c
+0x71454af4 boot.oat!0xb6af4
+=========================================================
+
+==================== RegisterNatives ====================
+[*] Class: lte.NCall
+[*] Method Count: 1
+  [0] Method: IB
+      Signature: ([Ljava/lang/Object;)B
+      Function Symbol: 0xdfa8 (0x71dd911fa8)
+      Module: libGameVMP.so
+      Offset in Module: 0xdfa8
+
+[*] Backtrace:
+0x71dd90a998 libGameVMP.so!0x6998
+0x71dd912650 libGameVMP.so!0xe650
+0x71dd9105d8 libGameVMP.so!0xc5d8
+0x71dd9068ac libGameVMP.so!0x28ac
+0x71dd9081b4 libGameVMP.so!JNI_OnLoad+0x904
+0x7256f85944 libart.so!_ZN3art9JavaVMExt17LoadNativeLibraryEP7_JNIEnvRKNSt3__112basic_stringIcNS3_11char_traitsIcEENS3_9allocatorIcEEEEP8_jobjectP7_jclassPS9_+0xc9c
+0x724d2ae184 libopenjdkjvm.so!JVM_NativeLoad+0x19c
+0x71454af4 boot.oat!0xb6af4
+=========================================================
+
+==================== RegisterNatives ====================
+[*] Class: lte.NCall
+[*] Method Count: 1
+  [0] Method: IC
+      Signature: ([Ljava/lang/Object;)C
+      Function Symbol: 0xdfa8 (0x71dd911fa8)
+      Module: libGameVMP.so
+      Offset in Module: 0xdfa8
+
+[*] Backtrace:
+0x71dd90a998 libGameVMP.so!0x6998
+0x71dd912650 libGameVMP.so!0xe650
+0x71dd9105d8 libGameVMP.so!0xc5d8
+0x71dd9068ac libGameVMP.so!0x28ac
+0x71dd9081b4 libGameVMP.so!JNI_OnLoad+0x904
+0x7256f85944 libart.so!_ZN3art9JavaVMExt17LoadNativeLibraryEP7_JNIEnvRKNSt3__112basic_stringIcNS3_11char_traitsIcEENS3_9allocatorIcEEEEP8_jobjectP7_jclassPS9_+0xc9c
+0x724d2ae184 libopenjdkjvm.so!JVM_NativeLoad+0x19c
+0x71454af4 boot.oat!0xb6af4
+=========================================================
+
+==================== RegisterNatives ====================
+[*] Class: lte.NCall
+[*] Method Count: 1
+  [0] Method: IS
+      Signature: ([Ljava/lang/Object;)S
+      Function Symbol: 0xdfa8 (0x71dd911fa8)
+      Module: libGameVMP.so
+      Offset in Module: 0xdfa8
+
+[*] Backtrace:
+0x71dd90a998 libGameVMP.so!0x6998
+0x71dd912650 libGameVMP.so!0xe650
+0x71dd9105d8 libGameVMP.so!0xc5d8
+0x71dd9068ac libGameVMP.so!0x28ac
+0x71dd9081b4 libGameVMP.so!JNI_OnLoad+0x904
+0x7256f85944 libart.so!_ZN3art9JavaVMExt17LoadNativeLibraryEP7_JNIEnvRKNSt3__112basic_stringIcNS3_11char_traitsIcEENS3_9allocatorIcEEEEP8_jobjectP7_jclassPS9_+0xc9c
+0x724d2ae184 libopenjdkjvm.so!JVM_NativeLoad+0x19c
+0x71454af4 boot.oat!0xb6af4
+=========================================================
+
+==================== RegisterNatives ====================
+[*] Class: lte.NCall
+[*] Method Count: 1
+  [0] Method: II
+      Signature: ([Ljava/lang/Object;)I
+      Function Symbol: 0xdfa8 (0x71dd911fa8)
+      Module: libGameVMP.so
+      Offset in Module: 0xdfa8
+
+[*] Backtrace:
+0x71dd90a998 libGameVMP.so!0x6998
+0x71dd912650 libGameVMP.so!0xe650
+0x71dd9105d8 libGameVMP.so!0xc5d8
+0x71dd9068ac libGameVMP.so!0x28ac
+0x71dd9081b4 libGameVMP.so!JNI_OnLoad+0x904
+0x7256f85944 libart.so!_ZN3art9JavaVMExt17LoadNativeLibraryEP7_JNIEnvRKNSt3__112basic_stringIcNS3_11char_traitsIcEENS3_9allocatorIcEEEEP8_jobjectP7_jclassPS9_+0xc9c
+0x724d2ae184 libopenjdkjvm.so!JVM_NativeLoad+0x19c
+0x71454af4 boot.oat!0xb6af4
+=========================================================
+
+==================== RegisterNatives ====================
+[*] Class: lte.NCall
+[*] Method Count: 1
+  [0] Method: IF
+      Signature: ([Ljava/lang/Object;)F
+      Function Symbol: 0xdfe8 (0x71dd911fe8)
+      Module: libGameVMP.so
+      Offset in Module: 0xdfe8
+
+[*] Backtrace:
+0x71dd90a998 libGameVMP.so!0x6998
+0x71dd912650 libGameVMP.so!0xe650
+0x71dd9105d8 libGameVMP.so!0xc5d8
+0x71dd9068ac libGameVMP.so!0x28ac
+0x71dd9081b4 libGameVMP.so!JNI_OnLoad+0x904
+0x7256f85944 libart.so!_ZN3art9JavaVMExt17LoadNativeLibraryEP7_JNIEnvRKNSt3__112basic_stringIcNS3_11char_traitsIcEENS3_9allocatorIcEEEEP8_jobjectP7_jclassPS9_+0xc9c
+0x724d2ae184 libopenjdkjvm.so!JVM_NativeLoad+0x19c
+0x71454af4 boot.oat!0xb6af4
+=========================================================
+
+==================== RegisterNatives ====================
+[*] Class: lte.NCall
+[*] Method Count: 1
+  [0] Method: IJ
+      Signature: ([Ljava/lang/Object;)J
+      Function Symbol: 0xdfa8 (0x71dd911fa8)
+      Module: libGameVMP.so
+      Offset in Module: 0xdfa8
+
+[*] Backtrace:
+0x71dd90a998 libGameVMP.so!0x6998
+0x71dd912650 libGameVMP.so!0xe650
+0x71dd9105d8 libGameVMP.so!0xc5d8
+0x71dd9068ac libGameVMP.so!0x28ac
+0x71dd9081b4 libGameVMP.so!JNI_OnLoad+0x904
+0x7256f85944 libart.so!_ZN3art9JavaVMExt17LoadNativeLibraryEP7_JNIEnvRKNSt3__112basic_stringIcNS3_11char_traitsIcEENS3_9allocatorIcEEEEP8_jobjectP7_jclassPS9_+0xc9c
+0x724d2ae184 libopenjdkjvm.so!JVM_NativeLoad+0x19c
+0x71454af4 boot.oat!0xb6af4
+=========================================================
+
+==================== RegisterNatives ====================
+[*] Class: lte.NCall
+[*] Method Count: 1
+  [0] Method: ID
+      Signature: ([Ljava/lang/Object;)D
+      Function Symbol: 0xe028 (0x71dd912028)
+      Module: libGameVMP.so
+      Offset in Module: 0xe028
+
+[*] Backtrace:
+0x71dd90a998 libGameVMP.so!0x6998
+0x71dd912650 libGameVMP.so!0xe650
+0x71dd9105d8 libGameVMP.so!0xc5d8
+0x71dd9068ac libGameVMP.so!0x28ac
+0x71dd9081b4 libGameVMP.so!JNI_OnLoad+0x904
+0x7256f85944 libart.so!_ZN3art9JavaVMExt17LoadNativeLibraryEP7_JNIEnvRKNSt3__112basic_stringIcNS3_11char_traitsIcEENS3_9allocatorIcEEEEP8_jobjectP7_jclassPS9_+0xc9c
+0x724d2ae184 libopenjdkjvm.so!JVM_NativeLoad+0x19c
+0x71454af4 boot.oat!0xb6af4
+=========================================================
+
+==================== RegisterNatives ====================
+[*] Class: lte.NCall
+[*] Method Count: 1
+  [0] Method: IL
+      Signature: ([Ljava/lang/Object;)Ljava/lang/Object;
+      Function Symbol: 0xdfa8 (0x71dd911fa8)
+      Module: libGameVMP.so
+      Offset in Module: 0xdfa8
+
+[*] Backtrace:
+0x71dd90a998 libGameVMP.so!0x6998
+0x71dd912650 libGameVMP.so!0xe650
+0x71dd9105d8 libGameVMP.so!0xc5d8
+0x71dd9068ac libGameVMP.so!0x28ac
+0x71dd9081b4 libGameVMP.so!JNI_OnLoad+0x904
+0x7256f85944 libart.so!_ZN3art9JavaVMExt17LoadNativeLibraryEP7_JNIEnvRKNSt3__112basic_stringIcNS3_11char_traitsIcEENS3_9allocatorIcEEEEP8_jobjectP7_jclassPS9_+0xc9c
+0x724d2ae184 libopenjdkjvm.so!JVM_NativeLoad+0x19c
+0x71454af4 boot.oat!0xb6af4
+=========================================================
 ```
 
 
