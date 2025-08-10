@@ -1,7 +1,7 @@
 <!doctype html>
 <html lang="zh-cn">
   <head>
-    <title>FART 主动调用组件设计和源码分析 // CYRUS STUDIO</title>
+    <title>FART 主动调用组件深度解析：破解 ART 下函数抽取壳的终极武器 // CYRUS STUDIO</title>
     <link rel="shortcut icon" href="/favicon.ico" />
     <meta charset="utf-8" />
     <meta name="generator" content="Hugo 0.131.0">
@@ -19,52 +19,36 @@
 
     
   <meta name="twitter:card" content="summary">
-  <meta name="twitter:title" content="FART 主动调用组件设计和源码分析">
+  <meta name="twitter:title" content="FART 主动调用组件深度解析：破解 ART 下函数抽取壳的终极武器">
   <meta name="twitter:description" content="版权归作者所有，如有转发，请注明文章出处：https://cyrus-studio.github.io/blog/
-现有脱壳方法存在的问题 脱壳粒度集中在 DexFile 整体，当前对 apk 保护的粒度在函数粒度，这就导致了脱壳与加固的不对等，无法应对函数粒度的加固保护。
-Dalvik 下的基于主动调用的自动化脱壳方案，首次将粒度下降到函数粒度
-https://github.com/zyq8709/DexHunter
-https://github.com/F8LEFT/FUPK3
-存在问题：
-1、Dalvik 慢慢淡出视野，无法应对 ART 环境
-2、当前没有一个好的脱壳修复框架，无法应用到 VMP 函数的修复
-主动调用相关概念 1、被动调用
-指 app 正常运行过程中发生的调用，该过程只对 dex 中部分的类完成了加载，同时也只是对 dex 中的部分函数完成了调用。
-2、主动调用
-通过构造虚拟调用，从而达到欺骗 “壳” ，让壳误以为 app 在执行正常的函数调用流程从而达成对 dex 中所有类函数的虚拟调用。
-被动调用也可以用来完成函数粒度的修复。如当前通过正常运行 app ，待 app 将 dex 中的类正常加载并完成相关的函数的正常调用后再进行 dex 的 dump 的脱壳方法。
+FART 的主动调用组件 在 Android 逆向与脱壳领域，早期的自动化脱壳方案（如 DexHunter、FUPK3）主要运行在 Dalvik 环境，并将脱壳粒度细化到函数级别，这一突破首次对抗了函数抽取壳的加固策略。然而，随着 ART 运行时逐渐取代 Dalvik，这些方案在新环境下已无法直接应用。
+另一方面，现有的主流脱壳方法多停留在 DexFile 整体粒度 ，而 APK 加固的防护粒度却已经下沉到 单个函数级别 ，造成了脱壳与加固之间的“不对等”对抗局面，无法应对函数粒度的加固保护。
+FART 的主动调用组件 正是在这一背景下诞生的核心模块，为解决函数抽取壳在 ART 下的修复问题提供了可行且高效的方案。
+主动调用相关概念 1. 被动调用 指 app 正常运行过程中发生的调用，该过程只对 dex 中部分的类完成了加载，同时也只是对 dex 中的部分函数完成了调用。
+2. 主动调用 通过构造虚拟调用，从而达到欺骗 “壳” ，让壳误以为 app 在执行正常的函数调用流程从而达成对 dex 中所有类函数的虚拟调用。
+3. 为何需要主动调用？ 被动调用也可以用来完成函数粒度的修复。如当前通过正常运行 app ，待 app 将 dex 中的类正常加载并完成相关的函数的正常调用后再进行 dex 的 dump 的脱壳方法。
 被动调用脱壳的缺点： 存在修复函数不全的问题。由于测试用例无法覆盖 dex 中所有的函数，导致代码覆盖率低，只能对 app 运行过程中调用过的函数的修复。
 主动调用的优点： 能够覆盖 dex 中所有的函数，从而完成更彻底的函数粒度的修复。同时，函数的修复准确度同主动调用链的构造深度有关。
-FART 中要解决的三个问题 1、如何构造主动调用链并让每一个函数都到达主动调用过程，但是又不影响 app 的正常运行？
-2、如何根据 ArtMethod 定位内存中对应的 CodeItem 的起始地址？
-3、如何遍历 dex 中的所有函数并完成主动调用？">
+FART 中要解决的三个问题 如何构造主动调用链并让每一个函数都到达主动调用过程，但是又不影响 app 的正常运行？">
 
-    <meta property="og:url" content="https://cyrus-studio.github.io/blog/posts/fart-%E4%B8%BB%E5%8A%A8%E8%B0%83%E7%94%A8%E7%BB%84%E4%BB%B6%E8%AE%BE%E8%AE%A1%E5%92%8C%E6%BA%90%E7%A0%81%E5%88%86%E6%9E%90/">
+    <meta property="og:url" content="https://cyrus-studio.github.io/blog/posts/fart-%E4%B8%BB%E5%8A%A8%E8%B0%83%E7%94%A8%E7%BB%84%E4%BB%B6%E6%B7%B1%E5%BA%A6%E8%A7%A3%E6%9E%90%E7%A0%B4%E8%A7%A3-art-%E4%B8%8B%E5%87%BD%E6%95%B0%E6%8A%BD%E5%8F%96%E5%A3%B3%E7%9A%84%E7%BB%88%E6%9E%81%E6%AD%A6%E5%99%A8/">
   <meta property="og:site_name" content="CYRUS STUDIO">
-  <meta property="og:title" content="FART 主动调用组件设计和源码分析">
+  <meta property="og:title" content="FART 主动调用组件深度解析：破解 ART 下函数抽取壳的终极武器">
   <meta property="og:description" content="版权归作者所有，如有转发，请注明文章出处：https://cyrus-studio.github.io/blog/
-现有脱壳方法存在的问题 脱壳粒度集中在 DexFile 整体，当前对 apk 保护的粒度在函数粒度，这就导致了脱壳与加固的不对等，无法应对函数粒度的加固保护。
-Dalvik 下的基于主动调用的自动化脱壳方案，首次将粒度下降到函数粒度
-https://github.com/zyq8709/DexHunter
-https://github.com/F8LEFT/FUPK3
-存在问题：
-1、Dalvik 慢慢淡出视野，无法应对 ART 环境
-2、当前没有一个好的脱壳修复框架，无法应用到 VMP 函数的修复
-主动调用相关概念 1、被动调用
-指 app 正常运行过程中发生的调用，该过程只对 dex 中部分的类完成了加载，同时也只是对 dex 中的部分函数完成了调用。
-2、主动调用
-通过构造虚拟调用，从而达到欺骗 “壳” ，让壳误以为 app 在执行正常的函数调用流程从而达成对 dex 中所有类函数的虚拟调用。
-被动调用也可以用来完成函数粒度的修复。如当前通过正常运行 app ，待 app 将 dex 中的类正常加载并完成相关的函数的正常调用后再进行 dex 的 dump 的脱壳方法。
+FART 的主动调用组件 在 Android 逆向与脱壳领域，早期的自动化脱壳方案（如 DexHunter、FUPK3）主要运行在 Dalvik 环境，并将脱壳粒度细化到函数级别，这一突破首次对抗了函数抽取壳的加固策略。然而，随着 ART 运行时逐渐取代 Dalvik，这些方案在新环境下已无法直接应用。
+另一方面，现有的主流脱壳方法多停留在 DexFile 整体粒度 ，而 APK 加固的防护粒度却已经下沉到 单个函数级别 ，造成了脱壳与加固之间的“不对等”对抗局面，无法应对函数粒度的加固保护。
+FART 的主动调用组件 正是在这一背景下诞生的核心模块，为解决函数抽取壳在 ART 下的修复问题提供了可行且高效的方案。
+主动调用相关概念 1. 被动调用 指 app 正常运行过程中发生的调用，该过程只对 dex 中部分的类完成了加载，同时也只是对 dex 中的部分函数完成了调用。
+2. 主动调用 通过构造虚拟调用，从而达到欺骗 “壳” ，让壳误以为 app 在执行正常的函数调用流程从而达成对 dex 中所有类函数的虚拟调用。
+3. 为何需要主动调用？ 被动调用也可以用来完成函数粒度的修复。如当前通过正常运行 app ，待 app 将 dex 中的类正常加载并完成相关的函数的正常调用后再进行 dex 的 dump 的脱壳方法。
 被动调用脱壳的缺点： 存在修复函数不全的问题。由于测试用例无法覆盖 dex 中所有的函数，导致代码覆盖率低，只能对 app 运行过程中调用过的函数的修复。
 主动调用的优点： 能够覆盖 dex 中所有的函数，从而完成更彻底的函数粒度的修复。同时，函数的修复准确度同主动调用链的构造深度有关。
-FART 中要解决的三个问题 1、如何构造主动调用链并让每一个函数都到达主动调用过程，但是又不影响 app 的正常运行？
-2、如何根据 ArtMethod 定位内存中对应的 CodeItem 的起始地址？
-3、如何遍历 dex 中的所有函数并完成主动调用？">
+FART 中要解决的三个问题 如何构造主动调用链并让每一个函数都到达主动调用过程，但是又不影响 app 的正常运行？">
   <meta property="og:locale" content="zh_cn">
   <meta property="og:type" content="article">
     <meta property="article:section" content="posts">
-    <meta property="article:published_time" content="2025-05-19T23:32:39+08:00">
-    <meta property="article:modified_time" content="2025-05-19T23:32:39+08:00">
+    <meta property="article:published_time" content="2025-08-11T03:50:29+08:00">
+    <meta property="article:modified_time" content="2025-08-11T03:50:29+08:00">
 
 
   </head>
@@ -122,7 +106,7 @@ FART 中要解决的三个问题 1、如何构造主动调用链并让每一个�
 <article class="post">
   <header class="post-header">
     <meta charset="UTF-8"/>
-    <h1 class="post-title">FART 主动调用组件设计和源码分析</h1>
+    <h1 class="post-title">FART 主动调用组件深度解析：破解 ART 下函数抽取壳的终极武器</h1>
     <div class="post-meta" style="display: flex; gap: 1em; flex-wrap: wrap; align-items: center;">
       <div>
         <span class="meta-item">
@@ -130,7 +114,7 @@ FART 中要解决的三个问题 1、如何构造主动调用链并让每一个�
   <title>eye</title>
   <path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"></path><circle cx="12" cy="12" r="3"></circle>
 </svg>
-          阅读量: <span class="waline-pageview-count" data-path="/blog/posts/fart-%E4%B8%BB%E5%8A%A8%E8%B0%83%E7%94%A8%E7%BB%84%E4%BB%B6%E8%AE%BE%E8%AE%A1%E5%92%8C%E6%BA%90%E7%A0%81%E5%88%86%E6%9E%90/"></span>
+          阅读量: <span class="waline-pageview-count" data-path="/blog/posts/fart-%E4%B8%BB%E5%8A%A8%E8%B0%83%E7%94%A8%E7%BB%84%E4%BB%B6%E6%B7%B1%E5%BA%A6%E8%A7%A3%E6%9E%90%E7%A0%B4%E8%A7%A3-art-%E4%B8%8B%E5%87%BD%E6%95%B0%E6%8A%BD%E5%8F%96%E5%A3%B3%E7%9A%84%E7%BB%88%E6%9E%81%E6%AD%A6%E5%99%A8/"></span>
         </span>
       </div>
       <div>
@@ -139,7 +123,7 @@ FART 中要解决的三个问题 1、如何构造主动调用链并让每一个�
   <title>calendar</title>
   <rect x="3" y="4" width="18" height="18" rx="2" ry="2"></rect><line x1="16" y1="2" x2="16" y2="6"></line><line x1="8" y1="2" x2="8" y2="6"></line><line x1="3" y1="10" x2="21" y2="10"></line>
 </svg>
-          May 19, 2025
+          Aug 11, 2025
         </span>
       </div>
       <div>
@@ -165,32 +149,31 @@ FART 中要解决的三个问题 1、如何构造主动调用链并让每一个�
     <blockquote>
 <p>版权归作者所有，如有转发，请注明文章出处：<a href="https://cyrus-studio.github.io/blog/">https://cyrus-studio.github.io/blog/</a></p>
 </blockquote>
-<h1 id="现有脱壳方法存在的问题">现有脱壳方法存在的问题</h1>
-<p>脱壳粒度集中在 DexFile 整体，当前对 apk 保护的粒度在函数粒度，这就导致了脱壳与加固的不对等，无法应对函数粒度的加固保护。</p>
-<p>Dalvik 下的基于主动调用的自动化脱壳方案，首次将粒度下降到函数粒度</p>
-<ul>
-<li>
-<p><a href="https://github.com/zyq8709/DexHunter">https://github.com/zyq8709/DexHunter</a></p>
-</li>
-<li>
-<p><a href="https://github.com/F8LEFT/FUPK3">https://github.com/F8LEFT/FUPK3</a></p>
-</li>
-</ul>
-<p>存在问题：</p>
-<p>1、Dalvik 慢慢淡出视野，无法应对 ART 环境</p>
-<p>2、当前没有一个好的脱壳修复框架，无法应用到 VMP 函数的修复</p>
+<h1 id="fart-的主动调用组件">FART 的主动调用组件</h1>
+<p>在 Android 逆向与脱壳领域，早期的自动化脱壳方案（如 <a href="https://github.com/zyq8709/DexHunter">DexHunter</a>、<a href="https://github.com/F8LEFT/FUPK3">FUPK3</a>）主要运行在 Dalvik 环境，并将脱壳粒度细化到函数级别，这一突破首次对抗了函数抽取壳的加固策略。然而，随着 ART 运行时逐渐取代 Dalvik，这些方案在新环境下已无法直接应用。</p>
+<p>另一方面，现有的主流脱壳方法多停留在 <strong>DexFile 整体粒度</strong> ，而 APK 加固的防护粒度却已经下沉到 <strong>单个函数级别</strong> ，造成了脱壳与加固之间的“不对等”对抗局面，无法应对函数粒度的加固保护。</p>
+<p><strong>FART 的主动调用组件</strong> 正是在这一背景下诞生的核心模块，为解决函数抽取壳在 ART 下的修复问题提供了可行且高效的方案。</p>
 <h1 id="主动调用相关概念">主动调用相关概念</h1>
-<p><strong>1、被动调用</strong></p>
+<h2 id="1-被动调用">1. 被动调用</h2>
 <p>指 app 正常运行过程中发生的调用，该过程只对 dex 中部分的类完成了加载，同时也只是对 dex 中的部分函数完成了调用。</p>
-<p><strong>2、主动调用</strong></p>
+<h2 id="2-主动调用">2. 主动调用</h2>
 <p>通过构造虚拟调用，从而达到欺骗 “壳” ，让壳误以为 app 在执行正常的函数调用流程从而达成对 dex 中所有类函数的虚拟调用。</p>
+<h2 id="3-为何需要主动调用">3. 为何需要主动调用？</h2>
 <p>被动调用也可以用来完成函数粒度的修复。如当前通过正常运行 app ，待 app 将 dex 中的类正常加载并完成相关的函数的正常调用后再进行 dex 的 dump 的脱壳方法。</p>
 <p><strong>被动调用脱壳的缺点：</strong> 存在修复函数不全的问题。由于测试用例无法覆盖 dex 中所有的函数，导致代码覆盖率低，只能对 app 运行过程中调用过的函数的修复。</p>
 <p><strong>主动调用的优点：</strong> 能够覆盖 dex 中所有的函数，从而完成更彻底的函数粒度的修复。同时，函数的修复准确度同主动调用链的构造深度有关。</p>
 <h1 id="fart-中要解决的三个问题">FART 中要解决的三个问题</h1>
-<p>1、如何构造主动调用链并让每一个函数都到达主动调用过程，但是又不影响 app 的正常运行？</p>
-<p>2、如何根据 ArtMethod 定位内存中对应的 CodeItem 的起始地址？</p>
-<p>3、如何遍历 dex 中的所有函数并完成主动调用？</p>
+<ol>
+<li>
+<p>如何构造主动调用链并让每一个函数都到达主动调用过程，但是又不影响 app 的正常运行？</p>
+</li>
+<li>
+<p>如何根据 ArtMethod 定位内存中对应的 CodeItem 的起始地址？</p>
+</li>
+<li>
+<p>如何遍历 dex 中的所有函数并完成主动调用？</p>
+</li>
+</ol>
 <h1 id="如何构造主动调用链">如何构造主动调用链？</h1>
 <p>标准 Java 函数调用示例代码：</p>
 <pre tabindex="0"><code>// 1. 查找 Java 类
