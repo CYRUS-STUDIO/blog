@@ -6,8 +6,15 @@
     <description>Recent content in Posts on CYRUS STUDIO</description>
     <generator>Hugo</generator>
     <language>zh-cn</language>
-    <lastBuildDate>Sat, 09 Aug 2025 02:42:33 +0800</lastBuildDate>
+    <lastBuildDate>Mon, 11 Aug 2025 00:33:05 +0800</lastBuildDate>
     <atom:link href="https://cyrus-studio.github.io/blog/posts/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Miniconda 全攻略：优雅管理你的 Python 环境</title>
+      <link>https://cyrus-studio.github.io/blog/posts/miniconda-%E5%85%A8%E6%94%BB%E7%95%A5%E4%BC%98%E9%9B%85%E7%AE%A1%E7%90%86%E4%BD%A0%E7%9A%84-python-%E7%8E%AF%E5%A2%83/</link>
+      <pubDate>Mon, 11 Aug 2025 00:33:05 +0800</pubDate>
+      <guid>https://cyrus-studio.github.io/blog/posts/miniconda-%E5%85%A8%E6%94%BB%E7%95%A5%E4%BC%98%E9%9B%85%E7%AE%A1%E7%90%86%E4%BD%A0%E7%9A%84-python-%E7%8E%AF%E5%A2%83/</guid>
+      <description>版权归作者所有，如有转发，请注明文章出处：https://cyrus-studio.github.io/blog/&#xA;Miniconda 介绍 Miniconda 是 Conda 的简化版本，只包含 Conda 包管理器和 Python 的最小安装包，提供了一种轻量级的环境管理和包管理工具。相比于 Anaconda，Miniconda 更小巧灵活，适合那些不需要 Anaconda 提供的完整生态的用户。&#xA;通过 Miniconda，开发者可以更高效地管理和定制自己的开发环境，避免不必要的依赖和资源浪费。&#xA;下载安装 Miniconda：https://docs.anaconda.com/miniconda/&#xA;把 Miniconda3 和 Miniconda3\Scripts 路径添加到 Path 系统环境变量&#xA;完成安装后，打开终端或命令提示符，输入&#xA;conda --version&#xD;python --version 如果显示版本号，说明安装成功。&#xA;创建环境 创建一个新的虚拟环境，指定特定版本的 Python&#xA;conda create -n anti-app python=3.12.6 列出当前可用的 Python 版本&#xA;conda search python 克隆环境 现有环境复制到新的环境&#xA;conda create --name new_env --clone old_env 删除环境 conda remove --name old_env --all 列出所有环境 conda env list 激活环境 conda activate env_name 停用当前环境 conda deactivate 导出当前环境 conda env export &amp;gt; environment.</description>
+    </item>
     <item>
       <title>使用 readelf 分析 so 文件：ELF 结构解析全攻略</title>
       <link>https://cyrus-studio.github.io/blog/posts/%E4%BD%BF%E7%94%A8-readelf-%E5%88%86%E6%9E%90-so-%E6%96%87%E4%BB%B6elf-%E7%BB%93%E6%9E%84%E8%A7%A3%E6%9E%90%E5%85%A8%E6%94%BB%E7%95%A5/</link>
@@ -630,13 +637,6 @@
       <pubDate>Tue, 25 Mar 2025 22:00:30 +0800</pubDate>
       <guid>https://cyrus-studio.github.io/blog/posts/ollvm-%E5%A2%9E%E5%8A%A0-cc&#43;&#43;-%E5%AD%97%E7%AC%A6%E4%B8%B2%E5%8A%A0%E5%AF%86%E5%8A%9F%E8%83%BD/</guid>
       <description>版权归作者所有，如有转发，请注明文章出处：https://cyrus-studio.github.io/blog/&#xA;前言 当我们如果没有对字符串进行加密，使用 IDA 反汇编一下 so 可以看到 C++ 代码中的字符串就直接暴露了。&#xA;字符串加密原理 sobf.c&#xA;#include &amp;lt;stdio.h&amp;gt;&#xD;int main() {&#xD;// 定义字符串常量&#xD;const char *greeting = &amp;#34;Hello, World!&amp;#34;;&#xD;const char *name = &amp;#34;Cyrus&amp;#34;;&#xD;const char *message = &amp;#34;Welcome to C programming.&amp;#34;;&#xD;// 打印字符串常量&#xD;printf(&amp;#34;%s\n&amp;#34;, greeting);&#xD;printf(&amp;#34;My name is %s.\n&amp;#34;, name);&#xD;printf(&amp;#34;%s\n&amp;#34;, message);&#xD;return 0;&#xD;} 生成 ir 文件&#xA;clang -S -emit-llvm sobf.c -o sobf.ll 通过生成 ir 文件可以看到字符串的定义都是 @&amp;quot;??C@ ，引用的的地方通过 @&amp;quot;??C@ 使用&#xA;; ModuleID = &amp;#39;sobf.</description>
-    </item>
-    <item>
-      <title>使用 Miniconda 管理 Python 环境</title>
-      <link>https://cyrus-studio.github.io/blog/posts/%E4%BD%BF%E7%94%A8-miniconda-%E7%AE%A1%E7%90%86-python-%E7%8E%AF%E5%A2%83/</link>
-      <pubDate>Sat, 25 Jan 2025 02:17:46 +0800</pubDate>
-      <guid>https://cyrus-studio.github.io/blog/posts/%E4%BD%BF%E7%94%A8-miniconda-%E7%AE%A1%E7%90%86-python-%E7%8E%AF%E5%A2%83/</guid>
-      <description>版权归作者所有，如有转发，请注明文章出处：https://cyrus-studio.github.io/blog/&#xA;Miniconda Miniconda 是 Conda 的简化版本，只包含 Conda 包管理器和 Python 的最小安装包，提供了一种轻量级的环境管理和包管理工具。相比于 Anaconda，Miniconda 更小巧灵活，适合那些不需要 Anaconda 提供的完整生态的用户。&#xA;通过 Miniconda，开发者可以更高效地管理和定制自己的开发环境，避免不必要的依赖和资源浪费。&#xA;下载安装 Miniconda：https://docs.anaconda.com/miniconda/&#xA;把 Miniconda3 和 Miniconda3\Scripts 路径添加到 Path 系统环境变量&#xA;完成安装后，打开终端或命令提示符，输入&#xA;conda --version&#xD;python --version 如果显示版本号，说明安装成功。&#xA;创建环境 创建一个新的虚拟环境，指定特定版本的 Python&#xA;conda create -n anti-app python=3.12.6 列出当前可用的 Python 版本&#xA;conda search python 克隆环境 现有环境复制到新的环境&#xA;conda create --name new_env --clone old_env 删除环境 conda remove --name old_env --all 列出所有环境 conda env list 激活环境 conda activate env_name 停用当前环境 conda deactivate 导出当前环境 conda env export &amp;gt; environment.</description>
     </item>
     <item>
       <title>Android Dex VMP 动态加载加密指令流 </title>

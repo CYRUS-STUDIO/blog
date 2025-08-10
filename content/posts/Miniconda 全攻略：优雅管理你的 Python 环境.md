@@ -1,12 +1,12 @@
 +++
-title = '使用 Miniconda 管理 Python 环境'
-date = 2025-01-25T02:17:46.453560+08:00
+title = 'Miniconda 全攻略：优雅管理你的 Python 环境'
+date = 2025-08-11T00:33:05.039506+08:00
 draft = false
 +++
 
 > 版权归作者所有，如有转发，请注明文章出处：<https://cyrus-studio.github.io/blog/>
 
-# **Miniconda**
+# Miniconda 介绍
 
 
 
@@ -39,7 +39,7 @@ python --version
 
 
 
-# **创建环境**
+# 创建环境
 
 
 
@@ -57,7 +57,7 @@ conda search python
 ```
 
 
-# **克隆环境**
+# 克隆环境
 
 
 
@@ -68,57 +68,49 @@ conda create --name new_env --clone old_env
 ```
 
 
-# **删除环境**
+# 删除环境
 
 ```
 conda remove --name old_env --all
 ```
 
 
-# **列出所有环境**
-
-
+# 列出所有环境
 
 ```
 conda env list
 ```
 
 
-# **激活环境**
-
-
+# 激活环境
 
 ```
 conda activate env_name
 ```
 
 
-# **停用当前环境**
+# 停用当前环境
 
 ```
 conda deactivate
 ```
 
 
-# **导出当前环境**
-
-
+# 导出当前环境
 
 ```
 conda env export > environment.yml
 ```
 
 
-# **从文件创建环境**
+# 从文件创建环境
 
 ```
 conda env create -f environment.yml
 ```
 
 
-# **安装包管理**
-
-
+# 安装包管理
 
 ```
 安装指定package
@@ -145,14 +137,14 @@ pip list --outdated
 ```
 
 
-# **清理缓存**
+# 清理缓存
 
 ```
 pip cache purge
 ```
 
 
-# **Pycharm 中使用 Conda 环境**
+# Pycharm 中使用 Conda 环境
 
 
 
@@ -172,7 +164,7 @@ pip cache purge
 
 
 
-# **Windows PowerShell 下使用 conda**
+# Windows PowerShell 下使用 conda
 
 
 
@@ -246,7 +238,7 @@ Windows PowerShell
 ```
 
 
-# **升级 Python 环境**
+# 升级 Python 环境
 
 
 
