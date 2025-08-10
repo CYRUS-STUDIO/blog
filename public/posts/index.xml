@@ -6,8 +6,15 @@
     <description>Recent content in Posts on CYRUS STUDIO</description>
     <generator>Hugo</generator>
     <language>zh-cn</language>
-    <lastBuildDate>Mon, 11 Aug 2025 03:50:29 +0800</lastBuildDate>
+    <lastBuildDate>Mon, 11 Aug 2025 03:58:22 +0800</lastBuildDate>
     <atom:link href="https://cyrus-studio.github.io/blog/posts/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>干掉抽取壳！FART 自动化脱壳框架与 Execute 脱壳点解析</title>
+      <link>https://cyrus-studio.github.io/blog/posts/%E5%B9%B2%E6%8E%89%E6%8A%BD%E5%8F%96%E5%A3%B3fart-%E8%87%AA%E5%8A%A8%E5%8C%96%E8%84%B1%E5%A3%B3%E6%A1%86%E6%9E%B6%E4%B8%8E-execute-%E8%84%B1%E5%A3%B3%E7%82%B9%E8%A7%A3%E6%9E%90/</link>
+      <pubDate>Mon, 11 Aug 2025 03:58:22 +0800</pubDate>
+      <guid>https://cyrus-studio.github.io/blog/posts/%E5%B9%B2%E6%8E%89%E6%8A%BD%E5%8F%96%E5%A3%B3fart-%E8%87%AA%E5%8A%A8%E5%8C%96%E8%84%B1%E5%A3%B3%E6%A1%86%E6%9E%B6%E4%B8%8E-execute-%E8%84%B1%E5%A3%B3%E7%82%B9%E8%A7%A3%E6%9E%90/</guid>
+      <description>版权归作者所有，如有转发，请注明文章出处：https://cyrus-studio.github.io/blog/&#xA;FART 简介 在 Android ART 环境中，市面上一些加固方案会通过“函数抽取壳”将应用的核心逻辑剥离，运行时再动态加载执行，从而增加逆向分析的难度。&#xA;FART 是一种基于主动调用的自动化脱壳方案，能够在 ART 虚拟机的执行流程中精准捕获并还原这些被抽空的函数，实现对被加固的 dex 文件整体 dump。&#xA;项目地址：https://github.com/hanbinglengyue/FART&#xA;函数抽取壳的实现原理：打造基于 ART 的 Android 函数抽取壳：原理剖析与完整源码实战&#xA;FART 框架 FART 框架的 3 大组件：&#xA;脱壳组件：将内存中的 Dex 数据完整 dump 出来&#xA;主动调用组件：构造主动调用链，完成对函数粒度的主动调用并完成 CodeItem 的 dump&#xA;修复组件：利用脱壳组件得到的 dex 和主动调用 dump 下来的函数体，完成函数粒度的修复&#xA;FART 中的脱壳点 其中 FART 脱壳组件 选择 Execute 作为脱壳点，它是 Interpreter 模式执行所有 Java 方法的统一入口，能够稳定截获和提取所有解释执行的真实方法，从而达到通用脱壳的目的。&#xA;ART 下函数在运行时可能是解释执行（Interpreter 模式）或编译执行（Quick 模式）。&#xA;为何选择 Execute 作为脱壳点？这就需要先搞懂 dex2oat 编译与 ART 函数调用流程。&#xA;dex2oat 编译流程 dex2oat 编译流程入口函数：&#xA;int main(int argc, char** argv) {&#xD;int result = static_cast&amp;lt;int&amp;gt;(art::Dex2oat(argc, argv));&#xD;// Everything was done, do an explicit exit here to avoid running Runtime destructors that take&#xD;// time (bug 10645725) unless we&amp;#39;re a debug or instrumented build or running on a memory tool.</description>
+    </item>
     <item>
       <title>FART 主动调用组件深度解析：破解 ART 下函数抽取壳的终极武器</title>
       <link>https://cyrus-studio.github.io/blog/posts/fart-%E4%B8%BB%E5%8A%A8%E8%B0%83%E7%94%A8%E7%BB%84%E4%BB%B6%E6%B7%B1%E5%BA%A6%E8%A7%A3%E6%9E%90%E7%A0%B4%E8%A7%A3-art-%E4%B8%8B%E5%87%BD%E6%95%B0%E6%8A%BD%E5%8F%96%E5%A3%B3%E7%9A%84%E7%BB%88%E6%9E%81%E6%AD%A6%E5%99%A8/</link>
