@@ -1,6 +1,6 @@
 +++
-title = '关于 dex2oat 以及 vdex、cdex、dex 格式转换'
-date = 2025-05-10T20:26:46.507186+08:00
+title = '深入解析 dex2oat：vdex、cdex、dex 格式转换全流程实战'
+date = 2025-08-11T03:12:08.455737+08:00
 draft = false
 +++
 
@@ -15,6 +15,8 @@ dex2oat 是 Android 系统中的一个核心工具，负责将应用中的 .dex�
 
 
 ## dex2oat 的作用
+
+
 
 
 
@@ -69,7 +71,7 @@ dex2oat 是 Android 系统中的一个核心工具，负责将应用中的 .dex�
 
 
 
-## 文件说明
+## 文件格式说明
 
 
 
@@ -115,7 +117,7 @@ adb push classes3.dex /sdcard/Android/data/com.cyrus.example/files/classes3.dex
 
 # vdexExtractor
 
-# 
+
 
 [vdexExtractor](https://github.com/anestisb/vdexExtractor) 是一个用于从 .vdex 文件中提取 DEX 文件的工具，它由 Google 安全团队成员 anestisb 开发。它支持将 Android 9 及以后版本中引入的 CompactDex (cdex) 格式转换为标准的 DEX 格式，方便我们使用常规反编译工具（如 jadx、dex2jar等）进行分析。
 
