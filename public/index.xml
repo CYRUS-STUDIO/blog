@@ -6,8 +6,15 @@
     <description>Recent content on CYRUS STUDIO</description>
     <generator>Hugo</generator>
     <language>zh-cn</language>
-    <lastBuildDate>Mon, 11 Aug 2025 00:33:05 +0800</lastBuildDate>
+    <lastBuildDate>Mon, 11 Aug 2025 00:50:47 +0800</lastBuildDate>
     <atom:link href="https://cyrus-studio.github.io/blog/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>基于 Python &#43; K-Means 的自动化视频分类实战</title>
+      <link>https://cyrus-studio.github.io/blog/posts/%E5%9F%BA%E4%BA%8E-python-&#43;-k-means-%E7%9A%84%E8%87%AA%E5%8A%A8%E5%8C%96%E8%A7%86%E9%A2%91%E5%88%86%E7%B1%BB%E5%AE%9E%E6%88%98/</link>
+      <pubDate>Mon, 11 Aug 2025 00:50:47 +0800</pubDate>
+      <guid>https://cyrus-studio.github.io/blog/posts/%E5%9F%BA%E4%BA%8E-python-&#43;-k-means-%E7%9A%84%E8%87%AA%E5%8A%A8%E5%8C%96%E8%A7%86%E9%A2%91%E5%88%86%E7%B1%BB%E5%AE%9E%E6%88%98/</guid>
+      <description>版权归作者所有，如有转发，请注明文章出处：https://cyrus-studio.github.io/blog/&#xA;实现过程 特征提取：使用预训练的 InceptionV3 模型，从视频的若干帧中提取高维的视觉特征。将每个视频的所有帧特征取平均值，生成一个固定长度的特征向量来表示该视频。&#xA;聚类：通过 K-Means 的聚类结果，每个视频被分配了一个簇标签，代表该视频与哪些视频在特征上最相似。&#xA;分类整理：最后根据簇标签，将视频移动到相应的分类文件夹中，每个文件夹对应一个簇。&#xA;InceptionV3 模型 InceptionV3 是一种用于图像分类和特征提取的深度学习模型，它是Inception 系列模型的第三个版本，由 Google 在 2015 年提出。&#xA;它最初是作为图像分类任务的一个模型，能够将图像分类到 1000 个类别中（如狗、猫、汽车等）。通过去除模型的最后几层（分类部分），可以将 InceptionV3 用作特征提取器。&#xA;簇 簇是聚类算法的核心概念，表示数据中相似的子集，目的是将无标签的数据点分组。&#xA;K-Means K-Means 是一种常用的无监督聚类算法，它的目标是将数据点分成 K 个簇（Cluster），使得每个簇内的数据点尽可能接近同一个中心（即簇的质心）。&#xA;算法的核心思想是通过迭代的方式找到 K 个最优的簇质心，并根据这些质心将数据进行分组。&#xA;源码 1. 安装依赖库 pip install moviepy scikit-learn tensorflow opencv-python 2. 实现代码 import os&#xD;import numpy as np&#xD;import cv2&#xD;from moviepy.editor import VideoFileClip&#xD;from sklearn.cluster import KMeans&#xD;from tensorflow.keras.applications import InceptionV3&#xD;from tensorflow.keras.applications.inception_v3 import preprocess_input&#xD;from tensorflow.</description>
+    </item>
     <item>
       <title>Miniconda 全攻略：优雅管理你的 Python 环境</title>
       <link>https://cyrus-studio.github.io/blog/posts/miniconda-%E5%85%A8%E6%94%BB%E7%95%A5%E4%BC%98%E9%9B%85%E7%AE%A1%E7%90%86%E4%BD%A0%E7%9A%84-python-%E7%8E%AF%E5%A2%83/</link>
@@ -728,13 +735,6 @@
       <pubDate>Mon, 30 Sep 2024 15:27:58 +0800</pubDate>
       <guid>https://cyrus-studio.github.io/blog/posts/%E4%BD%BF%E7%94%A8ida-pro%E5%8A%A8%E6%80%81%E8%B0%83%E8%AF%95android-app/</guid>
       <description>版权归作者所有，如有转发，请注明文章出处：https://cyrus-studio.github.io/blog/&#xA;关于 android_server android_server 是 IDA Pro 在 Android 设备上运行的一个调试服务器。&#xA;通过在 Android 设备上运行android_server，IDA Pro 可以远程调试 Android 应用程序，并实现断点设置、内存查看、寄存器检查等功能。&#xA;IDA Pro 通过 adb（Android Debug Bridge）将调试命令发送给 android_server，然后 android_server 在 Android 设备上执行这些命令，并将结果返回给 IDA Pro。&#xA;调试环境准备 把 IDA安装目录/dbgsrv 下的 android_server64 push 到设备 /data/local/tmp 路径下&#xA;adb push &amp;#34;D:\App\IDA_Pro\IDA_Pro_7.7\dbgsrv\android_server64&amp;#34; /data/local/tmp/as 进入 adb shell 启动 androd server&#xA;# 获取 root 权限&#xD;su&#xD;# 给 android server 增加执行权限&#xD;chmod +x /data/local/tmp/as&#xD;# 通过指定端口启动 android_server，假设你要使用端口 12345&#xD;/data/local/tmp/as -p 12345 关于获取手机 root 权限和开启全局调试可以参考下面两篇文章：</description>
-    </item>
-    <item>
-      <title>基于Python与K-Means的自动化视频分类方法</title>
-      <link>https://cyrus-studio.github.io/blog/posts/%E5%9F%BA%E4%BA%8Epython%E4%B8%8Ek-means%E7%9A%84%E8%87%AA%E5%8A%A8%E5%8C%96%E8%A7%86%E9%A2%91%E5%88%86%E7%B1%BB%E6%96%B9%E6%B3%95/</link>
-      <pubDate>Sat, 21 Sep 2024 01:43:21 +0800</pubDate>
-      <guid>https://cyrus-studio.github.io/blog/posts/%E5%9F%BA%E4%BA%8Epython%E4%B8%8Ek-means%E7%9A%84%E8%87%AA%E5%8A%A8%E5%8C%96%E8%A7%86%E9%A2%91%E5%88%86%E7%B1%BB%E6%96%B9%E6%B3%95/</guid>
-      <description>版权归作者所有，如有转发，请注明文章出处：https://cyrus-studio.github.io/blog/&#xA;实现过程 1. 特征提取：使用预训练的 InceptionV3 模型，从视频的若干帧中提取高维的视觉特征。将每个视频的所有帧特征取平均值，生成一个固定长度的特征向量来表示该视频。&#xA;2. 聚类：通过 K-Means 的聚类结果，每个视频被分配了一个簇标签，代表该视频与哪些视频在特征上最相似。&#xA;3. 分类整理：最后根据簇标签，将视频移动到相应的分类文件夹中，每个文件夹对应一个簇。&#xA;InceptionV3 模型 InceptionV3 是一种用于图像分类和特征提取的深度学习模型，它是Inception 系列模型的第三个版本，由 Google 在 2015 年提出。&#xA;它最初是作为图像分类任务的一个模型，能够将图像分类到 1000 个类别中（如狗、猫、汽车等）。通过去除模型的最后几层（分类部分），可以将 InceptionV3 用作特征提取器。&#xA;簇 簇是聚类算法的核心概念，表示数据中相似的子集，目的是将无标签的数据点分组。&#xA;K-Means K-Means 是一种常用的无监督聚类算法，它的目标是将数据点分成 K 个簇（Cluster），使得每个簇内的数据点尽可能接近同一个中心（即簇的质心）。&#xA;算法的核心思想是通过迭代的方式找到 K 个最优的簇质心，并根据这些质心将数据进行分组。&#xA;源码 1. 安装依赖库 pip install moviepy scikit-learn tensorflow opencv-python 2. 实现代码 import os&#xD;import numpy as np&#xD;import cv2&#xD;from moviepy.editor import VideoFileClip&#xD;from sklearn.cluster import KMeans&#xD;from tensorflow.keras.applications import InceptionV3&#xD;from tensorflow.keras.applications.inception_v3 import preprocess_input&#xD;from tensorflow.</description>
     </item>
     <item>
       <title>Android下反调试与反反调试</title>

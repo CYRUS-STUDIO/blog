@@ -1,50 +1,74 @@
 +++
-title = '基于Python与K-Means的自动化视频分类方法'
-date = 2024-09-21T01:43:21.619108+08:00
+title = '基于 Python + K-Means 的自动化视频分类实战'
+date = 2025-08-11T00:50:47.256559+08:00
 draft = false
 +++
 
 > 版权归作者所有，如有转发，请注明文章出处：<https://cyrus-studio.github.io/blog/>
 
-# __实现过程__
+# 实现过程
 
 
-1\. 特征提取：使用预训练的 InceptionV3 模型，从视频的若干帧中提取高维的视觉特征。将每个视频的所有帧特征取平均值，生成一个固定长度的特征向量来表示该视频。
 
-2\. 聚类：通过 K-Means 的聚类结果，每个视频被分配了一个簇标签，代表该视频与哪些视频在特征上最相似。
+1. 特征提取：使用预训练的 InceptionV3 模型，从视频的若干帧中提取高维的视觉特征。将每个视频的所有帧特征取平均值，生成一个固定长度的特征向量来表示该视频。
 
-3\. 分类整理：最后根据簇标签，将视频移动到相应的分类文件夹中，每个文件夹对应一个簇。
 
-## __InceptionV3 模型__
+
+2. 聚类：通过 K-Means 的聚类结果，每个视频被分配了一个簇标签，代表该视频与哪些视频在特征上最相似。
+
+
+
+3. 分类整理：最后根据簇标签，将视频移动到相应的分类文件夹中，每个文件夹对应一个簇。
+
+
+
+## InceptionV3 模型
+
 
 
 InceptionV3 是一种用于图像分类和特征提取的深度学习模型，它是Inception 系列模型的第三个版本，由 Google 在 2015 年提出。
 
+
+
 它最初是作为图像分类任务的一个模型，能够将图像分类到 1000 个类别中（如狗、猫、汽车等）。通过去除模型的最后几层（分类部分），可以将 InceptionV3 用作特征提取器。
 
-## __簇__
+
+
+## 簇
+
 
 
 簇是聚类算法的核心概念，表示数据中相似的子集，目的是将无标签的数据点分组。
 
-## __K-Means__
+
+
+## K-Means
+
 
 
 K-Means 是一种常用的无监督聚类算法，它的目标是将数据点分成 K 个簇（Cluster），使得每个簇内的数据点尽可能接近同一个中心（即簇的质心）。
 
+
+
 算法的核心思想是通过迭代的方式找到 K 个最优的簇质心，并根据这些质心将数据进行分组。
 
-# __源码__
 
 
-## __1\. 安装依赖库__
+# 源码
+
+
+
+## 1. 安装依赖库
+
 
 
 ```
 pip install moviepy scikit-learn tensorflow opencv-python
 ```
 
-## __2\. 实现代码__
+
+## 2. 实现代码
+
 
 
 ```
@@ -137,33 +161,58 @@ output_directory = "path/to/output_videos"
 main(input_directory, output_directory, num_clusters=30, frame_interval=30)
 ```
 
-## __3\. 代码说明__
+
+## 3. 代码说明
 
 
-1\. extract_video_features：从每个视频中提取帧，使用 InceptionV3 模型提取每个帧的特征，并最终取所有帧特征的平均值作为该视频的代表特征。
 
-2\. extract_features_for_all_videos：批量提取目录中所有视频的特征。
-
-3\. cluster_videos：使用 K-Means 聚类算法对视频进行分类，将相似的视频聚到一起。
-
-4\. classify_videos：将视频根据聚类结果移动到不同的分类文件夹。
-
-5\. main：主函数，负责加载模型、提取特征、聚类以及将视频分类。
-
-## __4\. 调用说明__
+1. extract_video_features：从每个视频中提取帧，使用 InceptionV3 模型提取每个帧的特征，并最终取所有帧特征的平均值作为该视频的代表特征。
 
 
-1\. input_directory: 视频所在的输入文件夹。
 
-2\. output_directory: 输出文件夹，程序会根据聚类结果创建不同的文件夹，将相似的视频分类进去。
-
-3\. num_clusters: 要分类的类别数，即希望将视频分为多少类。
-
-4\. frame_interval: 每隔多少帧提取一次特征帧。值越大，提取帧的间隔越大。
+2. extract_features_for_all_videos：批量提取目录中所有视频的特征。
 
 
-源码地址：[https://github.com/CYRUS-STUDIO/classify-videos-kmeans-python](https://github.com/CYRUS-STUDIO/classify-videos-kmeans-python)
+
+3. cluster_videos：使用 K-Means 聚类算法对视频进行分类，将相似的视频聚到一起。
 
 
-               
+
+4. classify_videos：将视频根据聚类结果移动到不同的分类文件夹。
+
+
+
+5. main：主函数，负责加载模型、提取特征、聚类以及将视频分类。
+
+
+
+## 4. 调用说明
+
+
+
+1. input_directory: 视频所在的输入文件夹。
+
+
+
+2. output_directory: 输出文件夹，程序会根据聚类结果创建不同的文件夹，将相似的视频分类进去。
+
+
+
+3. num_clusters: 要分类的类别数，即希望将视频分为多少类。
+
+
+
+4. frame_interval: 每隔多少帧提取一次特征帧。值越大，提取帧的间隔越大。
+
+
+
+# 完整源码
+
+
+
+开源地址：[https://github.com/CYRUS-STUDIO/classify-videos-kmeans-python](https://github.com/CYRUS-STUDIO/classify-videos-kmeans-python)
+
+
+
+
 
