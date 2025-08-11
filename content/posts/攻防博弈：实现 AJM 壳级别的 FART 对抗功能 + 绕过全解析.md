@@ -1,12 +1,12 @@
 +++
-title = '攻防 FART 脱壳：特征检测识别 + 对抗绕过全解析'
-date = 2025-06-02T20:08:55.211099+08:00
+title = '攻防博弈：实现 AJM 壳级别的 FART 对抗功能 + 绕过全解析'
+date = 2025-08-11T23:24:21.238502+08:00
 draft = false
 +++
 
 > 版权归作者所有，如有转发，请注明文章出处：<https://cyrus-studio.github.io/blog/>
 
-# FART 对抗
+# 实现类似 AJM 壳的 FART 对抗功能
 
 
 
@@ -37,7 +37,7 @@ draft = false
 ```
 
 
-使用的是 ajm 的壳，App 加载 so 文件，主动检测 FART 特征
+使用的是 AJM 的壳，App 加载 so 文件，主动检测 FART 特征
 
 ```
 avc: granted { execute } for path="/data/data/cn.cntv/files/libexec.so"
@@ -76,15 +76,17 @@ FART 开源地址：[https://github.com/CYRUS-STUDIO/FART](https://github.com/CY
 
 关于 FART 的详细介绍参考下面的文章：
 
-- [FART 自动化脱壳框架简介与脱壳点的选择](https://cyrus-studio.github.io/blog/posts/fart-%E8%87%AA%E5%8A%A8%E5%8C%96%E8%84%B1%E5%A3%B3%E6%A1%86%E6%9E%B6%E7%AE%80%E4%BB%8B%E4%B8%8E%E8%84%B1%E5%A3%B3%E7%82%B9%E7%9A%84%E9%80%89%E6%8B%A9/)
+- [干掉抽取壳！FART 自动化脱壳框架与 Execute 脱壳点解析](https://cyrus-studio.github.io/blog/posts/%E5%B9%B2%E6%8E%89%E6%8A%BD%E5%8F%96%E5%A3%B3fart-%E8%87%AA%E5%8A%A8%E5%8C%96%E8%84%B1%E5%A3%B3%E6%A1%86%E6%9E%B6%E4%B8%8E-execute-%E8%84%B1%E5%A3%B3%E7%82%B9%E8%A7%A3%E6%9E%90/)
 
-- [FART 主动调用组件设计和源码分析](https://cyrus-studio.github.io/blog/posts/fart-%E4%B8%BB%E5%8A%A8%E8%B0%83%E7%94%A8%E7%BB%84%E4%BB%B6%E8%AE%BE%E8%AE%A1%E5%92%8C%E6%BA%90%E7%A0%81%E5%88%86%E6%9E%90/)
+- [FART 主动调用组件深度解析：破解 ART 下函数抽取壳的终极武器](https://cyrus-studio.github.io/blog/posts/fart-%E4%B8%BB%E5%8A%A8%E8%B0%83%E7%94%A8%E7%BB%84%E4%BB%B6%E6%B7%B1%E5%BA%A6%E8%A7%A3%E6%9E%90%E7%A0%B4%E8%A7%A3-art-%E4%B8%8B%E5%87%BD%E6%95%B0%E6%8A%BD%E5%8F%96%E5%A3%B3%E7%9A%84%E7%BB%88%E6%9E%81%E6%AD%A6%E5%99%A8/)
 
-- [移植 FART 到 Android 10 实现自动化脱壳](https://cyrus-studio.github.io/blog/posts/%E7%A7%BB%E6%A4%8D-fart-%E5%88%B0-android-10-%E5%AE%9E%E7%8E%B0%E8%87%AA%E5%8A%A8%E5%8C%96%E8%84%B1%E5%A3%B3/)
+- [一步步带你移植 FART 到 Android 10，实现自动化脱壳](https://cyrus-studio.github.io/blog/posts/%E4%B8%80%E6%AD%A5%E6%AD%A5%E5%B8%A6%E4%BD%A0%E7%A7%BB%E6%A4%8D-fart-%E5%88%B0-android-10%E5%AE%9E%E7%8E%B0%E8%87%AA%E5%8A%A8%E5%8C%96%E8%84%B1%E5%A3%B3/)
 
-- [FART 自动化脱壳框架一些 bug 修复记录](https://cyrus-studio.github.io/blog/posts/fart-%E8%87%AA%E5%8A%A8%E5%8C%96%E8%84%B1%E5%A3%B3%E6%A1%86%E6%9E%B6%E4%B8%80%E4%BA%9B-bug-%E4%BF%AE%E5%A4%8D%E8%AE%B0%E5%BD%95/)
+- [FART 自动化脱壳框架优化实战：Bug 修复与代码改进记录](https://cyrus-studio.github.io/blog/posts/fart-%E8%87%AA%E5%8A%A8%E5%8C%96%E8%84%B1%E5%A3%B3%E6%A1%86%E6%9E%B6%E4%BC%98%E5%8C%96%E5%AE%9E%E6%88%98bug-%E4%BF%AE%E5%A4%8D%E4%B8%8E%E4%BB%A3%E7%A0%81%E6%94%B9%E8%BF%9B%E8%AE%B0%E5%BD%95/)
 
-- [使用 Frida 增强 FART：实现更强大的 Android 脱壳能力](https://cyrus-studio.github.io/blog/posts/%E4%BD%BF%E7%94%A8-frida-%E5%A2%9E%E5%BC%BA-fart%E5%AE%9E%E7%8E%B0%E6%9B%B4%E5%BC%BA%E5%A4%A7%E7%9A%84-android-%E8%84%B1%E5%A3%B3%E8%83%BD%E5%8A%9B/)
+- [Frida + FART 联手：解锁更强大的 Android 脱壳新姿势](https://cyrus-studio.github.io/blog/posts/frida-+-fart-%E8%81%94%E6%89%8B%E8%A7%A3%E9%94%81%E6%9B%B4%E5%BC%BA%E5%A4%A7%E7%9A%84-android-%E8%84%B1%E5%A3%B3%E6%96%B0%E5%A7%BF%E5%8A%BF/)
+
+- [FART 脱壳不再全量！用一份配置文件精准控制节奏与范围](https://cyrus-studio.github.io/blog/posts/fart-%E8%84%B1%E5%A3%B3%E4%B8%8D%E5%86%8D%E5%85%A8%E9%87%8F%E7%94%A8%E4%B8%80%E4%BB%BD%E9%85%8D%E7%BD%AE%E6%96%87%E4%BB%B6%E7%B2%BE%E5%87%86%E6%8E%A7%E5%88%B6%E8%8A%82%E5%A5%8F%E4%B8%8E%E8%8C%83%E5%9B%B4/)
 
 
 
