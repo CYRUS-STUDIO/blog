@@ -3,10 +3,13 @@
   xmlns:xhtml="http://www.w3.org/1999/xhtml">
   <url>
     <loc>https://cyrus-studio.github.io/blog/</loc>
-    <lastmod>2025-08-11T23:57:39+08:00</lastmod>
+    <lastmod>2025-08-12T00:15:18+08:00</lastmod>
+  </url><url>
+    <loc>https://cyrus-studio.github.io/blog/posts/fart-%E8%84%B1%E5%A3%B3%E6%9F%90%E5%A4%A7%E5%8E%82-app-&#43;-codeitem-%E4%BF%AE%E5%A4%8D-dex-&#43;-%E5%8F%8D%E7%BC%96%E8%AF%91%E8%BF%98%E5%8E%9F%E6%BA%90%E7%A0%81/</loc>
+    <lastmod>2025-08-12T00:15:18+08:00</lastmod>
   </url><url>
     <loc>https://cyrus-studio.github.io/blog/posts/</loc>
-    <lastmod>2025-08-11T23:57:39+08:00</lastmod>
+    <lastmod>2025-08-12T00:15:18+08:00</lastmod>
   </url><url>
     <loc>https://cyrus-studio.github.io/blog/posts/%E6%94%BB%E9%98%B2-fart-%E8%84%B1%E5%A3%B3%E5%AE%9E%E7%8E%B0-ajm-%E5%A3%B3%E7%BA%A7%E5%88%AB%E7%9A%84%E5%AF%B9%E6%8A%97%E5%8A%9F%E8%83%BD-&#43;-%E7%BB%95%E8%BF%87%E5%85%A8%E8%A7%A3%E6%9E%90/</loc>
     <lastmod>2025-08-11T23:57:39+08:00</lastmod>
@@ -256,12 +259,6 @@
   </url><url>
     <loc>https://cyrus-studio.github.io/blog/posts/%E4%B8%80%E6%96%87%E6%90%9E%E6%87%82-so-%E8%84%B1%E5%A3%B3%E5%85%A8%E6%B5%81%E7%A8%8B%E8%AF%86%E5%88%AB%E5%8A%A0%E5%A3%B3frida-dump%E5%8E%9F%E7%90%86%E6%B7%B1%E5%85%A5%E8%A7%A3%E6%9E%90/</loc>
     <lastmod>2025-06-11T01:23:58+08:00</lastmod>
-  </url><url>
-    <loc>https://cyrus-studio.github.io/blog/posts/fart-%E8%84%B1%E5%A3%B3%E6%9F%90%E5%A4%A7%E5%8E%82-app-&#43;-codeitem-%E4%BF%AE%E5%A4%8D-dex-&#43;-%E5%8F%8D%E7%BC%96%E8%AF%91%E8%BF%98%E5%8E%9F%E6%BA%90%E7%A0%81/</loc>
-    <lastmod>2025-06-08T00:31:08+08:00</lastmod>
-  </url><url>
-    <loc>https://cyrus-studio.github.io/blog/posts/%E4%BD%BF%E7%94%A8-dex2c-%E5%8A%A0%E5%A3%B3%E4%BF%9D%E6%8A%A4-android-apk-%E4%BB%A3%E7%A0%81/</loc>
-    <lastmod>2025-04-27T22:38:15+08:00</lastmod>
   </url><url>
     <loc>https://cyrus-studio.github.io/blog/posts/android-ndk-%E7%BC%96%E8%AF%91-so-%E6%96%87%E4%BB%B6-%E6%8A%B9%E9%99%A4%E5%AF%BC%E5%87%BA%E7%AC%A6%E5%8F%B7-%E5%8F%8D%E9%80%86%E5%90%91/</loc>
     <lastmod>2025-04-15T12:41:19+08:00</lastmod>
