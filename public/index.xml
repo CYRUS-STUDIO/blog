@@ -6,8 +6,15 @@
     <description>Recent content on CYRUS STUDIO</description>
     <generator>Hugo</generator>
     <language>zh-cn</language>
-    <lastBuildDate>Mon, 11 Aug 2025 20:37:27 +0800</lastBuildDate>
+    <lastBuildDate>Mon, 11 Aug 2025 21:04:48 +0800</lastBuildDate>
     <atom:link href="https://cyrus-studio.github.io/blog/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>FART 脱壳不再全量！用一份配置文件精准控制节奏与范围</title>
+      <link>https://cyrus-studio.github.io/blog/posts/fart-%E8%84%B1%E5%A3%B3%E4%B8%8D%E5%86%8D%E5%85%A8%E9%87%8F%E7%94%A8%E4%B8%80%E4%BB%BD%E9%85%8D%E7%BD%AE%E6%96%87%E4%BB%B6%E7%B2%BE%E5%87%86%E6%8E%A7%E5%88%B6%E8%8A%82%E5%A5%8F%E4%B8%8E%E8%8C%83%E5%9B%B4/</link>
+      <pubDate>Mon, 11 Aug 2025 21:04:48 +0800</pubDate>
+      <guid>https://cyrus-studio.github.io/blog/posts/fart-%E8%84%B1%E5%A3%B3%E4%B8%8D%E5%86%8D%E5%85%A8%E9%87%8F%E7%94%A8%E4%B8%80%E4%BB%BD%E9%85%8D%E7%BD%AE%E6%96%87%E4%BB%B6%E7%B2%BE%E5%87%86%E6%8E%A7%E5%88%B6%E8%8A%82%E5%A5%8F%E4%B8%8E%E8%8C%83%E5%9B%B4/</guid>
+      <description>版权归作者所有，如有转发，请注明文章出处：https://cyrus-studio.github.io/blog/&#xA;前言 FART 在默认模式下会对所有 App 执行全量脱壳：&#xA;每次 App 启动都会自动触发脱壳&#xA;对 App 内所有类进行主动调用&#xA;这种“全覆盖”方式虽然简单粗暴，但效率低、启动时间长，且无法跳过针对 FART 的对抗类，甚至会被无意义的垃圾类拖慢进程。&#xA;如果能通过一份简单的配置文件 ，就能精准控制 FART 的脱壳过程——包括是否启用脱壳、延迟启动时间、指定需要主动调用的类、排除特定类规则等。不仅能显著提升脱壳效率，还能有效规避对抗类带来的干扰，让 FART 更加灵活、可控。&#xA;FART 相关文章：&#xA;干掉抽取壳！FART 自动化脱壳框架与 Execute 脱壳点解析&#xA;FART 主动调用组件深度解析：破解 ART 下函数抽取壳的终极武器&#xA;一步步带你移植 FART 到 Android 10，实现自动化脱壳&#xA;FART 自动化脱壳框架优化实战：Bug 修复与代码改进记录&#xA;Frida + FART 联手：解锁更强大的 Android 脱壳新姿势&#xA;一、配置驱动的精准脱壳方案 1. 配置文件的设计思路与格式（包含排除规则与白名单机制） 例如，配置项如下：&#xA;# 是否开启脱壳功能（true 开启，false 关闭）&#xD;dump=true&#xD;# 启动后延迟多少毫秒再进行脱壳（单位：毫秒），避免应用初始化未完成&#xD;sleep=60000&#xD;# 明确指定哪些类名或包路径需要主动调用以触发加载（支持通配符 *）&#xD;# 示例：ff.l0.* 表示 ff.l0 包下所有类&#xD;force=ff.l0.*&#xD;# 忽略哪些类或包路径（支持通配符 *）&#xD;# 通常用于排除系统类、常见库类、FART对抗类等&#xD;ignore=androidx.</description>
+    </item>
     <item>
       <title>FART 自动化脱壳框架优化实战：Bug 修复与代码改进记录</title>
       <link>https://cyrus-studio.github.io/blog/posts/fart-%E8%87%AA%E5%8A%A8%E5%8C%96%E8%84%B1%E5%A3%B3%E6%A1%86%E6%9E%B6%E4%BC%98%E5%8C%96%E5%AE%9E%E6%88%98bug-%E4%BF%AE%E5%A4%8D%E4%B8%8E%E4%BB%A3%E7%A0%81%E6%94%B9%E8%BF%9B%E8%AE%B0%E5%BD%95/</link>
@@ -581,13 +588,6 @@
       <pubDate>Sun, 08 Jun 2025 00:31:08 +0800</pubDate>
       <guid>https://cyrus-studio.github.io/blog/posts/fart-%E8%84%B1%E5%A3%B3%E6%9F%90%E5%A4%A7%E5%8E%82-app-&#43;-codeitem-%E4%BF%AE%E5%A4%8D-dex-&#43;-%E5%8F%8D%E7%BC%96%E8%AF%91%E8%BF%98%E5%8E%9F%E6%BA%90%E7%A0%81/</guid>
       <description>版权归作者所有，如有转发，请注明文章出处：https://cyrus-studio.github.io/blog/&#xA;FART 脱壳 fartthread 方法在 app 启动的时候（ActivityThread）开启 fart 线程，休眠 60 秒，等待 app 启动完成后自动开始遍历 ClassLoader 的 类列表，发起主动调用。&#xA;FART 脱壳结束得到的文件列表（分 Execute 与 主动调用两类）：&#xA;Execute 脱壳点得到的 dex (*_dex_file_execute.dex）和 dex 中的所有类列表（ txt 文件）&#xA;主动调用时 dump 得到的 dex (*_dex_file.dex）和此时 dex 中的所有类列表，以及该 dex 中所有函数的 CodeItem（ bin 文件）&#xA;wayne:/data/data/com.cyrus.example/cyrus # ls&#xD;1321896_class_list.txt 1437648_dex_file_execute.dex 1488168_class_list_execute.txt 1605504_ins_4714.bin&#xD;1321896_class_list_execute.txt 1437648_ins_4714.bin 1488168_dex_file.dex 198768_class_list.txt&#xD;1321896_dex_file.dex 1448488_class_list.txt 1488168_dex_file_execute.dex 198768_class_list_execute.txt&#xD;1321896_dex_file_execute.dex 1448488_class_list_execute.txt 1488168_ins_4714.bin 198768_dex_file.dex&#xD;1321896_ins_4714.bin 1448488_dex_file.dex 1496608_class_list.txt 198768_dex_file_execute.dex&#xD;1351008_class_list.txt 1448488_dex_file_execute.dex 1496608_class_list_execute.txt 198768_ins_4714.bin&#xD;1351008_class_list_execute.txt 1448488_ins_4714.</description>
-    </item>
-    <item>
-      <title>FART 精准脱壳：通过配置文件控制脱壳节奏与范围</title>
-      <link>https://cyrus-studio.github.io/blog/posts/fart-%E7%B2%BE%E5%87%86%E8%84%B1%E5%A3%B3%E9%80%9A%E8%BF%87%E9%85%8D%E7%BD%AE%E6%96%87%E4%BB%B6%E6%8E%A7%E5%88%B6%E8%84%B1%E5%A3%B3%E8%8A%82%E5%A5%8F%E4%B8%8E%E8%8C%83%E5%9B%B4/</link>
-      <pubDate>Wed, 04 Jun 2025 17:42:52 +0800</pubDate>
-      <guid>https://cyrus-studio.github.io/blog/posts/fart-%E7%B2%BE%E5%87%86%E8%84%B1%E5%A3%B3%E9%80%9A%E8%BF%87%E9%85%8D%E7%BD%AE%E6%96%87%E4%BB%B6%E6%8E%A7%E5%88%B6%E8%84%B1%E5%A3%B3%E8%8A%82%E5%A5%8F%E4%B8%8E%E8%8C%83%E5%9B%B4/</guid>
-      <description>版权归作者所有，如有转发，请注明文章出处：https://cyrus-studio.github.io/blog/&#xA;前言 由于 FART 默认会对所有 app 进行脱壳，每次 app 启动都会自动脱壳，而且会对 app 中所有类发起主动调用，这样效率比较慢，遇到 FART 对抗类也不能选择性跳过。&#xA;如何通过一份简单的配置文件，实现对 FART 脱壳过程的精准控制：包括是否启用脱壳、延迟时间、需要主动调用的类列表、排除类规则等。提高脱壳效率，也可以避开一些垃圾类（FART 对抗类）的调用。&#xA;关于 FART 的详细介绍参考下面的文章：&#xA;FART 自动化脱壳框架简介与脱壳点的选择&#xA;FART 主动调用组件设计和源码分析&#xA;移植 FART 到 Android 10 实现自动化脱壳&#xA;FART 自动化脱壳框架一些 bug 修复记录&#xA;使用 Frida 增强 FART：实现更强大的 Android 脱壳能力&#xA;攻防 FART 脱壳：特征检测识别 + 对抗绕过全解析&#xA;通过配置文件控制脱壳节奏与范围 例如，配置项如下：&#xA;# 是否开启脱壳功能（true 开启，false 关闭）&#xD;dump=true&#xD;# 启动后延迟多少毫秒再进行脱壳（单位：毫秒），避免应用初始化未完成&#xD;sleep=60000&#xD;# 明确指定哪些类名或包路径需要主动调用以触发加载（支持通配符 *）&#xD;# 示例：ff.l0.* 表示 ff.l0 包下所有类&#xD;force=ff.l0.*&#xD;# 忽略哪些类或包路径（支持通配符 *）&#xD;# 通常用于排除系统类、常见库类、FART对抗类等&#xD;ignore=androidx.</description>
     </item>
     <item>
       <title>攻防 FART 脱壳：特征检测识别 &#43; 对抗绕过全解析</title>
