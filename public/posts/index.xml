@@ -6,8 +6,15 @@
     <description>Recent content in Posts on CYRUS STUDIO</description>
     <generator>Hugo</generator>
     <language>zh-cn</language>
-    <lastBuildDate>Tue, 12 Aug 2025 00:25:39 +0800</lastBuildDate>
+    <lastBuildDate>Tue, 12 Aug 2025 00:44:56 +0800</lastBuildDate>
     <atom:link href="https://cyrus-studio.github.io/blog/posts/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>一文搞懂 SO 脱壳全流程：识别加壳、Frida Dump、原理深入解析</title>
+      <link>https://cyrus-studio.github.io/blog/posts/%E4%B8%80%E6%96%87%E6%90%9E%E6%87%82-so-%E8%84%B1%E5%A3%B3%E5%85%A8%E6%B5%81%E7%A8%8B%E8%AF%86%E5%88%AB%E5%8A%A0%E5%A3%B3frida-dump%E5%8E%9F%E7%90%86%E6%B7%B1%E5%85%A5%E8%A7%A3%E6%9E%90/</link>
+      <pubDate>Tue, 12 Aug 2025 00:44:56 +0800</pubDate>
+      <guid>https://cyrus-studio.github.io/blog/posts/%E4%B8%80%E6%96%87%E6%90%9E%E6%87%82-so-%E8%84%B1%E5%A3%B3%E5%85%A8%E6%B5%81%E7%A8%8B%E8%AF%86%E5%88%AB%E5%8A%A0%E5%A3%B3frida-dump%E5%8E%9F%E7%90%86%E6%B7%B1%E5%85%A5%E8%A7%A3%E6%9E%90/</guid>
+      <description>版权归作者所有，如有转发，请注明文章出处：https://cyrus-studio.github.io/blog/&#xA;如何快速判断 SO 是否加壳 使用 IDA 打开 so 提示无法正确识别 ELF 文件结构。&#xA;section 定义无效或不符合预期格式。&#xA;有很多红色的汇编代码块，表示错误或者未能正常解析的地址/数据&#xA;这通常就是 so 可能被“混淆”、“裁剪”或“加壳”了。&#xA;Frida Dump 脱壳实战 frida_dump 是基于 frida 的 so 和 dex 的脱壳工具。&#xA;开源地址：https://github.com/lasting-yang/frida_dump&#xA;关于 Frida 的使用参考：一文搞懂如何使用 Frida Hook Android App&#xA;先把 frida_dump 源码 clone 到本地。&#xA;如果使用的是远程链接，把 dump_so.py 中的&#xA;device: frida.core.Device = frida.get_usb_device() 改成&#xA;device = frida.get_device_manager().add_remote_device(&amp;#34;127.0.0.1:1234&amp;#34;) 比如目标 so 是 libGameVMP.so，通过下面命令执行 dump_so.py&#xA;python dump_so.py libGameVMP.so 输出如下：&#xA;(anti-app) PS D:\Python\anti-app\frida_dump&amp;gt; python dump_so.py libGameVMP.so&#xD;{&amp;#39;name&amp;#39;: &amp;#39;libGameVMP.so&amp;#39;, &amp;#39;base&amp;#39;: &amp;#39;0x7bd7b81000&amp;#39;, &amp;#39;size&amp;#39;: 462848, &amp;#39;path&amp;#39;: &amp;#39;/data/app/com.</description>
+    </item>
     <item>
       <title>用 Dex2C 把 Java 变 Native：Android 代码加固全攻略</title>
       <link>https://cyrus-studio.github.io/blog/posts/%E7%94%A8-dex2c-%E6%8A%8A-java-%E5%8F%98-nativeandroid-%E4%BB%A3%E7%A0%81%E5%8A%A0%E5%9B%BA%E5%85%A8%E6%94%BB%E7%95%A5/</link>
@@ -595,13 +602,6 @@
       <pubDate>Mon, 16 Jun 2025 18:42:40 +0800</pubDate>
       <guid>https://cyrus-studio.github.io/blog/posts/%E6%B7%B1%E5%85%A5%E8%A7%A3%E6%9E%90-aes-%E5%8A%A0%E5%AF%86%E7%AE%97%E6%B3%95%E5%8E%9F%E7%90%86%E5%8F%98%E4%BD%93%E4%B8%8E-libtomcrypt-%E5%9C%A8-android-%E4%B8%AD%E7%9A%84%E5%AE%9E%E6%88%98%E5%BA%94%E7%94%A8/</guid>
       <description>版权归作者所有，如有转发，请注明文章出处：https://cyrus-studio.github.io/blog/&#xA;前言 AES（Advanced Encryption Standard，高级加密标准） 是一种 对称加密算法，用于加密和解密数据。AES 由 美国国家标准与技术研究院（NIST） 在 2001 年正式发布，取代了 DES 和 3DES，目前被广泛应用于 网络安全、金融、通信 等领域。&#xA;支持 128（16字节）、192（24字节）、256（32字节） 位密钥。&#xA;特性 描述 加密方式 对称加密（加密和解密使用相同的密钥） 分组长度 128 位（16 字节） 密钥长度 128 位、192 位、256 位（分别对应 10、12、14 轮加密） 安全性 目前无已知有效攻击，比 3DES 更安全 运算模式 支持 ECB、CBC、CFB、OFB、CTR 等模式 关于算法的详细介绍可以参考这篇文章：常用加解密算法介绍&#xA;LibTomCrypt LibTomCrypt 是一个开源的轻量级加密库，提供了多种加密算法和密码学相关功能。它是用 C 语言编写的，专注于嵌入式系统和资源受限的设备，非常适合在 Android 等平台上使用。&#xA;特点:&#xA;算法支持丰富：包括对称加密（AES、DES 等）、非对称加密（RSA、ECC 等）、哈希算法（SHA-256、MD5 等）&#xA;轻量级，代码简单。&#xA;支持多种加密模式：ECB、CBC、CFB、OFB 等。&#xA;适用场景: 如果你需要一个开源、可自定义的库。&#xA;集成 LibTomCrypt 到 Android 工程 在 Android Studio 中集成 LibTomCrypt 并调用 JNI，可以按以下步骤操作：</description>
-    </item>
-    <item>
-      <title>一文搞懂 SO 脱壳全流程：识别加壳、Frida Dump、原理深入解析</title>
-      <link>https://cyrus-studio.github.io/blog/posts/%E4%B8%80%E6%96%87%E6%90%9E%E6%87%82-so-%E8%84%B1%E5%A3%B3%E5%85%A8%E6%B5%81%E7%A8%8B%E8%AF%86%E5%88%AB%E5%8A%A0%E5%A3%B3frida-dump%E5%8E%9F%E7%90%86%E6%B7%B1%E5%85%A5%E8%A7%A3%E6%9E%90/</link>
-      <pubDate>Wed, 11 Jun 2025 01:23:58 +0800</pubDate>
-      <guid>https://cyrus-studio.github.io/blog/posts/%E4%B8%80%E6%96%87%E6%90%9E%E6%87%82-so-%E8%84%B1%E5%A3%B3%E5%85%A8%E6%B5%81%E7%A8%8B%E8%AF%86%E5%88%AB%E5%8A%A0%E5%A3%B3frida-dump%E5%8E%9F%E7%90%86%E6%B7%B1%E5%85%A5%E8%A7%A3%E6%9E%90/</guid>
-      <description>版权归作者所有，如有转发，请注明文章出处：https://cyrus-studio.github.io/blog/&#xA;加壳 so 识别 使用 IDA 打开 so 提示无法正确识别 ELF 文件结构。&#xA;section 定义无效或不符合预期格式。&#xA;有很多红色的汇编代码块，表示错误或者未能正常解析的地址/数据&#xA;这通常就是 so 可能被“混淆”、“裁剪”或“加壳”了。&#xA;使用 frida_dump 实现 so 脱壳 frida_dump 是基于 frida 的 so 和 dex 的脱壳工具。&#xA;开源地址：https://github.com/lasting-yang/frida_dump&#xA;关于 Frida 的使用参考：使用 Frida Hook Android App&#xA;先把 frida_dump 源码 clone 到本地。&#xA;如果使用的是远程链接，把 dump_so.py 中的&#xA;device: frida.core.Device = frida.get_usb_device() 改成&#xA;device = frida.get_device_manager().add_remote_device(&amp;#34;127.0.0.1:1234&amp;#34;) 比如目标 so 是 libGameVMP.so，通过下面命令执行 dump_so.py&#xA;python dump_so.py libGameVMP.so 输出如下：&#xA;(anti-app) PS D:\Python\anti-app\frida_dump&amp;gt; python dump_so.py libGameVMP.so&#xD;{&amp;#39;name&amp;#39;: &amp;#39;libGameVMP.</description>
     </item>
     <item>
       <title>Android NDK 编译 so 文件 抹除导出符号 反逆向</title>
