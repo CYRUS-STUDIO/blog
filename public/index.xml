@@ -6,8 +6,15 @@
     <description>Recent content on CYRUS STUDIO</description>
     <generator>Hugo</generator>
     <language>zh-cn</language>
-    <lastBuildDate>Mon, 11 Aug 2025 03:58:22 +0800</lastBuildDate>
+    <lastBuildDate>Mon, 11 Aug 2025 18:54:30 +0800</lastBuildDate>
     <atom:link href="https://cyrus-studio.github.io/blog/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>一步步带你移植 FART 到 Android 10，实现自动化脱壳</title>
+      <link>https://cyrus-studio.github.io/blog/posts/%E4%B8%80%E6%AD%A5%E6%AD%A5%E5%B8%A6%E4%BD%A0%E7%A7%BB%E6%A4%8D-fart-%E5%88%B0-android-10%E5%AE%9E%E7%8E%B0%E8%87%AA%E5%8A%A8%E5%8C%96%E8%84%B1%E5%A3%B3/</link>
+      <pubDate>Mon, 11 Aug 2025 18:54:30 +0800</pubDate>
+      <guid>https://cyrus-studio.github.io/blog/posts/%E4%B8%80%E6%AD%A5%E6%AD%A5%E5%B8%A6%E4%BD%A0%E7%A7%BB%E6%A4%8D-fart-%E5%88%B0-android-10%E5%AE%9E%E7%8E%B0%E8%87%AA%E5%8A%A8%E5%8C%96%E8%84%B1%E5%A3%B3/</guid>
+      <description>版权归作者所有，如有转发，请注明文章出处：https://cyrus-studio.github.io/blog/&#xA;FART 源码 FART 是一种基于主动调用的自动化脱壳方案，能够在 ART 虚拟机的执行流程中精准捕获并还原被抽空的函数，实现对被加固的 dex 文件整体 dump。&#xA;FART 相关链接：&#xA;干掉抽取壳！FART 自动化脱壳框架与 Execute 脱壳点解析&#xA;FART 主动调用组件深度解析：破解 ART 下函数抽取壳的终极武器&#xA;FART 开源地址：https://github.com/hanbinglengyue/FART&#xA;目前 FART 是基于 Android 6.0 实现，源码文件结构如下：&#xA;这里以把 FART 源码移植到 LineageOS 17.1（Android 10）为例。&#xA;LineageOS 源码的下载、编译、签名参考：&#xA;解决90%踩坑问题！LineageOS 源码下载与编译保姆级教程&#xA;教你签自己的系统！LineageOS Release Key 签名刷机教程&#xA;移植 FART 到 Android 10 对比 android 6.0 中的源码和 FART 的源码找到修改的地方并移植到 Android 10 源码中&#xA;interpreter.cc 路径：art/runtime/interpreter/interpreter.cc&#xA;Android 6.0 源码：https://cs.android.com/android/platform/superproject/+/android-6.0.0_r1:art/runtime/interpreter/interpreter.cc&#xA;namespace art 中增加 dumpDexFileByExecute 函数声明&#xA;//add&#xD;extern &amp;#34;C&amp;#34; void dumpDexFileByExecute(ArtMethod* artmethod); 在 Execute 函数头部增加 dumpDexFileByExecute 调用</description>
+    </item>
     <item>
       <title>干掉抽取壳！FART 自动化脱壳框架与 Execute 脱壳点解析</title>
       <link>https://cyrus-studio.github.io/blog/posts/%E5%B9%B2%E6%8E%89%E6%8A%BD%E5%8F%96%E5%A3%B3fart-%E8%87%AA%E5%8A%A8%E5%8C%96%E8%84%B1%E5%A3%B3%E6%A1%86%E6%9E%B6%E4%B8%8E-execute-%E8%84%B1%E5%A3%B3%E7%82%B9%E8%A7%A3%E6%9E%90/</link>
@@ -588,13 +595,6 @@
       <pubDate>Wed, 28 May 2025 00:00:55 +0800</pubDate>
       <guid>https://cyrus-studio.github.io/blog/posts/fart-%E8%87%AA%E5%8A%A8%E5%8C%96%E8%84%B1%E5%A3%B3%E6%A1%86%E6%9E%B6%E4%B8%80%E4%BA%9B-bug-%E4%BF%AE%E5%A4%8D%E8%AE%B0%E5%BD%95/</guid>
       <description>版权归作者所有，如有转发，请注明文章出处：https://cyrus-studio.github.io/blog/&#xA;open() 判断不严谨 https://github.com/CYRUS-STUDIO/FART/blob/master/fart10/art/runtime/art_method.cc&#xA;比如：&#xA;int dexfilefp = open(dex_path.c_str(), O_RDONLY);&#xD;if (dexfilefp &amp;gt; 0) {&#xD;close(dexfilefp);&#xD;} 这个判断条件其实是不严谨的，导致 if 中 的 close(dexfilefp); 一直没有执行。&#xA;open() 的返回值语义是：&#xA;成功时：返回一个非负整数（即 &amp;gt;= 0），它是打开的文件描述符。&#xA;失败时：返回 -1&#xA;正确的判断方式应该是：&#xA;if (fp &amp;gt;= 0) {&#xD;// 成功打开&#xD;} else {&#xD;// 打开失败，打印错误信息&#xD;LOG(ERROR) &amp;lt;&amp;lt; &amp;#34;open dex file failed&amp;#34;;&#xD;} mkdir failed errno: 13 FART 中通过 mkdir 函数在 sdcard 上创建 dump 文件存放目录，但是这样必须 app 拥有存储卡读写权限。不然 mkdir 会执行失败。&#xA;下面时一个 frida 脚本，调用系统 的 mkdir 函数创建目录</description>
-    </item>
-    <item>
-      <title>移植 FART 到 Android 10 实现自动化脱壳</title>
-      <link>https://cyrus-studio.github.io/blog/posts/%E7%A7%BB%E6%A4%8D-fart-%E5%88%B0-android-10-%E5%AE%9E%E7%8E%B0%E8%87%AA%E5%8A%A8%E5%8C%96%E8%84%B1%E5%A3%B3/</link>
-      <pubDate>Sat, 24 May 2025 15:17:52 +0800</pubDate>
-      <guid>https://cyrus-studio.github.io/blog/posts/%E7%A7%BB%E6%A4%8D-fart-%E5%88%B0-android-10-%E5%AE%9E%E7%8E%B0%E8%87%AA%E5%8A%A8%E5%8C%96%E8%84%B1%E5%A3%B3/</guid>
-      <description>版权归作者所有，如有转发，请注明文章出处：https://cyrus-studio.github.io/blog/&#xA;FART 源码 FART 是 ART 环境下基于主动调用的自动化脱壳方案。&#xA;关于 FART 详细介绍参考：&#xA;FART 自动化脱壳框架简介与脱壳点的选择&#xA;FART 主动调用组件设计和源码分析&#xA;开源地址：https://github.com/hanbinglengyue/FART&#xA;目前 FART 是基于 Android 6.0 实现，源码文件结构如下：&#xA;把 FART 源码移植到 LineageOS 17.1（Android 10）。&#xA;关于 LineageOS 源码的下载与编译参考：LineageOS源码下载和编译（Xiaomi Mi 6X，wayne）&#xA;移植 FART 到 Android 10 对比 android 6.0 中的源码和 FART 的源码找到修改的地方并移植到 Android 10 源码中&#xA;interpreter.cc 路径：art/runtime/interpreter/interpreter.cc&#xA;Android 6.0 源码：https://cs.android.com/android/platform/superproject/+/android-6.0.0_r1:art/runtime/interpreter/interpreter.cc&#xA;namespace art 中增加 dumpDexFileByExecute 函数声明&#xA;//add&#xD;extern &amp;#34;C&amp;#34; void dumpDexFileByExecute(ArtMethod* artmethod); 在 Execute 函数头部增加 dumpDexFileByExecute 调用&#xA;static inline JValue Execute(&#xD;Thread* self,&#xD;const CodeItemDataAccessor&amp;amp; accessor,&#xD;ShadowFrame&amp;amp; shadow_frame,&#xD;JValue result_register,&#xD;bool stay_in_interpreter = false,&#xD;bool from_deoptimize = false) REQUIRES_SHARED(Locks::mutator_lock_) {&#xD;//add&#xD;LOG(INFO) &amp;lt;&amp;lt; &amp;#34;[Execute]&amp;#34; &amp;lt;&amp;lt; shadow_frame.</description>
     </item>
     <item>
       <title>使用 Dex2C 加壳保护 Android APK 代码</title>
