@@ -6,14 +6,21 @@
     <description>Recent content in Posts on CYRUS STUDIO</description>
     <generator>Hugo</generator>
     <language>zh-cn</language>
-    <lastBuildDate>Mon, 11 Aug 2025 19:34:45 +0800</lastBuildDate>
+    <lastBuildDate>Mon, 11 Aug 2025 20:37:27 +0800</lastBuildDate>
     <atom:link href="https://cyrus-studio.github.io/blog/posts/index.xml" rel="self" type="application/rss+xml" />
     <item>
       <title>FART 自动化脱壳框架优化实战：Bug 修复与代码改进记录</title>
       <link>https://cyrus-studio.github.io/blog/posts/fart-%E8%87%AA%E5%8A%A8%E5%8C%96%E8%84%B1%E5%A3%B3%E6%A1%86%E6%9E%B6%E4%BC%98%E5%8C%96%E5%AE%9E%E6%88%98bug-%E4%BF%AE%E5%A4%8D%E4%B8%8E%E4%BB%A3%E7%A0%81%E6%94%B9%E8%BF%9B%E8%AE%B0%E5%BD%95/</link>
-      <pubDate>Mon, 11 Aug 2025 19:34:45 +0800</pubDate>
+      <pubDate>Mon, 11 Aug 2025 20:37:27 +0800</pubDate>
       <guid>https://cyrus-studio.github.io/blog/posts/fart-%E8%87%AA%E5%8A%A8%E5%8C%96%E8%84%B1%E5%A3%B3%E6%A1%86%E6%9E%B6%E4%BC%98%E5%8C%96%E5%AE%9E%E6%88%98bug-%E4%BF%AE%E5%A4%8D%E4%B8%8E%E4%BB%A3%E7%A0%81%E6%94%B9%E8%BF%9B%E8%AE%B0%E5%BD%95/</guid>
       <description>版权归作者所有，如有转发，请注明文章出处：https://cyrus-studio.github.io/blog/&#xA;open() 判断不严谨导致 dex 重复 dump 源码：https://github.com/CYRUS-STUDIO/FART/blob/master/fart10/art/runtime/art_method.cc&#xA;比如：&#xA;int dexfilefp = open(dex_path.c_str(), O_RDONLY);&#xD;if (dexfilefp &amp;gt; 0) {&#xD;close(dexfilefp);&#xD;} 这个判断条件其实是不严谨的，导致 if 中 的 close(dexfilefp); 一直没有执行，dex 会重复 dump。&#xA;open() 的返回值语义是：&#xA;成功时：返回一个非负整数（即 &amp;gt;= 0），它是打开的文件描述符。&#xA;失败时：返回 -1&#xA;正确的判断方式应该是：&#xA;if (fp &amp;gt;= 0) {&#xD;// 成功打开&#xD;} else {&#xD;// 打开失败，打印错误信息&#xD;LOG(ERROR) &amp;lt;&amp;lt; &amp;#34;open dex file failed&amp;#34;;&#xD;} 减少不必要的 I/O，提高 dump 成功率。&#xA;dump 目录创建失败（mkdir failed errno: 13） FART 中通过 mkdir 函数在 sdcard 上创建 dump 文件存放目录，但是这样必须 app 拥有存储卡读写权限。不然 mkdir 会执行失败。</description>
+    </item>
+    <item>
+      <title>Frida &#43; FART 联手：解锁更强大的 Android 脱壳新姿势</title>
+      <link>https://cyrus-studio.github.io/blog/posts/frida-&#43;-fart-%E8%81%94%E6%89%8B%E8%A7%A3%E9%94%81%E6%9B%B4%E5%BC%BA%E5%A4%A7%E7%9A%84-android-%E8%84%B1%E5%A3%B3%E6%96%B0%E5%A7%BF%E5%8A%BF/</link>
+      <pubDate>Mon, 11 Aug 2025 20:37:27 +0800</pubDate>
+      <guid>https://cyrus-studio.github.io/blog/posts/frida-&#43;-fart-%E8%81%94%E6%89%8B%E8%A7%A3%E9%94%81%E6%9B%B4%E5%BC%BA%E5%A4%A7%E7%9A%84-android-%E8%84%B1%E5%A3%B3%E6%96%B0%E5%A7%BF%E5%8A%BF/</guid>
+      <description>版权归作者所有，如有转发，请注明文章出处：https://cyrus-studio.github.io/blog/&#xA;Frida + FART 联手能带来什么提升？ 增强 FART 的脱壳能力：解决对抗 FART 的壳、动态加载的 dex 的 dump 和修复；&#xA;控制 FART 主动调用的范围，让 FART 更精细化，比如按需进行类甚至是函数的修复。&#xA;非双亲委派关系下动态加载的 dex 脱壳问题 由于动态加载的 dex 没有取改变 android 中 ClassLoader 双亲委派关系，所以动态加载的 dex 没有自动脱壳。&#xA;相关文章：&#xA;深入理解 Android ClassLoader 与双亲委派机制&#xA;深入剖析 Android 加壳应用运行流程与生命周期劫持方案&#xA;在 android studio 中创建一个 plugin module 其中包含一个 FartTest 类源码如下：&#xA;package com.cyrus.example.plugin&#xD;import android.util.Log&#xD;class FartTest {&#xD;fun test(): String {&#xD;Log.d(&amp;#34;FartTest&amp;#34;, &amp;#34;call FartTest test().&amp;#34;)&#xD;return &amp;#34;String from FartTest.&amp;#34;&#xD;}&#xD;} 把 plugin-debug.</description>
     </item>
     <item>
       <title>一步步带你移植 FART 到 Android 10，实现自动化脱壳</title>
@@ -588,13 +595,6 @@
       <pubDate>Mon, 02 Jun 2025 20:08:55 +0800</pubDate>
       <guid>https://cyrus-studio.github.io/blog/posts/%E6%94%BB%E9%98%B2-fart-%E8%84%B1%E5%A3%B3%E7%89%B9%E5%BE%81%E6%A3%80%E6%B5%8B%E8%AF%86%E5%88%AB-&#43;-%E5%AF%B9%E6%8A%97%E7%BB%95%E8%BF%87%E5%85%A8%E8%A7%A3%E6%9E%90/</guid>
       <description>版权归作者所有，如有转发，请注明文章出处：https://cyrus-studio.github.io/blog/&#xA;FART 对抗 某视频 app 的壳在启动的时候会检测 FART 特征，日志输出如下：&#xA;2025-05-29 02:16:25.612 2557-2557 ActivityThread cn.cntv E go into handleBindApplication&#xD;2025-05-29 02:16:25.630 2557-2557 cn.cntv cn.cntv I The ClassLoaderContext is a special shared library.&#xD;2025-05-29 02:16:25.807 1512-17245 ActivityManager system_process I Process cn.cntv (pid 2557) has died: fore TOP 2025-05-29 02:16:25.875 1512-1588 ActivityManager system_process I Start proc 2628:cn.cntv/u0a140 for top-activity {cn.cntv/com.cctv.mcctv.ui.activity.SplashActivity}&#xD;2025-05-29 02:16:25.932 2628-2628 ActivityThread cn.cntv E go into handleBindApplication&#xD;2025-05-29 02:16:25.945 2628-2628 cn.cntv cn.</description>
-    </item>
-    <item>
-      <title>使用 Frida 增强 FART：实现更强大的 Android 脱壳能力</title>
-      <link>https://cyrus-studio.github.io/blog/posts/%E4%BD%BF%E7%94%A8-frida-%E5%A2%9E%E5%BC%BA-fart%E5%AE%9E%E7%8E%B0%E6%9B%B4%E5%BC%BA%E5%A4%A7%E7%9A%84-android-%E8%84%B1%E5%A3%B3%E8%83%BD%E5%8A%9B/</link>
-      <pubDate>Wed, 28 May 2025 23:24:22 +0800</pubDate>
-      <guid>https://cyrus-studio.github.io/blog/posts/%E4%BD%BF%E7%94%A8-frida-%E5%A2%9E%E5%BC%BA-fart%E5%AE%9E%E7%8E%B0%E6%9B%B4%E5%BC%BA%E5%A4%A7%E7%9A%84-android-%E8%84%B1%E5%A3%B3%E8%83%BD%E5%8A%9B/</guid>
-      <description>版权归作者所有，如有转发，请注明文章出处：https://cyrus-studio.github.io/blog/&#xA;FART 和 Frida 结合会发生什么？ 对 FART 进一步增强：&#xA;增强 FART 的脱壳能力：解决对抗 FART 的壳、动态加载的 dex 的 dump 和修复；&#xA;控制 FART 主动调用的范围，让 FART 更精细化，比如按需进行类甚至是函数的修复。&#xA;非双亲委派关系下动态加载的 dex 脱壳问题 由于动态加载的 dex 没有取改变 android 中 ClassLoader 双亲委派关系，所以动态加载的 dex 没有自动脱壳。&#xA;相关文章：&#xA;Android 下的 ClassLoader 与 双亲委派机制&#xA;Android 加壳应用运行流程 与 生命周期类处理方案&#xA;在 android studio 中创建一个 plugin module 其中包含一个 FartTest 类源码如下：&#xA;package com.cyrus.example.plugin&#xD;import android.util.Log&#xD;class FartTest {&#xD;fun test(): String {&#xD;Log.d(&amp;#34;FartTest&amp;#34;, &amp;#34;call FartTest test().&amp;#34;)&#xD;return &amp;#34;String from FartTest.</description>
     </item>
     <item>
       <title>使用 Dex2C 加壳保护 Android APK 代码</title>

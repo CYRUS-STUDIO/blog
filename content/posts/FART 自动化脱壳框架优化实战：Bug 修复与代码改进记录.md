@@ -1,6 +1,6 @@
 +++
 title = 'FART 自动化脱壳框架优化实战：Bug 修复与代码改进记录'
-date = 2025-08-11T19:34:45.599303+08:00
+date = 2025-08-11T20:37:27.406695+08:00
 draft = false
 +++
 
@@ -56,7 +56,7 @@ FART 中通过 mkdir 函数在 sdcard 上创建 dump 文件存放目录，但是
 
 
 
-下面时一个 frida 脚本，调用系统 的 mkdir 函数创建目录
+下面是一个 frida 脚本，调用系统 的 mkdir 函数创建目录
 
 ```
 function mkdir(path) {
