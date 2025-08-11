@@ -1,6 +1,6 @@
 +++
 title = 'FART 自动化脱壳框架优化实战：Bug 修复与代码改进记录'
-date = 2025-08-11T19:31:02.513815+08:00
+date = 2025-08-11T19:34:45.599303+08:00
 draft = false
 +++
 
@@ -10,7 +10,7 @@ draft = false
 
 
 
-[https://github.com/CYRUS-STUDIO/FART/blob/master/fart10/art/runtime/art_method.cc](https://github.com/CYRUS-STUDIO/FART/blob/master/fart10/art/runtime/art_method.cc)
+源码：[https://github.com/CYRUS-STUDIO/FART/blob/master/fart10/art/runtime/art_method.cc](https://github.com/CYRUS-STUDIO/FART/blob/master/fart10/art/runtime/art_method.cc)
 
 
 
@@ -44,6 +44,8 @@ if (fp >= 0) {
     LOG(ERROR) << "open dex file failed";
 }
 ```
+减少不必要的 I/O，提高 dump 成功率。
+
 
 
 # dump 目录创建失败（mkdir failed errno: 13）
