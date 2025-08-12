@@ -6,12 +6,12 @@
     <description>Recent content on CYRUS STUDIO</description>
     <generator>Hugo</generator>
     <language>zh-cn</language>
-    <lastBuildDate>Tue, 12 Aug 2025 23:49:38 +0800</lastBuildDate>
+    <lastBuildDate>Tue, 12 Aug 2025 23:55:08 +0800</lastBuildDate>
     <atom:link href="https://cyrus-studio.github.io/blog/index.xml" rel="self" type="application/rss+xml" />
     <item>
       <title>深入内核交互：用 strace 看清 Android 每一个系统调用</title>
       <link>https://cyrus-studio.github.io/blog/posts/%E6%B7%B1%E5%85%A5%E5%86%85%E6%A0%B8%E4%BA%A4%E4%BA%92%E7%94%A8-strace-%E7%9C%8B%E6%B8%85-android-%E6%AF%8F%E4%B8%80%E4%B8%AA%E7%B3%BB%E7%BB%9F%E8%B0%83%E7%94%A8/</link>
-      <pubDate>Tue, 12 Aug 2025 23:49:38 +0800</pubDate>
+      <pubDate>Tue, 12 Aug 2025 23:55:08 +0800</pubDate>
       <guid>https://cyrus-studio.github.io/blog/posts/%E6%B7%B1%E5%85%A5%E5%86%85%E6%A0%B8%E4%BA%A4%E4%BA%92%E7%94%A8-strace-%E7%9C%8B%E6%B8%85-android-%E6%AF%8F%E4%B8%80%E4%B8%AA%E7%B3%BB%E7%BB%9F%E8%B0%83%E7%94%A8/</guid>
       <description>版权归作者所有，如有转发，请注明文章出处：https://cyrus-studio.github.io/blog/&#xA;strace 介绍 strace 是 Linux 下用于跟踪一个程序在运行时所发生的 系统调用（system calls） 和 信号（signals） 的调试工具。&#xA;它可以快速了解程序与内核之间的交互，是定位程序异常、分析行为、逆向工程等场景中的利器。&#xA;相关链接：&#xA;strace 官网：https://strace.io/&#xA;strace 开源地址：https://github.com/strace/strace&#xA;Android 使用 strace：https://source.android.com/docs/core/tests/debug/strace?hl=zh-cn&#xA;Android 下使用 strace 在 Android 下使用 strace 的方式与 Linux 类似，但会受到 系统版本、SELinux、权限限制、是否 root 等因素的影响。&#xA;在 Android 设备上启用 strace 跟踪能力：&#xA;启用 root 权限&#xA;停用 SELinux&#xA;重新启动 ART 以移除 seccomp 过滤器，否则此过滤器会阻止 strace 运行&#xA;让 ADB 服务以 root 权限运行，这是使用 strace 的前提。&#xA;adb root 关闭 SELinux 强制模式，变为宽松模式（permissive）：&#xA;adb shell setenforce 0 默认是 enforcing，会拦截一些 ptrace 和文件访问行为。</description>
     </item>
