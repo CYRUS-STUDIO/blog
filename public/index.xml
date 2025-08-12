@@ -6,8 +6,15 @@
     <description>Recent content on CYRUS STUDIO</description>
     <generator>Hugo</generator>
     <language>zh-cn</language>
-    <lastBuildDate>Tue, 12 Aug 2025 00:44:56 +0800</lastBuildDate>
+    <lastBuildDate>Tue, 12 Aug 2025 23:40:59 +0800</lastBuildDate>
     <atom:link href="https://cyrus-studio.github.io/blog/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>strace 使用详解：Linux &amp; Android 下的系统调用跟踪神器</title>
+      <link>https://cyrus-studio.github.io/blog/posts/strace-%E4%BD%BF%E7%94%A8%E8%AF%A6%E8%A7%A3linux--android-%E4%B8%8B%E7%9A%84%E7%B3%BB%E7%BB%9F%E8%B0%83%E7%94%A8%E8%B7%9F%E8%B8%AA%E7%A5%9E%E5%99%A8/</link>
+      <pubDate>Tue, 12 Aug 2025 23:40:59 +0800</pubDate>
+      <guid>https://cyrus-studio.github.io/blog/posts/strace-%E4%BD%BF%E7%94%A8%E8%AF%A6%E8%A7%A3linux--android-%E4%B8%8B%E7%9A%84%E7%B3%BB%E7%BB%9F%E8%B0%83%E7%94%A8%E8%B7%9F%E8%B8%AA%E7%A5%9E%E5%99%A8/</guid>
+      <description>版权归作者所有，如有转发，请注明文章出处：https://cyrus-studio.github.io/blog/&#xA;strace 介绍 strace 是 Linux 下用于跟踪一个程序在运行时所发生的 系统调用（system calls） 和 信号（signals） 的调试工具。&#xA;它可以快速了解程序与内核之间的交互，是定位程序异常、分析行为、逆向工程等场景中的利器。&#xA;相关链接：&#xA;strace 官网：https://strace.io/&#xA;strace 开源地址：https://github.com/strace/strace&#xA;Android 使用 strace：https://source.android.com/docs/core/tests/debug/strace?hl=zh-cn&#xA;Android 下使用 strace 在 Android 下使用 strace 的方式与 Linux 类似，但会受到 系统版本、SELinux、权限限制、是否 root 等因素的影响。&#xA;在 Android 设备上启用 strace 跟踪能力：&#xA;启用 root 权限&#xA;停用 SELinux&#xA;重新启动 ART 以移除 seccomp 过滤器，否则此过滤器会阻止 strace 运行&#xA;让 ADB 服务以 root 权限运行，这是使用 strace 的前提。&#xA;adb root 关闭 SELinux 强制模式，变为宽松模式（permissive）：&#xA;adb shell setenforce 0 默认是 enforcing，会拦截一些 ptrace 和文件访问行为。</description>
+    </item>
     <item>
       <title>一文搞懂 SO 脱壳全流程：识别加壳、Frida Dump、原理深入解析</title>
       <link>https://cyrus-studio.github.io/blog/posts/%E4%B8%80%E6%96%87%E6%90%9E%E6%87%82-so-%E8%84%B1%E5%A3%B3%E5%85%A8%E6%B5%81%E7%A8%8B%E8%AF%86%E5%88%AB%E5%8A%A0%E5%A3%B3frida-dump%E5%8E%9F%E7%90%86%E6%B7%B1%E5%85%A5%E8%A7%A3%E6%9E%90/</link>
@@ -105,13 +112,6 @@
       <pubDate>Sat, 09 Aug 2025 02:42:33 +0800</pubDate>
       <guid>https://cyrus-studio.github.io/blog/posts/%E4%BD%BF%E7%94%A8-readelf-%E5%88%86%E6%9E%90-so-%E6%96%87%E4%BB%B6elf-%E7%BB%93%E6%9E%84%E8%A7%A3%E6%9E%90%E5%85%A8%E6%94%BB%E7%95%A5/</guid>
       <description>版权归作者所有，如有转发，请注明文章出处：https://cyrus-studio.github.io/blog/&#xA;readelf 介绍 readelf 是 GNU Binutils 提供的一个命令行工具，专门用于读取 ELF（Executable and Linkable Format）文件的结构信息。&#xA;readelf 文档：https://man7.org/linux/man-pages/man1/readelf.1.html&#xA;GNU Binutils GNU Binutils（GNU Binary Utilities）是一套由 GNU 项目维护的二进制文件处理工具集，主要用于编译、链接、反汇编、调试等场景。&#xA;它是 GCC（GNU Compiler Collection）的重要配套组件之一，处理从编译生成的目标文件到最终可执行文件的各个阶段。&#xA;主要工具：&#xA;工具 作用 as GNU 汇编器（GNU Assembler），把 .s 汇编代码编译成 .o 目标文件 ld GNU 链接器（GNU Linker），把多个 .o 文件和库打包成可执行文件或共享库 ar 归档工具（创建/修改 .a 静态库） nm 显示符号表（Symbol Table） objdump 显示目标文件内容（反汇编、节表、符号、重定位等） objcopy 复制并转换目标文件格式（可用于提取或删除节） readelf 专门查看 ELF 文件结构（文件头、节表、符号等） strip 删除二进制文件中的符号信息（瘦身/混淆） strings 搜索二进制文件中的可打印字符串 size 显示目标文件中各段的大小（text/data/bss） ranlib 为 .a 静态库生成索引（方便快速链接） Windows 下使用 readelf 虽然 readelf 工具本身是为 Unix-like 操作系统设计的，在 Windows 上通过 WSL 使用它。WSL 允许你在 Windows 上运行 Linux 发行版，并且可以在其中使用 readelf 工具。</description>
-    </item>
-    <item>
-      <title>strace 使用详解：Linux &amp; Android 下的系统调用跟踪神器</title>
-      <link>https://cyrus-studio.github.io/blog/posts/strace-%E4%BD%BF%E7%94%A8%E8%AF%A6%E8%A7%A3linux--android-%E4%B8%8B%E7%9A%84%E7%B3%BB%E7%BB%9F%E8%B0%83%E7%94%A8%E8%B7%9F%E8%B8%AA%E7%A5%9E%E5%99%A8/</link>
-      <pubDate>Fri, 08 Aug 2025 04:55:06 +0800</pubDate>
-      <guid>https://cyrus-studio.github.io/blog/posts/strace-%E4%BD%BF%E7%94%A8%E8%AF%A6%E8%A7%A3linux--android-%E4%B8%8B%E7%9A%84%E7%B3%BB%E7%BB%9F%E8%B0%83%E7%94%A8%E8%B7%9F%E8%B8%AA%E7%A5%9E%E5%99%A8/</guid>
-      <description>版权归作者所有，如有转发，请注明文章出处：https://cyrus-studio.github.io/blog/&#xA;strace 介绍 strace 是 Linux 下用于跟踪一个程序在运行时所发生的 系统调用（system calls） 和 信号（signals） 的调试工具。&#xA;它可以快速了解程序与内核之间的交互，是定位程序异常、分析行为、逆向工程等场景中的利器。&#xA;相关链接：&#xA;strace 官网：https://strace.io/&#xA;strace 开源地址：https://github.com/strace/strace&#xA;Android 使用 strace：https://source.android.com/docs/core/tests/debug/strace?hl=zh-cn&#xA;Android 下使用 strace 在 Android 下使用 strace 的方式与 Linux 类似，但会受到 系统版本、SELinux、权限限制、是否 root 等因素的影响。&#xA;在 Android 设备上启用 strace 跟踪能力：&#xA;启用 root 权限&#xA;停用 SELinux&#xA;重新启动 ART 以移除 seccomp 过滤器，否则此过滤器会阻止 strace 运行&#xA;让 ADB 服务以 root 权限运行，这是使用 strace 的前提。&#xA;adb root 关闭 SELinux 强制模式，变为宽松模式（permissive）：&#xA;adb shell setenforce 0 默认是 enforcing，会拦截一些 ptrace 和文件访问行为。</description>
     </item>
     <item>
       <title>Frida Native 层 Hook 技巧：JNI 函数调用、字符串解析、so 加载</title>

@@ -1,6 +1,6 @@
 +++
 title = 'strace 使用详解：Linux & Android 下的系统调用跟踪神器'
-date = 2025-08-08T04:55:06.946112+08:00
+date = 2025-08-12T23:40:59.130166+08:00
 draft = false
 +++
 
@@ -338,6 +338,101 @@ wayne:/ # strace -p $(pidof com.cyrus.example) -e trace=open,openat -s 200 2>&1 
 openat(AT_FDCWD, "/proc/self/status", O_RDONLY) = 50
 openat(AT_FDCWD, "/proc/self/stat", O_RDONLY) = 50
 openat(AT_FDCWD, "/proc/self/wchan", O_RDONLY) = 50
+```
+
+
+# 内存相关的系统调用分析
+
+
+
+内存相关的系统调用：
+
+- mmap** ** / mmap2：建立一段新的内存映射。mmap2 是为了解决 32 位平台偏移量不够的问题而引入的系统调用（Linux 2.3.31 以后）。
+
+- munmap**：** 解除一段已映射的虚拟内存，使对应虚拟地址空间可被回收。
+
+- mremap**：** 改变一段已映射内存的大小或位置，可能移动到新的虚拟地址。
+
+- mprotect：修改已映射内存区域的访问权限（读 / 写 / 执行），常用于代码段保护或动态生成代码。
+
+- madvise**：** 向内核提供这段内存的使用模式建议（顺序访问、随机访问、空闲释放等），以优化内存管理性能。
+
+- brk**：** 调整进程堆（数据段末尾）的边界，早期 malloc 依赖此方式分配内存，现在更多使用 mmap。
+
+- mlock** / ** munlock**：** 锁定 / 解锁指定内存页，防止被换出到 swap 区（提高实时性或安全性）。
+
+- mincore**：** 检查一段虚拟内存的页面是否已在物理内存中（可用于内存访问优化）。
+
+- msync**：** 将内存映射的文件页同步到磁盘，确保数据持久化。
+
+
+
+执行下面命令跟踪内存相关系统调用：
+
+```
+strace -f -tt -T -e trace=munmap,mmap,mprotect -p $(pidof com.ss.android.ugc.aweme)
+```
+- -f 跟踪子进程
+
+- -tt 打印时间戳
+
+- -T 打印系统调用耗时
+
+- -e trace=... 只跟踪特定系统调用（减少输出量）
+
+- -p PID 附加到进程
+
+
+
+输出如下：
+
+```
+[pid  3744] 19:48:38.861003 mmap(NULL, 7500, PROT_READ|PROT_WRITE, MAP_SHARED, 271, 0) = 0x7e7ac10000 <0.000096>
+[pid  3744] 19:48:38.861458 munmap(0x7e7ac10000, 7500) = 0 <0.000111>
+[pid  3744] 19:48:38.872634 mmap(NULL, 8497, PROT_READ|PROT_WRITE, MAP_SHARED, 271, 0) = 0x7e70758000 <0.000170>
+[pid  3744] 19:48:38.873145 munmap(0x7e70758000, 8497) = 0 <0.000203>
+[pid  3005] 19:48:38.986215 mmap(NULL, 53248, PROT_READ|PROT_WRITE, MAP_PRIVATE|MAP_ANONYMOUS, -1, 0) = 0x7e2c4c2000 <0.000226>
+[pid  3005] 19:48:39.123144 munmap(0x7e2c4c2000, 53248) = 0 <0.000282>
+[pid  3097] 19:48:39.587753 mmap(NULL, 131072, PROT_READ|PROT_WRITE, MAP_SHARED, 56, 0x3c000) = 0x7ffde0000 <0.000151>
+[pid  3097] 19:48:39.590641 mmap(NULL, 8192, PROT_READ|PROT_WRITE, MAP_SHARED, 56, 0x3d000) = 0x7fff90000 <0.000245>
+[pid  4013] 19:48:40.020093 mprotect(0x7c9c8d1000, 4096, PROT_NONE) = 0 <0.000096>
+[pid  4013] 19:48:40.020954 mmap(NULL, 8192, PROT_READ|PROT_WRITE, MAP_PRIVATE|MAP_ANONYMOUS, -1, 0) = 0x7e7ac10000 <0.000117>
+[pid  2999] 19:48:40.157820 mmap(NULL, 1832, PROT_READ, MAP_SHARED, 40, 0xfc13000) = 0x7e7ac0c000 <0.000199>
+[pid  2999] 19:48:40.158328 munmap(0x7e7ac0c000, 1832) = 0 <0.000174>
+[pid  2999] 19:48:40.159786 mmap(NULL, 2588, PROT_READ, MAP_SHARED, 40, 0xfb4f000) = 0x7e7ac0c000 <0.000178>
+[pid  2999] 19:48:40.160267 munmap(0x7e7ac0c000, 2588) = 0 <0.000206>
+[pid  2999] 19:48:40.170036 mmap(NULL, 1832, PROT_READ, MAP_SHARED, 40, 0xfc13000) = 0x7e7ac0c000 <0.000239>
+[pid  2999] 19:48:40.170567 munmap(0x7e7ac0c000, 1832) = 0 <0.000193>
+[pid  2999] 19:48:40.175522 mmap(NULL, 2588, PROT_READ, MAP_SHARED, 40, 0xfb4f000) = 0x7e7ac0c000 <0.000179>
+[pid  2999] 19:48:40.175968 munmap(0x7e7ac0c000, 2588) = 0 <0.000184>
+[pid  2999] 19:48:40.179096 mmap(NULL, 331, PROT_READ, MAP_SHARED, 40, 0xfaf4000) = 0x7e7ac0c000 <0.000179>
+[pid  2999] 19:48:40.179560 munmap(0x7e7ac0c000, 331) = 0 <0.000202>
+[pid  4013] 19:48:40.344393 munmap(0x7e7ac10000, 8192) = 0 <0.000076>
+[pid  3367] 19:48:40.345559 mprotect(0x7d29374000, 4096, PROT_NONE) = 0 <0.000060>
+[pid  3367] 19:48:40.345866 mmap(NULL, 8192, PROT_READ|PROT_WRITE, MAP_PRIVATE|MAP_ANONYMOUS, -1, 0) = 0x7e7ac10000 <0.000096>
+[pid  3367] 19:48:40.354333 munmap(0x7e7ac10000, 8192) = 0 <0.000056>
+[pid  2999] 19:48:40.422156 mmap(NULL, 4087, PROT_READ, MAP_SHARED, 40, 0x107f1000) = 0x7e7ac11000 <0.000158>
+[pid  2999] 19:48:40.465396 munmap(0x7e7ac11000, 4087) = 0 <0.000179>
+[pid  2999] 19:48:40.486480 mmap(NULL, 932, PROT_READ, MAP_SHARED, 40, 0xff5e000) = 0x7e7ac11000 <0.000179>
+[pid  2999] 19:48:40.487385 munmap(0x7e7ac11000, 932) = 0 <0.000162>
+[pid  2999] 19:48:40.488551 mmap(NULL, 2844, PROT_READ, MAP_SHARED, 40, 0x10b5d000) = 0x7e7ac11000 <0.000164>
+[pid  2999] 19:48:40.489309 munmap(0x7e7ac11000, 2844) = 0 <0.000159>
+[pid  3097] 19:48:41.909911 mmap(NULL, 8454144, PROT_READ|PROT_WRITE, MAP_SHARED, 56, 0x4f000) = 0x7fd0f0000 <0.000447>
+[pid  3097] 19:48:41.957715 mmap(NULL, 536576, PROT_READ|PROT_WRITE, MAP_SHARED, 56, 0x51000) = 0x7feef0000 <0.000128>
+[pid  3097] 19:48:41.960561 mmap(NULL, 540672, PROT_READ|PROT_WRITE, MAP_SHARED, 56, 0x56000) = 0x7fe470000 <0.000182>
+[pid  3097] 19:48:41.968075 mmap(NULL, 786432, PROT_READ|PROT_WRITE, MAP_SHARED, 56, 0x58000) = 0x7fe3b0000 <0.000125>
+[pid  2999] 19:48:42.666578 --- SIGSEGV {si_signo=SIGSEGV, si_code=SEGV_MAPERR, si_addr=0x8} ---
+[pid  3115] 19:48:42.709927 mmap(NULL, 8192, PROT_READ|PROT_WRITE, MAP_PRIVATE|MAP_ANONYMOUS, -1, 0) = 0x7e7ac10000 <0.000108>
+[pid  3115] 19:48:42.710396 mmap(NULL, 1085440, PROT_NONE, MAP_PRIVATE|MAP_ANONYMOUS|MAP_NORESERVE, -1, 0) = 0x7dff67a000 <0.000088>
+[pid  3115] 19:48:42.710591 mprotect(0x7dff67b000, 1077248, PROT_READ|PROT_WRITE) = 0 <0.000086>
+strace: Process 9084 attached
+[pid  9084] 19:48:42.712360 mmap(NULL, 36864, PROT_READ|PROT_WRITE, MAP_PRIVATE|MAP_ANONYMOUS, -1, 0) = 0x7e70752000 <0.000032>
+[pid  9084] 19:48:42.712463 mprotect(0x7e70752000, 4096, PROT_NONE) = 0 <0.000023>
+[pid  9084] 19:48:42.712670 mmap(NULL, 16777216, PROT_NONE, MAP_PRIVATE|MAP_ANONYMOUS, -1, 0) = 0x7d8d9ab000 <0.000025>
+[pid  9084] 19:48:42.712749 mprotect(0x7d8e6ea000, 8192, PROT_READ|PROT_WRITE) = 0 <0.000024>
+[pid  9084] 19:48:42.712817 mprotect(0x7dff67b000, 4096, PROT_NONE) = 0 <0.000022>
+[pid  3097] 19:48:43.616395 munmap(0x7fe180000, 610304) = 0 <0.000322>
+[pid  3097] 19:48:43.617357 munmap(0x7fff80000, 8192) = 0 <0.000151>
 ```
 
 
