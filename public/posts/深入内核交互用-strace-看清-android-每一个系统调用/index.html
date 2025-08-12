@@ -1,7 +1,7 @@
 <!doctype html>
 <html lang="zh-cn">
   <head>
-    <title>strace 使用详解：Linux &amp; Android 下的系统调用跟踪神器 // CYRUS STUDIO</title>
+    <title>深入内核交互：用 strace 看清 Android 每一个系统调用 // CYRUS STUDIO</title>
     <link rel="shortcut icon" href="/favicon.ico" />
     <meta charset="utf-8" />
     <meta name="generator" content="Hugo 0.131.0">
@@ -19,7 +19,7 @@
 
     
   <meta name="twitter:card" content="summary">
-  <meta name="twitter:title" content="strace 使用详解：Linux &amp; Android 下的系统调用跟踪神器">
+  <meta name="twitter:title" content="深入内核交互：用 strace 看清 Android 每一个系统调用">
   <meta name="twitter:description" content="版权归作者所有，如有转发，请注明文章出处：https://cyrus-studio.github.io/blog/
 strace 介绍 strace 是 Linux 下用于跟踪一个程序在运行时所发生的 系统调用（system calls） 和 信号（signals） 的调试工具。
 它可以快速了解程序与内核之间的交互，是定位程序异常、分析行为、逆向工程等场景中的利器。
@@ -36,9 +36,9 @@ Android 下使用 strace 在 Android 下使用 strace 的方式与 Linux 类似�
 adb root 关闭 SELinux 强制模式，变为宽松模式（permissive）：
 adb shell setenforce 0 默认是 enforcing，会拦截一些 ptrace 和文件访问行为。">
 
-    <meta property="og:url" content="https://cyrus-studio.github.io/blog/posts/strace-%E4%BD%BF%E7%94%A8%E8%AF%A6%E8%A7%A3linux--android-%E4%B8%8B%E7%9A%84%E7%B3%BB%E7%BB%9F%E8%B0%83%E7%94%A8%E8%B7%9F%E8%B8%AA%E7%A5%9E%E5%99%A8/">
+    <meta property="og:url" content="https://cyrus-studio.github.io/blog/posts/%E6%B7%B1%E5%85%A5%E5%86%85%E6%A0%B8%E4%BA%A4%E4%BA%92%E7%94%A8-strace-%E7%9C%8B%E6%B8%85-android-%E6%AF%8F%E4%B8%80%E4%B8%AA%E7%B3%BB%E7%BB%9F%E8%B0%83%E7%94%A8/">
   <meta property="og:site_name" content="CYRUS STUDIO">
-  <meta property="og:title" content="strace 使用详解：Linux &amp; Android 下的系统调用跟踪神器">
+  <meta property="og:title" content="深入内核交互：用 strace 看清 Android 每一个系统调用">
   <meta property="og:description" content="版权归作者所有，如有转发，请注明文章出处：https://cyrus-studio.github.io/blog/
 strace 介绍 strace 是 Linux 下用于跟踪一个程序在运行时所发生的 系统调用（system calls） 和 信号（signals） 的调试工具。
 它可以快速了解程序与内核之间的交互，是定位程序异常、分析行为、逆向工程等场景中的利器。
@@ -57,8 +57,8 @@ adb shell setenforce 0 默认是 enforcing，会拦截一些 ptrace 和文件访
   <meta property="og:locale" content="zh_cn">
   <meta property="og:type" content="article">
     <meta property="article:section" content="posts">
-    <meta property="article:published_time" content="2025-08-12T23:40:59+08:00">
-    <meta property="article:modified_time" content="2025-08-12T23:40:59+08:00">
+    <meta property="article:published_time" content="2025-08-12T23:49:38+08:00">
+    <meta property="article:modified_time" content="2025-08-12T23:49:38+08:00">
 
 
   </head>
@@ -116,7 +116,7 @@ adb shell setenforce 0 默认是 enforcing，会拦截一些 ptrace 和文件访
 <article class="post">
   <header class="post-header">
     <meta charset="UTF-8"/>
-    <h1 class="post-title">strace 使用详解：Linux &amp; Android 下的系统调用跟踪神器</h1>
+    <h1 class="post-title">深入内核交互：用 strace 看清 Android 每一个系统调用</h1>
     <div class="post-meta" style="display: flex; gap: 1em; flex-wrap: wrap; align-items: center;">
       <div>
         <span class="meta-item">
@@ -124,7 +124,7 @@ adb shell setenforce 0 默认是 enforcing，会拦截一些 ptrace 和文件访
   <title>eye</title>
   <path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"></path><circle cx="12" cy="12" r="3"></circle>
 </svg>
-          阅读量: <span class="waline-pageview-count" data-path="/blog/posts/strace-%E4%BD%BF%E7%94%A8%E8%AF%A6%E8%A7%A3linux--android-%E4%B8%8B%E7%9A%84%E7%B3%BB%E7%BB%9F%E8%B0%83%E7%94%A8%E8%B7%9F%E8%B8%AA%E7%A5%9E%E5%99%A8/"></span>
+          阅读量: <span class="waline-pageview-count" data-path="/blog/posts/%E6%B7%B1%E5%85%A5%E5%86%85%E6%A0%B8%E4%BA%A4%E4%BA%92%E7%94%A8-strace-%E7%9C%8B%E6%B8%85-android-%E6%AF%8F%E4%B8%80%E4%B8%AA%E7%B3%BB%E7%BB%9F%E8%B0%83%E7%94%A8/"></span>
         </span>
       </div>
       <div>
@@ -391,7 +391,7 @@ openat(AT_FDCWD, &#34;/proc/self/wchan&#34;, O_RDONLY) = 50
 <p>-T 打印系统调用耗时</p>
 </li>
 <li>
-<p>-e trace=&hellip; 只跟踪特定系统调用（减少输出量）</p>
+<p>-e trace=&hellip; 只跟踪特定系统调用</p>
 </li>
 <li>
 <p>-p PID 附加到进程</p>
@@ -631,8 +631,7 @@ strace: Process 9084 attached
 </li>
 </ul>
 <h1 id="系统调用故障注入-syscall-fault-injection">系统调用故障注入 (syscall fault injection)</h1>
-<p>使用 strace 进行 <strong>系统调用故障注入 (syscall fault injection)</strong>  的实例，用来模拟某个系统调用（这里是</p>
-<p>openat）总是失败的情况。</p>
+<p>使用 strace 进行 <strong>系统调用故障注入 (syscall fault injection)</strong>  的实例，用来模拟某个系统调用（这里是 openat）总是失败的情况。</p>
 <pre tabindex="0"><code>strace -p $(pidof com.cyrus.example) -f -e trace=openat -e fault=openat
 </code></pre><ul>
 <li>-e fault=openat：注入故障，对每次 openat() 调用，强制使其失败</li>

@@ -1,6 +1,6 @@
 +++
-title = 'strace 使用详解：Linux & Android 下的系统调用跟踪神器'
-date = 2025-08-12T23:40:59.130166+08:00
+title = '深入内核交互：用 strace 看清 Android 每一个系统调用'
+date = 2025-08-12T23:49:38.583818+08:00
 draft = false
 +++
 
@@ -11,8 +11,6 @@ draft = false
 
 
 strace 是 Linux 下用于跟踪一个程序在运行时所发生的 **系统调用（system calls）**  和 **信号（signals）** 的调试工具。
-
-
 
 它可以快速了解程序与内核之间的交互，是定位程序异常、分析行为、逆向工程等场景中的利器。
 
@@ -378,7 +376,7 @@ strace -f -tt -T -e trace=munmap,mmap,mprotect -p $(pidof com.ss.android.ugc.awe
 
 - -T 打印系统调用耗时
 
-- -e trace=... 只跟踪特定系统调用（减少输出量）
+- -e trace=... 只跟踪特定系统调用
 
 - -p PID 附加到进程
 
@@ -576,9 +574,7 @@ strace -p $(pidof com.cyrus.example) -f -e trace=write,sendmsg,recvmsg,read -ewr
 
 
 
-使用 strace 进行 **系统调用故障注入 (syscall fault injection)**  的实例，用来模拟某个系统调用（这里是 
-
-openat）总是失败的情况。
+使用 strace 进行 **系统调用故障注入 (syscall fault injection)**  的实例，用来模拟某个系统调用（这里是 openat）总是失败的情况。
 
 ```
 strace -p $(pidof com.cyrus.example) -f -e trace=openat -e fault=openat
