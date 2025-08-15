@@ -6,8 +6,15 @@
     <description>Recent content on CYRUS STUDIO</description>
     <generator>Hugo</generator>
     <language>zh-cn</language>
-    <lastBuildDate>Tue, 12 Aug 2025 23:55:08 +0800</lastBuildDate>
+    <lastBuildDate>Fri, 15 Aug 2025 15:50:56 +0800</lastBuildDate>
     <atom:link href="https://cyrus-studio.github.io/blog/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>如何实现 Android App 的抓包防护？又该如何绕过？一文看懂攻防博弈</title>
+      <link>https://cyrus-studio.github.io/blog/posts/%E5%A6%82%E4%BD%95%E5%AE%9E%E7%8E%B0-android-app-%E7%9A%84%E6%8A%93%E5%8C%85%E9%98%B2%E6%8A%A4%E5%8F%88%E8%AF%A5%E5%A6%82%E4%BD%95%E7%BB%95%E8%BF%87%E4%B8%80%E6%96%87%E7%9C%8B%E6%87%82%E6%94%BB%E9%98%B2%E5%8D%9A%E5%BC%88/</link>
+      <pubDate>Fri, 15 Aug 2025 15:50:56 +0800</pubDate>
+      <guid>https://cyrus-studio.github.io/blog/posts/%E5%A6%82%E4%BD%95%E5%AE%9E%E7%8E%B0-android-app-%E7%9A%84%E6%8A%93%E5%8C%85%E9%98%B2%E6%8A%A4%E5%8F%88%E8%AF%A5%E5%A6%82%E4%BD%95%E7%BB%95%E8%BF%87%E4%B8%80%E6%96%87%E7%9C%8B%E6%87%82%E6%94%BB%E9%98%B2%E5%8D%9A%E5%BC%88/</guid>
+      <description>版权归作者所有，如有转发，请注明文章出处：https://cyrus-studio.github.io/blog/&#xA;Android 下常见反抓包方案 常见反抓包手段：&#xA;No Proxy（禁用代理）&#xA;启用 HTTPS + SSL Pinning&#xA;使用 DNS-over-HTTPS / DoT（隐藏 DNS 请求）&#xA;检查系统代理（Java 层检查 System.getProperty(&amp;ldquo;http.proxyHost&amp;rdquo;)）&#xA;检测 VPN 或 adb 代理&#xA;使用 native 层自己实现网络请求（绕过 Java 层）&#xA;证书双向校验&#xA;No Proxy（无代理模式） 所谓 “无代理模式” 实际上是通过主动避免走系统代理，从而规避传统的中间人抓包。&#xA;设置 OkHttp 不使用系统代理，直接访问服务器：&#xA;val client = OkHttpClient.Builder()&#xD;.proxy(Proxy.NO_PROXY) // 禁用系统代理&#xD;.build() 设置 NO_PROXY 后，Charles 并没有抓取到 httpbin.org 相关请求&#xA;App 中请求 httpbin.org 正常&#xA;通过 VPN 绕过 No Proxy 如果使用 VPN 或全局代理，NO_PROXY 也无法绕过抓包。比如，通过第三方代理应用 Drony 强制 APP 走代理。</description>
+    </item>
     <item>
       <title>深入内核交互：用 strace 看清 Android 每一个系统调用</title>
       <link>https://cyrus-studio.github.io/blog/posts/%E6%B7%B1%E5%85%A5%E5%86%85%E6%A0%B8%E4%BA%A4%E4%BA%92%E7%94%A8-strace-%E7%9C%8B%E6%B8%85-android-%E6%AF%8F%E4%B8%80%E4%B8%AA%E7%B3%BB%E7%BB%9F%E8%B0%83%E7%94%A8/</link>
@@ -245,13 +252,6 @@
       <pubDate>Fri, 25 Jul 2025 02:01:18 +0800</pubDate>
       <guid>https://cyrus-studio.github.io/blog/posts/%E6%90%9E%E6%87%82-android-hook-%E7%9A%84%E4%B8%A4%E5%A4%A7%E6%A0%B8%E5%BF%83plt-hook-%E4%B8%8E-inline-hook-%E5%85%A8%E8%A7%A3%E6%9E%90/</guid>
       <description>版权归作者所有，如有转发，请注明文章出处：https://cyrus-studio.github.io/blog/&#xA;前言 在 Android Native 层开发和逆向分析中，Hook 技术是一项绕不开的核心能力。&#xA;Hook 技术是一种在应用运行时拦截或替换系统或自身函数行为的手段，常见实现包括 PLT Hook、Inline Hook。&#xA;PLT Hook 和 Inline Hook 是两种不同层次和机制的函数 Hook 技术，常用于逆向工程、安全分析、壳保护或热修复等场景。&#xA;PLT hook 和 Inline hook 有什么区别？ 特性 PLT Hook（符号级） Inline Hook（指令级） Hook 层级 链接层（.plt 或 GOT） 指令层（函数入口指令） Hook 对象 动态库导出的函数 任意函数（不一定导出） 修改内容 修改函数地址指针 修改指令流（如跳转指令） Hook 粒度 通常是库间调用 可以精确到任意函数、库内调用 稳定性 较高 稍差（依赖指令结构、架构） 跨平台兼容性 更好 架构相关（ARM32/ARM64） PLT Hook 原理（也叫 GOT Hook） ELF 中动态链接时使用 PLT（Procedure Linkage Table） 和 GOT（Global Offset Table） ；</description>
-    </item>
-    <item>
-      <title>如何实现 Android App 的抓包防护？又该如何绕过？一文看懂攻防博弈</title>
-      <link>https://cyrus-studio.github.io/blog/posts/%E5%A6%82%E4%BD%95%E5%AE%9E%E7%8E%B0-android-app-%E7%9A%84%E6%8A%93%E5%8C%85%E9%98%B2%E6%8A%A4%E5%8F%88%E8%AF%A5%E5%A6%82%E4%BD%95%E7%BB%95%E8%BF%87%E4%B8%80%E6%96%87%E7%9C%8B%E6%87%82%E6%94%BB%E9%98%B2%E5%8D%9A%E5%BC%88/</link>
-      <pubDate>Fri, 25 Jul 2025 02:01:17 +0800</pubDate>
-      <guid>https://cyrus-studio.github.io/blog/posts/%E5%A6%82%E4%BD%95%E5%AE%9E%E7%8E%B0-android-app-%E7%9A%84%E6%8A%93%E5%8C%85%E9%98%B2%E6%8A%A4%E5%8F%88%E8%AF%A5%E5%A6%82%E4%BD%95%E7%BB%95%E8%BF%87%E4%B8%80%E6%96%87%E7%9C%8B%E6%87%82%E6%94%BB%E9%98%B2%E5%8D%9A%E5%BC%88/</guid>
-      <description>版权归作者所有，如有转发，请注明文章出处：https://cyrus-studio.github.io/blog/&#xA;Android 下常见反抓包方案 常见反抓包手段：&#xA;No Proxy（禁用代理）&#xA;启用 HTTPS + SSL Pinning&#xA;使用 DNS-over-HTTPS / DoT（隐藏 DNS 请求）&#xA;检查系统代理（Java 层检查 System.getProperty(&amp;ldquo;http.proxyHost&amp;rdquo;)）&#xA;检测 VPN 或 adb 代理&#xA;使用 native 层自己实现网络请求（绕过 Java 层）&#xA;证书双向校验&#xA;No Proxy（无代理模式） 所谓 “无代理模式” 实际上是通过主动避免走系统代理，从而规避传统的中间人抓包。&#xA;设置 OkHttp 不使用系统代理，直接访问服务器：&#xA;val client = OkHttpClient.Builder()&#xD;.proxy(Proxy.NO_PROXY) // 禁用系统代理&#xD;.build() 设置 NO_PROXY 后，Charles 并没有抓取到 httpbin.org 相关请求&#xA;App 中请求 httpbin.org 正常&#xA;通过 VPN 绕过 No Proxy 如果使用 VPN 或全局代理，NO_PROXY 也无法绕过抓包。比如，通过第三方代理应用 Drony 强制 APP 走代理。</description>
     </item>
     <item>
       <title>ADB 命令使用大全（建议收藏） Android 调试必备</title>
