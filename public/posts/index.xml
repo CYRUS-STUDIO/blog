@@ -6,8 +6,15 @@
     <description>Recent content in Posts on CYRUS STUDIO</description>
     <generator>Hugo</generator>
     <language>zh-cn</language>
-    <lastBuildDate>Fri, 15 Aug 2025 15:50:56 +0800</lastBuildDate>
+    <lastBuildDate>Sat, 16 Aug 2025 18:04:56 +0800</lastBuildDate>
     <atom:link href="https://cyrus-studio.github.io/blog/posts/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>别再手工写 Hook 了！Python &#43; Frida 一网打尽 SO 层动态注册 JNI 调用</title>
+      <link>https://cyrus-studio.github.io/blog/posts/%E5%88%AB%E5%86%8D%E6%89%8B%E5%B7%A5%E5%86%99-hook-%E4%BA%86python-&#43;-frida-%E4%B8%80%E7%BD%91%E6%89%93%E5%B0%BD-so-%E5%B1%82%E5%8A%A8%E6%80%81%E6%B3%A8%E5%86%8C-jni-%E8%B0%83%E7%94%A8/</link>
+      <pubDate>Sat, 16 Aug 2025 18:04:56 +0800</pubDate>
+      <guid>https://cyrus-studio.github.io/blog/posts/%E5%88%AB%E5%86%8D%E6%89%8B%E5%B7%A5%E5%86%99-hook-%E4%BA%86python-&#43;-frida-%E4%B8%80%E7%BD%91%E6%89%93%E5%B0%BD-so-%E5%B1%82%E5%8A%A8%E6%80%81%E6%B3%A8%E5%86%8C-jni-%E8%B0%83%E7%94%A8/</guid>
+      <description>版权归作者所有，如有转发，请注明文章出处：https://cyrus-studio.github.io/blog/&#xA;前言 很多 Android 应用会把核心逻辑都写在 SO 层，并通过 RegisterNatives 动态注册 JNI 方法，把 Java 层的 native 方法和真实的 C/C++ 函数地址在运行时绑定。&#xA;通过这样 隐藏真实函数名和地址 ，增加逆向难度。&#xA;虽然我们可以 Hook RegisterNatives 拿到所有 JNI 绑定信息，但是：&#xA;函数数量巨大：可能有上百上千个 JNI 方法。&#xA;调用路径未知：不知道哪些函数会被实际调用。&#xA;手动 Hook 成本高：一个个写 Frida Hook 既耗时又容易漏掉。&#xA;如何一次性 Hook 所有动态注册函数 ，并且自动解析参数、记录调用日志？&#xA;目标 用一份 Python 脚本 + Frida 实现：&#xA;Hook RegisterNatives 导出 JNI 绑定信息到 register_natives.txt&#xA;自动解析 register_natives.txt 文件，提取所有 JNI 绑定信息。&#xA;自动生成完整的 Frida Hook 脚本，一次性 Hook 所有动态注册函数 。&#xA;支持自动类型识别、参数打印，并将日志直接保存到文件。&#xA;只需要一次运行，就能一网打尽 SO 层所有动态注册的 JNI 调用。</description>
+    </item>
     <item>
       <title>如何实现 Android App 的抓包防护？又该如何绕过？一文看懂攻防博弈</title>
       <link>https://cyrus-studio.github.io/blog/posts/%E5%A6%82%E4%BD%95%E5%AE%9E%E7%8E%B0-android-app-%E7%9A%84%E6%8A%93%E5%8C%85%E9%98%B2%E6%8A%A4%E5%8F%88%E8%AF%A5%E5%A6%82%E4%BD%95%E7%BB%95%E8%BF%87%E4%B8%80%E6%96%87%E7%9C%8B%E6%87%82%E6%94%BB%E9%98%B2%E5%8D%9A%E5%BC%88/</link>
