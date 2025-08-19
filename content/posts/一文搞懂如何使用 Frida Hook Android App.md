@@ -1,6 +1,6 @@
 +++
 title = '一文搞懂如何使用 Frida Hook Android App'
-date = 2025-08-20T02:13:43.355552+08:00
+date = 2025-08-20T03:01:20.457552+08:00
 draft = false
 +++
 
@@ -606,18 +606,18 @@ adb shell rm /data/app/com.shizhuang.duapp-fTxemmnM8l6298xbBELksQ==/lib/arm64/li
 
 
 
-根据自己的 android 版本，降级或升级 frida、frida-tool、frida-server的版本即可，比如 android10 实测可用的版本如下
+根据自己的 android 版本，降级或升级 frida、frida-tool、frida-server的版本即可，比如 android10 / 12 实测可用的版本如下：
 
 | Frida 版本 | Frida-Tool 版本 | Frida-Server 版本 | Android 版本 |
 |--- | --- | --- | ---|
 | 14.2.18 | 9.2.2 | frida-server-14.0.0-android-arm64 | Android 10 |
+| 17.2.16 | 14.0.0 | frida-server-17.2.16-android-arm64 | Android 12 |
 
 
 卸载当前的 frida 和 frida-tools
 
 ```
-pip uninstall frida
-pip uninstall frida-tools
+pip uninstall -y frida frida-tools
 ```
 
 
@@ -634,8 +634,7 @@ Python 环境管理参考这篇文章：[Miniconda 全攻略：优雅管理你�
 
 ```
 # 安装 frida 和 frida-tools
-pip install frida==14.2.18
-pip install frida-tools==9.2.2
+pip install frida==14.2.18 frida-tools==9.2.2
 ```
 
 
