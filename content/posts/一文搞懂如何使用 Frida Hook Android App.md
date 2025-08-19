@@ -1,6 +1,6 @@
 +++
 title = '一文搞懂如何使用 Frida Hook Android App'
-date = 2025-06-18T16:50:01.825544+08:00
+date = 2025-08-20T02:13:43.355552+08:00
 draft = false
 +++
 
@@ -56,7 +56,7 @@ adb shell getprop ro.product.cpu.abi
 把 frida-server 推送到设备 /data/local/tmp 目录下
 
 ```
-adb push D:\app逆向\Frida\frida-server-16.5.2-android-arm64 /data/local/tmp/fs
+adb push "D:\Python\anti-app\frida-server\frida-server-14.0.0-android-arm64" /data/local/tmp/fs
 ```
 
 
@@ -626,7 +626,7 @@ pip uninstall frida-tools
 ```
 conda create -n anti-app python=3.8.20
 ```
-关于 python 环境管理可以参考这篇文章【[使用Miniconda管理Python环境](https://cyrus-studio.github.io/blog/posts/%E4%BD%BF%E7%94%A8miniconda%E7%AE%A1%E7%90%86python%E7%8E%AF%E5%A2%83/)】
+Python 环境管理参考这篇文章：[Miniconda 全攻略：优雅管理你的 Python 环境](https://cyrus-studio.github.io/blog/posts/miniconda-%E5%85%A8%E6%94%BB%E7%95%A5%E4%BC%98%E9%9B%85%E7%AE%A1%E7%90%86%E4%BD%A0%E7%9A%84-python-%E7%8E%AF%E5%A2%83/)
 
 
 
