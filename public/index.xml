@@ -6,8 +6,15 @@
     <description>Recent content on CYRUS STUDIO</description>
     <generator>Hugo</generator>
     <language>zh-cn</language>
-    <lastBuildDate>Wed, 20 Aug 2025 03:01:20 +0800</lastBuildDate>
+    <lastBuildDate>Wed, 20 Aug 2025 16:55:18 +0800</lastBuildDate>
     <atom:link href="https://cyrus-studio.github.io/blog/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>静态分析根本不够！IDA Pro 动态调试 Android 应用的完整实战</title>
+      <link>https://cyrus-studio.github.io/blog/posts/%E9%9D%99%E6%80%81%E5%88%86%E6%9E%90%E6%A0%B9%E6%9C%AC%E4%B8%8D%E5%A4%9Fida-pro-%E5%8A%A8%E6%80%81%E8%B0%83%E8%AF%95-android-%E5%BA%94%E7%94%A8%E7%9A%84%E5%AE%8C%E6%95%B4%E5%AE%9E%E6%88%98/</link>
+      <pubDate>Wed, 20 Aug 2025 16:55:18 +0800</pubDate>
+      <guid>https://cyrus-studio.github.io/blog/posts/%E9%9D%99%E6%80%81%E5%88%86%E6%9E%90%E6%A0%B9%E6%9C%AC%E4%B8%8D%E5%A4%9Fida-pro-%E5%8A%A8%E6%80%81%E8%B0%83%E8%AF%95-android-%E5%BA%94%E7%94%A8%E7%9A%84%E5%AE%8C%E6%95%B4%E5%AE%9E%E6%88%98/</guid>
+      <description>版权归作者所有，如有转发，请注明文章出处：https://cyrus-studio.github.io/blog/&#xA;一、前言 在进行 Android 应用逆向分析时，很多时候仅靠静态分析（例如反编译 Java 代码或反汇编 so 库）是远远不够的。开发者常常会使用混淆、加壳、动态加载等技术，使得代码逻辑在静态视角下难以完整还原。此时，动态调试就显得尤为重要。&#xA;通过动态调试，我们可以在应用运行过程中实时观察其行为，例如：&#xA;精确跟踪函数调用过程&#xA;监控寄存器与内存的变化&#xA;分析加密/解密算法的输入与输出&#xA;定位并绕过反调试逻辑&#xA;IDA Pro 作为最常用的逆向分析工具之一，不仅提供强大的静态反编译能力，还支持配合 android_server 在 Android 设备上实现远程动态调试。这样，我们既能利用 IDA 的反编译界面理解代码结构，又能在实际执行过程中验证推测的逻辑，从而大大提升分析效率。&#xA;二、调试环境准备 必备工具：IDA Pro、adb、android_server&#xA;测试设备要求（已 root 的 Android 手机 / 模拟器）&#xA;手机 root 和 开启全局调试 参考：&#xA;小米刷机全攻略：解锁BL、刷机、Root 一步到位&#xA;Magisk 修改 ro.debuggable 开启 Android 系统全局调试模式&#xA;三、android_server 简介 android_server 是 IDA Pro 在 Android 设备上运行的远程调试服务端程序。&#xA;通过在设备上启动 android_server，IDA Pro 可以与 Android 应用建立调试会话，实现如下功能：&#xA;设置与管理断点&#xA;查看与修改内存&#xA;检查与操作寄存器&#xA;IDA Pro 与 android_server 之间的通信通常依赖 ADB（Android Debug Bridge） 。IDA Pro 将调试命令通过 ADB 转发至 android_server，后者在设备本地执行相应操作，并将结果回传给 IDA Pro，从而实现完整的远程调试流程。</description>
+    </item>
     <item>
       <title>一文搞懂如何使用 Frida Hook Android App</title>
       <link>https://cyrus-studio.github.io/blog/posts/%E4%B8%80%E6%96%87%E6%90%9E%E6%87%82%E5%A6%82%E4%BD%95%E4%BD%BF%E7%94%A8-frida-hook-android-app/</link>
@@ -735,13 +742,6 @@
       <pubDate>Sat, 05 Oct 2024 03:10:33 +0800</pubDate>
       <guid>https://cyrus-studio.github.io/blog/posts/%E5%B8%B8%E8%A7%81%E7%9A%84-256-%E6%9D%A1-dalvik-%E5%AD%97%E8%8A%82%E7%A0%81%E6%8C%87%E4%BB%A4/</guid>
       <description>版权归作者所有，如有转发，请注明文章出处：https://cyrus-studio.github.io/blog/&#xA;Dalvik 字节码指令是 Android 虚拟机的指令集，广泛用于处理 .dex 文件中的代码。下面列出一些常用的 Dalvik 指令，但 Dalvik 指令集有很多操作码，这里仅列出 256 个常用指令及其功能简述。为简明起见，指令按类别分类。&#xA;1. 常量加载 const vA, #+B - 加载常量 B 到寄存器 vA const/4 vA, #+B - 加载 4 位常量 B 到寄存器 vA const/16 vA, #+BBBB - 加载 16 位常量 B 到寄存器 vA const/high16 vA, #+BBBB0000 - 加载高 16 位常量 const-wide vA, #+BBBBBBBBBBBBBBBB - 加载 64 位常量 const-wide/16 vA, #+BBBB - 加载 16 位宽常量 const-wide/high16 vA, #+BBBB000000000000 - 加载高 16 位宽常量 2.</description>
-    </item>
-    <item>
-      <title>使用IDA Pro动态调试Android APP</title>
-      <link>https://cyrus-studio.github.io/blog/posts/%E4%BD%BF%E7%94%A8ida-pro%E5%8A%A8%E6%80%81%E8%B0%83%E8%AF%95android-app/</link>
-      <pubDate>Mon, 30 Sep 2024 15:27:58 +0800</pubDate>
-      <guid>https://cyrus-studio.github.io/blog/posts/%E4%BD%BF%E7%94%A8ida-pro%E5%8A%A8%E6%80%81%E8%B0%83%E8%AF%95android-app/</guid>
-      <description>版权归作者所有，如有转发，请注明文章出处：https://cyrus-studio.github.io/blog/&#xA;关于 android_server android_server 是 IDA Pro 在 Android 设备上运行的一个调试服务器。&#xA;通过在 Android 设备上运行android_server，IDA Pro 可以远程调试 Android 应用程序，并实现断点设置、内存查看、寄存器检查等功能。&#xA;IDA Pro 通过 adb（Android Debug Bridge）将调试命令发送给 android_server，然后 android_server 在 Android 设备上执行这些命令，并将结果返回给 IDA Pro。&#xA;调试环境准备 把 IDA安装目录/dbgsrv 下的 android_server64 push 到设备 /data/local/tmp 路径下&#xA;adb push &amp;#34;D:\App\IDA_Pro\IDA_Pro_7.7\dbgsrv\android_server64&amp;#34; /data/local/tmp/as 进入 adb shell 启动 androd server&#xA;# 获取 root 权限&#xD;su&#xD;# 给 android server 增加执行权限&#xD;chmod +x /data/local/tmp/as&#xD;# 通过指定端口启动 android_server，假设你要使用端口 12345&#xD;/data/local/tmp/as -p 12345 关于获取手机 root 权限和开启全局调试可以参考下面两篇文章：</description>
     </item>
     <item>
       <title>Android下反调试与反反调试</title>
