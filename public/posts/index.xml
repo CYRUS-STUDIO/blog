@@ -6,8 +6,15 @@
     <description>Recent content in Posts on CYRUS STUDIO</description>
     <generator>Hugo</generator>
     <language>zh-cn</language>
-    <lastBuildDate>Sat, 30 Aug 2025 14:45:24 +0800</lastBuildDate>
+    <lastBuildDate>Sat, 30 Aug 2025 17:48:11 +0800</lastBuildDate>
     <atom:link href="https://cyrus-studio.github.io/blog/posts/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>LLVM 全面解析：NDK 为什么离不开它？如何亲手编译调试 clang</title>
+      <link>https://cyrus-studio.github.io/blog/posts/llvm-%E5%85%A8%E9%9D%A2%E8%A7%A3%E6%9E%90ndk-%E4%B8%BA%E4%BB%80%E4%B9%88%E7%A6%BB%E4%B8%8D%E5%BC%80%E5%AE%83%E5%A6%82%E4%BD%95%E4%BA%B2%E6%89%8B%E7%BC%96%E8%AF%91%E8%B0%83%E8%AF%95-clang/</link>
+      <pubDate>Sat, 30 Aug 2025 17:48:11 +0800</pubDate>
+      <guid>https://cyrus-studio.github.io/blog/posts/llvm-%E5%85%A8%E9%9D%A2%E8%A7%A3%E6%9E%90ndk-%E4%B8%BA%E4%BB%80%E4%B9%88%E7%A6%BB%E4%B8%8D%E5%BC%80%E5%AE%83%E5%A6%82%E4%BD%95%E4%BA%B2%E6%89%8B%E7%BC%96%E8%AF%91%E8%B0%83%E8%AF%95-clang/</guid>
+      <description>版权归作者所有，如有转发，请注明文章出处：https://cyrus-studio.github.io/blog/&#xA;1. LLVM 简介 LLVM（Low Level Virtual Machine）最初是一个编译器研究项目，如今已发展成一个模块化、可重用的编译器框架。&#xA;它包含前端（Frontend）、中间表示（IR, Intermediate Representation）、优化器（Optimizer）和后端（Backend, Code Generator）等组件。&#xA;开发者可以使用 LLVM 将高级语言源代码（如 C/C++、Rust、Swift 等）转换成中间表示，再经过优化和代码生成，最终编译为机器码。与传统编译器不同，LLVM 的设计高度模块化，方便扩展、优化和跨平台支持。&#xA;相关链接：&#xA;LLVM 官网：https://llvm.org/&#xA;Getting Started with LLVM Core Libraries（中文版）&#xA;2. LLVM 与 Android NDK 的关系 在 Android NDK 中，我们通常用 C/C++ 编写性能敏感的模块，最终需要编译为运行在 ARM、ARM64、x86 等架构上的本地机器码。这个过程的核心就是 LLVM/Clang。&#xA;整个编译大致可以分为以下几个阶段：&#xA;C/C++ 源码 ↓ (Clang 前端) LLVM IR ↓ (LLVM 优化器) 优化后的 IR ↓ (LLVM 后端 CodeGen) 汇编 / 机器码 ↓ (链接器 lld) .so 动态库 NDK 中 LLVM/Clang 所在路径</description>
+    </item>
     <item>
       <title>静态分析神器 &#43; 动态调试利器：IDA Pro × Frida 混合调试实战</title>
       <link>https://cyrus-studio.github.io/blog/posts/%E9%9D%99%E6%80%81%E5%88%86%E6%9E%90%E7%A5%9E%E5%99%A8-&#43;-%E5%8A%A8%E6%80%81%E8%B0%83%E8%AF%95%E5%88%A9%E5%99%A8ida-pro--frida-%E6%B7%B7%E5%90%88%E8%B0%83%E8%AF%95%E5%AE%9E%E6%88%98/</link>
@@ -700,13 +707,6 @@
       <pubDate>Sat, 21 Dec 2024 23:02:07 +0800</pubDate>
       <guid>https://cyrus-studio.github.io/blog/posts/%E7%A7%BB%E6%A4%8D-ollvm-%E5%88%B0-llvm18%E4%BF%AE%E5%A4%8D%E6%8E%A7%E5%88%B6%E6%B5%81%E5%B9%B3%E5%9D%A6%E5%8C%96%E6%8A%A5%E9%94%99/</guid>
       <description>版权归作者所有，如有转发，请注明文章出处：https://cyrus-studio.github.io/blog/&#xA;前言 把 OLLVM 移植到 LLVM18 后，发现 -fla（控制流平坦化）并不能正常使用。&#xA;关于移植过程可以参考这篇文章 【移植 OLLVM 到 LLVM 18，C&amp;amp;C++代码混淆】&#xA;测试代码 fla.c&#xA;#include &amp;lt;stdlib.h&amp;gt;&#xD;int main(int argc, char** argv) {&#xD;int a = atoi(argv[1]);&#xD;if(a == 0)&#xD;return 1;&#xD;else&#xD;return 10;&#xD;return 0;&#xD;} 使用 clang 编译并启用 Control Flow Flattening（控制流平坦化）报错如下：&#xA;D:\Projects\llvm-project\build&amp;gt;clang -mllvm -fla fla.c -o fla.exe&#xD;[OLLVM] run.PipelineStartEPCallback&#xD;PLEASE submit a bug report to https://github.com/llvm/llvm-project/issues/ and include the crash backtrace, preprocessed source, and associated run script.</description>
-    </item>
-    <item>
-      <title>编译 LLVM 源码，使用 Clion 调试 clang</title>
-      <link>https://cyrus-studio.github.io/blog/posts/%E7%BC%96%E8%AF%91-llvm-%E6%BA%90%E7%A0%81%E4%BD%BF%E7%94%A8-clion-%E8%B0%83%E8%AF%95-clang/</link>
-      <pubDate>Tue, 10 Dec 2024 22:44:36 +0800</pubDate>
-      <guid>https://cyrus-studio.github.io/blog/posts/%E7%BC%96%E8%AF%91-llvm-%E6%BA%90%E7%A0%81%E4%BD%BF%E7%94%A8-clion-%E8%B0%83%E8%AF%95-clang/</guid>
-      <description>版权归作者所有，如有转发，请注明文章出处：https://cyrus-studio.github.io/blog/&#xA;1. LLVM 简介 LLVM 是一个开源的编译器基础架构，最初由 Chris Lattner 于 2000 年在伊利诺伊大学开发，后来成为一个广泛应用于编译器和程序分析的项目。&#xA;LLVM 的核心组件：&#xA;LLVM Core Libraries：提供用于编译器开发的核心工具集，包括代码生成、优化、目标机器描述等。&#xA;Clang：一个基于 LLVM 的 C、C++、Objective-C 编译器前端。&#xA;LLVM IR（Intermediate Representation）：一种类似汇编的中间表示语言，是 LLVM 的核心抽象。代码在编译过程中先被转换为 LLVM IR，随后进行各种优化，再生成目标机器码。&#xA;LLVM Optimizer：对 LLVM IR 进行各种优化，如循环优化、内联展开等，以提升性能。&#xA;LLVM Code Generator：将优化后的 LLVM IR 转换为特定平台的机器码。&#xA;Linker：LLVM 也包含了一些链接器工具（如 LLD），用于将编译好的目标文件链接成可执行文件或库。&#xA;LLVM 的优势：&#xA;模块化设计：可用于多种语言的编译器开发（如 Rust、Swift）。&#xA;跨平台支持：支持多种处理器架构（如 x86、ARM、RISC-V）。&#xA;高度优化：提供丰富的优化技术，帮助生成更高效的机器码。&#xA;动态编译支持：适用于 JIT（即时编译），如 WebAssembly 和 Swift 的 REPL 环境。&#xA;LLVM 官网：https://llvm.org/&#xA;Getting Started with LLVM Core Libraries（中文版）&#xA;2. 下载 LLVM 在 Android NDK 中，LLVM/Clang 是默认的编译器。自 Android NDK r18 开始，Google 弃用了 GCC，全面转向使用 LLVM/Clang 作为 NDK 的编译工具链。</description>
     </item>
     <item>
       <title>使用 opt 优化 LLVM IR，定制 clang 实现函数名加密</title>
