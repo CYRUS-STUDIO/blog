@@ -1,6 +1,6 @@
 +++
 title = 'LLVM 全面解析：NDK 为什么离不开它？如何亲手编译调试 clang'
-date = 2025-08-30T17:48:11.226694+08:00
+date = 2025-08-31T02:21:24.720062+08:00
 draft = false
 +++
 
@@ -27,6 +27,8 @@ LLVM（Low Level Virtual Machine）最初是一个编译器研究项目，如今
 - LLVM 官网：[https://llvm.org/](https://llvm.org/)
 
 - [Getting Started with LLVM Core Libraries（中文版）](https://getting-started-with-llvm-core-libraries-zh-cn.readthedocs.io/zh-cn/latest/)
+
+- LLVM Release 版本下载地址：[https://github.com/llvm/llvm-project/releases](https://github.com/llvm/llvm-project/releases)
 
 
 
