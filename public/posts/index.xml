@@ -6,12 +6,12 @@
     <description>Recent content in Posts on CYRUS STUDIO</description>
     <generator>Hugo</generator>
     <language>zh-cn</language>
-    <lastBuildDate>Sun, 31 Aug 2025 05:13:06 +0800</lastBuildDate>
+    <lastBuildDate>Sun, 31 Aug 2025 05:18:27 +0800</lastBuildDate>
     <atom:link href="https://cyrus-studio.github.io/blog/posts/index.xml" rel="self" type="application/rss+xml" />
     <item>
       <title>C&amp;C&#43;&#43; 代码安全再升级：用 OLLVM 给 so 加上字符串加密保护</title>
       <link>https://cyrus-studio.github.io/blog/posts/cc&#43;&#43;-%E4%BB%A3%E7%A0%81%E5%AE%89%E5%85%A8%E5%86%8D%E5%8D%87%E7%BA%A7%E7%94%A8-ollvm-%E7%BB%99-so-%E5%8A%A0%E4%B8%8A%E5%AD%97%E7%AC%A6%E4%B8%B2%E5%8A%A0%E5%AF%86%E4%BF%9D%E6%8A%A4/</link>
-      <pubDate>Sun, 31 Aug 2025 05:13:06 +0800</pubDate>
+      <pubDate>Sun, 31 Aug 2025 05:18:27 +0800</pubDate>
       <guid>https://cyrus-studio.github.io/blog/posts/cc&#43;&#43;-%E4%BB%A3%E7%A0%81%E5%AE%89%E5%85%A8%E5%86%8D%E5%8D%87%E7%BA%A7%E7%94%A8-ollvm-%E7%BB%99-so-%E5%8A%A0%E4%B8%8A%E5%AD%97%E7%AC%A6%E4%B8%B2%E5%8A%A0%E5%AF%86%E4%BF%9D%E6%8A%A4/</guid>
       <description>版权归作者所有，如有转发，请注明文章出处：https://cyrus-studio.github.io/blog/&#xA;前言 在 Android 应用的 Native so 中，C/C++ 字符串是最容易泄露的弱点 。只要用 IDA、Ghidra 等逆向工具打开 so，明文字符串往往一览无余，核心逻辑、协议关键字、敏感信息都可能直接暴露。&#xA;这意味着，即使你对函数做了混淆，对控制流做了平坦化，只要字符串没保护，就等于把应用的秘密写在了明面上 。&#xA;解决办法：对字符串加密 。而基于 LLVM 的 OLLVM ，恰好提供了一个可扩展的平台，我们可以在编译过程中自动收集、加密、替换字符串，让 so 中不再出现明文常量。&#xA;本文将带你一步步实现：在 OLLVM 中增加一个 字符串加密 Pass ，并演示如何移植到 Android NDK 工程中实战应用。&#xA;字符串加密原理 OLLVM 字符串加密的原理 很简单：它在 编译阶段 对所有字符串常量做一次「改写」，程序运行时把密文恢复成明文。具体过程是：&#xA;收集 IR 中的字符串常量（例如 const char* str = &amp;ldquo;hello&amp;rdquo;;）；&#xA;在编译时使用自定义算法对字符串加密（常见做法是异或、移位或更复杂的算法）；&#xA;自动生成一个解密函数，在程序运行时把密文恢复成明文；&#xA;替换原本对字符串的引用，让代码使用解密后的结果。&#xA;这样一来，最终生成的 so 文件里就不再存放任何明文字符串，逆向工具看到的都是类似 &amp;amp;unk_* 的引用，只有在程序真正运行时，才会在内存里还原出可用的字符串 。这大大提升了逆向分析的难度。&#xA;LLVM IR 中的字符串 编写 C代码 sobf.c 如下：&#xA;#include &amp;lt;stdio.h&amp;gt;&#xD;int main() {&#xD;// 定义字符串常量&#xD;const char *greeting = &amp;#34;Hello, World!</description>
     </item>
@@ -700,13 +700,6 @@
       <pubDate>Sun, 30 Mar 2025 04:33:31 +0800</pubDate>
       <guid>https://cyrus-studio.github.io/blog/posts/%E4%BD%BF%E7%94%A8-frida-stalker-%E5%8F%8D-ollvm-%E7%AE%97%E6%B3%95%E8%BF%98%E5%8E%9F/</guid>
       <description>版权归作者所有，如有转发，请注明文章出处：https://cyrus-studio.github.io/blog/&#xA;前言 比如我们像分析某个 so 中偏移为 0x23AD0 的加密函数&#xA;IDA 反汇编 so，可以看到 so 中该函数做了混淆&#xA;控制流平坦化&#xA;Frida Stalker Frida 的 Stalker 是一个强大的代码追踪工具。&#xA;主要功能&#xA;指令级跟踪：Stalker 可精确到指令级别，对应用的原生代码进行实时监控。&#xA;代码插桩：支持在指定指令前后插入自定义的代码逻辑。&#xA;内存访问监控：可以监视内存读写操作，分析数据流向。&#xA;自定义回调：提供回调函数，方便记录和分析执行轨迹。&#xA;文档：https://frida.re/docs/javascript-api/#stalker&#xA;目前 Stalker 对于 arm64 支持比较好，但是 arm32 并不是很完善。&#xA;https://frida.re/docs/stalker/&#xA;关于 Frida 的使用可以参考这篇文章：使用 Frida Hook Android App&#xA;onCallSummary（函数调用摘要) onCallSummary 用于返回函数调用的摘要信息。&#xA;Stalker.follow() 使用 onCallSummary 时，不会实时回调，而是在合适的时间点返回已汇总的调用信息。&#xA;通常是在：&#xA;函数执行结束后&#xA;线程空闲或上下文切换时&#xA;Stalker缓冲区达到一定大小时&#xA;Stalker.flush();&#xA;因此，你会在目标函数执行完毕后，看到 onCallSummary 输出的调用信息。&#xA;summary 数据结构通常类似于以下格式：&#xA;{&#xD;&amp;#34;函数地址&amp;#34;: 调用次数&#xD;} hook 目标函数，跟踪 call 事件并打印 call summary&#xA;function onCallSummary() {&#xD;// 目标 so&#xD;var soName = &amp;#34;libaes.</description>
-    </item>
-    <item>
-      <title>OLLVM 增加 C&amp;C&#43;&#43; 字符串加密功能</title>
-      <link>https://cyrus-studio.github.io/blog/posts/ollvm-%E5%A2%9E%E5%8A%A0-cc&#43;&#43;-%E5%AD%97%E7%AC%A6%E4%B8%B2%E5%8A%A0%E5%AF%86%E5%8A%9F%E8%83%BD/</link>
-      <pubDate>Tue, 25 Mar 2025 22:00:30 +0800</pubDate>
-      <guid>https://cyrus-studio.github.io/blog/posts/ollvm-%E5%A2%9E%E5%8A%A0-cc&#43;&#43;-%E5%AD%97%E7%AC%A6%E4%B8%B2%E5%8A%A0%E5%AF%86%E5%8A%9F%E8%83%BD/</guid>
-      <description>版权归作者所有，如有转发，请注明文章出处：https://cyrus-studio.github.io/blog/&#xA;前言 当我们如果没有对字符串进行加密，使用 IDA 反汇编一下 so 可以看到 C++ 代码中的字符串就直接暴露了。&#xA;字符串加密原理 sobf.c&#xA;#include &amp;lt;stdio.h&amp;gt;&#xD;int main() {&#xD;// 定义字符串常量&#xD;const char *greeting = &amp;#34;Hello, World!&amp;#34;;&#xD;const char *name = &amp;#34;Cyrus&amp;#34;;&#xD;const char *message = &amp;#34;Welcome to C programming.&amp;#34;;&#xD;// 打印字符串常量&#xD;printf(&amp;#34;%s\n&amp;#34;, greeting);&#xD;printf(&amp;#34;My name is %s.\n&amp;#34;, name);&#xD;printf(&amp;#34;%s\n&amp;#34;, message);&#xD;return 0;&#xD;} 生成 ir 文件&#xA;clang -S -emit-llvm sobf.c -o sobf.ll 通过生成 ir 文件可以看到字符串的定义都是 @&amp;quot;??C@ ，引用的的地方通过 @&amp;quot;??C@ 使用&#xA;; ModuleID = &amp;#39;sobf.</description>
     </item>
     <item>
       <title>Android Dex VMP 动态加载加密指令流 </title>
