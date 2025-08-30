@@ -1,10 +1,22 @@
 +++
-title = '静态分析神器 + 动态调试利器：IDA Pro 与 Frida 的梦幻联动'
-date = 2025-08-30T14:24:37.380187+08:00
+title = '静态分析神器 + 动态调试利器：IDA Pro × Frida 混合调试实战'
+date = 2025-08-30T14:45:24.643022+08:00
 draft = false
 +++
 
 > 版权归作者所有，如有转发，请注明文章出处：<https://cyrus-studio.github.io/blog/>
+
+# 前言
+
+
+
+IDA Pro 作为静态分析神器，能快速反编译 so 库，展示清晰的函数结构和反汇编代码，但它对运行时行为却一无所知；而 Frida 能在设备上动态 Hook 任意函数，实时观察寄存器、参数、返回值。
+
+
+
+把 Frida 直接集成进 IDA Pro！这样我们就能在 **IDA 里调用 Frida API** ，实时获取目标 App 中 so 的基址、动态执行状态，甚至一键启动 Trace。
+
+
 
 # 1. 确认 IDA Pro 内置的 Python 版本
 
@@ -401,11 +413,11 @@ import frida
 REMOTE_ADDR = "127.0.0.1:1234"  # frida-server 地址
 PACKAGE_NAME = "com.cyrus.example"  # 目标应用包名
 MODULE_NAME = "libnative-lib.so"  # 目标 so 名称
-USE_SPAWN = True  # True=spawn 启动, False=附加前台应用
+USE_SPAWN = False  # True=spawn 启动, False=附加前台应用
 
 
 # =========================
-# 附加函数
+# Frida 辅助函数
 # =========================
 
 # 连接远程设备并附加到前台应用
@@ -549,7 +561,7 @@ if __name__ == "__main__":
 
 
         # Hook dlopen / android_dlopen_ext，捕获目标模块加载完成事件
-        module_info = hook_dlopen_and_wait(session, MODULE_NAME, module_loaded_callback)
+        hook_dlopen_and_wait(session, MODULE_NAME, module_loaded_callback)
 
         # 让 APP 继续运行
         device.resume(pid)

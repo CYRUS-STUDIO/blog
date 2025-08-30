@@ -6,21 +6,21 @@
     <description>Recent content on CYRUS STUDIO</description>
     <generator>Hugo</generator>
     <language>zh-cn</language>
-    <lastBuildDate>Sat, 30 Aug 2025 14:24:37 +0800</lastBuildDate>
+    <lastBuildDate>Sat, 30 Aug 2025 14:45:24 +0800</lastBuildDate>
     <atom:link href="https://cyrus-studio.github.io/blog/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>静态分析神器 &#43; 动态调试利器：IDA Pro × Frida 混合调试实战</title>
+      <link>https://cyrus-studio.github.io/blog/posts/%E9%9D%99%E6%80%81%E5%88%86%E6%9E%90%E7%A5%9E%E5%99%A8-&#43;-%E5%8A%A8%E6%80%81%E8%B0%83%E8%AF%95%E5%88%A9%E5%99%A8ida-pro--frida-%E6%B7%B7%E5%90%88%E8%B0%83%E8%AF%95%E5%AE%9E%E6%88%98/</link>
+      <pubDate>Sat, 30 Aug 2025 14:45:24 +0800</pubDate>
+      <guid>https://cyrus-studio.github.io/blog/posts/%E9%9D%99%E6%80%81%E5%88%86%E6%9E%90%E7%A5%9E%E5%99%A8-&#43;-%E5%8A%A8%E6%80%81%E8%B0%83%E8%AF%95%E5%88%A9%E5%99%A8ida-pro--frida-%E6%B7%B7%E5%90%88%E8%B0%83%E8%AF%95%E5%AE%9E%E6%88%98/</guid>
+      <description>版权归作者所有，如有转发，请注明文章出处：https://cyrus-studio.github.io/blog/&#xA;前言 IDA Pro 作为静态分析神器，能快速反编译 so 库，展示清晰的函数结构和反汇编代码，但它对运行时行为却一无所知；而 Frida 能在设备上动态 Hook 任意函数，实时观察寄存器、参数、返回值。&#xA;把 Frida 直接集成进 IDA Pro！这样我们就能在 IDA 里调用 Frida API ，实时获取目标 App 中 so 的基址、动态执行状态，甚至一键启动 Trace。&#xA;1. 确认 IDA Pro 内置的 Python 版本 IDA Pro 自带 Python 解释器，不一定跟你系统 Python 一致。&#xA;在 IDA Python 控制台 （快捷键 Shift+F2）里输入：&#xA;import sys&#xD;print(sys.version)&#xD;print(sys.executable) 输出类似：&#xA;3.8.10 (tags/v3.8.10:3d8993a, May 3 2021, 11:48:03) [MSC v.1928 64 bit (AMD64)]&#xD;D:\App\IDA_Pro\IDA_Pro_7.7\ida64.exe 这里有两个关键信息：&#xA;IDA Pro 7.7 自带的是 Python 3.</description>
+    </item>
     <item>
       <title>攻防 FART 脱壳：实现 AJM 壳级别的对抗功能 &#43; 绕过全解析</title>
       <link>https://cyrus-studio.github.io/blog/posts/%E6%94%BB%E9%98%B2-fart-%E8%84%B1%E5%A3%B3%E5%AE%9E%E7%8E%B0-ajm-%E5%A3%B3%E7%BA%A7%E5%88%AB%E7%9A%84%E5%AF%B9%E6%8A%97%E5%8A%9F%E8%83%BD-&#43;-%E7%BB%95%E8%BF%87%E5%85%A8%E8%A7%A3%E6%9E%90/</link>
       <pubDate>Sat, 30 Aug 2025 14:24:37 +0800</pubDate>
       <guid>https://cyrus-studio.github.io/blog/posts/%E6%94%BB%E9%98%B2-fart-%E8%84%B1%E5%A3%B3%E5%AE%9E%E7%8E%B0-ajm-%E5%A3%B3%E7%BA%A7%E5%88%AB%E7%9A%84%E5%AF%B9%E6%8A%97%E5%8A%9F%E8%83%BD-&#43;-%E7%BB%95%E8%BF%87%E5%85%A8%E8%A7%A3%E6%9E%90/</guid>
       <description>版权归作者所有，如有转发，请注明文章出处：https://cyrus-studio.github.io/blog/&#xA;实现类似 AJM 壳的 FART 对抗功能 某视频 app 的壳在启动的时候会检测 FART 特征，日志输出如下：&#xA;2025-05-29 02:16:25.612 2557-2557 ActivityThread cn.cntv E go into handleBindApplication&#xD;2025-05-29 02:16:25.630 2557-2557 cn.cntv cn.cntv I The ClassLoaderContext is a special shared library.&#xD;2025-05-29 02:16:25.807 1512-17245 ActivityManager system_process I Process cn.cntv (pid 2557) has died: fore TOP 2025-05-29 02:16:25.875 1512-1588 ActivityManager system_process I Start proc 2628:cn.cntv/u0a140 for top-activity {cn.cntv/com.cctv.mcctv.ui.activity.SplashActivity}&#xD;2025-05-29 02:16:25.932 2628-2628 ActivityThread cn.cntv E go into handleBindApplication&#xD;2025-05-29 02:16:25.</description>
-    </item>
-    <item>
-      <title>静态分析神器 &#43; 动态调试利器：IDA Pro 与 Frida 的梦幻联动</title>
-      <link>https://cyrus-studio.github.io/blog/posts/%E9%9D%99%E6%80%81%E5%88%86%E6%9E%90%E7%A5%9E%E5%99%A8-&#43;-%E5%8A%A8%E6%80%81%E8%B0%83%E8%AF%95%E5%88%A9%E5%99%A8ida-pro-%E4%B8%8E-frida-%E7%9A%84%E6%A2%A6%E5%B9%BB%E8%81%94%E5%8A%A8/</link>
-      <pubDate>Sat, 30 Aug 2025 14:24:37 +0800</pubDate>
-      <guid>https://cyrus-studio.github.io/blog/posts/%E9%9D%99%E6%80%81%E5%88%86%E6%9E%90%E7%A5%9E%E5%99%A8-&#43;-%E5%8A%A8%E6%80%81%E8%B0%83%E8%AF%95%E5%88%A9%E5%99%A8ida-pro-%E4%B8%8E-frida-%E7%9A%84%E6%A2%A6%E5%B9%BB%E8%81%94%E5%8A%A8/</guid>
-      <description>版权归作者所有，如有转发，请注明文章出处：https://cyrus-studio.github.io/blog/&#xA;1. 确认 IDA Pro 内置的 Python 版本 IDA Pro 自带 Python 解释器，不一定跟你系统 Python 一致。&#xA;在 IDA Python 控制台 （快捷键 Shift+F2）里输入：&#xA;import sys&#xD;print(sys.version)&#xD;print(sys.executable) 输出类似：&#xA;3.8.10 (tags/v3.8.10:3d8993a, May 3 2021, 11:48:03) [MSC v.1928 64 bit (AMD64)]&#xD;D:\App\IDA_Pro\IDA_Pro_7.7\ida64.exe 这里有两个关键信息：&#xA;IDA Pro 7.7 自带的是 Python 3.8.10&#xA;ida64.exe 所在路径&#xA;2. IDA Python 安装第三方库 这里 IDA 的 Python 是 3.8.10，python.exe 在 IDA 安装目录的 python38 目录下：&#xA;可以这样：&#xA;D:\App\IDA_Pro\IDA_Pro_7.7\python38\python.exe -m pip install frida frida-tools 或者指定安装版本：</description>
     </item>
     <item>
       <title>静态分析根本不够！IDA Pro 动态调试 Android 应用的完整实战</title>
