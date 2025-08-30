@@ -6,8 +6,15 @@
     <description>Recent content in Posts on CYRUS STUDIO</description>
     <generator>Hugo</generator>
     <language>zh-cn</language>
-    <lastBuildDate>Sat, 30 Aug 2025 17:48:11 +0800</lastBuildDate>
+    <lastBuildDate>Sat, 30 Aug 2025 21:30:36 +0800</lastBuildDate>
     <atom:link href="https://cyrus-studio.github.io/blog/posts/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>LLVM 不止能编译！自定义 Pass &#43; 定制 clang 实现函数名加密</title>
+      <link>https://cyrus-studio.github.io/blog/posts/llvm-%E4%B8%8D%E6%AD%A2%E8%83%BD%E7%BC%96%E8%AF%91%E8%87%AA%E5%AE%9A%E4%B9%89-pass-&#43;-%E5%AE%9A%E5%88%B6-clang-%E5%AE%9E%E7%8E%B0%E5%87%BD%E6%95%B0%E5%90%8D%E5%8A%A0%E5%AF%86/</link>
+      <pubDate>Sat, 30 Aug 2025 21:30:36 +0800</pubDate>
+      <guid>https://cyrus-studio.github.io/blog/posts/llvm-%E4%B8%8D%E6%AD%A2%E8%83%BD%E7%BC%96%E8%AF%91%E8%87%AA%E5%AE%9A%E4%B9%89-pass-&#43;-%E5%AE%9A%E5%88%B6-clang-%E5%AE%9E%E7%8E%B0%E5%87%BD%E6%95%B0%E5%90%8D%E5%8A%A0%E5%AF%86/</guid>
+      <description>版权归作者所有，如有转发，请注明文章出处：https://cyrus-studio.github.io/blog/&#xA;前言 LLVM 是一个编译器框架 ，用来把 C/C++ 源码编译成目标文件，似乎和日常的 GCC、Clang 没什么两样。事实上，LLVM 的能力远不止于此。&#xA;相关文章：LLVM 全面解析：NDK 为什么离不开它？如何亲手编译调试 clang&#xA;凭借它灵活的 中间表示（LLVM IR） 和强大的 Pass 插件机制 ，我们不仅能优化代码，还能在编译阶段对程序进行“改造”——比如 函数名加密、混淆、代码保护 ，让逆向工程变得更加困难。&#xA;本文带你从零开始，体验一次完整的 LLVM 定制之旅：&#xA;学习如何生成和操作 LLVM IR&#xA;使用 opt 和 CLion 调试 LLVM Pass&#xA;编写自定义 Pass，实现 函数名加密保护&#xA;最终定制 clang，让它自动加载我们的加密插件&#xA;1. LLVM IR 介绍 LLVM IR（Intermediate Representation，中间表示）是 LLVM 编译框架的核心。它是一种 介于高级语言（如 C/C++）与底层机器码之间的中间语言 ，既能表达高级语言的语义，又足够接近机器指令，便于优化和生成目标代码。&#xA;LLVM IR 的两种存储形式：&#xA;文本格式（.ll）：人类可读，方便分析和调试。&#xA;二进制格式（.bc）：Bitcode 文件，适合存储和传输。&#xA;LLVM IR 与具体 CPU 架构解耦，可以跨平台复用优化逻辑。&#xA;一个简单示例 （C 代码 → LLVM IR）：</description>
+    </item>
     <item>
       <title>LLVM 全面解析：NDK 为什么离不开它？如何亲手编译调试 clang</title>
       <link>https://cyrus-studio.github.io/blog/posts/llvm-%E5%85%A8%E9%9D%A2%E8%A7%A3%E6%9E%90ndk-%E4%B8%BA%E4%BB%80%E4%B9%88%E7%A6%BB%E4%B8%8D%E5%BC%80%E5%AE%83%E5%A6%82%E4%BD%95%E4%BA%B2%E6%89%8B%E7%BC%96%E8%AF%91%E8%B0%83%E8%AF%95-clang/</link>
@@ -707,13 +714,6 @@
       <pubDate>Sat, 21 Dec 2024 23:02:07 +0800</pubDate>
       <guid>https://cyrus-studio.github.io/blog/posts/%E7%A7%BB%E6%A4%8D-ollvm-%E5%88%B0-llvm18%E4%BF%AE%E5%A4%8D%E6%8E%A7%E5%88%B6%E6%B5%81%E5%B9%B3%E5%9D%A6%E5%8C%96%E6%8A%A5%E9%94%99/</guid>
       <description>版权归作者所有，如有转发，请注明文章出处：https://cyrus-studio.github.io/blog/&#xA;前言 把 OLLVM 移植到 LLVM18 后，发现 -fla（控制流平坦化）并不能正常使用。&#xA;关于移植过程可以参考这篇文章 【移植 OLLVM 到 LLVM 18，C&amp;amp;C++代码混淆】&#xA;测试代码 fla.c&#xA;#include &amp;lt;stdlib.h&amp;gt;&#xD;int main(int argc, char** argv) {&#xD;int a = atoi(argv[1]);&#xD;if(a == 0)&#xD;return 1;&#xD;else&#xD;return 10;&#xD;return 0;&#xD;} 使用 clang 编译并启用 Control Flow Flattening（控制流平坦化）报错如下：&#xA;D:\Projects\llvm-project\build&amp;gt;clang -mllvm -fla fla.c -o fla.exe&#xD;[OLLVM] run.PipelineStartEPCallback&#xD;PLEASE submit a bug report to https://github.com/llvm/llvm-project/issues/ and include the crash backtrace, preprocessed source, and associated run script.</description>
-    </item>
-    <item>
-      <title>使用 opt 优化 LLVM IR，定制 clang 实现函数名加密</title>
-      <link>https://cyrus-studio.github.io/blog/posts/%E4%BD%BF%E7%94%A8-opt-%E4%BC%98%E5%8C%96-llvm-ir%E5%AE%9A%E5%88%B6-clang-%E5%AE%9E%E7%8E%B0%E5%87%BD%E6%95%B0%E5%90%8D%E5%8A%A0%E5%AF%86/</link>
-      <pubDate>Thu, 28 Nov 2024 00:55:08 +0800</pubDate>
-      <guid>https://cyrus-studio.github.io/blog/posts/%E4%BD%BF%E7%94%A8-opt-%E4%BC%98%E5%8C%96-llvm-ir%E5%AE%9A%E5%88%B6-clang-%E5%AE%9E%E7%8E%B0%E5%87%BD%E6%95%B0%E5%90%8D%E5%8A%A0%E5%AF%86/</guid>
-      <description>版权归作者所有，如有转发，请注明文章出处：https://cyrus-studio.github.io/blog/&#xA;1. LLVM IR LLVM IR（Intermediate Representation） 是 LLVM 编译框架中的一种中间表示形式，它是一种面向低级的中间代码，是 LLVM 架构的核心部分。LLVM IR 既可以用作 LLVM 编译器的输入，也可以用作输出，供其他编译器或工具链使用。&#xA;LLVM IR 的两种存储形式：&#xA;LLVM IR 语言（文本形式，扩展名 .ll）：可读的 LLVM IR 代码。&#xA;LLVM 位码（Bitcode，扩展名 .bc）：二进制形式的 LLVM IR，主要用于高效存储和传输。&#xA;LLVM IR 是平台无关的，可以跨不同的硬件架构进行移植。&#xA;LLVM IR 语言参考手册：https://llvm.org/docs/LangRef.html&#xA;1.1 将 C 文件转换为 LLVM IR 生成文本形式的 LLVM IR（.ll 文件）&#xA;clang -S -emit-llvm hello.c -o hello.ll 以 hello.ll 为例，生成的内容大概如下&#xA;; Function Attrs: noinline nounwind optnone uwtable&#xD;; 这行注释了函数的属性&#xD;; - noinline: 该函数不会被内联（inline）。&#xD;; - nounwind: 该函数不会引发异常（不会 unwind stack）。&#xD;; - optnone: 编译器不会对此函数进行任何优化。&#xD;; - uwtable: 该函数有一个可用的异常处理表（unwind table）。&#xD;define dso_local i32 @main() #0 {&#xD;; define: 定义一个函数。&#xD;; dso_local: 该函数在本地动态库中可见（仅限于当前编译单元）。&#xD;; i32: 返回类型为 32 位整数。&#xD;; @main: 函数名为 &amp;#39;main&amp;#39;。&#xD;; #0: 函数使用属性组 0 中定义的属性（即上面注释的那一行）。&#xD;entry:&#xD;; entry: 函数的入口基本块（Basic Block）的标签。&#xD;%retval = alloca i32, align 4&#xD;; alloca: 在栈上分配内存。这里分配了一个 32 位整数（i32）。&#xD;; align 4: 分配的内存对齐到 4 字节边界。&#xD;; %retval: 变量的名称（SSA 变量），用于存储 main 函数的返回值。&#xD;store i32 0, ptr %retval, align 4&#xD;; store: 将一个值存储到内存地址中。&#xD;; i32 0: 要存储的值是 32 位整数 0（即 main 函数的返回值）。&#xD;; ptr %retval: 存储的位置是之前分配的栈变量 %retval。&#xD;; align 4: 存储操作按 4 字节对齐。&#xD;%call = call i32 (ptr, .</description>
     </item>
     <item>
       <title>Windows下创建FTP服务器，实现文件共享</title>
