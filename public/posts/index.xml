@@ -6,12 +6,19 @@
     <description>Recent content in Posts on CYRUS STUDIO</description>
     <generator>Hugo</generator>
     <language>zh-cn</language>
-    <lastBuildDate>Sat, 30 Aug 2025 02:42:11 +0800</lastBuildDate>
+    <lastBuildDate>Sat, 30 Aug 2025 14:24:37 +0800</lastBuildDate>
     <atom:link href="https://cyrus-studio.github.io/blog/posts/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>攻防 FART 脱壳：实现 AJM 壳级别的对抗功能 &#43; 绕过全解析</title>
+      <link>https://cyrus-studio.github.io/blog/posts/%E6%94%BB%E9%98%B2-fart-%E8%84%B1%E5%A3%B3%E5%AE%9E%E7%8E%B0-ajm-%E5%A3%B3%E7%BA%A7%E5%88%AB%E7%9A%84%E5%AF%B9%E6%8A%97%E5%8A%9F%E8%83%BD-&#43;-%E7%BB%95%E8%BF%87%E5%85%A8%E8%A7%A3%E6%9E%90/</link>
+      <pubDate>Sat, 30 Aug 2025 14:24:37 +0800</pubDate>
+      <guid>https://cyrus-studio.github.io/blog/posts/%E6%94%BB%E9%98%B2-fart-%E8%84%B1%E5%A3%B3%E5%AE%9E%E7%8E%B0-ajm-%E5%A3%B3%E7%BA%A7%E5%88%AB%E7%9A%84%E5%AF%B9%E6%8A%97%E5%8A%9F%E8%83%BD-&#43;-%E7%BB%95%E8%BF%87%E5%85%A8%E8%A7%A3%E6%9E%90/</guid>
+      <description>版权归作者所有，如有转发，请注明文章出处：https://cyrus-studio.github.io/blog/&#xA;实现类似 AJM 壳的 FART 对抗功能 某视频 app 的壳在启动的时候会检测 FART 特征，日志输出如下：&#xA;2025-05-29 02:16:25.612 2557-2557 ActivityThread cn.cntv E go into handleBindApplication&#xD;2025-05-29 02:16:25.630 2557-2557 cn.cntv cn.cntv I The ClassLoaderContext is a special shared library.&#xD;2025-05-29 02:16:25.807 1512-17245 ActivityManager system_process I Process cn.cntv (pid 2557) has died: fore TOP 2025-05-29 02:16:25.875 1512-1588 ActivityManager system_process I Start proc 2628:cn.cntv/u0a140 for top-activity {cn.cntv/com.cctv.mcctv.ui.activity.SplashActivity}&#xD;2025-05-29 02:16:25.932 2628-2628 ActivityThread cn.cntv E go into handleBindApplication&#xD;2025-05-29 02:16:25.</description>
+    </item>
     <item>
       <title>静态分析神器 &#43; 动态调试利器：IDA Pro 与 Frida 的梦幻联动</title>
       <link>https://cyrus-studio.github.io/blog/posts/%E9%9D%99%E6%80%81%E5%88%86%E6%9E%90%E7%A5%9E%E5%99%A8-&#43;-%E5%8A%A8%E6%80%81%E8%B0%83%E8%AF%95%E5%88%A9%E5%99%A8ida-pro-%E4%B8%8E-frida-%E7%9A%84%E6%A2%A6%E5%B9%BB%E8%81%94%E5%8A%A8/</link>
-      <pubDate>Sat, 30 Aug 2025 02:42:11 +0800</pubDate>
+      <pubDate>Sat, 30 Aug 2025 14:24:37 +0800</pubDate>
       <guid>https://cyrus-studio.github.io/blog/posts/%E9%9D%99%E6%80%81%E5%88%86%E6%9E%90%E7%A5%9E%E5%99%A8-&#43;-%E5%8A%A8%E6%80%81%E8%B0%83%E8%AF%95%E5%88%A9%E5%99%A8ida-pro-%E4%B8%8E-frida-%E7%9A%84%E6%A2%A6%E5%B9%BB%E8%81%94%E5%8A%A8/</guid>
       <description>版权归作者所有，如有转发，请注明文章出处：https://cyrus-studio.github.io/blog/&#xA;1. 确认 IDA Pro 内置的 Python 版本 IDA Pro 自带 Python 解释器，不一定跟你系统 Python 一致。&#xA;在 IDA Python 控制台 （快捷键 Shift+F2）里输入：&#xA;import sys&#xD;print(sys.version)&#xD;print(sys.executable) 输出类似：&#xA;3.8.10 (tags/v3.8.10:3d8993a, May 3 2021, 11:48:03) [MSC v.1928 64 bit (AMD64)]&#xD;D:\App\IDA_Pro\IDA_Pro_7.7\ida64.exe 这里有两个关键信息：&#xA;IDA Pro 7.7 自带的是 Python 3.8.10&#xA;ida64.exe 所在路径&#xA;2. IDA Python 安装第三方库 这里 IDA 的 Python 是 3.8.10，python.exe 在 IDA 安装目录的 python38 目录下：&#xA;可以这样：&#xA;D:\App\IDA_Pro\IDA_Pro_7.7\python38\python.exe -m pip install frida frida-tools 或者指定安装版本：</description>
     </item>
@@ -70,13 +77,6 @@
       <pubDate>Tue, 12 Aug 2025 00:15:18 +0800</pubDate>
       <guid>https://cyrus-studio.github.io/blog/posts/fart-%E8%84%B1%E5%A3%B3%E6%9F%90%E5%A4%A7%E5%8E%82-app-&#43;-codeitem-%E4%BF%AE%E5%A4%8D-dex-&#43;-%E5%8F%8D%E7%BC%96%E8%AF%91%E8%BF%98%E5%8E%9F%E6%BA%90%E7%A0%81/</guid>
       <description>版权归作者所有，如有转发，请注明文章出处：https://cyrus-studio.github.io/blog/&#xA;FART 脱壳 fartthread 方法在 app 启动的时候（ActivityThread）开启 fart 线程，休眠 60 秒，等待 app 启动完成后自动开始遍历 ClassLoader 的 类列表，发起主动调用。&#xA;FART 脱壳结束得到的文件列表（分 Execute 与 主动调用两类）：&#xA;Execute 脱壳点得到的 dex (*_dex_file_execute.dex）和 dex 中的所有类列表（ txt 文件）&#xA;主动调用时 dump 得到的 dex (*_dex_file.dex）和此时 dex 中的所有类列表，以及该 dex 中所有函数的 CodeItem（ bin 文件）&#xA;wayne:/data/data/com.cyrus.example/cyrus # ls&#xD;1321896_class_list.txt 1437648_dex_file_execute.dex 1488168_class_list_execute.txt 1605504_ins_4714.bin&#xD;1321896_class_list_execute.txt 1437648_ins_4714.bin 1488168_dex_file.dex 198768_class_list.txt&#xD;1321896_dex_file.dex 1448488_class_list.txt 1488168_dex_file_execute.dex 198768_class_list_execute.txt&#xD;1321896_dex_file_execute.dex 1448488_class_list_execute.txt 1488168_ins_4714.bin 198768_dex_file.dex&#xD;1321896_ins_4714.bin 1448488_dex_file.dex 1496608_class_list.txt 198768_dex_file_execute.dex&#xD;1351008_class_list.txt 1448488_dex_file_execute.dex 1496608_class_list_execute.txt 198768_ins_4714.bin&#xD;1351008_class_list_execute.txt 1448488_ins_4714.</description>
-    </item>
-    <item>
-      <title>攻防 FART 脱壳：实现 AJM 壳级别的对抗功能 &#43; 绕过全解析</title>
-      <link>https://cyrus-studio.github.io/blog/posts/%E6%94%BB%E9%98%B2-fart-%E8%84%B1%E5%A3%B3%E5%AE%9E%E7%8E%B0-ajm-%E5%A3%B3%E7%BA%A7%E5%88%AB%E7%9A%84%E5%AF%B9%E6%8A%97%E5%8A%9F%E8%83%BD-&#43;-%E7%BB%95%E8%BF%87%E5%85%A8%E8%A7%A3%E6%9E%90/</link>
-      <pubDate>Mon, 11 Aug 2025 23:57:39 +0800</pubDate>
-      <guid>https://cyrus-studio.github.io/blog/posts/%E6%94%BB%E9%98%B2-fart-%E8%84%B1%E5%A3%B3%E5%AE%9E%E7%8E%B0-ajm-%E5%A3%B3%E7%BA%A7%E5%88%AB%E7%9A%84%E5%AF%B9%E6%8A%97%E5%8A%9F%E8%83%BD-&#43;-%E7%BB%95%E8%BF%87%E5%85%A8%E8%A7%A3%E6%9E%90/</guid>
-      <description>版权归作者所有，如有转发，请注明文章出处：https://cyrus-studio.github.io/blog/&#xA;实现类似 AJM 壳的 FART 对抗功能 某视频 app 的壳在启动的时候会检测 FART 特征，日志输出如下：&#xA;2025-05-29 02:16:25.612 2557-2557 ActivityThread cn.cntv E go into handleBindApplication&#xD;2025-05-29 02:16:25.630 2557-2557 cn.cntv cn.cntv I The ClassLoaderContext is a special shared library.&#xD;2025-05-29 02:16:25.807 1512-17245 ActivityManager system_process I Process cn.cntv (pid 2557) has died: fore TOP 2025-05-29 02:16:25.875 1512-1588 ActivityManager system_process I Start proc 2628:cn.cntv/u0a140 for top-activity {cn.cntv/com.cctv.mcctv.ui.activity.SplashActivity}&#xD;2025-05-29 02:16:25.932 2628-2628 ActivityThread cn.cntv E go into handleBindApplication&#xD;2025-05-29 02:16:25.</description>
     </item>
     <item>
       <title>FART 脱壳不再全量！用一份配置文件精准控制节奏与范围</title>

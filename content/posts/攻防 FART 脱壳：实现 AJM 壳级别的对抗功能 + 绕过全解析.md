@@ -1,6 +1,6 @@
 +++
 title = '攻防 FART 脱壳：实现 AJM 壳级别的对抗功能 + 绕过全解析'
-date = 2025-08-11T23:57:39.061986+08:00
+date = 2025-08-30T14:24:37.132302+08:00
 draft = false
 +++
 
@@ -707,7 +707,7 @@ D:\Projects\FART\rename_fart_symbols.py D:\Projects\FART\fart10
 ```
 D:\Projects\FART\rename_fart_symbols.py  D:\Python\anti-app\frida_fart
 ```
-参考：[使用 Frida 增强 FART：实现更强大的 Android 脱壳能力](https://cyrus-studio.github.io/blog/posts/%E4%BD%BF%E7%94%A8-frida-%E5%A2%9E%E5%BC%BA-fart%E5%AE%9E%E7%8E%B0%E6%9B%B4%E5%BC%BA%E5%A4%A7%E7%9A%84-android-%E8%84%B1%E5%A3%B3%E8%83%BD%E5%8A%9B/)
+参考：[Frida + FART 联手：解锁更强大的 Android 脱壳新姿势](https://cyrus-studio.github.io/blog/posts/frida-+-fart-%E8%81%94%E6%89%8B%E8%A7%A3%E9%94%81%E6%9B%B4%E5%BC%BA%E5%A4%A7%E7%9A%84-android-%E8%84%B1%E5%A3%B3%E6%96%B0%E5%A7%BF%E5%8A%BF/)
 
 
 
@@ -737,7 +737,7 @@ brunch wayne
 ```
 
 
-如何编译 FART ROM 参考这篇文章：[移植 FART 到 Android 10 实现自动化脱壳](https://cyrus-studio.github.io/blog/posts/%E7%A7%BB%E6%A4%8D-fart-%E5%88%B0-android-10-%E5%AE%9E%E7%8E%B0%E8%87%AA%E5%8A%A8%E5%8C%96%E8%84%B1%E5%A3%B3/)
+如何编译 FART ROM 参考这篇文章：[一步步带你移植 FART 到 Android 10，实现自动化脱壳](https://cyrus-studio.github.io/blog/posts/%E4%B8%80%E6%AD%A5%E6%AD%A5%E5%B8%A6%E4%BD%A0%E7%A7%BB%E6%A4%8D-fart-%E5%88%B0-android-10%E5%AE%9E%E7%8E%B0%E8%87%AA%E5%8A%A8%E5%8C%96%E8%84%B1%E5%A3%B3/)
 
 
 
