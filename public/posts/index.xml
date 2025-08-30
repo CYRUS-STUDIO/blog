@@ -6,12 +6,12 @@
     <description>Recent content in Posts on CYRUS STUDIO</description>
     <generator>Hugo</generator>
     <language>zh-cn</language>
-    <lastBuildDate>Sat, 30 Aug 2025 21:30:36 +0800</lastBuildDate>
+    <lastBuildDate>Sat, 30 Aug 2025 21:41:36 +0800</lastBuildDate>
     <atom:link href="https://cyrus-studio.github.io/blog/posts/index.xml" rel="self" type="application/rss+xml" />
     <item>
       <title>LLVM 不止能编译！自定义 Pass &#43; 定制 clang 实现函数名加密</title>
       <link>https://cyrus-studio.github.io/blog/posts/llvm-%E4%B8%8D%E6%AD%A2%E8%83%BD%E7%BC%96%E8%AF%91%E8%87%AA%E5%AE%9A%E4%B9%89-pass-&#43;-%E5%AE%9A%E5%88%B6-clang-%E5%AE%9E%E7%8E%B0%E5%87%BD%E6%95%B0%E5%90%8D%E5%8A%A0%E5%AF%86/</link>
-      <pubDate>Sat, 30 Aug 2025 21:30:36 +0800</pubDate>
+      <pubDate>Sat, 30 Aug 2025 21:41:36 +0800</pubDate>
       <guid>https://cyrus-studio.github.io/blog/posts/llvm-%E4%B8%8D%E6%AD%A2%E8%83%BD%E7%BC%96%E8%AF%91%E8%87%AA%E5%AE%9A%E4%B9%89-pass-&#43;-%E5%AE%9A%E5%88%B6-clang-%E5%AE%9E%E7%8E%B0%E5%87%BD%E6%95%B0%E5%90%8D%E5%8A%A0%E5%AF%86/</guid>
       <description>版权归作者所有，如有转发，请注明文章出处：https://cyrus-studio.github.io/blog/&#xA;前言 LLVM 是一个编译器框架 ，用来把 C/C++ 源码编译成目标文件，似乎和日常的 GCC、Clang 没什么两样。事实上，LLVM 的能力远不止于此。&#xA;相关文章：LLVM 全面解析：NDK 为什么离不开它？如何亲手编译调试 clang&#xA;凭借它灵活的 中间表示（LLVM IR） 和强大的 Pass 插件机制 ，我们不仅能优化代码，还能在编译阶段对程序进行“改造”——比如 函数名加密、混淆、代码保护 ，让逆向工程变得更加困难。&#xA;本文带你从零开始，体验一次完整的 LLVM 定制之旅：&#xA;学习如何生成和操作 LLVM IR&#xA;使用 opt 和 CLion 调试 LLVM Pass&#xA;编写自定义 Pass，实现 函数名加密保护&#xA;最终定制 clang，让它自动加载我们的加密插件&#xA;1. LLVM IR 介绍 LLVM IR（Intermediate Representation，中间表示）是 LLVM 编译框架的核心。它是一种 介于高级语言（如 C/C++）与底层机器码之间的中间语言 ，既能表达高级语言的语义，又足够接近机器指令，便于优化和生成目标代码。&#xA;LLVM IR 的两种存储形式：&#xA;文本格式（.ll）：人类可读，方便分析和调试。&#xA;二进制格式（.bc）：Bitcode 文件，适合存储和传输。&#xA;LLVM IR 与具体 CPU 架构解耦，可以跨平台复用优化逻辑。&#xA;一个简单示例 （C 代码 → LLVM IR）：</description>
     </item>
