@@ -6,12 +6,12 @@
     <description>Recent content in Posts on CYRUS STUDIO</description>
     <generator>Hugo</generator>
     <language>zh-cn</language>
-    <lastBuildDate>Wed, 10 Sep 2025 19:46:34 +0800</lastBuildDate>
+    <lastBuildDate>Wed, 10 Sep 2025 19:53:57 +0800</lastBuildDate>
     <atom:link href="https://cyrus-studio.github.io/blog/posts/index.xml" rel="self" type="application/rss+xml" />
     <item>
       <title>一文搞懂 Frida Stalker：对抗 OLLVM 的算法还原利器</title>
       <link>https://cyrus-studio.github.io/blog/posts/%E4%B8%80%E6%96%87%E6%90%9E%E6%87%82-frida-stalker%E5%AF%B9%E6%8A%97-ollvm-%E7%9A%84%E7%AE%97%E6%B3%95%E8%BF%98%E5%8E%9F%E5%88%A9%E5%99%A8/</link>
-      <pubDate>Wed, 10 Sep 2025 19:46:34 +0800</pubDate>
+      <pubDate>Wed, 10 Sep 2025 19:53:57 +0800</pubDate>
       <guid>https://cyrus-studio.github.io/blog/posts/%E4%B8%80%E6%96%87%E6%90%9E%E6%87%82-frida-stalker%E5%AF%B9%E6%8A%97-ollvm-%E7%9A%84%E7%AE%97%E6%B3%95%E8%BF%98%E5%8E%9F%E5%88%A9%E5%99%A8/</guid>
       <description>版权归作者所有，如有转发，请注明文章出处：https://cyrus-studio.github.io/blog/&#xA;前言 在移动应用的安全加固中，OLLVM（Obfuscator-LLVM） 是一种常见的代码混淆与保护手段。它通过控制流平坦化、虚假控制流、指令替换等方式，使逆向分析者很难直接还原出原始算法逻辑。&#xA;然而，通过 Frida 提供的 Stalker 模块去动态分析让我们有机会对 OLLVM 的“黑盒逻辑”进行还原。&#xA;通过 Stalker 的指令级追踪能力，我们不仅能捕获 函数调用 、记录 调用参数 ，还可以打印 调用堆栈 ，最终逐步揭开 OLLVM 加固算法的真实运行流程。&#xA;比如，分析某个 so 中偏移为 0x23AD0 的加密函数。使用 IDA 反汇编 so，可以看到 so 中该函数做了混淆&#xA;使用了控制流平坦化混淆&#xA;Frida Stalker Frida Stalker 是 Frida 提供的一个强大的指令级追踪引擎，它能够在目标进程运行时，动态捕获每一条指令的执行情况。与传统的函数级 hook 不同，Stalker 可以深入到 原生汇编层面 ，追踪寄存器变化、内存访问、函数调用关系等底层细节。&#xA;相关链接：&#xA;Stalker 介绍：https://frida.re/docs/stalker/&#xA;api 文档：https://frida.re/docs/javascript-api/#stalker&#xA;目前 Stalker 对于 arm64 支持比较好，但是 arm32 并不是很完善。&#xA;onCallSummary（函数调用摘要) onCallSummary 是 Frida Stalker 提供的一个回调方法，用于在 函数调用层面 对收集到的执行数据进行归纳和统计。&#xA;它会将某一段追踪区间内的 调用信息进行汇总 ，例如：&#xA;哪些函数被调用了</description>
     </item>
