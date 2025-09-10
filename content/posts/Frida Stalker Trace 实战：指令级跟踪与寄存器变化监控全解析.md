@@ -1,52 +1,60 @@
 +++
-title = 'Frida Stalker Trace 指令跟踪&寄存器变化监控'
-date = 2025-04-07T19:37:54.630855+08:00
+title = 'Frida Stalker Trace 实战：指令级跟踪与寄存器变化监控全解析'
+date = 2025-09-10T20:59:07.836063+08:00
 draft = false
 +++
 
 > 版权归作者所有，如有转发，请注明文章出处：<https://cyrus-studio.github.io/blog/>
 
-# **Frida Stalker**
+# Frida Stalker
 
 
 
-Frida 的 Stalker 是一个强大的代码追踪工具。
+**Frida Stalker**  是 Frida 提供的一个强大的指令级追踪引擎，它能够在目标进程运行时，动态捕获每一条指令的执行情况。与传统的函数级 hook 不同，Stalker 可以深入到 **原生汇编层面** ，追踪寄存器变化、内存访问、函数调用关系等底层细节。
 
 
 
-主要功能
+相关链接：
 
-1. 指令级跟踪：Stalker 可精确到指令级别，对应用的原生代码进行实时监控。
+- Stalker 介绍：[https://frida.re/docs/stalker/](https://frida.re/docs/stalker/)
 
-1. 代码插桩：支持在指定指令前后插入自定义的代码逻辑。
-
-1. 内存访问监控：可以监视内存读写操作，分析数据流向。
-
-1. 自定义回调：提供回调函数，方便记录和分析执行轨迹。
-
-
-
-文档：[https://frida.re/docs/javascript-api/#stalker](https://frida.re/docs/javascript-api/#stalker)
+- api 文档：[https://frida.re/docs/javascript-api/#stalker](https://frida.re/docs/javascript-api/#stalker)
 
 
 
 相关文章：
 
-- [使用 Frida Hook Android App](https://cyrus-studio.github.io/blog/posts/%E4%BD%BF%E7%94%A8-frida-hook-android-app/)
+- [一文搞懂如何使用 Frida Hook Android App](https://cyrus-studio.github.io/blog/posts/%E4%B8%80%E6%96%87%E6%90%9E%E6%87%82%E5%A6%82%E4%BD%95%E4%BD%BF%E7%94%A8-frida-hook-android-app/)
 
-- _[使用 Frida Stalker 反 OLLVM 算法还原](https://cyrus-studio.github.io/blog/posts/%E4%BD%BF%E7%94%A8-frida-stalker-%E5%8F%8D-ollvm-%E7%AE%97%E6%B3%95%E8%BF%98%E5%8E%9F/)_
-
-
-
-# **Frida Stalker Trace**
+- [一文搞懂 Frida Stalker：对抗 OLLVM 的算法还原利器](https://cyrus-studio.github.io/blog/posts/%E4%B8%80%E6%96%87%E6%90%9E%E6%87%82-frida-stalker%E5%AF%B9%E6%8A%97-ollvm-%E7%9A%84%E7%AE%97%E6%B3%95%E8%BF%98%E5%8E%9F%E5%88%A9%E5%99%A8/)
 
 
 
-## **指令跟踪**
+# Frida Stalker Trace 流程
 
 
 
-在 Stalker.follow 的 transform 回调函数中 处理目标线程执行的每一条汇编指令。
+在 Frida Stalker 中，通过将这几个 API 组合起来，我们就能构建一个完整的 trace 流程：
+
+- Stalker.follow：负责启动跟踪，它会附加到指定的线程上，对该线程的指令执行流进行捕获和分析。
+
+- transform：提供了对指令流的加工入口。通过 transform(iterator)，我们可以在指令生成阶段插入自定义逻辑。
+
+- iterator：是指令迭代器，用来逐条访问被捕获的指令。
+
+- putCallout：它允许在某条指令执行时触发回调，把当时的 CPU 上下文（寄存器状态、内存地址等）传递给我们的 JavaScript 脚本。
+
+
+
+**Stalker.follow 启动跟踪 → transform 接管指令流 → iterator 遍历每条指令 → 在关键位置用 putCallout 输出寄存器或上下文信息** ，从而实现细粒度的指令跟踪与寄存器变化监控。
+
+
+
+# 指令跟踪（transform 和 iterator）
+
+
+
+在 Stalker.follow 的 transform 回调函数中，处理目标线程执行的每一条汇编指令。
 
 
 
@@ -57,7 +65,7 @@ iterator 是一个 指令迭代器对象，它让你能够 逐条处理目标线
 
 
 
-**iterator 支持的方法**
+**iterator 支持的方法** 
 
 | 方法 | 作用 |
 |--- | ---|
@@ -66,7 +74,7 @@ iterator 是一个 指令迭代器对象，它让你能够 逐条处理目标线
 | putCallout(fn) | 插入 JS 回调（运行在主线程） |
 
 
-通过实现 transform 回调 trace 指定函数，打印地址、指令、模块信息
+通过实现 transform 回调，trace 指定函数，打印地址、指令、模块信息。
 
 ```
 function getModuleByAddressSafe(address) {
@@ -194,7 +202,7 @@ frida -H 127.0.0.1:1234 -F -l so_func_tracer.js
 ```
 
 
-## **寄存器跟踪**
+# 寄存器跟踪（putCallout）
 
 
 
@@ -203,12 +211,6 @@ frida -H 127.0.0.1:1234 -F -l so_func_tracer.js
 
 
 putCallout 会在你指定的位置插入一个“钩子”，在那一刻调用你指定的 JS 函数，提供当前上下文（CPU 寄存器状态）。
-
-
-
-文档：[https://frida.re/docs/stalker/](https://frida.re/docs/stalker/)
-
-
 
 
 
@@ -259,7 +261,7 @@ f6681f","x10":"0x430000","x11":"0x780d54b448","x12":"0x780d54b49c","x13":"0x780d
 ```
 
 
-## **只打印变化的寄存器**
+# 只打印变化的寄存器
 
 
 
@@ -365,7 +367,7 @@ iterator.putCallout(function (context) {
 ```
 
 
-## **输出 trace log 到文件**
+# 输出 trace log 到文件
 
 
 
@@ -383,7 +385,7 @@ frida -H 127.0.0.1:1234 -F -l  script.js | tee log.txt
 ```
 
 
-# **完整源码**
+# 完整源码
 
 
 
@@ -559,8 +561,6 @@ frida -H 127.0.0.1:1234 -F -l so_func_tracer.js
 
 
 开源地址：[https://github.com/CYRUS-STUDIO/FridaStalker](https://github.com/CYRUS-STUDIO/FridaStalker)
-
-
 
 
 

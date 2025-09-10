@@ -6,8 +6,15 @@
     <description>Recent content on CYRUS STUDIO</description>
     <generator>Hugo</generator>
     <language>zh-cn</language>
-    <lastBuildDate>Wed, 10 Sep 2025 19:53:57 +0800</lastBuildDate>
+    <lastBuildDate>Wed, 10 Sep 2025 20:59:07 +0800</lastBuildDate>
     <atom:link href="https://cyrus-studio.github.io/blog/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Frida Stalker Trace 实战：指令级跟踪与寄存器变化监控全解析</title>
+      <link>https://cyrus-studio.github.io/blog/posts/frida-stalker-trace-%E5%AE%9E%E6%88%98%E6%8C%87%E4%BB%A4%E7%BA%A7%E8%B7%9F%E8%B8%AA%E4%B8%8E%E5%AF%84%E5%AD%98%E5%99%A8%E5%8F%98%E5%8C%96%E7%9B%91%E6%8E%A7%E5%85%A8%E8%A7%A3%E6%9E%90/</link>
+      <pubDate>Wed, 10 Sep 2025 20:59:07 +0800</pubDate>
+      <guid>https://cyrus-studio.github.io/blog/posts/frida-stalker-trace-%E5%AE%9E%E6%88%98%E6%8C%87%E4%BB%A4%E7%BA%A7%E8%B7%9F%E8%B8%AA%E4%B8%8E%E5%AF%84%E5%AD%98%E5%99%A8%E5%8F%98%E5%8C%96%E7%9B%91%E6%8E%A7%E5%85%A8%E8%A7%A3%E6%9E%90/</guid>
+      <description>版权归作者所有，如有转发，请注明文章出处：https://cyrus-studio.github.io/blog/&#xA;Frida Stalker Frida Stalker 是 Frida 提供的一个强大的指令级追踪引擎，它能够在目标进程运行时，动态捕获每一条指令的执行情况。与传统的函数级 hook 不同，Stalker 可以深入到 原生汇编层面 ，追踪寄存器变化、内存访问、函数调用关系等底层细节。&#xA;相关链接：&#xA;Stalker 介绍：https://frida.re/docs/stalker/&#xA;api 文档：https://frida.re/docs/javascript-api/#stalker&#xA;相关文章：&#xA;一文搞懂如何使用 Frida Hook Android App&#xA;一文搞懂 Frida Stalker：对抗 OLLVM 的算法还原利器&#xA;Frida Stalker Trace 流程 在 Frida Stalker 中，通过将这几个 API 组合起来，我们就能构建一个完整的 trace 流程：&#xA;Stalker.follow：负责启动跟踪，它会附加到指定的线程上，对该线程的指令执行流进行捕获和分析。&#xA;transform：提供了对指令流的加工入口。通过 transform(iterator)，我们可以在指令生成阶段插入自定义逻辑。&#xA;iterator：是指令迭代器，用来逐条访问被捕获的指令。&#xA;putCallout：它允许在某条指令执行时触发回调，把当时的 CPU 上下文（寄存器状态、内存地址等）传递给我们的 JavaScript 脚本。&#xA;Stalker.follow 启动跟踪 → transform 接管指令流 → iterator 遍历每条指令 → 在关键位置用 putCallout 输出寄存器或上下文信息 ，从而实现细粒度的指令跟踪与寄存器变化监控。&#xA;指令跟踪（transform 和 iterator） 在 Stalker.follow 的 transform 回调函数中，处理目标线程执行的每一条汇编指令。</description>
+    </item>
     <item>
       <title>一文搞懂 Frida Stalker：对抗 OLLVM 的算法还原利器</title>
       <link>https://cyrus-studio.github.io/blog/posts/%E4%B8%80%E6%96%87%E6%90%9E%E6%87%82-frida-stalker%E5%AF%B9%E6%8A%97-ollvm-%E7%9A%84%E7%AE%97%E6%B3%95%E8%BF%98%E5%8E%9F%E5%88%A9%E5%99%A8/</link>
@@ -707,13 +714,6 @@
       <pubDate>Fri, 20 Jun 2025 16:43:26 +0800</pubDate>
       <guid>https://cyrus-studio.github.io/blog/posts/%E7%A0%B4%E8%A7%A3-vmp&#43;ollvm-%E6%B7%B7%E6%B7%86%E9%80%9A%E8%BF%87-hook-jstring-%E5%BF%AB%E9%80%9F%E5%AE%9A%E4%BD%8D%E5%8A%A0%E5%AF%86%E7%AE%97%E6%B3%95%E5%85%A5%E5%8F%A3/</guid>
       <description>版权归作者所有，如有转发，请注明文章出处：https://cyrus-studio.github.io/blog/&#xA;VMP 壳 + OLLVM 的加密算法 某电商APP的加密算法经过dex脱壳分析，找到参数加密的方法在 DuHelper.doWork 中&#xA;package com.shizhuang.duapp.common.helper.ee;&#xD;import com.meituan.robust.ChangeQuickRedirect;&#xD;import lte.NCall;&#xD;/* loaded from: base.apk_classes9.jar:com/shizhuang/duapp/common/helper/ee/DuHelper.class */&#xD;public class DuHelper {&#xD;public static ChangeQuickRedirect changeQuickRedirect;&#xD;static {&#xD;NCall.IV(new Object[]{282});&#xD;}&#xD;public static native int checkSignature(Object obj);&#xD;public static String doWork(Object obj, String str) {&#xD;return (String) NCall.IL(new Object[]{283, obj, str});&#xD;}&#xD;public static native String encodeByte(byte[] bArr, String str);&#xD;public static native String getByteValues();&#xD;public static native String getLeanCloudAppID();&#xD;public static native String getLeanCloudAppKey();&#xD;public static native String getWxAppId(Object obj);&#xD;public static native String getWxAppKey();&#xD;} DuHelper.</description>
-    </item>
-    <item>
-      <title>Frida Stalker Trace 指令跟踪&amp;寄存器变化监控</title>
-      <link>https://cyrus-studio.github.io/blog/posts/frida-stalker-trace-%E6%8C%87%E4%BB%A4%E8%B7%9F%E8%B8%AA%E5%AF%84%E5%AD%98%E5%99%A8%E5%8F%98%E5%8C%96%E7%9B%91%E6%8E%A7/</link>
-      <pubDate>Mon, 07 Apr 2025 19:37:54 +0800</pubDate>
-      <guid>https://cyrus-studio.github.io/blog/posts/frida-stalker-trace-%E6%8C%87%E4%BB%A4%E8%B7%9F%E8%B8%AA%E5%AF%84%E5%AD%98%E5%99%A8%E5%8F%98%E5%8C%96%E7%9B%91%E6%8E%A7/</guid>
-      <description>版权归作者所有，如有转发，请注明文章出处：https://cyrus-studio.github.io/blog/&#xA;Frida Stalker Frida 的 Stalker 是一个强大的代码追踪工具。&#xA;主要功能&#xA;指令级跟踪：Stalker 可精确到指令级别，对应用的原生代码进行实时监控。&#xA;代码插桩：支持在指定指令前后插入自定义的代码逻辑。&#xA;内存访问监控：可以监视内存读写操作，分析数据流向。&#xA;自定义回调：提供回调函数，方便记录和分析执行轨迹。&#xA;文档：https://frida.re/docs/javascript-api/#stalker&#xA;相关文章：&#xA;使用 Frida Hook Android App&#xA;使用 Frida Stalker 反 OLLVM 算法还原&#xA;Frida Stalker Trace 指令跟踪 在 Stalker.follow 的 transform 回调函数中 处理目标线程执行的每一条汇编指令。&#xA;iterator 是一个 指令迭代器对象，它让你能够 逐条处理目标线程将要执行的原始机器指令。&#xA;iterator 支持的方法&#xA;方法 作用 next() 获取下一条指令 keep() 保留指令（否则会被跳过） putCallout(fn) 插入 JS 回调（运行在主线程） 通过实现 transform 回调 trace 指定函数，打印地址、指令、模块信息&#xA;function getModuleByAddressSafe(address) {&#xD;try {&#xD;// 尝试获取模块&#xD;var module = Process.getModuleByAddress(address);&#xD;// 如果模块存在，返回模块&#xD;if (module) {&#xD;return module;&#xD;} else {&#xD;// 如果没有找到模块，返回 null&#xD;return null;&#xD;}&#xD;} catch (e) {&#xD;// 捕获异常，返回 null&#xD;return null;&#xD;}&#xD;}&#xD;/**&#xD;* 指令跟踪&#xD;*&#xD;* @param targetModuleName 目标模块名&#xD;* @param targetSymbol 函数偏移（或导出名）&#xD;*/&#xD;function trace(targetModuleName, targetSymbol) {&#xD;// 获取模块基地址&#xD;const base = Module.</description>
     </item>
     <item>
       <title>Android Dex VMP 动态加载加密指令流 </title>
