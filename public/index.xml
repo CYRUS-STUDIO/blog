@@ -6,8 +6,15 @@
     <description>Recent content on CYRUS STUDIO</description>
     <generator>Hugo</generator>
     <language>zh-cn</language>
-    <lastBuildDate>Wed, 10 Sep 2025 20:59:07 +0800</lastBuildDate>
+    <lastBuildDate>Wed, 10 Sep 2025 23:31:12 +0800</lastBuildDate>
     <atom:link href="https://cyrus-studio.github.io/blog/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>手写 Android Dex VMP 壳：自定义虚拟机 &#43; 指令解释执行全流程</title>
+      <link>https://cyrus-studio.github.io/blog/posts/%E6%89%8B%E5%86%99-android-dex-vmp-%E5%A3%B3%E8%87%AA%E5%AE%9A%E4%B9%89%E8%99%9A%E6%8B%9F%E6%9C%BA-&#43;-%E6%8C%87%E4%BB%A4%E8%A7%A3%E9%87%8A%E6%89%A7%E8%A1%8C%E5%85%A8%E6%B5%81%E7%A8%8B/</link>
+      <pubDate>Wed, 10 Sep 2025 23:31:12 +0800</pubDate>
+      <guid>https://cyrus-studio.github.io/blog/posts/%E6%89%8B%E5%86%99-android-dex-vmp-%E5%A3%B3%E8%87%AA%E5%AE%9A%E4%B9%89%E8%99%9A%E6%8B%9F%E6%9C%BA-&#43;-%E6%8C%87%E4%BB%A4%E8%A7%A3%E9%87%8A%E6%89%A7%E8%A1%8C%E5%85%A8%E6%B5%81%E7%A8%8B/</guid>
+      <description>版权归作者所有，如有转发，请注明文章出处：https://cyrus-studio.github.io/blog/&#xA;前言 在 Android 安全领域，VMP（Virtual Machine Protection，虚拟机保护）壳 一直被视为最难攻克的加固技术之一。它通过将 Dex 指令转换为自定义字节码，再由虚拟机解释执行，从而大幅增加逆向分析的门槛。&#xA;带你一步步手写一个 Dex VMP 壳 ：&#xA;如何把 Java/Dex 转换为字节码指令流&#xA;如何构建一个最小可用的解释器&#xA;如何模拟寄存器、字符串池&#xA;如何解析并执行典型指令（const-string、invoke、return 等）&#xA;Android Dex VMP 壳执行流程 Android Dex VMP 壳执行流程图述：&#xA;┌─────────────────────────┐&#xD;│ Java/Kotlin 源代码 │&#xD;└─────────────┬───────────┘&#xD;│&#xD;▼&#xD;┌─────────────────────────┐&#xD;│ 编译 → Dex 字节码 │&#xD;│ (标准 Android APK) │&#xD;└─────────────┬───────────┘&#xD;│&#xD;▼&#xD;┌─────────────────────────┐&#xD;│ VMP 转换层 │&#xD;│ - 扫描目标类/方法 │&#xD;│ - 将指令映射为自定义字节码│&#xD;│ - 生成指令流 (Custom IR) │&#xD;└─────────────┬───────────┘&#xD;│&#xD;▼&#xD;┌─────────────────────────┐&#xD;│ VMP 虚拟机解释器 │&#xD;│ - 初始化寄存器池 │&#xD;│ - 加载字符串常量池 │&#xD;│ - 逐条取指、解析、执行 │&#xD;└─────────────┬───────────┘&#xD;│&#xD;▼&#xD;┌─────────────────────────┐&#xD;│ 指令解析与执行逻辑 │&#xD;│ 1.</description>
+    </item>
     <item>
       <title>Frida Stalker Trace 实战：指令级跟踪与寄存器变化监控全解析</title>
       <link>https://cyrus-studio.github.io/blog/posts/frida-stalker-trace-%E5%AE%9E%E6%88%98%E6%8C%87%E4%BB%A4%E7%BA%A7%E8%B7%9F%E8%B8%AA%E4%B8%8E%E5%AF%84%E5%AD%98%E5%99%A8%E5%8F%98%E5%8C%96%E7%9B%91%E6%8E%A7%E5%85%A8%E8%A7%A3%E6%9E%90/</link>
@@ -721,13 +728,6 @@
       <pubDate>Mon, 13 Jan 2025 21:33:28 +0800</pubDate>
       <guid>https://cyrus-studio.github.io/blog/posts/android-dex-vmp-%E5%8A%A8%E6%80%81%E5%8A%A0%E8%BD%BD%E5%8A%A0%E5%AF%86%E6%8C%87%E4%BB%A4%E6%B5%81-/</guid>
       <description>版权归作者所有，如有转发，请注明文章出处：https://cyrus-studio.github.io/blog/&#xA;上一篇【详解如何自定义 Android Dex VMP 保护壳】实现了 VMP 保护壳。&#xA;为了进一步加强对 dex 指令的保护，实现指令流加密和动态加载，比如使用 AES 加密指令流，在运行时解密执行。&#xA;保存指令流到文件 在 010Editor 中搜索找到 sign 方法的字节码并复制&#xA;新建 Hex 文件&#xA;把 sign 方法字节码粘贴到新建的文件保存文件为 sign&#xA;AES加解密 编写一个 kotlin 语言 AES 加解密算法工具类&#xA;package com.cyrus.vmp&#xD;import java.io.ByteArrayOutputStream&#xD;import java.io.File&#xD;import java.io.FileInputStream&#xD;import java.io.FileOutputStream&#xD;import javax.crypto.Cipher&#xD;import javax.crypto.KeyGenerator&#xD;import javax.crypto.SecretKey&#xD;import javax.crypto.spec.SecretKeySpec&#xD;object AESUtils {&#xD;private const val ALGORITHM = &amp;#34;AES&amp;#34;&#xD;private const val TRANSFORMATION = &amp;#34;AES/ECB/PKCS5Padding&amp;#34; // AES 加密模式&#xD;// 生成一个 128 位的 AES 密钥&#xD;fun generateSecretKey(): SecretKey {&#xD;val keyGenerator = KeyGenerator.</description>
-    </item>
-    <item>
-      <title>详解如何自定义 Android Dex VMP 保护壳</title>
-      <link>https://cyrus-studio.github.io/blog/posts/%E8%AF%A6%E8%A7%A3%E5%A6%82%E4%BD%95%E8%87%AA%E5%AE%9A%E4%B9%89-android-dex-vmp-%E4%BF%9D%E6%8A%A4%E5%A3%B3/</link>
-      <pubDate>Mon, 13 Jan 2025 21:14:45 +0800</pubDate>
-      <guid>https://cyrus-studio.github.io/blog/posts/%E8%AF%A6%E8%A7%A3%E5%A6%82%E4%BD%95%E8%87%AA%E5%AE%9A%E4%B9%89-android-dex-vmp-%E4%BF%9D%E6%8A%A4%E5%A3%B3/</guid>
-      <description>版权归作者所有，如有转发，请注明文章出处：https://cyrus-studio.github.io/blog/&#xA;前言 Android Dex VMP（Virtual Machine Protection，虚拟机保护）壳是一种常见的应用保护技术，主要用于保护 Android 应用的代码免受反编译和逆向工程的攻击。&#xA;VMP 保护壳通过将应用的原始 Dex（Dalvik Executable）文件进行加密、混淆、虚拟化等处理，使得恶意用户无法轻易获取到应用的原始代码和逻辑。&#xA;比如，实现一个 Android 下的 Dex VMP 保护壳，用来保护 Kotlin 层 sign 算法，防止被逆向。&#xA;假设 sign 算法源码如下：&#xA;package com.cyrus.example.vmp&#xD;import java.security.MessageDigest&#xD;import java.util.Base64&#xD;object SignUtil {&#xD;/**&#xD;* 对输入字符串进行签名并返回 Base64 编码后的字符串&#xD;* @param input 要签名的字符串&#xD;* @return Base64 编码后的字符串&#xD;*/&#xD;fun sign(input: String): String {&#xD;// 使用 SHA-256 计算摘要&#xD;val digest = MessageDigest.getInstance(&amp;#34;SHA-256&amp;#34;)&#xD;val hash = digest.digest(input.toByteArray())&#xD;// 使用 Base64 编码&#xD;return Base64.</description>
     </item>
     <item>
       <title>Windows下创建FTP服务器，实现文件共享</title>
