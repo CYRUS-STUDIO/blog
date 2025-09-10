@@ -6,8 +6,15 @@
     <description>Recent content on CYRUS STUDIO</description>
     <generator>Hugo</generator>
     <language>zh-cn</language>
-    <lastBuildDate>Wed, 10 Sep 2025 17:47:12 +0800</lastBuildDate>
+    <lastBuildDate>Wed, 10 Sep 2025 19:46:34 +0800</lastBuildDate>
     <atom:link href="https://cyrus-studio.github.io/blog/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>一文搞懂 Frida Stalker：对抗 OLLVM 的算法还原利器</title>
+      <link>https://cyrus-studio.github.io/blog/posts/%E4%B8%80%E6%96%87%E6%90%9E%E6%87%82-frida-stalker%E5%AF%B9%E6%8A%97-ollvm-%E7%9A%84%E7%AE%97%E6%B3%95%E8%BF%98%E5%8E%9F%E5%88%A9%E5%99%A8/</link>
+      <pubDate>Wed, 10 Sep 2025 19:46:34 +0800</pubDate>
+      <guid>https://cyrus-studio.github.io/blog/posts/%E4%B8%80%E6%96%87%E6%90%9E%E6%87%82-frida-stalker%E5%AF%B9%E6%8A%97-ollvm-%E7%9A%84%E7%AE%97%E6%B3%95%E8%BF%98%E5%8E%9F%E5%88%A9%E5%99%A8/</guid>
+      <description>版权归作者所有，如有转发，请注明文章出处：https://cyrus-studio.github.io/blog/&#xA;前言 在移动应用的安全加固中，OLLVM（Obfuscator-LLVM） 是一种常见的代码混淆与保护手段。它通过控制流平坦化、虚假控制流、指令替换等方式，使逆向分析者很难直接还原出原始算法逻辑。&#xA;然而，通过 Frida 提供的 Stalker 模块去动态分析让我们有机会对 OLLVM 的“黑盒逻辑”进行还原。&#xA;通过 Stalker 的指令级追踪能力，我们不仅能捕获 函数调用 、记录 调用参数 ，还可以打印 调用堆栈 ，最终逐步揭开 OLLVM 加固算法的真实运行流程。&#xA;比如，分析某个 so 中偏移为 0x23AD0 的加密函数。使用 IDA 反汇编 so，可以看到 so 中该函数做了混淆&#xA;使用了控制流平坦化混淆&#xA;Frida Stalker Frida Stalker 是 Frida 提供的一个强大的指令级追踪引擎，它能够在目标进程运行时，动态捕获每一条指令的执行情况。与传统的函数级 hook 不同，Stalker 可以深入到 原生汇编层面 ，追踪寄存器变化、内存访问、函数调用关系等底层细节。&#xA;相关链接：&#xA;Stalker 介绍：https://frida.re/docs/stalker/&#xA;api 文档：https://frida.re/docs/javascript-api/#stalker&#xA;目前 Stalker 对于 arm64 支持比较好，但是 arm32 并不是很完善。&#xA;onCallSummary（函数调用摘要) onCallSummary 是 Frida Stalker 提供的一个回调方法，用于在 函数调用层面 对收集到的执行数据进行归纳和统计。&#xA;它会将某一段追踪区间内的 调用信息进行汇总 ，例如：&#xA;哪些函数被调用了</description>
+    </item>
     <item>
       <title>Frida 实战：Android JNI 数组 (jobjectArray) 操作全流程解析</title>
       <link>https://cyrus-studio.github.io/blog/posts/frida-%E5%AE%9E%E6%88%98android-jni-%E6%95%B0%E7%BB%84-jobjectarray-%E6%93%8D%E4%BD%9C%E5%85%A8%E6%B5%81%E7%A8%8B%E8%A7%A3%E6%9E%90/</link>
@@ -707,13 +714,6 @@
       <pubDate>Mon, 07 Apr 2025 19:37:54 +0800</pubDate>
       <guid>https://cyrus-studio.github.io/blog/posts/frida-stalker-trace-%E6%8C%87%E4%BB%A4%E8%B7%9F%E8%B8%AA%E5%AF%84%E5%AD%98%E5%99%A8%E5%8F%98%E5%8C%96%E7%9B%91%E6%8E%A7/</guid>
       <description>版权归作者所有，如有转发，请注明文章出处：https://cyrus-studio.github.io/blog/&#xA;Frida Stalker Frida 的 Stalker 是一个强大的代码追踪工具。&#xA;主要功能&#xA;指令级跟踪：Stalker 可精确到指令级别，对应用的原生代码进行实时监控。&#xA;代码插桩：支持在指定指令前后插入自定义的代码逻辑。&#xA;内存访问监控：可以监视内存读写操作，分析数据流向。&#xA;自定义回调：提供回调函数，方便记录和分析执行轨迹。&#xA;文档：https://frida.re/docs/javascript-api/#stalker&#xA;相关文章：&#xA;使用 Frida Hook Android App&#xA;使用 Frida Stalker 反 OLLVM 算法还原&#xA;Frida Stalker Trace 指令跟踪 在 Stalker.follow 的 transform 回调函数中 处理目标线程执行的每一条汇编指令。&#xA;iterator 是一个 指令迭代器对象，它让你能够 逐条处理目标线程将要执行的原始机器指令。&#xA;iterator 支持的方法&#xA;方法 作用 next() 获取下一条指令 keep() 保留指令（否则会被跳过） putCallout(fn) 插入 JS 回调（运行在主线程） 通过实现 transform 回调 trace 指定函数，打印地址、指令、模块信息&#xA;function getModuleByAddressSafe(address) {&#xD;try {&#xD;// 尝试获取模块&#xD;var module = Process.getModuleByAddress(address);&#xD;// 如果模块存在，返回模块&#xD;if (module) {&#xD;return module;&#xD;} else {&#xD;// 如果没有找到模块，返回 null&#xD;return null;&#xD;}&#xD;} catch (e) {&#xD;// 捕获异常，返回 null&#xD;return null;&#xD;}&#xD;}&#xD;/**&#xD;* 指令跟踪&#xD;*&#xD;* @param targetModuleName 目标模块名&#xD;* @param targetSymbol 函数偏移（或导出名）&#xD;*/&#xD;function trace(targetModuleName, targetSymbol) {&#xD;// 获取模块基地址&#xD;const base = Module.</description>
-    </item>
-    <item>
-      <title>使用 Frida Stalker 反 OLLVM 算法还原</title>
-      <link>https://cyrus-studio.github.io/blog/posts/%E4%BD%BF%E7%94%A8-frida-stalker-%E5%8F%8D-ollvm-%E7%AE%97%E6%B3%95%E8%BF%98%E5%8E%9F/</link>
-      <pubDate>Sun, 30 Mar 2025 04:33:31 +0800</pubDate>
-      <guid>https://cyrus-studio.github.io/blog/posts/%E4%BD%BF%E7%94%A8-frida-stalker-%E5%8F%8D-ollvm-%E7%AE%97%E6%B3%95%E8%BF%98%E5%8E%9F/</guid>
-      <description>版权归作者所有，如有转发，请注明文章出处：https://cyrus-studio.github.io/blog/&#xA;前言 比如我们像分析某个 so 中偏移为 0x23AD0 的加密函数&#xA;IDA 反汇编 so，可以看到 so 中该函数做了混淆&#xA;控制流平坦化&#xA;Frida Stalker Frida 的 Stalker 是一个强大的代码追踪工具。&#xA;主要功能&#xA;指令级跟踪：Stalker 可精确到指令级别，对应用的原生代码进行实时监控。&#xA;代码插桩：支持在指定指令前后插入自定义的代码逻辑。&#xA;内存访问监控：可以监视内存读写操作，分析数据流向。&#xA;自定义回调：提供回调函数，方便记录和分析执行轨迹。&#xA;文档：https://frida.re/docs/javascript-api/#stalker&#xA;目前 Stalker 对于 arm64 支持比较好，但是 arm32 并不是很完善。&#xA;https://frida.re/docs/stalker/&#xA;关于 Frida 的使用可以参考这篇文章：使用 Frida Hook Android App&#xA;onCallSummary（函数调用摘要) onCallSummary 用于返回函数调用的摘要信息。&#xA;Stalker.follow() 使用 onCallSummary 时，不会实时回调，而是在合适的时间点返回已汇总的调用信息。&#xA;通常是在：&#xA;函数执行结束后&#xA;线程空闲或上下文切换时&#xA;Stalker缓冲区达到一定大小时&#xA;Stalker.flush();&#xA;因此，你会在目标函数执行完毕后，看到 onCallSummary 输出的调用信息。&#xA;summary 数据结构通常类似于以下格式：&#xA;{&#xD;&amp;#34;函数地址&amp;#34;: 调用次数&#xD;} hook 目标函数，跟踪 call 事件并打印 call summary&#xA;function onCallSummary() {&#xD;// 目标 so&#xD;var soName = &amp;#34;libaes.</description>
     </item>
     <item>
       <title>Android Dex VMP 动态加载加密指令流 </title>
