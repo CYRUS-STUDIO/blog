@@ -6,8 +6,15 @@
     <description>Recent content on CYRUS STUDIO</description>
     <generator>Hugo</generator>
     <language>zh-cn</language>
-    <lastBuildDate>Wed, 10 Sep 2025 23:31:12 +0800</lastBuildDate>
+    <lastBuildDate>Thu, 11 Sep 2025 00:07:08 +0800</lastBuildDate>
     <atom:link href="https://cyrus-studio.github.io/blog/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>手写 Android Dex VMP 壳：指令流 AES 加密 &#43; 动态加载全流程</title>
+      <link>https://cyrus-studio.github.io/blog/posts/%E6%89%8B%E5%86%99-android-dex-vmp-%E5%A3%B3%E6%8C%87%E4%BB%A4%E6%B5%81-aes-%E5%8A%A0%E5%AF%86-&#43;-%E5%8A%A8%E6%80%81%E5%8A%A0%E8%BD%BD%E5%85%A8%E6%B5%81%E7%A8%8B/</link>
+      <pubDate>Thu, 11 Sep 2025 00:07:08 +0800</pubDate>
+      <guid>https://cyrus-studio.github.io/blog/posts/%E6%89%8B%E5%86%99-android-dex-vmp-%E5%A3%B3%E6%8C%87%E4%BB%A4%E6%B5%81-aes-%E5%8A%A0%E5%AF%86-&#43;-%E5%8A%A8%E6%80%81%E5%8A%A0%E8%BD%BD%E5%85%A8%E6%B5%81%E7%A8%8B/</guid>
+      <description>版权归作者所有，如有转发，请注明文章出处：https://cyrus-studio.github.io/blog/&#xA;前言 在上一篇《手写 Android Dex VMP 壳：自定义虚拟机 + 指令解释执行全流程》中，我们从零实现了一个简易的 Dex VMP 壳，通过自定义虚拟机和指令解释执行，让应用代码在运行时以“虚拟指令流”的方式运行，大大增加了逆向分析的难度。&#xA;如果攻击者能够直接读取 Dex 中的虚拟指令流，那么依然可能进行还原。为了解决这一问题，本篇将进一步升级：在 Dex VMP 基础上引入指令流加密与动态加载 。&#xA;通过 AES 算法 对指令流进行加密，运行时再解密并交给虚拟机执行，从而让静态分析几乎无从下手。&#xA;Dex VMP 指令流加密 + 动态加载完整流程 Dex VMP 指令流加密 + 动态加载执行完整流程大概如下：&#xA;┌──────────────────────┐&#xD;│ 原始 Dex 指令流 │&#xD;└──────────┬───────────┘&#xD;│&#xD;▼&#xD;┌─────────────────────────┐&#xD;│ 保存指令流到文件 / 内存 │&#xD;└──────────┬──────────────┘&#xD;│&#xD;▼&#xD;┌─────────────────────────┐&#xD;│ 使用 AES 加密 │&#xD;│ (key/iv 固定或动态生成) │&#xD;└──────────┬──────────────┘&#xD;│&#xD;▼&#xD;┌─────────────────────────┐&#xD;│ 得到加密后的指令流文件 │&#xD;│ （静态分析无法直接还原） │&#xD;└──────────┬──────────────┘&#xD;│&#xD;┌────────▼──────────────┐&#xD;│ Android 运行时启动 │&#xD;└────────┬──────────────┘&#xD;│&#xD;▼&#xD;┌────────────────────────┐&#xD;│ 动态读取加密指令流文件 │&#xD;└──────────┬─────────────┘&#xD;│&#xD;▼&#xD;┌────────────────────────┐&#xD;│ AES 解密恢复 │&#xD;│ （内存中得到明文指令流）│&#xD;└──────────┬─────────────┘&#xD;│&#xD;▼&#xD;┌──────────────────────────┐&#xD;│ 将解密后的指令流交给 VMP │&#xD;│ → 自定义虚拟机解释执行 │&#xD;└──────────┬───────────────┘&#xD;│&#xD;▼&#xD;┌─────────────────────────┐&#xD;│ App 正常运行业务逻辑 │&#xD;│ （逆向者难以静态还原逻辑） │&#xD;└─────────────────────────┘ 核心思路 ：</description>
+    </item>
     <item>
       <title>手写 Android Dex VMP 壳：自定义虚拟机 &#43; 指令解释执行全流程</title>
       <link>https://cyrus-studio.github.io/blog/posts/%E6%89%8B%E5%86%99-android-dex-vmp-%E5%A3%B3%E8%87%AA%E5%AE%9A%E4%B9%89%E8%99%9A%E6%8B%9F%E6%9C%BA-&#43;-%E6%8C%87%E4%BB%A4%E8%A7%A3%E9%87%8A%E6%89%A7%E8%A1%8C%E5%85%A8%E6%B5%81%E7%A8%8B/</link>
@@ -721,13 +728,6 @@
       <pubDate>Fri, 20 Jun 2025 16:43:26 +0800</pubDate>
       <guid>https://cyrus-studio.github.io/blog/posts/%E7%A0%B4%E8%A7%A3-vmp&#43;ollvm-%E6%B7%B7%E6%B7%86%E9%80%9A%E8%BF%87-hook-jstring-%E5%BF%AB%E9%80%9F%E5%AE%9A%E4%BD%8D%E5%8A%A0%E5%AF%86%E7%AE%97%E6%B3%95%E5%85%A5%E5%8F%A3/</guid>
       <description>版权归作者所有，如有转发，请注明文章出处：https://cyrus-studio.github.io/blog/&#xA;VMP 壳 + OLLVM 的加密算法 某电商APP的加密算法经过dex脱壳分析，找到参数加密的方法在 DuHelper.doWork 中&#xA;package com.shizhuang.duapp.common.helper.ee;&#xD;import com.meituan.robust.ChangeQuickRedirect;&#xD;import lte.NCall;&#xD;/* loaded from: base.apk_classes9.jar:com/shizhuang/duapp/common/helper/ee/DuHelper.class */&#xD;public class DuHelper {&#xD;public static ChangeQuickRedirect changeQuickRedirect;&#xD;static {&#xD;NCall.IV(new Object[]{282});&#xD;}&#xD;public static native int checkSignature(Object obj);&#xD;public static String doWork(Object obj, String str) {&#xD;return (String) NCall.IL(new Object[]{283, obj, str});&#xD;}&#xD;public static native String encodeByte(byte[] bArr, String str);&#xD;public static native String getByteValues();&#xD;public static native String getLeanCloudAppID();&#xD;public static native String getLeanCloudAppKey();&#xD;public static native String getWxAppId(Object obj);&#xD;public static native String getWxAppKey();&#xD;} DuHelper.</description>
-    </item>
-    <item>
-      <title>Android Dex VMP 动态加载加密指令流 </title>
-      <link>https://cyrus-studio.github.io/blog/posts/android-dex-vmp-%E5%8A%A8%E6%80%81%E5%8A%A0%E8%BD%BD%E5%8A%A0%E5%AF%86%E6%8C%87%E4%BB%A4%E6%B5%81-/</link>
-      <pubDate>Mon, 13 Jan 2025 21:33:28 +0800</pubDate>
-      <guid>https://cyrus-studio.github.io/blog/posts/android-dex-vmp-%E5%8A%A8%E6%80%81%E5%8A%A0%E8%BD%BD%E5%8A%A0%E5%AF%86%E6%8C%87%E4%BB%A4%E6%B5%81-/</guid>
-      <description>版权归作者所有，如有转发，请注明文章出处：https://cyrus-studio.github.io/blog/&#xA;上一篇【详解如何自定义 Android Dex VMP 保护壳】实现了 VMP 保护壳。&#xA;为了进一步加强对 dex 指令的保护，实现指令流加密和动态加载，比如使用 AES 加密指令流，在运行时解密执行。&#xA;保存指令流到文件 在 010Editor 中搜索找到 sign 方法的字节码并复制&#xA;新建 Hex 文件&#xA;把 sign 方法字节码粘贴到新建的文件保存文件为 sign&#xA;AES加解密 编写一个 kotlin 语言 AES 加解密算法工具类&#xA;package com.cyrus.vmp&#xD;import java.io.ByteArrayOutputStream&#xD;import java.io.File&#xD;import java.io.FileInputStream&#xD;import java.io.FileOutputStream&#xD;import javax.crypto.Cipher&#xD;import javax.crypto.KeyGenerator&#xD;import javax.crypto.SecretKey&#xD;import javax.crypto.spec.SecretKeySpec&#xD;object AESUtils {&#xD;private const val ALGORITHM = &amp;#34;AES&amp;#34;&#xD;private const val TRANSFORMATION = &amp;#34;AES/ECB/PKCS5Padding&amp;#34; // AES 加密模式&#xD;// 生成一个 128 位的 AES 密钥&#xD;fun generateSecretKey(): SecretKey {&#xD;val keyGenerator = KeyGenerator.</description>
     </item>
     <item>
       <title>Windows下创建FTP服务器，实现文件共享</title>
