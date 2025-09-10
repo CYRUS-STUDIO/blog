@@ -3,10 +3,13 @@
   xmlns:xhtml="http://www.w3.org/1999/xhtml">
   <url>
     <loc>https://cyrus-studio.github.io/blog/</loc>
-    <lastmod>2025-09-10T17:16:31+08:00</lastmod>
+    <lastmod>2025-09-10T17:47:12+08:00</lastmod>
+  </url><url>
+    <loc>https://cyrus-studio.github.io/blog/posts/frida-%E5%AE%9E%E6%88%98android-jni-%E6%95%B0%E7%BB%84-jobjectarray-%E6%93%8D%E4%BD%9C%E5%85%A8%E6%B5%81%E7%A8%8B%E8%A7%A3%E6%9E%90/</loc>
+    <lastmod>2025-09-10T17:47:12+08:00</lastmod>
   </url><url>
     <loc>https://cyrus-studio.github.io/blog/posts/</loc>
-    <lastmod>2025-09-10T17:16:31+08:00</lastmod>
+    <lastmod>2025-09-10T17:47:12+08:00</lastmod>
   </url><url>
     <loc>https://cyrus-studio.github.io/blog/posts/%E6%B7%B1%E5%85%A5%E8%A7%A3%E6%9E%90-aes-%E5%8A%A0%E5%AF%86%E7%AE%97%E6%B3%95%E5%8E%9F%E7%90%86%E5%8F%98%E4%BD%93%E4%B8%8E-libtomcrypt-%E5%9C%A8-android-%E4%B8%AD%E7%9A%84%E5%AE%9E%E6%88%98%E5%BA%94%E7%94%A8/</loc>
     <lastmod>2025-09-10T17:16:31+08:00</lastmod>
@@ -301,9 +304,6 @@
   </url><url>
     <loc>https://cyrus-studio.github.io/blog/posts/%E7%A0%B4%E8%A7%A3-vmp&#43;ollvm-%E6%B7%B7%E6%B7%86%E9%80%9A%E8%BF%87-hook-jstring-%E5%BF%AB%E9%80%9F%E5%AE%9A%E4%BD%8D%E5%8A%A0%E5%AF%86%E7%AE%97%E6%B3%95%E5%85%A5%E5%8F%A3/</loc>
     <lastmod>2025-06-20T16:43:26+08:00</lastmod>
-  </url><url>
-    <loc>https://cyrus-studio.github.io/blog/posts/frida-%E4%B8%AD%E8%A7%A3%E6%9E%90-native-%E5%B1%82-jobjectarray-%E8%BD%AC%E6%8D%A2-js-%E6%95%B0%E7%BB%84/</loc>
-    <lastmod>2025-04-08T04:02:38+08:00</lastmod>
   </url><url>
     <loc>https://cyrus-studio.github.io/blog/posts/frida-stalker-trace-%E6%8C%87%E4%BB%A4%E8%B7%9F%E8%B8%AA%E5%AF%84%E5%AD%98%E5%99%A8%E5%8F%98%E5%8C%96%E7%9B%91%E6%8E%A7/</loc>
     <lastmod>2025-04-07T19:37:54+08:00</lastmod>

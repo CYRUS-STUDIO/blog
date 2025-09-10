@@ -6,8 +6,15 @@
     <description>Recent content in Posts on CYRUS STUDIO</description>
     <generator>Hugo</generator>
     <language>zh-cn</language>
-    <lastBuildDate>Wed, 10 Sep 2025 17:16:31 +0800</lastBuildDate>
+    <lastBuildDate>Wed, 10 Sep 2025 17:47:12 +0800</lastBuildDate>
     <atom:link href="https://cyrus-studio.github.io/blog/posts/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Frida 实战：Android JNI 数组 (jobjectArray) 操作全流程解析</title>
+      <link>https://cyrus-studio.github.io/blog/posts/frida-%E5%AE%9E%E6%88%98android-jni-%E6%95%B0%E7%BB%84-jobjectarray-%E6%93%8D%E4%BD%9C%E5%85%A8%E6%B5%81%E7%A8%8B%E8%A7%A3%E6%9E%90/</link>
+      <pubDate>Wed, 10 Sep 2025 17:47:12 +0800</pubDate>
+      <guid>https://cyrus-studio.github.io/blog/posts/frida-%E5%AE%9E%E6%88%98android-jni-%E6%95%B0%E7%BB%84-jobjectarray-%E6%93%8D%E4%BD%9C%E5%85%A8%E6%B5%81%E7%A8%8B%E8%A7%A3%E6%9E%90/</guid>
+      <description>版权归作者所有，如有转发，请注明文章出处：https://cyrus-studio.github.io/blog/&#xA;前言 在 Android 的 Native 层，Java 中的 Object[] 类型参数会以 jobjectArray 的形式传递到 C/C++ 代码中。&#xA;与 JS 数组不同，你不能直接对 jobjectArray 进行索引访问或直接操作其元素。要获取或修改其中的内容，必须借助 JNI 提供的接口，例如获取数组长度、读取单个元素或创建新的数组等操作。&#xA;env.js 常用的 JNI 函数在 frida 的 env.js 中都已经封装好了&#xA;https://github.com/frida/frida-java-bridge/blob/main/lib/env.js&#xA;通过下面代码获取 JNIEnv 引用，就可以调用相关的 JNI 函数&#xA;let env = Java.vm.tryGetEnv() 文档：https://frida.re/docs/javascript-api/&#xA;获取数组长度 let arrLen = env.getArrayLength(objArray)&#xD;console.log(&amp;#39;array length is: &amp;#39; + arrLen); 元素类型判断 通过 getObjectClassName 可以获取到对象的类名进而判断该元素的类型。&#xA;// 获取对象的类名&#xD;let className = env.getObjectClassName(objArray)&#xD;console.log(&amp;#39;className: &amp;#39; + className);&#xD;// 判断是否 jobjectArray&#xD;if (className === &amp;#39;[Ljava.</description>
+    </item>
     <item>
       <title>深入解析 AES 加密算法：原理、变体与 LibTomCrypt 在 Android 中的实战应用</title>
       <link>https://cyrus-studio.github.io/blog/posts/%E6%B7%B1%E5%85%A5%E8%A7%A3%E6%9E%90-aes-%E5%8A%A0%E5%AF%86%E7%AE%97%E6%B3%95%E5%8E%9F%E7%90%86%E5%8F%98%E4%BD%93%E4%B8%8E-libtomcrypt-%E5%9C%A8-android-%E4%B8%AD%E7%9A%84%E5%AE%9E%E6%88%98%E5%BA%94%E7%94%A8/</link>
@@ -693,13 +700,6 @@
       <pubDate>Fri, 20 Jun 2025 16:43:26 +0800</pubDate>
       <guid>https://cyrus-studio.github.io/blog/posts/%E7%A0%B4%E8%A7%A3-vmp&#43;ollvm-%E6%B7%B7%E6%B7%86%E9%80%9A%E8%BF%87-hook-jstring-%E5%BF%AB%E9%80%9F%E5%AE%9A%E4%BD%8D%E5%8A%A0%E5%AF%86%E7%AE%97%E6%B3%95%E5%85%A5%E5%8F%A3/</guid>
       <description>版权归作者所有，如有转发，请注明文章出处：https://cyrus-studio.github.io/blog/&#xA;VMP 壳 + OLLVM 的加密算法 某电商APP的加密算法经过dex脱壳分析，找到参数加密的方法在 DuHelper.doWork 中&#xA;package com.shizhuang.duapp.common.helper.ee;&#xD;import com.meituan.robust.ChangeQuickRedirect;&#xD;import lte.NCall;&#xD;/* loaded from: base.apk_classes9.jar:com/shizhuang/duapp/common/helper/ee/DuHelper.class */&#xD;public class DuHelper {&#xD;public static ChangeQuickRedirect changeQuickRedirect;&#xD;static {&#xD;NCall.IV(new Object[]{282});&#xD;}&#xD;public static native int checkSignature(Object obj);&#xD;public static String doWork(Object obj, String str) {&#xD;return (String) NCall.IL(new Object[]{283, obj, str});&#xD;}&#xD;public static native String encodeByte(byte[] bArr, String str);&#xD;public static native String getByteValues();&#xD;public static native String getLeanCloudAppID();&#xD;public static native String getLeanCloudAppKey();&#xD;public static native String getWxAppId(Object obj);&#xD;public static native String getWxAppKey();&#xD;} DuHelper.</description>
-    </item>
-    <item>
-      <title>Frida 中解析 Native 层 jobjectArray 转换 JS 数组</title>
-      <link>https://cyrus-studio.github.io/blog/posts/frida-%E4%B8%AD%E8%A7%A3%E6%9E%90-native-%E5%B1%82-jobjectarray-%E8%BD%AC%E6%8D%A2-js-%E6%95%B0%E7%BB%84/</link>
-      <pubDate>Tue, 08 Apr 2025 04:02:38 +0800</pubDate>
-      <guid>https://cyrus-studio.github.io/blog/posts/frida-%E4%B8%AD%E8%A7%A3%E6%9E%90-native-%E5%B1%82-jobjectarray-%E8%BD%AC%E6%8D%A2-js-%E6%95%B0%E7%BB%84/</guid>
-      <description>版权归作者所有，如有转发，请注明文章出处：https://cyrus-studio.github.io/blog/&#xA;在 native 层，Object[] 类型参数会以 jobjectArray 形式传递进来。你不能直接拿它当作 JS 数组来访问，必须通过 JNI 的方式逐个取出。&#xA;env.js 常用的 JNI 函数在 frida 的 env.js 中都已经定义好了&#xA;https://github.com/frida/frida-java-bridge/blob/main/lib/env.js&#xA;通过下面代码获取 JNIEnv 引用，就可以调用相关的 JNI 函数&#xA;let env = Java.vm.tryGetEnv() 文档：https://frida.re/docs/javascript-api/&#xA;获取数组长度 let arrLen = env.getArrayLength(objArray)&#xD;console.log(&amp;#39;array length is: &amp;#39; + arrLen); 元素类型判断 通过 getObjectClassName 可以获取到对象的类名进而判断该元素的类型。&#xA;// 获取对象的类名&#xD;let className = env.getObjectClassName(objArray)&#xD;console.log(&amp;#39;className: &amp;#39; + className);&#xD;// 判断是否 jobjectArray&#xD;if (className === &amp;#39;[Ljava.lang.Object;&amp;#39;) {&#xD;} 获取数组元素 let element = env.getObjectArrayElement(objArray, i) Int 元素读取 let intElement = Java.</description>
     </item>
     <item>
       <title>Frida Stalker Trace 指令跟踪&amp;寄存器变化监控</title>

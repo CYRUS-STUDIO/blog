@@ -1,24 +1,32 @@
 +++
-title = 'Frida 中解析 Native 层 jobjectArray 转换 JS 数组'
-date = 2025-04-08T04:02:38.905340+08:00
+title = 'Frida 实战：Android JNI 数组 (jobjectArray) 操作全流程解析'
+date = 2025-09-10T17:47:12.996572+08:00
 draft = false
 +++
 
 > 版权归作者所有，如有转发，请注明文章出处：<https://cyrus-studio.github.io/blog/>
 
-
-
-在 native 层，Object[] 类型参数会以 jobjectArray 形式传递进来。你不能直接拿它当作 JS 数组来访问，必须通过 JNI 的方式逐个取出。
-
-
-
-# **env.js**
+# 前言
 
 
 
-常用的 JNI 函数在 frida 的 env.js 中都已经定义好了
+在 Android 的 Native 层，Java 中的 Object[] 类型参数会以 jobjectArray 的形式传递到 C/C++ 代码中。
+
+
+
+与 JS 数组不同，你不能直接对 jobjectArray 进行索引访问或直接操作其元素。要获取或修改其中的内容，必须借助 JNI 提供的接口，例如获取数组长度、读取单个元素或创建新的数组等操作。
+
+
+
+# env.js
+
+
+
+常用的 JNI 函数在 frida 的 env.js 中都已经封装好了
 
 [https://github.com/frida/frida-java-bridge/blob/main/lib/env.js](https://github.com/frida/frida-java-bridge/blob/main/lib/env.js)
+
+
 
 
 
@@ -41,7 +49,7 @@ let env = Java.vm.tryGetEnv()
 
 
 
-# **获取数组长度**
+# 获取数组长度
 
 
 
@@ -51,7 +59,7 @@ console.log('array length is: ' + arrLen);
 ```
 
 
-# **元素类型判断**
+# 元素类型判断
 
 
 
@@ -69,7 +77,7 @@ if (className === '[Ljava.lang.Object;') {
 ```
 
 
-# **获取数组元素**
+# 获取数组元素
 
 
 
@@ -78,39 +86,7 @@ let element = env.getObjectArrayElement(objArray, i)
 ```
 
 
-# **Int 元素读取**
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-# 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+# Int 元素读取
 
 
 
@@ -120,7 +96,7 @@ console.log(`element ${i} value: ${intElement}`);
 ```
 
 
-# **Long 元素读取**
+# Long 元素读取
 
 
 
@@ -130,7 +106,7 @@ console.log(`element ${i} value: ${longElement}`);
 ```
 
 
-# **Float 元素读取**
+# Float 元素读取
 
 
 
@@ -140,7 +116,7 @@ console.log(`element ${i} value: ${floatElement}`);
 ```
 
 
-# **Double 元素读取**
+# Double 元素读取
 
 
 
@@ -150,7 +126,7 @@ console.log(`element ${i} value: ${doubleElement}`);
 ```
 
 
-# **字符串 元素读取**
+# 字符串 元素读取
 
 
 
@@ -175,7 +151,7 @@ console.log(`element ${i} value: ${stringElement}`);
 
 
 
-# **Object 元素读取**
+# Object 元素读取
 
 
 
@@ -191,7 +167,7 @@ console.log(`element ${i} value: ${castElement}`);
 ```
 
 
-# **打印 jobjectArray**
+# 打印 jobjectArray
 
 
 
@@ -288,7 +264,7 @@ B7InMGNA682aYZfSsu0VK8TERMuSq3Bg3C3ATNGKaJPVMWtogFXteBS1/CxbFUdhtv0v1U8zrQCT6QLe
 ```
 
 
-# **jobjectArray 转换 JS 数组**
+# jobjectArray 转换 JS 数组
 
 
 
@@ -382,7 +358,7 @@ Leaving native function，retval: dWWoXlbR3K87j2N27Dkv4uOPUnOsh...
 ```
 
 
-# **创建 jobjectArray**
+# 创建 jobjectArray
 
 
 
