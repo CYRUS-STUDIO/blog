@@ -1,6 +1,6 @@
 +++
 title = '深入解析 AES 加密算法：原理、变体与 LibTomCrypt 在 Android 中的实战应用'
-date = 2025-06-16T18:42:40.279360+08:00
+date = 2025-09-10T16:58:27.112222+08:00
 draft = false
 +++
 
@@ -25,7 +25,7 @@ AES（Advanced Encryption Standard，高级加密标准） 是一种 对称加�
 | 运算模式 | 支持 ECB、CBC、CFB、OFB、CTR 等模式 |
 
 
-关于算法的详细介绍可以参考这篇文章：[常用加解密算法介绍](https://cyrus-studio.github.io/blog/posts/%E5%B8%B8%E7%94%A8%E5%8A%A0%E8%A7%A3%E5%AF%86%E7%AE%97%E6%B3%95%E4%BB%8B%E7%BB%8D/)
+文章：[一文搞懂常用加解密算法：编码、哈希、对称&非对称加密与压缩全解析](https://cyrus-studio.github.io/blog/posts/%E4%B8%80%E6%96%87%E6%90%9E%E6%87%82%E5%B8%B8%E7%94%A8%E5%8A%A0%E8%A7%A3%E5%AF%86%E7%AE%97%E6%B3%95%E7%BC%96%E7%A0%81%E5%93%88%E5%B8%8C%E5%AF%B9%E7%A7%B0%E9%9D%9E%E5%AF%B9%E7%A7%B0%E5%8A%A0%E5%AF%86%E4%B8%8E%E5%8E%8B%E7%BC%A9%E5%85%A8%E8%A7%A3%E6%9E%90/)
 
 
 
@@ -63,9 +63,7 @@ LibTomCrypt 是一个开源的轻量级加密库，提供了多种加密算法�
 
 
 
-从官方 GitHub 仓库下载最新的源码：
-
-[LibTomCrypt GitHub](https://github.com/libtom/libtomcrypt)
+从官方 GitHub 仓库下载最新的源码：[https://github.com/libtom/libtomcrypt](https://github.com/libtom/libtomcrypt)
 
 
 
@@ -760,7 +758,9 @@ AES 算法变体加密结果：
 
 
 
-完整源码地址：[https://github.com/CYRUS-STUDIO/AndroidExample](https://github.com/CYRUS-STUDIO/AndroidExample)
+开源地址：[https://github.com/CYRUS-STUDIO/AndroidExample](https://github.com/CYRUS-STUDIO/AndroidExample)
+
+
 
 
 

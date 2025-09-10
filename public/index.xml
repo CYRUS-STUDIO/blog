@@ -6,8 +6,22 @@
     <description>Recent content on CYRUS STUDIO</description>
     <generator>Hugo</generator>
     <language>zh-cn</language>
-    <lastBuildDate>Sun, 07 Sep 2025 01:33:43 +0800</lastBuildDate>
+    <lastBuildDate>Wed, 10 Sep 2025 17:12:24 +0800</lastBuildDate>
     <atom:link href="https://cyrus-studio.github.io/blog/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>用 Frida 控制 Android 线程：kill 命令、挂起与恢复全解析</title>
+      <link>https://cyrus-studio.github.io/blog/posts/%E7%94%A8-frida-%E6%8E%A7%E5%88%B6-android-%E7%BA%BF%E7%A8%8Bkill-%E5%91%BD%E4%BB%A4%E6%8C%82%E8%B5%B7%E4%B8%8E%E6%81%A2%E5%A4%8D%E5%85%A8%E8%A7%A3%E6%9E%90/</link>
+      <pubDate>Wed, 10 Sep 2025 17:12:24 +0800</pubDate>
+      <guid>https://cyrus-studio.github.io/blog/posts/%E7%94%A8-frida-%E6%8E%A7%E5%88%B6-android-%E7%BA%BF%E7%A8%8Bkill-%E5%91%BD%E4%BB%A4%E6%8C%82%E8%B5%B7%E4%B8%8E%E6%81%A2%E5%A4%8D%E5%85%A8%E8%A7%A3%E6%9E%90/</guid>
+      <description>版权归作者所有，如有转发，请注明文章出处：https://cyrus-studio.github.io/blog/&#xA;Android 线程相关命令 1. 获取 PID adb shell pidof com.shizhuang.duapp 2. 查看线程信息 方法一：进入 /proc//task 进入 adb shell 执行下面命令&#xA;cd /proc/$(pidof com.shizhuang.duapp)/task&#xD;ls 这个目录中每一个子目录的名字就是该 App 的一个线程的 TID（Thread ID）。&#xA;你还可以进一步查看每个线程的状态：&#xA;cat /proc/$(pidof com.shizhuang.duapp)/task/&amp;lt;tid&amp;gt;/status 例如：&#xA;cat /proc/$(pidof com.shizhuang.duapp)/task/22432/status 方法二：使用 top 或 htop 查看线程 使用 top 查看线程信息&#xA;top -H -p $(pidof com.shizhuang.duapp) -H 表示以线程方式查看&#xA;-p 指定 PID&#xA;或者使用 htop 查看线程信息&#xA;htop -p $(pidof com.shizhuang.duapp) 3. 通过 kill 命令 停止 / 挂起 / 恢复线程 kill 是 Linux 系统中用来向进程发送信号的命令，最常用于终止进程。虽然它名字叫 “kill”，但它可以发送多种信号，不只是“终止”。</description>
+    </item>
+    <item>
+      <title>深入解析 AES 加密算法：原理、变体与 LibTomCrypt 在 Android 中的实战应用</title>
+      <link>https://cyrus-studio.github.io/blog/posts/%E6%B7%B1%E5%85%A5%E8%A7%A3%E6%9E%90-aes-%E5%8A%A0%E5%AF%86%E7%AE%97%E6%B3%95%E5%8E%9F%E7%90%86%E5%8F%98%E4%BD%93%E4%B8%8E-libtomcrypt-%E5%9C%A8-android-%E4%B8%AD%E7%9A%84%E5%AE%9E%E6%88%98%E5%BA%94%E7%94%A8/</link>
+      <pubDate>Wed, 10 Sep 2025 16:58:27 +0800</pubDate>
+      <guid>https://cyrus-studio.github.io/blog/posts/%E6%B7%B1%E5%85%A5%E8%A7%A3%E6%9E%90-aes-%E5%8A%A0%E5%AF%86%E7%AE%97%E6%B3%95%E5%8E%9F%E7%90%86%E5%8F%98%E4%BD%93%E4%B8%8E-libtomcrypt-%E5%9C%A8-android-%E4%B8%AD%E7%9A%84%E5%AE%9E%E6%88%98%E5%BA%94%E7%94%A8/</guid>
+      <description>版权归作者所有，如有转发，请注明文章出处：https://cyrus-studio.github.io/blog/&#xA;前言 AES（Advanced Encryption Standard，高级加密标准） 是一种 对称加密算法，用于加密和解密数据。AES 由 美国国家标准与技术研究院（NIST） 在 2001 年正式发布，取代了 DES 和 3DES，目前被广泛应用于 网络安全、金融、通信 等领域。&#xA;支持 128（16字节）、192（24字节）、256（32字节） 位密钥。&#xA;特性 描述 加密方式 对称加密（加密和解密使用相同的密钥） 分组长度 128 位（16 字节） 密钥长度 128 位、192 位、256 位（分别对应 10、12、14 轮加密） 安全性 目前无已知有效攻击，比 3DES 更安全 运算模式 支持 ECB、CBC、CFB、OFB、CTR 等模式 文章：一文搞懂常用加解密算法：编码、哈希、对称&amp;amp;非对称加密与压缩全解析&#xA;LibTomCrypt LibTomCrypt 是一个开源的轻量级加密库，提供了多种加密算法和密码学相关功能。它是用 C 语言编写的，专注于嵌入式系统和资源受限的设备，非常适合在 Android 等平台上使用。&#xA;特点:&#xA;算法支持丰富：包括对称加密（AES、DES 等）、非对称加密（RSA、ECC 等）、哈希算法（SHA-256、MD5 等）&#xA;轻量级，代码简单。&#xA;支持多种加密模式：ECB、CBC、CFB、OFB 等。&#xA;适用场景: 如果你需要一个开源、可自定义的库。&#xA;集成 LibTomCrypt 到 Android 工程 在 Android Studio 中集成 LibTomCrypt 并调用 JNI，可以按以下步骤操作：</description>
+    </item>
     <item>
       <title>利用 Linux 信号机制（SIGTRAP）实现 Android 下的反调试</title>
       <link>https://cyrus-studio.github.io/blog/posts/%E5%88%A9%E7%94%A8-linux-%E4%BF%A1%E5%8F%B7%E6%9C%BA%E5%88%B6sigtrap%E5%AE%9E%E7%8E%B0-android-%E4%B8%8B%E7%9A%84%E5%8F%8D%E8%B0%83%E8%AF%95/</link>
@@ -679,20 +693,6 @@
       <pubDate>Fri, 20 Jun 2025 16:43:26 +0800</pubDate>
       <guid>https://cyrus-studio.github.io/blog/posts/%E7%A0%B4%E8%A7%A3-vmp&#43;ollvm-%E6%B7%B7%E6%B7%86%E9%80%9A%E8%BF%87-hook-jstring-%E5%BF%AB%E9%80%9F%E5%AE%9A%E4%BD%8D%E5%8A%A0%E5%AF%86%E7%AE%97%E6%B3%95%E5%85%A5%E5%8F%A3/</guid>
       <description>版权归作者所有，如有转发，请注明文章出处：https://cyrus-studio.github.io/blog/&#xA;VMP 壳 + OLLVM 的加密算法 某电商APP的加密算法经过dex脱壳分析，找到参数加密的方法在 DuHelper.doWork 中&#xA;package com.shizhuang.duapp.common.helper.ee;&#xD;import com.meituan.robust.ChangeQuickRedirect;&#xD;import lte.NCall;&#xD;/* loaded from: base.apk_classes9.jar:com/shizhuang/duapp/common/helper/ee/DuHelper.class */&#xD;public class DuHelper {&#xD;public static ChangeQuickRedirect changeQuickRedirect;&#xD;static {&#xD;NCall.IV(new Object[]{282});&#xD;}&#xD;public static native int checkSignature(Object obj);&#xD;public static String doWork(Object obj, String str) {&#xD;return (String) NCall.IL(new Object[]{283, obj, str});&#xD;}&#xD;public static native String encodeByte(byte[] bArr, String str);&#xD;public static native String getByteValues();&#xD;public static native String getLeanCloudAppID();&#xD;public static native String getLeanCloudAppKey();&#xD;public static native String getWxAppId(Object obj);&#xD;public static native String getWxAppKey();&#xD;} DuHelper.</description>
-    </item>
-    <item>
-      <title>深入解析 AES 加密算法：原理、变体与 LibTomCrypt 在 Android 中的实战应用</title>
-      <link>https://cyrus-studio.github.io/blog/posts/%E6%B7%B1%E5%85%A5%E8%A7%A3%E6%9E%90-aes-%E5%8A%A0%E5%AF%86%E7%AE%97%E6%B3%95%E5%8E%9F%E7%90%86%E5%8F%98%E4%BD%93%E4%B8%8E-libtomcrypt-%E5%9C%A8-android-%E4%B8%AD%E7%9A%84%E5%AE%9E%E6%88%98%E5%BA%94%E7%94%A8/</link>
-      <pubDate>Mon, 16 Jun 2025 18:42:40 +0800</pubDate>
-      <guid>https://cyrus-studio.github.io/blog/posts/%E6%B7%B1%E5%85%A5%E8%A7%A3%E6%9E%90-aes-%E5%8A%A0%E5%AF%86%E7%AE%97%E6%B3%95%E5%8E%9F%E7%90%86%E5%8F%98%E4%BD%93%E4%B8%8E-libtomcrypt-%E5%9C%A8-android-%E4%B8%AD%E7%9A%84%E5%AE%9E%E6%88%98%E5%BA%94%E7%94%A8/</guid>
-      <description>版权归作者所有，如有转发，请注明文章出处：https://cyrus-studio.github.io/blog/&#xA;前言 AES（Advanced Encryption Standard，高级加密标准） 是一种 对称加密算法，用于加密和解密数据。AES 由 美国国家标准与技术研究院（NIST） 在 2001 年正式发布，取代了 DES 和 3DES，目前被广泛应用于 网络安全、金融、通信 等领域。&#xA;支持 128（16字节）、192（24字节）、256（32字节） 位密钥。&#xA;特性 描述 加密方式 对称加密（加密和解密使用相同的密钥） 分组长度 128 位（16 字节） 密钥长度 128 位、192 位、256 位（分别对应 10、12、14 轮加密） 安全性 目前无已知有效攻击，比 3DES 更安全 运算模式 支持 ECB、CBC、CFB、OFB、CTR 等模式 关于算法的详细介绍可以参考这篇文章：常用加解密算法介绍&#xA;LibTomCrypt LibTomCrypt 是一个开源的轻量级加密库，提供了多种加密算法和密码学相关功能。它是用 C 语言编写的，专注于嵌入式系统和资源受限的设备，非常适合在 Android 等平台上使用。&#xA;特点:&#xA;算法支持丰富：包括对称加密（AES、DES 等）、非对称加密（RSA、ECC 等）、哈希算法（SHA-256、MD5 等）&#xA;轻量级，代码简单。&#xA;支持多种加密模式：ECB、CBC、CFB、OFB 等。&#xA;适用场景: 如果你需要一个开源、可自定义的库。&#xA;集成 LibTomCrypt 到 Android 工程 在 Android Studio 中集成 LibTomCrypt 并调用 JNI，可以按以下步骤操作：</description>
-    </item>
-    <item>
-      <title>Frida 调用 kill 命令挂起&amp;恢复 Android 线程</title>
-      <link>https://cyrus-studio.github.io/blog/posts/frida-%E8%B0%83%E7%94%A8-kill-%E5%91%BD%E4%BB%A4%E6%8C%82%E8%B5%B7%E6%81%A2%E5%A4%8D-android-%E7%BA%BF%E7%A8%8B/</link>
-      <pubDate>Wed, 09 Apr 2025 18:17:57 +0800</pubDate>
-      <guid>https://cyrus-studio.github.io/blog/posts/frida-%E8%B0%83%E7%94%A8-kill-%E5%91%BD%E4%BB%A4%E6%8C%82%E8%B5%B7%E6%81%A2%E5%A4%8D-android-%E7%BA%BF%E7%A8%8B/</guid>
-      <description>版权归作者所有，如有转发，请注明文章出处：https://cyrus-studio.github.io/blog/&#xA;Android 线程相关命令 获取 PID adb shell pidof com.shizhuang.duapp 查看线程信息 方法一：进入 /proc//task 进入 adb shell 执行下面命令&#xA;cd /proc/$(pidof com.shizhuang.duapp)/task&#xD;ls 这个目录中每一个子目录的名字就是该 App 的一个线程的 TID（Thread ID）。&#xA;你还可以进一步查看每个线程的状态：&#xA;cat /proc/$(pidof com.shizhuang.duapp)/task/&amp;lt;tid&amp;gt;/status 例如：&#xA;cat /proc/$(pidof com.shizhuang.duapp)/task/22432/status 方法二：使用 top 或 htop 查看线程 使用 top 查看线程信息&#xA;top -H -p $(pidof com.shizhuang.duapp) -H 表示以线程方式查看&#xA;-p 指定 PID&#xA;或者使用 htop 查看线程信息&#xA;htop -p $(pidof com.shizhuang.duapp) 通过 kill 命令 停止 / 挂起 / 恢复线程 kill 是 Linux 系统中用来向进程发送信号的命令，最常用于终止进程。虽然它名字叫 “kill”，但它可以发送多种信号，不只是“终止”。</description>
     </item>
     <item>
       <title>Frida 中解析 Native 层 jobjectArray 转换 JS 数组</title>
