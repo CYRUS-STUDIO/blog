@@ -6,8 +6,15 @@
     <description>Recent content on CYRUS STUDIO</description>
     <generator>Hugo</generator>
     <language>zh-cn</language>
-    <lastBuildDate>Thu, 11 Sep 2025 00:07:08 +0800</lastBuildDate>
+    <lastBuildDate>Fri, 12 Sep 2025 17:44:44 +0800</lastBuildDate>
     <atom:link href="https://cyrus-studio.github.io/blog/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>JNI 方法真实执行流长啥样？IDA × Frida 自动化 Trace 一探究竟</title>
+      <link>https://cyrus-studio.github.io/blog/posts/jni-%E6%96%B9%E6%B3%95%E7%9C%9F%E5%AE%9E%E6%89%A7%E8%A1%8C%E6%B5%81%E9%95%BF%E5%95%A5%E6%A0%B7ida--frida-%E8%87%AA%E5%8A%A8%E5%8C%96-trace-%E4%B8%80%E6%8E%A2%E7%A9%B6%E7%AB%9F/</link>
+      <pubDate>Fri, 12 Sep 2025 17:44:44 +0800</pubDate>
+      <guid>https://cyrus-studio.github.io/blog/posts/jni-%E6%96%B9%E6%B3%95%E7%9C%9F%E5%AE%9E%E6%89%A7%E8%A1%8C%E6%B5%81%E9%95%BF%E5%95%A5%E6%A0%B7ida--frida-%E8%87%AA%E5%8A%A8%E5%8C%96-trace-%E4%B8%80%E6%8E%A2%E7%A9%B6%E7%AB%9F/</guid>
+      <description>版权归作者所有，如有转发，请注明文章出处：https://cyrus-studio.github.io/blog/&#xA;前言 在逆向分析 Android 应用时，我们常常需要分析 JNI 函数的调用逻辑 。很多安全相关的逻辑（如加解密、签名校验、反调试检查）都会放在 Native 层的 so 库中。&#xA;如果我们想要理清 JNI 函数真实的执行流程，单纯依靠下断点和单步调试往往效率不高，IDA Pro 提供的 Tracing（跟踪）功能 就非常有用。它可以捕获指令级别的执行轨迹，再结合 Frida 的动态信息 ，就能构建出一套高效的 自动化 Trace 流程 。&#xA;本文将带你从 IDA Trace 的基本使用 开始，逐步深入到 IDA × Frida 混合调试的自动化 Trace 实践。&#xA;定位 JNI 方法内存地址 在 Trace 之前，先找到 JNI 方法在内存中的地址，通过 jni_addr.py 得到目标 JNI 方法内存地址为 0x72e9d1cfa8&#xA;------------ [ #7 Native Method ] ------------&#xD;Method Name : public static native java.lang.Object lte.NCall.IL(java.lang.Object[])&#xD;ArtMethod Ptr : 0x9f63a680&#xD;Native Addr : 0x72e9d1cfa8&#xD;Module Name : libGameVMP.</description>
+    </item>
     <item>
       <title>手写 Android Dex VMP 壳：指令流 AES 加密 &#43; 动态加载全流程</title>
       <link>https://cyrus-studio.github.io/blog/posts/%E6%89%8B%E5%86%99-android-dex-vmp-%E5%A3%B3%E6%8C%87%E4%BB%A4%E6%B5%81-aes-%E5%8A%A0%E5%AF%86-&#43;-%E5%8A%A8%E6%80%81%E5%8A%A0%E8%BD%BD%E5%85%A8%E6%B5%81%E7%A8%8B/</link>
