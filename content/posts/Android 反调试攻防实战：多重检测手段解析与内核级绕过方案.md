@@ -1,6 +1,6 @@
 +++
 title = 'Android 反调试攻防实战：多重检测手段解析与内核级绕过方案'
-date = 2025-09-07T00:04:03.684008+08:00
+date = 2025-09-18T00:54:15.997041+08:00
 draft = false
 +++
 
@@ -42,9 +42,8 @@ draft = false
 使用 top 命令查看进程状态
 
 ```
-top | grep com.cyrus.example
-
-17305 u0_a137      10 -10 4.8G 104M  42M t  0.0   1.8   0:02.02 com.cyrus.example
+wayne:/ # top | grep com.cyrus.example
+17305 root         20   0  32M 1.4M 1.0M S  0.0   0.0   0:00.00 grep com.cyrus.example
 ```
 在输出中，S 表示进程状态，17305 是 PID。
 

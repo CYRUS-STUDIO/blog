@@ -6,8 +6,15 @@
     <description>Recent content in Posts on CYRUS STUDIO</description>
     <generator>Hugo</generator>
     <language>zh-cn</language>
-    <lastBuildDate>Fri, 12 Sep 2025 17:44:44 +0800</lastBuildDate>
+    <lastBuildDate>Thu, 18 Sep 2025 00:54:15 +0800</lastBuildDate>
     <atom:link href="https://cyrus-studio.github.io/blog/posts/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Android 反调试攻防实战：多重检测手段解析与内核级绕过方案</title>
+      <link>https://cyrus-studio.github.io/blog/posts/android-%E5%8F%8D%E8%B0%83%E8%AF%95%E6%94%BB%E9%98%B2%E5%AE%9E%E6%88%98%E5%A4%9A%E9%87%8D%E6%A3%80%E6%B5%8B%E6%89%8B%E6%AE%B5%E8%A7%A3%E6%9E%90%E4%B8%8E%E5%86%85%E6%A0%B8%E7%BA%A7%E7%BB%95%E8%BF%87%E6%96%B9%E6%A1%88/</link>
+      <pubDate>Thu, 18 Sep 2025 00:54:15 +0800</pubDate>
+      <guid>https://cyrus-studio.github.io/blog/posts/android-%E5%8F%8D%E8%B0%83%E8%AF%95%E6%94%BB%E9%98%B2%E5%AE%9E%E6%88%98%E5%A4%9A%E9%87%8D%E6%A3%80%E6%B5%8B%E6%89%8B%E6%AE%B5%E8%A7%A3%E6%9E%90%E4%B8%8E%E5%86%85%E6%A0%B8%E7%BA%A7%E7%BB%95%E8%BF%87%E6%96%B9%E6%A1%88/</guid>
+      <description>版权归作者所有，如有转发，请注明文章出处：https://cyrus-studio.github.io/blog/&#xA;常见的反调试手段 在 Android 安全对抗中，反调试 几乎是 App 的标配。开发者往往会在关键逻辑中加入各种检测手段，只要发现进程被调试，就立即崩溃或退出，从而大幅增加逆向人员分析的难度。&#xA;常见的反调试手段包括：&#xA;TracerPid 检测通过读取 /proc/self/status，如果 TracerPid 不为 0，就说明当前进程正被调试器（如 gdb、lldb、IDA Pro）附加。这是最常见的调试检测方式之一。&#xA;stat 检测通过 /proc/self/stat 可以获取进程的运行状态，如果发现状态异常（如被调试中），就会触发保护逻辑。&#xA;wchan 检测读取 /proc/self/wchan，检查线程当前在内核中的等待状态。如果检测到线程因调试而阻塞，就会触发异常处理。&#xA;1. TrackerId 首先，通过 IDA Pro 的调试器附加到当前 app 进程&#xA;相关文章：静态分析根本不够！IDA Pro 动态调试 Android 应用的完整实战&#xA;使用 top 命令查看进程状态&#xA;wayne:/ # top | grep com.cyrus.example&#xD;17305 root 20 0 32M 1.4M 1.0M S 0.0 0.0 0:00.00 grep com.cyrus.example 在输出中，S 表示进程状态，17305 是 PID。&#xA;通过head /proc/[pid]/status 可以查看详细的进程状态。&#xA;head -n 6 /proc/17305/status&#xD;Name: m.</description>
+    </item>
     <item>
       <title>JNI 方法真实执行流长啥样？IDA × Frida 自动化 Trace 一探究竟</title>
       <link>https://cyrus-studio.github.io/blog/posts/jni-%E6%96%B9%E6%B3%95%E7%9C%9F%E5%AE%9E%E6%89%A7%E8%A1%8C%E6%B5%81%E9%95%BF%E5%95%A5%E6%A0%B7ida--frida-%E8%87%AA%E5%8A%A8%E5%8C%96-trace-%E4%B8%80%E6%8E%A2%E7%A9%B6%E7%AB%9F/</link>
@@ -70,13 +77,6 @@
       <pubDate>Sun, 07 Sep 2025 01:33:43 +0800</pubDate>
       <guid>https://cyrus-studio.github.io/blog/posts/%E5%88%A9%E7%94%A8-linux-%E4%BF%A1%E5%8F%B7%E6%9C%BA%E5%88%B6sigtrap%E5%AE%9E%E7%8E%B0-android-%E4%B8%8B%E7%9A%84%E5%8F%8D%E8%B0%83%E8%AF%95/</guid>
       <description>版权归作者所有，如有转发，请注明文章出处：https://cyrus-studio.github.io/blog/&#xA;利用 SIGTRAP 检测调试器 在 Linux 的进程管理中，信号（Signal） 是调试器与被调试进程沟通的核心机制。断点、单步执行、进程暂停与恢复等操作，背后都依赖于特定信号的传递。&#xA;其中，SIGTRAP （陷阱信号）尤为特殊。通常它由调试器在调试过程中触发，例如执行断点指令或单步运行时都会引发 SIGTRAP。&#xA;如果一个程序主动触发 SIGTRAP，并设置了对应的信号处理函数，就能实现一种“自检”：&#xA;若信号处理函数被成功调用，说明 SIGTRAP 没有被调试器截获，此时可以推断程序处于非调试状态 ；&#xA;若信号处理函数未被调用，反而被调试器捕获并消费，则意味着程序正被调试。&#xA;由此，利用 SIGTRAP 信号进行反调试检测 ，就成为 Android 应用中一种更隐蔽、更底层的安全防护手段。&#xA;常见 Linux 信号列表（基于 signal.h） 编号 名称 说明 1 SIGHUP 挂起信号，通常在控制终端关闭时发送给进程 2 SIGINT 中断信号，通常由 Ctrl+C 触发 3 SIGQUIT 退出信号，通常由 Ctrl+\ 触发，并生成 core dump 4 SIGILL 非法指令（非法 CPU 指令执行） 5 SIGTRAP 陷阱信号，主要用于调试（断点、单步） 6 SIGABRT 异常终止，通常由 abort() 触发 7 SIGBUS 总线错误（非法内存访问，例如未对齐访问） 8 SIGFPE 浮点异常（除零、溢出等算术错误） 9 SIGKILL 强制终止信号，无法被捕获或忽略 11 SIGSEGV 无效内存访问（段错误） 13 SIGPIPE 向无读端的管道写数据时触发 14 SIGALRM 定时器超时，由 alarm() 触发 15 SIGTERM 终止信号，可被捕获和处理 17 SIGCHLD 子进程状态发生变化时通知父进程 18 SIGCONT 继续执行（与 SIGSTOP 配合使用） 19 SIGSTOP 停止进程，无法被捕获或忽略 20 SIGTSTP 终端暂停信号，通常由 Ctrl+Z 触发 21 SIGTTIN 后台进程尝试从终端读输入时触发 22 SIGTTOU 后台进程尝试往终端写输出时触发 23 SIGURG socket 上的紧急数据到达 24 SIGXCPU 超过 CPU 时间限制 25 SIGXFSZ 文件大小超过限制 26 SIGVTALRM 虚拟时钟超时 27 SIGPROF profiling 定时器超时 28 SIGWINCH 窗口大小发生变化（终端调整大小） 29 SIGIO / SIGPOLL 异步 I/O 事件 30 SIGPWR 电源故障 31 SIGSYS 非法系统调用 此外，Linux 还支持 实时信号（Real-Time Signals） ，编号从 32 开始 ，具体上限依赖于系统实现（通常是 SIGRTMIN 到 SIGRTMAX），通常是用于用户自定义的信号，应用程序可根据需要使用这些信号。</description>
-    </item>
-    <item>
-      <title>Android 反调试攻防实战：多重检测手段解析与内核级绕过方案</title>
-      <link>https://cyrus-studio.github.io/blog/posts/android-%E5%8F%8D%E8%B0%83%E8%AF%95%E6%94%BB%E9%98%B2%E5%AE%9E%E6%88%98%E5%A4%9A%E9%87%8D%E6%A3%80%E6%B5%8B%E6%89%8B%E6%AE%B5%E8%A7%A3%E6%9E%90%E4%B8%8E%E5%86%85%E6%A0%B8%E7%BA%A7%E7%BB%95%E8%BF%87%E6%96%B9%E6%A1%88/</link>
-      <pubDate>Sun, 07 Sep 2025 00:04:03 +0800</pubDate>
-      <guid>https://cyrus-studio.github.io/blog/posts/android-%E5%8F%8D%E8%B0%83%E8%AF%95%E6%94%BB%E9%98%B2%E5%AE%9E%E6%88%98%E5%A4%9A%E9%87%8D%E6%A3%80%E6%B5%8B%E6%89%8B%E6%AE%B5%E8%A7%A3%E6%9E%90%E4%B8%8E%E5%86%85%E6%A0%B8%E7%BA%A7%E7%BB%95%E8%BF%87%E6%96%B9%E6%A1%88/</guid>
-      <description>版权归作者所有，如有转发，请注明文章出处：https://cyrus-studio.github.io/blog/&#xA;常见的反调试手段 在 Android 安全对抗中，反调试 几乎是 App 的标配。开发者往往会在关键逻辑中加入各种检测手段，只要发现进程被调试，就立即崩溃或退出，从而大幅增加逆向人员分析的难度。&#xA;常见的反调试手段包括：&#xA;TracerPid 检测通过读取 /proc/self/status，如果 TracerPid 不为 0，就说明当前进程正被调试器（如 gdb、lldb、IDA Pro）附加。这是最常见的调试检测方式之一。&#xA;stat 检测通过 /proc/self/stat 可以获取进程的运行状态，如果发现状态异常（如被调试中），就会触发保护逻辑。&#xA;wchan 检测读取 /proc/self/wchan，检查线程当前在内核中的等待状态。如果检测到线程因调试而阻塞，就会触发异常处理。&#xA;1. TrackerId 首先，通过 IDA Pro 的调试器附加到当前 app 进程&#xA;相关文章：静态分析根本不够！IDA Pro 动态调试 Android 应用的完整实战&#xA;使用 top 命令查看进程状态&#xA;top | grep com.cyrus.example&#xD;17305 u0_a137 10 -10 4.8G 104M 42M t 0.0 1.8 0:02.02 com.cyrus.example 在输出中，S 表示进程状态，17305 是 PID。&#xA;通过head /proc/[pid]/status 可以查看详细的进程状态。&#xA;head -n 6 /proc/17305/status&#xD;Name: m.cyrus.example&#xD;State: S (sleeping)&#xD;Tgid: 17305&#xD;Pid: 17305&#xD;PPid: 728&#xD;TracerPid: 16208 TracerPid: 16208 说明当前的进程正在被进程 16208 调试或跟踪，否则没有被调试值应该为0。</description>
     </item>
     <item>
       <title>如何防止 so 文件被轻松逆向？精准控制符号导出 &#43; JNI 动态注册</title>
