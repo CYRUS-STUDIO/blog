@@ -41,8 +41,8 @@ LineageOS源码国内镜像地址：https://mirrors.tuna.tsinghua.edu.cn/help/li
   <meta property="og:locale" content="zh_cn">
   <meta property="og:type" content="article">
     <meta property="article:section" content="posts">
-    <meta property="article:published_time" content="2025-07-25T02:56:37+08:00">
-    <meta property="article:modified_time" content="2025-07-25T02:56:37+08:00">
+    <meta property="article:published_time" content="2026-04-09T16:19:13+08:00">
+    <meta property="article:modified_time" content="2026-04-09T16:19:13+08:00">
 
 
   </head>
@@ -117,7 +117,7 @@ LineageOS源码国内镜像地址：https://mirrors.tuna.tsinghua.edu.cn/help/li
   <title>calendar</title>
   <rect x="3" y="4" width="18" height="18" rx="2" ry="2"></rect><line x1="16" y1="2" x2="16" y2="6"></line><line x1="8" y1="2" x2="8" y2="6"></line><line x1="3" y1="10" x2="21" y2="10"></line>
 </svg>
-          Jul 25, 2025
+          Apr 9, 2026
         </span>
       </div>
       <div>
@@ -507,6 +507,24 @@ cd /mnt/case_sensitive/lineageos
 </ol>
 <pre tabindex="0"><code>sudo mount /mnt/e/case_sensitive.img /mnt/case_sensitive
 </code></pre><p>通过这些步骤，你可以扩展 case_sensitive.img 的空间而不影响现有数据。</p>
+<h2 id="4-查看磁盘空间大小">4. 查看磁盘空间大小</h2>
+<pre tabindex="0"><code>cyrus:/mnt/case_sensitive$ df -h /mnt/case_sensitive
+Filesystem      Size  Used Avail Use% Mounted on
+/dev/loop0      393G  212G  162G  57% /mnt/case_sensitive
+</code></pre><ul>
+<li>
+<p>Size：总空间</p>
+</li>
+<li>
+<p>Used：已用</p>
+</li>
+<li>
+<p>Avail：剩余</p>
+</li>
+<li>
+<p>Use%：使用率</p>
+</li>
+</ul>
 <h1 id="解决编译提示内存不足">解决编译提示内存不足</h1>
 <pre tabindex="0"><code>21:38:07 You are building on a machine with 7.62GB of RAM
 21:38:07

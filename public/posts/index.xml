@@ -6,8 +6,22 @@
     <description>Recent content in Posts on CYRUS STUDIO</description>
     <generator>Hugo</generator>
     <language>zh-cn</language>
-    <lastBuildDate>Thu, 18 Sep 2025 00:54:15 +0800</lastBuildDate>
+    <lastBuildDate>Thu, 09 Apr 2026 16:19:13 +0800</lastBuildDate>
     <atom:link href="https://cyrus-studio.github.io/blog/posts/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>解决90%踩坑问题！LineageOS 源码下载与编译保姆级教程</title>
+      <link>https://cyrus-studio.github.io/blog/posts/%E8%A7%A3%E5%86%B390%E8%B8%A9%E5%9D%91%E9%97%AE%E9%A2%98lineageos-%E6%BA%90%E7%A0%81%E4%B8%8B%E8%BD%BD%E4%B8%8E%E7%BC%96%E8%AF%91%E4%BF%9D%E5%A7%86%E7%BA%A7%E6%95%99%E7%A8%8B/</link>
+      <pubDate>Thu, 09 Apr 2026 16:19:13 +0800</pubDate>
+      <guid>https://cyrus-studio.github.io/blog/posts/%E8%A7%A3%E5%86%B390%E8%B8%A9%E5%9D%91%E9%97%AE%E9%A2%98lineageos-%E6%BA%90%E7%A0%81%E4%B8%8B%E8%BD%BD%E4%B8%8E%E7%BC%96%E8%AF%91%E4%BF%9D%E5%A7%86%E7%BA%A7%E6%95%99%E7%A8%8B/</guid>
+      <description>版权归作者所有，如有转发，请注明文章出处：https://cyrus-studio.github.io/blog/&#xA;源码下载 LineageOS官网：https://lineageos.org/&#xA;LineageOS源码 github 地址：https://github.com/LineageOS/android&#xA;LineageOS源码国内镜像地址：https://mirrors.tuna.tsinghua.edu.cn/help/lineageOS/&#xA;源码大概需要150GB的硬盘空间，编译完成差不多300G&#xA;1. 配置git git config --global user.email &amp;#34;you@example.com&amp;#34;&#xD;git config --global user.name &amp;#34;Your Name&amp;#34; 2. 安装 repo mkdir ~/bin&#xD;PATH=~/bin:$PATH&#xD;curl https://storage.googleapis.com/git-repo-downloads/repo &amp;gt; ~/bin/repo&#xD;chmod a+x ~/bin/repo 3. 安装 Git LFS sudo apt install git-lfs&#xD;git lfs install 4. 安装 Android SDK Platform-Tools 在 Linux 中配置 Android SDK Platform-Tools，可以按照以下步骤进行&#xA;4.1 下载 Android SDK Platform-Tools： # cd 到存放 platform-tools 的目录&#xD;cd /mnt/case_sensitive&#xD;# 下载 platform-tools&#xD;wget https://dl.</description>
+    </item>
+    <item>
+      <title>Frida 源码编译全流程：自己动手编译 frida-server</title>
+      <link>https://cyrus-studio.github.io/blog/posts/frida-%E6%BA%90%E7%A0%81%E7%BC%96%E8%AF%91%E5%85%A8%E6%B5%81%E7%A8%8B%E8%87%AA%E5%B7%B1%E5%8A%A8%E6%89%8B%E7%BC%96%E8%AF%91-frida-server/</link>
+      <pubDate>Thu, 09 Apr 2026 16:19:12 +0800</pubDate>
+      <guid>https://cyrus-studio.github.io/blog/posts/frida-%E6%BA%90%E7%A0%81%E7%BC%96%E8%AF%91%E5%85%A8%E6%B5%81%E7%A8%8B%E8%87%AA%E5%B7%B1%E5%8A%A8%E6%89%8B%E7%BC%96%E8%AF%91-frida-server/</guid>
+      <description>版权归作者所有，如有转发，请注明文章出处：https://cyrus-studio.github.io/blog/&#xA;下载 Frida 源码 Frida 源码：https://github.com/frida/frida&#xA;官方文档：https://frida.re/docs/building/&#xA;下载源码&#xA;git clone https://github.com/frida/frida.git 安装相关依赖：&#xA;sudo apt-get install build-essential git lib32stdc++-9-dev \&#xD;libc6-dev-i386 nodejs npm 安装 Python sudo apt install -y python3-dev python3-setuptools python3-wheel python3-pip 安装 Node.js nvm 是一个 Node.js 版本管理器，在同一台机器上管理多个 Node.js 版本，并随时切换。&#xA;curl -o- https://raw.githubusercontent.com/nvm-sh/nvm/v0.39.7/install.sh | bash&#xD;source ~/.bashrc&#xD;nvm install 18&#xD;nvm use 18 安装任意版本 Node.js&#xA;nvm install 18&#xD;nvm install 20 一键切换&#xA;nvm use 18 实现项目隔离，你可以：&#xA;nvm use 18 # 编译 Frida&#xD;nvm use 16 # 其他项目 验证：</description>
+    </item>
     <item>
       <title>Android 反调试攻防实战：多重检测手段解析与内核级绕过方案</title>
       <link>https://cyrus-studio.github.io/blog/posts/android-%E5%8F%8D%E8%B0%83%E8%AF%95%E6%94%BB%E9%98%B2%E5%AE%9E%E6%88%98%E5%A4%9A%E9%87%8D%E6%A3%80%E6%B5%8B%E6%89%8B%E6%AE%B5%E8%A7%A3%E6%9E%90%E4%B8%8E%E5%86%85%E6%A0%B8%E7%BA%A7%E7%BB%95%E8%BF%87%E6%96%B9%E6%A1%88/</link>
@@ -378,13 +392,6 @@
       <pubDate>Fri, 25 Jul 2025 03:09:58 +0800</pubDate>
       <guid>https://cyrus-studio.github.io/blog/posts/%E5%B0%8F%E7%B1%B3%E5%88%B7%E6%9C%BA%E5%85%A8%E6%94%BB%E7%95%A5%E8%A7%A3%E9%94%81bl%E5%88%B7%E6%9C%BAroot-%E4%B8%80%E6%AD%A5%E5%88%B0%E4%BD%8D/</guid>
       <description>版权归作者所有，如有转发，请注明文章出处：https://cyrus-studio.github.io/blog/&#xA;解锁BL锁 下载安装 miflash_unlock：https://miuiver.com/miunlock/，登录小米账号（需要和解锁设备绑定的账号一致） 连接手机，关机后按住 “音量-” + 开机键进入 fastboot 模式，根据提示解锁手机 如果连接不上设备，点击右上角设置按钮【驱动检测】，手机进入recovery模式下重新连接，等待驱动安装完成。&#xA;如果还是连不上，参考下面链接的解决办法&#xA;https://miuiver.com/usb3-fix/&#xA;重启手机开发者模式中查看解锁状态 刷机 ROM下载：https://magiskcn.com/rom&#xA;下载小米线刷工具：https://xiaomirom.com/download-xiaomi-flash-tool-miflash/&#xA;下载设备开发版线刷包，并解压线刷包&#xA;打开miflash&#xA;连接手机，关机，按住 &amp;ldquo;开机&amp;rdquo; + &amp;ldquo;音量-&amp;rdquo; 进入fastboot模式&#xA;选择线刷包解压目录开始刷机&#xA;等待刷机成功&#xA;刷机成功后，重新解除BL锁&#xA;打开手机管家——应用管理——权限——ROOT权限——开启ROOT权限&#xA;结果发现root工具一直下载失败&#xA;使用Magisk进行root 下载 Magisk：https://github.com/topjohnwu/Magisk/releases&#xA;安装 Magisk adb install Magisk-v27.0.apk 解压线刷包中的 boot.img，并 push 到手机 adb push boot.img /sdcard/boot.img Magisk中【安装】【下一步】【选择并修补一个文件】【选择boot.img】，把处理完后的magisk_patched 下载到电脑 Android sdk\platform-tools 目录（这里下载 Android SDK Platform Tools） adb pull /sdcard/Download/magisk_patched-27000_RIC3F.img D:\App\android\sdk\platform-tools 使用 adb 命令将设备重启到 fastboot 模式 adb reboot bootloader 把 magisk_patched 刷新到系统 # 切换到platform-tools目录&#xD;cd D:\App\android\sdk\platform-tools&#xD;# 刷入 magisk_patched&#xD;fastboot flash boot magisk_patched-27000_RIC3F.</description>
-    </item>
-    <item>
-      <title>解决90%踩坑问题！LineageOS 源码下载与编译保姆级教程</title>
-      <link>https://cyrus-studio.github.io/blog/posts/%E8%A7%A3%E5%86%B390%E8%B8%A9%E5%9D%91%E9%97%AE%E9%A2%98lineageos-%E6%BA%90%E7%A0%81%E4%B8%8B%E8%BD%BD%E4%B8%8E%E7%BC%96%E8%AF%91%E4%BF%9D%E5%A7%86%E7%BA%A7%E6%95%99%E7%A8%8B/</link>
-      <pubDate>Fri, 25 Jul 2025 02:56:37 +0800</pubDate>
-      <guid>https://cyrus-studio.github.io/blog/posts/%E8%A7%A3%E5%86%B390%E8%B8%A9%E5%9D%91%E9%97%AE%E9%A2%98lineageos-%E6%BA%90%E7%A0%81%E4%B8%8B%E8%BD%BD%E4%B8%8E%E7%BC%96%E8%AF%91%E4%BF%9D%E5%A7%86%E7%BA%A7%E6%95%99%E7%A8%8B/</guid>
-      <description>版权归作者所有，如有转发，请注明文章出处：https://cyrus-studio.github.io/blog/&#xA;源码下载 LineageOS官网：https://lineageos.org/&#xA;LineageOS源码 github 地址：https://github.com/LineageOS/android&#xA;LineageOS源码国内镜像地址：https://mirrors.tuna.tsinghua.edu.cn/help/lineageOS/&#xA;源码大概需要150GB的硬盘空间，编译完成差不多300G&#xA;1. 配置git git config --global user.email &amp;#34;you@example.com&amp;#34;&#xD;git config --global user.name &amp;#34;Your Name&amp;#34; 2. 安装 repo mkdir ~/bin&#xD;PATH=~/bin:$PATH&#xD;curl https://storage.googleapis.com/git-repo-downloads/repo &amp;gt; ~/bin/repo&#xD;chmod a+x ~/bin/repo 3. 安装 Git LFS sudo apt install git-lfs&#xD;git lfs install 4. 安装 Android SDK Platform-Tools 在 Linux 中配置 Android SDK Platform-Tools，可以按照以下步骤进行&#xA;4.1 下载 Android SDK Platform-Tools： # cd 到存放 platform-tools 的目录&#xD;cd /mnt/case_sensitive&#xD;# 下载 platform-tools&#xD;wget https://dl.</description>
     </item>
     <item>
       <title>教你从零刷入 LineageOS：Recovery &#43; Sideload 全流程实操指南</title>

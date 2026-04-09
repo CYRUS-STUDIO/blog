@@ -1,6 +1,6 @@
 +++
 title = '解决90%踩坑问题！LineageOS 源码下载与编译保姆级教程'
-date = 2025-07-25T02:56:37.045601+08:00
+date = 2026-04-09T16:19:13.534777+08:00
 draft = false
 +++
 
@@ -723,6 +723,28 @@ sudo mount /mnt/e/case_sensitive.img /mnt/case_sensitive
 
 
 
+## 4. 查看磁盘空间大小
+
+
+
+```
+cyrus:/mnt/case_sensitive$ df -h /mnt/case_sensitive
+Filesystem      Size  Used Avail Use% Mounted on
+/dev/loop0      393G  212G  162G  57% /mnt/case_sensitive
+```
+- Size：总空间
+
+
+- Used：已用
+
+
+- Avail：剩余
+
+
+- Use%：使用率
+
+
+
 # 解决编译提示内存不足
 
 ```
@@ -894,6 +916,8 @@ brunch wayne
 - [https://wiki.lineageos.org/devices/wayne/build/](https://wiki.lineageos.org/devices/wayne/build/)
 
 - [[ROM][OTA][10.x] LineageOS 17.1 Unofficial [wayne/ Mi 6X]](https://xdaforums.com/t/rom-ota-10-x-lineageos-17-1-unofficial-wayne-mi-6x.3989193/)
+
+
 
 
 
