@@ -6,8 +6,15 @@
     <description>Recent content in Posts on CYRUS STUDIO</description>
     <generator>Hugo</generator>
     <language>zh-cn</language>
-    <lastBuildDate>Thu, 09 Apr 2026 16:19:13 +0800</lastBuildDate>
+    <lastBuildDate>Thu, 09 Apr 2026 18:36:17 +0800</lastBuildDate>
     <atom:link href="https://cyrus-studio.github.io/blog/posts/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Frida 检测与对抗实战：进程、maps、线程、符号全特征清除</title>
+      <link>https://cyrus-studio.github.io/blog/posts/frida-%E6%A3%80%E6%B5%8B%E4%B8%8E%E5%AF%B9%E6%8A%97%E5%AE%9E%E6%88%98%E8%BF%9B%E7%A8%8Bmaps%E7%BA%BF%E7%A8%8B%E7%AC%A6%E5%8F%B7%E5%85%A8%E7%89%B9%E5%BE%81%E6%B8%85%E9%99%A4/</link>
+      <pubDate>Thu, 09 Apr 2026 18:36:17 +0800</pubDate>
+      <guid>https://cyrus-studio.github.io/blog/posts/frida-%E6%A3%80%E6%B5%8B%E4%B8%8E%E5%AF%B9%E6%8A%97%E5%AE%9E%E6%88%98%E8%BF%9B%E7%A8%8Bmaps%E7%BA%BF%E7%A8%8B%E7%AC%A6%E5%8F%B7%E5%85%A8%E7%89%B9%E5%BE%81%E6%B8%85%E9%99%A4/</guid>
+      <description>版权归作者所有，如有转发，请注明文章出处：https://cyrus-studio.github.io/blog/&#xA;常见 Frida 检测方法 进程检测 可以通过 ps 命令检查是否存在 frida 进程&#xA;vangogh:/ # su -c &amp;#34;ps -A -o PID,NAME,ARGS&amp;#34; | grep frida&#xD;4159 grep grep frida&#xD;5908 10 10 unix:abstract=/frida-d007576e-c54b-4d95-a136-b9ae2a8b9b18&#xD;16079 10 10 unix:abstract=/frida-d9961233-953d-43b2-9e0b-4290e7782e72 或者扫描 /proc/pid 下的 comm 或 cmdline 文件内容检查是否存在 frida 进程&#xA;/proc/[pid]/comm：进程的短名称&#xA;/proc/[pid]/cmdline：进程的完整启动参数&#xA;通过 ps -A | grep frida 命令找到 frida-server 进程 id 为 5632&#xA;1|vangogh:/ # ps -A | grep fs&#xD;root 165 2 0 0 ecryptfs_threadfn 0 S [ecryptfs-kthrea]&#xD;root 304 2 0 0 rescuer_thread 0 I [ufs_pm_qos_0]&#xD;root 306 2 0 0 rescuer_thread 0 I [ufs_recovery_wq]&#xD;root 307 2 0 0 rescuer_thread 0 I [ufs_clk_gating_]&#xD;root 308 2 0 0 rescuer_thread 0 I [ufs_clkscaling_]&#xD;root 655 2 0 0 issue_checkpoint_thread 0 S [f2fs_ckpt-259:6]&#xD;root 656 2 0 0 issue_flush_thread 0 S [f2fs_flush-259:]&#xD;root 657 2 0 0 issue_discard_thread 0 S [f2fs_discard-25]&#xD;root 658 2 0 0 gc_thread_func 0 S [f2fs_gc-259:65]&#xD;root 944 2 0 0 rescuer_thread 0 I [ipa_ut_dbgfs]&#xD;vendor_rfs 1086 1 2251048 2888 do_sys_poll 0 S tftp_server&#xD;system 1550 1 2336992 5340 binder_ioctl_write_read 0 S perfservice&#xD;root 5632 1 2275756 6928 do_sys_poll 0 S frida-server&#xD;root 24446 2 0 0 worker_thread 0 I [kworker/u16:8-ufs_pm_qos_0]&#xD;root 25294 2 0 0 worker_thread 0 I [kworker/u16:14-ufs_clkscaling_0] 进入 5632 进程目录可以看到有 comm 和 cmdline 文件</description>
+    </item>
     <item>
       <title>解决90%踩坑问题！LineageOS 源码下载与编译保姆级教程</title>
       <link>https://cyrus-studio.github.io/blog/posts/%E8%A7%A3%E5%86%B390%E8%B8%A9%E5%9D%91%E9%97%AE%E9%A2%98lineageos-%E6%BA%90%E7%A0%81%E4%B8%8B%E8%BD%BD%E4%B8%8E%E7%BC%96%E8%AF%91%E4%BF%9D%E5%A7%86%E7%BA%A7%E6%95%99%E7%A8%8B/</link>
