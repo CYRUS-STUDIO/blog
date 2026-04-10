@@ -19,12 +19,41 @@
     {{ template "_internal/google_analytics.html" . }}
     {{ template "_internal/twitter_cards.html" . }}
     {{ template "_internal/opengraph.html" . }}
+    
+    <script src="https://cdn.jsdelivr.net/npm/fuse.js@6.6.2"></script>
 
   </head>
   <body>
     <header class="app-header">
+      
       <span class="app-header-title">{{ .Site.Title }}</span>
+        
+      <div class="search-trigger" id="search-trigger">
+        <span class="search-icon">🔍</span>
+        <span class="search-text">搜索文章...</span>
+        <span class="search-shortcut">/</span>
+      </div>  
+
+      <div id="search-overlay">
+        <div id="search-modal">
+          
+          <!-- 输入框 -->
+          <input 
+            type="text"
+            id="search-input"
+            placeholder="🔍 搜索文章（支持标题 / 内容）..."
+            autocomplete="off"
+          />
+
+          <!-- 搜索结果 -->
+          <div id="search-results"></div>
+
+        </div>
+      </div>
+
+
       {{- with .Site.Menus.main }}
+      
       <nav class="app-header-menu">
         {{- range $key, $item := . }}
           {{- if ne $key 0 }}
@@ -34,7 +63,9 @@
         {{- end }}
       </nav>
       {{- end }}
+
       <p>{{ .Site.Params.description | default "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nunc vehicula turpis sit amet elit pretium." }}</p>
+
       {{- with .Site.Params.social }}
       <div class="app-header-social">
         {{ range . }}
@@ -76,6 +107,127 @@
             document.getElementById('pageview-wrapper').style.display = 'block';
           }
         }, 2000);
+      </script>
+
+      <script>
+        let fuse;
+        let data = [];
+
+        const overlay = document.getElementById('search-overlay');
+        const modal = document.getElementById('search-modal');
+        const input = document.getElementById('search-input');
+        const resultsDiv = document.getElementById('search-results');
+        const trigger = document.getElementById('search-trigger');
+
+        // 初始化数据
+        fetch('/blog/index.json')
+          .then(res => res.json())
+          .then(json => {
+            data = json;
+
+            fuse = new Fuse(data, {
+              keys: [
+                { name: "title", weight: 0.7 },
+                { name: "content", weight: 0.3 }
+              ],
+              threshold: 0.3,
+              ignoreLocation: true
+            });
+          });
+
+        // 打开搜索
+        function openSearch() {
+          overlay.style.display = 'block';
+          setTimeout(() => input.focus(), 50);
+        }
+
+        // 关闭搜索
+        function closeSearch() {
+          overlay.style.display = 'none';
+          input.value = '';
+          resultsDiv.innerHTML = '';
+        }
+
+        // 点击按钮打开
+        trigger.addEventListener('click', openSearch);
+
+        // 点击遮罩关闭
+        overlay.addEventListener('click', (e) => {
+          if (!modal.contains(e.target)) {
+            closeSearch();
+          }
+        });
+
+        // ESC 关闭
+        document.addEventListener('keydown', (e) => {
+          if (e.key === 'Escape') closeSearch();
+        });
+
+        // / 快捷键打开
+        document.addEventListener('keydown', (e) => {
+          if (e.key === '/' && document.activeElement !== input) {
+            e.preventDefault();
+            openSearch();
+          }
+        });
+
+        // 高亮函数
+        function highlight(text, keyword) {
+          if (!keyword) return text;
+
+          const escaped = keyword.replace(/[.*+?^${}()|[\]\\]/g, '\\$&');
+          const regex = new RegExp(`(${escaped})`, 'gi');
+
+          return text.replace(regex, '<mark>$1</mark>');
+        }
+
+        // 只截取“命中关键词附近内容”
+        function smartSnippet(text, keyword, length = 120) {
+          const index = text.toLowerCase().indexOf(keyword.toLowerCase());
+          if (index === -1) return text.slice(0, length);
+
+          const start = Math.max(0, index - 30);
+          const end = start + length;
+
+          return (start > 0 ? '...' : '') +
+                 text.slice(start, end) +
+                 (end < text.length ? '...' : '');
+        }
+
+        // 搜索逻辑
+        input.addEventListener('input', function () {
+          const keyword = this.value.trim();
+
+          if (!keyword) {
+            resultsDiv.innerHTML = '';
+            return;
+          }
+
+          const results = fuse.search(keyword).slice(0, 10);
+
+          resultsDiv.innerHTML = results.map(r => {
+            const item = r.item;
+            const keyword = input.value.trim();
+
+            const title = highlight(item.title, keyword);
+
+            // 智能截取 content
+            let summary = smartSnippet(item.content, keyword);
+            
+            // 高亮摘要
+            summary = highlight(summary, keyword);
+
+            return `
+              <div class="search-item">
+                <a href="${item.permalink}">
+                  <div class="search-title">${title}</div>
+                  <div class="search-summary">${summary}</div>
+                </a>
+              </div>
+            `;
+          }).join('');
+
+        });
       </script>
 
     </header>
