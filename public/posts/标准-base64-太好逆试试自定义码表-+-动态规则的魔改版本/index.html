@@ -10,7 +10,7 @@
     <meta name="description" content="" />
     <meta name="keywords" content="CYRUS STUDIO, 安卓逆向, Android Reverse Engineering, 移动开发, 安卓开发, Python">
     <meta name="robots" content="index, follow">
-    <link rel="stylesheet" href="/blog/css/main.min.d970c1dc93ec518baa03345e73aafb7a5a0879e5830ca966a23c6d3552430ab1.css" />
+    <link rel="stylesheet" href="/blog/css/main.min.88c7d78acf7531a1d6384580cc3a8d907a327155912f9f657ea716c255d8d0ef.css" />
     
 
     
@@ -40,12 +40,38 @@ val decoded = Base64.decode(str, Base64.DEFAULT)val decodedString = String(deco
     <meta property="article:published_time" content="2025-06-29T15:50:01+08:00">
     <meta property="article:modified_time" content="2025-06-29T15:50:01+08:00">
 
+    
+    <script src="https://cdn.jsdelivr.net/npm/fuse.js@6.6.2"></script>
 
   </head>
   <body>
     <header class="app-header">
-      <a href="https://cyrus-studio.github.io/blog/"><img class="app-header-avatar" src="/blog/avatar.jpg" alt="John Doe" /></a>
+      
       <span class="app-header-title">CYRUS STUDIO</span>
+        
+      <div class="search-trigger" id="search-trigger">
+        <span class="search-icon">🔍</span>
+        <span class="search-text">搜索文章...</span>
+        <span class="search-shortcut">/</span>
+      </div>  
+
+      <div id="search-overlay">
+        <div id="search-modal">
+          
+          
+          <input 
+            type="text"
+            id="search-input"
+            placeholder="🔍 搜索文章（支持标题 / 内容）..."
+            autocomplete="off"
+          />
+
+          
+          <div id="search-results"></div>
+
+        </div>
+      </div>
+      
       <nav class="app-header-menu">
           <a class="app-header-menu-item" href="/blog/">Home</a>
              - 
@@ -55,6 +81,7 @@ val decoded = Base64.decode(str, Base64.DEFAULT)val decodedString = String(deco
           
           <a class="app-header-menu-item" href="https://github.com/CYRUS-STUDIO">GitHub</a>
       </nav>
+
       <p>公众号：CYRUS STUDIO</p>
       
 
@@ -88,6 +115,127 @@ val decoded = Base64.decode(str, Base64.DEFAULT)val decodedString = String(deco
             document.getElementById('pageview-wrapper').style.display = 'block';
           }
         }, 2000);
+      </script>
+
+      <script>
+        let fuse;
+        let data = [];
+
+        const overlay = document.getElementById('search-overlay');
+        const modal = document.getElementById('search-modal');
+        const input = document.getElementById('search-input');
+        const resultsDiv = document.getElementById('search-results');
+        const trigger = document.getElementById('search-trigger');
+
+        
+        fetch('/blog/index.json')
+          .then(res => res.json())
+          .then(json => {
+            data = json;
+
+            fuse = new Fuse(data, {
+              keys: [
+                { name: "title", weight: 0.7 },
+                { name: "content", weight: 0.3 }
+              ],
+              threshold: 0.3,
+              ignoreLocation: true
+            });
+          });
+
+        
+        function openSearch() {
+          overlay.style.display = 'block';
+          setTimeout(() => input.focus(), 50);
+        }
+
+        
+        function closeSearch() {
+          overlay.style.display = 'none';
+          input.value = '';
+          resultsDiv.innerHTML = '';
+        }
+
+        
+        trigger.addEventListener('click', openSearch);
+
+        
+        overlay.addEventListener('click', (e) => {
+          if (!modal.contains(e.target)) {
+            closeSearch();
+          }
+        });
+
+        
+        document.addEventListener('keydown', (e) => {
+          if (e.key === 'Escape') closeSearch();
+        });
+
+        
+        document.addEventListener('keydown', (e) => {
+          if (e.key === '/' && document.activeElement !== input) {
+            e.preventDefault();
+            openSearch();
+          }
+        });
+
+        
+        function highlight(text, keyword) {
+          if (!keyword) return text;
+
+          const escaped = keyword.replace(/[.*+?^${}()|[\]\\]/g, '\\$&');
+          const regex = new RegExp(`(${escaped})`, 'gi');
+
+          return text.replace(regex, '<mark>$1</mark>');
+        }
+
+        
+        function smartSnippet(text, keyword, length = 120) {
+          const index = text.toLowerCase().indexOf(keyword.toLowerCase());
+          if (index === -1) return text.slice(0, length);
+
+          const start = Math.max(0, index - 30);
+          const end = start + length;
+
+          return (start > 0 ? '...' : '') +
+                 text.slice(start, end) +
+                 (end < text.length ? '...' : '');
+        }
+
+        
+        input.addEventListener('input', function () {
+          const keyword = this.value.trim();
+
+          if (!keyword) {
+            resultsDiv.innerHTML = '';
+            return;
+          }
+
+          const results = fuse.search(keyword).slice(0, 10);
+
+          resultsDiv.innerHTML = results.map(r => {
+            const item = r.item;
+            const keyword = input.value.trim();
+
+            const title = highlight(item.title, keyword);
+
+            
+            let summary = smartSnippet(item.content, keyword);
+            
+            
+            summary = highlight(summary, keyword);
+
+            return `
+              <div class="search-item">
+                <a href="${item.permalink}">
+                  <div class="search-title">${title}</div>
+                  <div class="search-summary">${summary}</div>
+                </a>
+              </div>
+            `;
+          }).join('');
+
+        });
       </script>
 
     </header>
