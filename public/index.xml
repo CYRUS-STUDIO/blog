@@ -6,8 +6,15 @@
     <description>Recent content on CYRUS STUDIO</description>
     <generator>Hugo</generator>
     <language>zh-cn</language>
-    <lastBuildDate>Thu, 09 Apr 2026 18:52:17 +0800</lastBuildDate>
+    <lastBuildDate>Sat, 11 Apr 2026 00:18:52 +0800</lastBuildDate>
     <atom:link href="https://cyrus-studio.github.io/blog/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Hugo 博客如何实现全文搜索？支持模糊匹配 &#43; 高亮 &#43; 摘要</title>
+      <link>https://cyrus-studio.github.io/blog/posts/hugo-%E5%8D%9A%E5%AE%A2%E5%A6%82%E4%BD%95%E5%AE%9E%E7%8E%B0%E5%85%A8%E6%96%87%E6%90%9C%E7%B4%A2%E6%94%AF%E6%8C%81%E6%A8%A1%E7%B3%8A%E5%8C%B9%E9%85%8D-&#43;-%E9%AB%98%E4%BA%AE-&#43;-%E6%91%98%E8%A6%81/</link>
+      <pubDate>Sat, 11 Apr 2026 00:18:52 +0800</pubDate>
+      <guid>https://cyrus-studio.github.io/blog/posts/hugo-%E5%8D%9A%E5%AE%A2%E5%A6%82%E4%BD%95%E5%AE%9E%E7%8E%B0%E5%85%A8%E6%96%87%E6%90%9C%E7%B4%A2%E6%94%AF%E6%8C%81%E6%A8%A1%E7%B3%8A%E5%8C%B9%E9%85%8D-&#43;-%E9%AB%98%E4%BA%AE-&#43;-%E6%91%98%E8%A6%81/</guid>
+      <description>版权归作者所有，如有转发，请注明文章出处：https://cyrus-studio.github.io/blog/&#xA;前言 博客文章越来越多，仅靠分类或归档查找内容会变得低效，因此需要引入一套轻量级搜索方案 。&#xA;实现一个：无需后端、支持全文检索、体验接近文档站的搜索功能&#xA;一、整体方案 搜索功能分为三部分：Markdown → index.json → 前端搜索（Fuse.js）&#xA;Python 遍历 markdown 文件生成全文索引（index.json）&#xA;前端使用 Fuse.js 实现模糊搜索&#xA;自定义 UI（类似 Command Palette）&#xA;二、生成索引（index.json） 1. 核心思路 遍历 markdown 文件&#xA;提取标题 + 内容&#xA;生成 JSON&#xA;放入 static/ 目录供前端访问&#xA;2. 完整代码 import os&#xD;import re&#xD;import json&#xD;import urllib.parse&#xD;def hugo_slugify(title: str) -&amp;gt; str:&#xD;slug = title.lower()&#xD;slug = slug.replace(&amp;#34; &amp;#34;, &amp;#34;-&amp;#34;)&#xD;slug = re.sub(r&amp;#34;[^a-z0-9\u4e00-\u9fff\-\+]&amp;#34;, &amp;#34;&amp;#34;, slug)&#xD;slug = urllib.parse.quote(slug, safe=&amp;#34;-+&amp;#34;)&#xD;return slug&#xD;def read_markdown_content(path: str) -&amp;gt; str:&#xD;&amp;#34;&amp;#34;&amp;#34;读取 markdown 内容（去掉 front matter）&amp;#34;&amp;#34;&amp;#34;&#xD;with open(path, &amp;#34;r&amp;#34;, encoding=&amp;#34;utf-8&amp;#34;) as f:&#xD;text = f.</description>
+    </item>
     <item>
       <title>Frida 检测与对抗实战：进程、maps、线程、符号全特征清除</title>
       <link>https://cyrus-studio.github.io/blog/posts/frida-%E6%A3%80%E6%B5%8B%E4%B8%8E%E5%AF%B9%E6%8A%97%E5%AE%9E%E6%88%98%E8%BF%9B%E7%A8%8Bmaps%E7%BA%BF%E7%A8%8B%E7%AC%A6%E5%8F%B7%E5%85%A8%E7%89%B9%E5%BE%81%E6%B8%85%E9%99%A4/</link>

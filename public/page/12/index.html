@@ -1,0 +1,336 @@
+<!doctype html>
+<html lang="zh-cn">
+  <head>
+    <title>CYRUS STUDIO</title>
+    <link rel="shortcut icon" href="/favicon.ico" />
+    <meta charset="utf-8" />
+    <meta name="generator" content="Hugo 0.131.0">
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="author" content="John Doe" />
+    <meta name="description" content="公众号：CYRUS STUDIO" />
+    <meta name="keywords" content="CYRUS STUDIO, 安卓逆向, Android Reverse Engineering, 移动开发, 安卓开发, Python">
+    <meta name="robots" content="index, follow">
+    <link rel="stylesheet" href="/blog/css/main.min.88c7d78acf7531a1d6384580cc3a8d907a327155912f9f657ea716c255d8d0ef.css" />
+    <link rel="alternate" type="application/rss+xml" href="https://cyrus-studio.github.io/blog/index.xml" title="CYRUS STUDIO">
+    
+
+    
+  
+
+
+    
+  <meta name="twitter:card" content="summary">
+  <meta name="twitter:title" content="CYRUS STUDIO">
+  <meta name="twitter:description" content="公众号：CYRUS STUDIO">
+
+    <meta property="og:url" content="https://cyrus-studio.github.io/blog/">
+  <meta property="og:site_name" content="CYRUS STUDIO">
+  <meta property="og:title" content="CYRUS STUDIO">
+  <meta property="og:description" content="公众号：CYRUS STUDIO">
+  <meta property="og:locale" content="zh_cn">
+  <meta property="og:type" content="website">
+
+    
+    <script src="https://cdn.jsdelivr.net/npm/fuse.js@6.6.2"></script>
+
+  </head>
+  <body>
+    <header class="app-header">
+      
+      <span class="app-header-title">CYRUS STUDIO</span>
+        
+      <div class="search-trigger" id="search-trigger">
+        <span class="search-icon">🔍</span>
+        <span class="search-text">搜索文章...</span>
+        <span class="search-shortcut">/</span>
+      </div>  
+
+      <div id="search-overlay">
+        <div id="search-modal">
+          
+          
+          <input 
+            type="text"
+            id="search-input"
+            placeholder="🔍 搜索文章（支持标题 / 内容）..."
+            autocomplete="off"
+          />
+
+          
+          <div id="search-results"></div>
+
+        </div>
+      </div>
+      
+      <nav class="app-header-menu">
+          <a class="app-header-menu-item" href="/blog/">Home</a>
+             - 
+          
+          <a class="app-header-menu-item" href="/blog/about/">About</a>
+             - 
+          
+          <a class="app-header-menu-item" href="https://github.com/CYRUS-STUDIO">GitHub</a>
+      </nav>
+
+      <p>公众号：CYRUS STUDIO</p>
+      
+
+      <div class="qrcode-container">
+          <img src="/blog/gongzhonghao.jpg" alt="公众号二维码" class="qrcode-image">
+          <p class="qrcode-text">扫码关注公众号</p>
+      </div>
+
+      <div class="visitor-counter">               
+        
+        <div id="pageview-wrapper" style="display: none; margin-top: 1rem; font-size: 0.9rem; color: #888;">
+          👀 访问次数：<span class="waline-pageview-count" data-path="/">0</span>
+        </div>
+      </div>
+
+      <script type="module">
+        import { pageviewCount } from 'https://unpkg.com/@waline/client@v3/dist/pageview.js';
+
+        
+        pageviewCount({
+          serverURL: 'https://waline-15wtwfoa7-cyrus-studios-projects.vercel.app',
+          path: '/',
+          update: true
+        });
+
+        
+        setTimeout(() => {
+          const el = document.querySelector('.waline-pageview-count[data-path="/"]');
+          const count = el?.innerText?.trim();
+          if (count && count !== '0') {
+            document.getElementById('pageview-wrapper').style.display = 'block';
+          }
+        }, 2000);
+      </script>
+
+      <script>
+        let fuse;
+        let data = [];
+
+        const overlay = document.getElementById('search-overlay');
+        const modal = document.getElementById('search-modal');
+        const input = document.getElementById('search-input');
+        const resultsDiv = document.getElementById('search-results');
+        const trigger = document.getElementById('search-trigger');
+
+        
+        const indexUrl = "\/blog\/index.json";
+        fetch(indexUrl)
+          .then(res => res.json())
+          .then(json => {
+            data = json;
+
+            fuse = new Fuse(data, {
+              keys: [
+                { name: "title", weight: 0.7 },
+                { name: "content", weight: 0.3 }
+              ],
+              threshold: 0.3,
+              ignoreLocation: true
+            });
+          });
+
+        
+        function openSearch() {
+          overlay.style.display = 'block';
+          setTimeout(() => input.focus(), 50);
+        }
+
+        
+        function closeSearch() {
+          overlay.style.display = 'none';
+          input.value = '';
+          resultsDiv.innerHTML = '';
+        }
+
+        
+        trigger.addEventListener('click', openSearch);
+
+        
+        overlay.addEventListener('click', (e) => {
+          if (!modal.contains(e.target)) {
+            closeSearch();
+          }
+        });
+
+        
+        document.addEventListener('keydown', (e) => {
+          if (e.key === 'Escape') closeSearch();
+        });
+
+        
+        document.addEventListener('keydown', (e) => {
+          if (e.key === '/' && document.activeElement !== input) {
+            e.preventDefault();
+            openSearch();
+          }
+        });
+
+        
+        function highlight(text, keyword) {
+          if (!keyword) return text;
+          
+          
+          const escaped = keyword.replace(/[.*+?^${}()|[\]\\]/g, '\\$&');
+          
+          const regex = new RegExp(`(${escaped})`, 'gi');
+          return text.replace(regex, '<mark>$1</mark>');
+        }
+
+        
+        function smartSnippet(text, keyword, length = 120) {
+          const index = text.toLowerCase().indexOf(keyword.toLowerCase());
+          if (index === -1) return text.slice(0, length);
+
+          const start = Math.max(0, index - 30);
+          const end = start + length;
+
+          return (start > 0 ? '...' : '') +
+                 text.slice(start, end) +
+                 (end < text.length ? '...' : '');
+        }
+
+        
+        input.addEventListener('input', function () {
+          const keyword = this.value.trim();
+
+          if (!keyword) {
+            resultsDiv.innerHTML = '';
+            return;
+          }
+
+          const results = fuse.search(keyword);
+
+          resultsDiv.innerHTML = results.map(r => {
+            const item = r.item;
+            const keyword = input.value.trim();
+
+            const title = highlight(item.title, keyword);
+
+            
+            let summary = smartSnippet(item.content, keyword);
+            
+            
+            summary = highlight(summary, keyword);
+
+            return `
+              <div class="search-item">
+                <a href="${item.permalink}" target="_blank" >
+                  <div class="search-title">${title}</div>
+                  <div class="search-summary">${summary}</div>
+                </a>
+              </div>
+            `;
+          }).join('');
+
+        });
+      </script>
+
+    </header>
+    <main class="app-container">
+      
+  <article>
+    <h1>CYRUS STUDIO</h1>
+    <ul class="posts-list">
+      
+    </ul>
+    
+
+<ul class="pagination">
+  
+  <li class="page-item">
+    <a class="page-link" href="/blog/page/11/">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="icon icon-arrow-left">
+  <title>arrow-left</title>
+  <line x1="19" y1="12" x2="5" y2="12"></line><polyline points="12 19 5 12 12 5"></polyline>
+</svg>
+    </a>
+  </li>
+  
+  
+  <li class="page-item">
+    <a class="page-link" href="/blog/">
+      1
+    </a>
+  </li>
+  
+  <li class="page-item">
+    <a class="page-link" href="/blog/page/2/">
+      2
+    </a>
+  </li>
+  
+  <li class="page-item">
+    <a class="page-link" href="/blog/page/3/">
+      3
+    </a>
+  </li>
+  
+  <li class="page-item">
+    <a class="page-link" href="/blog/page/4/">
+      4
+    </a>
+  </li>
+  
+  <li class="page-item">
+    <a class="page-link" href="/blog/page/5/">
+      5
+    </a>
+  </li>
+  
+  <li class="page-item">
+    <a class="page-link" href="/blog/page/6/">
+      6
+    </a>
+  </li>
+  
+  <li class="page-item">
+    <a class="page-link" href="/blog/page/7/">
+      7
+    </a>
+  </li>
+  
+  <li class="page-item">
+    <a class="page-link" href="/blog/page/8/">
+      8
+    </a>
+  </li>
+  
+  <li class="page-item">
+    <a class="page-link" href="/blog/page/9/">
+      9
+    </a>
+  </li>
+  
+  <li class="page-item">
+    <a class="page-link" href="/blog/page/10/">
+      10
+    </a>
+  </li>
+  
+  <li class="page-item">
+    <a class="page-link" href="/blog/page/11/">
+      11
+    </a>
+  </li>
+  
+  <li class="page-item active">
+    <a class="page-link" href="/blog/page/12/">
+      12
+    </a>
+  </li>
+  
+  
+</ul>
+
+
+
+  </article>
+
+    </main>
+  </body>
+</html>
