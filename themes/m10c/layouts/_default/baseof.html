@@ -175,10 +175,11 @@
         // 高亮函数
         function highlight(text, keyword) {
           if (!keyword) return text;
-
+          
+          // 对用户输入的关键词进行“正则转义（escape）”，防止被当成正则表达式解析
           const escaped = keyword.replace(/[.*+?^${}()|[\]\\]/g, '\\$&');
+          
           const regex = new RegExp(`(${escaped})`, 'gi');
-
           return text.replace(regex, '<mark>$1</mark>');
         }
 
@@ -204,7 +205,7 @@
             return;
           }
 
-          const results = fuse.search(keyword).slice(0, 10);
+          const results = fuse.search(keyword);
 
           resultsDiv.innerHTML = results.map(r => {
             const item = r.item;
