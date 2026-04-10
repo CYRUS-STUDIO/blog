@@ -230,7 +230,7 @@ with zipfile.ZipFile(jar_path, &#39;r&#39;) as jar:for entry in jar.namelist():
 
             return `
               <div class="search-item">
-                <a href="${item.permalink}">
+                <a href="${item.permalink}" target="_blank" >
                   <div class="search-title">${title}</div>
                   <div class="search-summary">${summary}</div>
                 </a>
