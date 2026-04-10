@@ -146,7 +146,8 @@ Frida &#43; FART 联手：解锁更强大的 Android 脱壳新姿势
         const trigger = document.getElementById('search-trigger');
 
         
-        fetch('/blog/index.json')
+        const indexUrl = "\/blog\/index.json";
+        fetch(indexUrl)
           .then(res => res.json())
           .then(json => {
             data = json;

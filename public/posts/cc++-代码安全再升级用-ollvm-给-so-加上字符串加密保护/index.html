@@ -144,7 +144,8 @@ LLVM IR 中的字符串 编写 C代码 sobf.c 如下：
         const trigger = document.getElementById('search-trigger');
 
         
-        fetch('/blog/index.json')
+        const indexUrl = "\/blog\/index.json";
+        fetch(indexUrl)
           .then(res => res.json())
           .then(json => {
             data = json;

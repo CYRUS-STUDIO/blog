@@ -148,7 +148,8 @@ adb shell setenforce 0 默认是 enforcing，会拦截一些 ptrace 和文件访
         const trigger = document.getElementById('search-trigger');
 
         
-        fetch('/blog/index.json')
+        const indexUrl = "\/blog\/index.json";
+        fetch(indexUrl)
           .then(res => res.json())
           .then(json => {
             data = json;

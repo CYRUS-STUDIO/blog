@@ -146,7 +146,8 @@ Retrofit 默认使用 OkHttp，可以无缝集成 OkHttp 的功能（如添加 T
         const trigger = document.getElementById('search-trigger');
 
         
-        fetch('/blog/index.json')
+        const indexUrl = "\/blog\/index.json";
+        fetch(indexUrl)
           .then(res => res.json())
           .then(json => {
             data = json;

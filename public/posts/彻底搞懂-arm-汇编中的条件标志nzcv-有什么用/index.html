@@ -142,7 +142,8 @@ GT (Greater Than): 当 Z = 0 且 N = V 时执行（大于）。">
         const trigger = document.getElementById('search-trigger');
 
         
-        fetch('/blog/index.json')
+        const indexUrl = "\/blog\/index.json";
+        fetch(indexUrl)
           .then(res => res.json())
           .then(json => {
             data = json;

@@ -140,7 +140,8 @@ Unboxing Android 在 DEF CON 25 (2017) 上，Avi Bashan 和 Slava Makkaveev 提�
         const trigger = document.getElementById('search-trigger');
 
         
-        fetch('/blog/index.json')
+        const indexUrl = "\/blog\/index.json";
+        fetch(indexUrl)
           .then(res => res.json())
           .then(json => {
             data = json;

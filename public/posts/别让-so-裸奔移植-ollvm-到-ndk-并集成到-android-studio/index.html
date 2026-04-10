@@ -132,7 +132,8 @@ OLLVM、LLVM 与 Android NDK LLVM 是一个高度模块化的编译器框架，�
         const trigger = document.getElementById('search-trigger');
 
         
-        fetch('/blog/index.json')
+        const indexUrl = "\/blog\/index.json";
+        fetch(indexUrl)
           .then(res => res.json())
           .then(json => {
             data = json;

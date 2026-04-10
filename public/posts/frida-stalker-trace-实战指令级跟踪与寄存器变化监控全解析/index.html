@@ -148,7 +148,8 @@ Stalker.follow 启动跟踪 → transform 接管指令流 → iterator 遍历每
         const trigger = document.getElementById('search-trigger');
 
         
-        fetch('/blog/index.json')
+        const indexUrl = "\/blog\/index.json";
+        fetch(indexUrl)
           .then(res => res.json())
           .then(json => {
             data = json;

@@ -128,7 +128,8 @@ PLT hook 和 Inline hook 有什么区别？ 特性 PLT Hook（符号级） Inlin
         const trigger = document.getElementById('search-trigger');
 
         
-        fetch('/blog/index.json')
+        const indexUrl = "\/blog\/index.json";
+        fetch(indexUrl)
           .then(res => res.json())
           .then(json => {
             data = json;

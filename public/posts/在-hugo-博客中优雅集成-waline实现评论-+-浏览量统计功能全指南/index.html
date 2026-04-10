@@ -162,7 +162,8 @@ https://vercel.com/new/clone?repository-url=https%3A%2F%2Fgithub.com%2Fwalinejs%
         const trigger = document.getElementById('search-trigger');
 
         
-        fetch('/blog/index.json')
+        const indexUrl = "\/blog\/index.json";
+        fetch(indexUrl)
           .then(res => res.json())
           .then(json => {
             data = json;

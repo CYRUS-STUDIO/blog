@@ -140,7 +140,8 @@ adb push &#34;D:\Python\anti-app\frida-server\frida-server-14.0.0-android-arm64&
         const trigger = document.getElementById('search-trigger');
 
         
-        fetch('/blog/index.json')
+        const indexUrl = "\/blog\/index.json";
+        fetch(indexUrl)
           .then(res => res.json())
           .then(json => {
             data = json;

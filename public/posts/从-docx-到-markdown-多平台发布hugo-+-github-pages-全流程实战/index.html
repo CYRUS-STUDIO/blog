@@ -138,7 +138,8 @@ def is_possible_code_or_bash(text):# 常见的代码关键字code_keywords = [
         const trigger = document.getElementById('search-trigger');
 
         
-        fetch('/blog/index.json')
+        const indexUrl = "\/blog\/index.json";
+        fetch(indexUrl)
           .then(res => res.json())
           .then(json => {
             data = json;

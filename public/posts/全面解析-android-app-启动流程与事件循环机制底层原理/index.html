@@ -138,7 +138,8 @@ https://cs.android.com/android/platform/superproject/&#43;/android-10.0.0_r47:fr
         const trigger = document.getElementById('search-trigger');
 
         
-        fetch('/blog/index.json')
+        const indexUrl = "\/blog\/index.json";
+        fetch(indexUrl)
           .then(res => res.json())
           .then(json => {
             data = json;

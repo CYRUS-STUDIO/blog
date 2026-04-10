@@ -132,7 +132,8 @@ GNU Binutils GNU Binutils（GNU Binary Utilities）是一套由 GNU 项目维护
         const trigger = document.getElementById('search-trigger');
 
         
-        fetch('/blog/index.json')
+        const indexUrl = "\/blog\/index.json";
+        fetch(indexUrl)
           .then(res => res.json())
           .then(json => {
             data = json;

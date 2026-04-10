@@ -130,7 +130,8 @@ with zipfile.ZipFile(jar_path, &#39;r&#39;) as jar:for entry in jar.namelist():
         const trigger = document.getElementById('search-trigger');
 
         
-        fetch('/blog/index.json')
+        const indexUrl = "\/blog\/index.json";
+        fetch(indexUrl)
           .then(res => res.json())
           .then(json => {
             data = json;

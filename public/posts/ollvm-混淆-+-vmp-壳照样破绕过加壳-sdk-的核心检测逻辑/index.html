@@ -128,7 +128,8 @@ Java 层代码逆向分析 通过 Frida hook 一下 目标类
         const trigger = document.getElementById('search-trigger');
 
         
-        fetch('/blog/index.json')
+        const indexUrl = "\/blog\/index.json";
+        fetch(indexUrl)
           .then(res => res.json())
           .then(json => {
             data = json;

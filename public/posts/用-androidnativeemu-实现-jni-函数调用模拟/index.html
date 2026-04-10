@@ -156,7 +156,8 @@ native_method 装饰器 native_method 装饰器用于在 AndroidNativeEmu 中将
         const trigger = document.getElementById('search-trigger');
 
         
-        fetch('/blog/index.json')
+        const indexUrl = "\/blog\/index.json";
+        fetch(indexUrl)
           .then(res => res.json())
           .then(json => {
             data = json;

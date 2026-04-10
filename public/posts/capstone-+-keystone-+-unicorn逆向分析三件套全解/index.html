@@ -140,7 +140,8 @@ readelf -S libvmp-lib.so | grep -A 1 .text[14] .text PROGBITS 000000000009d480 
         const trigger = document.getElementById('search-trigger');
 
         
-        fetch('/blog/index.json')
+        const indexUrl = "\/blog\/index.json";
+        fetch(indexUrl)
           .then(res => res.json())
           .then(json => {
             data = json;

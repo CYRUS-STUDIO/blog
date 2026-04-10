@@ -126,7 +126,8 @@ __int64 __usercall dynamicBase64Encode@&lt;X0&gt;(const unsigned __int8 *a1@&lt;
         const trigger = document.getElementById('search-trigger');
 
         
-        fetch('/blog/index.json')
+        const indexUrl = "\/blog\/index.json";
+        fetch(indexUrl)
           .then(res => res.json())
           .then(json => {
             data = json;

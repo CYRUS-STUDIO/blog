@@ -130,7 +130,8 @@ D:\Projects\llvm-project\build&gt;clang -mllvm -fla fla.c -o fla.exe[OLLVM] run
         const trigger = document.getElementById('search-trigger');
 
         
-        fetch('/blog/index.json')
+        const indexUrl = "\/blog\/index.json";
+        fetch(indexUrl)
           .then(res => res.json())
           .then(json => {
             data = json;

@@ -140,7 +140,8 @@ http://aospxref.com/android-10.0.0_r47/xref/libcore/dalvik/src/main/java/dalvik/
         const trigger = document.getElementById('search-trigger');
 
         
-        fetch('/blog/index.json')
+        const indexUrl = "\/blog\/index.json";
+        fetch(indexUrl)
           .then(res => res.json())
           .then(json => {
             data = json;

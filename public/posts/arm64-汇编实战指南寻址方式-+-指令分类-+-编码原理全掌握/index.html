@@ -134,7 +134,8 @@ LDR X1, [X0, X2] ; 从X0 &#43; X2指向的内存地址加载数据到X1中 7.">
         const trigger = document.getElementById('search-trigger');
 
         
-        fetch('/blog/index.json')
+        const indexUrl = "\/blog\/index.json";
+        fetch(indexUrl)
           .then(res => res.json())
           .then(json => {
             data = json;

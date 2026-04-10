@@ -130,7 +130,8 @@ object AESUtils {// 将普通字符串转换为 IvParameterSpecprivate fun str
         const trigger = document.getElementById('search-trigger');
 
         
-        fetch('/blog/index.json')
+        const indexUrl = "\/blog\/index.json";
+        fetch(indexUrl)
           .then(res => res.json())
           .then(json => {
             data = json;

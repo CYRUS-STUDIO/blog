@@ -124,7 +124,8 @@ Dalvik 字节码指令是 Android 虚拟机的指令集，广泛用于处理 .de
         const trigger = document.getElementById('search-trigger');
 
         
-        fetch('/blog/index.json')
+        const indexUrl = "\/blog\/index.json";
+        fetch(indexUrl)
           .then(res => res.json())
           .then(json => {
             data = json;

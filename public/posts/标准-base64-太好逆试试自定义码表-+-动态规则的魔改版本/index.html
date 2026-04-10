@@ -128,7 +128,8 @@ val decoded = Base64.decode(str, Base64.DEFAULT)val decodedString = String(deco
         const trigger = document.getElementById('search-trigger');
 
         
-        fetch('/blog/index.json')
+        const indexUrl = "\/blog\/index.json";
+        fetch(indexUrl)
           .then(res => res.json())
           .then(json => {
             data = json;

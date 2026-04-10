@@ -146,7 +146,8 @@ int main(int argc, char** argv) {int result = static_cast&lt;int&gt;(art::Dex2o
         const trigger = document.getElementById('search-trigger');
 
         
-        fetch('/blog/index.json')
+        const indexUrl = "\/blog\/index.json";
+        fetch(indexUrl)
           .then(res => res.json())
           .then(json => {
             data = json;

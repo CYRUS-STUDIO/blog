@@ -126,7 +126,8 @@ Android 版本 API Level 代号 发布时间 Android 15 35 Vanilla Ice Cream 202
         const trigger = document.getElementById('search-trigger');
 
         
-        fetch('/blog/index.json')
+        const indexUrl = "\/blog\/index.json";
+        fetch(indexUrl)
           .then(res => res.json())
           .then(json => {
             data = json;

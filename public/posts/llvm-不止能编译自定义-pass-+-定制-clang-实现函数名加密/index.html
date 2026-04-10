@@ -148,7 +148,8 @@ LLVM IR 与具体 CPU 架构解耦，可以跨平台复用优化逻辑。
         const trigger = document.getElementById('search-trigger');
 
         
-        fetch('/blog/index.json')
+        const indexUrl = "\/blog\/index.json";
+        fetch(indexUrl)
           .then(res => res.json())
           .then(json => {
             data = json;

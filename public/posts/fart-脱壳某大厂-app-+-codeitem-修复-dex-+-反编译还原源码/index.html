@@ -130,7 +130,8 @@ wayne:/data/data/com.cyrus.example/cyrus # ls1321896_class_list.txt 1437648_dex
         const trigger = document.getElementById('search-trigger');
 
         
-        fetch('/blog/index.json')
+        const indexUrl = "\/blog\/index.json";
+        fetch(indexUrl)
           .then(res => res.json())
           .then(json => {
             data = json;

@@ -136,7 +136,8 @@ package com.cyrus.example.pluginimport android.util.Logclass FartTest {fun te
         const trigger = document.getElementById('search-trigger');
 
         
-        fetch('/blog/index.json')
+        const indexUrl = "\/blog\/index.json";
+        fetch(indexUrl)
           .then(res => res.json())
           .then(json => {
             data = json;

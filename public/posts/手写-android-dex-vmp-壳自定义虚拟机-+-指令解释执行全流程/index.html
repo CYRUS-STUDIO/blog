@@ -136,7 +136,8 @@ Android Dex VMP 壳执行流程 Android Dex VMP 壳执行流程图述：
         const trigger = document.getElementById('search-trigger');
 
         
-        fetch('/blog/index.json')
+        const indexUrl = "\/blog\/index.json";
+        fetch(indexUrl)
           .then(res => res.json())
           .then(json => {
             data = json;

@@ -162,7 +162,8 @@ HMAC MD5 标准 HMAC MD5 算法实现如下：
         const trigger = document.getElementById('search-trigger');
 
         
-        fetch('/blog/index.json')
+        const indexUrl = "\/blog\/index.json";
+        fetch(indexUrl)
           .then(res => res.json())
           .then(json => {
             data = json;

@@ -130,7 +130,8 @@ Dex VMP 指令流加密 &#43; 动态加载完整流程 Dex VMP 指令流加密 &
         const trigger = document.getElementById('search-trigger');
 
         
-        fetch('/blog/index.json')
+        const indexUrl = "\/blog\/index.json";
+        fetch(indexUrl)
           .then(res => res.json())
           .then(json => {
             data = json;

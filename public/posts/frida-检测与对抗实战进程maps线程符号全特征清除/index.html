@@ -132,7 +132,8 @@ vangogh:/ # su -c &#34;ps -A -o PID,NAME,ARGS&#34; | grep frida4159 grep grep f
         const trigger = document.getElementById('search-trigger');
 
         
-        fetch('/blog/index.json')
+        const indexUrl = "\/blog\/index.json";
+        fetch(indexUrl)
           .then(res => res.json())
           .then(json => {
             data = json;

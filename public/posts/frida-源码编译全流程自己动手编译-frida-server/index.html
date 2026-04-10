@@ -138,7 +138,8 @@ nvm use 18 # 编译 Fridanvm use 16 # 其他项目 验证：">
         const trigger = document.getElementById('search-trigger');
 
         
-        fetch('/blog/index.json')
+        const indexUrl = "\/blog\/index.json";
+        fetch(indexUrl)
           .then(res => res.json())
           .then(json => {
             data = json;

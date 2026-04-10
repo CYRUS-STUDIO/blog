@@ -146,7 +146,8 @@ onCallSummary（函数调用摘要) onCallSummary 是 Frida Stalker 提供的一
         const trigger = document.getElementById('search-trigger');
 
         
-        fetch('/blog/index.json')
+        const indexUrl = "\/blog\/index.json";
+        fetch(indexUrl)
           .then(res => res.json())
           .then(json => {
             data = json;
