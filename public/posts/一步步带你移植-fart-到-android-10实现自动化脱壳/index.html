@@ -205,10 +205,11 @@ namespace art 中增加 dumpDexFileByExecute 函数声明
         
         function highlight(text, keyword) {
           if (!keyword) return text;
-
+          
+          
           const escaped = keyword.replace(/[.*+?^${}()|[\]\\]/g, '\\$&');
+          
           const regex = new RegExp(`(${escaped})`, 'gi');
-
           return text.replace(regex, '<mark>$1</mark>');
         }
 
@@ -234,7 +235,7 @@ namespace art 中增加 dumpDexFileByExecute 函数声明
             return;
           }
 
-          const results = fuse.search(keyword).slice(0, 10);
+          const results = fuse.search(keyword);
 
           resultsDiv.innerHTML = results.map(r => {
             const item = r.item;

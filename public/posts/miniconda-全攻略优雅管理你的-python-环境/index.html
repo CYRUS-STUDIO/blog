@@ -195,10 +195,11 @@ conda create --name new_env --clone old_env 删除环境 conda remove --name old
         
         function highlight(text, keyword) {
           if (!keyword) return text;
-
+          
+          
           const escaped = keyword.replace(/[.*+?^${}()|[\]\\]/g, '\\$&');
+          
           const regex = new RegExp(`(${escaped})`, 'gi');
-
           return text.replace(regex, '<mark>$1</mark>');
         }
 
@@ -224,7 +225,7 @@ conda create --name new_env --clone old_env 删除环境 conda remove --name old
             return;
           }
 
-          const results = fuse.search(keyword).slice(0, 10);
+          const results = fuse.search(keyword);
 
           resultsDiv.innerHTML = results.map(r => {
             const item = r.item;

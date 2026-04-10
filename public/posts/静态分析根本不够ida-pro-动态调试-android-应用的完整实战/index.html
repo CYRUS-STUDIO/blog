@@ -211,10 +211,11 @@ IDA Pro 与 android_server 之间的通信通常依赖 ADB（Android Debug Bridg
         
         function highlight(text, keyword) {
           if (!keyword) return text;
-
+          
+          
           const escaped = keyword.replace(/[.*+?^${}()|[\]\\]/g, '\\$&');
+          
           const regex = new RegExp(`(${escaped})`, 'gi');
-
           return text.replace(regex, '<mark>$1</mark>');
         }
 
@@ -240,7 +241,7 @@ IDA Pro 与 android_server 之间的通信通常依赖 ADB（Android Debug Bridg
             return;
           }
 
-          const results = fuse.search(keyword).slice(0, 10);
+          const results = fuse.search(keyword);
 
           resultsDiv.innerHTML = results.map(r => {
             const item = r.item;

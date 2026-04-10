@@ -199,10 +199,11 @@ LLVM IR 中的字符串 编写 C代码 sobf.c 如下：
         
         function highlight(text, keyword) {
           if (!keyword) return text;
-
+          
+          
           const escaped = keyword.replace(/[.*+?^${}()|[\]\\]/g, '\\$&');
+          
           const regex = new RegExp(`(${escaped})`, 'gi');
-
           return text.replace(regex, '<mark>$1</mark>');
         }
 
@@ -228,7 +229,7 @@ LLVM IR 中的字符串 编写 C代码 sobf.c 如下：
             return;
           }
 
-          const results = fuse.search(keyword).slice(0, 10);
+          const results = fuse.search(keyword);
 
           resultsDiv.innerHTML = results.map(r => {
             const item = r.item;

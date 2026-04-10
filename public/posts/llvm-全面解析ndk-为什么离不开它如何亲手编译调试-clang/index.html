@@ -195,10 +195,11 @@ C/C&#43;&#43; 源码 ↓ (Clang 前端) LLVM IR ↓ (LLVM 优化器) 优化后�
         
         function highlight(text, keyword) {
           if (!keyword) return text;
-
+          
+          
           const escaped = keyword.replace(/[.*+?^${}()|[\]\\]/g, '\\$&');
+          
           const regex = new RegExp(`(${escaped})`, 'gi');
-
           return text.replace(regex, '<mark>$1</mark>');
         }
 
@@ -224,7 +225,7 @@ C/C&#43;&#43; 源码 ↓ (Clang 前端) LLVM IR ↓ (LLVM 优化器) 优化后�
             return;
           }
 
-          const results = fuse.search(keyword).slice(0, 10);
+          const results = fuse.search(keyword);
 
           resultsDiv.innerHTML = results.map(r => {
             const item = r.item;

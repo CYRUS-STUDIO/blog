@@ -189,10 +189,11 @@ package he;/* loaded from: 11994176_dex_file_execute.jar:he/a.class */public c
         
         function highlight(text, keyword) {
           if (!keyword) return text;
-
+          
+          
           const escaped = keyword.replace(/[.*+?^${}()|[\]\\]/g, '\\$&');
+          
           const regex = new RegExp(`(${escaped})`, 'gi');
-
           return text.replace(regex, '<mark>$1</mark>');
         }
 
@@ -218,7 +219,7 @@ package he;/* loaded from: 11994176_dex_file_execute.jar:he/a.class */public c
             return;
           }
 
-          const results = fuse.search(keyword).slice(0, 10);
+          const results = fuse.search(keyword);
 
           resultsDiv.innerHTML = results.map(r => {
             const item = r.item;
