@@ -1,0 +1,57 @@
+{{ define "main" }}
+  <article class="columns-page">
+    <header class="columns-header">
+      <h1 class="post-title">{{ .Title }}</h1>
+      {{ with .Content }}
+        <div class="post-content">
+          {{ . }}
+        </div>
+      {{ end }}
+    </header>
+
+    {{ $posts := where site.RegularPages "Section" "posts" }}
+    {{ $pagesByFile := dict }}
+    {{ range $posts }}
+      {{ if .File }}
+        {{ $pagesByFile = merge $pagesByFile (dict .File.BaseFileName .) }}
+      {{ end }}
+    {{ end }}
+
+    {{ with site.Data.columns }}
+      <div class="columns-grid">
+        {{ range . }}
+          <section class="column-card" id="{{ .name | anchorize }}">
+            <div class="column-card-header">
+              <h2>{{ .name }}</h2>
+              <span class="column-count">{{ len .files }} posts</span>
+            </div>
+            <ul class="posts-list columns-posts">
+              {{ range .files }}
+                {{ $page := index $pagesByFile . }}
+                {{ with $page }}
+                  <li class="posts-list-item">
+                    <a class="posts-list-item-title" href="{{ .RelPermalink }}">{{ .Title }}</a>
+                    <span class="posts-list-item-description">
+                      {{ partial "icon.html" (dict "ctx" $ "name" "calendar") }}
+                      {{ .PublishDate.Format "2006-01-02" }}
+                      <span class="posts-list-item-separator">-</span>
+                      {{ partial "icon.html" (dict "ctx" $ "name" "clock") }}
+                      {{ .ReadingTime }} min read
+                    </span>
+                  </li>
+                {{ else }}
+                  <li class="posts-list-item columns-posts-missing">
+                    <span class="posts-list-item-title">{{ . }}</span>
+                    <span class="posts-list-item-description">Missing matching post in content/posts</span>
+                  </li>
+                {{ end }}
+              {{ end }}
+            </ul>
+          </section>
+        {{ end }}
+      </div>
+    {{ else }}
+      <p>No columns data found. Run <code>python D:\hugo\cyrus\scripts\generate_columns.py</code> first.</p>
+    {{ end }}
+  </article>
+{{ end }}

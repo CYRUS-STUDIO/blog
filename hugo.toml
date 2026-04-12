@@ -6,13 +6,13 @@ theme = "m10c"
 
 [menu]
   [[menu.main]]
-    name = "Home"
+    name = "主页"
     url = "/"
     weight = 1
 
   [[menu.main]]
-    name = "About"
-    url = "/about/"
+    name = "专栏"
+    url = "/columns/"
     weight = 2
 
   [[menu.main]]
