@@ -2,17 +2,17 @@
   {
     "name": "ADB",
     "files": [
-      "ADB 命令使用大全（建议收藏） Android 调试必备",
-      "ADB 远程调试全教程：弹不出授权弹窗？手动授权搞定！"
+      "ADB 远程调试全教程：弹不出授权弹窗？手动授权搞定！",
+      "ADB 命令使用大全（建议收藏） Android 调试必备"
     ]
   },
   {
     "name": "Android Framework",
     "files": [
-      "全面解析 Android App 启动流程与事件循环机制底层原理",
       "深入内核交互：用 strace 看清 Android 每一个系统调用",
+      "深入解析 dex2oat：vdex、cdex、dex 格式转换全流程实战",
       "深入理解 Android ClassLoader 与双亲委派机制",
-      "深入解析 dex2oat：vdex、cdex、dex 格式转换全流程实战"
+      "全面解析 Android App 启动流程与事件循环机制底层原理"
     ]
   },
   {
@@ -26,9 +26,9 @@
     "name": "Dex加壳",
     "files": [
       "打造基于 ART 的 Android 函数抽取壳：原理剖析与完整源码实战",
-      "深入剖析 Android 加壳应用运行流程与生命周期劫持方案",
+      "用 Dex2C 把 Java 变 Native：Android 代码加固",
       "深入理解 Android 热修复机制：掌握 dexElements 注入技巧",
-      "用 Dex2C 把 Java 变 Native：Android 代码加固"
+      "深入剖析 Android 加壳应用运行流程与生命周期劫持方案"
     ]
   },
   {
@@ -46,62 +46,62 @@
   {
     "name": "FART",
     "files": [
-      "FART 主动调用组件深度解析：破解 ART 下函数抽取壳的终极武器",
-      "FART 脱壳不再全量！用一份配置文件精准控制节奏与范围",
+      "攻防 FART 脱壳：实现 AJM 壳级别的对抗功能 + 绕过全解析",
       "FART 脱壳某大厂 App + CodeItem 修复 dex + 反编译还原源码",
-      "FART 自动化脱壳框架优化实战：Bug 修复与代码改进记录",
+      "FART 脱壳不再全量！用一份配置文件精准控制节奏与范围",
       "Frida + FART 联手：解锁更强大的 Android 脱壳新姿势",
+      "FART 自动化脱壳框架优化实战：Bug 修复与代码改进记录",
       "一步步带你移植 FART 到 Android 10，实现自动化脱壳",
       "干掉抽取壳！FART 自动化脱壳框架与 Execute 脱壳点解析",
-      "攻防 FART 脱壳：实现 AJM 壳级别的对抗功能 + 绕过全解析"
+      "FART 主动调用组件深度解析：破解 ART 下函数抽取壳的终极武器"
     ]
   },
   {
     "name": "Frida",
     "files": [
-      "Frida Native 层 Hook 技巧：JNI 函数调用、字符串解析、so 加载",
-      "Frida Stalker Trace 实战：指令级跟踪与寄存器变化监控全解析",
-      "Frida 实战：Android JNI 数组 (jobjectArray) 操作全流程解析",
+      "基于 tcpdump 解析 Frida 通信协议：实现 frida-server 端口扫描与绕过",
       "Frida 检测与对抗实战：进程、maps、线程、符号全特征清除",
       "Frida 源码编译全流程：自己动手编译 frida-server",
-      "Frida 玩转 JNI：方法地址追踪 + 指令反汇编 + Patch 注入",
-      "一文掌握 jnitrace：Frida 下分析 JNI 方法调用的利器",
+      "Frida Stalker Trace 实战：指令级跟踪与寄存器变化监控全解析",
       "一文搞懂 Frida Stalker：对抗 OLLVM 的算法还原利器",
+      "Frida 实战：Android JNI 数组 (jobjectArray) 操作全流程解析",
+      "用 Frida 控制 Android 线程：kill 命令、挂起与恢复全解析",
       "一文搞懂如何使用 Frida Hook Android App",
       "别再手工写 Hook 了！Python + Frida 一网打尽 SO 层动态注册 JNI 调用",
-      "基于 tcpdump 解析 Frida 通信协议：实现 frida-server 端口扫描与绕过",
-      "手把手教你用 Chrome 断点调试 Frida 脚本，JS 调试不再是黑盒",
-      "用 Frida 控制 Android 线程：kill 命令、挂起与恢复全解析",
-      "逆向 JNI 函数找不到入口？动态注册定位技巧全解析"
+      "Frida Native 层 Hook 技巧：JNI 函数调用、字符串解析、so 加载",
+      "逆向 JNI 函数找不到入口？动态注册定位技巧全解析",
+      "一文掌握 jnitrace：Frida 下分析 JNI 方法调用的利器",
+      "Frida 玩转 JNI：方法地址追踪 + 指令反汇编 + Patch 注入",
+      "手把手教你用 Chrome 断点调试 Frida 脚本，JS 调试不再是黑盒"
     ]
   },
   {
     "name": "IDA Pro",
     "files": [
-      "IDA静态分析中伪代码显示优化",
       "JNI 方法真实执行流长啥样？IDA × Frida 自动化 Trace 一探究竟",
+      "静态分析神器 + 动态调试利器：IDA Pro × Frida 混合调试实战",
       "静态分析根本不够！IDA Pro 动态调试 Android 应用的完整实战",
-      "静态分析神器 + 动态调试利器：IDA Pro × Frida 混合调试实战"
+      "IDA静态分析中伪代码显示优化"
     ]
   },
   {
     "name": "Java逆向",
     "files": [
-      "一文搞懂 Smali 与 Baksmali：Java 层逆向必备技能",
-      "一键反编译、签名、安装 APK！手把手带你玩转 ApkTool + 签名工具",
       "手把手教你改造 AAR：解包、注入逻辑、重打包，一条龙玩转第三方 SDK！",
-      "打造自己的 Jar 文件分析工具：类名匹配 + 二进制搜索 + 日志输出全搞定"
+      "一键反编译、签名、安装 APK！手把手带你玩转 ApkTool + 签名工具",
+      "打造自己的 Jar 文件分析工具：类名匹配 + 二进制搜索 + 日志输出全搞定",
+      "一文搞懂 Smali 与 Baksmali：Java 层逆向必备技能"
     ]
   },
   {
     "name": "LLVM与OLLVM",
     "files": [
       "C&C++ 代码安全再升级：用 OLLVM 给 so 加上字符串加密保护",
-      "LLVM 不止能编译！自定义 Pass + 定制 clang 实现函数名加密",
-      "LLVM 全面解析：NDK 为什么离不开它？如何亲手编译调试 clang",
-      "OLLVM 移植 LLVM 18 实战，轻松实现 C&C++ 代码混淆",
+      "别让 so 裸奔！移植 OLLVM 到 NDK 并集成到 Android Studio",
       "OLLVM 移植 LLVM18 踩坑：一步步调试修复控制流平坦化",
-      "别让 so 裸奔！移植 OLLVM 到 NDK 并集成到 Android Studio"
+      "OLLVM 移植 LLVM 18 实战，轻松实现 C&C++ 代码混淆",
+      "LLVM 全面解析：NDK 为什么离不开它？如何亲手编译调试 clang",
+      "LLVM 不止能编译！自定义 Pass + 定制 clang 实现函数名加密"
     ]
   },
   {
@@ -114,8 +114,8 @@
   {
     "name": "Python",
     "files": [
-      "Miniconda 全攻略：优雅管理你的 Python 环境",
-      "基于 Python + K-Means 的自动化视频分类实战"
+      "基于 Python + K-Means 的自动化视频分类实战",
+      "Miniconda 全攻略：优雅管理你的 Python 环境"
     ]
   },
   {
@@ -127,29 +127,29 @@
   {
     "name": "Unicorn",
     "files": [
-      "Capstone + Keystone + Unicorn：逆向分析三件套全解",
-      "Unicorn Hook 机制全解析：指令、代码块、内存、系统调用",
-      "使用 Unicorn 执行 JNI 函数：so 反汇编 + 参数传递 + 结果读取",
-      "基于 Unicorn 实现轻量级 ARM64 模拟器：支持 Hook、Patch、寄存器监控等功能",
       "如何用 Unicorn 模拟器进行栈访问与 Patch 操作？",
-      "用 AndroidNativeEmu 实现 JNI 函数调用模拟"
+      "使用 Unicorn 执行 JNI 函数：so 反汇编 + 参数传递 + 结果读取",
+      "用 AndroidNativeEmu 实现 JNI 函数调用模拟",
+      "Unicorn Hook 机制全解析：指令、代码块、内存、系统调用",
+      "Capstone + Keystone + Unicorn：逆向分析三件套全解",
+      "基于 Unicorn 实现轻量级 ARM64 模拟器：支持 Hook、Patch、寄存器监控等功能"
     ]
   },
   {
     "name": "Unidbg",
     "files": [
       "Unidbg Trace 实战：一步步还原 OLLVM 控制流平坦化算法",
-      "unidbg 加载 so 并调用函数：dynarmic & unicorn、指针传参、寄存器读取",
       "unidbg 调试技巧全指南：掌握 Console Debugger 的正确姿势",
+      "unidbg 加载 so 并调用函数：dynarmic & unicorn、指针传参、寄存器读取",
       "如何用 unidbg 模拟 JNI 与 Java 交互？完整教程 + 源码实战"
     ]
   },
   {
     "name": "VMP",
     "files": [
-      "常见的 256 条 Dalvik 字节码指令",
       "手写 Android Dex VMP 壳：指令流 AES 加密 + 动态加载全流程",
-      "手写 Android Dex VMP 壳：自定义虚拟机 + 指令解释执行全流程"
+      "手写 Android Dex VMP 壳：自定义虚拟机 + 指令解释执行全流程",
+      "常见的 256 条 Dalvik 字节码指令"
     ]
   },
   {
@@ -161,11 +161,11 @@
   {
     "name": "博客",
     "files": [
-      "0 成本搭建个人技术博客：用 Hugo + GitHub Pages 快速上线",
       "Hugo 博客如何实现全文搜索？支持模糊匹配 + 高亮 + 摘要",
+      "如何让 Google 收录你的 GitHub Pages 博客？一文讲透 SEO 设置全流程",
       "从 DOCX 到 Markdown 多平台发布：Hugo + GitHub Pages 全流程实战",
-      "在 Hugo 博客中优雅集成 Waline：实现评论 + 浏览量统计功能全指南",
-      "如何让 Google 收录你的 GitHub Pages 博客？一文讲透 SEO 设置全流程"
+      "0 成本搭建个人技术博客：用 Hugo + GitHub Pages 快速上线",
+      "在 Hugo 博客中优雅集成 Waline：实现评论 + 浏览量统计功能全指南"
     ]
   },
   {
@@ -179,60 +179,60 @@
   {
     "name": "安卓逆向实战案例",
     "files": [
+      "逆向某短视频App搜索协议：破解加密通信，还原真实数据！",
       "OLLVM 混淆 + VMP 壳照样破！绕过加壳 SDK 的核心检测逻辑",
-      "破解 VMP+OLLVM 混淆：通过 Hook jstring 快速定位加密算法入口",
-      "逆向某物 App 登录接口：抓包分析 + Frida Hook 还原加密算法",
       "逆向某物 App 登录接口：热修复逻辑挖掘隐藏参数、接口完整调用",
       "逆向某物 App 登录接口：还原 newSign 算法全流程",
-      "逆向某短视频App搜索协议：破解加密通信，还原真实数据！"
+      "逆向某物 App 登录接口：抓包分析 + Frida Hook 还原加密算法",
+      "破解 VMP+OLLVM 混淆：通过 Hook jstring 快速定位加密算法入口"
     ]
   },
   {
     "name": "定制Android系统",
     "files": [
-      "Android 源码如何导入 Android Studio？踩坑与解决方案详解",
-      "Magisk 修改 ro.debuggable 开启 Android 系统全局调试模式",
-      "刷入 LineageOS 后无法联网？一文解决IP配置失败与网络受限",
-      "小米刷机全攻略：解锁BL、刷机、Root 一步到位",
-      "手把手教你玩转 MagiskBoot：内核解包打包全流程",
-      "手把手教你编译 LineageOS 模拟器镜像，并导入 Android Studio 使用！",
-      "教你从零刷入 LineageOS：Recovery + Sideload 全流程实操指南",
+      "解决90%踩坑问题！LineageOS 源码下载与编译保姆级教程",
       "教你签自己的系统！LineageOS Release Key 签名刷机教程",
-      "解决90%踩坑问题！LineageOS 源码下载与编译保姆级教程"
+      "刷入 LineageOS 后无法联网？一文解决IP配置失败与网络受限",
+      "手把手教你编译 LineageOS 模拟器镜像，并导入 Android Studio 使用！",
+      "Android 源码如何导入 Android Studio？踩坑与解决方案详解",
+      "手把手教你玩转 MagiskBoot：内核解包打包全流程",
+      "Magisk 修改 ro.debuggable 开启 Android 系统全局调试模式",
+      "小米刷机全攻略：解锁BL、刷机、Root 一步到位",
+      "教你从零刷入 LineageOS：Recovery + Sideload 全流程实操指南"
     ]
   },
   {
     "name": "汇编",
     "files": [
-      "ARM64 可执行程序是如何诞生的？编译流程 + 指令调试全解析",
-      "ARM64 汇编实战指南：寻址方式 + 指令分类 + 编码原理全掌握",
+      "深入 Android syscall 实现：内联汇编系统调用 + NDK 汇编构建",
       "Android 下内联汇编开发指南：从基础语法到多架构适配全掌握",
       "彻底搞懂 ARM 汇编中的条件标志：N、Z、C、V 有什么用？",
       "搞懂 Thumb 汇编：指令集、编码方式与调试技巧全解析",
-      "深入 Android syscall 实现：内联汇编系统调用 + NDK 汇编构建"
+      "ARM64 汇编实战指南：寻址方式 + 指令分类 + 编码原理全掌握",
+      "ARM64 可执行程序是如何诞生的？编译流程 + 指令调试全解析"
     ]
   },
   {
     "name": "算法",
     "files": [
-      "HMAC 加密算法是如何运作的？如何在 Android 上实现变体？",
-      "一文搞懂常用加解密算法：编码、哈希、对称&非对称加密与压缩全解析",
-      "如何变形 SHA-1 算法？从标准实现到 Android 定制加密实践",
-      "如何变形一个 MD5 算法？Android 实现 + OLLVM 防护实战解析",
-      "如何魔改 CRC32 算法？从标准实现到加密扰动的变形逻辑解析",
-      "标准 Base64 太好逆？试试自定义码表 + 动态规则的魔改版本",
       "深入解析 AES 加密算法：原理、变体与 LibTomCrypt 在 Android 中的实战应用",
       "逆向还原变异 CRC32 算法：Unicorn + 汇编分析 + 模拟执行",
-      "逆向还原魔改 Base64 算法：动态码表 + 汇编代码 + C 语言重构"
+      "如何魔改 CRC32 算法？从标准实现到加密扰动的变形逻辑解析",
+      "逆向还原魔改 Base64 算法：动态码表 + 汇编代码 + C 语言重构",
+      "标准 Base64 太好逆？试试自定义码表 + 动态规则的魔改版本",
+      "一文搞懂常用加解密算法：编码、哈希、对称&非对称加密与压缩全解析",
+      "HMAC 加密算法是如何运作的？如何在 Android 上实现变体？",
+      "如何变形 SHA-1 算法？从标准实现到 Android 定制加密实践",
+      "如何变形一个 MD5 算法？Android 实现 + OLLVM 防护实战解析"
     ]
   },
   {
     "name": "网络抓包",
     "files": [
-      "全面解析 OkHttp 原理与实战：从拦截器机制到 Frida Hook 打印请求响应",
       "如何实现 Android App 的抓包防护？又该如何绕过？一文看懂攻防博弈",
+      "彻底搞懂 Retrofit：使用、封装与 Converter 原理",
       "安卓抓包实战：使用 Charles 抓取 App 数据全流程详解",
-      "彻底搞懂 Retrofit：使用、封装与 Converter 原理"
+      "全面解析 OkHttp 原理与实战：从拦截器机制到 Frida Hook 打印请求响应"
     ]
   }
 ]
