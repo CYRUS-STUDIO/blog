@@ -69,6 +69,7 @@
       "一文搞懂 Frida Stalker：对抗 OLLVM 的算法还原利器",
       "一文搞懂如何使用 Frida Hook Android App",
       "别再手工写 Hook 了！Python + Frida 一网打尽 SO 层动态注册 JNI 调用",
+      "基于 tcpdump 解析 Frida 通信协议：实现 frida-server 端口扫描与绕过",
       "手把手教你用 Chrome 断点调试 Frida 脚本，JS 调试不再是黑盒",
       "用 Frida 控制 Android 线程：kill 命令、挂起与恢复全解析",
       "逆向 JNI 函数找不到入口？动态注册定位技巧全解析"

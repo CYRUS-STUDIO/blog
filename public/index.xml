@@ -6,8 +6,15 @@
     <description>Recent content on CYRUS STUDIO</description>
     <generator>Hugo</generator>
     <language>zh-cn</language>
-    <lastBuildDate>Sat, 11 Apr 2026 20:13:31 +0800</lastBuildDate>
+    <lastBuildDate>Tue, 14 Apr 2026 19:14:33 +0800</lastBuildDate>
     <atom:link href="https://cyrus-studio.github.io/blog/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>基于 tcpdump 解析 Frida 通信协议：实现 frida-server 端口扫描与绕过</title>
+      <link>https://cyrus-studio.github.io/blog/posts/%E5%9F%BA%E4%BA%8E-tcpdump-%E8%A7%A3%E6%9E%90-frida-%E9%80%9A%E4%BF%A1%E5%8D%8F%E8%AE%AE%E5%AE%9E%E7%8E%B0-frida-server-%E7%AB%AF%E5%8F%A3%E6%89%AB%E6%8F%8F%E4%B8%8E%E7%BB%95%E8%BF%87/</link>
+      <pubDate>Tue, 14 Apr 2026 19:14:33 +0800</pubDate>
+      <guid>https://cyrus-studio.github.io/blog/posts/%E5%9F%BA%E4%BA%8E-tcpdump-%E8%A7%A3%E6%9E%90-frida-%E9%80%9A%E4%BF%A1%E5%8D%8F%E8%AE%AE%E5%AE%9E%E7%8E%B0-frida-server-%E7%AB%AF%E5%8F%A3%E6%89%AB%E6%8F%8F%E4%B8%8E%E7%BB%95%E8%BF%87/</guid>
+      <description>版权归作者所有，如有转发，请注明文章出处：https://cyrus-studio.github.io/blog/&#xA;前言 在 Android 逆向对抗中，Frida 检测始终是核心对抗点之一。&#xA;常见检测思路包括：&#xA;进程检测&#xA;内存特征&#xA;调试检测&#xA;端口扫描（默认 27042）&#xA;具体参考：Frida 检测与对抗实战：进程、maps、线程、符号全特征清除&#xA;早期方案通常通过扫描固定端口（如 27042），或者 AUTH/REJECT 协议特征来识别 frida-server，例如：&#xA;https://github.com/muellerberndt/frida-detection/blob/master/AntiFrida/app/src/main/cpp/native-lib.cpp&#xA;但在实际对抗中，存在两个明显问题：&#xA;端口可自定义：frida-server 可运行在任意端口，固定端口扫描失效&#xA;协议已演进：在 Frida 16+ 中，通信协议已从 AUTH/REJECT 切换为 WebSocket，原有特征完全失效&#xA;因此，本文从协议层入手，通过 tcpdump 抓包分析新版 Frida 的通信机制，提取稳定特征，并最终实现一个高精度 Frida 端口检测方案 。&#xA;使用 tcpdump 抓取本地 socket 通信 tcpdump 是一个基于 libpcap 的命令行抓包工具，用于捕获和过滤网络数据包，常用于网络调试、协议分析和安全研究。&#xA;相关链接&#xA;官方网站（源码发布 / 文档）：https://www.tcpdump.org&#xA;tcpdump GitHub 仓库：https://github.com/the-tcpdump-group/tcpdump&#xA;libpcap GitHub 仓库（依赖库）：https://github.com/the-tcpdump-group/libpcap&#xA;Android 预编译版本参考：https://www.androidtcpdump.com/&#xA;抓本地指定端口 socket 数据&#xA;tcpdump -i lo -nn -s 0 -A port 27042 说明：</description>
+    </item>
     <item>
       <title>打造基于 ART 的 Android 函数抽取壳：原理剖析与完整源码实战</title>
       <link>https://cyrus-studio.github.io/blog/posts/%E6%89%93%E9%80%A0%E5%9F%BA%E4%BA%8E-art-%E7%9A%84-android-%E5%87%BD%E6%95%B0%E6%8A%BD%E5%8F%96%E5%A3%B3%E5%8E%9F%E7%90%86%E5%89%96%E6%9E%90%E4%B8%8E%E5%AE%8C%E6%95%B4%E6%BA%90%E7%A0%81%E5%AE%9E%E6%88%98/</link>
