@@ -25,8 +25,8 @@
   {
     "name": "Dex加壳",
     "files": [
-      "打造基于 ART 的 Android 函数抽取壳：原理剖析与完整源码实战",
       "用 Dex2C 把 Java 变 Native：Android 代码加固",
+      "打造基于 ART 的 Android 函数抽取壳：原理剖析与完整源码实战",
       "深入理解 Android 热修复机制：掌握 dexElements 注入技巧",
       "深入剖析 Android 加壳应用运行流程与生命周期劫持方案"
     ]
