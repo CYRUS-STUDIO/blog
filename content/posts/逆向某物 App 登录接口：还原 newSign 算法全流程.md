@@ -1,6 +1,6 @@
 +++
 title = '逆向某物 App 登录接口：还原 newSign 算法全流程'
-date = 2025-06-22T21:24:23.753704+08:00
+date = 2026-04-16T15:53:35.878199+08:00
 draft = false
 +++
 
@@ -392,7 +392,7 @@ setImmediate(hookDexFileLoaderOpenCommon);
 
 参考：
 
-- [ART 下 Dex 加载流程源码分析 和 通用脱壳点](https://cyrus-studio.github.io/blog/posts/art-%E4%B8%8B-dex-%E5%8A%A0%E8%BD%BD%E6%B5%81%E7%A8%8B%E6%BA%90%E7%A0%81%E5%88%86%E6%9E%90-%E5%92%8C-%E9%80%9A%E7%94%A8%E8%84%B1%E5%A3%B3%E7%82%B9/)
+- [深入 ART Dex 加载流程，玩转 Android 通用脱壳点](https://cyrus-studio.github.io/blog/posts/%E6%B7%B1%E5%85%A5-art-dex-%E5%8A%A0%E8%BD%BD%E6%B5%81%E7%A8%8B%E7%8E%A9%E8%BD%AC-android-%E9%80%9A%E7%94%A8%E8%84%B1%E5%A3%B3%E7%82%B9/)
 
 - [https://github.com/CYRUS-STUDIO/frida_dex_dump](https://github.com/CYRUS-STUDIO/frida_dex_dump)
 
@@ -401,7 +401,7 @@ setImmediate(hookDexFileLoaderOpenCommon);
 日志输出如下：
 
 ```
-[+] Found symbol: _ZN3art13DexFileLoader10OpenCommonEPKhmS2_mRKNSt3__112basic_stringIcNS3_11char_traitsIcEENS3_9allocatorIcEEEEjPKNS_10OatDexFileEbbPS9_NS3_10unique_ptrINS_16DexFileContainerENS3_14default_deleteISH_EEEEPNS0_12VerifyResultE  @  0x7be3891c28
+[+] Found symbol: _ZN3art13DexFileLoader10OpenCommonEPKhmS2_mRKNSt3__112basic_stringIcNS3_1*************************************************************************trINS_16DexFileContainerENS3_14default_deleteISH_EEEEPNS0_12VerifyResultE  @  0x7be3891c28
 Spawned `com.shizhuang.duapp`. Use %resume to let the main thread start executing!
 [Remote::com.shizhuang.duapp]-> %resume
 [Remote::com.shizhuang.duapp]->
@@ -1226,7 +1226,7 @@ function NCall_IL() {
 
         // 3. 构造字符串参数
         const arg2 = String.$new(
-            "cipherParamuserNamecountryCode86loginTokenpassword6716c*******************************************************42195743typepwduserNamef37bfa14057cf018011db67c963cd733_1********9b381828fb63v5.43.0"
+            "cipherParamuserNamecountryCode86loginTokenpassword6716c58dc32e9***************************************************************serNamef37bfa14057cf018011db67c963cd733_1********9b381828fb63v5.43.0"
         );
 
         // 构造 Object[] 参数数组
@@ -1551,7 +1551,7 @@ function NCall_IL() {
 
         const arg0 = Integer.valueOf(283);
         const arg1 = DuApplication.instance.value;
-        const arg2 = String.$new("cipherParamuserNamecountryCode86loginTokenpassword6716c*******************************************************42195743typepwduserNamef37bfa14057cf018011db67c963cd733_1********9b381828fb63v5.43.0");
+        const arg2 = String.$new("cipherParamuserNamecountryCode86loginTokenpassword6716c58dc32e9***************************************************************serNamef37bfa14057cf018011db67c963cd733_1********9b381828fb63v5.43.0");
 
         const argsArray = Java.array("java.lang.Object", [arg0, arg1, arg2]);
         const result = NCall.IL(argsArray);
@@ -1691,7 +1691,7 @@ function NCall_IL() {
 
         const arg0 = Integer.valueOf(283);
         const arg1 = DuApplication.instance.value;
-        const arg2 = String.$new("cipherParamuserNamecountryCode86loginTokenpassword6716c*******************************************************42195743typepwduserNamef37bfa14057cf018011db67c963cd733_1********9b381828fb63v5.43.0");
+        const arg2 = String.$new("cipherParamuserNamecountryCode86loginTokenpassword6716c58dc32e9***************************************************************serNamef37bfa14057cf018011db67c963cd733_1********9b381828fb63v5.43.0");
 
         const argsArray = Java.array("java.lang.Object", [arg0, arg1, arg2]);
         const result = NCall.IL(argsArray);
@@ -1862,7 +1862,7 @@ function NCall_IL() {
 
         const arg0 = Integer.valueOf(283);
         const arg1 = DuApplication.instance.value;
-        const arg2 = String.$new("cipherParamuserNamecountryCode86loginTokenpassword6716c*******************************************************42195743typepwduserNamef37bfa14057cf018011db67c963cd733_1********9b381828fb63v5.43.0");
+        const arg2 = String.$new("cipherParamuserNamecountryCode86loginTokenpassword6716c58dc32e9***************************************************************serNamef37bfa14057cf018011db67c963cd733_1********9b381828fb63v5.43.0");
 
         const argsArray = Java.array("java.lang.Object", [arg0, arg1, arg2]);
         const result = NCall.IL(argsArray);
@@ -1996,7 +1996,7 @@ def newSign(text: str, key: str) -> str:
 
 # 示例调用
 if __name__ == "__main__":
-    text = "cipherParamuserNamecountryCode86loginTokenpassword6716c*******************************************************42195743typepwduserNamef37bfa14057cf018011db67c963cd733_1********9b381828fb63v5.43.0"
+    text = "cipherParamuserNamecountryCode86loginTokenpassword6716c58dc32e9***************************************************************serNamef37bfa14057cf018011db67c963cd733_1********9b381828fb63v5.43.0"
     key = "****************"  # 16字节 AES 密钥
     result = newSign(text, key)
     print("newSign 结果:", result)
@@ -2007,7 +2007,7 @@ if __name__ == "__main__":
 
 ```
 ======= newSign 开始 =======
-[AES] 原文: cipherParamuserNamecountryCode86loginTokenpassword6716c*******************************************************42195743typepwduserNamef37bfa14057cf018011db67c963cd733_1********9b381828fb63v5.43.0
+[AES] 原文: cipherParamuserNamecountryCode86loginTokenpassword6716c58dc32e9***************************************************************serNamef37bfa14057cf018011db67c963cd733_1********9b381828fb63v5.43.0
 [AES] 密钥: ****************
 [AES] 加密结果（Hex）: 7565a85e56d1dcaf3b8f6376ec392fe2e38f5273ac874c6b279b7e6adb224170befdd20df0aa1ff469b6c7592297b4bf5482df10f8bb226946c669b08fafad68793a8d0e13******************************************************************************************************************************************8ab1ae9d83595ccc7c65e9db8d3cdafac89d3e06674a276d92fce01f3c58d0d2a85dec8fe4cb36849d9f7d5699218ff207552f40ae00a0c51f65e3f4aadbff48cdb0f80d9c
 [Base64] 编码结果: dWWoXlbR3K87j2N27Dkv4uOPUnOsh0xrJ5t+atsiQXC+**********************************************************************************************************************************************xrp2DWVzMfGXp24082vrInT4GZ0onbZL84B88WNDSqF3sj+TLNoSdn31WmSGP8gdVL0CuAKDFH2Xj9Krb/0jNsPgNnA==
