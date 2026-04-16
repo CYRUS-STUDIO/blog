@@ -12,6 +12,7 @@
     <meta name="robots" content="index, follow">
     {{ $style := resources.Get "css/main.scss" | resources.ExecuteAsTemplate "css/main.scss" . | resources.ToCSS | resources.Minify | resources.Fingerprint -}}
     <link rel="stylesheet" href="{{ $style.RelPermalink }}" />
+    <link rel="stylesheet" href="https://unpkg.com/photoswipe@5/dist/photoswipe.css">
     {{ with .OutputFormats.Get "rss" -}}
     {{ printf `<link rel=%q type=%q href=%q title=%q>` .Rel .MediaType.Type .Permalink site.Title | safeHTML }}
     {{ end }}
@@ -24,6 +25,7 @@
 
   </head>
   <body>
+    
     <header class="app-header">
       
       <span class="app-header-title">{{ .Site.Title }}</span>
@@ -232,11 +234,68 @@
         });
       </script>
 
+      <script type="module">
+        import PhotoSwipeLightbox from 'https://unpkg.com/photoswipe@5/dist/photoswipe-lightbox.esm.js';
+
+        // 预处理所有图片尺寸（保证全部有数据）
+        async function prepareImages() {
+          const imgs = document.querySelectorAll('#article-gallery a.pswp-item img');
+
+          const tasks = Array.from(imgs).map(img => {
+            return new Promise((resolve) => {
+              if (img.complete) {
+                img.parentElement.dataset.pswpWidth = img.naturalWidth;
+                img.parentElement.dataset.pswpHeight = img.naturalHeight;
+                resolve();
+              } else {
+                const temp = new Image();
+                temp.src = img.src;
+
+                temp.onload = () => {
+                  img.parentElement.dataset.pswpWidth = temp.naturalWidth;
+                  img.parentElement.dataset.pswpHeight = temp.naturalHeight;
+                  resolve();
+                };
+
+                temp.onerror = resolve;
+              }
+            });
+          });
+
+          await Promise.all(tasks);
+        }
+
+        // 初始化
+        (async () => {
+          await prepareImages();   // 确保所有图片尺寸已写入
+
+          const lightbox = new PhotoSwipeLightbox({
+            gallery: '#article-gallery',
+            children: 'a.pswp-item',
+            pswpModule: () => import('https://unpkg.com/photoswipe@5/dist/photoswipe.esm.js'),
+
+            showHideAnimationType: 'zoom',
+            padding: { top: 40, bottom: 40, left: 80, right: 80 }
+          });
+
+          // 强制 fit（防止铺满）
+          lightbox.on('uiRegister', () => {
+            lightbox.pswp.on('initialZoomLevel', (e) => {
+              e.initialZoomLevel = 'fit';
+            });
+          });
+
+          lightbox.init();
+        })();
+      </script>
+
     </header>
+
     <main class="app-container">
       {{ block "main" . }}
-        {{ .Content }}
+          {{ .Content }}
       {{ end }}
     </main>
+
   </body>
 </html>

@@ -1,0 +1,6 @@
+{{- $src := .Destination | relURL | safeURL -}}
+{{- $alt := .Text -}}
+
+<a href="{{ $src }}" class="pswp-item">
+  <img src="{{ $src }}" alt="{{ $alt }}" loading="lazy" />
+</a>

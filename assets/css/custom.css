@@ -49,3 +49,29 @@
 .columns-posts-missing .posts-list-item-description {
   color: #ffb86c;
 }
+
+
+#article-gallery img {
+  cursor: zoom-in;
+  border-radius: 6px;
+  transition: transform 0.2s;
+}
+
+#article-gallery img:hover {
+  transform: scale(1.02);
+
+
+/* 防止页面内图片被压缩 */
+.post-content img {
+  max-width: 100%;
+  height: auto;
+  display: block;
+}
+
+/* PhotoSwipe 图片显示优化 */
+.pswp__img {
+  max-width: 90vw !important;
+  max-height: 90vh !important;
+  object-fit: contain;
+}
+
