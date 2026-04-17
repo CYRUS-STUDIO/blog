@@ -11,6 +11,7 @@
     <meta name="keywords" content="CYRUS STUDIO, 安卓逆向, Android Reverse Engineering, 移动开发, 安卓开发, Python">
     <meta name="robots" content="index, follow">
     <link rel="stylesheet" href="/blog/css/main.min.88c7d78acf7531a1d6384580cc3a8d907a327155912f9f657ea716c255d8d0ef.css" />
+    <link rel="stylesheet" href="https://unpkg.com/photoswipe@5/dist/photoswipe.css">
     
 
     
@@ -59,6 +60,7 @@ adb push &#34;D:\app逆向\MagiskHidePropsConf-v6.">
 
   </head>
   <body>
+    
     <header class="app-header">
       
       <span class="app-header-title">CYRUS STUDIO</span>
@@ -254,7 +256,63 @@ adb push &#34;D:\app逆向\MagiskHidePropsConf-v6.">
         });
       </script>
 
+      <script type="module">
+        import PhotoSwipeLightbox from 'https://unpkg.com/photoswipe@5/dist/photoswipe-lightbox.esm.js';
+
+        
+        async function prepareImages() {
+          const imgs = document.querySelectorAll('#article-gallery a.pswp-item img');
+
+          const tasks = Array.from(imgs).map(img => {
+            return new Promise((resolve) => {
+              if (img.complete) {
+                img.parentElement.dataset.pswpWidth = img.naturalWidth;
+                img.parentElement.dataset.pswpHeight = img.naturalHeight;
+                resolve();
+              } else {
+                const temp = new Image();
+                temp.src = img.src;
+
+                temp.onload = () => {
+                  img.parentElement.dataset.pswpWidth = temp.naturalWidth;
+                  img.parentElement.dataset.pswpHeight = temp.naturalHeight;
+                  resolve();
+                };
+
+                temp.onerror = resolve;
+              }
+            });
+          });
+
+          await Promise.all(tasks);
+        }
+
+        
+        (async () => {
+          await prepareImages();   
+
+          const lightbox = new PhotoSwipeLightbox({
+            gallery: '#article-gallery',
+            children: 'a.pswp-item',
+            pswpModule: () => import('https://unpkg.com/photoswipe@5/dist/photoswipe.esm.js'),
+
+            showHideAnimationType: 'zoom',
+            padding: { top: 40, bottom: 40, left: 80, right: 80 }
+          });
+
+          
+          lightbox.on('uiRegister', () => {
+            lightbox.pswp.on('initialZoomLevel', (e) => {
+              e.initialZoomLevel = 'fit';
+            });
+          });
+
+          lightbox.init();
+        })();
+      </script>
+
     </header>
+
     <main class="app-container">
       
 <article class="post">
@@ -299,8 +357,8 @@ adb push &#34;D:\app逆向\MagiskHidePropsConf-v6.">
     <link rel="stylesheet" href="/blog/css/waline-custom.css">
 
   </header>
-  <div class="post-content">
-    <blockquote>
+  <div class="post-content"  id="article-gallery">
+      <blockquote>
 <p>版权归作者所有，如有转发，请注明文章出处：<a href="https://cyrus-studio.github.io/blog/">https://cyrus-studio.github.io/blog/</a></p>
 </blockquote>
 <h1 id="rodebuggable">ro.debuggable</h1>
@@ -604,5 +662,6 @@ Rebooting...
 
 
     </main>
+
   </body>
 </html>
