@@ -6,12 +6,12 @@
     <description>Recent content on CYRUS STUDIO</description>
     <generator>Hugo</generator>
     <language>zh-cn</language>
-    <lastBuildDate>Wed, 22 Apr 2026 23:47:31 +0800</lastBuildDate>
+    <lastBuildDate>Sat, 25 Apr 2026 22:47:26 +0800</lastBuildDate>
     <atom:link href="https://cyrus-studio.github.io/blog/index.xml" rel="self" type="application/rss+xml" />
     <item>
       <title>安卓抓包实战：使用 Charles 抓取 App 数据全流程详解</title>
       <link>https://cyrus-studio.github.io/blog/posts/%E5%AE%89%E5%8D%93%E6%8A%93%E5%8C%85%E5%AE%9E%E6%88%98%E4%BD%BF%E7%94%A8-charles-%E6%8A%93%E5%8F%96-app-%E6%95%B0%E6%8D%AE%E5%85%A8%E6%B5%81%E7%A8%8B%E8%AF%A6%E8%A7%A3/</link>
-      <pubDate>Wed, 22 Apr 2026 23:47:31 +0800</pubDate>
+      <pubDate>Sat, 25 Apr 2026 22:47:26 +0800</pubDate>
       <guid>https://cyrus-studio.github.io/blog/posts/%E5%AE%89%E5%8D%93%E6%8A%93%E5%8C%85%E5%AE%9E%E6%88%98%E4%BD%BF%E7%94%A8-charles-%E6%8A%93%E5%8F%96-app-%E6%95%B0%E6%8D%AE%E5%85%A8%E6%B5%81%E7%A8%8B%E8%AF%A6%E8%A7%A3/</guid>
       <description>版权归作者所有，如有转发，请注明文章出处：https://cyrus-studio.github.io/blog/&#xA;抓包环境准备 1. 下载安装 Charles charles下载地址：https://www.charlesproxy.com/latest-release/download.do&#xA;2. SSL 代理设置 SSL Proxying Settings&amp;hellip;&#xA;说明：如果需要抓 PC 上的数据就开启 Windows Proxy，如果只是抓手机上的数据可以不用开启。&#xA;配置说明：&#xA;*:443 — 表示拦截所有域名的 HTTPS 请求&#xA;*:80 — 表示拦截所有域名的 HTTP 请求&#xA;3. Enable transparent HTTP proxying 打开 Proxy Settings 勾选 Enable transparent HTTP proxying&#xA;Transparent HTTP Proxy = 把“偷偷直连的 HTTP 流量”强行劫持到 Charles， 抓“禁止代理”的 App。&#xA;4. 共享热点 通过 ipconfig 命令找到电脑的 ip 地址&#xA;或者打开【网络和Internet】找到电脑的 ip 地址&#xA;电脑开启共享热点，手机连接热点并设置代理&#xA;5. 安装证书 手机端访问 http://chls.pro/ssl 安装证书&#xA;下载并保存Charlles证书&#xA;Android 7.</description>
     </item>
