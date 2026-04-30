@@ -6,8 +6,15 @@
     <description>Recent content on CYRUS STUDIO</description>
     <generator>Hugo</generator>
     <language>zh-cn</language>
-    <lastBuildDate>Sat, 25 Apr 2026 22:47:26 +0800</lastBuildDate>
+    <lastBuildDate>Thu, 30 Apr 2026 11:00:08 +0800</lastBuildDate>
     <atom:link href="https://cyrus-studio.github.io/blog/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>某海外短视频 App 抓包失败？深入 Cronet &#43; SSL Pinning 绕过</title>
+      <link>https://cyrus-studio.github.io/blog/posts/%E6%9F%90%E6%B5%B7%E5%A4%96%E7%9F%AD%E8%A7%86%E9%A2%91-app-%E6%8A%93%E5%8C%85%E5%A4%B1%E8%B4%A5%E6%B7%B1%E5%85%A5-cronet-&#43;-ssl-pinning-%E7%BB%95%E8%BF%87/</link>
+      <pubDate>Thu, 30 Apr 2026 11:00:08 +0800</pubDate>
+      <guid>https://cyrus-studio.github.io/blog/posts/%E6%9F%90%E6%B5%B7%E5%A4%96%E7%9F%AD%E8%A7%86%E9%A2%91-app-%E6%8A%93%E5%8C%85%E5%A4%B1%E8%B4%A5%E6%B7%B1%E5%85%A5-cronet-&#43;-ssl-pinning-%E7%BB%95%E8%BF%87/</guid>
+      <description>版权归作者所有，如有转发，请注明文章出处：https://cyrus-studio.github.io/blog/&#xA;目标APP无法抓包 抓包目标APP发现一直提示出错了，但是网络是正常的。&#xA;日志分析 抓一下日志看看有没有什么报错。&#xA;获取 app 包名&#xA;PS D:\&amp;gt; adb shell dumpsys activity activities | findstr &amp;#34;mResumedActivity&amp;#34;&#xD;mResumedActivity: ActivityRecord{79be772 u0 ************************/************************.splash.SplashActivity t1184} 过滤出该包名下的日志并导出到 logcat.txt&#xA;adb logcat --pid=$(adb shell pidof ************************) -v time &amp;gt; logcat.txt 可疑的日志 发现一段可疑的日志，疑似与证书校验相关。&#xA;04-23 13:16:06.427 D/vcnnetwork( 9525): &amp;lt;0x0,custom_verify.c,JNI_OnLoad,55&amp;gt;-----compiled native library Mar 9 2026 10:09:07-----&#xD;04-23 13:16:06.427 D/vcnnetwork( 9525): &amp;lt;0x0,custom_verify.c,JNI_OnLoad,63&amp;gt;register verify call start&#xD;04-23 13:16:06.427 D/vcnnetwork( 9525): &amp;lt;0x0,custom_verify.c,JNI_OnLoad,67&amp;gt;register verify call end&#xD;04-23 13:16:06.427 D/vcnnetwork( 9525): &amp;lt;0x0,custom_verify.c,JNI_OnLoad,70&amp;gt;&amp;lt;JNI_OnLoad,70&amp;gt; JNI_OnLoad (result=65540)&#xD;04-23 13:16:06.</description>
+    </item>
     <item>
       <title>安卓抓包实战：使用 Charles 抓取 App 数据全流程详解</title>
       <link>https://cyrus-studio.github.io/blog/posts/%E5%AE%89%E5%8D%93%E6%8A%93%E5%8C%85%E5%AE%9E%E6%88%98%E4%BD%BF%E7%94%A8-charles-%E6%8A%93%E5%8F%96-app-%E6%95%B0%E6%8D%AE%E5%85%A8%E6%B5%81%E7%A8%8B%E8%AF%A6%E8%A7%A3/</link>
