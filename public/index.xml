@@ -6,8 +6,15 @@
     <description>Recent content on CYRUS STUDIO</description>
     <generator>Hugo</generator>
     <language>zh-cn</language>
-    <lastBuildDate>Thu, 30 Apr 2026 11:00:08 +0800</lastBuildDate>
+    <lastBuildDate>Tue, 19 May 2026 00:48:07 +0800</lastBuildDate>
     <atom:link href="https://cyrus-studio.github.io/blog/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>别让 so 裸奔！移植 OLLVM 到 NDK 并集成到 Android Studio</title>
+      <link>https://cyrus-studio.github.io/blog/posts/%E5%88%AB%E8%AE%A9-so-%E8%A3%B8%E5%A5%94%E7%A7%BB%E6%A4%8D-ollvm-%E5%88%B0-ndk-%E5%B9%B6%E9%9B%86%E6%88%90%E5%88%B0-android-studio/</link>
+      <pubDate>Tue, 19 May 2026 00:48:07 +0800</pubDate>
+      <guid>https://cyrus-studio.github.io/blog/posts/%E5%88%AB%E8%AE%A9-so-%E8%A3%B8%E5%A5%94%E7%A7%BB%E6%A4%8D-ollvm-%E5%88%B0-ndk-%E5%B9%B6%E9%9B%86%E6%88%90%E5%88%B0-android-studio/</guid>
+      <description>版权归作者所有，如有转发，请注明文章出处：https://cyrus-studio.github.io/blog/&#xA;前言 在 Android 应用安全中，Native 层 so 库往往是最容易被逆向分析的目标 。无论是游戏的核心逻辑，还是 App 的关键算法，一旦 so 被反编译，核心代码就可能暴露无遗。&#xA;传统的 Java 层混淆工具（如 ProGuard、R8）对 C/C++ 代码无能为力，因此 NDK 层代码的保护 成了安全加固中的难点。解决思路：在编译阶段对 so 进行混淆处理 ，让逆向难度大幅提升。&#xA;LLVM 生态中有一个安全扩展 —— OLLVM (Obfuscator-LLVM) ，它在编译流程里插入了混淆 Pass，能对 C/C++ 代码做 控制流平坦化、虚假控制流、指令替换 等处理，从而显著增加逆向门槛。&#xA;本文将带你实战：如何将 OLLVM 移植到 LLVM/NDK，并在 Android Studio 工程中使用它，为 Native 代码加上一层混淆保护。&#xA;OLLVM、LLVM 与 Android NDK LLVM 是一个高度模块化的编译器框架，它能够将 C/C++ 等高级语言源码编译为中间表示（LLVM IR），再经过优化、生成目标机器码。它不仅仅是一个编译器，更是一个“编译基础设施”。&#xA;在 Android 平台上，自 NDK r18 开始，Google 就全面弃用了 GCC，转而采用 LLVM/Clang 作为官方工具链。也就是说，所有的 C/C++ 代码编译、优化、生成 so 库的过程，底层都是由 LLVM 驱动完成的。</description>
+    </item>
     <item>
       <title>某海外短视频 App 抓包失败？深入 Cronet &#43; SSL Pinning 绕过</title>
       <link>https://cyrus-studio.github.io/blog/posts/%E6%9F%90%E6%B5%B7%E5%A4%96%E7%9F%AD%E8%A7%86%E9%A2%91-app-%E6%8A%93%E5%8C%85%E5%A4%B1%E8%B4%A5%E6%B7%B1%E5%85%A5-cronet-&#43;-ssl-pinning-%E7%BB%95%E8%BF%87/</link>
@@ -168,13 +175,6 @@
       <pubDate>Sun, 31 Aug 2025 05:18:27 +0800</pubDate>
       <guid>https://cyrus-studio.github.io/blog/posts/cc&#43;&#43;-%E4%BB%A3%E7%A0%81%E5%AE%89%E5%85%A8%E5%86%8D%E5%8D%87%E7%BA%A7%E7%94%A8-ollvm-%E7%BB%99-so-%E5%8A%A0%E4%B8%8A%E5%AD%97%E7%AC%A6%E4%B8%B2%E5%8A%A0%E5%AF%86%E4%BF%9D%E6%8A%A4/</guid>
       <description>版权归作者所有，如有转发，请注明文章出处：https://cyrus-studio.github.io/blog/&#xA;前言 在 Android 应用的 Native so 中，C/C++ 字符串是最容易泄露的弱点 。只要用 IDA、Ghidra 等逆向工具打开 so，明文字符串往往一览无余，核心逻辑、协议关键字、敏感信息都可能直接暴露。&#xA;这意味着，即使你对函数做了混淆，对控制流做了平坦化，只要字符串没保护，就等于把应用的秘密写在了明面上 。&#xA;解决办法：对字符串加密 。而基于 LLVM 的 OLLVM ，恰好提供了一个可扩展的平台，我们可以在编译过程中自动收集、加密、替换字符串，让 so 中不再出现明文常量。&#xA;本文将带你一步步实现：在 OLLVM 中增加一个 字符串加密 Pass ，并演示如何移植到 Android NDK 工程中实战应用。&#xA;字符串加密原理 OLLVM 字符串加密的原理 很简单：它在 编译阶段 对所有字符串常量做一次「改写」，程序运行时把密文恢复成明文。具体过程是：&#xA;收集 IR 中的字符串常量（例如 const char* str = &amp;ldquo;hello&amp;rdquo;;）；&#xA;在编译时使用自定义算法对字符串加密（常见做法是异或、移位或更复杂的算法）；&#xA;自动生成一个解密函数，在程序运行时把密文恢复成明文；&#xA;替换原本对字符串的引用，让代码使用解密后的结果。&#xA;这样一来，最终生成的 so 文件里就不再存放任何明文字符串，逆向工具看到的都是类似 &amp;amp;unk_* 的引用，只有在程序真正运行时，才会在内存里还原出可用的字符串 。这大大提升了逆向分析的难度。&#xA;LLVM IR 中的字符串 编写 C代码 sobf.c 如下：&#xA;#include &amp;lt;stdio.h&amp;gt;&#xD;int main() {&#xD;// 定义字符串常量&#xD;const char *greeting = &amp;#34;Hello, World!</description>
-    </item>
-    <item>
-      <title>别让 so 裸奔！移植 OLLVM 到 NDK 并集成到 Android Studio</title>
-      <link>https://cyrus-studio.github.io/blog/posts/%E5%88%AB%E8%AE%A9-so-%E8%A3%B8%E5%A5%94%E7%A7%BB%E6%A4%8D-ollvm-%E5%88%B0-ndk-%E5%B9%B6%E9%9B%86%E6%88%90%E5%88%B0-android-studio/</link>
-      <pubDate>Sun, 31 Aug 2025 04:01:37 +0800</pubDate>
-      <guid>https://cyrus-studio.github.io/blog/posts/%E5%88%AB%E8%AE%A9-so-%E8%A3%B8%E5%A5%94%E7%A7%BB%E6%A4%8D-ollvm-%E5%88%B0-ndk-%E5%B9%B6%E9%9B%86%E6%88%90%E5%88%B0-android-studio/</guid>
-      <description>版权归作者所有，如有转发，请注明文章出处：https://cyrus-studio.github.io/blog/&#xA;前言 在 Android 应用安全中，Native 层 so 库往往是最容易被逆向分析的目标 。无论是游戏的核心逻辑，还是 App 的关键算法，一旦 so 被反编译，核心代码就可能暴露无遗。&#xA;传统的 Java 层混淆工具（如 ProGuard、R8）对 C/C++ 代码无能为力，因此 NDK 层代码的保护 成了安全加固中的难点。解决思路：在编译阶段对 so 进行混淆处理 ，让逆向难度大幅提升。&#xA;LLVM 生态中有一个安全扩展 —— OLLVM (Obfuscator-LLVM) ，它在编译流程里插入了混淆 Pass，能对 C/C++ 代码做 控制流平坦化、虚假控制流、指令替换 等处理，从而显著增加逆向门槛。&#xA;本文将带你实战：如何将 OLLVM 移植到 LLVM/NDK，并在 Android Studio 工程中使用它，为 Native 代码加上一层混淆保护。&#xA;OLLVM、LLVM 与 Android NDK LLVM 是一个高度模块化的编译器框架，它能够将 C/C++ 等高级语言源码编译为中间表示（LLVM IR），再经过优化、生成目标机器码。它不仅仅是一个编译器，更是一个“编译基础设施”。&#xA;在 Android 平台上，自 NDK r18 开始，Google 就全面弃用了 GCC，转而采用 LLVM/Clang 作为官方工具链。也就是说，所有的 C/C++ 代码编译、优化、生成 so 库的过程，底层都是由 LLVM 驱动完成的。</description>
     </item>
     <item>
       <title>OLLVM 移植 LLVM18 踩坑：一步步调试修复控制流平坦化</title>

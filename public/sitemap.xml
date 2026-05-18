@@ -3,10 +3,13 @@
   xmlns:xhtml="http://www.w3.org/1999/xhtml">
   <url>
     <loc>https://cyrus-studio.github.io/blog/</loc>
-    <lastmod>2026-04-30T11:00:08+08:00</lastmod>
+    <lastmod>2026-05-19T00:48:07+08:00</lastmod>
   </url><url>
     <loc>https://cyrus-studio.github.io/blog/posts/</loc>
-    <lastmod>2026-04-30T11:00:08+08:00</lastmod>
+    <lastmod>2026-05-19T00:48:07+08:00</lastmod>
+  </url><url>
+    <loc>https://cyrus-studio.github.io/blog/posts/%E5%88%AB%E8%AE%A9-so-%E8%A3%B8%E5%A5%94%E7%A7%BB%E6%A4%8D-ollvm-%E5%88%B0-ndk-%E5%B9%B6%E9%9B%86%E6%88%90%E5%88%B0-android-studio/</loc>
+    <lastmod>2026-05-19T00:48:07+08:00</lastmod>
   </url><url>
     <loc>https://cyrus-studio.github.io/blog/posts/%E6%9F%90%E6%B5%B7%E5%A4%96%E7%9F%AD%E8%A7%86%E9%A2%91-app-%E6%8A%93%E5%8C%85%E5%A4%B1%E8%B4%A5%E6%B7%B1%E5%85%A5-cronet-&#43;-ssl-pinning-%E7%BB%95%E8%BF%87/</loc>
     <lastmod>2026-04-30T11:00:08+08:00</lastmod>
@@ -79,9 +82,6 @@
   </url><url>
     <loc>https://cyrus-studio.github.io/blog/posts/cc&#43;&#43;-%E4%BB%A3%E7%A0%81%E5%AE%89%E5%85%A8%E5%86%8D%E5%8D%87%E7%BA%A7%E7%94%A8-ollvm-%E7%BB%99-so-%E5%8A%A0%E4%B8%8A%E5%AD%97%E7%AC%A6%E4%B8%B2%E5%8A%A0%E5%AF%86%E4%BF%9D%E6%8A%A4/</loc>
     <lastmod>2025-08-31T05:18:27+08:00</lastmod>
-  </url><url>
-    <loc>https://cyrus-studio.github.io/blog/posts/%E5%88%AB%E8%AE%A9-so-%E8%A3%B8%E5%A5%94%E7%A7%BB%E6%A4%8D-ollvm-%E5%88%B0-ndk-%E5%B9%B6%E9%9B%86%E6%88%90%E5%88%B0-android-studio/</loc>
-    <lastmod>2025-08-31T04:01:37+08:00</lastmod>
   </url><url>
     <loc>https://cyrus-studio.github.io/blog/posts/ollvm-%E7%A7%BB%E6%A4%8D-llvm18-%E8%B8%A9%E5%9D%91%E4%B8%80%E6%AD%A5%E6%AD%A5%E8%B0%83%E8%AF%95%E4%BF%AE%E5%A4%8D%E6%8E%A7%E5%88%B6%E6%B5%81%E5%B9%B3%E5%9D%A6%E5%8C%96/</loc>
     <lastmod>2025-08-31T03:14:05+08:00</lastmod>
