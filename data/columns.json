@@ -230,6 +230,7 @@
   {
     "name": "网络抓包",
     "files": [
+      "OpenSSL 实战：构建安全 HTTP 请求与反抓包体系，保护核心业务数据",
       "安卓抓包实战：使用 Charles 抓取 App 数据全流程详解",
       "如何实现 Android App 的抓包防护？又该如何绕过？一文看懂攻防博弈",
       "彻底搞懂 Retrofit：使用、封装与 Converter 原理",
