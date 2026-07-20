@@ -1,6 +1,6 @@
 +++
 title = '解锁 Google 官方终端 AI 助手，直接在命令行重构你整个工程'
-date = 2026-07-20T16:27:42.261424+08:00
+date = 2026-07-20T17:47:32.315271+08:00
 draft = false
 +++
 
@@ -425,8 +425,6 @@ Android 工程 GEMINI.md 示例
   ```kotlin
   private val _uiState = MutableStateFlow<UserUiState>(UserUiState.Loading)
   val uiState: StateFlow<UserUiState> = _uiState.asStateFlow()
-  ```
-- **资源调用**: 所有的字符串、颜色、尺寸必须使用 stringResource(), colorResource() 或 Material Theme 引用，严禁代码硬编码（Hardcoding）。
 ```
 你可以将它放置在 Android 项目的**根目录** 下。当你通过 Gemini 聊天、生成代码或重构时，AI 就会自动遵循这里定义的架构、命名规范和第三方库选择，从而避免写出过时的代码。
 

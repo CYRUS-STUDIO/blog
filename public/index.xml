@@ -6,12 +6,12 @@
     <description>Recent content on CYRUS STUDIO</description>
     <generator>Hugo</generator>
     <language>zh-cn</language>
-    <lastBuildDate>Mon, 20 Jul 2026 16:27:42 +0800</lastBuildDate>
+    <lastBuildDate>Mon, 20 Jul 2026 17:47:32 +0800</lastBuildDate>
     <atom:link href="https://cyrus-studio.github.io/blog/index.xml" rel="self" type="application/rss+xml" />
     <item>
       <title>解锁 Google 官方终端 AI 助手，直接在命令行重构你整个工程</title>
       <link>https://cyrus-studio.github.io/blog/posts/%E8%A7%A3%E9%94%81-google-%E5%AE%98%E6%96%B9%E7%BB%88%E7%AB%AF-ai-%E5%8A%A9%E6%89%8B%E7%9B%B4%E6%8E%A5%E5%9C%A8%E5%91%BD%E4%BB%A4%E8%A1%8C%E9%87%8D%E6%9E%84%E4%BD%A0%E6%95%B4%E4%B8%AA%E5%B7%A5%E7%A8%8B/</link>
-      <pubDate>Mon, 20 Jul 2026 16:27:42 +0800</pubDate>
+      <pubDate>Mon, 20 Jul 2026 17:47:32 +0800</pubDate>
       <guid>https://cyrus-studio.github.io/blog/posts/%E8%A7%A3%E9%94%81-google-%E5%AE%98%E6%96%B9%E7%BB%88%E7%AB%AF-ai-%E5%8A%A9%E6%89%8B%E7%9B%B4%E6%8E%A5%E5%9C%A8%E5%91%BD%E4%BB%A4%E8%A1%8C%E9%87%8D%E6%9E%84%E4%BD%A0%E6%95%B4%E4%B8%AA%E5%B7%A5%E7%A8%8B/</guid>
       <description>版权归作者所有，如有转发，请注明文章出处：https://cyrus-studio.github.io/blog/&#xA;一、Gemini CLI 是什么 Gemini CLI 是 Google 官方推出的命令行 AI 助手。&#xA;它可以：&#xA;阅读整个工程&#xA;分析代码&#xA;修改代码&#xA;生成代码&#xA;解释报错&#xA;帮助重构&#xA;编写文档&#xA;与 Git 配合工作&#xA;&amp;hellip;&#xA;例如：&#xA;gemini 进入交互模式：&#xA;&amp;gt; 解释 native_bridge.cpp 或者：&#xA;&amp;gt; 帮我找 JNI 注册函数 甚至：&#xA;&amp;gt; 帮我分析整个 Android 工程 二、安装 Node.js Gemini CLI 基于 Node.js。&#xA;官方下载：https://nodejs.org/&#xA;安装完成后打开 PowerShell：&#xA;node -v 例如：&#xA;v24.18.0 再检查 npm：&#xA;npm -v 例如：&#xA;11.16.0 说明环境正常。&#xA;三、安装 Gemini CLI 打开 PowerShell：&#xA;npm install -g @google/gemini-cli 等待安装。</description>
     </item>
