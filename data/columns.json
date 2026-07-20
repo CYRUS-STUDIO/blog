@@ -7,6 +7,12 @@
     ]
   },
   {
+    "name": "AI",
+    "files": [
+      "解锁 Google 官方终端 AI 助手，直接在命令行重构你整个工程"
+    ]
+  },
+  {
     "name": "Android Framework",
     "files": [
       "深入内核交互：用 strace 看清 Android 每一个系统调用",
