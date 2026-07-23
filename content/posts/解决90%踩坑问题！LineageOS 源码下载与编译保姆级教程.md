@@ -1,6 +1,6 @@
 +++
 title = '解决90%踩坑问题！LineageOS 源码下载与编译保姆级教程'
-date = 2026-07-23T22:40:22.278838+08:00
+date = 2026-07-23T22:43:27.747128+08:00
 draft = false
 +++
 
@@ -393,7 +393,7 @@ git clone https://github.com/LineageOS-MI-A2-MI-6X/android_vendor_xiaomi_wayne-c
 
 
 
-关于Linux下代理设置可以参考[这篇文章](https://cyrus-studio.github.io/blog/posts/linux%E4%B8%8B%E4%BB%A3%E7%90%86%E8%AE%BE%E7%BD%AE/)。
+关于 Linux 下代理设置可以参考[这篇文章](https://cyrus-studio.github.io/blog/posts/linux-%E4%B8%8B%E9%85%8D%E7%BD%AE-clash-%E4%BB%A3%E7%90%86%E8%AF%A6%E7%BB%86%E6%95%99%E7%A8%8B%E8%A7%A3%E5%86%B3%E4%B9%B1%E7%A0%81%E8%87%AA%E5%8A%A8%E8%84%9A%E6%9C%AC%E7%9B%B4%E8%BF%9E%E9%85%8D%E7%BD%AE/)。
 
 
 
