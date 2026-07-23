@@ -1,6 +1,6 @@
 +++
 title = '解决90%踩坑问题！LineageOS 源码下载与编译保姆级教程'
-date = 2026-07-23T22:23:58.168542+08:00
+date = 2026-07-23T22:40:22.278838+08:00
 draft = false
 +++
 
@@ -394,6 +394,36 @@ git clone https://github.com/LineageOS-MI-A2-MI-6X/android_vendor_xiaomi_wayne-c
 
 
 关于Linux下代理设置可以参考[这篇文章](https://cyrus-studio.github.io/blog/posts/linux%E4%B8%8B%E4%BB%A3%E7%90%86%E8%AE%BE%E7%BD%AE/)。
+
+
+
+如果你想在 WSL 内完美融合代理，可以在 Windows 的用户目录 C:\Users\\<用户名>\.wslconfig 中配置镜像网络（Mirrored mode，需 Win11 新版 WSL）：
+
+```
+[wsl2]
+networkingMode=mirrored
+```
+
+
+使用 curl 测试外网连通性与 IP 地址
+
+```
+curl -I https://www.google.com
+```
+- **成功现象** ：返回 HTTP/2 200 或 HTTP/1.1 200 OK 响应头。
+
+- **失败现象** ：长时间卡住超时（Timeout）或提示 Connection refused。
+
+
+
+检查代理出口 IP，通过命令行查询你当前的“公网 IP 地址”及其地理位置信息
+
+```
+curl ip.sb
+# 或
+curl cip.cc
+```
+- **验证标准** ：如果返回的是你**代理服务器（节点）的 IP** ，而不是你本地宽带的 IP，说明代理转发完全正常！
 
 
 

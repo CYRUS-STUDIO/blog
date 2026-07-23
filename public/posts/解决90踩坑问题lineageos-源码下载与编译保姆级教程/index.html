@@ -42,8 +42,8 @@ LineageOS源码国内镜像地址：https://mirrors.tuna.tsinghua.edu.cn/help/li
   <meta property="og:locale" content="zh_cn">
   <meta property="og:type" content="article">
     <meta property="article:section" content="posts">
-    <meta property="article:published_time" content="2026-07-23T22:23:58+08:00">
-    <meta property="article:modified_time" content="2026-07-23T22:23:58+08:00">
+    <meta property="article:published_time" content="2026-07-23T22:40:22+08:00">
+    <meta property="article:modified_time" content="2026-07-23T22:40:22+08:00">
 
     
     <script src="https://cdn.jsdelivr.net/npm/fuse.js@6.6.2"></script>
@@ -537,6 +537,26 @@ git clone https://github.com/LineageOS-MI-A2-MI-6X/android_vendor_xiaomi_wayne-c
 </code></pre><h1 id="二代理设置">二、代理设置</h1>
 <p>由于在编译过程需要连接 github 下载设备树和内核，所以需要先设置一下代理。</p>
 <p>关于Linux下代理设置可以参考<a href="https://cyrus-studio.github.io/blog/posts/linux%E4%B8%8B%E4%BB%A3%E7%90%86%E8%AE%BE%E7%BD%AE/">这篇文章</a>。</p>
+<p>如果你想在 WSL 内完美融合代理，可以在 Windows 的用户目录 C:\Users\&lt;用户名&gt;.wslconfig 中配置镜像网络（Mirrored mode，需 Win11 新版 WSL）：</p>
+<pre tabindex="0"><code>[wsl2]
+networkingMode=mirrored
+</code></pre><p>使用 curl 测试外网连通性与 IP 地址</p>
+<pre tabindex="0"><code>curl -I https://www.google.com
+</code></pre><ul>
+<li>
+<p><strong>成功现象</strong> ：返回 HTTP/2 200 或 HTTP/1.1 200 OK 响应头。</p>
+</li>
+<li>
+<p><strong>失败现象</strong> ：长时间卡住超时（Timeout）或提示 Connection refused。</p>
+</li>
+</ul>
+<p>检查代理出口 IP，通过命令行查询你当前的“公网 IP 地址”及其地理位置信息</p>
+<pre tabindex="0"><code>curl ip.sb
+# 或
+curl cip.cc
+</code></pre><ul>
+<li><strong>验证标准</strong> ：如果返回的是你<strong>代理服务器（节点）的 IP</strong> ，而不是你本地宽带的 IP，说明代理转发完全正常！</li>
+</ul>
 <h1 id="三设置缓存">三、设置缓存</h1>
 <p>创建缓存目录</p>
 <pre tabindex="0"><code>mkdir -p /mnt/case_sensitive/ccache
